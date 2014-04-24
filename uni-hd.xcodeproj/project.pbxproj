@@ -1,0 +1,492 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		87CBE08C1908810B0029D9AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08B1908810B0029D9AF /* Foundation.framework */; };
+		87CBE08E1908810B0029D9AF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08D1908810B0029D9AF /* CoreGraphics.framework */; };
+		87CBE0901908810B0029D9AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08F1908810B0029D9AF /* UIKit.framework */; };
+		87CBE0961908810B0029D9AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 87CBE0941908810B0029D9AF /* InfoPlist.strings */; };
+		87CBE0981908810B0029D9AF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CBE0971908810B0029D9AF /* main.m */; };
+		87CBE09C1908810B0029D9AF /* UHDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CBE09B1908810B0029D9AF /* UHDAppDelegate.m */; };
+		87CBE09F1908810B0029D9AF /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87CBE09D1908810B0029D9AF /* Main_iPhone.storyboard */; };
+		87CBE0A21908810B0029D9AF /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87CBE0A01908810B0029D9AF /* Main_iPad.storyboard */; };
+		87CBE0A51908810B0029D9AF /* UHDFirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CBE0A41908810B0029D9AF /* UHDFirstViewController.m */; };
+		87CBE0A81908810B0029D9AF /* UHDSecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CBE0A71908810B0029D9AF /* UHDSecondViewController.m */; };
+		87CBE0AA1908810B0029D9AF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87CBE0A91908810B0029D9AF /* Images.xcassets */; };
+		87CBE0B11908810B0029D9AF /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE0B01908810B0029D9AF /* XCTest.framework */; };
+		87CBE0B21908810B0029D9AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08B1908810B0029D9AF /* Foundation.framework */; };
+		87CBE0B31908810B0029D9AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08F1908810B0029D9AF /* UIKit.framework */; };
+		87CBE0BB1908810B0029D9AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 87CBE0B91908810B0029D9AF /* InfoPlist.strings */; };
+		87CBE0BD1908810B0029D9AF /* uni_hdTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CBE0BC1908810B0029D9AF /* uni_hdTests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		87CBE0B41908810B0029D9AF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87CBE0801908810B0029D9AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 87CBE0871908810B0029D9AF;
+			remoteInfo = "uni-hd";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		87CBE0881908810B0029D9AF /* uni-hd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uni-hd.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		87CBE08B1908810B0029D9AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		87CBE08D1908810B0029D9AF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		87CBE08F1908810B0029D9AF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		87CBE0931908810B0029D9AF /* uni-hd-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "uni-hd-Info.plist"; sourceTree = "<group>"; };
+		87CBE0951908810B0029D9AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		87CBE0971908810B0029D9AF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		87CBE0991908810B0029D9AF /* uni-hd-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uni-hd-Prefix.pch"; sourceTree = "<group>"; };
+		87CBE09A1908810B0029D9AF /* UHDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UHDAppDelegate.h; sourceTree = "<group>"; };
+		87CBE09B1908810B0029D9AF /* UHDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UHDAppDelegate.m; sourceTree = "<group>"; };
+		87CBE09E1908810B0029D9AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		87CBE0A11908810B0029D9AF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		87CBE0A31908810B0029D9AF /* UHDFirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UHDFirstViewController.h; sourceTree = "<group>"; };
+		87CBE0A41908810B0029D9AF /* UHDFirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UHDFirstViewController.m; sourceTree = "<group>"; };
+		87CBE0A61908810B0029D9AF /* UHDSecondViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UHDSecondViewController.h; sourceTree = "<group>"; };
+		87CBE0A71908810B0029D9AF /* UHDSecondViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UHDSecondViewController.m; sourceTree = "<group>"; };
+		87CBE0A91908810B0029D9AF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		87CBE0AF1908810B0029D9AF /* uni-hdTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "uni-hdTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		87CBE0B01908810B0029D9AF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		87CBE0B81908810B0029D9AF /* uni-hdTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "uni-hdTests-Info.plist"; sourceTree = "<group>"; };
+		87CBE0BA1908810B0029D9AF /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		87CBE0BC1908810B0029D9AF /* uni_hdTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = uni_hdTests.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		87CBE0851908810B0029D9AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87CBE08E1908810B0029D9AF /* CoreGraphics.framework in Frameworks */,
+				87CBE0901908810B0029D9AF /* UIKit.framework in Frameworks */,
+				87CBE08C1908810B0029D9AF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87CBE0AC1908810B0029D9AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87CBE0B11908810B0029D9AF /* XCTest.framework in Frameworks */,
+				87CBE0B31908810B0029D9AF /* UIKit.framework in Frameworks */,
+				87CBE0B21908810B0029D9AF /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		87CBE07F1908810B0029D9AF = {
+			isa = PBXGroup;
+			children = (
+				87CBE0911908810B0029D9AF /* uni-hd */,
+				87CBE0B61908810B0029D9AF /* uni-hdTests */,
+				87CBE08A1908810B0029D9AF /* Frameworks */,
+				87CBE0891908810B0029D9AF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		87CBE0891908810B0029D9AF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				87CBE0881908810B0029D9AF /* uni-hd.app */,
+				87CBE0AF1908810B0029D9AF /* uni-hdTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		87CBE08A1908810B0029D9AF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				87CBE08B1908810B0029D9AF /* Foundation.framework */,
+				87CBE08D1908810B0029D9AF /* CoreGraphics.framework */,
+				87CBE08F1908810B0029D9AF /* UIKit.framework */,
+				87CBE0B01908810B0029D9AF /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		87CBE0911908810B0029D9AF /* uni-hd */ = {
+			isa = PBXGroup;
+			children = (
+				87CBE09A1908810B0029D9AF /* UHDAppDelegate.h */,
+				87CBE09B1908810B0029D9AF /* UHDAppDelegate.m */,
+				87CBE09D1908810B0029D9AF /* Main_iPhone.storyboard */,
+				87CBE0A01908810B0029D9AF /* Main_iPad.storyboard */,
+				87CBE0A31908810B0029D9AF /* UHDFirstViewController.h */,
+				87CBE0A41908810B0029D9AF /* UHDFirstViewController.m */,
+				87CBE0A61908810B0029D9AF /* UHDSecondViewController.h */,
+				87CBE0A71908810B0029D9AF /* UHDSecondViewController.m */,
+				87CBE0A91908810B0029D9AF /* Images.xcassets */,
+				87CBE0921908810B0029D9AF /* Supporting Files */,
+			);
+			path = "uni-hd";
+			sourceTree = "<group>";
+		};
+		87CBE0921908810B0029D9AF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				87CBE0931908810B0029D9AF /* uni-hd-Info.plist */,
+				87CBE0941908810B0029D9AF /* InfoPlist.strings */,
+				87CBE0971908810B0029D9AF /* main.m */,
+				87CBE0991908810B0029D9AF /* uni-hd-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		87CBE0B61908810B0029D9AF /* uni-hdTests */ = {
+			isa = PBXGroup;
+			children = (
+				87CBE0BC1908810B0029D9AF /* uni_hdTests.m */,
+				87CBE0B71908810B0029D9AF /* Supporting Files */,
+			);
+			path = "uni-hdTests";
+			sourceTree = "<group>";
+		};
+		87CBE0B71908810B0029D9AF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				87CBE0B81908810B0029D9AF /* uni-hdTests-Info.plist */,
+				87CBE0B91908810B0029D9AF /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		87CBE0871908810B0029D9AF /* uni-hd */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87CBE0C01908810B0029D9AF /* Build configuration list for PBXNativeTarget "uni-hd" */;
+			buildPhases = (
+				87CBE0841908810B0029D9AF /* Sources */,
+				87CBE0851908810B0029D9AF /* Frameworks */,
+				87CBE0861908810B0029D9AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "uni-hd";
+			productName = "uni-hd";
+			productReference = 87CBE0881908810B0029D9AF /* uni-hd.app */;
+			productType = "com.apple.product-type.application";
+		};
+		87CBE0AE1908810B0029D9AF /* uni-hdTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 87CBE0C31908810B0029D9AF /* Build configuration list for PBXNativeTarget "uni-hdTests" */;
+			buildPhases = (
+				87CBE0AB1908810B0029D9AF /* Sources */,
+				87CBE0AC1908810B0029D9AF /* Frameworks */,
+				87CBE0AD1908810B0029D9AF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				87CBE0B51908810B0029D9AF /* PBXTargetDependency */,
+			);
+			name = "uni-hdTests";
+			productName = "uni-hdTests";
+			productReference = 87CBE0AF1908810B0029D9AF /* uni-hdTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		87CBE0801908810B0029D9AF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = UHD;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "Universität Heidelberg";
+				TargetAttributes = {
+					87CBE0AE1908810B0029D9AF = {
+						TestTargetID = 87CBE0871908810B0029D9AF;
+					};
+				};
+			};
+			buildConfigurationList = 87CBE0831908810B0029D9AF /* Build configuration list for PBXProject "uni-hd" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 87CBE07F1908810B0029D9AF;
+			productRefGroup = 87CBE0891908810B0029D9AF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				87CBE0871908810B0029D9AF /* uni-hd */,
+				87CBE0AE1908810B0029D9AF /* uni-hdTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		87CBE0861908810B0029D9AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87CBE0A21908810B0029D9AF /* Main_iPad.storyboard in Resources */,
+				87CBE0AA1908810B0029D9AF /* Images.xcassets in Resources */,
+				87CBE09F1908810B0029D9AF /* Main_iPhone.storyboard in Resources */,
+				87CBE0961908810B0029D9AF /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87CBE0AD1908810B0029D9AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87CBE0BB1908810B0029D9AF /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		87CBE0841908810B0029D9AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87CBE0A81908810B0029D9AF /* UHDSecondViewController.m in Sources */,
+				87CBE09C1908810B0029D9AF /* UHDAppDelegate.m in Sources */,
+				87CBE0A51908810B0029D9AF /* UHDFirstViewController.m in Sources */,
+				87CBE0981908810B0029D9AF /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87CBE0AB1908810B0029D9AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87CBE0BD1908810B0029D9AF /* uni_hdTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		87CBE0B51908810B0029D9AF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 87CBE0871908810B0029D9AF /* uni-hd */;
+			targetProxy = 87CBE0B41908810B0029D9AF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		87CBE0941908810B0029D9AF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				87CBE0951908810B0029D9AF /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		87CBE09D1908810B0029D9AF /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				87CBE09E1908810B0029D9AF /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		87CBE0A01908810B0029D9AF /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				87CBE0A11908810B0029D9AF /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		87CBE0B91908810B0029D9AF /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				87CBE0BA1908810B0029D9AF /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		87CBE0BE1908810B0029D9AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		87CBE0BF1908810B0029D9AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		87CBE0C11908810B0029D9AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "uni-hd/uni-hd-Prefix.pch";
+				INFOPLIST_FILE = "uni-hd/uni-hd-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		87CBE0C21908810B0029D9AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "uni-hd/uni-hd-Prefix.pch";
+				INFOPLIST_FILE = "uni-hd/uni-hd-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		87CBE0C41908810B0029D9AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/uni-hd.app/uni-hd";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "uni-hd/uni-hd-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "uni-hdTests/uni-hdTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		87CBE0C51908810B0029D9AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/uni-hd.app/uni-hd";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "uni-hd/uni-hd-Prefix.pch";
+				INFOPLIST_FILE = "uni-hdTests/uni-hdTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		87CBE0831908810B0029D9AF /* Build configuration list for PBXProject "uni-hd" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87CBE0BE1908810B0029D9AF /* Debug */,
+				87CBE0BF1908810B0029D9AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		87CBE0C01908810B0029D9AF /* Build configuration list for PBXNativeTarget "uni-hd" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87CBE0C11908810B0029D9AF /* Debug */,
+				87CBE0C21908810B0029D9AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		87CBE0C31908810B0029D9AF /* Build configuration list for PBXNativeTarget "uni-hdTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				87CBE0C41908810B0029D9AF /* Debug */,
+				87CBE0C51908810B0029D9AF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 87CBE0801908810B0029D9AF /* Project object */;
+}
