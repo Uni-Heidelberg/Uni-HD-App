@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import "UHDSecondViewController.h"
+#import "UHDNowViewController.h"
 
-@interface UHDSecondViewController ()
+@interface UHDNowViewController ()
 
 @end
 
-@implementation UHDSecondViewController
+@implementation UHDNowViewController
 
 - (void)viewDidLoad
 {

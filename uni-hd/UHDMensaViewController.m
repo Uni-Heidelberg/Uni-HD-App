@@ -6,13 +6,13 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import "UHDFirstViewController.h"
+#import "UHDMensaViewController.h"
 
-@interface UHDFirstViewController ()
+@interface UHDMensaViewController ()
 
 @end
 
-@implementation UHDFirstViewController
+@implementation UHDMensaViewController
 
 - (void)viewDidLoad
 {

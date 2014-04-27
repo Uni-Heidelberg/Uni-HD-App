@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UHDSecondViewController : UIViewController
+@interface UHDNowViewController : UITableViewController
 
 @end

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UHDFirstViewController : UIViewController
+@interface UHDMensaViewController : UITableViewController
 
 @end
