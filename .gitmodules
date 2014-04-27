@@ -1,0 +1,3 @@
+[submodule "VIOSFramework"]
+	path = VIOSFramework
+	url = https://github.com/viWiD/VIOSFramework

@@ -47,6 +47,8 @@
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"NewsItem"];
     NSError *error = nil;
     XCTAssertNotNil([self.managedObjectContext executeFetchRequest:fetchRequest error:&error], @"Failed to execute fetch request: %@", error);
+    [self.logger log:@"self" forLevel:VILogLevelDebug];
+
 }
 
 @end

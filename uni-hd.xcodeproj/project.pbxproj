@@ -29,6 +29,10 @@
 		87F826D8190D4EB20008144F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08F1908810B0029D9AF /* UIKit.framework */; };
 		87F826DE190D4EB20008144F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 87F826DC190D4EB20008144F /* InfoPlist.strings */; };
 		87F826E0190D4EB20008144F /* CoreDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F826DF190D4EB20008144F /* CoreDataTests.m */; };
+		87F826EA190D700E0008144F /* VILogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F826E9190D700E0008144F /* VILogger.m */; };
+		87F826EB190D700E0008144F /* VILogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F826E9190D700E0008144F /* VILogger.m */; };
+		87F826ED190D70550008144F /* mensa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87F826C8190D40A30008144F /* mensa.xcdatamodeld */; };
+		87F826EE190D70590008144F /* news.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87F826CE190D422F0008144F /* news.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +78,8 @@
 		87F826DD190D4EB20008144F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		87F826DF190D4EB20008144F /* CoreDataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataTests.m; sourceTree = "<group>"; };
 		87F826E1190D4EB20008144F /* CoreDataTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoreDataTests-Prefix.pch"; sourceTree = "<group>"; };
+		87F826E8190D700E0008144F /* VILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VILogger.h; sourceTree = "<group>"; };
+		87F826E9190D700E0008144F /* VILogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VILogger.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +148,7 @@
 				87CBE08F1908810B0029D9AF /* UIKit.framework */,
 				87CBE0B01908810B0029D9AF /* XCTest.framework */,
 				3F757EC4658C40C8B7B4E414 /* libPods.a */,
+				87F826EC190D70220008144F /* VIOSFramework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -202,6 +209,24 @@
 				87F826E1190D4EB20008144F /* CoreDataTests-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		87F826E7190D700E0008144F /* VILogger */ = {
+			isa = PBXGroup;
+			children = (
+				87F826E8190D700E0008144F /* VILogger.h */,
+				87F826E9190D700E0008144F /* VILogger.m */,
+			);
+			name = VILogger;
+			path = VIOSFramework/VILogger;
+			sourceTree = "<group>";
+		};
+		87F826EC190D70220008144F /* VIOSFramework */ = {
+			isa = PBXGroup;
+			children = (
+				87F826E7190D700E0008144F /* VILogger */,
+			);
+			name = VIOSFramework;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,6 +367,7 @@
 				87CBE09C1908810B0029D9AF /* UHDAppDelegate.m in Sources */,
 				8701CE50190C038600A18F82 /* UHDMensaModule.m in Sources */,
 				87F826CA190D40A30008144F /* mensa.xcdatamodeld in Sources */,
+				87F826EA190D700E0008144F /* VILogger.m in Sources */,
 				8701CE4C190C00A600A18F82 /* UHDModule.m in Sources */,
 				87CBE0A51908810B0029D9AF /* UHDMensaViewController.m in Sources */,
 				87F826D0190D422F0008144F /* news.xcdatamodeld in Sources */,
@@ -353,7 +379,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87F826EB190D700E0008144F /* VILogger.m in Sources */,
 				87F826E0190D4EB20008144F /* CoreDataTests.m in Sources */,
+				87F826EE190D70590008144F /* news.xcdatamodeld in Sources */,
+				87F826ED190D70550008144F /* mensa.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
