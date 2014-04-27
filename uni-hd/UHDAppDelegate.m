@@ -71,11 +71,7 @@
 {
     if (!_managedObjectModel) {
 
-        NSManagedObjectModel *mensaModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"mensa" withExtension:@"momd"]];
-        
-        NSManagedObjectModel *newsModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"news" withExtension:@"momd"]];
-
-        _managedObjectModel = [NSManagedObjectModel modelByMergingModels:@[mensaModel, newsModel]];
+        _managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
         
     }
     return _managedObjectModel;
