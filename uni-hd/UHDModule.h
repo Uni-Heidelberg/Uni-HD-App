@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
 
 @interface UHDModule : NSObject
 
