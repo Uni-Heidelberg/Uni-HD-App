@@ -8,6 +8,7 @@
 
 #import "UHDNewsViewController.h"
 #import "UHDNewsStore.h"
+#import "UHDNewsItem.h"
 #import "VIFetchedResultsControllerDataSource.h"
 
 @interface UHDNewsViewController ()
@@ -33,13 +34,13 @@
 {
     if (!_fetchedResultsControllerDataSource)
     {
-        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"NewsItem"];
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsItem entityName]];
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
         
-        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.store.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[UHDNewsStore defaultStore].managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         
-        VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, NSManagedObject *item) {
-            cell.textLabel.text = [item valueForKey:@"title"];
+        VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, UHDNewsItem *item) {
+            cell.textLabel.text = item.title;
         };
         
         self.fetchedResultsControllerDataSource = [[VIFetchedResultsControllerDataSource alloc] initWithFetchedResultsController:fetchedResultsController tableView:self.tableView cellIdentifier:@"newsCell" configureCellBlock:configureCellBlock];

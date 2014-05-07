@@ -11,4 +11,6 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
+- (NSManagedObjectContext *)managedObjectContext;
+
 @end

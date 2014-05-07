@@ -6,10 +6,10 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import "NewsItem.h"
+#import "UHDNewsItem.h"
 
 
-@implementation NewsItem
+@implementation UHDNewsItem
 
 @dynamic title;
 

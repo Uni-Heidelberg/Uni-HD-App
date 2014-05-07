@@ -10,8 +10,7 @@
 
 #import "UHDNewsStore.h"
 
-#import "UHDNewsViewController.h"
-
+#import "UHDNewsItem.h"
 
 @interface UHDAppDelegate ()
 
@@ -27,14 +26,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
-    UHDNewsStore *newsStore = [[UHDNewsStore alloc] init];
-    newsStore.managedObjectContext = self.managedObjectContext;
     
-    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
-    UHDNewsViewController *newsViewController = [(UINavigationController *)tabBarController.viewControllers[2] viewControllers][0];
-    newsViewController.store = newsStore;
-
+    [VILogger defaultLogger].logLevel = VILogLevelDebug;
+    
+    /*
+    UHDNewsItem *newsItem = [UHDNewsItem insertNewObjectIntoContext:self.managedObjectContext];
+    newsItem.title = @"Breaking News!";
+    [newsItem.managedObjectContext save:NULL];
+    */
+    
     return YES;
 }
 

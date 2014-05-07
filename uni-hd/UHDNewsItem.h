@@ -10,7 +10,7 @@
 #import <CoreData/CoreData.h>
 
 
-@interface NewsItem : NSManagedObject
+@interface UHDNewsItem : NSManagedObject
 
 @property (nonatomic, retain) NSString *title;
 

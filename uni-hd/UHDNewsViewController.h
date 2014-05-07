@@ -9,11 +9,8 @@
 @import Foundation;
 @import UIKit;
 
-@class UHDNewsStore;
-
 
 @interface UHDNewsViewController : UITableViewController
 
-@property (strong, nonatomic) UHDNewsStore *store;
 
 @end

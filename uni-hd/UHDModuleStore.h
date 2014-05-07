@@ -9,6 +9,8 @@
 
 @interface UHDModuleStore : NSObject
 
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
++ (instancetype)defaultStore;
+
+- (NSManagedObjectContext *)managedObjectContext;
 
 @end

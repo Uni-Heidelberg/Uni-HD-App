@@ -23,7 +23,7 @@
 		87CBE0AA1908810B0029D9AF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87CBE0A91908810B0029D9AF /* Images.xcassets */; };
 		87EE2556191924E20092DF7F /* UHDNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE2555191924E20092DF7F /* UHDNewsViewController.m */; };
 		87EE255B191929420092DF7F /* VIFetchedResultsControllerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE255A191929420092DF7F /* VIFetchedResultsControllerDataSource.m */; };
-		87EE255E191942460092DF7F /* NewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE255D191942460092DF7F /* NewsItem.m */; };
+		87EE255E191942460092DF7F /* UHDNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE255D191942460092DF7F /* UHDNewsItem.m */; };
 		87F826CA190D40A30008144F /* mensa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87F826C8190D40A30008144F /* mensa.xcdatamodeld */; };
 		87F826CD190D41450008144F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87F826CC190D41450008144F /* CoreData.framework */; };
 		87F826D0190D422F0008144F /* news.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87F826CE190D422F0008144F /* news.xcdatamodeld */; };
@@ -74,8 +74,8 @@
 		87EE2555191924E20092DF7F /* UHDNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsViewController.m; sourceTree = "<group>"; };
 		87EE2559191929420092DF7F /* VIFetchedResultsControllerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIFetchedResultsControllerDataSource.h; path = "VIOSFramework/Protocol Implementations/Table View Data Source/VIFetchRequestDataSource/VIFetchedResultsControllerDataSource.h"; sourceTree = "<group>"; };
 		87EE255A191929420092DF7F /* VIFetchedResultsControllerDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIFetchedResultsControllerDataSource.m; path = "VIOSFramework/Protocol Implementations/Table View Data Source/VIFetchRequestDataSource/VIFetchedResultsControllerDataSource.m"; sourceTree = "<group>"; };
-		87EE255C191942460092DF7F /* NewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NewsItem.h; sourceTree = "<group>"; };
-		87EE255D191942460092DF7F /* NewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NewsItem.m; sourceTree = "<group>"; };
+		87EE255C191942460092DF7F /* UHDNewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsItem.h; sourceTree = "<group>"; };
+		87EE255D191942460092DF7F /* UHDNewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsItem.m; sourceTree = "<group>"; };
 		87F826C9190D40A30008144F /* mensa.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = mensa.xcdatamodel; sourceTree = "<group>"; };
 		87F826CC190D41450008144F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		87F826CF190D422F0008144F /* news.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = news.xcdatamodel; sourceTree = "<group>"; };
@@ -114,7 +114,7 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		8701CE4D190C00AF00A18F82 /* Modules */ = {
+		8701CE4D190C00AF00A18F82 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
 				8701CE4A190C00A600A18F82 /* UHDModuleStore.h */,
@@ -122,7 +122,7 @@
 				8701CE4E190C038600A18F82 /* UHDNewsStore.h */,
 				8701CE4F190C038600A18F82 /* UHDNewsStore.m */,
 			);
-			name = Modules;
+			name = Stores;
 			sourceTree = "<group>";
 		};
 		87CBE07F1908810B0029D9AF = {
@@ -167,7 +167,7 @@
 				87CBE09D1908810B0029D9AF /* Main_iPhone.storyboard */,
 				87CBE0A01908810B0029D9AF /* Main_iPad.storyboard */,
 				87EE2557191924E90092DF7F /* View Controllers */,
-				8701CE4D190C00AF00A18F82 /* Modules */,
+				8701CE4D190C00AF00A18F82 /* Stores */,
 				87F826CB190D40B40008144F /* Models */,
 				87CBE0A91908810B0029D9AF /* Images.xcassets */,
 				87CBE0921908810B0029D9AF /* Supporting Files */,
@@ -218,8 +218,8 @@
 			children = (
 				87F826C8190D40A30008144F /* mensa.xcdatamodeld */,
 				87F826CE190D422F0008144F /* news.xcdatamodeld */,
-				87EE255C191942460092DF7F /* NewsItem.h */,
-				87EE255D191942460092DF7F /* NewsItem.m */,
+				87EE255C191942460092DF7F /* UHDNewsItem.h */,
+				87EE255D191942460092DF7F /* UHDNewsItem.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -399,7 +399,7 @@
 			files = (
 				87CBE09C1908810B0029D9AF /* UHDAppDelegate.m in Sources */,
 				87A8633819196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m in Sources */,
-				87EE255E191942460092DF7F /* NewsItem.m in Sources */,
+				87EE255E191942460092DF7F /* UHDNewsItem.m in Sources */,
 				8701CE50190C038600A18F82 /* UHDNewsStore.m in Sources */,
 				87F826CA190D40A30008144F /* mensa.xcdatamodeld in Sources */,
 				87F826EA190D700E0008144F /* VILogger.m in Sources */,
