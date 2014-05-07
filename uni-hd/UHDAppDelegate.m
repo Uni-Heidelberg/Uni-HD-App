@@ -32,13 +32,18 @@
     
 
     // Create Module View Controllers
+    // News
     UIStoryboard *newsStoryboard = [UIStoryboard storyboardWithName:@"news" bundle:nil];
     UIViewController *initialNewsViewController = [newsStoryboard instantiateInitialViewController];
     initialNewsViewController.tabBarItem.title = NSLocalizedString(@"News", nil);
+    // Mensa
+    UIStoryboard *mensaStoryboard = [UIStoryboard storyboardWithName:@"mensa" bundle:nil];
+    UIViewController *initialMensaViewController = [mensaStoryboard instantiateInitialViewController];
+    initialMensaViewController.tabBarItem.title = NSLocalizedString(@"Mensa", nil);
     
     // Create and populate tab bar controller
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = @[initialNewsViewController];
+    tabBarController.viewControllers = @[initialNewsViewController, initialMensaViewController];
     
     // Create and populate window
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

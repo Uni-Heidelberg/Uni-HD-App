@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C1021" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="UHDLocation" representedClassName="UHDLocation" syncable="YES">
+        <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
+        <relationship name="mensa" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDMensa" inverseName="location" inverseEntity="UHDMensa" syncable="YES"/>
+    </entity>
+    <entity name="UHDMensa" representedClassName="UHDMensa" syncable="YES">
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UHDLocation" inverseName="mensa" inverseEntity="UHDLocation" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="UHDMensa" positionX="-254" positionY="-73" width="128" height="73"/>
+        <element name="UHDLocation" positionX="-54" positionY="0" width="128" height="88"/>
+    </elements>
+</model>

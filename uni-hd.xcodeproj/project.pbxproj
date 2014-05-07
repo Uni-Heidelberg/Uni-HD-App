@@ -20,6 +20,9 @@
 		87CBE09C1908810B0029D9AF /* UHDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CBE09B1908810B0029D9AF /* UHDAppDelegate.m */; };
 		87CBE0AA1908810B0029D9AF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87CBE0A91908810B0029D9AF /* Images.xcassets */; };
 		87DBE7F41919C3F700C16970 /* news.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87DBE7F31919C3F700C16970 /* news.storyboard */; };
+		87DC1FA5191AB5C600395559 /* mensa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87DC1FA3191AB5C600395559 /* mensa.xcdatamodeld */; };
+		87DC1FA8191AB79A00395559 /* UHDMensa.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DC1FA7191AB79A00395559 /* UHDMensa.m */; };
+		87DC1FAE191AB82F00395559 /* UHDLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 87DC1FAD191AB82F00395559 /* UHDLocation.m */; };
 		87EE2556191924E20092DF7F /* UHDNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE2555191924E20092DF7F /* UHDNewsViewController.m */; };
 		87EE255B191929420092DF7F /* VIFetchedResultsControllerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE255A191929420092DF7F /* VIFetchedResultsControllerDataSource.m */; };
 		87EE255E191942460092DF7F /* UHDNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE255D191942460092DF7F /* UHDNewsItem.m */; };
@@ -68,6 +71,11 @@
 		87CBE0A91908810B0029D9AF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		87CBE0B01908810B0029D9AF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		87DBE7F31919C3F700C16970 /* news.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = news.storyboard; sourceTree = "<group>"; };
+		87DC1FA4191AB5C600395559 /* mensa.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = mensa.xcdatamodel; sourceTree = "<group>"; };
+		87DC1FA6191AB79A00395559 /* UHDMensa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMensa.h; sourceTree = "<group>"; };
+		87DC1FA7191AB79A00395559 /* UHDMensa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMensa.m; sourceTree = "<group>"; };
+		87DC1FAC191AB82F00395559 /* UHDLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDLocation.h; sourceTree = "<group>"; };
+		87DC1FAD191AB82F00395559 /* UHDLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDLocation.m; sourceTree = "<group>"; };
 		87EE2554191924E20092DF7F /* UHDNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsViewController.h; sourceTree = "<group>"; };
 		87EE2555191924E20092DF7F /* UHDNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsViewController.m; sourceTree = "<group>"; };
 		87EE2559191929420092DF7F /* VIFetchedResultsControllerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIFetchedResultsControllerDataSource.h; path = "VIOSFramework/Protocol Implementations/Table View Data Source/VIFetchRequestDataSource/VIFetchedResultsControllerDataSource.h"; sourceTree = "<group>"; };
@@ -165,7 +173,7 @@
 				87CBE09A1908810B0029D9AF /* UHDAppDelegate.h */,
 				87CBE09B1908810B0029D9AF /* UHDAppDelegate.m */,
 				87DBE7F51919C40100C16970 /* Storyboards */,
-				87EE2557191924E90092DF7F /* View Controllers */,
+				87EE2557191924E90092DF7F /* Mensa */,
 				8701CE4D190C00AF00A18F82 /* Stores */,
 				87F826CB190D40B40008144F /* Models */,
 				87CBE0A91908810B0029D9AF /* Images.xcassets */,
@@ -194,7 +202,7 @@
 			name = Storyboards;
 			sourceTree = "<group>";
 		};
-		87EE2557191924E90092DF7F /* View Controllers */ = {
+		87EE2557191924E90092DF7F /* Mensa */ = {
 			isa = PBXGroup;
 			children = (
 				87EE2554191924E20092DF7F /* UHDNewsViewController.h */,
@@ -202,7 +210,7 @@
 				DC87FDF9191AA12D00019F32 /* UHDMensaViewController.h */,
 				DC87FDFA191AA12D00019F32 /* UHDMensaViewController.m */,
 			);
-			name = "View Controllers";
+			name = Mensa;
 			sourceTree = "<group>";
 		};
 		87EE2558191928A40092DF7F /* Protocol Implementations */ = {
@@ -227,8 +235,13 @@
 			isa = PBXGroup;
 			children = (
 				87F826CE190D422F0008144F /* news.xcdatamodeld */,
+				87DC1FA3191AB5C600395559 /* mensa.xcdatamodeld */,
 				87EE255C191942460092DF7F /* UHDNewsItem.h */,
 				87EE255D191942460092DF7F /* UHDNewsItem.m */,
+				87DC1FA6191AB79A00395559 /* UHDMensa.h */,
+				87DC1FA7191AB79A00395559 /* UHDMensa.m */,
+				87DC1FAC191AB82F00395559 /* UHDLocation.h */,
+				87DC1FAD191AB82F00395559 /* UHDLocation.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -407,9 +420,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				87CBE09C1908810B0029D9AF /* UHDAppDelegate.m in Sources */,
+				87DC1FA8191AB79A00395559 /* UHDMensa.m in Sources */,
 				87A8633819196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m in Sources */,
+				87DC1FA5191AB5C600395559 /* mensa.xcdatamodeld in Sources */,
 				87EE255E191942460092DF7F /* UHDNewsItem.m in Sources */,
 				DC87FDFB191AA12D00019F32 /* UHDMensaViewController.m in Sources */,
+				87DC1FAE191AB82F00395559 /* UHDLocation.m in Sources */,
 				8701CE50190C038600A18F82 /* UHDNewsStore.m in Sources */,
 				87F826EA190D700E0008144F /* VILogger.m in Sources */,
 				8701CE4C190C00A600A18F82 /* UHDModuleStore.m in Sources */,
@@ -633,6 +649,16 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
+		87DC1FA3191AB5C600395559 /* mensa.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				87DC1FA4191AB5C600395559 /* mensa.xcdatamodel */,
+			);
+			currentVersion = 87DC1FA4191AB5C600395559 /* mensa.xcdatamodel */;
+			path = mensa.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
 		87F826CE190D422F0008144F /* news.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
