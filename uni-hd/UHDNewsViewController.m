@@ -23,12 +23,21 @@
 {
     [super viewDidLoad];
     
+    self.title = NSLocalizedString(@"News", nil);
+    
+    /*
+    // Generate sample data
+    UHDNewsItem *newsItem = [UHDNewsItem insertNewObjectIntoContext:self.managedObjectContext];
+    newsItem.title = @"Breaking News!";
+    [newsItem.managedObjectContext save:NULL];
+    */
+    
     // redirect data source
     self.tableView.dataSource = self.fetchedResultsControllerDataSource;
     
 }
 
-# pragma mark - Data Source
+#pragma mark - Data Source
 
 - (VIFetchedResultsControllerDataSource *)fetchedResultsControllerDataSource
 {
