@@ -8,6 +8,10 @@
 
 #import "UHDAppDelegate.h"
 
+// View Controllers
+#import "UHDNewsViewController.h"
+
+
 @interface UHDAppDelegate ()
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -21,7 +25,27 @@
 @implementation UHDAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{    
+{
+    
+    // Default Logger configuration
+    [VILogger defaultLogger].logLevel = VILogLevelDebug;
+    
+
+    // Create Module View Controllers
+    UIStoryboard *newsStoryboard = [UIStoryboard storyboardWithName:@"news" bundle:nil];
+    UIViewController *initialNewsViewController = [newsStoryboard instantiateInitialViewController];
+    initialNewsViewController.tabBarItem.title = NSLocalizedString(@"News", nil);
+    
+    // Create and populate tab bar controller
+    UITabBarController *tabBarController = [[UITabBarController alloc] init];
+    tabBarController.viewControllers = @[initialNewsViewController];
+    
+    // Create and populate window
+    self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    self.window.tintColor = [UIColor colorWithRed:181/255. green:21/255. blue:43/255. alpha:1]; // set brand tint color TODO: move in category
+    self.window.rootViewController = tabBarController;
+    [self.window makeKeyAndVisible];
+        
     return YES;
 }
 

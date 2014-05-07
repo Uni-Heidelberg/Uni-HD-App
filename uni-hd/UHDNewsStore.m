@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import "UHDMensaModule.h"
+#import "UHDNewsStore.h"
 
-@implementation UHDMensaModule
+@implementation UHDNewsStore
 
 @end

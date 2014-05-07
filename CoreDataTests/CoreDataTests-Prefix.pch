@@ -9,5 +9,4 @@
 
 @import CoreData;
 
-#import <RestKit/RestKit.h>
 #import "VILogger.h"
