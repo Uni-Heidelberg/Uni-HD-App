@@ -25,10 +25,10 @@
             </objects>
             <point key="canvasLocation" x="94" y="522"/>
         </scene>
-        <!--Mensa View Controller - Mensa-->
+        <!--Table View Controller - Mensa-->
         <scene sceneID="fa0-1P-BZY">
             <objects>
-                <tableViewController id="I0V-LU-uka" customClass="UHDMensaViewController" sceneMemberID="viewController">
+                <tableViewController id="I0V-LU-uka" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="s1t-Sb-4Kh">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -54,16 +54,16 @@
             </objects>
             <point key="canvasLocation" x="1153" y="180"/>
         </scene>
-        <!--Table View Controller - News-->
+        <!--News View Controller - News-->
         <scene sceneID="sIr-jp-X8h">
             <objects>
-                <tableViewController id="djk-E6-cPM" sceneMemberID="viewController">
+                <tableViewController id="djk-E6-cPM" customClass="UHDNewsViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="mO7-dc-pYG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="o7c-7u-iRE">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newsCell" id="o7c-7u-iRE">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="o7c-7u-iRE" id="eno-Jv-4nv">
@@ -160,10 +160,10 @@
             </objects>
             <point key="canvasLocation" x="619" y="180"/>
         </scene>
-        <!--Now View Controller - Now-->
+        <!--Table View Controller - Now-->
         <scene sceneID="L29-o9-G4Q">
             <objects>
-                <tableViewController id="pXD-gZ-TAD" customClass="UHDNowViewController" sceneMemberID="viewController">
+                <tableViewController id="pXD-gZ-TAD" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="QPg-Om-R4E">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

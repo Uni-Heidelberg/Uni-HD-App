@@ -8,6 +8,11 @@
 
 #import "UHDAppDelegate.h"
 
+#import "UHDNewsStore.h"
+
+#import "UHDNewsViewController.h"
+
+
 @interface UHDAppDelegate ()
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -21,7 +26,15 @@
 @implementation UHDAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{    
+{
+
+    UHDNewsStore *newsStore = [[UHDNewsStore alloc] init];
+    newsStore.managedObjectContext = self.managedObjectContext;
+    
+    UITabBarController *tabBarController = (UITabBarController *)self.window.rootViewController;
+    UHDNewsViewController *newsViewController = [(UINavigationController *)tabBarController.viewControllers[2] viewControllers][0];
+    newsViewController.store = newsStore;
+
     return YES;
 }
 

@@ -11,6 +11,4 @@
 
 @property (strong, nonatomic) UIWindow *window;
 
-@property (strong, nonatomic, readonly) NSManagedObjectContext *managedObjectContext;
-
 @end
