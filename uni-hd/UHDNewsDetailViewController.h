@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UHDNewsItem.h"
 
 @interface UHDNewsDetailViewController : UIViewController
+
+@property (strong, nonatomic) UHDNewsItem *newsItem;
 
 @end

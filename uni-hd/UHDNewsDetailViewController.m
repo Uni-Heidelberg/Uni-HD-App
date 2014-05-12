@@ -7,7 +7,22 @@
 //
 
 #import "UHDNewsDetailViewController.h"
+#import "UHDNewsItem.h"
+
+@interface UHDNewsDetailViewController ()
+
+@end
 
 @implementation UHDNewsDetailViewController
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    self.navigationItem.title = self.newsItem.title;
+}
+
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    // Do something.
+}
 
 @end
