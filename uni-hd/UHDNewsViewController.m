@@ -16,17 +16,14 @@
 
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 
+- (IBAction)makeSamplesButtonPressed:(id)sender;
+
 @end
 
 @implementation UHDNewsViewController
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
+- (IBAction)makeSamplesButtonPressed:(id)sender {
     
-    self.title = NSLocalizedString(@"News", nil);
-    
-    /*
     // Generate sample data
     NSManagedObjectContext *context = [UHDModuleStore defaultStore].managedObjectContext;
     
@@ -37,7 +34,15 @@
     newsItem = [UHDNewsItem insertNewObjectIntoContext:context];
     newsItem.title = @"Another breaking news!";
     [newsItem.managedObjectContext save:NULL];
-    */
+    
+}
+
+
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
+    
+    self.title = NSLocalizedString(@"News", nil);
     
     // redirect data source
     self.tableView.dataSource = self.fetchedResultsControllerDataSource;
@@ -75,7 +80,8 @@
     
     NewsDetailVC.newsItem = selectedNewsItem;
     
-    NSLog(@"Segue selected");
+    // [self.logger log:@"Segue selected" forLevel:VILogLevelDebug];
+    
 }
 
 
