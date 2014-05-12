@@ -40,8 +40,34 @@ static NSMutableDictionary *defaultStores;
     return defaultStore;
 }
 
+
+#pragma mark - Core Data Stack access
+
 - (NSManagedObjectContext *)managedObjectContext {
     return [(UHDAppDelegate *)[UIApplication sharedApplication].delegate managedObjectContext];
+}
+
+
+#pragma mark - Utility
+
+- (NSArray *)allItems
+{
+    // to be overridden
+    return nil;
+}
+
+
+#pragma mark - Sample Data
+
+- (void)generateSampleDataConditionally:(BOOL)conditionally
+{
+    if (conditionally && self.allItems.count > 0) return;
+    [self generateSampleData];
+}
+
+- (void)generateSampleData
+{
+    // to be overridden
 }
 
 

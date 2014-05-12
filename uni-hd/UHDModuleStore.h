@@ -13,4 +13,9 @@
 
 - (NSManagedObjectContext *)managedObjectContext;
 
+- (NSArray *)allItems;
+
+- (void)generateSampleDataConditionally:(BOOL)conditionally;
+- (void)generateSampleData;
+
 @end

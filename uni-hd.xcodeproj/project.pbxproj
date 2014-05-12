@@ -10,6 +10,8 @@
 		6F293EE8DA534A74838601AE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F757EC4658C40C8B7B4E414 /* libPods.a */; };
 		8701CE4C190C00A600A18F82 /* UHDModuleStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8701CE4B190C00A600A18F82 /* UHDModuleStore.m */; };
 		8701CE50190C038600A18F82 /* UHDNewsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8701CE4F190C038600A18F82 /* UHDNewsStore.m */; };
+		87600EA4192139EB00F18C8D /* UHDMensaStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 87600EA3192139EB00F18C8D /* UHDMensaStore.m */; };
+		87600EA5192139EB00F18C8D /* UHDMensaStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 87600EA3192139EB00F18C8D /* UHDMensaStore.m */; };
 		87A8633819196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A8633719196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m */; };
 		87A8633919196EC0008C106D /* VILogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F826E9190D700E0008144F /* VILogger.m */; };
 		87CBE08C1908810B0029D9AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08B1908810B0029D9AF /* Foundation.framework */; };
@@ -56,6 +58,8 @@
 		8701CE4B190C00A600A18F82 /* UHDModuleStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDModuleStore.m; sourceTree = "<group>"; };
 		8701CE4E190C038600A18F82 /* UHDNewsStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsStore.h; sourceTree = "<group>"; };
 		8701CE4F190C038600A18F82 /* UHDNewsStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsStore.m; sourceTree = "<group>"; };
+		87600EA2192139EB00F18C8D /* UHDMensaStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMensaStore.h; sourceTree = "<group>"; };
+		87600EA3192139EB00F18C8D /* UHDMensaStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMensaStore.m; sourceTree = "<group>"; };
 		87A8633619196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+VIInsertIntoContextCategory.h"; path = "VIOSFramework/Categories/NSManagedObject+VIInsertIntoContextCategory/NSManagedObject+VIInsertIntoContextCategory.h"; sourceTree = "<group>"; };
 		87A8633719196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+VIInsertIntoContextCategory.m"; path = "VIOSFramework/Categories/NSManagedObject+VIInsertIntoContextCategory/NSManagedObject+VIInsertIntoContextCategory.m"; sourceTree = "<group>"; };
 		87CBE0881908810B0029D9AF /* uni-hd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uni-hd.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -129,6 +133,8 @@
 				8701CE4B190C00A600A18F82 /* UHDModuleStore.m */,
 				8701CE4E190C038600A18F82 /* UHDNewsStore.h */,
 				8701CE4F190C038600A18F82 /* UHDNewsStore.m */,
+				87600EA2192139EB00F18C8D /* UHDMensaStore.h */,
+				87600EA3192139EB00F18C8D /* UHDMensaStore.m */,
 			);
 			name = Stores;
 			sourceTree = "<group>";
@@ -428,6 +434,7 @@
 				87DC1FAE191AB82F00395559 /* UHDLocation.m in Sources */,
 				8701CE50190C038600A18F82 /* UHDNewsStore.m in Sources */,
 				87F826EA190D700E0008144F /* VILogger.m in Sources */,
+				87600EA4192139EB00F18C8D /* UHDMensaStore.m in Sources */,
 				8701CE4C190C00A600A18F82 /* UHDModuleStore.m in Sources */,
 				87F826D0190D422F0008144F /* news.xcdatamodeld in Sources */,
 				87EE255B191929420092DF7F /* VIFetchedResultsControllerDataSource.m in Sources */,
@@ -440,6 +447,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87600EA5192139EB00F18C8D /* UHDMensaStore.m in Sources */,
 				87A8633919196EC0008C106D /* VILogger.m in Sources */,
 				87F826E0190D4EB20008144F /* CoreDataTests.m in Sources */,
 				87F826EE190D70590008144F /* news.xcdatamodeld in Sources */,
