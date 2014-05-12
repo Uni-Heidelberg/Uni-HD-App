@@ -13,13 +13,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newsCell" id="qKW-yc-33a">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newsCell" id="qKW-yc-33a">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qKW-yc-33a" id="aGv-HV-qV2">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="cii-2s-9Xp" kind="push" id="zN0-aP-Szu"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -27,11 +30,44 @@
                             <outlet property="delegate" destination="Sbw-ng-BTF" id="Liv-Nv-zFk"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="ODL-v0-Igt"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="ODL-v0-Igt">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="WWP-7n-ePA">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="ZTS-Zu-3FM">
+                                <rect key="frame" x="16" y="5" width="104" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Make samples!">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="makeSamplesButtonPressed:" destination="Sbw-ng-BTF" eventType="touchUpInside" id="7T3-bf-At7"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ejf-zm-arM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="799" y="46"/>
+        </scene>
+        <!--News Detail View Controller-->
+        <scene sceneID="7qp-AH-575">
+            <objects>
+                <viewController id="cii-2s-9Xp" customClass="UHDNewsDetailViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3UN-Xr-Ymi"/>
+                        <viewControllerLayoutGuide type="bottom" id="KXv-hz-A9l"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="1II-DM-Olg">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="XMQ-XG-Liz"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UC2-ih-bD7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1248" y="46"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="PLw-Zn-bh4">

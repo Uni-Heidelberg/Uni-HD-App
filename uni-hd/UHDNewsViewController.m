@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
+#import "UHDNewsDetailViewController.h"
 #import "UHDNewsViewController.h"
 #import "UHDNewsStore.h"
 #import "UHDNewsItem.h"
@@ -15,9 +16,27 @@
 
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 
+- (IBAction)makeSamplesButtonPressed:(id)sender;
+
 @end
 
 @implementation UHDNewsViewController
+
+- (IBAction)makeSamplesButtonPressed:(id)sender {
+    
+    // Generate sample data
+    NSManagedObjectContext *context = [UHDModuleStore defaultStore].managedObjectContext;
+    
+    UHDNewsItem *newsItem = [UHDNewsItem insertNewObjectIntoContext:context];
+    newsItem.title = @"Breaking News!";
+    [newsItem.managedObjectContext save:NULL];
+    
+    newsItem = [UHDNewsItem insertNewObjectIntoContext:context];
+    newsItem.title = @"Another breaking news!";
+    [newsItem.managedObjectContext save:NULL];
+    
+}
+
 
 - (void)viewDidLoad
 {
@@ -49,5 +68,21 @@
     }
     return _fetchedResultsControllerDataSource;
 }
+
+
+#pragma mark - Seque
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+
+    UHDNewsItem *selectedNewsItem = self.fetchedResultsControllerDataSource.selectedItem;
+    
+    UHDNewsDetailViewController *NewsDetailVC = segue.destinationViewController;
+    
+    NewsDetailVC.newsItem = selectedNewsItem;
+    
+    // [self.logger log:@"Segue selected" forLevel:VILogLevelDebug];
+    
+}
+
 
 @end
