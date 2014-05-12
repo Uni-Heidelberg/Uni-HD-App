@@ -27,10 +27,13 @@
     
     /*
     // Generate sample data
-    UHDNewsItem *newsItem = [UHDNewsItem insertNewObjectIntoContext:self.managedObjectContext];
+    NSManagedObjectContext *context = [UHDModuleStore defaultStore].managedObjectContext;
+    
+    UHDNewsItem *newsItem = [UHDNewsItem insertNewObjectIntoContext:context];
     newsItem.title = @"Breaking News!";
     [newsItem.managedObjectContext save:NULL];
     */
+    
     
     // redirect data source
     self.tableView.dataSource = self.fetchedResultsControllerDataSource;
