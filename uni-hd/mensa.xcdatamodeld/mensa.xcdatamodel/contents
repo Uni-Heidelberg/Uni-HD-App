@@ -2,7 +2,7 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="UHDDailyMenu" representedClassName="UHDDailyMenu" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="meal" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDMeal" inverseName="menu" inverseEntity="UHDMeal" syncable="YES"/>
+        <relationship name="meals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDMeal" inverseName="menu" inverseEntity="UHDMeal" syncable="YES"/>
         <relationship name="mensa" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDMensa" inverseName="menus" inverseEntity="UHDMensa" syncable="YES"/>
     </entity>
     <entity name="UHDLocation" representedClassName="UHDLocation" syncable="YES">
@@ -12,22 +12,25 @@
     </entity>
     <entity name="UHDMeal" representedClassName="UHDMeal" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="menu" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDDailyMenu" inverseName="meal" inverseEntity="UHDDailyMenu" syncable="YES"/>
-        <relationship name="staircase" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDSection" inverseName="meal" inverseEntity="UHDSection" syncable="YES"/>
+        <relationship name="menu" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDDailyMenu" inverseName="meals" inverseEntity="UHDDailyMenu" syncable="YES"/>
+        <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDSection" inverseName="meals" inverseEntity="UHDSection" syncable="YES"/>
     </entity>
     <entity name="UHDMensa" representedClassName="UHDMensa" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UHDLocation" inverseName="mensa" inverseEntity="UHDLocation" syncable="YES"/>
-        <relationship name="menus" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDDailyMenu" inverseName="mensa" inverseEntity="UHDDailyMenu" syncable="YES"/>
+        <relationship name="menus" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="UHDDailyMenu" inverseName="mensa" inverseEntity="UHDDailyMenu" syncable="YES"/>
+        <relationship name="sections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDSection" inverseName="mensa" inverseEntity="UHDSection" syncable="YES"/>
     </entity>
-    <entity name="UHDSection" representedClassName="UHDStaircase" syncable="YES">
-        <relationship name="meal" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDMeal" inverseName="staircase" inverseEntity="UHDMeal" syncable="YES"/>
+    <entity name="UHDSection" representedClassName="UHDSection" syncable="YES">
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="meals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDMeal" inverseName="section" inverseEntity="UHDMeal" syncable="YES"/>
+        <relationship name="mensa" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDMensa" inverseName="sections" inverseEntity="UHDMensa" syncable="YES"/>
     </entity>
     <elements>
+        <element name="UHDDailyMenu" positionX="-434" positionY="72" width="128" height="88"/>
         <element name="UHDLocation" positionX="-839" positionY="9" width="128" height="88"/>
         <element name="UHDMeal" positionX="-263" positionY="146" width="128" height="88"/>
-        <element name="UHDMensa" positionX="-641" positionY="20" width="128" height="88"/>
-        <element name="UHDDailyMenu" positionX="-434" positionY="72" width="128" height="88"/>
-        <element name="UHDSection" positionX="-65" positionY="252" width="128" height="58"/>
+        <element name="UHDMensa" positionX="-641" positionY="9" width="119" height="103"/>
+        <element name="UHDSection" positionX="-99" positionY="368" width="128" height="28"/>
     </elements>
 </model>
