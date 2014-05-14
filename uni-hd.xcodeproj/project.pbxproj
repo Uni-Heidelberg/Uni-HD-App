@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0A2000521920F18A0014C977 /* UHDNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2000511920F18A0014C977 /* UHDNewsDetailViewController.m */; };
+		0AD7F3721923F58E00F49551 /* UHDNewsItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7F3711923F58E00F49551 /* UHDNewsItemCell.m */; };
+		0AD7F3751923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7F3741923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.m */; };
 		6F293EE8DA534A74838601AE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F757EC4658C40C8B7B4E414 /* libPods.a */; };
 		8701CE4C190C00A600A18F82 /* UHDModuleStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8701CE4B190C00A600A18F82 /* UHDModuleStore.m */; };
 		8701CE50190C038600A18F82 /* UHDNewsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8701CE4F190C038600A18F82 /* UHDNewsStore.m */; };
@@ -59,6 +61,10 @@
 /* Begin PBXFileReference section */
 		0A2000501920F18A0014C977 /* UHDNewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsDetailViewController.h; sourceTree = "<group>"; };
 		0A2000511920F18A0014C977 /* UHDNewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsDetailViewController.m; sourceTree = "<group>"; };
+		0AD7F3701923F58E00F49551 /* UHDNewsItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsItemCell.h; sourceTree = "<group>"; };
+		0AD7F3711923F58E00F49551 /* UHDNewsItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsItemCell.m; sourceTree = "<group>"; };
+		0AD7F3731923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UHDNewsItemCell+ConfigureForItem.h"; sourceTree = "<group>"; };
+		0AD7F3741923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UHDNewsItemCell+ConfigureForItem.m"; sourceTree = "<group>"; };
 		3F757EC4658C40C8B7B4E414 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		58E54747D0F54AD0A35C8074 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		8701CE4A190C00A600A18F82 /* UHDModuleStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDModuleStore.h; sourceTree = "<group>"; };
@@ -314,6 +320,10 @@
 			children = (
 				87EE2554191924E20092DF7F /* UHDNewsViewController.h */,
 				87EE2555191924E20092DF7F /* UHDNewsViewController.m */,
+				0AD7F3701923F58E00F49551 /* UHDNewsItemCell.h */,
+				0AD7F3711923F58E00F49551 /* UHDNewsItemCell.m */,
+				0AD7F3731923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.h */,
+				0AD7F3741923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.m */,
 				0A2000501920F18A0014C977 /* UHDNewsDetailViewController.h */,
 				0A2000511920F18A0014C977 /* UHDNewsDetailViewController.m */,
 			);
@@ -486,11 +496,13 @@
 				DC21B6D41923D27500BAD26D /* UHDLocation.m in Sources */,
 				87CBE09C1908810B0029D9AF /* UHDAppDelegate.m in Sources */,
 				87A8633819196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m in Sources */,
+				0AD7F3751923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.m in Sources */,
 				87DC1FA5191AB5C600395559 /* mensa.xcdatamodeld in Sources */,
 				DC21B6D71923D27500BAD26D /* UHDDailyMenu.m in Sources */,
 				DC21B6DD1923D27600BAD26D /* UHDMeal.m in Sources */,
 				DC87FDFB191AA12D00019F32 /* UHDMensaViewController.m in Sources */,
 				DC21B6DA1923D27600BAD26D /* UHDSection.m in Sources */,
+				0AD7F3721923F58E00F49551 /* UHDNewsItemCell.m in Sources */,
 				8701CE50190C038600A18F82 /* UHDNewsStore.m in Sources */,
 				87FF70FB1923F33500FCF5F4 /* UHDNewsItem.m in Sources */,
 				87F826EA190D700E0008144F /* VILogger.m in Sources */,
