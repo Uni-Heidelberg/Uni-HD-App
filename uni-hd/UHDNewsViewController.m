@@ -11,6 +11,9 @@
 #import "UHDNewsStore.h"
 #import "UHDNewsItem.h"
 #import "VIFetchedResultsControllerDataSource.h"
+#import "UHDNewsItemCell.h"
+#import "UHDNewsItemCell+ConfigureForItem.h"
+
 
 @interface UHDNewsViewController ()
 
@@ -47,12 +50,12 @@
     if (!_fetchedResultsControllerDataSource)
     {
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsItem entityName]];
-        fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
+        fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
         
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[UHDNewsStore defaultStore].managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         
         VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, UHDNewsItem *item) {
-            cell.textLabel.text = item.title;
+            [(UHDNewsItemCell *)cell configureForItem:item];
         };
         
         self.fetchedResultsControllerDataSource = [[VIFetchedResultsControllerDataSource alloc] initWithFetchedResultsController:fetchedResultsController tableView:self.tableView cellIdentifier:@"newsCell" configureCellBlock:configureCellBlock];

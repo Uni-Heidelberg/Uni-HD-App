@@ -8,19 +8,46 @@
         <scene sceneID="ora-ZU-tam">
             <objects>
                 <tableViewController id="Sbw-ng-BTF" customClass="UHDNewsViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="7m5-pu-PEY">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="60" sectionHeaderHeight="22" sectionFooterHeight="22" id="7m5-pu-PEY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newsCell" id="qKW-yc-33a">
-                                <rect key="frame" x="0.0" y="86" width="320" height="44"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newsCell" rowHeight="60" id="qKW-yc-33a" customClass="UHDNewsItemCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qKW-yc-33a" id="aGv-HV-qV2">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eQV-gm-wKq">
+                                            <rect key="frame" x="20" y="0.0" width="247" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CqE-jB-sZN">
+                                            <rect key="frame" x="20" y="29" width="247" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="eQV-gm-wKq" firstAttribute="top" secondItem="aGv-HV-qV2" secondAttribute="top" id="2TZ-P3-az4"/>
+                                        <constraint firstItem="CqE-jB-sZN" firstAttribute="top" secondItem="eQV-gm-wKq" secondAttribute="bottom" constant="8" symbolic="YES" id="4Mu-Op-TOq"/>
+                                        <constraint firstAttribute="trailing" secondItem="CqE-jB-sZN" secondAttribute="trailing" constant="20" symbolic="YES" id="Lf3-SY-bvb"/>
+                                        <constraint firstItem="CqE-jB-sZN" firstAttribute="leading" secondItem="aGv-HV-qV2" secondAttribute="leading" constant="20" symbolic="YES" id="OKz-KF-597"/>
+                                        <constraint firstItem="eQV-gm-wKq" firstAttribute="leading" secondItem="aGv-HV-qV2" secondAttribute="leading" constant="20" symbolic="YES" id="UuL-9C-D8w"/>
+                                        <constraint firstAttribute="trailing" secondItem="eQV-gm-wKq" secondAttribute="trailing" constant="20" symbolic="YES" id="dTx-zh-yyI"/>
+                                        <constraint firstAttribute="bottom" secondItem="CqE-jB-sZN" secondAttribute="bottom" id="uGe-px-MGZ"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="abstractLabel" destination="CqE-jB-sZN" id="SI2-ra-0oV"/>
+                                    <outlet property="titleLabel" destination="eQV-gm-wKq" id="wG3-PL-lui"/>
                                     <segue destination="cii-2s-9Xp" kind="push" id="zN0-aP-Szu"/>
                                 </connections>
                             </tableViewCell>
