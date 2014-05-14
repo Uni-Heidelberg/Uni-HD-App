@@ -13,19 +13,22 @@
 #import "VIFetchedResultsControllerDataSource.h"
 
 @interface UHDMensaViewController ()
-
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 
 @end
 
 @implementation UHDMensaViewController
 
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    _managedObjectContext = managedObjectContext;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    NSManagedObjectContext *context = [UHDModuleStore defaultStore].managedObjectContext;
-    
     /*
     // Generate Sample Data
     UHDLocation *location = [UHDLocation insertNewObjectIntoContext:context];

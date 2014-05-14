@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UHDMensaViewController : UITableViewController
-
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 @end

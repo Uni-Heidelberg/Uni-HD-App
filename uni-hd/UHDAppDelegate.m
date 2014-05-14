@@ -43,7 +43,13 @@
     
     // Create and populate tab bar controller
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = @[initialNewsViewController, initialMensaViewController];
+    NSArray *viewControllers = @[initialNewsViewController, initialMensaViewController];
+    for(UINavigationController *viewController in viewControllers) {
+        if ([viewController.topViewController respondsToSelector:@selector(setManagedObjectContext:)]) {
+            [((id)viewController.topViewController) setManagedObjectContext:self.managedObjectContext];
+        }
+    }
+    tabBarController.viewControllers = viewControllers;
     
     // Create and populate window
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
