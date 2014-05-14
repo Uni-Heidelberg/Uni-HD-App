@@ -1,26 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C1021" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="UHDDailyMenu" representedClassName="UHDDailyMenu" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <relationship name="meal" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDMeal" inverseName="menu" inverseEntity="UHDMeal" syncable="YES"/>
+        <relationship name="mensa" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDMensa" inverseName="menus" inverseEntity="UHDMensa" syncable="YES"/>
+    </entity>
     <entity name="UHDLocation" representedClassName="UHDLocation" syncable="YES">
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="mensa" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDMensa" inverseName="location" inverseEntity="UHDMensa" syncable="YES"/>
     </entity>
-    <entity name="UHDMeal" syncable="YES">
+    <entity name="UHDMeal" representedClassName="UHDMeal" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="menu" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDDailyMenu" inverseName="meal" inverseEntity="UHDDailyMenu" syncable="YES"/>
+        <relationship name="staircase" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDStaircase" inverseName="meal" inverseEntity="UHDStaircase" syncable="YES"/>
     </entity>
     <entity name="UHDMensa" representedClassName="UHDMensa" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UHDLocation" inverseName="mensa" inverseEntity="UHDLocation" syncable="YES"/>
-        <relationship name="menus" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDMenu" inverseName="mensa" inverseEntity="UHDMenu" syncable="YES"/>
+        <relationship name="menus" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDDailyMenu" inverseName="mensa" inverseEntity="UHDDailyMenu" syncable="YES"/>
     </entity>
-    <entity name="UHDMenu" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
-        <relationship name="mensa" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDMensa" inverseName="menus" inverseEntity="UHDMensa" syncable="YES"/>
+    <entity name="UHDStaircase" representedClassName="UHDStaircase" syncable="YES">
+        <relationship name="meal" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDMeal" inverseName="staircase" inverseEntity="UHDMeal" syncable="YES"/>
     </entity>
     <elements>
-        <element name="UHDLocation" positionX="-54" positionY="0" width="128" height="88"/>
-        <element name="UHDMensa" positionX="-254" positionY="-73" width="128" height="88"/>
-        <element name="UHDMenu" positionX="-459" positionY="90" width="128" height="73"/>
-        <element name="UHDMeal" positionX="-261" positionY="272" width="128" height="58"/>
+        <element name="UHDLocation" positionX="-839" positionY="9" width="128" height="88"/>
+        <element name="UHDMeal" positionX="-263" positionY="146" width="128" height="88"/>
+        <element name="UHDMensa" positionX="-641" positionY="20" width="128" height="88"/>
+        <element name="UHDDailyMenu" positionX="-434" positionY="72" width="128" height="88"/>
+        <element name="UHDStaircase" positionX="-65" positionY="252" width="128" height="58"/>
     </elements>
 </model>
