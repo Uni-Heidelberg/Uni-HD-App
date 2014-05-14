@@ -31,33 +31,6 @@
 {
     [super viewDidLoad];
 
-    /*
-    // Generate Sample Data
-    UHDLocation *location = [UHDLocation insertNewObjectIntoContext:context];
-    location.latitude = 49.416283;
-    location.longitude = 8.672503;
-    
-    UHDMensa *mensa = [UHDMensa insertNewObjectIntoContext:context];
-    mensa.location = location;
-    mensa.title = @"Marstall";
-    
-    NSError *error = nil;
-    if (![context save:&error]) {
-        [self.logger log:@"Context Save" error:error];
-    }*/
-
-    /*
-    // Fetch Stuff
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
-    NSArray *mensen = [context executeFetchRequest:request error:NULL];
-    
-    for (UHDMensa *mensa in mensen) {
-
-        [self.logger log:mensa.title forLevel:VILogLevelDebug];
-        
-    }
-    */
-    
     // redirect datasource
     self.tableView.dataSource = self.fetchedResultsControllerDataSource;
     
