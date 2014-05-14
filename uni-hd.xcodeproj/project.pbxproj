@@ -36,6 +36,7 @@
 		87F826EA190D700E0008144F /* VILogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F826E9190D700E0008144F /* VILogger.m */; };
 		87F826EE190D70590008144F /* news.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87F826CE190D422F0008144F /* news.xcdatamodeld */; };
 		87FF70FB1923F33500FCF5F4 /* UHDNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FF70FA1923F33500FCF5F4 /* UHDNewsItem.m */; };
+		87FF70FE1924097E00FCF5F4 /* UHDPersistentStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FF70FD1924097E00FCF5F4 /* UHDPersistentStack.m */; };
 		DC21B6D41923D27500BAD26D /* UHDLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6D31923D27500BAD26D /* UHDLocation.m */; };
 		DC21B6D71923D27500BAD26D /* UHDDailyMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6D61923D27500BAD26D /* UHDDailyMenu.m */; };
 		DC21B6DA1923D27600BAD26D /* UHDSection.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6D91923D27600BAD26D /* UHDSection.m */; };
@@ -97,6 +98,8 @@
 		87F826E9190D700E0008144F /* VILogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VILogger.m; sourceTree = "<group>"; };
 		87FF70F91923F33500FCF5F4 /* UHDNewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsItem.h; sourceTree = "<group>"; };
 		87FF70FA1923F33500FCF5F4 /* UHDNewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsItem.m; sourceTree = "<group>"; };
+		87FF70FC1924097E00FCF5F4 /* UHDPersistentStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDPersistentStack.h; sourceTree = "<group>"; };
+		87FF70FD1924097E00FCF5F4 /* UHDPersistentStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDPersistentStack.m; sourceTree = "<group>"; };
 		DC21B6D21923D27500BAD26D /* UHDLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDLocation.h; sourceTree = "<group>"; };
 		DC21B6D31923D27500BAD26D /* UHDLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDLocation.m; sourceTree = "<group>"; };
 		DC21B6D51923D27500BAD26D /* UHDDailyMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDDailyMenu.h; sourceTree = "<group>"; };
@@ -141,6 +144,8 @@
 		8701CE4D190C00AF00A18F82 /* Stores */ = {
 			isa = PBXGroup;
 			children = (
+				87FF70FC1924097E00FCF5F4 /* UHDPersistentStack.h */,
+				87FF70FD1924097E00FCF5F4 /* UHDPersistentStack.m */,
 				8701CE4A190C00A600A18F82 /* UHDModuleStore.h */,
 				8701CE4B190C00A600A18F82 /* UHDModuleStore.m */,
 				8701CE4E190C038600A18F82 /* UHDNewsStore.h */,
@@ -488,6 +493,7 @@
 				DC21B6DA1923D27600BAD26D /* UHDSection.m in Sources */,
 				8701CE50190C038600A18F82 /* UHDNewsStore.m in Sources */,
 				87FF70FB1923F33500FCF5F4 /* UHDNewsItem.m in Sources */,
+				87FF70FE1924097E00FCF5F4 /* UHDPersistentStack.m in Sources */,
 				87F826EA190D700E0008144F /* VILogger.m in Sources */,
 				87600EA4192139EB00F18C8D /* UHDMensaStore.m in Sources */,
 				8701CE4C190C00A600A18F82 /* UHDModuleStore.m in Sources */,

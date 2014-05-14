@@ -12,19 +12,17 @@
 #import "UHDNewsViewController.h"
 
 // Stores
+#import "UHDPersistentStack.h"
 #import "UHDNewsStore.h"
 #import "UHDMensaStore.h"
 
 
 @interface UHDAppDelegate ()
 
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
-@property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
-
-- (NSURL *)applicationDocumentsDirectory;
+@property (strong, nonatomic) UHDPersistentStack *persistentStack;
 
 @end
+
 
 @implementation UHDAppDelegate
 
@@ -33,6 +31,11 @@
     
     // Default Logger configuration
     [VILogger defaultLogger].logLevel = VILogLevelDebug;
+    
+    
+    // Setup Module Stores
+    [UHDNewsStore defaultStore].managedObjectContext = self.persistentStack.managedObjectContext;
+    [UHDMensaStore defaultStore].managedObjectContext = self.persistentStack.managedObjectContext;
     
 
     // Create Module View Controllers
@@ -50,7 +53,7 @@
     NSArray *viewControllers = @[initialNewsViewController, initialMensaViewController];
     for(UINavigationController *viewController in viewControllers) {
         if ([viewController.topViewController respondsToSelector:@selector(setManagedObjectContext:)]) {
-            [((id)viewController.topViewController) setManagedObjectContext:self.managedObjectContext];
+            [((id)viewController.topViewController) setManagedObjectContext:self.persistentStack.managedObjectContext];
         }
     }
     tabBarController.viewControllers = viewControllers;
@@ -71,53 +74,18 @@
 }
 
 
-#pragma mark - Core Data Stack
+#pragma mark - Persistent Stack
 
-- (NSManagedObjectContext *)managedObjectContext
-{
-    if (!_managedObjectContext) {
-    
-        if (self.persistentStoreCoordinator) {
-            _managedObjectContext = [[NSManagedObjectContext alloc] init];
-            [_managedObjectContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
-        }
+- (UHDPersistentStack *)persistentStack {
+    if (!_persistentStack) {
         
+        NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+
+        NSURL *persistentStoreURL = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject] URLByAppendingPathComponent:@"uni-hd.sqlite"];
+        
+        _persistentStack = [[UHDPersistentStack alloc] initWithManagedObjectModel:managedObjectModel persistentStoreURL:persistentStoreURL];
     }
-    return _managedObjectContext;
-}
-
-- (NSManagedObjectModel *)managedObjectModel
-{
-    if (!_managedObjectModel) {
-
-        _managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
-        
-    }
-    return _managedObjectModel;
-}
-
-- (NSPersistentStoreCoordinator *)persistentStoreCoordinator
-{
-    if (!_persistentStoreCoordinator) {
-        
-        _persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:self.managedObjectModel];
-        NSError *error = nil;
-        if (![_persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:[[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"uni-hd.sqlite"] options:@{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES} error:&error]) {
-
-            [self.logger log:@"Setup Persistent Store" error:error];
-            abort();
-            
-        }
-        
-    }
-    return _persistentStoreCoordinator;
-}
-
-#pragma mark - Application's Documents directory
-
-- (NSURL *)applicationDocumentsDirectory
-{
-    return [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
+    return _persistentStack;
 }
 
 @end
