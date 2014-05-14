@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UHDMensaViewController : UITableViewController
-
+@interface UHDMensaViewController : UITableViewController <UIActionSheetDelegate>
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 @end

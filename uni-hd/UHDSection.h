@@ -1,5 +1,5 @@
 //
-//  UHDLocation.h
+//  UHDSection.h
 //  uni-hd
 //
 //  Created by Felix on 14.05.14.
@@ -9,12 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class UHDMensa;
+@class UHDMeal, UHDMensa;
 
-@interface UHDLocation : NSManagedObject
+@interface UHDSection : NSManagedObject
 
-@property (nonatomic) double_t latitude;
-@property (nonatomic) double_t longitude;
+@property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSSet *meals;
 @property (nonatomic, retain) UHDMensa *mensa;
 
 @end
+
