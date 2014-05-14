@@ -12,5 +12,6 @@
 
 @interface UHDNewsViewController : UITableViewController
 
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end

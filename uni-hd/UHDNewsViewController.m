@@ -17,6 +17,7 @@
 
 @interface UHDNewsViewController ()
 
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 
 - (IBAction)makeSamplesButtonPressed:(id)sender;
@@ -25,12 +26,10 @@
 
 @implementation UHDNewsViewController
 
-- (IBAction)makeSamplesButtonPressed:(id)sender {
-
-    [[UHDNewsStore defaultStore] generateSampleData];
-    
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    _managedObjectContext = managedObjectContext;
 }
-
 
 - (void)viewDidLoad
 {
@@ -43,6 +42,28 @@
     
 }
 
+
+#pragma mark - User Interaction
+
+- (IBAction)makeSamplesButtonPressed:(id)sender
+{
+    [[UHDNewsStore defaultStore] generateSampleData];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    UHDNewsItem *selectedNewsItem = self.fetchedResultsControllerDataSource.selectedItem;
+    
+    UHDNewsDetailViewController *newsDetailVC = segue.destinationViewController;
+    
+    newsDetailVC.newsItem = selectedNewsItem;
+    
+    // [self.logger log:@"Segue selected" forLevel:VILogLevelDebug];
+    
+}
+
+
 #pragma mark - Data Source
 
 - (VIFetchedResultsControllerDataSource *)fetchedResultsControllerDataSource
@@ -52,7 +73,7 @@
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsItem entityName]];
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
         
-        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[UHDNewsStore defaultStore].managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         
         VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, UHDNewsItem *item) {
             [(UHDNewsItemCell *)cell configureForItem:item];
@@ -61,21 +82,6 @@
         self.fetchedResultsControllerDataSource = [[VIFetchedResultsControllerDataSource alloc] initWithFetchedResultsController:fetchedResultsController tableView:self.tableView cellIdentifier:@"newsCell" configureCellBlock:configureCellBlock];
     }
     return _fetchedResultsControllerDataSource;
-}
-
-
-#pragma mark - Seque
-
-- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-
-    UHDNewsItem *selectedNewsItem = self.fetchedResultsControllerDataSource.selectedItem;
-    
-    UHDNewsDetailViewController *NewsDetailVC = segue.destinationViewController;
-    
-    NewsDetailVC.newsItem = selectedNewsItem;
-    
-    // [self.logger log:@"Segue selected" forLevel:VILogLevelDebug];
-    
 }
 
 

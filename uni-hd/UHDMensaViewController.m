@@ -7,18 +7,20 @@
 //
 
 #import "UHDMensaViewController.h"
-#import "UHDModuleStore.h"
 #import "UHDLocation.h"
 #import "UHDMensa.h"
 #import "VIFetchedResultsControllerDataSource.h"
 
+
 @interface UHDMensaViewController ()
+
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 @property (strong, nonatomic) NSArray *allMensen;
 @property (strong, nonatomic) UHDMensa *selectedMensa;
 
 @end
+
 
 @implementation UHDMensaViewController
 
@@ -43,11 +45,10 @@
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
 
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-            managedObjectContext:[UHDModuleStore defaultStore].managedObjectContext
+            managedObjectContext:self.managedObjectContext
               sectionNameKeyPath:nil
                     cacheName:nil];
-        
-        
+
         VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, UHDMensa *item) {
             cell.textLabel.text = item.title;
         };

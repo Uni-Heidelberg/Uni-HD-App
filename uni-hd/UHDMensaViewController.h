@@ -6,8 +6,10 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 
 @interface UHDMensaViewController : UITableViewController <UIActionSheetDelegate>
+
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+
 @end
