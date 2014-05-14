@@ -15,6 +15,8 @@
 @interface UHDMensaViewController ()
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
+@property (strong, nonatomic) NSArray *allMensen;
+@property (strong, nonatomic) UHDMensa *selectedMensa;
 
 @end
 
@@ -67,7 +69,10 @@
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
 
-        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:[UHDModuleStore defaultStore].managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
+            managedObjectContext:[UHDModuleStore defaultStore].managedObjectContext
+              sectionNameKeyPath:nil
+                    cacheName:nil];
         
         
         VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, UHDMensa *item) {
@@ -82,13 +87,17 @@
 
 - (NSArray *)allMensen
 {
-    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
-    return [self.managedObjectContext executeFetchRequest:request error:NULL];
+    if (!_allMensen) {
+        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
+        _allMensen = [self.managedObjectContext executeFetchRequest:request error:NULL];
+    }
+    
+    return _allMensen;
 }
 
 
 - (IBAction)showMensaSelection:(id)sender {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@""
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Wähle deine Mensa"
                                                              delegate:self
                                                     cancelButtonTitle:nil
                                                destructiveButtonTitle:nil
@@ -100,6 +109,15 @@
     actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:@"schließen"];
     [actionSheet showFromTabBar:self.tabBarController.tabBar];
 }
+
+- (void)actionSheet:(UIActionSheet *)actionSheet
+clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if ([self.allMensen count] <= buttonIndex) return;
+    
+    self.selectedMensa = self.allMensen[buttonIndex];
+}
+
 
 
 
