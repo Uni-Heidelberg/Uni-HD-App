@@ -80,6 +80,11 @@
     return _fetchedResultsControllerDataSource;
 }
 
+- (NSArray *)allMensen
+{
+    NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
+    return [self.managedObjectContext executeFetchRequest:request error:NULL];
+}
 
 
 - (IBAction)showMensaSelection:(id)sender {
@@ -88,7 +93,11 @@
                                                     cancelButtonTitle:nil
                                                destructiveButtonTitle:nil
                                                     otherButtonTitles:nil];
-  
+    NSArray *mensen = [self allMensen];
+    for (UHDMensa *mensa in mensen) {
+        [actionSheet addButtonWithTitle:mensa.title];
+    }
+    actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:@"schließen"];
     [actionSheet showFromTabBar:self.tabBarController.tabBar];
 }
 
