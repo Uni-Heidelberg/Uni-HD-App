@@ -13,14 +13,14 @@
     <entity name="UHDMeal" representedClassName="UHDMeal" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="menu" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDDailyMenu" inverseName="meal" inverseEntity="UHDDailyMenu" syncable="YES"/>
-        <relationship name="staircase" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDStaircase" inverseName="meal" inverseEntity="UHDStaircase" syncable="YES"/>
+        <relationship name="staircase" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDSection" inverseName="meal" inverseEntity="UHDSection" syncable="YES"/>
     </entity>
     <entity name="UHDMensa" representedClassName="UHDMensa" syncable="YES">
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UHDLocation" inverseName="mensa" inverseEntity="UHDLocation" syncable="YES"/>
         <relationship name="menus" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDDailyMenu" inverseName="mensa" inverseEntity="UHDDailyMenu" syncable="YES"/>
     </entity>
-    <entity name="UHDStaircase" representedClassName="UHDStaircase" syncable="YES">
+    <entity name="UHDSection" representedClassName="UHDStaircase" syncable="YES">
         <relationship name="meal" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDMeal" inverseName="staircase" inverseEntity="UHDMeal" syncable="YES"/>
     </entity>
     <elements>
@@ -28,6 +28,6 @@
         <element name="UHDMeal" positionX="-263" positionY="146" width="128" height="88"/>
         <element name="UHDMensa" positionX="-641" positionY="20" width="128" height="88"/>
         <element name="UHDDailyMenu" positionX="-434" positionY="72" width="128" height="88"/>
-        <element name="UHDStaircase" positionX="-65" positionY="252" width="128" height="58"/>
+        <element name="UHDSection" positionX="-65" positionY="252" width="128" height="58"/>
     </elements>
 </model>
