@@ -61,9 +61,25 @@
                     <view key="view" contentMode="scaleToFill" id="1II-DM-Olg">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x0h-DY-exW" userLabel="NewsContentView">
+                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="x0h-DY-exW" firstAttribute="top" secondItem="3UN-Xr-Ymi" secondAttribute="bottom" id="M93-wf-mhK"/>
+                            <constraint firstAttribute="trailing" secondItem="x0h-DY-exW" secondAttribute="trailing" id="NdH-90-fH3"/>
+                            <constraint firstItem="KXv-hz-A9l" firstAttribute="top" secondItem="x0h-DY-exW" secondAttribute="bottom" id="bDf-aS-lEj"/>
+                            <constraint firstItem="x0h-DY-exW" firstAttribute="leading" secondItem="1II-DM-Olg" secondAttribute="leading" id="pCc-qY-sYD"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="XMQ-XG-Liz"/>
+                    <connections>
+                        <outlet property="newsContentView" destination="x0h-DY-exW" id="4aB-Kx-HRi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UC2-ih-bD7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

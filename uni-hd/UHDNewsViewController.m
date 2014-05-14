@@ -23,17 +23,8 @@
 @implementation UHDNewsViewController
 
 - (IBAction)makeSamplesButtonPressed:(id)sender {
-    
-    // Generate sample data
-    NSManagedObjectContext *context = [UHDModuleStore defaultStore].managedObjectContext;
-    
-    UHDNewsItem *newsItem = [UHDNewsItem insertNewObjectIntoContext:context];
-    newsItem.title = @"Breaking News!";
-    [newsItem.managedObjectContext save:NULL];
-    
-    newsItem = [UHDNewsItem insertNewObjectIntoContext:context];
-    newsItem.title = @"Another breaking news!";
-    [newsItem.managedObjectContext save:NULL];
+
+    [[UHDNewsStore defaultStore] generateSampleData];
     
 }
 

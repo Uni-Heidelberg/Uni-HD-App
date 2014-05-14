@@ -1,8 +1,8 @@
 //
-//  NewsItem.h
+//  UHDNewsItem.h
 //  uni-hd
 //
-//  Created by Nils Fischer on 06.05.14.
+//  Created by Kevin Geier on 14.05.14.
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
@@ -12,6 +12,9 @@
 
 @interface UHDNewsItem : NSManagedObject
 
-@property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSDate *date;
+@property (nonatomic, retain) NSString * content;
+@property (nonatomic) BOOL read;
 
 @end
