@@ -10,6 +10,7 @@
 
 #import "UHDAppDelegate.h"
 
+
 @interface UHDModuleStore ()
 
 @end
@@ -38,13 +39,6 @@ static NSMutableDictionary *defaultStores;
     }
     
     return defaultStore;
-}
-
-
-#pragma mark - Core Data Stack access
-
-- (NSManagedObjectContext *)managedObjectContext {
-    return [(UHDAppDelegate *)[UIApplication sharedApplication].delegate managedObjectContext];
 }
 
 
