@@ -28,7 +28,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Aktuelle Mensa" id="lXf-JQ-lwZ">
-                        <barButtonItem key="leftBarButtonItem" title="Mensen" id="vrP-Bf-pJp"/>
+                        <barButtonItem key="leftBarButtonItem" title="Mensen" id="vrP-Bf-pJp">
+                            <connections>
+                                <action selector="showMensaSelection:" destination="otg-ia-fKW" id="gpe-bY-AB2"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p0c-4X-jtz" userLabel="First Responder" sceneMemberID="firstResponder"/>
