@@ -20,6 +20,8 @@
 		8799DA9E192AB4D9009B3CAB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8799DA9C192AB4D9009B3CAB /* InfoPlist.strings */; };
 		8799DAA0192AB4D9009B3CAB /* UHDRemoteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8799DA9F192AB4D9009B3CAB /* UHDRemoteTests.m */; };
 		8799DAA8192AB4F8009B3CAB /* UHDDatabaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8799DAA7192AB4F8009B3CAB /* UHDDatabaseTests.m */; };
+		8799DAA9192ABCBA009B3CAB /* UHDPersistentStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FF70FD1924097E00FCF5F4 /* UHDPersistentStack.m */; };
+		8799DAAA192ABDE9009B3CAB /* VILogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F826E9190D700E0008144F /* VILogger.m */; };
 		87A8633819196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A8633719196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m */; };
 		87CBE08C1908810B0029D9AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08B1908810B0029D9AF /* Foundation.framework */; };
 		87CBE08E1908810B0029D9AF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08D1908810B0029D9AF /* CoreGraphics.framework */; };
@@ -37,6 +39,7 @@
 		87F826EA190D700E0008144F /* VILogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F826E9190D700E0008144F /* VILogger.m */; };
 		87FF70FB1923F33500FCF5F4 /* UHDNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FF70FA1923F33500FCF5F4 /* UHDNewsItem.m */; };
 		87FF70FE1924097E00FCF5F4 /* UHDPersistentStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FF70FD1924097E00FCF5F4 /* UHDPersistentStack.m */; };
+		C8A2747198674D11925252D8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F757EC4658C40C8B7B4E414 /* libPods.a */; };
 		DC21B6D41923D27500BAD26D /* UHDLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6D31923D27500BAD26D /* UHDLocation.m */; };
 		DC21B6D71923D27500BAD26D /* UHDDailyMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6D61923D27500BAD26D /* UHDDailyMenu.m */; };
 		DC21B6DA1923D27600BAD26D /* UHDSection.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6D91923D27600BAD26D /* UHDSection.m */; };
@@ -132,6 +135,7 @@
 				8799DA96192AB4D9009B3CAB /* XCTest.framework in Frameworks */,
 				8799DA98192AB4D9009B3CAB /* UIKit.framework in Frameworks */,
 				8799DA97192AB4D9009B3CAB /* Foundation.framework in Frameworks */,
+				C8A2747198674D11925252D8 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -388,9 +392,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8799DAA4192AB4D9009B3CAB /* Build configuration list for PBXNativeTarget "uni-hd-tests" */;
 			buildPhases = (
+				99DE2BB49BA4484A90E3B371 /* Check Pods Manifest.lock */,
 				8799DA91192AB4D9009B3CAB /* Sources */,
 				8799DA92192AB4D9009B3CAB /* Frameworks */,
 				8799DA93192AB4D9009B3CAB /* Resources */,
+				B23B7A2C4E0844A3B3000ED5 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -508,6 +514,36 @@
 			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		99DE2BB49BA4484A90E3B371 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		B23B7A2C4E0844A3B3000ED5 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -515,7 +551,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8799DAAA192ABDE9009B3CAB /* VILogger.m in Sources */,
 				8799DAA8192AB4F8009B3CAB /* UHDDatabaseTests.m in Sources */,
+				8799DAA9192ABCBA009B3CAB /* UHDPersistentStack.m in Sources */,
 				8799DAA0192AB4D9009B3CAB /* UHDRemoteTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -582,6 +620,7 @@
 /* Begin XCBuildConfiguration section */
 		8799DAA5192AB4D9009B3CAB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 58E54747D0F54AD0A35C8074 /* Pods.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/uni-hd.app/uni-hd";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -604,6 +643,7 @@
 		};
 		8799DAA6192AB4D9009B3CAB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 58E54747D0F54AD0A35C8074 /* Pods.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/uni-hd.app/uni-hd";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -730,6 +770,7 @@
 				8799DAA6192AB4D9009B3CAB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		87CBE0831908810B0029D9AF /* Build configuration list for PBXProject "uni-hd" */ = {
 			isa = XCConfigurationList;

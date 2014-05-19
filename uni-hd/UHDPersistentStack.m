@@ -7,11 +7,12 @@
 //
 
 #import "UHDPersistentStack.h"
+#import <RestKit/RestKit.h>
 
 
 @interface UHDPersistentStack ()
 
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) RKManagedObjectStore *managedObjectStore;
 @property (strong, nonatomic) NSPersistentStoreCoordinator *persistentStoreCoordinator;
 
 @end
@@ -37,14 +38,18 @@
             abort();
             
         }
-        
-        // create main managed object context
-        self.managedObjectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-        [self.managedObjectContext setPersistentStoreCoordinator:self.persistentStoreCoordinator];
 
+        // setup RestKit store
+        self.managedObjectStore = [[RKManagedObjectStore alloc] initWithPersistentStoreCoordinator:self.persistentStoreCoordinator];
+        [self.managedObjectStore createManagedObjectContexts];
+        
     }
     return self;
 }
 
+- (NSManagedObjectContext *)managedObjectContext
+{
+    return self.managedObjectStore.mainQueueManagedObjectContext;
+}
 
 @end

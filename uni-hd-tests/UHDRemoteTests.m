@@ -6,9 +6,13 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import <XCTest/XCTest.h>
+@import XCTest;
+#import <RestKit/RestKit.h>
+
 
 @interface UHDRemoteTests : XCTestCase
+
+@property (strong, nonatomic) RKManagedObjectStore *managedObjectStore;
 
 @end
 
@@ -17,18 +21,19 @@
 - (void)setUp
 {
     [super setUp];
-    // Put setup code here. This method is called before the invocation of each test method in the class.
+    self.managedObjectStore = [[RKManagedObjectStore alloc] initWithManagedObjectModel:[[NSManagedObjectModel mergedModelFromBundles:nil] mutableCopy]];
+    XCTAssertNotNil([self.managedObjectStore addInMemoryPersistentStore:nil], @"Failed to create in-memory persistent store");
+    [self.managedObjectStore createManagedObjectContexts];
 }
 
 - (void)tearDown
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
 
-- (void)testExample
+- (void)testManagedObjectStore
 {
-    XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertNotNil(self.managedObjectStore, @"No managed Object Store");
 }
 
 @end
