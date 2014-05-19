@@ -6,16 +6,14 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
+#import "UHDRemoteDatasource.h"
+#import "UHDPersistentStack.h"
 
-@interface UHDModuleStore : NSObject
 
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@interface UHDModuleStore : NSObject <UHDRemoteDatasource>
 
-+ (instancetype)defaultStore;
+@property (strong, nonatomic) UHDPersistentStack *persistentStack;
 
-- (NSArray *)allItems;
-
-- (void)generateSampleDataConditionally:(BOOL)conditionally;
-- (void)generateSampleData;
+- (id)initWithPersistentStack:(UHDPersistentStack *)persistentStack;
 
 @end

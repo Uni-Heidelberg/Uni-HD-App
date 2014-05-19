@@ -6,10 +6,11 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
+@import Foundation;
 @import UIKit;
 
 @interface UHDMensaViewController : UITableViewController <UIActionSheetDelegate>
 
-- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+- (void)setRemoteDatasource:(id<UHDRemoteDatasource>)remoteDatasource;
 
 @end

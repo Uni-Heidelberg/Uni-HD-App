@@ -10,6 +10,7 @@
 
 // View Controllers
 #import "UHDNewsViewController.h"
+#import "UHDMensaViewController.h"
 
 // Stores
 #import "UHDPersistentStack.h"
@@ -20,6 +21,10 @@
 @interface UHDAppDelegate ()
 
 @property (strong, nonatomic) UHDPersistentStack *persistentStack;
+@property (strong, nonatomic) UHDNewsStore *newsStore;
+@property (strong, nonatomic) UHDMensaStore *mensaStore;
+
+- (void)generateSampleDataConditionally:(BOOL)conditionally;
 
 @end
 
@@ -32,31 +37,27 @@
     // Default Logger configuration
     [VILogger defaultLogger].logLevel = VILogLevelDebug;
     
-    
-    // Setup Module Stores
-    [UHDNewsStore defaultStore].managedObjectContext = self.persistentStack.managedObjectContext;
-    [UHDMensaStore defaultStore].managedObjectContext = self.persistentStack.managedObjectContext;
-    
 
     // Create Module View Controllers
+    
     // News
     UIStoryboard *newsStoryboard = [UIStoryboard storyboardWithName:@"news" bundle:nil];
-    UIViewController *initialNewsViewController = [newsStoryboard instantiateInitialViewController];
-    initialNewsViewController.tabBarItem.title = NSLocalizedString(@"News", nil);
+    UINavigationController *newsNavC = [newsStoryboard instantiateInitialViewController];
+    newsNavC.tabBarItem.title = NSLocalizedString(@"News", nil);
+    UHDNewsViewController *newsVC = newsNavC.viewControllers[0];
+    newsVC.remoteDatasource = self.newsStore;
+    
     // Mensa
     UIStoryboard *mensaStoryboard = [UIStoryboard storyboardWithName:@"mensa" bundle:nil];
-    UIViewController *initialMensaViewController = [mensaStoryboard instantiateInitialViewController];
-    initialMensaViewController.tabBarItem.title = NSLocalizedString(@"Mensa", nil);
+    UINavigationController *mensaNavC = [mensaStoryboard instantiateInitialViewController];
+    mensaNavC.tabBarItem.title = NSLocalizedString(@"Mensa", nil);
+    UHDMensaViewController *mensaVC = mensaNavC.viewControllers[0];
+    mensaVC.remoteDatasource = self.mensaStore;
+    
     
     // Create and populate tab bar controller
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    NSArray *viewControllers = @[initialNewsViewController, initialMensaViewController];
-    for(UINavigationController *viewController in viewControllers) {
-        if ([viewController.topViewController respondsToSelector:@selector(setManagedObjectContext:)]) {
-            [((id)viewController.topViewController) setManagedObjectContext:self.persistentStack.managedObjectContext];
-        }
-    }
-    tabBarController.viewControllers = viewControllers;
+    tabBarController.viewControllers = @[mensaNavC, newsNavC];
     
     // Create and populate window
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
@@ -66,8 +67,7 @@
     
     
     // generate sample data
-    [[UHDNewsStore defaultStore] generateSampleDataConditionally:YES];
-    [[UHDMensaStore defaultStore] generateSampleDataConditionally:YES];
+    [self generateSampleDataConditionally:YES];
     
     
     return YES;
@@ -86,6 +86,29 @@
         _persistentStack = [[UHDPersistentStack alloc] initWithManagedObjectModel:managedObjectModel persistentStoreURL:persistentStoreURL];
     }
     return _persistentStack;
+}
+
+#pragma mark - Module Stores
+- (UHDNewsStore *)newsStore {
+    if (!_newsStore) {
+        self.newsStore = [[UHDNewsStore alloc] initWithPersistentStack:self.persistentStack];
+    }
+    return _newsStore;
+}
+- (UHDMensaStore *)mensaStore {
+    if (!_mensaStore) {
+        self.mensaStore = [[UHDMensaStore alloc] initWithPersistentStack:self.persistentStack];
+    }
+    return _mensaStore;
+}
+
+#pragma mark - Sample Data
+
+- (void)generateSampleDataConditionally:(BOOL)conditionally {
+    for (id <UHDRemoteDatasource> remoteDatasource in @[self.newsStore, self.mensaStore]) {
+        if (conditionally && remoteDatasource.allItems.count > 0) continue;
+        [remoteDatasource generateSampleData];
+    }
 }
 
 @end

@@ -6,9 +6,8 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import "UHDNewsDetailViewController.h"
 #import "UHDNewsViewController.h"
-#import "UHDNewsStore.h"
+#import "UHDNewsDetailViewController.h"
 #import "UHDNewsItem.h"
 #import "VIFetchedResultsControllerDataSource.h"
 #import "UHDNewsItemCell.h"
@@ -17,8 +16,10 @@
 
 @interface UHDNewsViewController ()
 
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) id <UHDRemoteDatasource> remoteDatasource;
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
+
+- (NSManagedObjectContext *)managedObjectContext;
 
 - (IBAction)makeSamplesButtonPressed:(id)sender;
 
@@ -26,9 +27,12 @@
 
 @implementation UHDNewsViewController
 
-- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+- (void)setRemoteDatasource:(id<UHDRemoteDatasource>)remoteDatasource
 {
-    _managedObjectContext = managedObjectContext;
+    _remoteDatasource = remoteDatasource;
+}
+- (NSManagedObjectContext *)managedObjectContext {
+    return self.remoteDatasource.managedObjectContext;
 }
 
 - (void)viewDidLoad
@@ -47,7 +51,7 @@
 
 - (IBAction)makeSamplesButtonPressed:(id)sender
 {
-    [[UHDNewsStore defaultStore] generateSampleData];
+    [self.remoteDatasource generateSampleData];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

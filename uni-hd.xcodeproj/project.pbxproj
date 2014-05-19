@@ -74,6 +74,7 @@
 		8701CE4F190C038600A18F82 /* UHDNewsStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsStore.m; sourceTree = "<group>"; };
 		87600EA2192139EB00F18C8D /* UHDMensaStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMensaStore.h; sourceTree = "<group>"; };
 		87600EA3192139EB00F18C8D /* UHDMensaStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMensaStore.m; sourceTree = "<group>"; };
+		876181A5192A34FD00D434FE /* UHDRemoteDatasource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UHDRemoteDatasource.h; sourceTree = "<group>"; };
 		87A8633619196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+VIInsertIntoContextCategory.h"; path = "VIOSFramework/Categories/NSManagedObject+VIInsertIntoContextCategory/NSManagedObject+VIInsertIntoContextCategory.h"; sourceTree = "<group>"; };
 		87A8633719196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+VIInsertIntoContextCategory.m"; path = "VIOSFramework/Categories/NSManagedObject+VIInsertIntoContextCategory/NSManagedObject+VIInsertIntoContextCategory.m"; sourceTree = "<group>"; };
 		87CBE0881908810B0029D9AF /* uni-hd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uni-hd.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -155,6 +156,7 @@
 			children = (
 				87FF70FC1924097E00FCF5F4 /* UHDPersistentStack.h */,
 				87FF70FD1924097E00FCF5F4 /* UHDPersistentStack.m */,
+				876181A5192A34FD00D434FE /* UHDRemoteDatasource.h */,
 				8701CE4A190C00A600A18F82 /* UHDModuleStore.h */,
 				8701CE4B190C00A600A18F82 /* UHDModuleStore.m */,
 				8701CE4E190C038600A18F82 /* UHDNewsStore.h */,

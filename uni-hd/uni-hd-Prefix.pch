@@ -12,3 +12,5 @@
 
 #import <RestKit/RestKit.h>
 #import "VILogger.h"
+
+#import "UHDRemoteDatasource.h"

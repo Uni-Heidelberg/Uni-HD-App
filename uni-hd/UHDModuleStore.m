@@ -8,8 +8,6 @@
 
 #import "UHDModuleStore.h"
 
-#import "UHDAppDelegate.h"
-
 
 @interface UHDModuleStore ()
 
@@ -18,29 +16,23 @@
 
 @implementation UHDModuleStore
 
-
-#pragma mark - Singleton
-
-static NSMutableDictionary *defaultStores;
-
-+ (instancetype)defaultStore {
-    id defaultStore = nil;
-    
-    @synchronized(self) {
-        NSString *storeClassKey = NSStringFromClass(self);
-        
-        defaultStore = [defaultStores objectForKey:storeClassKey];
-        
-        if (!defaultStore) {
-            defaultStore = [[self alloc] init];
-            if (!defaultStores) defaultStores = [[NSMutableDictionary alloc] init];
-            [defaultStores setObject:defaultStore forKey:storeClassKey];
-        }
+- (id)initWithPersistentStack:(UHDPersistentStack *)persistentStack
+{
+    if ((self = [super init])) {
+        self.persistentStack = persistentStack;
     }
-    
-    return defaultStore;
+    return self;
 }
 
+- (NSManagedObjectContext *)managedObjectContext
+{
+    return self.persistentStack.managedObjectContext;
+}
+
+- (void)refresh
+{
+    return;
+}
 
 #pragma mark - Utility
 
@@ -50,14 +42,6 @@ static NSMutableDictionary *defaultStores;
     return nil;
 }
 
-
-#pragma mark - Sample Data
-
-- (void)generateSampleDataConditionally:(BOOL)conditionally
-{
-    if (conditionally && self.allItems.count > 0) return;
-    [self generateSampleData];
-}
 
 - (void)generateSampleData
 {

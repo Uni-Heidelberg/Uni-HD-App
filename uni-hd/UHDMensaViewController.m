@@ -14,19 +14,24 @@
 
 @interface UHDMensaViewController ()
 
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) id <UHDRemoteDatasource> remoteDatasource;
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 @property (strong, nonatomic) NSArray *allMensen;
 @property (strong, nonatomic) UHDMensa *selectedMensa;
+
+- (NSManagedObjectContext *)managedObjectContext;
 
 @end
 
 
 @implementation UHDMensaViewController
 
-- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+- (void)setRemoteDatasource:(id<UHDRemoteDatasource>)remoteDatasource
 {
-    _managedObjectContext = managedObjectContext;
+    _remoteDatasource = remoteDatasource;
+}
+- (NSManagedObjectContext *)managedObjectContext {
+    return self.remoteDatasource.managedObjectContext;
 }
 
 - (void)viewDidLoad
