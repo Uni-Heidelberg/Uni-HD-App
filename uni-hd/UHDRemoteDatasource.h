@@ -9,9 +9,7 @@
 @import Foundation;
 @import CoreData;
 
-@protocol UHDRemoteDatasource <NSObject>
-
-- (NSManagedObjectContext *)managedObjectContext;
+@protocol UHDRemoteDatasource
 
 - (void)refresh;
 - (void)generateSampleData;
