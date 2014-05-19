@@ -167,6 +167,24 @@
 			name = Stores;
 			sourceTree = "<group>";
 		};
+		8799DA8D192AB1DB009B3CAB /* News */ = {
+			isa = PBXGroup;
+			children = (
+				87DBE7F31919C3F700C16970 /* news.storyboard */,
+				0AD7F3701923F58E00F49551 /* UHDNewsItemCell.h */,
+				0AD7F3711923F58E00F49551 /* UHDNewsItemCell.m */,
+			);
+			name = News;
+			sourceTree = "<group>";
+		};
+		8799DA8E192AB1E8009B3CAB /* Mensa */ = {
+			isa = PBXGroup;
+			children = (
+				DC87FDF7191AA00600019F32 /* mensa.storyboard */,
+			);
+			name = Mensa;
+			sourceTree = "<group>";
+		};
 		87CBE07F1908810B0029D9AF = {
 			isa = PBXGroup;
 			children = (
@@ -206,10 +224,10 @@
 			children = (
 				87CBE09A1908810B0029D9AF /* UHDAppDelegate.h */,
 				87CBE09B1908810B0029D9AF /* UHDAppDelegate.m */,
-				87DBE7F51919C40100C16970 /* Storyboards */,
 				87EE2557191924E90092DF7F /* View Controller */,
+				87DBE7F51919C40100C16970 /* View */,
+				87F826CB190D40B40008144F /* Model */,
 				8701CE4D190C00AF00A18F82 /* Stores */,
-				87F826CB190D40B40008144F /* Models */,
 				87CBE0A91908810B0029D9AF /* Images.xcassets */,
 				87CBE0921908810B0029D9AF /* Supporting Files */,
 			);
@@ -227,13 +245,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		87DBE7F51919C40100C16970 /* Storyboards */ = {
+		87DBE7F51919C40100C16970 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				87DBE7F31919C3F700C16970 /* news.storyboard */,
-				DC87FDF7191AA00600019F32 /* mensa.storyboard */,
+				8799DA8D192AB1DB009B3CAB /* News */,
+				8799DA8E192AB1E8009B3CAB /* Mensa */,
 			);
-			name = Storyboards;
+			name = View;
 			sourceTree = "<group>";
 		};
 		87EE2557191924E90092DF7F /* View Controller */ = {
@@ -263,13 +281,13 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
-		87F826CB190D40B40008144F /* Models */ = {
+		87F826CB190D40B40008144F /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				DC21B6A41923CDA800BAD26D /* News */,
 				DC21B6A31923CC8700BAD26D /* Mensa */,
 			);
-			name = Models;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		87F826D9190D4EB20008144F /* CoreDataTests */ = {
@@ -327,8 +345,6 @@
 			children = (
 				87EE2554191924E20092DF7F /* UHDNewsViewController.h */,
 				87EE2555191924E20092DF7F /* UHDNewsViewController.m */,
-				0AD7F3701923F58E00F49551 /* UHDNewsItemCell.h */,
-				0AD7F3711923F58E00F49551 /* UHDNewsItemCell.m */,
 				0AD7F3731923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.h */,
 				0AD7F3741923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.m */,
 				0A2000501920F18A0014C977 /* UHDNewsDetailViewController.h */,
