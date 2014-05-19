@@ -9,6 +9,7 @@
 #import "UHDNewsViewController.h"
 #import "UHDNewsDetailViewController.h"
 #import "UHDNewsItem.h"
+#import "UHDNewsSource.h"
 #import "VIFetchedResultsControllerDataSource.h"
 #import "UHDNewsItemCell.h"
 #import "UHDNewsItemCell+ConfigureForItem.h"

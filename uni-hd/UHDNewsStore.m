@@ -34,7 +34,7 @@
     // Create NewsArticles
     UHDNewsItem *newsItem = [UHDNewsItem insertNewObjectIntoContext:self.managedObjectContext];
     newsItem.title = @"Breaking News!";
-    newsItem.abstract = @"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
+    newsItem.abstract = @"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.";
     newsItem.date = [NSDate date];
     newsItem.url = @"http://www.loremipsum.de/index_e.html";
     newsItem.source = newsSource;
@@ -42,10 +42,24 @@
     newsItem = [UHDNewsItem insertNewObjectIntoContext:self.managedObjectContext];
     newsItem.title = @"Bahnbrechende Neuigkeiten!";
     newsItem.abstract = @"Damit Ihr indess erkennt, woher dieser ganze Irrthum gekommen ist, und weshalb man die Lust anklagt und den Schmerz lobet, so will ich Euch Alles eröffnen und auseinander setzen, was jener Begründer der Wahrheit und gleichsam Baumeister des glücklichen Lebens selbst darüber gesagt hat.";
-    newsItem.date = [NSDate dateWithTimeIntervalSinceReferenceDate:(2000*365.25*3600)];
+    newsItem.date = [NSDate dateWithTimeIntervalSince1970:0];
     newsItem.url = @"http://www.loremipsum.de";
     newsItem.source = newsSource;
-
+    
+    // Create new NewsSource
+    newsSource = [UHDNewsSource insertNewObjectIntoContext:self.managedObjectContext];
+    newsSource.title = @"Universität Heidelberg";
+    newsSource.subscribed = YES;
+    newsSource.color = @"blue";
+    
+    // Create further NewsArticles
+    newsItem = [UHDNewsItem insertNewObjectIntoContext:self.managedObjectContext];
+    newsItem.title = @"Novitas!";
+    newsItem.abstract = @"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
+    newsItem.date = [NSDate dateWithTimeIntervalSinceReferenceDate:(-2000*365.25*24*3600)];
+    newsItem.url = @"http://www.uni-heidelberg.de";
+    newsItem.source = newsSource;
+    
     // Save to store
     [newsItem.managedObjectContext save:NULL];
 }
