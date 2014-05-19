@@ -14,9 +14,13 @@
 		8701CE4C190C00A600A18F82 /* UHDModuleStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8701CE4B190C00A600A18F82 /* UHDModuleStore.m */; };
 		8701CE50190C038600A18F82 /* UHDNewsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8701CE4F190C038600A18F82 /* UHDNewsStore.m */; };
 		87600EA4192139EB00F18C8D /* UHDMensaStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 87600EA3192139EB00F18C8D /* UHDMensaStore.m */; };
-		87600EA5192139EB00F18C8D /* UHDMensaStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 87600EA3192139EB00F18C8D /* UHDMensaStore.m */; };
+		8799DA96192AB4D9009B3CAB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE0B01908810B0029D9AF /* XCTest.framework */; };
+		8799DA97192AB4D9009B3CAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08B1908810B0029D9AF /* Foundation.framework */; };
+		8799DA98192AB4D9009B3CAB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08F1908810B0029D9AF /* UIKit.framework */; };
+		8799DA9E192AB4D9009B3CAB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8799DA9C192AB4D9009B3CAB /* InfoPlist.strings */; };
+		8799DAA0192AB4D9009B3CAB /* UHDRemoteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8799DA9F192AB4D9009B3CAB /* UHDRemoteTests.m */; };
+		8799DAA8192AB4F8009B3CAB /* UHDDatabaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8799DAA7192AB4F8009B3CAB /* UHDDatabaseTests.m */; };
 		87A8633819196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A8633719196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m */; };
-		87A8633919196EC0008C106D /* VILogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F826E9190D700E0008144F /* VILogger.m */; };
 		87CBE08C1908810B0029D9AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08B1908810B0029D9AF /* Foundation.framework */; };
 		87CBE08E1908810B0029D9AF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08D1908810B0029D9AF /* CoreGraphics.framework */; };
 		87CBE0901908810B0029D9AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08F1908810B0029D9AF /* UIKit.framework */; };
@@ -30,13 +34,7 @@
 		87EE255B191929420092DF7F /* VIFetchedResultsControllerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE255A191929420092DF7F /* VIFetchedResultsControllerDataSource.m */; };
 		87F826CD190D41450008144F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87F826CC190D41450008144F /* CoreData.framework */; };
 		87F826D0190D422F0008144F /* news.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87F826CE190D422F0008144F /* news.xcdatamodeld */; };
-		87F826D6190D4EB20008144F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE0B01908810B0029D9AF /* XCTest.framework */; };
-		87F826D7190D4EB20008144F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08B1908810B0029D9AF /* Foundation.framework */; };
-		87F826D8190D4EB20008144F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08F1908810B0029D9AF /* UIKit.framework */; };
-		87F826DE190D4EB20008144F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 87F826DC190D4EB20008144F /* InfoPlist.strings */; };
-		87F826E0190D4EB20008144F /* CoreDataTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F826DF190D4EB20008144F /* CoreDataTests.m */; };
 		87F826EA190D700E0008144F /* VILogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F826E9190D700E0008144F /* VILogger.m */; };
-		87F826EE190D70590008144F /* news.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87F826CE190D422F0008144F /* news.xcdatamodeld */; };
 		87FF70FB1923F33500FCF5F4 /* UHDNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FF70FA1923F33500FCF5F4 /* UHDNewsItem.m */; };
 		87FF70FE1924097E00FCF5F4 /* UHDPersistentStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FF70FD1924097E00FCF5F4 /* UHDPersistentStack.m */; };
 		DC21B6D41923D27500BAD26D /* UHDLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6D31923D27500BAD26D /* UHDLocation.m */; };
@@ -50,7 +48,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		87F826E2190D4EB20008144F /* PBXContainerItemProxy */ = {
+		8799DAA2192AB4D9009B3CAB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 87CBE0801908810B0029D9AF /* Project object */;
 			proxyType = 1;
@@ -75,6 +73,12 @@
 		87600EA2192139EB00F18C8D /* UHDMensaStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMensaStore.h; sourceTree = "<group>"; };
 		87600EA3192139EB00F18C8D /* UHDMensaStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMensaStore.m; sourceTree = "<group>"; };
 		876181A5192A34FD00D434FE /* UHDRemoteDatasource.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UHDRemoteDatasource.h; sourceTree = "<group>"; };
+		8799DA95192AB4D9009B3CAB /* uni-hd-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "uni-hd-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8799DA9B192AB4D9009B3CAB /* uni-hd-tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "uni-hd-tests-Info.plist"; sourceTree = "<group>"; };
+		8799DA9D192AB4D9009B3CAB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		8799DA9F192AB4D9009B3CAB /* UHDRemoteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UHDRemoteTests.m; sourceTree = "<group>"; };
+		8799DAA1192AB4D9009B3CAB /* uni-hd-tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uni-hd-tests-Prefix.pch"; sourceTree = "<group>"; };
+		8799DAA7192AB4F8009B3CAB /* UHDDatabaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDDatabaseTests.m; sourceTree = "<group>"; };
 		87A8633619196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+VIInsertIntoContextCategory.h"; path = "VIOSFramework/Categories/NSManagedObject+VIInsertIntoContextCategory/NSManagedObject+VIInsertIntoContextCategory.h"; sourceTree = "<group>"; };
 		87A8633719196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+VIInsertIntoContextCategory.m"; path = "VIOSFramework/Categories/NSManagedObject+VIInsertIntoContextCategory/NSManagedObject+VIInsertIntoContextCategory.m"; sourceTree = "<group>"; };
 		87CBE0881908810B0029D9AF /* uni-hd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uni-hd.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,11 +101,6 @@
 		87EE255A191929420092DF7F /* VIFetchedResultsControllerDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIFetchedResultsControllerDataSource.m; path = "VIOSFramework/Protocol Implementations/Table View Data Source/VIFetchRequestDataSource/VIFetchedResultsControllerDataSource.m"; sourceTree = "<group>"; };
 		87F826CC190D41450008144F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		87F826CF190D422F0008144F /* news.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = news.xcdatamodel; sourceTree = "<group>"; };
-		87F826D5190D4EB20008144F /* CoreDataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoreDataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		87F826DB190D4EB20008144F /* CoreDataTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "CoreDataTests-Info.plist"; sourceTree = "<group>"; };
-		87F826DD190D4EB20008144F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		87F826DF190D4EB20008144F /* CoreDataTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CoreDataTests.m; sourceTree = "<group>"; };
-		87F826E1190D4EB20008144F /* CoreDataTests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CoreDataTests-Prefix.pch"; sourceTree = "<group>"; };
 		87F826E8190D700E0008144F /* VILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VILogger.h; sourceTree = "<group>"; };
 		87F826E9190D700E0008144F /* VILogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VILogger.m; sourceTree = "<group>"; };
 		87FF70F91923F33500FCF5F4 /* UHDNewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsItem.h; sourceTree = "<group>"; };
@@ -126,6 +125,16 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8799DA92192AB4D9009B3CAB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8799DA96192AB4D9009B3CAB /* XCTest.framework in Frameworks */,
+				8799DA98192AB4D9009B3CAB /* UIKit.framework in Frameworks */,
+				8799DA97192AB4D9009B3CAB /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		87CBE0851908810B0029D9AF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -135,16 +144,6 @@
 				87CBE0901908810B0029D9AF /* UIKit.framework in Frameworks */,
 				87CBE08C1908810B0029D9AF /* Foundation.framework in Frameworks */,
 				6F293EE8DA534A74838601AE /* libPods.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		87F826D2190D4EB20008144F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				87F826D6190D4EB20008144F /* XCTest.framework in Frameworks */,
-				87F826D8190D4EB20008144F /* UIKit.framework in Frameworks */,
-				87F826D7190D4EB20008144F /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -185,11 +184,31 @@
 			name = Mensa;
 			sourceTree = "<group>";
 		};
+		8799DA99192AB4D9009B3CAB /* uni-hd-tests */ = {
+			isa = PBXGroup;
+			children = (
+				8799DAA7192AB4F8009B3CAB /* UHDDatabaseTests.m */,
+				8799DA9F192AB4D9009B3CAB /* UHDRemoteTests.m */,
+				8799DA9A192AB4D9009B3CAB /* Supporting Files */,
+			);
+			path = "uni-hd-tests";
+			sourceTree = "<group>";
+		};
+		8799DA9A192AB4D9009B3CAB /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8799DA9B192AB4D9009B3CAB /* uni-hd-tests-Info.plist */,
+				8799DA9C192AB4D9009B3CAB /* InfoPlist.strings */,
+				8799DAA1192AB4D9009B3CAB /* uni-hd-tests-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		87CBE07F1908810B0029D9AF = {
 			isa = PBXGroup;
 			children = (
 				87CBE0911908810B0029D9AF /* uni-hd */,
-				87F826D9190D4EB20008144F /* CoreDataTests */,
+				8799DA99192AB4D9009B3CAB /* uni-hd-tests */,
 				87CBE08A1908810B0029D9AF /* Frameworks */,
 				87CBE0891908810B0029D9AF /* Products */,
 				58E54747D0F54AD0A35C8074 /* Pods.xcconfig */,
@@ -200,7 +219,7 @@
 			isa = PBXGroup;
 			children = (
 				87CBE0881908810B0029D9AF /* uni-hd.app */,
-				87F826D5190D4EB20008144F /* CoreDataTests.xctest */,
+				8799DA95192AB4D9009B3CAB /* uni-hd-tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -290,25 +309,6 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
-		87F826D9190D4EB20008144F /* CoreDataTests */ = {
-			isa = PBXGroup;
-			children = (
-				87F826DF190D4EB20008144F /* CoreDataTests.m */,
-				87F826DA190D4EB20008144F /* Supporting Files */,
-			);
-			path = CoreDataTests;
-			sourceTree = "<group>";
-		};
-		87F826DA190D4EB20008144F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				87F826DB190D4EB20008144F /* CoreDataTests-Info.plist */,
-				87F826DC190D4EB20008144F /* InfoPlist.strings */,
-				87F826E1190D4EB20008144F /* CoreDataTests-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		87F826E7190D700E0008144F /* VILogger */ = {
 			isa = PBXGroup;
 			children = (
@@ -384,6 +384,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		8799DA94192AB4D9009B3CAB /* uni-hd-tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8799DAA4192AB4D9009B3CAB /* Build configuration list for PBXNativeTarget "uni-hd-tests" */;
+			buildPhases = (
+				8799DA91192AB4D9009B3CAB /* Sources */,
+				8799DA92192AB4D9009B3CAB /* Frameworks */,
+				8799DA93192AB4D9009B3CAB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8799DAA3192AB4D9009B3CAB /* PBXTargetDependency */,
+			);
+			name = "uni-hd-tests";
+			productName = "uni-hd-tests";
+			productReference = 8799DA95192AB4D9009B3CAB /* uni-hd-tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		87CBE0871908810B0029D9AF /* uni-hd */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 87CBE0C01908810B0029D9AF /* Build configuration list for PBXNativeTarget "uni-hd" */;
@@ -403,24 +421,6 @@
 			productReference = 87CBE0881908810B0029D9AF /* uni-hd.app */;
 			productType = "com.apple.product-type.application";
 		};
-		87F826D4190D4EB20008144F /* CoreDataTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 87F826E4190D4EB20008144F /* Build configuration list for PBXNativeTarget "CoreDataTests" */;
-			buildPhases = (
-				87F826D1190D4EB20008144F /* Sources */,
-				87F826D2190D4EB20008144F /* Frameworks */,
-				87F826D3190D4EB20008144F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				87F826E3190D4EB20008144F /* PBXTargetDependency */,
-			);
-			name = CoreDataTests;
-			productName = CoreDataTests;
-			productReference = 87F826D5190D4EB20008144F /* CoreDataTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -431,7 +431,7 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Universität Heidelberg";
 				TargetAttributes = {
-					87F826D4190D4EB20008144F = {
+					8799DA94192AB4D9009B3CAB = {
 						TestTargetID = 87CBE0871908810B0029D9AF;
 					};
 				};
@@ -450,12 +450,20 @@
 			projectRoot = "";
 			targets = (
 				87CBE0871908810B0029D9AF /* uni-hd */,
-				87F826D4190D4EB20008144F /* CoreDataTests */,
+				8799DA94192AB4D9009B3CAB /* uni-hd-tests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8799DA93192AB4D9009B3CAB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8799DA9E192AB4D9009B3CAB /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		87CBE0861908810B0029D9AF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -464,14 +472,6 @@
 				87CBE0961908810B0029D9AF /* InfoPlist.strings in Resources */,
 				87DBE7F41919C3F700C16970 /* news.storyboard in Resources */,
 				DC87FDF8191AA00600019F32 /* mensa.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		87F826D3190D4EB20008144F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				87F826DE190D4EB20008144F /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +511,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8799DA91192AB4D9009B3CAB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8799DAA8192AB4F8009B3CAB /* UHDDatabaseTests.m in Sources */,
+				8799DAA0192AB4D9009B3CAB /* UHDRemoteTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		87CBE0841908810B0029D9AF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -541,28 +550,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		87F826D1190D4EB20008144F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				87600EA5192139EB00F18C8D /* UHDMensaStore.m in Sources */,
-				87A8633919196EC0008C106D /* VILogger.m in Sources */,
-				87F826E0190D4EB20008144F /* CoreDataTests.m in Sources */,
-				87F826EE190D70590008144F /* news.xcdatamodeld in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		87F826E3190D4EB20008144F /* PBXTargetDependency */ = {
+		8799DAA3192AB4D9009B3CAB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 87CBE0871908810B0029D9AF /* uni-hd */;
-			targetProxy = 87F826E2190D4EB20008144F /* PBXContainerItemProxy */;
+			targetProxy = 8799DAA2192AB4D9009B3CAB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		8799DA9C192AB4D9009B3CAB /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				8799DA9D192AB4D9009B3CAB /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
 		87CBE0941908810B0029D9AF /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -571,17 +577,49 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		87F826DC190D4EB20008144F /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				87F826DD190D4EB20008144F /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		8799DAA5192AB4D9009B3CAB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/uni-hd.app/uni-hd";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "uni-hd-tests/uni-hd-tests-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "uni-hd-tests/uni-hd-tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		8799DAA6192AB4D9009B3CAB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/uni-hd.app/uni-hd";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "uni-hd-tests/uni-hd-tests-Prefix.pch";
+				INFOPLIST_FILE = "uni-hd-tests/uni-hd-tests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
 		87CBE0BE1908810B0029D9AF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -682,49 +720,17 @@
 			};
 			name = Release;
 		};
-		87F826E5190D4EB20008144F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/uni-hd.app/uni-hd";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CoreDataTests/CoreDataTests-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "CoreDataTests/CoreDataTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		87F826E6190D4EB20008144F /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/uni-hd.app/uni-hd";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "CoreDataTests/CoreDataTests-Prefix.pch";
-				INFOPLIST_FILE = "CoreDataTests/CoreDataTests-Info.plist";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8799DAA4192AB4D9009B3CAB /* Build configuration list for PBXNativeTarget "uni-hd-tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8799DAA5192AB4D9009B3CAB /* Debug */,
+				8799DAA6192AB4D9009B3CAB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		87CBE0831908810B0029D9AF /* Build configuration list for PBXProject "uni-hd" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -739,15 +745,6 @@
 			buildConfigurations = (
 				87CBE0C11908810B0029D9AF /* Debug */,
 				87CBE0C21908810B0029D9AF /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		87F826E4190D4EB20008144F /* Build configuration list for PBXNativeTarget "CoreDataTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				87F826E5190D4EB20008144F /* Debug */,
-				87F826E6190D4EB20008144F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
