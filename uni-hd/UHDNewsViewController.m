@@ -9,6 +9,7 @@
 #import "UHDNewsViewController.h"
 #import "UHDNewsDetailViewController.h"
 #import "UHDNewsItem.h"
+#import "UHDNewsSource.h"
 #import "VIFetchedResultsControllerDataSource.h"
 #import "UHDNewsItemCell.h"
 #import "UHDNewsItemCell+ConfigureForItem.h"
@@ -76,6 +77,7 @@
     {
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsItem entityName]];
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"source.subscribed == YES"];
         
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         

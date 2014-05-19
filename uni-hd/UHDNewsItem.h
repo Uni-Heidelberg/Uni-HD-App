@@ -8,13 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
+@class UHDNewsSource;
 
 
 @interface UHDNewsItem : NSManagedObject
 
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSDate *date;
-@property (nonatomic, retain) NSString * content;
+@property (nonatomic, retain) NSString *abstract;
 @property (nonatomic) BOOL read;
+@property (nonatomic, retain) NSString *url;
+@property (nonatomic, retain) NSData *thumb;
+@property (nonatomic, retain) UHDNewsSource *source;
 
 @end

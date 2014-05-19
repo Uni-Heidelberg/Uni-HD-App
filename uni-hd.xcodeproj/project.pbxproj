@@ -10,6 +10,7 @@
 		0A2000521920F18A0014C977 /* UHDNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2000511920F18A0014C977 /* UHDNewsDetailViewController.m */; };
 		0AD7F3721923F58E00F49551 /* UHDNewsItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7F3711923F58E00F49551 /* UHDNewsItemCell.m */; };
 		0AD7F3751923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7F3741923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.m */; };
+		0AE2786C192A39CB00ED1641 /* UHDNewsSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE2786B192A39CB00ED1641 /* UHDNewsSource.m */; };
 		6F293EE8DA534A74838601AE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F757EC4658C40C8B7B4E414 /* libPods.a */; };
 		8701CE4C190C00A600A18F82 /* UHDModuleStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8701CE4B190C00A600A18F82 /* UHDModuleStore.m */; };
 		8701CE50190C038600A18F82 /* UHDNewsStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 8701CE4F190C038600A18F82 /* UHDNewsStore.m */; };
@@ -67,6 +68,8 @@
 		0AD7F3711923F58E00F49551 /* UHDNewsItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsItemCell.m; sourceTree = "<group>"; };
 		0AD7F3731923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UHDNewsItemCell+ConfigureForItem.h"; sourceTree = "<group>"; };
 		0AD7F3741923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UHDNewsItemCell+ConfigureForItem.m"; sourceTree = "<group>"; };
+		0AE2786A192A39CB00ED1641 /* UHDNewsSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsSource.h; sourceTree = "<group>"; };
+		0AE2786B192A39CB00ED1641 /* UHDNewsSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsSource.m; sourceTree = "<group>"; };
 		3F757EC4658C40C8B7B4E414 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		58E54747D0F54AD0A35C8074 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		8701CE4A190C00A600A18F82 /* UHDModuleStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDModuleStore.h; sourceTree = "<group>"; };
@@ -381,6 +384,8 @@
 				87F826CE190D422F0008144F /* news.xcdatamodeld */,
 				87FF70F91923F33500FCF5F4 /* UHDNewsItem.h */,
 				87FF70FA1923F33500FCF5F4 /* UHDNewsItem.m */,
+				0AE2786A192A39CB00ED1641 /* UHDNewsSource.h */,
+				0AE2786B192A39CB00ED1641 /* UHDNewsSource.m */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -579,6 +584,7 @@
 				87F826EA190D700E0008144F /* VILogger.m in Sources */,
 				87600EA4192139EB00F18C8D /* UHDMensaStore.m in Sources */,
 				8701CE4C190C00A600A18F82 /* UHDModuleStore.m in Sources */,
+				0AE2786C192A39CB00ED1641 /* UHDNewsSource.m in Sources */,
 				0A2000521920F18A0014C977 /* UHDNewsDetailViewController.m in Sources */,
 				87F826D0190D422F0008144F /* news.xcdatamodeld in Sources */,
 				87EE255B191929420092DF7F /* VIFetchedResultsControllerDataSource.m in Sources */,

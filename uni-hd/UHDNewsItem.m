@@ -13,7 +13,10 @@
 
 @dynamic title;
 @dynamic date;
-@dynamic content;
+@dynamic abstract;
 @dynamic read;
+@dynamic url;
+@dynamic thumb;
+@dynamic source;
 
 @end
