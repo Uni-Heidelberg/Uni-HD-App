@@ -1,14 +1,16 @@
 //
-//  CoreDataTests.m
-//  CoreDataTests
+//  UHDDatabaseTests.m
+//  uni-hd
 //
-//  Created by Nils Fischer on 27.04.14.
+//  Created by Nils Fischer on 19.05.14.
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
 @import XCTest;
+@import CoreData;
 
-@interface CoreDataTests : XCTestCase
+
+@interface UHDDatabaseTests : XCTestCase
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
@@ -16,12 +18,13 @@
 
 @end
 
-@implementation CoreDataTests
+
+@implementation UHDDatabaseTests
 
 - (void)setUp
 {
     [super setUp];
-
+    
     // Merge all models in main bundle
     self.managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
     
@@ -38,17 +41,12 @@
 
 - (void)tearDown
 {
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
     [super tearDown];
 }
 
 - (void)testCoreDataStack
 {
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"NewsItem"];
-    NSError *error = nil;
-    XCTAssertNotNil([self.managedObjectContext executeFetchRequest:fetchRequest error:&error], @"Failed to execute fetch request: %@", error);
-    [self.logger log:@"self" forLevel:VILogLevelDebug];
-
+    XCTAssertNotNil(self.managedObjectContext.persistentStoreCoordinator.managedObjectModel, @"Failed to create core data stack");
 }
 
 @end
