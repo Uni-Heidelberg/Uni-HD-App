@@ -31,17 +31,15 @@
 
 - (void)refresh
 {
+    // TODO: implement server communication
     return;
 }
-
-#pragma mark - Utility
 
 - (NSArray *)allItems
 {
     // to be overridden
     return nil;
 }
-
 
 - (void)generateSampleData
 {

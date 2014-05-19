@@ -46,6 +46,7 @@
     newsNavC.tabBarItem.title = NSLocalizedString(@"News", nil);
     UHDNewsViewController *newsVC = newsNavC.viewControllers[0];
     newsVC.remoteDatasource = self.newsStore;
+    newsVC.managedObjectContext = self.persistentStack.managedObjectContext;
     
     // Mensa
     UIStoryboard *mensaStoryboard = [UIStoryboard storyboardWithName:@"mensa" bundle:nil];
@@ -53,7 +54,7 @@
     mensaNavC.tabBarItem.title = NSLocalizedString(@"Mensa", nil);
     UHDMensaViewController *mensaVC = mensaNavC.viewControllers[0];
     mensaVC.remoteDatasource = self.mensaStore;
-    
+    mensaVC.managedObjectContext = self.persistentStack.managedObjectContext;
     
     // Create and populate tab bar controller
     UITabBarController *tabBarController = [[UITabBarController alloc] init];

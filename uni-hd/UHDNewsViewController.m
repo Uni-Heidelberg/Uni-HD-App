@@ -18,9 +18,8 @@
 @interface UHDNewsViewController ()
 
 @property (strong, nonatomic) id <UHDRemoteDatasource> remoteDatasource;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
-
-- (NSManagedObjectContext *)managedObjectContext;
 
 - (IBAction)makeSamplesButtonPressed:(id)sender;
 
@@ -32,8 +31,9 @@
 {
     _remoteDatasource = remoteDatasource;
 }
-- (NSManagedObjectContext *)managedObjectContext {
-    return self.remoteDatasource.managedObjectContext;
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    _managedObjectContext = managedObjectContext;
 }
 
 - (void)viewDidLoad

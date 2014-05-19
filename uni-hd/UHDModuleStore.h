@@ -16,4 +16,6 @@
 
 - (id)initWithPersistentStack:(UHDPersistentStack *)persistentStack;
 
+- (NSManagedObjectContext *)managedObjectContext;
+
 @end

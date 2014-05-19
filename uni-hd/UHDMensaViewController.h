@@ -12,5 +12,6 @@
 @interface UHDMensaViewController : UITableViewController <UIActionSheetDelegate>
 
 - (void)setRemoteDatasource:(id<UHDRemoteDatasource>)remoteDatasource;
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end
