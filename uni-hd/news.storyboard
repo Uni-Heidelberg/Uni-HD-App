@@ -89,23 +89,23 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x0h-DY-exW" userLabel="NewsContentView">
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9m0-ak-rJ9" userLabel="NewsWebView">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                            </view>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="x0h-DY-exW" firstAttribute="top" secondItem="3UN-Xr-Ymi" secondAttribute="bottom" id="M93-wf-mhK"/>
-                            <constraint firstAttribute="trailing" secondItem="x0h-DY-exW" secondAttribute="trailing" id="NdH-90-fH3"/>
-                            <constraint firstItem="KXv-hz-A9l" firstAttribute="top" secondItem="x0h-DY-exW" secondAttribute="bottom" id="bDf-aS-lEj"/>
-                            <constraint firstItem="x0h-DY-exW" firstAttribute="leading" secondItem="1II-DM-Olg" secondAttribute="leading" id="pCc-qY-sYD"/>
+                            <constraint firstAttribute="trailing" secondItem="9m0-ak-rJ9" secondAttribute="trailing" id="2ez-ap-foH"/>
+                            <constraint firstItem="KXv-hz-A9l" firstAttribute="top" secondItem="9m0-ak-rJ9" secondAttribute="bottom" id="5ji-cW-uRW"/>
+                            <constraint firstItem="9m0-ak-rJ9" firstAttribute="leading" secondItem="1II-DM-Olg" secondAttribute="leading" id="6lB-UX-FOg"/>
+                            <constraint firstItem="9m0-ak-rJ9" firstAttribute="top" secondItem="3UN-Xr-Ymi" secondAttribute="bottom" id="mU4-v3-aGL"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="XMQ-XG-Liz"/>
                     <connections>
-                        <outlet property="newsContentView" destination="x0h-DY-exW" id="4aB-Kx-HRi"/>
+                        <outlet property="newsWebView" destination="9m0-ak-rJ9" id="1pO-fS-Wu9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UC2-ih-bD7" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -11,7 +11,7 @@
 
 @interface UHDNewsDetailViewController ()
 
-@property (strong, nonatomic) IBOutlet UIView *newsContentView;
+@property (strong, nonatomic) IBOutlet UIWebView *newsWebView;
 
 @end
 
@@ -19,20 +19,13 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
+    
     self.navigationItem.title = self.newsItem.title;
     
-    //instantiate the web view
-    UIWebView *webView = [[UIWebView alloc] initWithFrame:self.newsContentView.frame];
-
-    //make the background transparent
-    [webView setBackgroundColor:[UIColor clearColor]];
-
-    //pass the string to the webview
-    [webView loadHTMLString:[self.newsItem.content description] baseURL:nil];
-
-    //add it to the subview
-    [self.newsContentView addSubview:webView];
-    
+    // Show URL in WebView
+    NSURL *url = [NSURL URLWithString:self.newsItem.url];
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    [self.newsWebView loadRequest:requestObj];
     
 }
 

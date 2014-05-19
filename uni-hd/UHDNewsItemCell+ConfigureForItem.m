@@ -12,7 +12,7 @@
 
 - (void)configureForItem:(UHDNewsItem *)item {
     self.titleLabel.text = item.title;
-    self.abstractLabel.text = item.content;
+    self.abstractLabel.text = item.abstract;
 }
 
 @end
