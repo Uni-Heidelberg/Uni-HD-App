@@ -21,12 +21,15 @@ PODS:
     - RKValueTransformers (~> 1.1.0)
   - RestKit/Support (0.23.1):
     - TransitionKit (= 2.1.0)
+  - RestKit/Testing (0.23.1):
+    - RestKit/Network
   - RKValueTransformers (1.1.0)
   - SOCKit (1.1)
   - TransitionKit (2.1.0)
 
 DEPENDENCIES:
   - RestKit
+  - RestKit/Testing
 
 SPEC CHECKSUMS:
   AFNetworking: e403d4333a4e1956cb3fe42364c3c879f820c9a0
