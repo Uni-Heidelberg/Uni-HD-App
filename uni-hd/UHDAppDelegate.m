@@ -8,22 +8,26 @@
 
 #import "UHDAppDelegate.h"
 
+// Persistent Stack
+#import "UHDPersistentStack.h"
+
+// Remote Datasources
+#import "UHDRemoteDatasourceManager.h"
+#import "UHDRemoteDatasource.h"
+#import "UHDNewsRemoteDatasourceDelegate.h"
+#import "UHDMensaRemoteDatasourceDelegate.h"
+
 // View Controllers
 #import "UHDNewsViewController.h"
 #import "UHDMensaViewController.h"
-
-// Stores
-#import "UHDPersistentStack.h"
-#import "UHDNewsStore.h"
-#import "UHDMensaStore.h"
 
 
 @interface UHDAppDelegate ()
 
 @property (strong, nonatomic) UHDPersistentStack *persistentStack;
-@property (strong, nonatomic) UHDNewsStore *newsStore;
-@property (strong, nonatomic) UHDMensaStore *mensaStore;
+@property (strong, nonatomic) NSMutableArray *remoteDatasourceDelegates;
 
+- (void)addRemoteDatasourceForKey:(NSString *)key baseURL:(NSURL *)baseURL delegate:(id<UHDRemoteDatasourceDelegate>)delegate;
 - (void)generateSampleDataConditionally:(BOOL)conditionally;
 
 @end
@@ -34,18 +38,23 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     
-    // Default Logger configuration
+    // configure logging
     [VILogger defaultLogger].logLevel = VILogLevelDebug;
+    RKLogConfigureByName("RestKit", RKLogLevelDefault);
     
+    
+    // setup remote datasources
+    [self addRemoteDatasourceForKey:UHDRemoteDatasourceKeyNews baseURL:[NSURL URLWithString:UHDRemoteBaseURL] delegate:[[UHDNewsRemoteDatasourceDelegate alloc] init]];
+    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyNews] refresh];
 
-    // Create Module View Controllers
+    
+    // setup initial view controllers
     
     // News
     UIStoryboard *newsStoryboard = [UIStoryboard storyboardWithName:@"news" bundle:nil];
     UINavigationController *newsNavC = [newsStoryboard instantiateInitialViewController];
     newsNavC.tabBarItem.title = NSLocalizedString(@"News", nil);
     UHDNewsViewController *newsVC = newsNavC.viewControllers[0];
-    newsVC.remoteDatasource = self.newsStore;
     newsVC.managedObjectContext = self.persistentStack.managedObjectContext;
     
     // Mensa
@@ -53,14 +62,13 @@
     UINavigationController *mensaNavC = [mensaStoryboard instantiateInitialViewController];
     mensaNavC.tabBarItem.title = NSLocalizedString(@"Mensa", nil);
     UHDMensaViewController *mensaVC = mensaNavC.viewControllers[0];
-    mensaVC.remoteDatasource = self.mensaStore;
     mensaVC.managedObjectContext = self.persistentStack.managedObjectContext;
     
-    // Create and populate tab bar controller
+    // create and populate tab bar controller
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     tabBarController.viewControllers = @[mensaNavC, newsNavC];
     
-    // Create and populate window
+    // create and populate window
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.tintColor = [UIColor colorWithRed:181/255. green:21/255. blue:43/255. alpha:1]; // set brand tint color TODO: move in category
     self.window.rootViewController = tabBarController;
@@ -89,24 +97,24 @@
     return _persistentStack;
 }
 
-#pragma mark - Module Stores
-- (UHDNewsStore *)newsStore {
-    if (!_newsStore) {
-        self.newsStore = [[UHDNewsStore alloc] initWithPersistentStack:self.persistentStack];
-    }
-    return _newsStore;
-}
-- (UHDMensaStore *)mensaStore {
-    if (!_mensaStore) {
-        self.mensaStore = [[UHDMensaStore alloc] initWithPersistentStack:self.persistentStack];
-    }
-    return _mensaStore;
+
+#pragma mark - Remote Datasources
+
+- (void)addRemoteDatasourceForKey:(NSString *)key baseURL:(NSURL *)baseURL delegate:(id<UHDRemoteDatasourceDelegate>)delegate
+{
+    UHDRemoteDatasource *remoteDatasource = [[UHDRemoteDatasource alloc] initWithPersistentStack:self.persistentStack remoteBaseURL:baseURL];
+    
+    if (!self.remoteDatasourceDelegates) self.remoteDatasourceDelegates = [[NSMutableArray alloc] init];
+    [self.remoteDatasourceDelegates addObject:delegate];
+    remoteDatasource.delegate = delegate;
+    
+    [[UHDRemoteDatasourceManager defaultManager] addRemoteDatasource:remoteDatasource forKey:key];
 }
 
 #pragma mark - Sample Data
 
 - (void)generateSampleDataConditionally:(BOOL)conditionally {
-    for (id <UHDRemoteDatasource> remoteDatasource in @[self.newsStore, self.mensaStore]) {
+    for (UHDRemoteDatasource *remoteDatasource in [[UHDRemoteDatasourceManager defaultManager] allRemoteDatasources]) {
         if (conditionally && remoteDatasource.allItems.count > 0) continue;
         [remoteDatasource generateSampleData];
     }

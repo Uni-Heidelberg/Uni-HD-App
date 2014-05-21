@@ -8,6 +8,7 @@
 
 @import Foundation;
 @import CoreData;
+#import <RestKit/RestKit.h>
 
 
 @interface UHDPersistentStack : NSObject
@@ -15,5 +16,6 @@
 - (id)initWithManagedObjectModel:(NSManagedObjectModel *)managedObjectModel persistentStoreURL:(NSURL *)persistentStoreURL;
 
 - (NSManagedObjectContext *)managedObjectContext;
+- (RKManagedObjectStore *)managedObjectStore;
 
 @end

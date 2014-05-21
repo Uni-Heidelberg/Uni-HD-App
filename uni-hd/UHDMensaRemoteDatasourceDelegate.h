@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import "UHDModuleStore.h"
+#import "UHDRemoteDatasource.h"
 
-@interface UHDMensaStore : UHDModuleStore
+@interface UHDMensaRemoteDatasourceDelegate : NSObject <UHDRemoteDatasourceDelegate>
 
 @end

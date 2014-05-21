@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import "UHDModuleStore.h"
+#import "UHDRemoteDatasource.h"
 
-@interface UHDNewsStore : UHDModuleStore
+@interface UHDNewsRemoteDatasourceDelegate : NSObject <UHDRemoteDatasourceDelegate>
 
 @end

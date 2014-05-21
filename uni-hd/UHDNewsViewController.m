@@ -13,11 +13,11 @@
 #import "VIFetchedResultsControllerDataSource.h"
 #import "UHDNewsItemCell.h"
 #import "UHDNewsItemCell+ConfigureForItem.h"
+#import "UHDRemoteDatasourceManager.h"
 
 
 @interface UHDNewsViewController ()
 
-@property (strong, nonatomic) id <UHDRemoteDatasource> remoteDatasource;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 
@@ -27,10 +27,6 @@
 
 @implementation UHDNewsViewController
 
-- (void)setRemoteDatasource:(id<UHDRemoteDatasource>)remoteDatasource
-{
-    _remoteDatasource = remoteDatasource;
-}
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     _managedObjectContext = managedObjectContext;
@@ -52,7 +48,7 @@
 
 - (IBAction)makeSamplesButtonPressed:(id)sender
 {
-    [self.remoteDatasource generateSampleData];
+    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyNews] generateSampleData];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
