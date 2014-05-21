@@ -1,19 +1,35 @@
 //
-//  UHDRemoteDatasource.h
+//  UHDModule.h
 //  uni-hd
 //
-//  Created by Nils Fischer on 19.05.14.
+//  Created by Nils Fischer on 26.04.14.
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-@import Foundation;
-@import CoreData;
+#import <RestKit/RestKit.h>
+@class UHDPersistentStack;
+@protocol UHDRemoteDatasourceDelegate;
 
-@protocol UHDRemoteDatasource
+
+@interface UHDRemoteDatasource : NSObject
+
+@property (weak, nonatomic) id <UHDRemoteDatasourceDelegate> delegate;
+
+- (id)initWithPersistentStack:(UHDPersistentStack *)persistentStack remoteBaseURL:(NSURL *)baseURL;
 
 - (void)refresh;
-- (void)generateSampleData;
 
 - (NSArray *)allItems;
+- (void)generateSampleData;
+
+@end
+
+
+@protocol UHDRemoteDatasourceDelegate
+
+- (void)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource setupObjectMappingForObjectManager:(RKObjectManager *)objectManager;
+- (NSString *)remoteRefreshPathForRemoteDatasource:(UHDRemoteDatasource *)remoteDatasource;
+- (NSArray *)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource allItemsForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+- (void)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource generateSampleDataForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end

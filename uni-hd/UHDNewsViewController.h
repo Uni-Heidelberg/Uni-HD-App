@@ -12,7 +12,6 @@
 
 @interface UHDNewsViewController : UITableViewController
 
-- (void)setRemoteDatasource:(id<UHDRemoteDatasource>)remoteDatasource;
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end

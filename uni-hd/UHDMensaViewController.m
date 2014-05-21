@@ -7,6 +7,7 @@
 //
 
 #import "UHDMensaViewController.h"
+#import "UHDDailyMenuViewController.h"
 #import "UHDLocation.h"
 #import "UHDMensa.h"
 #import "VIFetchedResultsControllerDataSource.h"
@@ -14,7 +15,6 @@
 
 @interface UHDMensaViewController ()
 
-@property (strong, nonatomic) id <UHDRemoteDatasource> remoteDatasource;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 
@@ -26,10 +26,6 @@
 
 @implementation UHDMensaViewController
 
-- (void)setRemoteDatasource:(id<UHDRemoteDatasource>)remoteDatasource
-{
-    _remoteDatasource = remoteDatasource;
-}
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     _managedObjectContext = managedObjectContext;
@@ -41,6 +37,17 @@
 
     // redirect datasource
     self.tableView.dataSource = self.fetchedResultsControllerDataSource;
+    
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    
+    UHDMensa *mensa = (UHDMensa *)self.fetchedResultsControllerDataSource.selectedItem;
+    UHDDailyMenu *dailyMenu = [[mensa.menus sortedArrayUsingDescriptors:@[ [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES] ]] lastObject];
+    
+    UHDDailyMenuViewController *dailyMenuVC = (UHDDailyMenuViewController *) segue.destinationViewController;
+
+    dailyMenuVC.dailyMenu = dailyMenu;
     
 }
 

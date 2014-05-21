@@ -7,7 +7,6 @@
 //
 
 #import "UHDPersistentStack.h"
-#import <RestKit/RestKit.h>
 
 
 @interface UHDPersistentStack ()
@@ -34,7 +33,7 @@
         NSError *error = nil;
         if (![self.persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:persistentStoreURL options:@{NSMigratePersistentStoresAutomaticallyOption:@YES, NSInferMappingModelAutomaticallyOption:@YES} error:&error]) {
             
-            [self.logger log:@"Setup Persistent Store" error:error];
+            [self.logger log:@"Failed adding Persistent Store" error:error];
             abort();
             
         }
