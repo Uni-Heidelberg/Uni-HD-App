@@ -14,6 +14,7 @@
 @implementation UHDMeal
 
 @dynamic title;
+@dynamic price;
 @dynamic menu;
 @dynamic section;
 

@@ -47,8 +47,10 @@
 		DC21B6DD1923D27600BAD26D /* UHDMeal.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6DC1923D27600BAD26D /* UHDMeal.m */; };
 		DC21B6E01923D27600BAD26D /* UHDMensa.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6DF1923D27600BAD26D /* UHDMensa.m */; };
 		DC21B6E31923FDC300BAD26D /* UHDDailyMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6E21923FDC300BAD26D /* UHDDailyMenuViewController.m */; };
+		DC83C93A192BDDA6004CC75B /* UHDMealCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC83C939192BDDA5004CC75B /* UHDMealCell.m */; };
 		DC87FDF8191AA00600019F32 /* mensa.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC87FDF7191AA00600019F32 /* mensa.storyboard */; };
 		DC87FDFB191AA12D00019F32 /* UHDMensaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC87FDFA191AA12D00019F32 /* UHDMensaViewController.m */; };
+		DC8DCC4F192CC74F0038C4BE /* UHDMealCell+ConfigureForItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DC8DCC4E192CC74F0038C4BE /* UHDMealCell+ConfigureForItem.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -125,9 +127,13 @@
 		DC21B6DF1923D27600BAD26D /* UHDMensa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMensa.m; sourceTree = "<group>"; };
 		DC21B6E11923FDC300BAD26D /* UHDDailyMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDDailyMenuViewController.h; sourceTree = "<group>"; };
 		DC21B6E21923FDC300BAD26D /* UHDDailyMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDDailyMenuViewController.m; sourceTree = "<group>"; };
+		DC83C938192BDDA5004CC75B /* UHDMealCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMealCell.h; sourceTree = "<group>"; };
+		DC83C939192BDDA5004CC75B /* UHDMealCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMealCell.m; sourceTree = "<group>"; };
 		DC87FDF7191AA00600019F32 /* mensa.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = mensa.storyboard; sourceTree = "<group>"; };
 		DC87FDF9191AA12D00019F32 /* UHDMensaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMensaViewController.h; sourceTree = "<group>"; };
 		DC87FDFA191AA12D00019F32 /* UHDMensaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMensaViewController.m; sourceTree = "<group>"; };
+		DC8DCC4D192CC74F0038C4BE /* UHDMealCell+ConfigureForItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UHDMealCell+ConfigureForItem.h"; sourceTree = "<group>"; };
+		DC8DCC4E192CC74F0038C4BE /* UHDMealCell+ConfigureForItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UHDMealCell+ConfigureForItem.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +193,8 @@
 			isa = PBXGroup;
 			children = (
 				DC87FDF7191AA00600019F32 /* mensa.storyboard */,
+				DC83C938192BDDA5004CC75B /* UHDMealCell.h */,
+				DC83C939192BDDA5004CC75B /* UHDMealCell.m */,
 			);
 			name = Mensa;
 			sourceTree = "<group>";
@@ -343,6 +351,8 @@
 				DC87FDFA191AA12D00019F32 /* UHDMensaViewController.m */,
 				DC21B6E11923FDC300BAD26D /* UHDDailyMenuViewController.h */,
 				DC21B6E21923FDC300BAD26D /* UHDDailyMenuViewController.m */,
+				DC8DCC4D192CC74F0038C4BE /* UHDMealCell+ConfigureForItem.h */,
+				DC8DCC4E192CC74F0038C4BE /* UHDMealCell+ConfigureForItem.m */,
 			);
 			name = Mensa;
 			sourceTree = "<group>";
@@ -569,12 +579,14 @@
 			files = (
 				DC21B6E01923D27600BAD26D /* UHDMensa.m in Sources */,
 				DC21B6D41923D27500BAD26D /* UHDLocation.m in Sources */,
+				DC8DCC4F192CC74F0038C4BE /* UHDMealCell+ConfigureForItem.m in Sources */,
 				87CBE09C1908810B0029D9AF /* UHDAppDelegate.m in Sources */,
 				87A8633819196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m in Sources */,
 				0AD7F3751923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.m in Sources */,
 				87DC1FA5191AB5C600395559 /* mensa.xcdatamodeld in Sources */,
 				DC21B6D71923D27500BAD26D /* UHDDailyMenu.m in Sources */,
 				DC21B6DD1923D27600BAD26D /* UHDMeal.m in Sources */,
+				DC83C93A192BDDA6004CC75B /* UHDMealCell.m in Sources */,
 				DC87FDFB191AA12D00019F32 /* UHDMensaViewController.m in Sources */,
 				DC21B6DA1923D27600BAD26D /* UHDSection.m in Sources */,
 				0AD7F3721923F58E00F49551 /* UHDNewsItemCell.m in Sources */,

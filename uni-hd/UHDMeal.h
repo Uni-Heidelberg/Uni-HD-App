@@ -14,6 +14,7 @@
 @interface UHDMeal : NSManagedObject
 
 @property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSString * price;
 @property (nonatomic, retain) UHDDailyMenu *menu;
 @property (nonatomic, retain) UHDSection *section;
 

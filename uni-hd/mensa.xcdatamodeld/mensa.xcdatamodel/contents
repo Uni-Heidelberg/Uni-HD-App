@@ -11,6 +11,7 @@
         <relationship name="mensa" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDMensa" inverseName="location" inverseEntity="UHDMensa" syncable="YES"/>
     </entity>
     <entity name="UHDMeal" representedClassName="UHDMeal" syncable="YES">
+        <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="menu" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDDailyMenu" inverseName="meals" inverseEntity="UHDDailyMenu" syncable="YES"/>
         <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDSection" inverseName="meals" inverseEntity="UHDSection" syncable="YES"/>
@@ -29,7 +30,7 @@
     <elements>
         <element name="UHDDailyMenu" positionX="-434" positionY="72" width="128" height="88"/>
         <element name="UHDLocation" positionX="-839" positionY="9" width="128" height="88"/>
-        <element name="UHDMeal" positionX="-263" positionY="146" width="128" height="88"/>
+        <element name="UHDMeal" positionX="-263" positionY="146" width="128" height="105"/>
         <element name="UHDMensa" positionX="-641" positionY="9" width="119" height="103"/>
         <element name="UHDSection" positionX="-99" positionY="368" width="128" height="28"/>
     </elements>
