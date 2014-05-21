@@ -54,6 +54,12 @@
 #define COCOAPODS_VERSION_MINOR_RestKit_ObjectMapping 23
 #define COCOAPODS_VERSION_PATCH_RestKit_ObjectMapping 1
 
+// RestKit/Search
+#define COCOAPODS_POD_AVAILABLE_RestKit_Search
+#define COCOAPODS_VERSION_MAJOR_RestKit_Search 0
+#define COCOAPODS_VERSION_MINOR_RestKit_Search 23
+#define COCOAPODS_VERSION_PATCH_RestKit_Search 1
+
 // RestKit/Support
 #define COCOAPODS_POD_AVAILABLE_RestKit_Support
 #define COCOAPODS_VERSION_MAJOR_RestKit_Support 0
