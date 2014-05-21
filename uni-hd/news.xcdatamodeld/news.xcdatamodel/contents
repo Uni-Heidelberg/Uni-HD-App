@@ -4,7 +4,7 @@
         <attribute name="abstract" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="read" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="thumb" optional="YES" attributeType="Binary" syncable="YES"/>
+        <attribute name="thumb" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="source" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDNewsSource" inverseName="articles" inverseEntity="UHDNewsSource" syncable="YES"/>
@@ -16,7 +16,7 @@
         <relationship name="articles" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="UHDNewsItem" inverseName="source" inverseEntity="UHDNewsItem" syncable="YES"/>
     </entity>
     <elements>
-        <element name="UHDNewsItem" positionX="0" positionY="0" width="128" height="148"/>
+        <element name="UHDNewsItem" positionX="0" positionY="0" width="128" height="150"/>
         <element name="UHDNewsSource" positionX="358" positionY="45" width="128" height="103"/>
     </elements>
 </model>
