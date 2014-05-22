@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C1021" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="UHDNewsItem" representedClassName="UHDNewsItem" syncable="YES">
+    <entity name="UHDNewsItem" representedClassName="UHDNewsItem" parentEntity="UHDRemoteManagedObject" syncable="YES">
         <attribute name="abstract" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="read" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="sourceID" optional="YES" transient="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="thumb" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="source" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDNewsSource" inverseName="articles" inverseEntity="UHDNewsSource" syncable="YES"/>
     </entity>
-    <entity name="UHDNewsSource" representedClassName="UHDNewsSource" syncable="YES">
+    <entity name="UHDNewsSource" representedClassName="UHDNewsSource" parentEntity="UHDRemoteManagedObject" syncable="YES">
         <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="subscribed" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="articles" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="UHDNewsItem" inverseName="source" inverseEntity="UHDNewsItem" syncable="YES"/>
     </entity>
+    <entity name="UHDRemoteManagedObject" representedClassName="UHDRemoteManagedObject" isAbstract="YES" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="Integer 16" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="UHDNewsItem" positionX="0" positionY="0" width="128" height="150"/>
+        <element name="UHDNewsItem" positionX="0" positionY="0" width="128" height="163"/>
         <element name="UHDNewsSource" positionX="358" positionY="45" width="128" height="103"/>
+        <element name="UHDRemoteManagedObject" positionX="160" positionY="-99" width="128" height="58"/>
     </elements>
 </model>

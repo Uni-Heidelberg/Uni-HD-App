@@ -10,4 +10,9 @@
 
 @implementation UIColor (UHDBrandColor)
 
++ (UIColor *)brandColor
+{
+    return [UIColor colorWithRed:181/255. green:21/255. blue:43/255. alpha:1];
+}
+
 @end

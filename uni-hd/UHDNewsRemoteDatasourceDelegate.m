@@ -15,26 +15,42 @@
 
 - (void)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource setupObjectMappingForObjectManager:(RKObjectManager *)objectManager
 {
+    
+    // UHDNewsCategory
+    
+    /*
+     RKEntityMapping *newsCategoryMapping = [RKEntityMapping mappingForEntityForName:nil inManagedObjectStore:objectManager.managedObjectStore];
+    [newsCategoryMapping addAttributeMappingsFromArray:@[ @"id", @"title" ]];
+    newsCategoryMapping.identificationAttributes = @[ @"id" ];
+    
+    [newsCategoryMapping addPropertyMapping:[RKAttributeMapping attributeMappingFromKeyPath:nil toKeyPath:@"id"]];
+    
+    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:newsCategoryMapping method:RKRequestMethodAny pathPattern:nil keyPath:@"categoryID" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+     */
+    
+    
+    // UHDNewsSource
+    
+    RKEntityMapping *newsSourceMapping = [RKEntityMapping mappingForEntityForName:[UHDNewsSource entityName] inManagedObjectStore:objectManager.managedObjectStore];
+    [newsSourceMapping addAttributeMappingsFromArray:@[ @"id", @"title" ]];
+    newsSourceMapping.identificationAttributes = @[ @"id" ];
+    
+    
+    // UHDNewsItem
+    
     RKEntityMapping *newsItemMapping = [RKEntityMapping mappingForEntityForName:@"UHDNewsItem" inManagedObjectStore:objectManager.managedObjectStore];
-    //newsItemMapping.identificationAttributes = @[ @"id" ];
-    [newsItemMapping addAttributeMappingsFromArray:@[ @"title", @"date", @"abstract", @"url" ]];
-    
+    [newsItemMapping addAttributeMappingsFromArray:@[ @"id", @"title", @"date", @"abstract", @"url", @"sourceID" ]];
+    newsItemMapping.identificationAttributes = @[ @"id" ];
+    [newsItemMapping addConnectionForRelationship:@"source" connectedBy:@{ @"sourceID": @"id" }];
     RKResponseDescriptor *newsItemResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:newsItemMapping method:RKRequestMethodGET pathPattern:@"UHDNewsItems" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
-    
-    [objectManager addResponseDescriptor:newsItemResponseDescriptor];
 
-    RKEntityMapping *newsSourceMapping = [RKEntityMapping mappingForEntityForName:@"UHDNewsSource" inManagedObjectStore:objectManager.managedObjectStore];
-    //newsItemMapping.identificationAttributes = @[ @"id" ];
-    [newsSourceMapping addAttributeMappingsFromArray:@[ @"title" ]];
+    [objectManager addResponseDescriptor:newsItemResponseDescriptor];
     
-    RKResponseDescriptor *newsSourceResponseDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:newsSourceMapping method:RKRequestMethodGET pathPattern:@"UHDNewsSources" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)];
-    
-    [objectManager addResponseDescriptor:newsSourceResponseDescriptor];
 }
 
 - (NSString *)remoteRefreshPathForRemoteDatasource:(UHDRemoteDatasource *)remoteDatasource
 {
-    return @"UHDNewsSources";
+    return @"UHDNewsItems";
 }
 
 - (NSArray *)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource allItemsForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext

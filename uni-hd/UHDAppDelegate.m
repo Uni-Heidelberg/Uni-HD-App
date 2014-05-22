@@ -21,6 +21,9 @@
 #import "UHDNewsViewController.h"
 #import "UHDMensaViewController.h"
 
+// Views
+#import "UIColor+UHDBrandColor.h"
+
 
 @interface UHDAppDelegate ()
 
@@ -70,7 +73,7 @@
     
     // create and populate window
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.tintColor = [UIColor colorWithRed:181/255. green:21/255. blue:43/255. alpha:1]; // set brand tint color TODO: move in category
+    self.window.tintColor = [UIColor brandColor]; // set brand tint color TODO: move in category
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];
     
