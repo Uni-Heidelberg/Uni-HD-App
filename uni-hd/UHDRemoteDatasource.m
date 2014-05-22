@@ -45,15 +45,18 @@
 
 - (void)refresh
 {
-    if (!self.delegate) {
-        [self.logger log:@"Refresh failed - no delegate set" forLevel:VILogLevelError];
+    NSString *remoteRefreshPath = [self.delegate remoteRefreshPathForRemoteDatasource:self];
+    if (!remoteRefreshPath) {
+        [self.logger log:@"Refresh Failed: remote refresh path not set" forLevel:VILogLevelError];
         return;
     }
     
-    [self.objectManager getObjectsAtPath:[self.delegate remoteRefreshPathForRemoteDatasource:self] parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        [self.logger log:@"request successful" object:mappingResult forLevel:VILogLevelDebug];
+    [self.logger log:@"Refresh started ..." object:remoteRefreshPath forLevel:VILogLevelVerbose];
+    
+    [self.objectManager getObjectsAtPath:remoteRefreshPath parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        [self.logger log:@"Refresh successful" object:mappingResult forLevel:VILogLevelVerbose];
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        [self.logger log:@"request failed" error:error];
+        [self.logger log:@"Refresh failed" error:error];
     }];
 }
 

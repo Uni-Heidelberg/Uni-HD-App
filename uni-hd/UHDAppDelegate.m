@@ -44,11 +44,12 @@
     // configure logging
     [VILogger defaultLogger].logLevel = VILogLevelDebug;
     RKLogConfigureByName("RestKit", RKLogLevelDefault);
+    [VILogger loggerForClass:[UHDRemoteDatasource class]].logLevel = VILogLevelVerbose;
     
     
     // setup remote datasources
-    [self addRemoteDatasourceForKey:UHDRemoteDatasourceKeyNews baseURL:[NSURL URLWithString:UHDRemoteBaseURL] delegate:[[UHDNewsRemoteDatasourceDelegate alloc] init]];
-    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyNews] refresh];
+    // [self addRemoteDatasourceForKey:UHDRemoteDatasourceKeyNews baseURL:[NSURL URLWithString:UHDRemoteBaseURL] delegate:[[UHDNewsRemoteDatasourceDelegate alloc] init]];
+    // [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyNews] refresh];
 
     
     // setup initial view controllers

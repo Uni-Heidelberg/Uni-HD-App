@@ -23,7 +23,7 @@
 
 - (NSString *)remoteRefreshPathForRemoteDatasource:(UHDRemoteDatasource *)remoteDatasource
 {
-    return @"UHDDailyMenus";
+    return @"mensa";
 }
 
 - (NSArray *)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource allItemsForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
