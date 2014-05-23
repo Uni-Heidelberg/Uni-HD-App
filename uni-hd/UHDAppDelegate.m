@@ -47,9 +47,17 @@
     [VILogger loggerForClass:[UHDRemoteDatasource class]].logLevel = VILogLevelVerbose;
     
     
+    // enable automatic network indicator display
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
+    
+    
     // setup remote datasources
     // [self addRemoteDatasourceForKey:UHDRemoteDatasourceKeyNews baseURL:[NSURL URLWithString:UHDRemoteBaseURL] delegate:[[UHDNewsRemoteDatasourceDelegate alloc] init]];
     // [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyNews] refresh];
+
+    
+    // generate sample data
+    [self generateSampleDataConditionally:YES];
 
     
     // setup initial view controllers
@@ -77,12 +85,7 @@
     self.window.tintColor = [UIColor brandColor]; // set brand tint color TODO: move in category
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];
-    
-    
-    // generate sample data
-    [self generateSampleDataConditionally:YES];
-    
-    
+
     return YES;
 }
 

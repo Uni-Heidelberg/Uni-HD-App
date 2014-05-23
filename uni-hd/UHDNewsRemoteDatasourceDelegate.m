@@ -40,8 +40,7 @@
     [newsCategoryMapping addAttributeMappingsFromArray:@[ @"id", @"title" ]];
     newsCategoryMapping.identificationAttributes = @[ @"id" ];
     [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:newsCategoryMapping method:RKRequestMethodAny pathPattern:nil keyPath:@"newsCategories" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
-    
-    
+
 }
 
 - (NSString *)remoteRefreshPathForRemoteDatasource:(UHDRemoteDatasource *)remoteDatasource
