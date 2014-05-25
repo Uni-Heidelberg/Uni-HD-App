@@ -8,6 +8,8 @@
 
 #import <CoreData/CoreData.h>
 #import <Foundation/Foundation.h>
+@class UHDNewsCategory;
+
 
 @interface UHDNewsSource : NSManagedObject
 
@@ -15,6 +17,7 @@
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *color;
 @property (nonatomic, retain) NSSet *articles;
+@property (nonatomic, retain) UHDNewsCategory *sources;
 
 - (NSMutableSet *)mutableArticles;
 

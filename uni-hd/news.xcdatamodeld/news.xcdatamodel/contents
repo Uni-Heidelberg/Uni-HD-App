@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13C1021" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13D65" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="UHDNewsCategory" syncable="YES">
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="sources" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDNewsSource" inverseName="category" inverseEntity="UHDNewsSource" syncable="YES"/>
+    </entity>
     <entity name="UHDNewsItem" representedClassName="UHDNewsItem" syncable="YES">
         <attribute name="abstract" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
@@ -14,9 +18,11 @@
         <attribute name="subscribed" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="articles" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="UHDNewsItem" inverseName="source" inverseEntity="UHDNewsItem" syncable="YES"/>
+        <relationship name="category" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDNewsCategory" inverseName="sources" inverseEntity="UHDNewsCategory" syncable="YES"/>
     </entity>
     <elements>
         <element name="UHDNewsItem" positionX="0" positionY="0" width="128" height="150"/>
-        <element name="UHDNewsSource" positionX="358" positionY="45" width="128" height="103"/>
+        <element name="UHDNewsSource" positionX="358" positionY="45" width="128" height="118"/>
+        <element name="UHDNewsCategory" positionX="180" positionY="63" width="128" height="73"/>
     </elements>
 </model>

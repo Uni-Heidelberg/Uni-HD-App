@@ -14,6 +14,7 @@
 @dynamic title;
 @dynamic color;
 @dynamic articles;
+@dynamic sources;
 
 - (NSMutableSet *)mutableArticles
 {
