@@ -21,4 +21,6 @@
 @property (strong, nonatomic) NSLayoutConstraint *titleLabelImageViewWidthConstraint;
 @property (strong, nonatomic) NSLayoutConstraint *titleLabelLeadingSpaceToSuperviewConstraint;
 
+- (void)updateLabelPreferredMaxLayoutWidthToCurrentWidth;
+
 @end

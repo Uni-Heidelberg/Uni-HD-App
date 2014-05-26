@@ -52,6 +52,19 @@
 }
 
 
+// update sizes of multiline UILabels in TableView
+- (void)viewDidLayoutSubviews
+{
+    [super viewDidLayoutSubviews];
+    
+    for (id cell in [self.tableView visibleCells]) {
+        [(UHDNewsItemCell *) cell updateLabelPreferredMaxLayoutWidthToCurrentWidth];
+    };
+    
+    [self.view layoutIfNeeded];
+}
+
+
 #pragma mark - User Interaction
 
 - (IBAction)makeSamplesButtonPressed:(id)sender

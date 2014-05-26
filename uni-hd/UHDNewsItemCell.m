@@ -8,26 +8,17 @@
 
 #import "UHDNewsItemCell.h"
 
-/*
-@implementation UILabel (Multiline)
-
-- (void)setBounds:(CGRect)bounds
-{
-    [super setBounds:bounds];
-    if (bounds.size.width != self.preferredMaxLayoutWidth) {
-        self.preferredMaxLayoutWidth = self.bounds.size.width;
-    }
-}
-
-@end
-*/
 
 @implementation UHDNewsItemCell
-/*
-- (void)layoutSubviews {
-    [super layoutSubviews];
+
+
+- (void)updateLabelPreferredMaxLayoutWidthToCurrentWidth
+{
+    self.titleLabel.preferredMaxLayoutWidth = self.titleLabel.frame.size.width;
+    self.dateLabel.preferredMaxLayoutWidth = self.dateLabel.frame.size.width;
+    self.abstractLabel.preferredMaxLayoutWidth = self.abstractLabel.frame.size.width;
+    self.sourceLabel.preferredMaxLayoutWidth = self.sourceLabel.frame.size.width;
 }
-*/
 
 
 // Override getters to return the respective constraint
@@ -64,3 +55,46 @@
 
 @end
 
+
+// Alternative possible fixes for multiline label issue
+/*
+@interface MyMultilineLabel : UILabel
+
+@end
+
+
+@implementation MyMultilineLabel
+
+- (void)setBounds:(CGRect)bounds {
+    [super setBounds:bounds];
+    CGFloat width = CGRectGetWidth(bounds);
+    if (self.preferredMaxLayoutWidth != width) {
+        self.preferredMaxLayoutWidth = width;
+    }
+}
+
+- (id)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        self.lineBreakMode = NSLineBreakByWordWrapping;
+        self.numberOfLines = 0;
+    }
+    return self;
+}
+
+@end
+*/
+
+/*
+@implementation UILabel (Multiline)
+
+- (void)setBounds:(CGRect)bounds
+{
+    [super setBounds:bounds];
+    if (bounds.size.width != self.preferredMaxLayoutWidth) {
+        self.preferredMaxLayoutWidth = self.bounds.size.width;
+    }
+}
+
+@end
+*/
