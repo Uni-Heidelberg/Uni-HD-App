@@ -13,12 +13,12 @@
 @dynamic subscribed;
 @dynamic title;
 @dynamic color;
-@dynamic articles;
-@dynamic sources;
+@dynamic newsItems;
+@dynamic category;
 
-- (NSMutableSet *)mutableArticles
+- (NSMutableSet *)mutableNewsItems
 {
-    return [self mutableSetValueForKey:@"articles"];
+    return [self mutableSetValueForKey:@"newsItems"];
 }
 
 @end

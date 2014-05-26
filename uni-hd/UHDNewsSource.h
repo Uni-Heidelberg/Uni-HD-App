@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import <CoreData/CoreData.h>
-#import <Foundation/Foundation.h>
+@import Foundation;
+@import CoreData;
 @class UHDNewsCategory;
 
 
@@ -16,9 +16,9 @@
 @property (nonatomic) BOOL subscribed;
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *color;
-@property (nonatomic, retain) NSSet *articles;
-@property (nonatomic, retain) UHDNewsCategory *sources;
+@property (nonatomic, retain) NSSet *newsItems;
+@property (nonatomic, retain) UHDNewsCategory *category;
 
-- (NSMutableSet *)mutableArticles;
+- (NSMutableSet *)mutableNewsItems;
 
 @end

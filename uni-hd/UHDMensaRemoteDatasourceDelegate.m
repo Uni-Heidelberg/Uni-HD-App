@@ -141,7 +141,7 @@
     mealItem3.price = @"2,15 €";
     
     
-    [managedObjectContext save:NULL];
+    [managedObjectContext saveToPersistentStore:NULL];
     
 }
 

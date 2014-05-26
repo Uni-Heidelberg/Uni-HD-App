@@ -8,6 +8,7 @@
 @import Foundation;
 
 @import CoreData;
+#import <RestKit/RestKit.h>
 #import "NSManagedObject+VIInsertIntoContextCategory.h"
 
 #import "VILogger.h"

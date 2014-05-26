@@ -9,7 +9,7 @@
 #import "UHDNewsRemoteDatasourceDelegate.h"
 #import "UHDNewsItem.h"
 #import "UHDNewsSource.h"
-
+#import "UHDNewsCategory.h"
 
 @implementation UHDNewsRemoteDatasourceDelegate
 
@@ -50,9 +50,12 @@
 
 - (void)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource generateSampleDataForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    // Create NewsSource object
+    // Create NewsSource object with category
+    UHDNewsCategory *newsCategory = [UHDNewsCategory insertNewObjectIntoContext:managedObjectContext];
+    newsCategory.title = @"Physik";
     UHDNewsSource *newsSource = [UHDNewsSource insertNewObjectIntoContext:managedObjectContext];
     newsSource.title = @"Fakultät für Physik und Astronomie";
+    newsSource.category = newsCategory;
     newsSource.subscribed = YES;
     newsSource.color = @"red";
 
@@ -75,8 +78,11 @@
     newsItem.source = newsSource;
     
     // Create new NewsSource
+    newsCategory = [UHDNewsCategory insertNewObjectIntoContext:managedObjectContext];
+    newsCategory.title = @"Uni Allgemein";
     newsSource = [UHDNewsSource insertNewObjectIntoContext:managedObjectContext];
     newsSource.title = @"Universität Heidelberg";
+    newsSource.category = newsCategory;
     newsSource.subscribed = YES;
     newsSource.color = @"blue";
     
@@ -91,7 +97,7 @@
     newsItem.thumb = imageData;
     
     // Save to store
-    [managedObjectContext save:NULL];
+    [managedObjectContext saveToPersistentStore:NULL];
 }
 
 @end

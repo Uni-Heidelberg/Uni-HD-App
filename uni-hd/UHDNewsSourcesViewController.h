@@ -10,9 +10,8 @@
 @import Foundation;
 @import UIKit;
 
-@interface UHDNewsCategoryViewController : UITableViewController
+@interface UHDNewsSourcesViewController : UITableViewController
 
-- (void)setRemoteDatasource:(id<UHDRemoteDatasource>)remoteDatasource;
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end

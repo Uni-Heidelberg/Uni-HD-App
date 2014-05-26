@@ -87,6 +87,7 @@
 
 - (UHDPersistentStack *)persistentStack {
     if (!_persistentStack) {
+        [self.logger log:@"Creating persistent stack ..." forLevel:VILogLevelVerbose];
         
         NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
 

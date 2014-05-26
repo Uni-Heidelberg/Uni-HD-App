@@ -7,13 +7,20 @@
 //
 
 #import "UHDNewsViewController.h"
+#import "VIFetchedResultsControllerDataSource.h"
+#import "UHDRemoteDatasourceManager.h"
+
+// View Controllers
 #import "UHDNewsDetailViewController.h"
+#import "UHDNewsSourcesViewController.h"
+
+// Model
 #import "UHDNewsItem.h"
 #import "UHDNewsSource.h"
-#import "VIFetchedResultsControllerDataSource.h"
+
+// Table View Cells
 #import "UHDNewsItemCell.h"
 #import "UHDNewsItemCell+ConfigureForItem.h"
-#import "UHDRemoteDatasourceManager.h"
 
 
 @interface UHDNewsViewController ()
@@ -21,6 +28,7 @@
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 
+- (IBAction)unwindToNews:(UIStoryboardSegue *)segue;
 - (IBAction)makeSamplesButtonPressed:(id)sender;
 
 @end
@@ -36,11 +44,11 @@
 {
     [super viewDidLoad];
     
-    self.title = NSLocalizedString(@"News", nil);
-    
     // redirect data source
     self.tableView.dataSource = self.fetchedResultsControllerDataSource;
     
+    // TODO: fix update mechanism
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(managedObjectContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:self.managedObjectContext.parentContext];
 }
 
 
@@ -53,14 +61,17 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    
-    UHDNewsItem *selectedNewsItem = self.fetchedResultsControllerDataSource.selectedItem;
-    
-    UHDNewsDetailViewController *newsDetailVC = segue.destinationViewController;
-    
-    newsDetailVC.newsItem = selectedNewsItem;
-    
-    // [self.logger log:@"Segue selected" forLevel:VILogLevelDebug];
+    if ([segue.identifier isEqualToString:@"showNewsDetail"]) {
+        UHDNewsDetailViewController *newsDetailVC = segue.destinationViewController;
+        newsDetailVC.newsItem = self.fetchedResultsControllerDataSource.selectedItem;
+    } else if ([segue.identifier isEqualToString:@"showSources"]) {
+        UHDNewsSourcesViewController *newsSourcesVC = [(UINavigationController *)segue.destinationViewController viewControllers][0];
+        newsSourcesVC.managedObjectContext = self.managedObjectContext;
+    }
+}
+
+- (IBAction)unwindToNews:(UIStoryboardSegue *)segue
+{
     
 }
 
@@ -77,7 +88,7 @@
         
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         
-        VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, UHDNewsItem *item) {
+        VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, id item) {
             [(UHDNewsItemCell *)cell configureForItem:item];
         };
         
@@ -86,5 +97,17 @@
     return _fetchedResultsControllerDataSource;
 }
 
+
+#pragma mark - Core Data Change Notification
+
+- (void)managedObjectContextDidSave:(NSNotification *)notification
+{
+    for (NSManagedObject *object in notification.userInfo[NSUpdatedObjectsKey]) {
+        if ([object isKindOfClass:[UHDNewsSource class]]) {
+            [self.fetchedResultsControllerDataSource reloadData];
+            break;
+        }
+    }
+}
 
 @end

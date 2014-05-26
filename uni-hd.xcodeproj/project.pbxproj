@@ -11,16 +11,13 @@
 		0AD7F3721923F58E00F49551 /* UHDNewsItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7F3711923F58E00F49551 /* UHDNewsItemCell.m */; };
 		0AD7F3751923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7F3741923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.m */; };
 		0AE2786C192A39CB00ED1641 /* UHDNewsSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE2786B192A39CB00ED1641 /* UHDNewsSource.m */; };
-		0B176E6E1931114200D3C916 /* UHDNewsCategoryCell+ConfigureForCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B176E671931114200D3C916 /* UHDNewsCategoryCell+ConfigureForCategory.m */; };
-		0B176E6F1931114200D3C916 /* UHDNewsCategoryDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B176E691931114200D3C916 /* UHDNewsCategoryDetailViewController.m */; };
-		0B176E701931114200D3C916 /* UHDNewsCategorySourceCell+ConfigureForCategorySource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B176E6B1931114200D3C916 /* UHDNewsCategorySourceCell+ConfigureForCategorySource.m */; };
-		0B176E711931114200D3C916 /* UHDNewsCategoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B176E6D1931114200D3C916 /* UHDNewsCategoryViewController.m */; };
-		0B176E761931115700D3C916 /* UHDNewsCategoryCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B176E731931115700D3C916 /* UHDNewsCategoryCell.m */; };
-		0B176E771931115700D3C916 /* UHDNewsCategorySourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B176E751931115700D3C916 /* UHDNewsCategorySourceCell.m */; };
+		0B176E711931114200D3C916 /* UHDNewsSourcesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B176E6D1931114200D3C916 /* UHDNewsSourcesViewController.m */; };
 		0B176E7A1931117700D3C916 /* UHDNewsCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B176E791931117700D3C916 /* UHDNewsCategory.m */; };
 		6F293EE8DA534A74838601AE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F757EC4658C40C8B7B4E414 /* libPods.a */; };
 		8701CE4C190C00A600A18F82 /* UHDRemoteDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8701CE4B190C00A600A18F82 /* UHDRemoteDatasource.m */; };
 		8701CE50190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8701CE4F190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.m */; };
+		875396021932B03C00DFEF19 /* UHDNewsSourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 875396011932B03C00DFEF19 /* UHDNewsSourceCell.m */; };
+		875396081932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 875396071932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.m */; };
 		87600EA4192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87600EA3192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m */; };
 		8799DA96192AB4D9009B3CAB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE0B01908810B0029D9AF /* XCTest.framework */; };
 		8799DA97192AB4D9009B3CAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08B1908810B0029D9AF /* Foundation.framework */; };
@@ -81,18 +78,8 @@
 		0AD7F3741923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UHDNewsItemCell+ConfigureForItem.m"; sourceTree = "<group>"; };
 		0AE2786A192A39CB00ED1641 /* UHDNewsSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsSource.h; sourceTree = "<group>"; };
 		0AE2786B192A39CB00ED1641 /* UHDNewsSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsSource.m; sourceTree = "<group>"; };
-		0B176E661931114200D3C916 /* UHDNewsCategoryCell+ConfigureForCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UHDNewsCategoryCell+ConfigureForCategory.h"; sourceTree = "<group>"; };
-		0B176E671931114200D3C916 /* UHDNewsCategoryCell+ConfigureForCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UHDNewsCategoryCell+ConfigureForCategory.m"; sourceTree = "<group>"; };
-		0B176E681931114200D3C916 /* UHDNewsCategoryDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsCategoryDetailViewController.h; sourceTree = "<group>"; };
-		0B176E691931114200D3C916 /* UHDNewsCategoryDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsCategoryDetailViewController.m; sourceTree = "<group>"; };
-		0B176E6A1931114200D3C916 /* UHDNewsCategorySourceCell+ConfigureForCategorySource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UHDNewsCategorySourceCell+ConfigureForCategorySource.h"; sourceTree = "<group>"; };
-		0B176E6B1931114200D3C916 /* UHDNewsCategorySourceCell+ConfigureForCategorySource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UHDNewsCategorySourceCell+ConfigureForCategorySource.m"; sourceTree = "<group>"; };
-		0B176E6C1931114200D3C916 /* UHDNewsCategoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsCategoryViewController.h; sourceTree = "<group>"; };
-		0B176E6D1931114200D3C916 /* UHDNewsCategoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsCategoryViewController.m; sourceTree = "<group>"; };
-		0B176E721931115700D3C916 /* UHDNewsCategoryCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsCategoryCell.h; sourceTree = "<group>"; };
-		0B176E731931115700D3C916 /* UHDNewsCategoryCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsCategoryCell.m; sourceTree = "<group>"; };
-		0B176E741931115700D3C916 /* UHDNewsCategorySourceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsCategorySourceCell.h; sourceTree = "<group>"; };
-		0B176E751931115700D3C916 /* UHDNewsCategorySourceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsCategorySourceCell.m; sourceTree = "<group>"; };
+		0B176E6C1931114200D3C916 /* UHDNewsSourcesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsSourcesViewController.h; sourceTree = "<group>"; };
+		0B176E6D1931114200D3C916 /* UHDNewsSourcesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsSourcesViewController.m; sourceTree = "<group>"; };
 		0B176E781931117700D3C916 /* UHDNewsCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsCategory.h; sourceTree = "<group>"; };
 		0B176E791931117700D3C916 /* UHDNewsCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsCategory.m; sourceTree = "<group>"; };
 		3F757EC4658C40C8B7B4E414 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -101,6 +88,10 @@
 		8701CE4B190C00A600A18F82 /* UHDRemoteDatasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDRemoteDatasource.m; sourceTree = "<group>"; };
 		8701CE4E190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsRemoteDatasourceDelegate.h; sourceTree = "<group>"; };
 		8701CE4F190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsRemoteDatasourceDelegate.m; sourceTree = "<group>"; };
+		875396001932B03C00DFEF19 /* UHDNewsSourceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsSourceCell.h; sourceTree = "<group>"; };
+		875396011932B03C00DFEF19 /* UHDNewsSourceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsSourceCell.m; sourceTree = "<group>"; };
+		875396061932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UHDNewsSourceCell+ConfigureForSource.h"; sourceTree = "<group>"; };
+		875396071932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UHDNewsSourceCell+ConfigureForSource.m"; sourceTree = "<group>"; };
 		87600EA2192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMensaRemoteDatasourceDelegate.h; sourceTree = "<group>"; };
 		87600EA3192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMensaRemoteDatasourceDelegate.m; sourceTree = "<group>"; };
 		8799DA95192AB4D9009B3CAB /* uni-hd-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "uni-hd-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -198,16 +189,45 @@
 			name = "Data Persistence";
 			sourceTree = "<group>";
 		};
+		875395FD1932B00400DFEF19 /* News List */ = {
+			isa = PBXGroup;
+			children = (
+				87EE2554191924E20092DF7F /* UHDNewsViewController.h */,
+				87EE2555191924E20092DF7F /* UHDNewsViewController.m */,
+				0AD7F3731923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.h */,
+				0AD7F3741923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.m */,
+			);
+			name = "News List";
+			sourceTree = "<group>";
+		};
+		875395FE1932B00F00DFEF19 /* News Detail */ = {
+			isa = PBXGroup;
+			children = (
+				0A2000501920F18A0014C977 /* UHDNewsDetailViewController.h */,
+				0A2000511920F18A0014C977 /* UHDNewsDetailViewController.m */,
+			);
+			name = "News Detail";
+			sourceTree = "<group>";
+		};
+		875395FF1932B01700DFEF19 /* News Sources */ = {
+			isa = PBXGroup;
+			children = (
+				0B176E6C1931114200D3C916 /* UHDNewsSourcesViewController.h */,
+				0B176E6D1931114200D3C916 /* UHDNewsSourcesViewController.m */,
+				875396061932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.h */,
+				875396071932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.m */,
+			);
+			name = "News Sources";
+			sourceTree = "<group>";
+		};
 		8799DA8D192AB1DB009B3CAB /* News */ = {
 			isa = PBXGroup;
 			children = (
 				87DBE7F31919C3F700C16970 /* news.storyboard */,
 				0AD7F3701923F58E00F49551 /* UHDNewsItemCell.h */,
 				0AD7F3711923F58E00F49551 /* UHDNewsItemCell.m */,
-				0B176E721931115700D3C916 /* UHDNewsCategoryCell.h */,
-				0B176E731931115700D3C916 /* UHDNewsCategoryCell.m */,
-				0B176E741931115700D3C916 /* UHDNewsCategorySourceCell.h */,
-				0B176E751931115700D3C916 /* UHDNewsCategorySourceCell.m */,
+				875396001932B03C00DFEF19 /* UHDNewsSourceCell.h */,
+				875396011932B03C00DFEF19 /* UHDNewsSourceCell.m */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -409,20 +429,9 @@
 		87FF70F81923EFE500FCF5F4 /* News */ = {
 			isa = PBXGroup;
 			children = (
-				87EE2554191924E20092DF7F /* UHDNewsViewController.h */,
-				87EE2555191924E20092DF7F /* UHDNewsViewController.m */,
-				0AD7F3731923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.h */,
-				0AD7F3741923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.m */,
-				0A2000501920F18A0014C977 /* UHDNewsDetailViewController.h */,
-				0A2000511920F18A0014C977 /* UHDNewsDetailViewController.m */,
-				0B176E661931114200D3C916 /* UHDNewsCategoryCell+ConfigureForCategory.h */,
-				0B176E671931114200D3C916 /* UHDNewsCategoryCell+ConfigureForCategory.m */,
-				0B176E681931114200D3C916 /* UHDNewsCategoryDetailViewController.h */,
-				0B176E691931114200D3C916 /* UHDNewsCategoryDetailViewController.m */,
-				0B176E6A1931114200D3C916 /* UHDNewsCategorySourceCell+ConfigureForCategorySource.h */,
-				0B176E6B1931114200D3C916 /* UHDNewsCategorySourceCell+ConfigureForCategorySource.m */,
-				0B176E6C1931114200D3C916 /* UHDNewsCategoryViewController.h */,
-				0B176E6D1931114200D3C916 /* UHDNewsCategoryViewController.m */,
+				875395FD1932B00400DFEF19 /* News List */,
+				875395FE1932B00F00DFEF19 /* News Detail */,
+				875395FF1932B01700DFEF19 /* News Sources */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -637,7 +646,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC21B6E01923D27600BAD26D /* UHDMensa.m in Sources */,
-				0B176E771931115700D3C916 /* UHDNewsCategorySourceCell.m in Sources */,
 				DC21B6D41923D27500BAD26D /* UHDLocation.m in Sources */,
 				DC8DCC4F192CC74F0038C4BE /* UHDMealCell+ConfigureForItem.m in Sources */,
 				87B974E8192D5A360080AA40 /* VIManager.m in Sources */,
@@ -650,23 +658,21 @@
 				DC83C93A192BDDA6004CC75B /* UHDMealCell.m in Sources */,
 				DC87FDFB191AA12D00019F32 /* UHDMensaViewController.m in Sources */,
 				87B974E5192D57330080AA40 /* UHDRemoteDatasourceManager.m in Sources */,
-				0B176E761931115700D3C916 /* UHDNewsCategoryCell.m in Sources */,
 				DC21B6DA1923D27600BAD26D /* UHDSection.m in Sources */,
 				0AD7F3721923F58E00F49551 /* UHDNewsItemCell.m in Sources */,
+				875396021932B03C00DFEF19 /* UHDNewsSourceCell.m in Sources */,
 				8701CE50190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.m in Sources */,
-				0B176E701931114200D3C916 /* UHDNewsCategorySourceCell+ConfigureForCategorySource.m in Sources */,
 				0B176E7A1931117700D3C916 /* UHDNewsCategory.m in Sources */,
 				87FF70FB1923F33500FCF5F4 /* UHDNewsItem.m in Sources */,
 				87FF70FE1924097E00FCF5F4 /* UHDPersistentStack.m in Sources */,
-				0B176E6F1931114200D3C916 /* UHDNewsCategoryDetailViewController.m in Sources */,
 				87F826EA190D700E0008144F /* VILogger.m in Sources */,
-				0B176E711931114200D3C916 /* UHDNewsCategoryViewController.m in Sources */,
+				875396081932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.m in Sources */,
+				0B176E711931114200D3C916 /* UHDNewsSourcesViewController.m in Sources */,
 				87600EA4192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m in Sources */,
 				8701CE4C190C00A600A18F82 /* UHDRemoteDatasource.m in Sources */,
 				0AE2786C192A39CB00ED1641 /* UHDNewsSource.m in Sources */,
 				0A2000521920F18A0014C977 /* UHDNewsDetailViewController.m in Sources */,
 				87F826D0190D422F0008144F /* news.xcdatamodeld in Sources */,
-				0B176E6E1931114200D3C916 /* UHDNewsCategoryCell+ConfigureForCategory.m in Sources */,
 				87EE255B191929420092DF7F /* VIFetchedResultsControllerDataSource.m in Sources */,
 				87CBE0981908810B0029D9AF /* main.m in Sources */,
 				87EE2556191924E20092DF7F /* UHDNewsViewController.m in Sources */,
