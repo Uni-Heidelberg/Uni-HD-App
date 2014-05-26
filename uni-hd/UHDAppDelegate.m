@@ -21,6 +21,9 @@
 #import "UHDNewsViewController.h"
 #import "UHDMensaViewController.h"
 
+// Views
+#import "UIColor+UHDBrandColor.h"
+
 
 @interface UHDAppDelegate ()
 
@@ -41,11 +44,22 @@
     // configure logging
     [VILogger defaultLogger].logLevel = VILogLevelDebug;
     RKLogConfigureByName("RestKit", RKLogLevelDefault);
+    [VILogger loggerForClass:[UHDRemoteDatasource class]].logLevel = VILogLevelVerbose;
+    
+    
+    // enable automatic network indicator display
+    [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;
     
     
     // setup remote datasources
     [self addRemoteDatasourceForKey:UHDRemoteDatasourceKeyNews baseURL:[NSURL URLWithString:UHDRemoteBaseURL] delegate:[[UHDNewsRemoteDatasourceDelegate alloc] init]];
     [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyNews] refresh];
+    [self addRemoteDatasourceForKey:UHDRemoteDatasourceKeyMensa baseURL:[NSURL URLWithString:UHDRemoteBaseURL] delegate:[[UHDMensaRemoteDatasourceDelegate alloc] init]];
+    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyMensa] refresh];
+
+    
+    // generate sample data
+    [self generateSampleDataConditionally:YES];
 
     
     // setup initial view controllers
@@ -70,15 +84,10 @@
     
     // create and populate window
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.tintColor = [UIColor colorWithRed:181/255. green:21/255. blue:43/255. alpha:1]; // set brand tint color TODO: move in category
+    self.window.tintColor = [UIColor brandColor]; // set brand tint color TODO: move in category
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];
-    
-    
-    // generate sample data
-    [self generateSampleDataConditionally:YES];
-    
-    
+
     return YES;
 }
 
