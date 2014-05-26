@@ -16,4 +16,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *sourceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 
+// Auto layout constraints for NewsItemCells with image or without image respectively
+@property (strong, nonatomic) NSLayoutConstraint *titleLabelSpacingToImageViewConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *titleLabelImageViewWidthConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *titleLabelLeadingSpaceToSuperviewConstraint;
+
 @end
