@@ -72,7 +72,7 @@
 
     // Create NewsArticles
     UHDNewsItem *newsItem = [UHDNewsItem insertNewObjectIntoContext:managedObjectContext];
-    newsItem.title = @"Breaking News!";
+    newsItem.title = @"Unbelievable exceptional breaking News!";
     newsItem.abstract = @"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.";
     newsItem.date = [NSDate date];
     newsItem.url = @"http://www.loremipsum.de/index_e.html";
@@ -81,7 +81,7 @@
     newsItem.source = newsSource;
     
     newsItem = [UHDNewsItem insertNewObjectIntoContext:managedObjectContext];
-    newsItem.title = @"Bahnbrechende Neuigkeiten!";
+    newsItem.title = @"Wirklich bahnbrechende Neuigkeiten!";
     newsItem.abstract = @"Damit Ihr indess erkennt, woher dieser ganze Irrthum gekommen ist, und weshalb man die Lust anklagt und den Schmerz lobet, so will ich Euch Alles eröffnen und auseinander setzen, was jener Begründer der Wahrheit und gleichsam Baumeister des glücklichen Lebens selbst darüber gesagt hat.";
     newsItem.date = [NSDate dateWithTimeIntervalSince1970:0];
     newsItem.url = @"http://www.loremipsum.de";

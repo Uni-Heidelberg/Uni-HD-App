@@ -23,33 +23,33 @@
 
 // Override getters to return the respective constraint
 
-- (NSLayoutConstraint *)titleLabelSpacingToImageViewConstraint {
-    if (!_titleLabelSpacingToImageViewConstraint) {
+- (NSLayoutConstraint *)abstractLabelHorizontalSpacingToImageViewConstraint {
+    if (!_abstractLabelHorizontalSpacingToImageViewConstraint) {
     
-        self.titleLabelSpacingToImageViewConstraint = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.newsImage attribute:NSLayoutAttributeTrailing multiplier:1 constant:8];
+        self.abstractLabelHorizontalSpacingToImageViewConstraint = [NSLayoutConstraint constraintWithItem:self.abstractLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.newsImageView attribute:NSLayoutAttributeTrailing multiplier:1 constant:8];
         
     }
-    return _titleLabelSpacingToImageViewConstraint;
+    return _abstractLabelHorizontalSpacingToImageViewConstraint;
 };
 
 
-- (NSLayoutConstraint *)titleLabelImageViewWidthConstraint {
-    if (!_titleLabelImageViewWidthConstraint) {
+- (NSLayoutConstraint *)abstractLabelProportionalWidthToImageViewConstraint {
+    if (!_abstractLabelProportionalWidthToImageViewConstraint) {
     
-        self.titleLabelImageViewWidthConstraint = [NSLayoutConstraint constraintWithItem:self.newsImage attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.titleLabel attribute:NSLayoutAttributeWidth multiplier:0.5 constant:0];
+        self.abstractLabelProportionalWidthToImageViewConstraint = [NSLayoutConstraint constraintWithItem:self.newsImageView attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.abstractLabel attribute:NSLayoutAttributeWidth multiplier:0.5 constant:0];
         
     }
-    return _titleLabelImageViewWidthConstraint;
+    return _abstractLabelProportionalWidthToImageViewConstraint;
 }
 
 
-- (NSLayoutConstraint *)titleLabelLeadingSpaceToSuperviewConstraint {
-    if (!_titleLabelLeadingSpaceToSuperviewConstraint) {
+- (NSLayoutConstraint *)abstractLabelLeadingSpaceToSuperviewConstraint {
+    if (!_abstractLabelLeadingSpaceToSuperviewConstraint) {
     
-        self.titleLabelLeadingSpaceToSuperviewConstraint = [NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.titleLabel.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:8];
+        self.abstractLabelLeadingSpaceToSuperviewConstraint = [NSLayoutConstraint constraintWithItem:self.abstractLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.titleLabel.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:18];
         
     }
-    return _titleLabelLeadingSpaceToSuperviewConstraint;
+    return _abstractLabelLeadingSpaceToSuperviewConstraint;
 }
 
 

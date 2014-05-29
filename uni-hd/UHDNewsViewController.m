@@ -44,6 +44,9 @@
 {
     [super viewDidLoad];
     
+    // Deactivate translucency of navigation bar
+    self.navigationController.navigationBar.translucent = NO;
+    
     // redirect data source
     self.tableView.dataSource = self.fetchedResultsControllerDataSource;
     
@@ -56,11 +59,11 @@
 - (void)viewDidLayoutSubviews
 {
     [super viewDidLayoutSubviews];
-    
+
     for (id cell in [self.tableView visibleCells]) {
         [(UHDNewsItemCell *) cell updateLabelPreferredMaxLayoutWidthToCurrentWidth];
     };
-    
+
     [self.view layoutIfNeeded];
 }
 
@@ -76,7 +79,13 @@
 {
     if ([segue.identifier isEqualToString:@"showNewsDetail"]) {
         UHDNewsDetailViewController *newsDetailVC = segue.destinationViewController;
-        newsDetailVC.newsItem = self.fetchedResultsControllerDataSource.selectedItem;
+        
+        // Mark item as read
+        UHDNewsItem *item = self.fetchedResultsControllerDataSource.selectedItem;
+        item.read = YES;
+        [self.managedObjectContext saveToPersistentStore:NULL];
+        
+        newsDetailVC.newsItem = item;
     } else if ([segue.identifier isEqualToString:@"showSources"]) {
         UHDNewsSourcesViewController *newsSourcesVC = [(UINavigationController *)segue.destinationViewController viewControllers][0];
         newsSourcesVC.managedObjectContext = self.managedObjectContext;

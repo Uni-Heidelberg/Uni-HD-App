@@ -84,9 +84,16 @@
     
     // create and populate window
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.tintColor = [UIColor brandColor]; // set brand tint color TODO: move in category
+    self.window.tintColor = [UIColor brandColor];   // set brand tint color TODO: move in category
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];
+
+    // configure default navigation bar style and status bar style
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    [[UINavigationBar appearance] setBarTintColor:[UIColor brandColor]];
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]];
+
 
     return YES;
 }

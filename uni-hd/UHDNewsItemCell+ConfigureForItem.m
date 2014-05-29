@@ -24,30 +24,40 @@
     
     self.dateLabel.text = [dateFormatter stringFromDate:item.date];
     
+    // Configure read-Bar
+    if (item.read) {
+        self.readBarView.hidden = YES;
+    }
+    else {
+        self.readBarView.hidden = NO;
+        self.readBarView.backgroundColor = [UIColor brandColor];
+    }
+    
     // Configure Image
     UIImage* image = [UIImage imageWithData:item.thumb];
     
     if (image != nil) {
-        self.newsImage.hidden = FALSE;
-        
+        self.newsImageView.hidden = NO;
+
         // Remove possible prior constraint of NewsItemCell without Image
-        [self.titleLabel.superview removeConstraint:self.titleLabelLeadingSpaceToSuperviewConstraint];
+        [self.abstractLabel.superview removeConstraint:self.abstractLabelLeadingSpaceToSuperviewConstraint];
 
         // Set constraints for NewsItemCell with image
-        [self.titleLabel.superview addConstraint: self.titleLabelSpacingToImageViewConstraint];
-        [self.titleLabel.superview addConstraint:self.titleLabelImageViewWidthConstraint];
-        
-        self.newsImage.image = image;
+        [self.abstractLabel.superview addConstraint: self.abstractLabelHorizontalSpacingToImageViewConstraint];
+        [self.abstractLabel.superview addConstraint:self.abstractLabelProportionalWidthToImageViewConstraint];
+
+        self.newsImageView.image = image;
     }
     else {
-        self.newsImage.hidden = TRUE;
-        
+        self.newsImageView.hidden = YES;
+
         // Remove possible prior constraints of NewsItemCell with image
-        [self.titleLabel.superview removeConstraint:self.titleLabelLeadingSpaceToSuperviewConstraint];
-        [self.titleLabel.superview removeConstraint:self.titleLabelImageViewWidthConstraint];
+        [self.abstractLabel.superview removeConstraint:self.abstractLabelLeadingSpaceToSuperviewConstraint];
+        [self.abstractLabel.superview removeConstraint:self.abstractLabelProportionalWidthToImageViewConstraint];
 
         // Set constraint for NewsItemCell without image
-        [self.titleLabel.superview addConstraint:self.titleLabelLeadingSpaceToSuperviewConstraint];
+        [self.abstractLabel.superview addConstraint:self.abstractLabelLeadingSpaceToSuperviewConstraint];
+
     }
 }
 
