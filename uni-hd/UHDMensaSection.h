@@ -11,7 +11,7 @@
 
 @class UHDMeal, UHDMensa;
 
-@interface UHDSection : NSManagedObject
+@interface UHDMensaSection : NSManagedObject
 
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSSet *meals;

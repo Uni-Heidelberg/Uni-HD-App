@@ -11,7 +11,7 @@
 #import "UHDDailyMenu.h"
 #import "UHDMeal.h"
 #import "UHDLocation.h"
-#import "UHDSection.h"
+#import "UHDMensaSection.h"
 
 
 @implementation UHDMensaRemoteDatasourceDelegate
@@ -54,7 +54,7 @@
     
     //Create Sections for Mensa
     
-    UHDSection *sectionItem = [UHDSection insertNewObjectIntoContext:managedObjectContext];
+    UHDMensaSection *sectionItem = [UHDMensaSection insertNewObjectIntoContext:managedObjectContext];
     sectionItem.title = @"Section A";
     [mensaItem.mutableSections addObject:sectionItem];
     
@@ -88,7 +88,7 @@
     
     //Create Sections for Mensa
     
-    UHDSection *sectionItem2 = [UHDSection insertNewObjectIntoContext:managedObjectContext];
+    UHDMensaSection *sectionItem2 = [UHDMensaSection insertNewObjectIntoContext:managedObjectContext];
     sectionItem2.title = @"Section A";
     [mensaItem2.mutableSections addObject:sectionItem2];
     
@@ -122,7 +122,7 @@
     
     //Create Sections for Mensa
     
-    UHDSection *sectionItem3 = [UHDSection insertNewObjectIntoContext:managedObjectContext];
+    UHDMensaSection *sectionItem3 = [UHDMensaSection insertNewObjectIntoContext:managedObjectContext];
     sectionItem3.title = @"Section A";
     [mensaItem3.mutableSections addObject:sectionItem3];
     
