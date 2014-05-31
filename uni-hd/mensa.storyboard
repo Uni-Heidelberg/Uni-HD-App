@@ -61,20 +61,28 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Meal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blI-Wr-U1l">
-                                            <rect key="frame" x="20" y="40" width="179" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Meal" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blI-Wr-U1l">
+                                            <rect key="frame" x="20" y="20" width="38" height="62"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M3g-uZ-Xix">
-                                            <rect key="frame" x="244" y="40" width="56" height="21"/>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="M3g-uZ-Xix">
+                                            <rect key="frame" x="260" y="20" width="40" height="62"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstItem="M3g-uZ-Xix" firstAttribute="top" secondItem="dfL-jG-kOQ" secondAttribute="top" constant="20" symbolic="YES" id="3OG-DX-WZ1"/>
+                                        <constraint firstAttribute="bottom" secondItem="M3g-uZ-Xix" secondAttribute="bottom" constant="20" symbolic="YES" id="8Pw-42-uaC"/>
+                                        <constraint firstItem="blI-Wr-U1l" firstAttribute="leading" secondItem="dfL-jG-kOQ" secondAttribute="leading" constant="20" symbolic="YES" id="UYj-MS-FEi"/>
+                                        <constraint firstItem="blI-Wr-U1l" firstAttribute="top" secondItem="dfL-jG-kOQ" secondAttribute="top" constant="20" symbolic="YES" id="Wl3-xg-8nj"/>
+                                        <constraint firstAttribute="trailing" secondItem="M3g-uZ-Xix" secondAttribute="trailing" constant="20" symbolic="YES" id="lcu-tC-7Oh"/>
+                                        <constraint firstAttribute="bottom" secondItem="blI-Wr-U1l" secondAttribute="bottom" constant="20" symbolic="YES" id="uMo-E8-NqR"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="priceLabel" destination="M3g-uZ-Xix" id="aYH-YE-avW"/>
