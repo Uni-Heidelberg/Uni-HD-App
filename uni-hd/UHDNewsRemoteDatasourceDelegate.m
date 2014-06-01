@@ -76,8 +76,7 @@
     newsItem.abstract = @"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.";
     newsItem.date = [NSDate date];
     newsItem.url = @"http://www.loremipsum.de/index_e.html";
-    NSData *imageData = UIImagePNGRepresentation([UIImage imageNamed:@"kip"]);
-    newsItem.thumb = imageData;
+    newsItem.thumbImage = [UIImage imageNamed:@"kip"];
     newsItem.source = newsSource;
     
     newsItem = [UHDNewsItem insertNewObjectIntoContext:managedObjectContext];
@@ -104,8 +103,7 @@
     newsItem.date = [NSDate dateWithTimeIntervalSinceReferenceDate:(-2000*365.25*24*3600)];
     newsItem.url = @"http://www.uni-heidelberg.de";
     newsItem.source = newsSource;
-    imageData = UIImagePNGRepresentation([UIImage imageNamed:@"heidelberg"]);
-    newsItem.thumb = imageData;
+    newsItem.thumbImage = [UIImage imageNamed:@"heidelberg"];
     
     // Save to store
     [managedObjectContext saveToPersistentStore:NULL];

@@ -17,11 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIView *readBarView;
 
-// Auto layout constraints for NewsItemCells with image or without image respectively
-@property (strong, nonatomic) NSLayoutConstraint *abstractLabelHorizontalSpacingToImageViewConstraint;
-@property (strong, nonatomic) NSLayoutConstraint *abstractLabelProportionalWidthToImageViewConstraint;
-@property (strong, nonatomic) NSLayoutConstraint *abstractLabelLeadingSpaceToSuperviewConstraint;
-
-- (void)updateLabelPreferredMaxLayoutWidthToCurrentWidth;
+// Auto layout constraints for NewsItemCells with or without image respectively
+@property (strong, nonatomic) NSArray *layoutContraintsWithImage;
+@property (strong, nonatomic) NSArray *layoutContraintsWithoutImage;
 
 @end

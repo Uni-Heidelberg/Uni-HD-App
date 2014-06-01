@@ -30,6 +30,7 @@
 
 - (IBAction)unwindToNews:(UIStoryboardSegue *)segue;
 - (IBAction)makeSamplesButtonPressed:(id)sender;
+- (IBAction)refreshControlValueChanged:(id)sender;
 
 @end
 
@@ -44,9 +45,6 @@
 {
     [super viewDidLoad];
     
-    // Deactivate translucency of navigation bar
-    self.navigationController.navigationBar.translucent = NO;
-    
     // redirect data source
     self.tableView.dataSource = self.fetchedResultsControllerDataSource;
     
@@ -55,24 +53,17 @@
 }
 
 
-// update sizes of multiline UILabels in TableView
-- (void)viewDidLayoutSubviews
-{
-    [super viewDidLayoutSubviews];
-
-    for (id cell in [self.tableView visibleCells]) {
-        [(UHDNewsItemCell *) cell updateLabelPreferredMaxLayoutWidthToCurrentWidth];
-    };
-
-    [self.view layoutIfNeeded];
-}
-
-
 #pragma mark - User Interaction
 
 - (IBAction)makeSamplesButtonPressed:(id)sender
 {
     [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyNews] generateSampleData];
+}
+
+- (IBAction)refreshControlValueChanged:(UIRefreshControl *)sender
+{
+    [self makeSamplesButtonPressed:nil]; // TODO: call refresh instead
+    [sender endRefreshing];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

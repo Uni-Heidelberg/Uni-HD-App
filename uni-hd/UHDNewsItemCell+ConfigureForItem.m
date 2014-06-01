@@ -11,6 +11,11 @@
 
 @implementation UHDNewsItemCell (ConfigureForItem)
 
+- (void)awakeFromNib
+{
+    self.readBarView.backgroundColor = [UIColor brandColor];
+}
+
 - (void)configureForItem:(UHDNewsItem *)item {
     
     // Configure text
@@ -20,45 +25,22 @@
     
     // Configure date
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd.MM.yyyy"];
-    
+    dateFormatter.dateStyle = NSDateFormatterMediumStyle;
     self.dateLabel.text = [dateFormatter stringFromDate:item.date];
     
-    // Configure read-Bar
-    if (item.read) {
-        self.readBarView.hidden = YES;
-    }
-    else {
-        self.readBarView.hidden = NO;
-        self.readBarView.backgroundColor = [UIColor brandColor];
-    }
+    // Configure read indicator
+    self.readBarView.hidden = item.read;
+    self.backgroundColor = item.read ? [UIColor whiteColor] : [UIColor colorWithWhite:0.97 alpha:1];
     
     // Configure Image
-    UIImage* image = [UIImage imageWithData:item.thumb];
+    UIImage *image = item.thumbImage;
+    self.newsImageView.image = image;
+    self.newsImageView.hidden = image==nil;
+    [self.contentView removeConstraints:image==nil ? self.layoutContraintsWithImage : self.layoutContraintsWithoutImage];
+    [self.contentView addConstraints:image==nil ? self.layoutContraintsWithoutImage : self.layoutContraintsWithImage];
     
-    if (image != nil) {
-        self.newsImageView.hidden = NO;
-
-        // Remove possible prior constraint of NewsItemCell without Image
-        [self.abstractLabel.superview removeConstraint:self.abstractLabelLeadingSpaceToSuperviewConstraint];
-
-        // Set constraints for NewsItemCell with image
-        [self.abstractLabel.superview addConstraint: self.abstractLabelHorizontalSpacingToImageViewConstraint];
-        [self.abstractLabel.superview addConstraint:self.abstractLabelProportionalWidthToImageViewConstraint];
-
-        self.newsImageView.image = image;
-    }
-    else {
-        self.newsImageView.hidden = YES;
-
-        // Remove possible prior constraints of NewsItemCell with image
-        [self.abstractLabel.superview removeConstraint:self.abstractLabelLeadingSpaceToSuperviewConstraint];
-        [self.abstractLabel.superview removeConstraint:self.abstractLabelProportionalWidthToImageViewConstraint];
-
-        // Set constraint for NewsItemCell without image
-        [self.abstractLabel.superview addConstraint:self.abstractLabelLeadingSpaceToSuperviewConstraint];
-
-    }
+    // trigger layout update to make multiline labels aware of changed text lengths
+    [self setNeedsLayout];
 }
 
 @end

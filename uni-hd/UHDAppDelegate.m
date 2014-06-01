@@ -89,11 +89,10 @@
     [self.window makeKeyAndVisible];
 
     // configure default navigation bar style and status bar style
-    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor brandColor]];
-    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
-    [[UINavigationBar appearance] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil]];
-
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    [UINavigationBar appearance].barTintColor = [UIColor brandColor];
+    [UINavigationBar appearance].tintColor = [UIColor whiteColor];
+    [UINavigationBar appearance].titleTextAttributes = @{ NSForegroundColorAttributeName: [UIColor whiteColor] };
 
     return YES;
 }
