@@ -9,13 +9,13 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class UHDDailyMenu, UHDSection;
+@class UHDDailyMenu, UHDMensaSection;
 
 @interface UHDMeal : NSManagedObject
 
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * price;
 @property (nonatomic, retain) UHDDailyMenu *menu;
-@property (nonatomic, retain) UHDSection *section;
+@property (nonatomic, retain) UHDMensaSection *section;
 
 @end
