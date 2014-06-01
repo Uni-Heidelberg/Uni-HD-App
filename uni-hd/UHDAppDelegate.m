@@ -43,8 +43,6 @@
     
     // configure logging
     [VILogger defaultLogger].logLevel = VILogLevelDebug;
-    RKLogConfigureByName("RestKit", RKLogLevelDefault);
-    [VILogger loggerForClass:[UHDRemoteDatasource class]].logLevel = VILogLevelVerbose;
     
     
     // enable automatic network indicator display
