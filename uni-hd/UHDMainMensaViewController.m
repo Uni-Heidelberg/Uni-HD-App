@@ -18,7 +18,7 @@
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) UHDMensaViewController *mensaVC;
-
+@property (strong, nonatomic) UHDDailyMenuViewController *dailyMenuVC;
 @end
 
 @implementation UHDMainMensaViewController
@@ -28,21 +28,27 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    UHDDailyMenuViewController *dailyMenuVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DailyMenuViewController"];
-    //get model Data
     
     if (self.mensa==nil) {
         [self mensaButtonPressed:self];    }
     else {
-        
-    UHDDailyMenu *dailyMenu = [[self.mensa.menus sortedArrayUsingDescriptors:@[ [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES] ]] lastObject];
-    dailyMenuVC.dailyMenu = dailyMenu;
-    //pass model data and create dailymenuVC
-    dailyMenuVC.dailyMenu = dailyMenu;
-    [self addChildViewController:dailyMenuVC];
-    [self.DailyMenuViewContainer addSubview:dailyMenuVC.view];
+        [self updateDailyMenuViewController];
+
     }
     
+}
+- (void)updateDailyMenuViewController {
+    self.dailyMenuVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DailyMenuViewController"];
+    //get model Data
+    UHDDailyMenu *dailyMenu = [[self.mensa.menus sortedArrayUsingDescriptors:@[ [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES] ]] lastObject];
+    self.dailyMenuVC.dailyMenu = dailyMenu;
+    //pass model data and create dailymenuVC
+    self.dailyMenuVC.dailyMenu = dailyMenu;
+    
+    [self addChildViewController: self.dailyMenuVC];
+    self.dailyMenuVC.view.frame = self.view.frame;
+    [self.DailyMenuViewContainer addSubview:self.dailyMenuVC.view];
+    [self.dailyMenuVC didMoveToParentViewController:self];
 }
 
 - (void)done:(UHDMensa *)mensa {
@@ -50,12 +56,7 @@
     [self.mensaVC willMoveToParentViewController:nil];
     [self.mensaVC.view removeFromSuperview];
     [self.mensaVC removeFromParentViewController];
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    [self updateDailyMenuViewController];
 }
 
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
@@ -71,7 +72,7 @@
     
     [self addChildViewController: self.mensaVC];
     self.mensaVC.view.frame = self.view.frame;
-    [self.view addSubview:self.mensaVC.view];
+    [self.MensaViewContainer addSubview:self.mensaVC.view];
     [self.mensaVC didMoveToParentViewController:self];
 }
 @end

@@ -12,6 +12,7 @@
 
 @interface UHDMainMensaViewController : UIViewController <UHDMensaViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *DailyMenuViewContainer;
+@property (weak, nonatomic) IBOutlet UIView *MensaViewContainer;
 @property (strong, nonatomic) UHDMensa *mensa;
 
 - (IBAction)mensaButtonPressed:(id)sender;
