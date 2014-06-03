@@ -7,7 +7,7 @@
 //
 
 #import "UHDMensaViewController.h"
-#import "UHDDailyMenuViewController.h"
+#import "UHDMainMensaViewController.h"
 #import "UHDLocation.h"
 #import "UHDMensa.h"
 #import "VIFetchedResultsControllerDataSource.h"
@@ -17,7 +17,6 @@
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
-
 @property (strong, nonatomic) NSArray *allMensen;
 @property (strong, nonatomic) UHDMensa *selectedMensa;
 
@@ -45,9 +44,9 @@
     UHDMensa *mensa = (UHDMensa *)self.fetchedResultsControllerDataSource.selectedItem;
     UHDDailyMenu *dailyMenu = [[mensa.menus sortedArrayUsingDescriptors:@[ [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES] ]] lastObject];
     
-    UHDDailyMenuViewController *dailyMenuVC = (UHDDailyMenuViewController *) segue.destinationViewController;
+    UHDMainMensaViewController *mainMensaVC = (UHDMainMensaViewController *) segue.destinationViewController;
 
-    dailyMenuVC.dailyMenu = dailyMenu;
+    mainMensaVC.dailyMenu = dailyMenu;
     
 }
 

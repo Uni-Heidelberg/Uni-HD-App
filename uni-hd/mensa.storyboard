@@ -30,7 +30,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="HbV-07-XuM" kind="push" id="BWr-Gm-1Wf"/>
+                                    <segue destination="T28-IL-f43" kind="push" id="cU3-Hh-EcT"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -45,17 +45,46 @@
             </objects>
             <point key="canvasLocation" x="493" y="-655"/>
         </scene>
+        <!--Main Mensa View Controller-->
+        <scene sceneID="zPL-mK-3wf">
+            <objects>
+                <viewController id="T28-IL-f43" customClass="UHDMainMensaViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Kne-O9-Op3"/>
+                        <viewControllerLayoutGuide type="bottom" id="JIh-mA-MJy"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="oAQ-Tf-ZHf">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ph0-vT-uVD">
+                                <rect key="frame" x="0.0" y="145" width="320" height="423"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="1QL-hS-OkE"/>
+                    <connections>
+                        <outlet property="DailyMenuViewContainer" destination="ph0-vT-uVD" id="wz1-PW-ewc"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0fz-tF-PBU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="955" y="-655"/>
+        </scene>
         <!--Daily Menu View Controller-->
         <scene sceneID="HZC-78-YNv">
             <objects>
-                <tableViewController id="HbV-07-XuM" customClass="UHDDailyMenuViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="DailyMenuViewController" id="HbV-07-XuM" customClass="UHDDailyMenuViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="103" sectionHeaderHeight="22" sectionFooterHeight="22" id="7wG-hp-PG0">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="mealCell" rowHeight="103" id="gvr-BU-sJs" customClass="UHDMealCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="103"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="103"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gvr-BU-sJs" id="dfL-jG-kOQ">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="102"/>
@@ -99,7 +128,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ld-xY-dQ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="933" y="-655"/>
+            <point key="canvasLocation" x="1418" y="-655"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="QfR-FS-2QS">
