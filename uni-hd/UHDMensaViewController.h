@@ -8,9 +8,19 @@
 
 @import Foundation;
 @import UIKit;
+#import "UHDDailyMenuViewController.h"
 
-@interface UHDMensaViewController : UITableViewController <UIActionSheetDelegate>
 
+@protocol UHDMensaViewControllerDelegate <NSObject>
+-(void) done:(UHDMensa *)mensa;
+@end
+
+@interface UHDMensaViewController : UITableViewController <UIActionSheetDelegate>{
+    id delegate;
+}
+
+@property (nonatomic, assign) id <UHDMensaViewControllerDelegate> delegate;
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+- (IBAction)buttonPressed:(id)sender;
 
 @end

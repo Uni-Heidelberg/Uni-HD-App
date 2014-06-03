@@ -7,11 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UHDDailyMenu.h"
+#import "UHDMensa.h"
+#import "UHDMensaViewController.h"
 
-@interface UHDMainMensaViewController : UIViewController
+@interface UHDMainMensaViewController : UIViewController <UHDMensaViewControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIView *DailyMenuViewContainer;
-@property (strong, nonatomic) UHDDailyMenu *dailyMenu;
+@property (strong, nonatomic) UHDMensa *mensa;
 
+- (IBAction)mensaButtonPressed:(id)sender;
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end

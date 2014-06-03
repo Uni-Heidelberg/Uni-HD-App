@@ -7,14 +7,14 @@
         <!--Mensa View Controller - Wähle deine Mensa-->
         <scene sceneID="b7l-Wt-6l0">
             <objects>
-                <tableViewController id="otg-ia-fKW" customClass="UHDMensaViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MensaViewController" id="otg-ia-fKW" customClass="UHDMensaViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="22" sectionFooterHeight="22" id="5gi-9y-4Hr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="mensaCell" textLabel="dX0-xR-X1h" rowHeight="100" style="IBUITableViewCellStyleDefault" id="1Hx-W2-Lgq" customClass="UHDMealCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="100"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="1Hx-W2-Lgq" id="0ej-4z-jcc">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="99"/>
@@ -27,11 +27,18 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sgZ-Tf-8UV">
+                                            <rect key="frame" x="120" y="35" width="46" height="30"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <state key="normal" title="Button">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="buttonPressed:" destination="otg-ia-fKW" eventType="touchUpInside" id="3Wy-iO-w50"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="T28-IL-f43" kind="push" id="cU3-Hh-EcT"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -43,7 +50,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="p0c-4X-jtz" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="493" y="-655"/>
+            <point key="canvasLocation" x="969" y="-1356"/>
         </scene>
         <!--Main Mensa View Controller-->
         <scene sceneID="zPL-mK-3wf">
@@ -73,7 +80,21 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="1QL-hS-OkE"/>
+                    <navigationItem key="navigationItem" id="1QL-hS-OkE">
+                        <barButtonItem key="leftBarButtonItem" style="plain" id="Mc5-lR-iNZ">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lKl-34-mGH">
+                                <rect key="frame" x="16" y="5" width="71" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <state key="normal" title="Mensa">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="mensaButtonPressed:" destination="T28-IL-f43" eventType="touchUpInside" id="Bz5-rD-KAU"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="DailyMenuViewContainer" destination="ph0-vT-uVD" id="wz1-PW-ewc"/>
                     </connections>
@@ -146,12 +167,12 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="otg-ia-fKW" kind="relationship" relationship="rootViewController" id="B3J-o7-8QY"/>
+                        <segue destination="T28-IL-f43" kind="relationship" relationship="rootViewController" id="oNn-Cl-2f5"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="etp-1W-QdO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-48" y="-655"/>
+            <point key="canvasLocation" x="276" y="-655"/>
         </scene>
     </scenes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">

@@ -7,10 +7,17 @@
 //
 
 #import "UHDMainMensaViewController.h"
+#import "UHDMensaViewController.h"
 #import "UHDDailyMenuViewController.h"
+#import "UHDMensa.h"
+#import "VIFetchedResultsControllerDataSource.h"
 
 
 @interface UHDMainMensaViewController ()
+
+@property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) UHDMensaViewController *mensaVC;
 
 @end
 
@@ -22,10 +29,27 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     UHDDailyMenuViewController *dailyMenuVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DailyMenuViewController"];
-    dailyMenuVC.dailyMenu = self.dailyMenu;
+    //get model Data
+    
+    if (self.mensa==nil) {
+        [self mensaButtonPressed:self];    }
+    else {
+        
+    UHDDailyMenu *dailyMenu = [[self.mensa.menus sortedArrayUsingDescriptors:@[ [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES] ]] lastObject];
+    dailyMenuVC.dailyMenu = dailyMenu;
+    //pass model data and create dailymenuVC
+    dailyMenuVC.dailyMenu = dailyMenu;
     [self addChildViewController:dailyMenuVC];
     [self.DailyMenuViewContainer addSubview:dailyMenuVC.view];
+    }
+    
+}
 
+- (void)done:(UHDMensa *)mensa {
+    self.mensa = mensa;
+    [self.mensaVC willMoveToParentViewController:nil];
+    [self.mensaVC.view removeFromSuperview];
+    [self.mensaVC removeFromParentViewController];
 }
 
 - (void)didReceiveMemoryWarning
@@ -34,15 +58,20 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    _managedObjectContext = managedObjectContext;
 }
-*/
 
+- (IBAction)mensaButtonPressed:(id)sender {
+    self.mensaVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MensaViewController"];
+    self.mensaVC.delegate = self;
+    self.mensaVC.managedObjectContext = self.managedObjectContext;
+    
+    
+    [self addChildViewController: self.mensaVC];
+    self.mensaVC.view.frame = self.view.frame;
+    [self.view addSubview:self.mensaVC.view];
+    [self.mensaVC didMoveToParentViewController:self];
+}
 @end

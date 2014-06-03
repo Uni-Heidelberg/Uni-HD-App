@@ -24,10 +24,19 @@
 
 
 @implementation UHDMensaViewController
+@synthesize delegate = _delegate;
 
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     _managedObjectContext = managedObjectContext;
+}
+
+- (IBAction)buttonPressed:(id)sender {
+    
+  //Dismiss self and give chosen mensa to parent
+
+    UHDMensa *mensa = (UHDMensa *)self.fetchedResultsControllerDataSource.selectedItem;
+    [self.delegate done:mensa];
 }
 
 - (void)viewDidLoad
@@ -39,16 +48,7 @@
     
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    UHDMensa *mensa = (UHDMensa *)self.fetchedResultsControllerDataSource.selectedItem;
-    UHDDailyMenu *dailyMenu = [[mensa.menus sortedArrayUsingDescriptors:@[ [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES] ]] lastObject];
-    
-    UHDMainMensaViewController *mainMensaVC = (UHDMainMensaViewController *) segue.destinationViewController;
 
-    mainMensaVC.dailyMenu = dailyMenu;
-    
-}
 
 - (VIFetchedResultsControllerDataSource *)fetchedResultsControllerDataSource {
     if (!_fetchedResultsControllerDataSource) {
