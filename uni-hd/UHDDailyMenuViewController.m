@@ -57,11 +57,11 @@
     if (!_fetchedResultsControllerDataSource) {
         
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMeal entityName]];
-        fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
+        fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"section.remoteObjectId" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
         fetchRequest.predicate = [NSPredicate predicateWithFormat:@"menu == %@", self.dailyMenu];
         
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.dailyMenu.managedObjectContext
-            sectionNameKeyPath:nil cacheName:nil];
+            sectionNameKeyPath:@"section.title" cacheName:nil];
         
         VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, id item) {
             [(UHDMealCell *)cell configureForMeal:(UHDMeal *)item];

@@ -64,24 +64,24 @@
         <!--Main Mensa View Controller-->
         <scene sceneID="zPL-mK-3wf">
             <objects>
-                <viewController id="T28-IL-f43" customClass="UHDMainMensaViewController" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="T28-IL-f43" customClass="UHDMainMensaViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Kne-O9-Op3"/>
                         <viewControllerLayoutGuide type="bottom" id="JIh-mA-MJy"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="oAQ-Tf-ZHf">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <containerView appearanceType="aqua" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kt9-P5-ewq">
-                                <rect key="frame" x="0.0" y="124" width="320" height="444"/>
+                            <containerView appearanceType="aqua" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kt9-P5-ewq">
+                                <rect key="frame" x="0.0" y="124" width="320" height="380"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="HbV-07-XuM" kind="embed" identifier="embedDailyMenu" id="cf0-9l-U5S"/>
                                 </connections>
                             </containerView>
-                            <view appearanceType="aqua" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1rv-zu-E3e">
+                            <view appearanceType="aqua" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1rv-zu-E3e">
                                 <rect key="frame" x="0.0" y="64" width="320" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -101,6 +101,7 @@
                             <constraint firstAttribute="trailing" secondItem="1rv-zu-E3e" secondAttribute="trailing" id="wxt-pP-VV8"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
                     <navigationItem key="navigationItem" id="1QL-hS-OkE">
                         <barButtonItem key="leftBarButtonItem" style="plain" id="Mc5-lR-iNZ">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="lKl-34-mGH">
@@ -126,7 +127,7 @@
             <objects>
                 <tableViewController storyboardIdentifier="DailyMenuViewController" id="HbV-07-XuM" customClass="UHDDailyMenuViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="103" sectionHeaderHeight="22" sectionFooterHeight="22" id="7wG-hp-PG0">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="444"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="380"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
