@@ -57,6 +57,10 @@
     
     UHDMensaSection *sectionItem = [UHDMensaSection insertNewObjectIntoContext:managedObjectContext];
     sectionItem.title = @"Section A";
+    
+    UHDMensaSection *sectionItem2 = [UHDMensaSection insertNewObjectIntoContext:managedObjectContext];
+    sectionItem2.title = @"Section B";
+    
     [mensaItem.mutableSections addObject:sectionItem];
     
     //Create DailyMenu
@@ -72,8 +76,22 @@
     [dailyMenuItem.mutableMeals addObject:mealItem];
     mealItem.title = @"Chefsalat mit Ei";
     mealItem.price = @"2,15 €";
+    mealItem.section = sectionItem;
     
+    UHDMeal *mealItem4 = [UHDMeal insertNewObjectIntoContext:managedObjectContext];
+    
+    [dailyMenuItem.mutableMeals addObject:mealItem4];
+    mealItem4.title = @"Chefsalat mit Ei und Käse";
+    mealItem4.price = @"2,15 €";
+    mealItem4.section = sectionItem2;
 	
+    UHDMeal *mealItem5 = [UHDMeal insertNewObjectIntoContext:managedObjectContext];
+    
+    [dailyMenuItem.mutableMeals addObject:mealItem5];
+    mealItem5.title = @"Chefsalat mit Ei und Käse und Soße";
+    mealItem5.price = @"2,15 €";
+    mealItem5.section = sectionItem;
+    
     //SECOND
     //Create Mensa Object
     
@@ -90,8 +108,8 @@
     
     //Create Sections for Mensa
     
-    UHDMensaSection *sectionItem2 = [UHDMensaSection insertNewObjectIntoContext:managedObjectContext];
-    sectionItem2.title = @"Section A";
+//    UHDMensaSection *sectionItem2 = [UHDMensaSection insertNewObjectIntoContext:managedObjectContext];
+//    sectionItem2.title = @"Section B";
     [mensaItem2.mutableSections addObject:sectionItem2];
     
     //Create DailyMenu
@@ -107,7 +125,7 @@
     [dailyMenuItem2.mutableMeals addObject:mealItem2];
     mealItem2.title = @"Texashacksteak";
     mealItem2.price = @"1,70 €";
-
+    mealItem2.section = sectionItem2;
     
     //THIRD
     //Create Mensa Object
@@ -126,7 +144,7 @@
     //Create Sections for Mensa
     
     UHDMensaSection *sectionItem3 = [UHDMensaSection insertNewObjectIntoContext:managedObjectContext];
-    sectionItem3.title = @"Section A";
+    sectionItem3.title = @"Section C";
     [mensaItem3.mutableSections addObject:sectionItem3];
     
     //Create DailyMenu
@@ -142,7 +160,8 @@
     [dailyMenuItem3.mutableMeals addObject:mealItem3];
     mealItem3.title = @"Spaghetti Bolognese";
     mealItem3.price = @"2,15 €";
-    
+    mealItem3.section = sectionItem3;
+
     
     [managedObjectContext saveToPersistentStore:NULL];
     
