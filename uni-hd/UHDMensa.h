@@ -6,12 +6,10 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
-
+#import "UHDRemoteManagedObject.h"
 @class UHDDailyMenu, UHDLocation;
 
-@interface UHDMensa : NSManagedObject
+@interface UHDMensa : UHDRemoteManagedObject
 
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) UHDLocation *location;

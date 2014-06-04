@@ -6,12 +6,11 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-@import Foundation;
-@import CoreData;
+#import "UHDRemoteManagedObject.h"
 @class UHDNewsCategory;
 
 
-@interface UHDNewsSource : NSManagedObject
+@interface UHDNewsSource : UHDRemoteManagedObject
 
 @property (nonatomic) BOOL subscribed;
 @property (nonatomic, retain) NSString *title;

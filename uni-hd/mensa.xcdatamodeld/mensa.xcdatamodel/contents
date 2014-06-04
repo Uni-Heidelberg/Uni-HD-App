@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5063" systemVersion="13C64" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="14A238x" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="UHDDailyMenu" representedClassName="UHDDailyMenu" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="meals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDMeal" inverseName="menu" inverseEntity="UHDMeal" syncable="YES"/>
         <relationship name="mensa" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDMensa" inverseName="menus" inverseEntity="UHDMensa" syncable="YES"/>
     </entity>
@@ -12,26 +13,29 @@
     </entity>
     <entity name="UHDMeal" representedClassName="UHDMeal" syncable="YES">
         <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="menu" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDDailyMenu" inverseName="meals" inverseEntity="UHDDailyMenu" syncable="YES"/>
         <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDMensaSection" inverseName="meals" inverseEntity="UHDMensaSection" syncable="YES"/>
     </entity>
     <entity name="UHDMensa" representedClassName="UHDMensa" syncable="YES">
+        <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UHDLocation" inverseName="mensa" inverseEntity="UHDLocation" syncable="YES"/>
         <relationship name="menus" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="UHDDailyMenu" inverseName="mensa" inverseEntity="UHDDailyMenu" syncable="YES"/>
         <relationship name="sections" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDMensaSection" inverseName="mensa" inverseEntity="UHDMensaSection" syncable="YES"/>
     </entity>
     <entity name="UHDMensaSection" representedClassName="UHDMensaSection" syncable="YES">
+        <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="meals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDMeal" inverseName="section" inverseEntity="UHDMeal" syncable="YES"/>
         <relationship name="mensa" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDMensa" inverseName="sections" inverseEntity="UHDMensa" syncable="YES"/>
     </entity>
     <elements>
-        <element name="UHDDailyMenu" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="UHDLocation" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="UHDMeal" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="UHDMensa" positionX="0" positionY="0" width="0" height="0"/>
-        <element name="UHDMensaSection" positionX="0" positionY="0" width="0" height="0"/>
+        <element name="UHDDailyMenu" positionX="0" positionY="0" width="128" height="103"/>
+        <element name="UHDLocation" positionX="0" positionY="0" width="128" height="88"/>
+        <element name="UHDMeal" positionX="0" positionY="0" width="128" height="118"/>
+        <element name="UHDMensa" positionX="0" positionY="0" width="128" height="118"/>
+        <element name="UHDMensaSection" positionX="0" positionY="0" width="128" height="103"/>
     </elements>
 </model>

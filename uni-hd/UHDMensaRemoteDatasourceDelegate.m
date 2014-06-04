@@ -44,6 +44,7 @@
     
     UHDMensa *mensaItem = [UHDMensa insertNewObjectIntoContext:managedObjectContext];
     mensaItem.title = @"Marstall";
+    mensaItem.remoteObjectId = 0;
     
     //Create Location for Mensa
     
@@ -78,6 +79,7 @@
     
     UHDMensa *mensaItem2 = [UHDMensa insertNewObjectIntoContext:managedObjectContext];
     mensaItem2.title = @"Zentralmensa";
+    mensaItem2.remoteObjectId = 1;
     
     //Create Location for Mensa
     
@@ -112,6 +114,7 @@
     
     UHDMensa *mensaItem3 = [UHDMensa insertNewObjectIntoContext:managedObjectContext];
     mensaItem3.title = @"Triplex-Mensa";
+    mensaItem3.remoteObjectId = 2;
     
     //Create Location for Mensa
     

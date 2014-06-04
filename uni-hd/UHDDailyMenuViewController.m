@@ -17,32 +17,40 @@
 
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 
+- (void)configureForMenu:(UHDDailyMenu *)dailyMenu;
+
 @end
+
 
 @implementation UHDDailyMenuViewController
 
-
-- (void)configureView
-{
-    self.title = self.dailyMenu.mensa.title;
-    [self.tableView reloadData];
-}
 - (void)setDailyMenu:(UHDDailyMenu *)dailyMenu
 {
     if (_dailyMenu == dailyMenu) return;
     _dailyMenu = dailyMenu;
-    [self configureView];
+    [self configureForMenu:dailyMenu];
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self configureView];
+
     // redirect datasource
     self.tableView.dataSource = self.fetchedResultsControllerDataSource;
+
+    [self configureForMenu:self.dailyMenu];
 }
 
+- (void)configureForMenu:(UHDDailyMenu *)dailyMenu
+{
+    self.title = dailyMenu.mensa.title;
+    /*self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"menu == %@", dailyMenu];
+    [self.tableView reloadData];*/
+}
+
+
 - (VIFetchedResultsControllerDataSource *)fetchedResultsControllerDataSource {
+    if (!self.dailyMenu) return nil;
     if (!_fetchedResultsControllerDataSource) {
         
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMeal entityName]];

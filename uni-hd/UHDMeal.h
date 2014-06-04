@@ -6,12 +6,11 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "UHDRemoteManagedObject.h"
 
 @class UHDDailyMenu, UHDMensaSection;
 
-@interface UHDMeal : NSManagedObject
+@interface UHDMeal : UHDRemoteManagedObject
 
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSString * price;

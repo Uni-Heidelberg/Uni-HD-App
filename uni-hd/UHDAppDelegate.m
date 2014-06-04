@@ -19,7 +19,7 @@
 
 // View Controllers
 #import "UHDNewsViewController.h"
-#import "UHDMensaViewController.h"
+#import "UHDMainMensaViewController.h"
 
 // Views
 #import "UIColor+UHDBrandColor.h"
@@ -73,9 +73,10 @@
     UIStoryboard *mensaStoryboard = [UIStoryboard storyboardWithName:@"mensa" bundle:nil];
     UINavigationController *mensaNavC = [mensaStoryboard instantiateInitialViewController];
     mensaNavC.tabBarItem.title = NSLocalizedString(@"Mensa", nil);
-    UHDMensaViewController *mensaVC = mensaNavC.viewControllers[0];
-    mensaVC.managedObjectContext = self.persistentStack.managedObjectContext;
-    
+    UHDMainMensaViewController *mainMensaVC = mensaNavC.viewControllers[0];
+    mainMensaVC.managedObjectContext = self.persistentStack.managedObjectContext;
+
+
     // create and populate tab bar controller
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
     tabBarController.viewControllers = @[mensaNavC, newsNavC];
