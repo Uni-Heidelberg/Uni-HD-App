@@ -15,7 +15,7 @@
 @property (nonatomic, retain) NSDate *date;
 @property (nonatomic, retain) NSString *abstract;
 @property (nonatomic) BOOL read;
-@property (nonatomic, retain) NSString *url;
+@property (nonatomic, retain) NSURL *url;
 @property (nonatomic, retain) NSData *thumbImageData;
 @property (nonatomic, retain) UHDNewsSource *source;
 

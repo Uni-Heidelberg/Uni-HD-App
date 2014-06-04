@@ -27,6 +27,7 @@
 - (void)configureForSource:(UHDNewsSource *)source
 {
     self.titleLabel.text = source.title;
+    self.iconImageView.image = source.thumbIcon;
 
     [self.source removeObserver:self forKeyPath:@"subscribed"];
     self.source = source;

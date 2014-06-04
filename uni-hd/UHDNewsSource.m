@@ -12,13 +12,26 @@
 
 @dynamic subscribed;
 @dynamic title;
-@dynamic color;
+@dynamic thumbIconData;
 @dynamic newsItems;
 @dynamic category;
 
 - (NSMutableSet *)mutableNewsItems
 {
     return [self mutableSetValueForKey:@"newsItems"];
+}
+
+#pragma mark - Convenience accessors
+
+- (UIImage *)thumbIcon
+{
+    // TODO: cache in property, but figure out correct way to overwrite core data setter method first
+    return [UIImage imageWithData:self.thumbIconData];
+}
+
+- (void)setThumbIcon:(UIImage *)thumbIcon
+{
+    self.thumbIconData = UIImagePNGRepresentation(thumbIcon);
 }
 
 @end
