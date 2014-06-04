@@ -21,6 +21,8 @@
 @property (strong, nonatomic) NSArray *allMensen;
 @property (strong, nonatomic) UHDMensa *selectedMensa;
 
+
+
 @end
 
 
@@ -104,6 +106,17 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
     
     self.selectedMensa = self.allMensen[buttonIndex];
 }
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UHDMensa *mensa = self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath;
+    [self.delegate selectMense:mensa];
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+
+
+
 
 
 

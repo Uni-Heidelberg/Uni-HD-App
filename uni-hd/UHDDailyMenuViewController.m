@@ -64,5 +64,10 @@
     return _fetchedResultsControllerDataSource;
 }
 
+- (void)selectMense:(UHDMensa *)mensa
+{
+    
+}
+
 
 @end

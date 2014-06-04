@@ -8,9 +8,10 @@
 
 @import Foundation;
 @import UIKit;
+#import "UHDSelectMensaDelegateProtocol.h"
 
 @interface UHDMensaViewController : UITableViewController <UIActionSheetDelegate>
-
+@property (weak, nonatomic) id<UHDSelectMensaDelegateProtocol> delegate;
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end
