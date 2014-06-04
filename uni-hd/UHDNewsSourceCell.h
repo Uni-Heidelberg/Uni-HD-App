@@ -14,6 +14,7 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UISwitch *subscribedSwitch;
+@property (strong, nonatomic) IBOutlet UIImageView *iconImageView;
 
 @property (strong, nonatomic) UHDNewsSource *source;
 

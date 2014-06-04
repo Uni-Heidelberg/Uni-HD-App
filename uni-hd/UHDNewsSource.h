@@ -15,10 +15,13 @@
 
 @property (nonatomic) BOOL subscribed;
 @property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) NSString *color;
+@property (nonatomic, retain) NSData *thumbIconData;
 @property (nonatomic, retain) NSSet *newsItems;
 @property (nonatomic, retain) UHDNewsCategory *category;
 
 - (NSMutableSet *)mutableNewsItems;
+
+- (UIImage *)thumbIcon;
+- (void)setThumbIcon:(UIImage *)thumbIcon;
 
 @end

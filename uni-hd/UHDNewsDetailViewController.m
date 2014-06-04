@@ -24,8 +24,7 @@
     self.navigationItem.title = self.newsItem.title;
     
     // Show URL in WebView
-    NSURL *url = [NSURL URLWithString:self.newsItem.url];
-    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
+    NSURLRequest *requestObj = [NSURLRequest requestWithURL:self.newsItem.url];
     [self.newsWebView loadRequest:requestObj];
     
 }

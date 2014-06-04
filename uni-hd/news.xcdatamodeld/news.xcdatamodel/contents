@@ -11,23 +11,23 @@
         <attribute name="sourceID" optional="YES" transient="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="thumbImageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="url" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="source" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDNewsSource" inverseName="newItems" inverseEntity="UHDNewsSource" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <relationship name="source" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDNewsSource" inverseName="newsItems" inverseEntity="UHDNewsSource" syncable="YES"/>
     </entity>
     <entity name="UHDNewsSource" representedClassName="UHDNewsSource" parentEntity="UHDRemoteManagedObject" syncable="YES">
         <attribute name="categoryID" optional="YES" transient="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="subscribed" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="thumbIconData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDNewsCategory" inverseName="sources" inverseEntity="UHDNewsCategory" syncable="YES"/>
-        <relationship name="newItems" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="UHDNewsItem" inverseName="source" inverseEntity="UHDNewsItem" syncable="YES"/>
+        <relationship name="newsItems" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="UHDNewsItem" inverseName="source" inverseEntity="UHDNewsItem" syncable="YES"/>
     </entity>
     <entity name="UHDRemoteManagedObject" representedClassName="UHDRemoteManagedObject" isAbstract="YES" syncable="YES">
         <attribute name="id" optional="YES" attributeType="Integer 16" syncable="YES"/>
     </entity>
     <elements>
         <element name="UHDNewsCategory" positionX="180" positionY="63" width="128" height="73"/>
-        <element name="UHDNewsItem" positionX="0" positionY="0" width="128" height="165"/>
+        <element name="UHDNewsItem" positionX="0" positionY="0" width="128" height="163"/>
         <element name="UHDNewsSource" positionX="358" positionY="45" width="128" height="133"/>
         <element name="UHDRemoteManagedObject" positionX="160" positionY="-99" width="128" height="58"/>
     </elements>
