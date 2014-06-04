@@ -7,19 +7,21 @@
 //
 
 #import "UHDMensaViewController.h"
-#import "UHDDailyMenuViewController.h"
-#import "UHDLocation.h"
-#import "UHDMensa.h"
+
+// Table View Datasource
 #import "VIFetchedResultsControllerDataSource.h"
+
+// View Controller
+#import "UHDMainMensaViewController.h"
+
+// Model
+#import "UHDMensa.h"
 
 
 @interface UHDMensaViewController ()
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
-
-@property (strong, nonatomic) NSArray *allMensen;
-@property (strong, nonatomic) UHDMensa *selectedMensa;
 
 @end
 
@@ -34,22 +36,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
+    
     // redirect datasource
     self.tableView.dataSource = self.fetchedResultsControllerDataSource;
     
 }
 
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    UHDMensa *mensa = (UHDMensa *)self.fetchedResultsControllerDataSource.selectedItem;
-    UHDDailyMenu *dailyMenu = [[mensa.menus sortedArrayUsingDescriptors:@[ [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES] ]] lastObject];
-    
-    UHDDailyMenuViewController *dailyMenuVC = (UHDDailyMenuViewController *) segue.destinationViewController;
 
-    dailyMenuVC.dailyMenu = dailyMenu;
-    
+#pragma mark - User Interaction
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [[NSUserDefaults standardUserDefaults] setObject:@([(UHDMensa *)self.fetchedResultsControllerDataSource.selectedItem remoteObjectId]) forKey:UHDUserDefaultsKeySelectedMensaId];
 }
+
+#pragma mark - Table View Datasource
 
 - (VIFetchedResultsControllerDataSource *)fetchedResultsControllerDataSource {
     if (!_fetchedResultsControllerDataSource) {
@@ -71,41 +72,5 @@
     }
     return _fetchedResultsControllerDataSource;
 }
-
-- (NSArray *)allMensen
-{
-    if (!_allMensen) {
-        NSFetchRequest *request = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
-        _allMensen = [self.managedObjectContext executeFetchRequest:request error:NULL];
-    }
-    
-    return _allMensen;
-}
-
-
-- (IBAction)showMensaSelection:(id)sender {
-    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Wähle deine Mensa"
-                                                             delegate:self
-                                                    cancelButtonTitle:nil
-                                               destructiveButtonTitle:nil
-                                                    otherButtonTitles:nil];
-    NSArray *mensen = [self allMensen];
-    for (UHDMensa *mensa in mensen) {
-        [actionSheet addButtonWithTitle:mensa.title];
-    }
-    actionSheet.cancelButtonIndex = [actionSheet addButtonWithTitle:@"schließen"];
-    [actionSheet showFromTabBar:self.tabBarController.tabBar];
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet
-clickedButtonAtIndex:(NSInteger)buttonIndex
-{
-    if ([self.allMensen count] <= buttonIndex) return;
-    
-    self.selectedMensa = self.allMensen[buttonIndex];
-}
-
-
-
 
 @end

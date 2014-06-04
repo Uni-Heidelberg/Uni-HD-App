@@ -6,12 +6,11 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <CoreData/CoreData.h>
+#import "UHDRemoteManagedObject.h"
 
 @class UHDMeal, UHDMensa;
 
-@interface UHDMensaSection : NSManagedObject
+@interface UHDMensaSection : UHDRemoteManagedObject
 
 @property (nonatomic, retain) NSString * title;
 @property (nonatomic, retain) NSSet *meals;

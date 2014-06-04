@@ -8,10 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "UHDDailyMenu.h"
+#import "UHDSelectMensaDelegateProtocol.h"
 
 @interface UHDDailyMenuViewController : UITableViewController
-
-
 
 @property (strong, nonatomic) UHDDailyMenu *dailyMenu;
 
