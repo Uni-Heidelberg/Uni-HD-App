@@ -6,9 +6,9 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-@import CoreData;
+#import "UHDRemoteManagedObject.h"
 
-@interface UHDNewsCategory : NSManagedObject
+@interface UHDNewsCategory : UHDRemoteManagedObject
 
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSSet *sources;

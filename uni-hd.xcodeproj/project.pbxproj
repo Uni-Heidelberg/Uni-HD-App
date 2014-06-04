@@ -439,10 +439,10 @@
 			children = (
 				DC602445193E23A500B06BF2 /* UHDMainMensaViewController.h */,
 				DC602446193E23A500B06BF2 /* UHDMainMensaViewController.m */,
-				DC87FDF9191AA12D00019F32 /* UHDMensaViewController.h */,
-				DC87FDFA191AA12D00019F32 /* UHDMensaViewController.m */,
 				DC21B6E11923FDC300BAD26D /* UHDDailyMenuViewController.h */,
 				DC21B6E21923FDC300BAD26D /* UHDDailyMenuViewController.m */,
+				DC87FDF9191AA12D00019F32 /* UHDMensaViewController.h */,
+				DC87FDFA191AA12D00019F32 /* UHDMensaViewController.m */,
 				DC8DCC4D192CC74F0038C4BE /* UHDMealCell+ConfigureForItem.h */,
 				DC8DCC4E192CC74F0038C4BE /* UHDMealCell+ConfigureForItem.m */,
 			);

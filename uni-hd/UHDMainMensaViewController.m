@@ -7,72 +7,96 @@
 //
 
 #import "UHDMainMensaViewController.h"
+
+// View Controller
 #import "UHDMensaViewController.h"
 #import "UHDDailyMenuViewController.h"
+
+// Model
 #import "UHDMensa.h"
-#import "VIFetchedResultsControllerDataSource.h"
 
 
 @interface UHDMainMensaViewController ()
 
-@property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (strong, nonatomic) UHDMensaViewController *mensaVC;
 @property (strong, nonatomic) UHDDailyMenuViewController *dailyMenuVC;
+@property (strong, nonatomic) UHDMensa *mensa;
+
+- (void)configureForMensa:(UHDMensa *)mensa;
+
+- (IBAction)unwindToMainMensa:(UIStoryboardSegue *)segue;
+
 @end
 
 @implementation UHDMainMensaViewController
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
-    if (self.mensa==nil) {
-        [self mensaButtonPressed:self];    }
-    else {
-        [self updateDailyMenuViewController];
-
-    }
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsDidChange:) name:NSUserDefaultsDidChangeNotification object:[NSUserDefaults standardUserDefaults]];
     
-}
-- (void)updateDailyMenuViewController {
-    self.dailyMenuVC = [self.storyboard instantiateViewControllerWithIdentifier:@"DailyMenuViewController"];
-    //get model Data
-    UHDDailyMenu *dailyMenu = [[self.mensa.menus sortedArrayUsingDescriptors:@[ [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES] ]] lastObject];
-    self.dailyMenuVC.dailyMenu = dailyMenu;
-    //pass model data and create dailymenuVC
-    self.dailyMenuVC.dailyMenu = dailyMenu;
-    
-    [self addChildViewController: self.dailyMenuVC];
-    self.dailyMenuVC.view.frame = self.view.frame;
-    [self.DailyMenuViewContainer addSubview:self.dailyMenuVC.view];
-    [self.dailyMenuVC didMoveToParentViewController:self];
+    [self configureForMensa:self.mensa];
 }
 
-- (void)done:(UHDMensa *)mensa {
-    self.mensa = mensa;
-    [self.mensaVC willMoveToParentViewController:nil];
-    [self.mensaVC.view removeFromSuperview];
-    [self.mensaVC removeFromParentViewController];
-    [self updateDailyMenuViewController];
-}
-
-- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+- (void)viewDidAppear:(BOOL)animated
 {
-    _managedObjectContext = managedObjectContext;
+    [super viewDidAppear:animated];
+    
+    if (!self.mensa) {
+        [self performSegueWithIdentifier:@"showSelectMensa" sender:self];
+    }
 }
 
-- (IBAction)mensaButtonPressed:(id)sender {
-    self.mensaVC = [self.storyboard instantiateViewControllerWithIdentifier:@"MensaViewController"];
-    self.mensaVC.delegate = self;
-    self.mensaVC.managedObjectContext = self.managedObjectContext;
-    
-    
-    [self addChildViewController: self.mensaVC];
-    self.mensaVC.view.frame = self.view.frame;
-    [self.MensaViewContainer addSubview:self.mensaVC.view];
-    [self.mensaVC didMoveToParentViewController:self];
+- (void)setMensa:(UHDMensa *)mensa
+{
+    if (mensa==_mensa) return;
+    _mensa = mensa;
+    [self configureForMensa:mensa];
 }
+
+- (void)configureForMensa:(UHDMensa *)mensa
+{
+    self.title = mensa.title;
+    
+    UHDDailyMenu *dailyMenu = [[mensa.menus sortedArrayUsingDescriptors:@[ [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES] ]] lastObject];
+
+    self.dailyMenuVC.dailyMenu = dailyMenu;
+}
+
+
+#pragma mark - User Defaults Change Callback
+
+- (void)userDefaultsDidChange:(NSNotification *)notification
+{
+    NSNumber *mensaId = [[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeySelectedMensaId];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"remoteObjectId == %@", mensaId];
+    NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:NULL];
+    if (result.count > 0) {
+        self.mensa = result.firstObject;
+    } else {
+        [self.logger log:@"selected invalid mensa" forLevel:VILogLevelError];
+    }
+}
+
+
+
+#pragma mark - User Interaction
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"showSelectMensa"]) {
+        UHDMensaViewController *mensaVC = [segue.destinationViewController viewControllers][0];
+        mensaVC.managedObjectContext = self.managedObjectContext;
+    } else if ([segue.identifier isEqualToString:@"embedDailyMenuVC"]) {
+        self.dailyMenuVC = segue.destinationViewController;
+    }
+}
+
+- (void)unwindToMainMensa:(UIStoryboardSegue *)segue
+{
+    
+}
+
 @end

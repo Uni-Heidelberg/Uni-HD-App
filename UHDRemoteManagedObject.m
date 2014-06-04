@@ -11,6 +11,6 @@
 
 @implementation UHDRemoteManagedObject
 
-@dynamic id;
+@dynamic remoteObjectId;
 
 @end

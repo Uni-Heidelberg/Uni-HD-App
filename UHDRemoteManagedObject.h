@@ -12,6 +12,6 @@
 
 @interface UHDRemoteManagedObject : NSManagedObject
 
-@property (nonatomic, retain) NSNumber *id;
+@property (nonatomic) int16_t remoteObjectId;
 
 @end
