@@ -21,6 +21,7 @@
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) UHDDailyMenuViewController *dailyMenuVC;
 @property (strong, nonatomic) UHDMensa *mensa;
+@property (strong, nonatomic) UILabel *chooseMensaLabel;
 
 - (void)configureForMensa:(UHDMensa *)mensa;
 
@@ -44,12 +45,15 @@
     [super viewDidAppear:animated];
     
     if (!self.mensa) {
-        UILabel *chooseMensaLabel = [[UILabel alloc]initWithFrame:self.view.frame];
-        [self.view addSubview:chooseMensaLabel];
-        chooseMensaLabel.text = [NSString stringWithFormat:@"Bitte wähle zunächst eine Mensa"];
-        chooseMensaLabel.textAlignment = NSTextAlignmentCenter;
-
+        self.chooseMensaLabel = [[UILabel alloc]initWithFrame:self.view.frame];
+        [self.view addSubview:self.chooseMensaLabel];
+        self.chooseMensaLabel.text = [NSString stringWithFormat:@"Bitte wähle zunächst eine Mensa"];
+        self.chooseMensaLabel.textAlignment = NSTextAlignmentCenter;
     }
+    else {
+            [self.chooseMensaLabel removeFromSuperview];
+    }
+    
 }
 
 - (void)setMensa:(UHDMensa *)mensa
