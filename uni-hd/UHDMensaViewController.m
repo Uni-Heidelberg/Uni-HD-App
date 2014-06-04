@@ -109,7 +109,7 @@ clickedButtonAtIndex:(NSInteger)buttonIndex
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UHDMensa *mensa = self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath;
+    UHDMensa *mensa = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
     [self.delegate selectMense:mensa];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
