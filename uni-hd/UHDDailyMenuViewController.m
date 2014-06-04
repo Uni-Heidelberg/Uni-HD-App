@@ -44,8 +44,11 @@
 - (void)configureForMenu:(UHDDailyMenu *)dailyMenu
 {
     self.title = dailyMenu.mensa.title;
-    /*self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"menu == %@", dailyMenu];
-    [self.tableView reloadData];*/
+    self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"menu == %@", dailyMenu];
+    [self.fetchedResultsControllerDataSource reloadData];
+    [self.tableView reloadData];
+
+
 }
 
 
@@ -57,10 +60,8 @@
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
         fetchRequest.predicate = [NSPredicate predicateWithFormat:@"menu == %@", self.dailyMenu];
         
-        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-                                                                                                   managedObjectContext:self.dailyMenu.managedObjectContext
-                                                                                                     sectionNameKeyPath:nil
-                                                                                                              cacheName:nil];
+        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.dailyMenu.managedObjectContext
+            sectionNameKeyPath:nil cacheName:nil];
         
         VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, id item) {
             [(UHDMealCell *)cell configureForMeal:(UHDMeal *)item];

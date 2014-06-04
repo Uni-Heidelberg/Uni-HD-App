@@ -89,7 +89,7 @@
     if ([segue.identifier isEqualToString:@"showSelectMensa"]) {
         UHDMensaViewController *mensaVC = [segue.destinationViewController viewControllers][0];
         mensaVC.managedObjectContext = self.managedObjectContext;
-    } else if ([segue.identifier isEqualToString:@"embedDailyMenuVC"]) {
+    } else if ([segue.identifier isEqualToString:@"embedDailyMenu"]) {
         self.dailyMenuVC = segue.destinationViewController;
     }
 }
