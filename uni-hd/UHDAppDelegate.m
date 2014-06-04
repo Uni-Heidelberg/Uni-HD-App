@@ -43,8 +43,6 @@
     
     // configure logging
     [VILogger defaultLogger].logLevel = VILogLevelDebug;
-    RKLogConfigureByName("RestKit", RKLogLevelDefault);
-    [VILogger loggerForClass:[UHDRemoteDatasource class]].logLevel = VILogLevelVerbose;
     
     
     // enable automatic network indicator display
@@ -53,9 +51,9 @@
     
     // setup remote datasources
     [self addRemoteDatasourceForKey:UHDRemoteDatasourceKeyNews baseURL:[NSURL URLWithString:UHDRemoteBaseURL] delegate:[[UHDNewsRemoteDatasourceDelegate alloc] init]];
-    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyNews] refresh];
+    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyNews] refreshWithCompletion:nil];
     [self addRemoteDatasourceForKey:UHDRemoteDatasourceKeyMensa baseURL:[NSURL URLWithString:UHDRemoteBaseURL] delegate:[[UHDMensaRemoteDatasourceDelegate alloc] init]];
-    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyMensa] refresh];
+    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyMensa] refreshWithCompletion:nil];
 
     
     // generate sample data
@@ -84,9 +82,15 @@
     
     // create and populate window
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.tintColor = [UIColor brandColor]; // set brand tint color TODO: move in category
+    self.window.tintColor = [UIColor brandColor];   // set brand tint color TODO: move in category
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];
+
+    // configure default navigation bar style and status bar style
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    [UINavigationBar appearance].barTintColor = [UIColor brandColor];
+    [UINavigationBar appearance].tintColor = [UIColor whiteColor];
+    [UINavigationBar appearance].titleTextAttributes = @{ NSForegroundColorAttributeName: [UIColor whiteColor] };
 
     return YES;
 }

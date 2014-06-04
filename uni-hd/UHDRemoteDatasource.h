@@ -17,7 +17,7 @@
 
 - (id)initWithPersistentStack:(UHDPersistentStack *)persistentStack remoteBaseURL:(NSURL *)baseURL;
 
-- (void)refresh;
+- (void)refreshWithCompletion:(void (^)(BOOL success, NSError *error))completion;
 
 - (NSArray *)allItems;
 - (void)generateSampleData;

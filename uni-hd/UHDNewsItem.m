@@ -16,7 +16,21 @@
 @dynamic abstract;
 @dynamic read;
 @dynamic url;
-@dynamic thumb;
+@dynamic thumbImageData;
 @dynamic source;
+
+
+#pragma mark - Convenience accessors
+
+- (UIImage *)thumbImage
+{
+    // TODO: cache in property, but figure out correct way to overwrite core data setter method first
+    return [UIImage imageWithData:self.thumbImageData];
+}
+
+- (void)setThumbImage:(UIImage *)thumbImage
+{
+    self.thumbImageData = UIImageJPEGRepresentation(thumbImage, 1);
+}
 
 @end

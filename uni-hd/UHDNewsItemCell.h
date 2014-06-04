@@ -12,8 +12,13 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *abstractLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *newsImage;
+@property (weak, nonatomic) IBOutlet UIImageView *newsImageView;
 @property (weak, nonatomic) IBOutlet UILabel *sourceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UIView *readBarView;
+
+// Auto layout constraints for NewsItemCells with or without image respectively
+@property (strong, nonatomic) NSArray *layoutContraintsWithImage;
+@property (strong, nonatomic) NSArray *layoutContraintsWithoutImage;
 
 @end

@@ -11,30 +11,36 @@
 
 @implementation UHDNewsItemCell (ConfigureForItem)
 
+- (void)awakeFromNib
+{
+    self.readBarView.backgroundColor = [UIColor brandColor];
+}
+
 - (void)configureForItem:(UHDNewsItem *)item {
+    
+    // Configure text
     self.titleLabel.text = item.title;
     self.abstractLabel.text = item.abstract;
     self.sourceLabel.text = item.source.title;
     
+    // Configure date
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd.MM.yyyy"];
-    
+    dateFormatter.dateStyle = NSDateFormatterMediumStyle;
     self.dateLabel.text = [dateFormatter stringFromDate:item.date];
     
-    UIImage* image = [UIImage imageWithData:item.thumb];
+    // Configure read indicator
+    self.readBarView.hidden = item.read;
+    self.backgroundColor = item.read ? [UIColor whiteColor] : [UIColor colorWithWhite:0.97 alpha:1];
     
-    if (image != nil) {
-        [self.titleLabel.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.newsImage attribute:NSLayoutAttributeTrailing multiplier:1 constant:8]];
-        
-        [self.titleLabel.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.newsImage attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.titleLabel attribute:NSLayoutAttributeWidth multiplier:0.5 constant:0]];
-        
-        self.newsImage.image = image;
-        }
-    else {
-        [self.newsImage removeFromSuperview];
-        
-        [self.titleLabel.superview addConstraint:[NSLayoutConstraint constraintWithItem:self.titleLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.titleLabel.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:8]];
-        }
-    }
+    // Configure Image
+    UIImage *image = item.thumbImage;
+    self.newsImageView.image = image;
+    self.newsImageView.hidden = image==nil;
+    [self.contentView removeConstraints:image==nil ? self.layoutContraintsWithImage : self.layoutContraintsWithoutImage];
+    [self.contentView addConstraints:image==nil ? self.layoutContraintsWithoutImage : self.layoutContraintsWithImage];
+    
+    // trigger layout update to make multiline labels aware of changed text lengths
+    [self setNeedsLayout];
+}
 
 @end

@@ -8,25 +8,27 @@
 
 #import "UHDNewsItemCell.h"
 
-/*
-@implementation UILabel (Multiline)
-
-- (void)setBounds:(CGRect)bounds
-{
-    [super setBounds:bounds];
-    if (bounds.size.width != self.preferredMaxLayoutWidth) {
-        self.preferredMaxLayoutWidth = self.bounds.size.width;
-    }
-}
-
-@end
-*/
 
 @implementation UHDNewsItemCell
-/*
-- (void)layoutSubviews {
-    [super layoutSubviews];
-}
-*/
-@end
 
+// Override getters to return the respective constraint
+
+- (NSArray *)layoutContraintsWithImage
+{
+    if (!_layoutContraintsWithImage) {
+        UIView *newsImageView = self.newsImageView;
+        UIView *abstractLabel = self.abstractLabel;
+        self.layoutContraintsWithImage = [NSLayoutConstraint constraintsWithVisualFormat:@"[newsImageView]-8-[abstractLabel]" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:NSDictionaryOfVariableBindings(newsImageView, abstractLabel)];
+    }
+    return _layoutContraintsWithImage;
+}
+
+- (NSArray *)layoutContraintsWithoutImage
+{
+    if (!_layoutContraintsWithoutImage) {
+        self.layoutContraintsWithoutImage = @[ [NSLayoutConstraint constraintWithItem:self.abstractLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.titleLabel attribute:NSLayoutAttributeLeading multiplier:1 constant:0] ];
+    }
+    return _layoutContraintsWithoutImage;
+}
+
+@end

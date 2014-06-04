@@ -8,7 +8,7 @@
 
 #import "UHDMeal.h"
 #import "UHDDailyMenu.h"
-#import "UHDSection.h"
+#import "UHDMensaSection.h"
 
 
 @implementation UHDMeal

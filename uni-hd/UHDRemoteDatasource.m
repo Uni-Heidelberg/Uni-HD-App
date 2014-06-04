@@ -43,11 +43,12 @@
     [self.delegate remoteDatasource:self setupObjectMappingForObjectManager:self.objectManager];
 }
 
-- (void)refresh
+- (void)refreshWithCompletion:(void (^)(BOOL success, NSError *error))completion
 {
     NSString *remoteRefreshPath = [self.delegate remoteRefreshPathForRemoteDatasource:self];
     if (!remoteRefreshPath) {
         [self.logger log:@"Refresh Failed: remote refresh path not set" forLevel:VILogLevelError];
+        if (completion) completion(NO, nil); // TODO: present NSError instance
         return;
     }
     
@@ -55,8 +56,10 @@
     
     [self.objectManager getObjectsAtPath:remoteRefreshPath parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
         [self.logger log:@"Refresh successful" object:mappingResult forLevel:VILogLevelVerbose];
+        if (completion) completion(YES, nil);
     } failure:^(RKObjectRequestOperation *operation, NSError *error) {
         [self.logger log:@"Refresh failed" error:error];
+        if (completion) completion(NO, error);
     }];
 }
 

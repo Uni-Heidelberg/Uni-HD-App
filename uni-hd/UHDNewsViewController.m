@@ -30,6 +30,7 @@
 
 - (IBAction)unwindToNews:(UIStoryboardSegue *)segue;
 - (IBAction)makeSamplesButtonPressed:(id)sender;
+- (IBAction)refreshControlValueChanged:(id)sender;
 
 @end
 
@@ -59,11 +60,24 @@
     [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyNews] generateSampleData];
 }
 
+- (IBAction)refreshControlValueChanged:(UIRefreshControl *)sender
+{
+    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyNews] refreshWithCompletion:^(BOOL success, NSError *error) {
+        [sender endRefreshing];
+    }];
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"showNewsDetail"]) {
         UHDNewsDetailViewController *newsDetailVC = segue.destinationViewController;
-        newsDetailVC.newsItem = self.fetchedResultsControllerDataSource.selectedItem;
+        
+        // Mark item as read
+        UHDNewsItem *item = self.fetchedResultsControllerDataSource.selectedItem;
+        item.read = YES;
+        [self.managedObjectContext saveToPersistentStore:NULL];
+        
+        newsDetailVC.newsItem = item;
     } else if ([segue.identifier isEqualToString:@"showSources"]) {
         UHDNewsSourcesViewController *newsSourcesVC = [(UINavigationController *)segue.destinationViewController viewControllers][0];
         newsSourcesVC.managedObjectContext = self.managedObjectContext;

@@ -9,6 +9,7 @@
 #import "UHDNewsDetailViewController.h"
 #import "UHDNewsItem.h"
 
+
 @interface UHDNewsDetailViewController ()
 
 @property (strong, nonatomic) IBOutlet UIWebView *newsWebView;
@@ -31,7 +32,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do something.
 }
 
 @end
