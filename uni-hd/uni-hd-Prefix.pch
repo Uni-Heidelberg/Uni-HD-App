@@ -13,7 +13,7 @@
 
 #import "VILogger.h"
 
-#define UHDRemoteBaseURL @"http://0.0.0.0:3000/api"
+#define UHDRemoteBaseURL @"http://localhost:3000/api/CustomEndPoints/"
 
 #define UHDRemoteDatasourceKeyNews @"UHDRemoteDatasourceKeyNews"
 #define UHDRemoteDatasourceKeyMensa @"UHDRemoteDatasourceKeyMensa"
