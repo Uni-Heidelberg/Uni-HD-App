@@ -13,6 +13,8 @@
 @interface UHDNewsDetailViewController ()
 
 @property (strong, nonatomic) IBOutlet UIWebView *newsWebView;
+@property BOOL scalesPageToFit;
+
 
 @end
 
@@ -26,11 +28,20 @@
     // Show URL in WebView
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:self.newsItem.url];
     [self.newsWebView loadRequest:requestObj];
+    _newsWebView.scalesPageToFit = YES;
+   
     
 }
 
+
+
 - (void)viewDidLoad {
+    
+    
     [super viewDidLoad];
+    
+
+
 }
 
 @end
