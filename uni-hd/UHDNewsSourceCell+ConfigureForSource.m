@@ -32,6 +32,9 @@
     [self.source removeObserver:self forKeyPath:@"subscribed"];
     self.source = source;
     [self.source addObserver:self forKeyPath:@"subscribed" options:NSKeyValueObservingOptionInitial context:nil];
+    
+    // trigger layout update to make multiline labels aware of changed text lengths
+    [self setNeedsLayout];
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

@@ -47,9 +47,9 @@
     if (!_fetchedResultsControllerDataSource)
     {
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsSource entityName]];
-        fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"category.title" ascending:NO], [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO] ];
+        fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"category.title" ascending:NO], [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO], [NSSortDescriptor sortDescriptorWithKey:@"subscribed" ascending:NO]];
         
-        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"category.title" cacheName:nil];
         
         VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, id item) {
             [(UHDNewsSourceCell *)cell configureForSource:item];
