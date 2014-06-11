@@ -18,11 +18,23 @@
 #define COCOAPODS_VERSION_MINOR_ISO8601DateFormatterValueTransformer 6
 #define COCOAPODS_VERSION_PATCH_ISO8601DateFormatterValueTransformer 0
 
+// MCSwipeTableViewCell
+#define COCOAPODS_POD_AVAILABLE_MCSwipeTableViewCell
+#define COCOAPODS_VERSION_MAJOR_MCSwipeTableViewCell 2
+#define COCOAPODS_VERSION_MINOR_MCSwipeTableViewCell 1
+#define COCOAPODS_VERSION_PATCH_MCSwipeTableViewCell 0
+
 // RKValueTransformers
 #define COCOAPODS_POD_AVAILABLE_RKValueTransformers
 #define COCOAPODS_VERSION_MAJOR_RKValueTransformers 1
 #define COCOAPODS_VERSION_MINOR_RKValueTransformers 1
 #define COCOAPODS_VERSION_PATCH_RKValueTransformers 0
+
+// RMSwipeTableViewCell
+#define COCOAPODS_POD_AVAILABLE_RMSwipeTableViewCell
+#define COCOAPODS_VERSION_MAJOR_RMSwipeTableViewCell 0
+#define COCOAPODS_VERSION_MINOR_RMSwipeTableViewCell 6
+#define COCOAPODS_VERSION_PATCH_RMSwipeTableViewCell 0
 
 // RestKit
 #define COCOAPODS_POD_AVAILABLE_RestKit
@@ -77,12 +89,6 @@
 #define COCOAPODS_VERSION_MAJOR_SOCKit 1
 #define COCOAPODS_VERSION_MINOR_SOCKit 1
 #define COCOAPODS_VERSION_PATCH_SOCKit 0
-
-// SWTableViewCell
-#define COCOAPODS_POD_AVAILABLE_SWTableViewCell
-#define COCOAPODS_VERSION_MAJOR_SWTableViewCell 0
-#define COCOAPODS_VERSION_MINOR_SWTableViewCell 3
-#define COCOAPODS_VERSION_PATCH_SWTableViewCell 0
 
 // TransitionKit
 #define COCOAPODS_POD_AVAILABLE_TransitionKit
