@@ -27,12 +27,14 @@ PODS:
     - RestKit/Network
   - RKValueTransformers (1.1.0)
   - SOCKit (1.1)
+  - SWTableViewCell (0.3.0)
   - TransitionKit (2.1.0)
 
 DEPENDENCIES:
   - RestKit
   - RestKit/Search
   - RestKit/Testing
+  - SWTableViewCell
 
 SPEC CHECKSUMS:
   AFNetworking: 80c4e0652b08eb34e25b9c0ff3c82556fe5967b4
@@ -40,6 +42,7 @@ SPEC CHECKSUMS:
   RestKit: 0b5f1bbc43b81beba158262a1adae48ac062eb1e
   RKValueTransformers: b705e7b4651b9206b94600408462b74554bba969
   SOCKit: d8d0dd3688ae1026c12367570da8fa8e1a6980fb
+  SWTableViewCell: 1725f7607ce4c154264c18aeb78e4636b11b0b29
   TransitionKit: 6a6f3ddda38ae758778aa889dcb930e4f8d64edc
 
 COCOAPODS: 0.33.1
