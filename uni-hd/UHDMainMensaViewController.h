@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "UHDMensa.h"
 
 @interface UHDMainMensaViewController : UIViewController
 
-- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end

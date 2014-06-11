@@ -18,12 +18,11 @@
 
 @interface UHDMainMensaViewController ()
 
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) UHDDailyMenuViewController *dailyMenuVC;
 @property (strong, nonatomic) UHDMensa *mensa;
 @property (strong, nonatomic) UILabel *chooseMensaLabel;
 
-- (void)configureForMensa:(UHDMensa *)mensa;
+- (void)configureView;
 
 - (IBAction)unwindToMainMensa:(UIStoryboardSegue *)segue;
 
@@ -35,49 +34,37 @@
 {
     [super viewDidLoad];
     
+    [self loadSelectedMensa];
+    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsDidChange:) name:NSUserDefaultsDidChangeNotification object:[NSUserDefaults standardUserDefaults]];
     
-    [self configureForMensa:self.mensa];
+    [self configureView];
 }
 
-- (void)viewDidAppear:(BOOL)animated
+- (void)viewWillAppear:(BOOL)animated
 {
-    [super viewDidAppear:animated];
+    [super viewWillAppear:animated];
     
     if (!self.mensa) {
         self.chooseMensaLabel = [[UILabel alloc]initWithFrame:self.view.frame];
         [self.view addSubview:self.chooseMensaLabel];
         self.chooseMensaLabel.text = [NSString stringWithFormat:@"Bitte wähle zunächst eine Mensa"];
         self.chooseMensaLabel.textAlignment = NSTextAlignmentCenter;
-    }
-    else {
-            [self.chooseMensaLabel removeFromSuperview];
+    } else {
+        [self.chooseMensaLabel removeFromSuperview];
     }
     
 }
 
-- (void)setMensa:(UHDMensa *)mensa
+- (void)loadSelectedMensa
 {
-    if (mensa==_mensa) return;
-    _mensa = mensa;
-    [self configureForMensa:mensa];
-}
-
-- (void)configureForMensa:(UHDMensa *)mensa
-{
-    self.title = mensa.title;
+    [self.logger log:@"loading selected mensa from user defaults..." forLevel:VILogLevelVerbose];
     
-    UHDDailyMenu *dailyMenu = [[mensa.menus sortedArrayUsingDescriptors:@[ [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES] ]] lastObject];
-
-    self.dailyMenuVC.dailyMenu = dailyMenu;
-}
-
-
-#pragma mark - User Defaults Change Callback
-
-- (void)userDefaultsDidChange:(NSNotification *)notification
-{
     NSNumber *mensaId = [[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeySelectedMensaId];
+    if (!mensaId) {
+        [self.logger log:@"no mensa selected" forLevel:VILogLevelVerbose];
+        return;
+    }
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"remoteObjectId == %@", mensaId];
     NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:NULL];
@@ -88,6 +75,29 @@
     }
 }
 
+- (void)setMensa:(UHDMensa *)mensa
+{
+    if (mensa == _mensa) return;
+    _mensa = mensa;
+    [self configureView];
+}
+
+- (void)configureView
+{
+    self.title = self.mensa ? self.mensa.title : NSLocalizedString(@"No Mensa selected", nil);
+    
+    UHDDailyMenu *dailyMenu = [[self.mensa.menus sortedArrayUsingDescriptors:@[ [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES] ]] lastObject];
+
+    self.dailyMenuVC.dailyMenu = dailyMenu;
+}
+
+
+#pragma mark - User Defaults Change Callback
+
+- (void)userDefaultsDidChange:(NSNotification *)notification
+{
+    [self loadSelectedMensa];
+}
 
 
 #pragma mark - User Interaction

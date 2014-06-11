@@ -43,6 +43,7 @@
     
     // configure logging
     [VILogger defaultLogger].logLevel = VILogLevelDebug;
+    RKLogConfigureByName("RestKit", RKLogLevelOff);
     
     
     // enable automatic network indicator display
