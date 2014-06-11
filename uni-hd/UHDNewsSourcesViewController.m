@@ -19,7 +19,6 @@
 
 @interface UHDNewsSourcesViewController ()
 
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 
 @end
@@ -27,16 +26,23 @@
 
 @implementation UHDNewsSourcesViewController
 
-- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
-    _managedObjectContext = managedObjectContext;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     // redirect datasource
     self.tableView.dataSource = self.fetchedResultsControllerDataSource;
+}
+
+
+#pragma mark - User Interaction
+
+- (IBAction)refreshControlValueChanged:(UIRefreshControl *)sender
+{
+    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyNews] refreshWithCompletion:^(BOOL success, NSError *error) {
+        [sender endRefreshing];
+    }];
 }
 
 

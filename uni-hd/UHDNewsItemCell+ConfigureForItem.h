@@ -8,8 +8,6 @@
 
 #import "UHDNewsItemCell.h"
 #import "UHDNewsItem.h"
-#import "UIColor+UHDBrandColor.h"
-
 
 @interface UHDNewsItemCell (ConfigureForItem)
 

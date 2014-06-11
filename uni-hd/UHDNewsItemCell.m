@@ -11,6 +11,11 @@
 
 @implementation UHDNewsItemCell
 
+- (void)awakeFromNib
+{
+    self.readBarView.backgroundColor = [UIColor brandColor];
+}
+
 // Override getters to return the respective constraint
 
 - (NSArray *)layoutContraintsWithImage

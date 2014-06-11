@@ -21,9 +21,6 @@
 #import "UHDNewsViewController.h"
 #import "UHDMainMensaViewController.h"
 
-// Views
-#import "UIColor+UHDBrandColor.h"
-
 
 @interface UHDAppDelegate ()
 

@@ -8,7 +8,7 @@
 
 #import "UHDNewsSourceCell.h"
 #import "UHDNewsSource.h"
-#import "UIColor+UHDBrandColor.h"
+
 
 @interface UHDNewsSourceCell (ConfigureForSource)
 

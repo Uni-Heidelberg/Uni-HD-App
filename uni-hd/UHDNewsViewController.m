@@ -25,21 +25,15 @@
 
 @interface UHDNewsViewController ()
 
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 
 - (IBAction)unwindToNews:(UIStoryboardSegue *)segue;
-- (IBAction)makeSamplesButtonPressed:(id)sender;
 - (IBAction)refreshControlValueChanged:(id)sender;
 
 @end
 
-@implementation UHDNewsViewController
 
-- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
-    _managedObjectContext = managedObjectContext;
-}
+@implementation UHDNewsViewController
 
 - (void)viewDidLoad
 {
@@ -55,11 +49,6 @@
 
 #pragma mark - User Interaction
 
-- (IBAction)makeSamplesButtonPressed:(id)sender
-{
-    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyNews] generateSampleData];
-}
-
 - (IBAction)refreshControlValueChanged:(UIRefreshControl *)sender
 {
     [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyNews] refreshWithCompletion:^(BOOL success, NSError *error) {
@@ -70,6 +59,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"showNewsDetail"]) {
+        
         UHDNewsDetailViewController *newsDetailVC = segue.destinationViewController;
         
         // Mark item as read
@@ -78,9 +68,12 @@
         [self.managedObjectContext saveToPersistentStore:NULL];
         
         newsDetailVC.newsItem = item;
+        
     } else if ([segue.identifier isEqualToString:@"showSources"]) {
-        UHDNewsSourcesViewController *newsSourcesVC = [(UINavigationController *)segue.destinationViewController viewControllers][0];
+        
+        UHDNewsSourcesViewController *newsSourcesVC = (UHDNewsSourcesViewController *)[(UINavigationController *)segue.destinationViewController topViewController];
         newsSourcesVC.managedObjectContext = self.managedObjectContext;
+        
     }
 }
 

@@ -11,13 +11,8 @@
 
 @implementation UHDNewsItemCell (ConfigureForItem)
 
-- (void)awakeFromNib
-{
-    self.readBarView.backgroundColor = [UIColor brandColor];
-}
-
 - (void)configureForItem:(UHDNewsItem *)item {
-    
+
     // Configure text
     self.titleLabel.text = item.title;
     self.abstractLabel.text = item.abstract;
