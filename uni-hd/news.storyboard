@@ -3,7 +3,6 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3733"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Unknown constraint types" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Navigation Controller-->
@@ -229,21 +228,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9m0-ak-rJ9" userLabel="NewsWebView">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                            <webView multipleTouchEnabled="YES" contentMode="scaleToFill" scalesPageToFit="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9m0-ak-rJ9" userLabel="NewsWebView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="top" secondItem="3UN-Xr-Ymi" secondAttribute="bottom" id="Dqf-Z7-mhK"/>
-                            <constraint firstAttribute="trailing" secondAttribute="trailing" constant="-9" id="Xih-PU-JX1"/>
-                            <constraint firstItem="KXv-hz-A9l" firstAttribute="top" secondAttribute="bottom" id="ej5-2J-9W5"/>
-                            <constraint firstAttribute="leading" secondItem="1II-DM-Olg" secondAttribute="leading" id="opE-H0-sfa"/>
+                            <constraint firstAttribute="trailing" secondItem="9m0-ak-rJ9" secondAttribute="trailing" id="2Bx-Gf-XLv"/>
+                            <constraint firstItem="KXv-hz-A9l" firstAttribute="top" secondItem="9m0-ak-rJ9" secondAttribute="bottom" id="ZbQ-w5-6NK"/>
+                            <constraint firstItem="9m0-ak-rJ9" firstAttribute="top" secondItem="1II-DM-Olg" secondAttribute="top" id="jUJ-Li-Qsp"/>
+                            <constraint firstItem="9m0-ak-rJ9" firstAttribute="leading" secondItem="1II-DM-Olg" secondAttribute="leading" id="rgK-vb-q0y"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="XMQ-XG-Liz"/>
+                    <navigationItem key="navigationItem" id="XMQ-XG-Liz">
+                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="B8S-Pq-JSY">
+                            <connections>
+                                <action selector="UIButton:" destination="cii-2s-9Xp" id="Uac-Xb-u8m"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="newsWebView" destination="9m0-ak-rJ9" id="1pO-fS-Wu9"/>
                     </connections>

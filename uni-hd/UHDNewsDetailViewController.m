@@ -14,6 +14,12 @@
 
 @property (strong, nonatomic) IBOutlet UIWebView *newsWebView;
 @property BOOL scalesPageToFit;
+@property (nonatomic) NSArray *arrayOfActivityItems;
+@property (nonatomic) UIActivityViewController *activityVC;
+@property(nonatomic, assign, getter=isTranslucent) BOOL translucent;
+
+
+-(IBAction)UIButton:(id)shareButton;
 
 
 @end
@@ -34,11 +40,30 @@
 }
 
 
+-(IBAction)UIButton:(id)shareButton{
+    
+
+    
+    UIActivityViewController *activityVC = [[UIActivityViewController alloc]
+                                            initWithActivityItems:@[self.newsItem.title,   self.newsItem.url]applicationActivities:nil];
+    
+    [self.navigationController presentViewController:activityVC animated:YES completion:nil];
+    
+    
+}
+
+
+
+
+
+
 
 - (void)viewDidLoad {
     
     
     [super viewDidLoad];
+    
+
     
 
 
