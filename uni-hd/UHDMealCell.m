@@ -8,129 +8,126 @@
 
 #import "UHDMealCell.h"
 
-#define kCatchWidth 90
 
-@interface UHDMealCell () <UIScrollViewDelegate>
-
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UIView *scrollViewContentView;     //The cell content (like the label) goes in this view.
-@property (weak, nonatomic) IBOutlet UIView *scrollViewButtonView;  //Contains our two buttons
-
-// @property (nonatomic, weak) UILabel *scrollViewLabel;
-
+@interface UHDMealCell () 
 @end
 
 @implementation UHDMealCell
 
 -(void)awakeFromNib {
     [super awakeFromNib];
-    
-    [self setup];
 }
 
-- (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
-{
-    self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
-    if (self) {
-        [self setup];
+-(UIImageView*)checkmarkGreyImageView {
+    if (!_checkmarkGreyImageView) {
+        _checkmarkGreyImageView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.contentView.frame), 0, CGRectGetHeight(self.frame), CGRectGetHeight(self.frame))];
+        [_checkmarkGreyImageView setImage:[UIImage imageNamed:@"CheckmarkGrey"]];
+        [_checkmarkGreyImageView setContentMode:UIViewContentModeCenter];
+        [self.backView addSubview:_checkmarkGreyImageView];
     }
-    return self;
+    return _checkmarkGreyImageView;
 }
 
--(void)setup {
-    // Set up our contentView hierarchy
-    
-    self.scrollView.frame = CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
-    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.bounds) + kCatchWidth, CGRectGetHeight(self.bounds));
-    self.scrollView.delegate = self;
-    self.scrollView.showsHorizontalScrollIndicator = NO;
-    [self.contentView addSubview:self.scrollView];
-    
-    self.scrollViewButtonView.frame = CGRectMake(CGRectGetWidth(self.bounds) - kCatchWidth, 0, kCatchWidth, CGRectGetHeight(self.bounds));
-    [self.scrollView addSubview:self.scrollViewButtonView];
-    
-    self.scrollViewContentView.frame = CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
-    [self.scrollView addSubview:self.scrollViewContentView];
-    
-//    UILabel *scrollViewLabel = [[UILabel alloc] initWithFrame:CGRectInset(self.scrollViewContentView.bounds, 10, 0)];
-//    [self.scrollViewContentView addSubview:scrollViewLabel];
-    
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(enclosingTableViewDidScroll) name:TLSwipeForOptionsCellEnclosingTableViewDidBeginScrollingNotification  object:nil];
-}
-
--(void)enclosingTableViewDidScroll {
-    [self.scrollView setContentOffset:CGPointZero animated:YES];
-}
-
-#pragma mark - Private Methods
-
--(void)userPressedDeleteButton:(id)sender {
-    //[self.delegate cellDidSelectDelete:self];
-    [self.scrollView setContentOffset:CGPointZero animated:YES];
-}
-
--(void)userPressedMoreButton:(id)sender {
-    // self.delegate cellDidSelectMore:self];
-}
-
-#pragma mark - Overridden Methods
-
--(void)layoutSubviews {
-    [super layoutSubviews];
-    
-    self.scrollView.contentSize = CGSizeMake(CGRectGetWidth(self.bounds) + kCatchWidth, CGRectGetHeight(self.bounds));
-    self.scrollView.frame = CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
-    self.scrollViewButtonView.frame = CGRectMake(CGRectGetWidth(self.bounds) - kCatchWidth, 0, kCatchWidth, CGRectGetHeight(self.bounds));
-    self.scrollViewContentView.frame = CGRectMake(0, 0, CGRectGetWidth(self.bounds), CGRectGetHeight(self.bounds));
-}
-
--(void)prepareForReuse {
-    [super prepareForReuse];
-    
-    [self.scrollView setContentOffset:CGPointZero animated:NO];
-}
-
--(void)setEditing:(BOOL)editing animated:(BOOL)animated {
-    [super setEditing:editing animated:animated];
-    
-    self.scrollView.scrollEnabled = !self.editing;
-    
-    // Corrects effect of showing the button labels while selected on editing mode (comment line, build, run, add new items to table, enter edit mode and select an entry)
-    self.scrollViewButtonView.hidden = editing;
-    
-    NSLog(@"%d", editing);
-}
-
-//-(UILabel *)textLabel {
-//    // Kind of a cheat to reduce our external dependencies
-//    return self.scrollViewLabel;
-//}
-
-#pragma mark - UIScrollViewDelegate Methods
-
-- (void)scrollViewWillEndDragging:(UIScrollView *)scrollView withVelocity:(CGPoint)velocity targetContentOffset:(inout CGPoint *)targetContentOffset {
-    
-    if (scrollView.contentOffset.x > kCatchWidth) {
-        targetContentOffset->x = kCatchWidth;
+-(UIImageView*)checkmarkGreenImageView {
+    if (!_checkmarkGreenImageView) {
+        _checkmarkGreenImageView = [[UIImageView alloc] initWithFrame:self.checkmarkGreyImageView.bounds];
+        [_checkmarkGreenImageView setImage:[UIImage imageNamed:@"CheckmarkGreen"]];
+        [_checkmarkGreenImageView setContentMode:UIViewContentModeCenter];
+        [self.checkmarkGreyImageView addSubview:_checkmarkGreenImageView];
     }
-    else {
-        *targetContentOffset = CGPointZero;
-        
-        // Need to call this subsequently to remove flickering. Strange.
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [scrollView setContentOffset:CGPointZero animated:YES];
-        });
+    return _checkmarkGreenImageView;
+}
+
+-(void)setFavourite:(BOOL)favourite animated:(BOOL)animated {
+    self.isFavourite = favourite;
+//    if (animated) {
+//        if (favourite) {
+//            NSLog(@"Es ist als favorite & animated markiert");
+//            CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"borderColor"];
+//            animation.toValue = (id)[UIColor colorWithRed:0.149 green:0.784 blue:0.424 alpha:0.750].CGColor;
+//            animation.fromValue = (id)[UIColor colorWithWhite:0 alpha:0.3].CGColor;
+//            animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//            animation.duration = 0.25;
+//            [self.profileImageView.layer addAnimation:animation forKey:@"animateBorderColor"];
+//            [self.profileImageView.layer setBorderColor:[UIColor colorWithRed:0.149 green:0.784 blue:0.424 alpha:0.750].CGColor];
+//            [self.checkmarkProfileImageView setAlpha:0];
+//            [self.profileImageView addSubview:_checkmarkProfileImageView];
+//            [UIView animateWithDuration:0.25
+//                             animations:^{
+//                                 [self.checkmarkProfileImageView setAlpha:1];
+//                             }];
+//        } else {
+//             NSLog(@"Es ist als animated & nicht als favourite markiert");
+//            CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"borderColor"];
+//            animation.toValue = (id)[UIColor colorWithWhite:0 alpha:0.3].CGColor;
+//            animation.fromValue = (id)[UIColor colorWithRed:0.149 green:0.784 blue:0.424 alpha:0.750].CGColor;
+//            animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//            animation.duration = 0.25;
+//            [self.profileImageView.layer addAnimation:animation forKey:@"animateBorderColor"];
+//            [self.profileImageView.layer setBorderColor:[UIColor colorWithWhite:0 alpha:0.3].CGColor];
+//            [UIView animateWithDuration:0.25
+//                             animations:^{
+//                                 [self.checkmarkProfileImageView setAlpha:0];
+//                             }
+//                             completion:^(BOOL finished) {
+//                                 [_checkmarkProfileImageView removeFromSuperview];
+//                             }];
+//        }
+//    } else {
+//        if (favourite) {
+//            [self.checkmarkProfileImageView setAlpha:1];
+//            [self.profileImageView addSubview:_checkmarkProfileImageView];
+//            [self.profileImageView.layer setBorderColor:[UIColor colorWithRed:0.149 green:0.784 blue:0.424 alpha:0.750].CGColor];
+//        } else {
+//            [self.checkmarkProfileImageView setAlpha:0];
+//            [_checkmarkProfileImageView removeFromSuperview];
+//            [self.profileImageView.layer setBorderColor:[UIColor colorWithWhite:0 alpha:0.3].CGColor];
+//        }
+//    }
+}
+
+-(void)animateContentViewForPoint:(CGPoint)point velocity:(CGPoint)velocity {
+    [super animateContentViewForPoint:point velocity:velocity];
+    if (point.x < 0) {
+        // set the checkmark's frame to match the contentView
+        [self.checkmarkGreyImageView setFrame:CGRectMake(MAX(CGRectGetMaxX(self.frame) - CGRectGetWidth(self.checkmarkGreyImageView.frame), CGRectGetMaxX(self.contentView.frame)), CGRectGetMinY(self.checkmarkGreyImageView.frame), CGRectGetWidth(self.checkmarkGreyImageView.frame), CGRectGetHeight(self.checkmarkGreyImageView.frame))];
+        if (-point.x >= CGRectGetHeight(self.frame) && self.isFavourite == NO) {
+            [self.checkmarkGreenImageView setAlpha:1];
+        } else if (self.isFavourite == NO) {
+            [self.checkmarkGreenImageView setAlpha:0];
+        } else if (-point.x >= CGRectGetHeight(self.frame) && self.isFavourite == YES) {
+            // already a favourite; animate the green checkmark drop when swiped far enough for the action to kick in when user lets go
+                [UIView animateWithDuration:0.25
+                                 animations:^{
+                                     CATransform3D rotate = CATransform3DMakeRotation(-0.4, 0, 0, 1);
+                                     [self.checkmarkGreenImageView.layer setTransform:CATransform3DTranslate(rotate, -10, 20, 0)];
+                                     [self.checkmarkGreenImageView setAlpha:0];
+                                 }];
+        } else if (self.isFavourite == YES) {
+            // already a favourite; but user panned back to a lower value than the action point
+            CATransform3D rotate = CATransform3DMakeRotation(0, 0, 0, 1);
+            [self.checkmarkGreenImageView.layer setTransform:CATransform3DTranslate(rotate, 0, 0, 0)];
+            [self.checkmarkGreenImageView setAlpha:1];
+        }}
+}
+
+-(void)resetCellFromPoint:(CGPoint)point velocity:(CGPoint)velocity {
+    [super resetCellFromPoint:point velocity:velocity];
+    if (point.x < 0 && -point.x <= CGRectGetHeight(self.frame)) {
+        // user did not swipe far enough, animate the checkmark back with the contentView animation
+        [UIView animateWithDuration:self.animationDuration
+                         animations:^{
+                            [self.checkmarkGreyImageView setFrame:CGRectMake(CGRectGetMaxX(self.frame), CGRectGetMinY(self.checkmarkGreyImageView.frame), CGRectGetWidth(self.checkmarkGreyImageView.frame), CGRectGetHeight(self.checkmarkGreyImageView.frame))];
+                         }];
     }
 }
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    if (scrollView.contentOffset.x < 0) {
-        scrollView.contentOffset = CGPointZero;
-    }
-    
-    self.scrollViewButtonView.frame = CGRectMake(scrollView.contentOffset.x + (CGRectGetWidth(self.bounds) - kCatchWidth), 0.0f, kCatchWidth, CGRectGetHeight(self.bounds));
+-(void)cleanupBackView {
+    [super cleanupBackView];
+    [_checkmarkGreyImageView removeFromSuperview];
+    _checkmarkGreyImageView = nil;
+    [_checkmarkGreenImageView removeFromSuperview];
+    _checkmarkGreenImageView = nil;
 }
-
 @end
 
-#undef kCatchWidth

@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RMSwipeTableViewCell.h"
 
-@interface UHDMealCell : UITableViewCell
-
-@property (weak, nonatomic) IBOutlet UIButton *favoriteButton;
+@interface UHDMealCell : RMSwipeTableViewCell 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+
+@property (nonatomic, strong) UIImageView *checkmarkGreyImageView;
+@property (nonatomic, strong) UIImageView *checkmarkGreenImageView;
+@property (nonatomic, assign) BOOL isFavourite;
+
+-(void)setFavourite:(BOOL)favourite animated:(BOOL)animated;
 
 @end

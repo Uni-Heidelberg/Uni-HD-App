@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "UHDDailyMenu.h"
 #import "UHDSelectMensaDelegateProtocol.h"
+#import "UHDMealCell.h"
 
-@interface UHDDailyMenuViewController : UITableViewController
+@interface UHDDailyMenuViewController : UITableViewController <RMSwipeTableViewCellDelegate>
 
 @property (strong, nonatomic) UHDDailyMenu *dailyMenu;
-
 @end
