@@ -140,9 +140,23 @@
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <view contentMode="scaleToFill" verticalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="XHQ-j9-kVp" userLabel="favouriteBar">
+                                            <rect key="frame" x="315" y="10" width="5" height="82"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="5" id="3XR-cH-i6l"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="XHQ-j9-kVp" secondAttribute="trailing" id="FDD-Sw-byY"/>
+                                        <constraint firstItem="XHQ-j9-kVp" firstAttribute="top" secondItem="dfL-jG-kOQ" secondAttribute="top" constant="10" id="lKG-C4-0p4"/>
+                                        <constraint firstAttribute="bottom" secondItem="XHQ-j9-kVp" secondAttribute="bottom" constant="10" id="r1r-3f-HMs"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="favouriteBar" destination="XHQ-j9-kVp" id="YpO-GL-pYd"/>
                                     <outlet property="priceLabel" destination="1K1-Mr-2cf" id="RGE-fY-dGt"/>
                                     <outlet property="titleLabel" destination="A6S-77-RyM" id="odp-Mi-TOs"/>
                                 </connections>
