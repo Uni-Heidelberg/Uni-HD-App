@@ -87,8 +87,11 @@
 }
 
 -(void)animateContentViewForPoint:(CGPoint)point velocity:(CGPoint)velocity {
-    [super animateContentViewForPoint:point velocity:velocity];
+    if (point.x > 0) {
+        return;
+    }
     if (point.x < 0) {
+        [super animateContentViewForPoint:point velocity:velocity];
         // set the checkmark's frame to match the contentView
         [self.checkmarkGreyImageView setFrame:CGRectMake(MAX(CGRectGetMaxX(self.frame) - CGRectGetWidth(self.checkmarkGreyImageView.frame), CGRectGetMaxX(self.contentView.frame)), CGRectGetMinY(self.checkmarkGreyImageView.frame), CGRectGetWidth(self.checkmarkGreyImageView.frame), CGRectGetHeight(self.checkmarkGreyImageView.frame))];
         if (-point.x >= CGRectGetHeight(self.frame) && self.isFavourite == NO) {
