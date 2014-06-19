@@ -16,5 +16,6 @@
 @property (nonatomic, retain) NSString * price;
 @property (nonatomic, retain) UHDDailyMenu *menu;
 @property (nonatomic, retain) UHDMensaSection *section;
+@property (nonatomic, assign) Boolean isFavourite;
 
 @end
