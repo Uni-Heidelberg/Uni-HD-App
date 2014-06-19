@@ -44,16 +44,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    if (!self.mensa) {
-        self.chooseMensaLabel = [[UILabel alloc]initWithFrame:self.view.frame];
-        [self.view addSubview:self.chooseMensaLabel];
-        self.chooseMensaLabel.text = [NSString stringWithFormat:@"Bitte wähle zunächst eine Mensa"];
-        self.chooseMensaLabel.textAlignment = NSTextAlignmentCenter;
-    } else {
-        [self.chooseMensaLabel removeFromSuperview];
-    }
-    
 }
 
 - (void)loadSelectedMensa
