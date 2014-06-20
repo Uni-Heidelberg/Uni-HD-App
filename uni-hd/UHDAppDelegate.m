@@ -63,14 +63,12 @@
     // News
     UIStoryboard *newsStoryboard = [UIStoryboard storyboardWithName:@"news" bundle:nil];
     UINavigationController *newsNavC = [newsStoryboard instantiateInitialViewController];
-    newsNavC.tabBarItem.title = NSLocalizedString(@"News", nil);
     UHDNewsViewController *newsVC = newsNavC.viewControllers[0];
     newsVC.managedObjectContext = self.persistentStack.managedObjectContext;
     
     // Mensa
     UIStoryboard *mensaStoryboard = [UIStoryboard storyboardWithName:@"mensa" bundle:nil];
     UINavigationController *mensaNavC = [mensaStoryboard instantiateInitialViewController];
-    mensaNavC.tabBarItem.title = NSLocalizedString(@"Mensa", nil);
     UHDMainMensaViewController *mainMensaVC = mensaNavC.viewControllers[0];
     mainMensaVC.managedObjectContext = self.persistentStack.managedObjectContext;
 

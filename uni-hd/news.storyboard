@@ -5,18 +5,41 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
-        <!--News View Controller - News-->
-        <scene sceneID="ora-ZU-tam">
+        <!--Navigation Controller-->
+        <scene sceneID="oOc-lR-ZQ9">
             <objects>
-                <tableViewController id="Sbw-ng-BTF" customClass="UHDNewsViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="180" sectionHeaderHeight="22" sectionFooterHeight="22" id="7m5-pu-PEY">
+                <navigationController definesPresentationContext="YES" id="Kp2-aO-tOg" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ysD-Lj-uTA">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="qn2-Bf-d7y" kind="relationship" relationship="rootViewController" id="qnn-f4-t6A"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QFN-je-Z8V" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1366" y="-386"/>
+        </scene>
+        <!--Page View Controller-->
+        <scene sceneID="J45-S6-FN7">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="asw-kS-WrP" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hA4-RI-hfj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1366" y="292"/>
+        </scene>
+        <!--News List View Controller-->
+        <scene sceneID="4Uw-n3-QSA">
+            <objects>
+                <tableViewController storyboardIdentifier="newsList" id="Evx-f7-pqT" customClass="UHDNewsListViewController" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="180" sectionHeaderHeight="22" sectionFooterHeight="22" id="U8a-D2-g0x">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="newsCell" rowHeight="180" id="qKW-yc-33a" customClass="UHDNewsItemCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="180"/>
+                                <rect key="frame" x="0.0" y="22" width="320" height="180"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qKW-yc-33a" id="aGv-HV-qV2">
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="179"/>
@@ -98,42 +121,20 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="Sbw-ng-BTF" id="czd-WK-FRZ"/>
-                            <outlet property="delegate" destination="Sbw-ng-BTF" id="Liv-Nv-zFk"/>
+                            <outlet property="dataSource" destination="Evx-f7-pqT" id="Ncc-vS-ukn"/>
+                            <outlet property="delegate" destination="Evx-f7-pqT" id="oFq-nj-Kks"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="News" id="ODL-v0-Igt">
-                        <barButtonItem key="rightBarButtonItem" title="Sources" id="puQ-jn-Keo">
-                            <connections>
-                                <segue destination="Kp2-aO-tOg" kind="modal" identifier="showSources" id="u5f-DH-mFG"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="XOQ-TN-dhD">
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="3x9-QW-kyX">
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
-                            <action selector="refreshControlValueChanged:" destination="Sbw-ng-BTF" eventType="valueChanged" id="yCy-Nv-6Rf"/>
+                            <action selector="refreshControlValueChanged:" destination="Evx-f7-pqT" eventType="valueChanged" id="RpQ-aS-zOo"/>
                         </connections>
                     </refreshControl>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="ejf-zm-arM" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JOu-P6-Auc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="799" y="46"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="oOc-lR-ZQ9">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="Kp2-aO-tOg" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ysD-Lj-uTA">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="qn2-Bf-d7y" kind="relationship" relationship="rootViewController" id="qnn-f4-t6A"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QFN-je-Z8V" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1366" y="-386"/>
+            <point key="canvasLocation" x="1818" y="292"/>
         </scene>
         <!--News Sources View Controller - Alle Quellen-->
         <scene sceneID="rCr-bY-e3B">
@@ -212,7 +213,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AUQ-Fz-Oqe" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Ycq-LD-503" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1833" y="-386"/>
+            <point key="canvasLocation" x="1834" y="-386"/>
         </scene>
         <!--News Detail View Controller-->
         <scene sceneID="7qp-AH-575">
@@ -226,7 +227,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9m0-ak-rJ9" userLabel="NewsWebView">
+                            <webView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9m0-ak-rJ9" userLabel="NewsWebView">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
@@ -247,22 +248,90 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UC2-ih-bD7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1338" y="448"/>
+            <point key="canvasLocation" x="2303" y="292"/>
         </scene>
-        <!--Navigation Controller-->
+        <!--Navigation Controller - News-->
         <scene sceneID="PLw-Zn-bh4">
             <objects>
                 <navigationController definesPresentationContext="YES" id="4EB-dw-R4U" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="News" id="B2H-Se-7gD"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NdZ-lj-edW">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Sbw-ng-BTF" kind="relationship" relationship="rootViewController" id="1mY-di-Pc4"/>
+                        <segue destination="Fjz-Xo-mQY" kind="relationship" relationship="rootViewController" id="o1C-i7-7N6"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g4p-Bl-p71" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="265" y="46"/>
+        </scene>
+        <!--News View Controller - News-->
+        <scene sceneID="Dvi-yc-Vgq">
+            <objects>
+                <viewController id="Fjz-Xo-mQY" customClass="UHDNewsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="tDP-Iy-5jZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="hwO-oV-zkh"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="m2a-hJ-18L">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <containerView appearanceType="aqua" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2uD-l0-zXb">
+                                <rect key="frame" x="0.0" y="108" width="320" height="460"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="asw-kS-WrP" kind="embed" identifier="embedPageVC" id="Nyh-d1-Gif"/>
+                                </connections>
+                            </containerView>
+                            <view appearanceType="aqua" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gor-kC-cDL">
+                                <rect key="frame" x="0.0" y="64" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="All News" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFF-bN-qhe">
+                                        <rect key="frame" x="136" y="11" width="49" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="jFF-bN-qhe" secondAttribute="centerX" id="9aQ-e9-ldF"/>
+                                    <constraint firstAttribute="height" constant="44" id="bmD-ib-B2a"/>
+                                    <constraint firstAttribute="centerY" secondItem="jFF-bN-qhe" secondAttribute="centerY" id="q0X-PZ-m87"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="gor-kC-cDL" firstAttribute="leading" secondItem="m2a-hJ-18L" secondAttribute="leading" id="2Bs-Lj-LUx"/>
+                            <constraint firstAttribute="trailing" secondItem="gor-kC-cDL" secondAttribute="trailing" id="4tS-Yt-ANG"/>
+                            <constraint firstAttribute="trailing" secondItem="2uD-l0-zXb" secondAttribute="trailing" id="GAs-PY-YHB"/>
+                            <constraint firstItem="gor-kC-cDL" firstAttribute="top" secondItem="tDP-Iy-5jZ" secondAttribute="bottom" id="IgZ-4C-zcj"/>
+                            <constraint firstAttribute="bottom" secondItem="2uD-l0-zXb" secondAttribute="bottom" id="MbT-dX-72y"/>
+                            <constraint firstItem="2uD-l0-zXb" firstAttribute="top" secondItem="gor-kC-cDL" secondAttribute="bottom" id="RIM-Wm-dpz"/>
+                            <constraint firstItem="2uD-l0-zXb" firstAttribute="leading" secondItem="m2a-hJ-18L" secondAttribute="leading" id="pPM-8F-fgZ"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="News" id="79D-Us-YG5">
+                        <barButtonItem key="rightBarButtonItem" title="Sources" id="o0c-az-BLB">
+                            <connections>
+                                <segue destination="Kp2-aO-tOg" kind="modal" identifier="showSources" id="hgu-E2-IlZ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="temporarySelectedSourceLabel" destination="jFF-bN-qhe" id="gTO-4q-6Iy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HnY-54-1Ur" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="775" y="46"/>
         </scene>
     </scenes>
     <resources>

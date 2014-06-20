@@ -7,28 +7,24 @@
 //
 
 #import "UHDNewsViewController.h"
-#import "VIFetchedResultsControllerDataSource.h"
-#import "UHDRemoteDatasourceManager.h"
 
 // View Controllers
-#import "UHDNewsDetailViewController.h"
 #import "UHDNewsSourcesViewController.h"
+#import "UHDNewsListViewController.h"
 
 // Model
-#import "UHDNewsItem.h"
 #import "UHDNewsSource.h"
 
-// Table View Cells
-#import "UHDNewsItemCell.h"
-#import "UHDNewsItemCell+ConfigureForItem.h"
 
+@interface UHDNewsViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate, NSFetchedResultsControllerDelegate>
 
-@interface UHDNewsViewController ()
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) UIPageViewController *pageViewController;
+@property (strong, nonatomic) NSMutableArray *newsListViewControllers;
 
-@property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
+@property (strong, nonatomic) IBOutlet UILabel *temporarySelectedSourceLabel; // TODO: implement proper source navigation bar
 
 - (IBAction)unwindToNews:(UIStoryboardSegue *)segue;
-- (IBAction)refreshControlValueChanged:(id)sender;
 
 @end
 
@@ -38,42 +34,47 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // redirect data source
-    self.tableView.dataSource = self.fetchedResultsControllerDataSource;
-    
-    // TODO: fix update mechanism
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(managedObjectContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:self.managedObjectContext.parentContext];
+
+    [self configureView];
+}
+
+- (void)configureView
+{
+    self.temporarySelectedSourceLabel.text = [self.pageViewController.viewControllers[0] title];
+}
+
+#pragma mark - Fetched Results Controller
+
+- (NSFetchedResultsController *)fetchedResultsController
+{
+    if (!_fetchedResultsController) {
+        
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsSource entityName]];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"subscribed == YES"];
+        fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES] ];
+        
+        self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+        self.fetchedResultsController.delegate = self;
+        [self.fetchedResultsController performFetch:NULL];
+    }
+    return _fetchedResultsController;
 }
 
 
 #pragma mark - User Interaction
 
-- (IBAction)refreshControlValueChanged:(UIRefreshControl *)sender
-{
-    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyNews] refreshWithCompletion:^(BOOL success, NSError *error) {
-        [sender endRefreshing];
-    }];
-}
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"showNewsDetail"]) {
-        
-        UHDNewsDetailViewController *newsDetailVC = segue.destinationViewController;
-        
-        // Mark item as read
-        UHDNewsItem *item = self.fetchedResultsControllerDataSource.selectedItem;
-        item.read = YES;
-        [self.managedObjectContext saveToPersistentStore:NULL];
-        
-        newsDetailVC.newsItem = item;
-        
-    } else if ([segue.identifier isEqualToString:@"showSources"]) {
+    if ([segue.identifier isEqualToString:@"showSources"]) {
         
         UHDNewsSourcesViewController *newsSourcesVC = (UHDNewsSourcesViewController *)[(UINavigationController *)segue.destinationViewController topViewController];
         newsSourcesVC.managedObjectContext = self.managedObjectContext;
-        
+
+    } else if ([segue.identifier isEqualToString:@"embedPageVC"]) {
+        self.pageViewController = (UIPageViewController *)segue.destinationViewController;
+        self.pageViewController.dataSource = self;
+        self.pageViewController.delegate = self;
+        [self.pageViewController setViewControllers:@[ [self pageViewController:self.pageViewController viewControllerAfterViewController:nil] ] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     }
 }
 
@@ -83,38 +84,112 @@
 }
 
 
-#pragma mark - Data Source
+#pragma mark - Page View Controller Delegate
 
-- (VIFetchedResultsControllerDataSource *)fetchedResultsControllerDataSource
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
 {
-    if (!_fetchedResultsControllerDataSource)
-    {
-        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsItem entityName]];
-        fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"source.subscribed == YES"];
-        
-        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-        
-        VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, id item) {
-            [(UHDNewsItemCell *)cell configureForItem:item];
-        };
-        
-        self.fetchedResultsControllerDataSource = [[VIFetchedResultsControllerDataSource alloc] initWithFetchedResultsController:fetchedResultsController tableView:self.tableView cellIdentifier:@"newsCell" configureCellBlock:configureCellBlock];
+    [self configureView];
+}
+
+
+#pragma mark - Page View Controller Datasource
+
+- (NSMutableArray *)newsListViewControllers
+{
+    if (!_newsListViewControllers) {
+        NSMutableArray *viewControllers = [[NSMutableArray alloc] init];
+        UHDNewsListViewController *allSourcesVC = [self newsListViewControllerForSources:self.fetchedResultsController.fetchedObjects];
+        allSourcesVC.title = NSLocalizedString(@"All News", nil);
+        [viewControllers addObject:allSourcesVC];
+        for (UHDNewsSource *source in self.fetchedResultsController.fetchedObjects) {
+            [viewControllers addObject:[self newsListViewControllerForSources:@[ source ]]];
+        }
+        self.newsListViewControllers = viewControllers;
     }
-    return _fetchedResultsControllerDataSource;
+    return _newsListViewControllers;
+}
+
+- (UHDNewsListViewController *)newsListViewControllerForSources:(NSArray *)sources
+{
+    UHDNewsListViewController *newsListVC = (UHDNewsListViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"newsList"];
+    newsListVC.sources = sources;
+    return newsListVC;
+}
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
+{
+    NSInteger currentIndex = [self.newsListViewControllers indexOfObject:viewController];
+    if (currentIndex == NSNotFound) {
+        currentIndex = -1;
+    }
+    NSInteger nextIndex = currentIndex + 1;
+    if (nextIndex >= self.newsListViewControllers.count) {
+        return nil;
+    }
+    return self.newsListViewControllers[nextIndex];
+}
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
+{
+    NSInteger currentIndex = [self.newsListViewControllers indexOfObject:viewController];
+    if (currentIndex == NSNotFound) {
+        currentIndex = -1;
+    }
+    NSInteger prevIndex = currentIndex - 1;
+    if (prevIndex < 0) {
+        return nil;
+    }
+    return self.newsListViewControllers[prevIndex];
 }
 
 
 #pragma mark - Core Data Change Notification
 
-- (void)managedObjectContextDidSave:(NSNotification *)notification
+/*- (void)managedObjectContextDidSave:(NSNotification *)notification
+ {
+ for (NSManagedObject *object in notification.userInfo[NSUpdatedObjectsKey]) {
+ if ([object isKindOfClass:[UHDNewsSource class]]) {
+ [self.fetchedResultsController reloadData];
+ break;
+ }
+ }
+ }*/
+
+- (void)controller:(NSFetchedResultsController*)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath*)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath*)newIndexPath
 {
-    for (NSManagedObject *object in notification.userInfo[NSUpdatedObjectsKey]) {
-        if ([object isKindOfClass:[UHDNewsSource class]]) {
-            [self.fetchedResultsControllerDataSource reloadData];
+    // TODO/BUG: subscribe source further right, then unsubscribe one left of it
+    UHDNewsListViewController *allSourcesVC = (UHDNewsListViewController *)self.newsListViewControllers[0];
+    NSInteger index = indexPath.item + 1;
+    NSInteger newIndex = newIndexPath.item + 1;
+    switch (type) {
+        case NSFetchedResultsChangeInsert: {
+            [allSourcesVC setSources:[allSourcesVC.sources arrayByAddingObject:anObject]];
+            UHDNewsListViewController *sourceVC = [self newsListViewControllerForSources:@[ anObject ]];
+            [self.newsListViewControllers insertObject:sourceVC atIndex:newIndex];
             break;
         }
+        case NSFetchedResultsChangeMove: {
+            UHDNewsListViewController *sourceVC = self.newsListViewControllers[index];
+            [self.newsListViewControllers removeObjectAtIndex:index];
+            [self.newsListViewControllers insertObject:sourceVC atIndex:newIndex];
+            break;
+        }
+        case NSFetchedResultsChangeDelete: {
+            UHDNewsListViewController *sourceVC = self.newsListViewControllers[index];
+            if ([self.pageViewController.viewControllers containsObject:sourceVC]) {
+                [self.pageViewController setViewControllers:@[ [self pageViewController:self.pageViewController viewControllerBeforeViewController:sourceVC] ] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+            }
+            [self.newsListViewControllers removeObject:sourceVC];
+            NSMutableArray *allSources = [allSourcesVC.sources mutableCopy];
+            [allSources removeObject:anObject];
+            [allSourcesVC setSources:allSources];
+            break;
+        }
+        case NSFetchedResultsChangeUpdate:
+        default:
+            break;
     }
+    [self.pageViewController setViewControllers:self.pageViewController.viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
 }
 
 @end

@@ -10,7 +10,7 @@
 @import UIKit;
 
 
-@interface UHDNewsViewController : UITableViewController
+@interface UHDNewsViewController : UIViewController
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
