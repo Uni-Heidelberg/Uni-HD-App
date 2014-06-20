@@ -52,8 +52,13 @@
 {
     if (!_fetchedResultsControllerDataSource)
     {
+        if (!self.managedObjectContext) {
+            [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
+            return nil;
+        }
+
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsSource entityName]];
-        fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"category.title" ascending:NO], [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO], [NSSortDescriptor sortDescriptorWithKey:@"subscribed" ascending:NO]];
+        fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"category.title" ascending:NO], [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO] ];
         
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"category.title" cacheName:nil];
         

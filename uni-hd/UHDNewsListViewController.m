@@ -46,9 +46,11 @@
 {
     _sources = sources;
     self.managedObjectContext = [(NSManagedObject *)[sources lastObject] managedObjectContext];
-    if (sources.count == 1) {
+    if (!self.title) {
         self.title = [sources[0] title];
     }
+    self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"source IN %@", self.sources];
+    [self.fetchedResultsControllerDataSource reloadData];
 }
 
 
@@ -82,9 +84,13 @@
 {
     if (!_fetchedResultsControllerDataSource)
     {
+        if (!self.managedObjectContext) {
+            [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
+            return nil;
+        }
+        
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsItem entityName]];
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"source IN %@", self.sources];
         
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         
