@@ -73,8 +73,11 @@
 
 - (IBAction)showAllNewsButtonPressed:(id)sender
 {
-    [self.pageViewController setViewControllers:@[ self.newsListViewControllers[0] ] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
     // TODO/BUG: neighbouring view controllers are not updated
+    UHDNewsViewController __weak *weakSelf = self;
+    [self.pageViewController setViewControllers:@[ self.newsListViewControllers[0] ] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:^(BOOL finished) {
+        [weakSelf configureView];
+    }];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
