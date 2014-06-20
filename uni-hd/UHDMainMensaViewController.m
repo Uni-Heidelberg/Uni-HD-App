@@ -18,8 +18,8 @@
 
 @interface UHDMainMensaViewController ()
 
-@property (strong, nonatomic) UHDDailyMenuViewController *dailyMenuVC;
 @property (strong, nonatomic) UHDMensa *mensa;
+@property (strong, nonatomic) UHDDailyMenuViewController *dailyMenuVC;
 @property (strong, nonatomic) UILabel *chooseMensaLabel;
 
 - (void)configureView;
@@ -44,16 +44,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    if (!self.mensa) {
-        self.chooseMensaLabel = [[UILabel alloc]initWithFrame:self.view.frame];
-        [self.view addSubview:self.chooseMensaLabel];
-        self.chooseMensaLabel.text = [NSString stringWithFormat:@"Bitte wähle zunächst eine Mensa"];
-        self.chooseMensaLabel.textAlignment = NSTextAlignmentCenter;
-    } else {
-        [self.chooseMensaLabel removeFromSuperview];
-    }
-    
 }
 
 - (void)loadSelectedMensa
@@ -84,7 +74,7 @@
 
 - (void)configureView
 {
-    self.title = self.mensa ? self.mensa.title : NSLocalizedString(@"No Mensa selected", nil);
+    self.navigationItem.title = self.mensa ? self.mensa.title : NSLocalizedString(@"No Mensa selected", nil);
     
     UHDDailyMenu *dailyMenu = [[self.mensa.menus sortedArrayUsingDescriptors:@[ [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES] ]] lastObject];
 

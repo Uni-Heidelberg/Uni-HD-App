@@ -67,6 +67,7 @@
             sectionNameKeyPath:@"section.title" cacheName:nil];
         
         VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, id item) {
+            ((UHDMealCell *)cell).meal = (UHDMeal *)item;
             [(UHDMealCell *)cell configureForMeal:(UHDMeal *)item];
             __weak UHDDailyMenuViewController *weakSelf = self;
             [(UHDMealCell *)cell setDelegate: weakSelf];
@@ -100,12 +101,12 @@
     NSLog(@"swipeTableViewCellWillResetState: %@ fromPoint: %@ animation: %d, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity));
 #endif
     if (-point.x >= CGRectGetHeight(swipeTableViewCell.frame)) {
-        if (((UHDMealCell *)swipeTableViewCell).isFavourite) {
-            ((UHDMealCell *)swipeTableViewCell).isFavourite = NO;
+        if (((UHDMealCell *)swipeTableViewCell).meal.isFavourite) {
+            ((UHDMealCell *)swipeTableViewCell).meal.isFavourite = NO;
         } else {
-            ((UHDMealCell *)swipeTableViewCell).isFavourite = YES;
+            ((UHDMealCell *)swipeTableViewCell).meal.isFavourite = YES;
         }
-        [(UHDMealCell *)swipeTableViewCell setFavourite: ((UHDMealCell *)swipeTableViewCell).isFavourite animated:YES];
+        [(UHDMealCell *)swipeTableViewCell setFavourite: ((UHDMealCell *)swipeTableViewCell).meal.isFavourite animated:YES];
         }
     
 }

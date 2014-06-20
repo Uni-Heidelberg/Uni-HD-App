@@ -14,6 +14,8 @@
 {
     self.titleLabel.text = meal.title;
     self.priceLabel.text = meal.price;
+    self.favouriteBar.hidden = !meal.isFavourite;
+
 }
 
 @end

@@ -39,7 +39,8 @@
 }
 
 -(void)setFavourite:(BOOL)favourite animated:(BOOL)animated {
-    self.isFavourite = favourite;
+    self.meal.isFavourite = favourite;
+    
 //    if (animated) {
 //        if (favourite) {
 //            NSLog(@"Es ist als favorite & animated markiert");
@@ -94,11 +95,11 @@
         [super animateContentViewForPoint:point velocity:velocity];
         // set the checkmark's frame to match the contentView
         [self.checkmarkGreyImageView setFrame:CGRectMake(MAX(CGRectGetMaxX(self.frame) - CGRectGetWidth(self.checkmarkGreyImageView.frame), CGRectGetMaxX(self.contentView.frame)), CGRectGetMinY(self.checkmarkGreyImageView.frame), CGRectGetWidth(self.checkmarkGreyImageView.frame), CGRectGetHeight(self.checkmarkGreyImageView.frame))];
-        if (-point.x >= CGRectGetHeight(self.frame) && self.isFavourite == NO) {
+        if (-point.x >= CGRectGetHeight(self.frame) && self.meal.isFavourite == NO) {
             [self.checkmarkGreenImageView setAlpha:1];
-        } else if (self.isFavourite == NO) {
+        } else if (self.meal.isFavourite == NO) {
             [self.checkmarkGreenImageView setAlpha:0];
-        } else if (-point.x >= CGRectGetHeight(self.frame) && self.isFavourite == YES) {
+        } else if (-point.x >= CGRectGetHeight(self.frame) && self.meal.isFavourite == YES) {
             // already a favourite; animate the green checkmark drop when swiped far enough for the action to kick in when user lets go
                 [UIView animateWithDuration:0.25
                                  animations:^{
@@ -106,11 +107,14 @@
                                      [self.checkmarkGreenImageView.layer setTransform:CATransform3DTranslate(rotate, -10, 20, 0)];
                                      [self.checkmarkGreenImageView setAlpha:0];
                                  }];
-        } else if (self.isFavourite == YES) {
+            self.favouriteBar.hidden = YES;
+        } else if (self.meal.isFavourite == YES) {
             // already a favourite; but user panned back to a lower value than the action point
             CATransform3D rotate = CATransform3DMakeRotation(0, 0, 0, 1);
             [self.checkmarkGreenImageView.layer setTransform:CATransform3DTranslate(rotate, 0, 0, 0)];
             [self.checkmarkGreenImageView setAlpha:1];
+            self.favouriteBar.hidden = NO;
+
         }}
 }
 
