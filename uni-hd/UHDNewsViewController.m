@@ -24,6 +24,7 @@
 
 @property (strong, nonatomic) IBOutlet UILabel *temporarySelectedSourceLabel; // TODO: implement proper source navigation bar
 
+- (IBAction)showAllNewsButtonPressed:(id)sender;
 - (IBAction)unwindToNews:(UIStoryboardSegue *)segue;
 
 @end
@@ -35,6 +36,8 @@
 {
     [super viewDidLoad];
 
+    // TODO: fix scroll view insets & extend under both bars
+    
     [self configureView];
 }
 
@@ -47,7 +50,12 @@
 
 - (NSFetchedResultsController *)fetchedResultsController
 {
-    if (!_fetchedResultsController) {
+    if (!_fetchedResultsController)
+    {
+        if (!self.managedObjectContext) {
+            [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
+            return nil;
+        }
         
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsSource entityName]];
         fetchRequest.predicate = [NSPredicate predicateWithFormat:@"subscribed == YES"];
@@ -62,6 +70,12 @@
 
 
 #pragma mark - User Interaction
+
+- (IBAction)showAllNewsButtonPressed:(id)sender
+{
+    [self.pageViewController setViewControllers:@[ self.newsListViewControllers[0] ] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+    // TODO/BUG: neighbouring view controllers are not updated
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -189,7 +203,8 @@
         default:
             break;
     }
-    [self.pageViewController setViewControllers:self.pageViewController.viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    [self.pageViewController setViewControllers:self.pageViewController.viewControllers direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil]; // TODO: find better way to refresh neighbouring view controllers
+    [self configureView];
 }
 
 @end
