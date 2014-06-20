@@ -23,7 +23,7 @@
         <!--Page View Controller-->
         <scene sceneID="J45-S6-FN7">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="asw-kS-WrP" sceneMemberID="viewController"/>
+                <pageViewController transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="asw-kS-WrP" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hA4-RI-hfj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1366" y="292"/>
@@ -125,6 +125,7 @@
                             <outlet property="delegate" destination="Evx-f7-pqT" id="oFq-nj-Kks"/>
                         </connections>
                     </tableView>
+                    <extendedEdge key="edgesForExtendedLayout"/>
                     <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="3x9-QW-kyX">
                         <autoresizingMask key="autoresizingMask"/>
                         <connections>
@@ -280,7 +281,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <containerView appearanceType="aqua" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2uD-l0-zXb">
-                                <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                                <rect key="frame" x="0.0" y="64" width="320" height="455"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
@@ -291,8 +292,8 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="2uD-l0-zXb" secondAttribute="trailing" id="GAs-PY-YHB"/>
-                            <constraint firstAttribute="bottom" secondItem="2uD-l0-zXb" secondAttribute="bottom" id="MbT-dX-72y"/>
-                            <constraint firstItem="2uD-l0-zXb" firstAttribute="top" secondItem="tDP-Iy-5jZ" secondAttribute="bottom" id="YhC-cn-Hnr"/>
+                            <constraint firstItem="hwO-oV-zkh" firstAttribute="top" secondItem="2uD-l0-zXb" secondAttribute="bottom" id="bdT-VW-5fC"/>
+                            <constraint firstItem="2uD-l0-zXb" firstAttribute="top" secondItem="tDP-Iy-5jZ" secondAttribute="bottom" id="cgO-4r-mJ9"/>
                             <constraint firstItem="2uD-l0-zXb" firstAttribute="leading" secondItem="m2a-hJ-18L" secondAttribute="leading" id="pPM-8F-fgZ"/>
                         </constraints>
                     </view>
