@@ -18,8 +18,8 @@
 
 @interface UHDMainMensaViewController ()
 
-@property (strong, nonatomic) UHDDailyMenuViewController *dailyMenuVC;
 @property (strong, nonatomic) UHDMensa *mensa;
+@property (strong, nonatomic) UHDDailyMenuViewController *dailyMenuVC;
 @property (strong, nonatomic) UILabel *chooseMensaLabel;
 
 - (void)configureView;
@@ -74,7 +74,7 @@
 
 - (void)configureView
 {
-    self.title = self.mensa ? self.mensa.title : NSLocalizedString(@"No Mensa selected", nil);
+    self.navigationItem.title = self.mensa ? self.mensa.title : NSLocalizedString(@"No Mensa selected", nil);
     
     UHDDailyMenu *dailyMenu = [[self.mensa.menus sortedArrayUsingDescriptors:@[ [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES] ]] lastObject];
 

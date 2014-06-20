@@ -137,7 +137,7 @@
             </objects>
             <point key="canvasLocation" x="1818" y="292"/>
         </scene>
-        <!--News Sources View Controller - Alle Quellen-->
+        <!--News Sources View Controller - Sources-->
         <scene sceneID="rCr-bY-e3B">
             <objects>
                 <tableViewController id="qn2-Bf-d7y" customClass="UHDNewsSourcesViewController" sceneMemberID="viewController">
@@ -197,7 +197,7 @@
                             <outlet property="delegate" destination="qn2-Bf-d7y" id="vGH-De-bHw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Alle Quellen" id="45r-ml-GWi">
+                    <navigationItem key="navigationItem" title="Sources" id="45r-ml-GWi">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="yzw-dJ-wnC">
                             <connections>
                                 <segue destination="Ycq-LD-503" kind="unwind" identifier="unwindToNews" unwindAction="unwindToNews:" id="Gob-uH-jeq"/>
