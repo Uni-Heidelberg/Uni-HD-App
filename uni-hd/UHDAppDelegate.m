@@ -60,22 +60,30 @@
     
     // setup initial view controllers
     
+    // Mensa
+    UIStoryboard *mensaStoryboard = [UIStoryboard storyboardWithName:@"mensa" bundle:nil];
+    UINavigationController *mensaNavC = [mensaStoryboard instantiateInitialViewController];
+    UHDMainMensaViewController *mainMensaVC = mensaNavC.viewControllers[0];
+    mainMensaVC.managedObjectContext = self.persistentStack.managedObjectContext;
+    
     // News
     UIStoryboard *newsStoryboard = [UIStoryboard storyboardWithName:@"news" bundle:nil];
     UINavigationController *newsNavC = [newsStoryboard instantiateInitialViewController];
     UHDNewsViewController *newsVC = newsNavC.viewControllers[0];
     newsVC.managedObjectContext = self.persistentStack.managedObjectContext;
     
-    // Mensa
-    UIStoryboard *mensaStoryboard = [UIStoryboard storyboardWithName:@"mensa" bundle:nil];
-    UINavigationController *mensaNavC = [mensaStoryboard instantiateInitialViewController];
-    UHDMainMensaViewController *mainMensaVC = mensaNavC.viewControllers[0];
-    mainMensaVC.managedObjectContext = self.persistentStack.managedObjectContext;
-
+    // Events
+    UIStoryboard *eventsStoryboard = [UIStoryboard storyboardWithName:@"events" bundle:nil];
+    UINavigationController *eventNavC = [eventsStoryboard instantiateInitialViewController];
+    
+    // Maps
+    UIStoryboard *mapsStoryboard = [UIStoryboard storyboardWithName:@"maps" bundle:nil];
+    UINavigationController *mapsNavC = [mapsStoryboard instantiateInitialViewController];
+    
 
     // create and populate tab bar controller
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = @[mensaNavC, newsNavC];
+    tabBarController.viewControllers = @[mensaNavC, newsNavC, eventNavC, mapsNavC];
     
     // create and populate window
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
