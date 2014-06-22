@@ -18,6 +18,10 @@
 
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 
+@property (strong, nonatomic) IBOutlet UIView *emptyView;
+
+- (void)configureView;
+
 @end
 
 
@@ -29,6 +33,7 @@
     _dailyMenu = dailyMenu;
     self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"menu == %@", self.dailyMenu];
     [self.fetchedResultsControllerDataSource reloadData];
+    [self configureView];
 }
 
 - (NSDate *)date
@@ -46,6 +51,13 @@
 
     // redirect datasource
     self.tableView.dataSource = self.fetchedResultsControllerDataSource;
+    
+    [self configureView];
+}
+
+- (void)configureView
+{
+    self.tableView.tableHeaderView = self.dailyMenu ? nil : self.emptyView;
 }
 
 - (VIFetchedResultsControllerDataSource *)fetchedResultsControllerDataSource {
@@ -76,7 +88,6 @@
     }
     return _fetchedResultsControllerDataSource;
 }
-
 
 
 #pragma mark - Swipe Table View Cell Delegate
