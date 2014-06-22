@@ -14,4 +14,6 @@
 @interface UHDDailyMenuViewController : UITableViewController <RMSwipeTableViewCellDelegate>
 
 @property (strong, nonatomic) UHDDailyMenu *dailyMenu;
+@property (strong, nonatomic) NSDate *date; // to store date if no daily menu object is set
+
 @end

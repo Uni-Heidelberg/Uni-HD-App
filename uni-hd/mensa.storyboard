@@ -67,7 +67,7 @@
             </objects>
             <point key="canvasLocation" x="1418" y="-1374"/>
         </scene>
-        <!--Main Mensa View Controller - Mensa Title-->
+        <!--Main Mensa View Controller-->
         <scene sceneID="zPL-mK-3wf">
             <objects>
                 <viewController automaticallyAdjustsScrollViewInsets="NO" id="T28-IL-f43" customClass="UHDMainMensaViewController" sceneMemberID="viewController">
@@ -83,7 +83,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="HbV-07-XuM" kind="embed" identifier="embedDailyMenu" id="cf0-9l-U5S"/>
+                                    <segue destination="COc-8j-LBc" kind="embed" identifier="embedPageVC" id="OvG-WP-bbu"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -96,12 +96,57 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
-                    <navigationItem key="navigationItem" title="Mensa Title" id="1QL-hS-OkE">
+                    <navigationItem key="navigationItem" id="1QL-hS-OkE">
+                        <nil key="title"/>
                         <barButtonItem key="leftBarButtonItem" title="Mensen" id="PBF-TZ-3F4">
                             <connections>
                                 <segue destination="bh7-4K-BVk" kind="modal" identifier="showSelectMensa" id="Jyf-vB-Phf"/>
                             </connections>
                         </barButtonItem>
+                        <view key="titleView" appearanceType="aqua" contentMode="scaleToFill" id="Kn6-rs-mUK">
+                            <rect key="frame" x="75" y="0.0" width="195" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button appearanceType="aqua" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zvS-q4-D92">
+                                    <rect key="frame" x="0.0" y="0.0" width="195" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="todayButtonPressed:" destination="T28-IL-f43" eventType="touchUpInside" id="2un-4j-ZCm"/>
+                                    </connections>
+                                </button>
+                                <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T8M-n8-Ijw">
+                                    <rect key="frame" x="86" y="27" width="24" height="14"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="Mensa Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ua6-YB-hC0">
+                                    <rect key="frame" x="52" y="3" width="91" height="21"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="zvS-q4-D92" secondAttribute="bottom" id="2fM-8N-p6b"/>
+                                <constraint firstAttribute="centerX" secondItem="ua6-YB-hC0" secondAttribute="centerX" id="327-1y-y8j"/>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="T8M-n8-Ijw" secondAttribute="trailing" id="FRJ-h9-Lpu"/>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ua6-YB-hC0" secondAttribute="trailing" id="KeV-8N-mLW"/>
+                                <constraint firstAttribute="trailing" secondItem="zvS-q4-D92" secondAttribute="trailing" id="RkM-wE-usc"/>
+                                <constraint firstAttribute="height" constant="44" id="Szl-Kv-Web"/>
+                                <constraint firstAttribute="centerX" secondItem="T8M-n8-Ijw" secondAttribute="centerX" id="U0s-um-mBR"/>
+                                <constraint firstItem="T8M-n8-Ijw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Kn6-rs-mUK" secondAttribute="leading" id="bdO-q9-JrJ"/>
+                                <constraint firstItem="T8M-n8-Ijw" firstAttribute="top" secondItem="ua6-YB-hC0" secondAttribute="bottom" id="dvR-KG-ukR"/>
+                                <constraint firstItem="ua6-YB-hC0" firstAttribute="top" secondItem="Kn6-rs-mUK" secondAttribute="top" constant="3" id="eNu-jw-okb"/>
+                                <constraint firstItem="zvS-q4-D92" firstAttribute="leading" secondItem="Kn6-rs-mUK" secondAttribute="leading" id="jiE-7z-hnd"/>
+                                <constraint firstAttribute="bottom" secondItem="T8M-n8-Ijw" secondAttribute="bottom" constant="3" id="q8C-h6-FVm"/>
+                                <constraint firstItem="zvS-q4-D92" firstAttribute="top" secondItem="Kn6-rs-mUK" secondAttribute="top" id="uUN-dm-TaJ"/>
+                                <constraint firstItem="ua6-YB-hC0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Kn6-rs-mUK" secondAttribute="leading" id="yAa-Vl-E9s"/>
+                            </constraints>
+                        </view>
                         <barButtonItem key="rightBarButtonItem" style="plain" id="JgE-90-POw">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="C4m-h4-aBq">
                                 <rect key="frame" x="282" y="11" width="22" height="22"/>
@@ -112,17 +157,29 @@
                             </button>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="dateLabel" destination="T8M-n8-Ijw" id="1OV-cz-TGF"/>
+                        <outlet property="titleLabel" destination="ua6-YB-hC0" id="RED-xz-DUr"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0fz-tF-PBU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="955" y="-655"/>
         </scene>
+        <!--Page View Controller-->
+        <scene sceneID="yqk-Wg-N9Q">
+            <objects>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="COc-8j-LBc" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Snf-KD-sla" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1456" y="-599"/>
+        </scene>
         <!--Daily Menu View Controller-->
         <scene sceneID="HZC-78-YNv">
             <objects>
-                <tableViewController storyboardIdentifier="DailyMenuViewController" id="HbV-07-XuM" customClass="UHDDailyMenuViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="dailyMenu" id="HbV-07-XuM" customClass="UHDDailyMenuViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="103" sectionHeaderHeight="22" sectionFooterHeight="22" id="7wG-hp-PG0">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -179,7 +236,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ld-xY-dQ3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1462" y="-599"/>
+            <point key="canvasLocation" x="1902" y="-599"/>
         </scene>
         <!--Navigation Controller - Mensa-->
         <scene sceneID="QfR-FS-2QS">

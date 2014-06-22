@@ -27,4 +27,15 @@
     return [self mutableSetValueForKey:@"sections"];
 }
 
+
+- (UHDDailyMenu *)dailyMenuForDate:(NSDate *)date
+{
+    NSDate *startDate;
+    NSTimeInterval dayLength;
+    [[NSCalendar currentCalendar] rangeOfUnit:NSDayCalendarUnit startDate:&startDate interval:&dayLength forDate:date];
+    NSDate *endDate = [startDate dateByAddingTimeInterval:dayLength];
+    
+    return [[self.menus filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"(date >= %@) AND (date < %@)", startDate, endDate]] anyObject];
+}
+
 @end

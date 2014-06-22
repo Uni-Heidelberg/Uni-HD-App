@@ -16,9 +16,10 @@
 @property (nonatomic, retain) NSSet *menus;
 @property (nonatomic, retain) NSSet *sections;
 
-
 - (NSMutableSet *)mutableMenus;
 - (NSMutableSet *)mutableSections;
+- (UHDDailyMenu *)dailyMenuForDate:(NSDate *)date;
+
 @end
 
 

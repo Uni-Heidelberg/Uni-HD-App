@@ -88,7 +88,7 @@
         newsSourcesVC.managedObjectContext = self.managedObjectContext;
 
     } else if ([segue.identifier isEqualToString:@"embedPageVC"]) {
-        self.pageViewController = (UIPageViewController *)segue.destinationViewController;
+        self.pageViewController = segue.destinationViewController;
         self.pageViewController.dataSource = self;
         self.pageViewController.delegate = self;
         [self.pageViewController setViewControllers:@[ [self pageViewController:self.pageViewController viewControllerAfterViewController:nil] ] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];

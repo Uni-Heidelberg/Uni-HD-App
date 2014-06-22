@@ -16,14 +16,18 @@
 #import "UHDMensa.h"
 
 
-@interface UHDMainMensaViewController ()
+@interface UHDMainMensaViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
 
 @property (strong, nonatomic) UHDMensa *mensa;
-@property (strong, nonatomic) UHDDailyMenuViewController *dailyMenuVC;
-@property (strong, nonatomic) UILabel *chooseMensaLabel;
+
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) IBOutlet UILabel *dateLabel;
+
+@property (strong, nonatomic) UIPageViewController *pageViewController;
 
 - (void)configureView;
 
+- (IBAction)todayButtonPressed:(id)sender;
 - (IBAction)unwindToMainMensa:(UIStoryboardSegue *)segue;
 
 @end
@@ -41,9 +45,9 @@
     [self configureView];
 }
 
-- (void)viewWillAppear:(BOOL)animated
+- (void)userDefaultsDidChange:(NSNotification *)notification
 {
-    [super viewWillAppear:animated];
+    [self loadSelectedMensa];
 }
 
 - (void)loadSelectedMensa
@@ -63,48 +67,89 @@
     } else {
         [self.logger log:@"selected invalid mensa" forLevel:VILogLevelError];
     }
+    
 }
 
 - (void)setMensa:(UHDMensa *)mensa
 {
     if (mensa == _mensa) return;
     _mensa = mensa;
+    [self.pageViewController setViewControllers:@[ [self dailyMenuViewControllerForDate:[NSDate date]] ] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     [self configureView];
 }
 
 - (void)configureView
 {
-    self.navigationItem.title = self.mensa ? self.mensa.title : NSLocalizedString(@"No Mensa selected", nil);
+    self.titleLabel.text = self.mensa ? self.mensa.title : NSLocalizedString(@"No Mensa selected", nil);
     
-    UHDDailyMenu *dailyMenu = [[self.mensa.menus sortedArrayUsingDescriptors:@[ [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES] ]] lastObject];
-
-    self.dailyMenuVC.dailyMenu = dailyMenu;
-}
-
-
-#pragma mark - User Defaults Change Callback
-
-- (void)userDefaultsDidChange:(NSNotification *)notification
-{
-    [self loadSelectedMensa];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateStyle = NSDateFormatterLongStyle;
+    dateFormatter.timeStyle = NSDateFormatterNoStyle;
+    self.dateLabel.text = [dateFormatter stringFromDate:[(UHDDailyMenuViewController *)self.pageViewController.viewControllers[0] date]];
 }
 
 
 #pragma mark - User Interaction
+
+- (IBAction)todayButtonPressed:(id)sender
+{
+    [self.pageViewController setViewControllers:@[ [self dailyMenuViewControllerForDate:[NSDate date]] ] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    [self configureView];
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"showSelectMensa"]) {
         UHDMensaViewController *mensaVC = [segue.destinationViewController viewControllers][0];
         mensaVC.managedObjectContext = self.managedObjectContext;
-    } else if ([segue.identifier isEqualToString:@"embedDailyMenu"]) {
-        self.dailyMenuVC = segue.destinationViewController;
+    } else if ([segue.identifier isEqualToString:@"embedPageVC"]) {
+        self.pageViewController = segue.destinationViewController;
+        self.pageViewController.dataSource = self;
+        self.pageViewController.delegate = self;
+        [self.pageViewController setViewControllers:@[ [self dailyMenuViewControllerForDate:[NSDate date]] ] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     }
 }
 
 - (void)unwindToMainMensa:(UIStoryboardSegue *)segue
 {
     
+}
+
+
+#pragma mark - Page View Controller Delegate
+
+- (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
+{
+    [self configureView];
+}
+
+
+#pragma mark - Page View Controller Datasource
+
+- (UHDDailyMenuViewController *)dailyMenuViewControllerForDate:(NSDate *)date
+{
+    UHDDailyMenuViewController *dailyMenuVC = [self.storyboard instantiateViewControllerWithIdentifier:@"dailyMenu"];
+    dailyMenuVC.dailyMenu = [self.mensa dailyMenuForDate:date];
+    dailyMenuVC.date = date;
+    return dailyMenuVC;
+}
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
+{
+    UHDDailyMenuViewController *currentDailyMenuVC = (UHDDailyMenuViewController *)viewController;
+    NSDateComponents *oneDay = [[NSDateComponents alloc] init];
+    oneDay.day = 1;
+    NSDate *nextDate = [[NSCalendar currentCalendar] dateByAddingComponents:oneDay toDate:currentDailyMenuVC.date options:0];
+    return [self dailyMenuViewControllerForDate:nextDate];
+}
+
+- (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
+{
+    UHDDailyMenuViewController *currentDailyMenuVC = (UHDDailyMenuViewController *)viewController;
+    NSDateComponents *oneDay = [[NSDateComponents alloc] init];
+    oneDay.day = -1;
+    NSDate *prevDate = [[NSCalendar currentCalendar] dateByAddingComponents:oneDay toDate:currentDailyMenuVC.date options:0];
+    return [self dailyMenuViewControllerForDate:prevDate];
 }
 
 @end
