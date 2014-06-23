@@ -13,6 +13,7 @@
 @interface UHDNewsDetailViewController ()
 
 @property (strong, nonatomic) IBOutlet UIWebView *newsWebView;
+@property (nonatomic) UITapGestureRecognizer *tap;
 @property BOOL scalesPageToFit;
 @property (nonatomic) NSArray *arrayOfActivityItems;
 @property (nonatomic) UIActivityViewController *activityVC;
@@ -54,7 +55,10 @@
 
 
 
-
+- (void) hideShowNavigation
+{
+    [self.navigationController setNavigationBarHidden:!self.navigationController.navigationBarHidden];
+}
 
 
 
@@ -63,7 +67,11 @@
     
     [super viewDidLoad];
     
-
+    self.navigationController.navigationBar.translucent = YES;
+    
+    UITapGestureRecognizer *tap = [[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideShowNavigation)] initWithTarget:self.newsWebView action: Nil];
+    tap.numberOfTapsRequired = 1;
+    [self.newsWebView addGestureRecognizer:tap];
     
 
 
