@@ -33,6 +33,7 @@
     _dailyMenu = dailyMenu;
     self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"menu == %@", self.dailyMenu];
     [self.fetchedResultsControllerDataSource reloadData];
+    
     [self configureView];
 }
 
@@ -48,9 +49,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // redirect datasource
-    self.tableView.dataSource = self.fetchedResultsControllerDataSource;
     
     [self configureView];
 }
@@ -89,6 +87,32 @@
     return _fetchedResultsControllerDataSource;
 }
 
+
+#pragma mark - Table View Datasource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [self.fetchedResultsControllerDataSource numberOfSectionsInTableView:tableView];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return [self.fetchedResultsControllerDataSource tableView:tableView numberOfRowsInSection:section];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return [self.fetchedResultsControllerDataSource tableView:tableView cellForRowAtIndexPath:indexPath];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // TODO: test efficiency
+    UHDMealCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mealCell"];
+    [cell configureForMeal:[self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath]];
+    [cell layoutIfNeeded];
+    return [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height + 1.; // TODO: remove + 1.
+}
 
 #pragma mark - Swipe Table View Cell Delegate
 
