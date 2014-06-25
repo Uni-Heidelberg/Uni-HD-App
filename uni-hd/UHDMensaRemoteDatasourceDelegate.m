@@ -57,9 +57,12 @@
     
     UHDMensaSection *sectionItem = [UHDMensaSection insertNewObjectIntoContext:managedObjectContext];
     sectionItem.title = @"Section A";
+    sectionItem.remoteObjectId = 0;
     
     UHDMensaSection *sectionItem2 = [UHDMensaSection insertNewObjectIntoContext:managedObjectContext];
     sectionItem2.title = @"Section B";
+    sectionItem.remoteObjectId = 1;
+
     
     [mensaItem.mutableSections addObject:sectionItem];
     
@@ -145,6 +148,7 @@
     
     UHDMensaSection *sectionItem3 = [UHDMensaSection insertNewObjectIntoContext:managedObjectContext];
     sectionItem3.title = @"Section C";
+    sectionItem3.remoteObjectId = 2;
     [mensaItem3.mutableSections addObject:sectionItem3];
     
     //Create DailyMenu
