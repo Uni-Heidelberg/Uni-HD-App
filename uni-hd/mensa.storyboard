@@ -20,7 +20,7 @@
             </objects>
             <point key="canvasLocation" x="955" y="-1374"/>
         </scene>
-        <!--Mensa View Controller - Mensen-->
+        <!--Mensa View Controller-->
         <scene sceneID="b7l-Wt-6l0">
             <objects>
                 <tableViewController storyboardIdentifier="MensaViewController" id="otg-ia-fKW" customClass="UHDMensaViewController" sceneMemberID="viewController">
@@ -55,7 +55,16 @@
                             <outlet property="delegate" destination="otg-ia-fKW" id="9bi-lt-QiV"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Mensen" id="lXf-JQ-lwZ">
+                    <navigationItem key="navigationItem" id="lXf-JQ-lwZ">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="UTb-tn-cFY">
+                            <rect key="frame" x="8" y="6" width="244" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Alle Mensen"/>
+                                <segment title="In deiner Nähe"/>
+                            </segments>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" systemItem="cancel" id="GdP-ik-nj6">
                             <connections>
                                 <segue destination="cWY-ub-8Cl" kind="unwind" identifier="cancelMensaSelection" unwindAction="unwindToMainMensa:" id="qxK-fe-O7u"/>
