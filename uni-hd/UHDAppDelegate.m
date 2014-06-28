@@ -19,7 +19,7 @@
 
 // View Controllers
 #import "UHDNewsViewController.h"
-#import "UHDMainMensaViewController.h"
+#import "UHDMensaViewController.h"
 
 
 @interface UHDAppDelegate ()
@@ -63,7 +63,7 @@
     // Mensa
     UIStoryboard *mensaStoryboard = [UIStoryboard storyboardWithName:@"mensa" bundle:nil];
     UINavigationController *mensaNavC = [mensaStoryboard instantiateInitialViewController];
-    UHDMainMensaViewController *mainMensaVC = mensaNavC.viewControllers[0];
+    UHDMensaViewController *mainMensaVC = mensaNavC.viewControllers[0];
     mainMensaVC.managedObjectContext = self.persistentStack.managedObjectContext;
     
     // News

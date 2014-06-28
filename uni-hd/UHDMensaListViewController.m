@@ -6,19 +6,19 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import "UHDMensaViewController.h"
+#import "UHDMensaListViewController.h"
 
 // Table View Datasource
 #import "VIFetchedResultsControllerDataSource.h"
 
 // View Controller
-#import "UHDMainMensaViewController.h"
+#import "UHDMensaViewController.h"
 
 // Model
 #import "UHDMensa.h"
 
 
-@interface UHDMensaViewController ()
+@interface UHDMensaListViewController ()
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
@@ -26,7 +26,7 @@
 @end
 
 
-@implementation UHDMensaViewController
+@implementation UHDMensaListViewController
 
 - (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
