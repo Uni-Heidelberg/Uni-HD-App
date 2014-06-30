@@ -8,6 +8,8 @@
 
 #import "UHDNewsRemoteDatasourceDelegate.h"
 #import "UHDNewsItem.h"
+#import "UHDEventItem.h"
+#import "UHDTalkItem.h"
 #import "UHDNewsSource.h"
 #import "UHDNewsCategory.h"
 
@@ -89,7 +91,20 @@
     newsItem.url = [NSURL URLWithString:@"http://www.loremipsum.de"];
     // no image for this news
     newsItem.source = newsSource;
-    
+	
+	// Create Events
+	UHDTalkItem *talkItem = [UHDTalkItem insertNewObjectIntoContext:managedObjectContext];
+	talkItem.title = @"Particle Fever";
+	//talkItem.abstract = @"";
+    talkItem.date = [NSDate dateWithTimeIntervalSinceReferenceDate:409251600];
+    talkItem.url = [NSURL URLWithString:@"http://www.physi.uni-heidelberg.de/Veranstaltungen/Ankuendigungen/Kaplan_20.12.2013.pdf"];
+    talkItem.thumbImage = [UIImage imageNamed:@"particleFever"];
+    talkItem.source = newsSource;
+	talkItem.eventType = @"Physikalisches Kolloquium";
+	talkItem.location = @"INF 308, Hörsaal 1";
+	talkItem.speaker = @"Prof. David Kaplan";
+	talkItem.speakerOrigin = @"Department of Physics and Astronomy, John Hopkins University";
+
     // Create new NewsSource
     newsCategory = [UHDNewsCategory insertNewObjectIntoContext:managedObjectContext];
     newsCategory.title = @"Uni Allgemein";

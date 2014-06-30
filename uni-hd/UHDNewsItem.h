@@ -11,7 +11,7 @@
 
 @interface UHDNewsItem : UHDRemoteManagedObject
 
-@property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSDate *date;
 @property (nonatomic, retain) NSString *abstract;
 @property (nonatomic) BOOL read;
