@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UHDMensa.h"
+
 
 @interface UHDMensaDetailViewController : UITableViewController
-
+@property UHDMensa *mensa;
 
 @end

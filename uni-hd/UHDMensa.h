@@ -9,9 +9,9 @@
 #import "UHDRemoteManagedObject.h"
 @class UHDDailyMenu, UHDLocation;
 
-@interface UHDMensa : UHDRemoteManagedObject
+@interface UHDMensa : UHDRemoteManagedObject <MKAnnotation>
 
-@property (nonatomic, retain) NSString * title;
+@property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) UHDLocation *location;
 @property (nonatomic, retain) NSSet *menus;
 @property (nonatomic, retain) NSSet *sections;
