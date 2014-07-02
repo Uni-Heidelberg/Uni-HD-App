@@ -10,7 +10,8 @@
 #import "RMSwipeTableViewCell.h"
 #import "UHDMeal.h"
 
-@interface UHDMealCell : RMSwipeTableViewCell 
+@interface UHDMealCell : RMSwipeTableViewCell
+
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UIView *favouriteBar;
