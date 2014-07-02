@@ -43,7 +43,6 @@
 		87CBE0AA1908810B0029D9AF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87CBE0A91908810B0029D9AF /* Images.xcassets */; };
 		87DBE7F41919C3F700C16970 /* news.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87DBE7F31919C3F700C16970 /* news.storyboard */; };
 		87DC1FA5191AB5C600395559 /* mensa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87DC1FA3191AB5C600395559 /* mensa.xcdatamodeld */; };
-		87E852711957270C007503B8 /* events.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87E852701957270C007503B8 /* events.storyboard */; };
 		87E85274195727E4007503B8 /* maps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87E85273195727E4007503B8 /* maps.storyboard */; };
 		87E85276195728A7007503B8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E85275195728A7007503B8 /* MapKit.framework */; };
 		87E8527A1957297A007503B8 /* UHDMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E852791957297A007503B8 /* UHDMapsViewController.m */; };
@@ -139,7 +138,6 @@
 		87CBE0B01908810B0029D9AF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		87DBE7F31919C3F700C16970 /* news.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = news.storyboard; sourceTree = "<group>"; };
 		87DC1FA4191AB5C600395559 /* mensa.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = mensa.xcdatamodel; sourceTree = "<group>"; };
-		87E852701957270C007503B8 /* events.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = events.storyboard; sourceTree = "<group>"; };
 		87E85273195727E4007503B8 /* maps.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = maps.storyboard; sourceTree = "<group>"; };
 		87E85275195728A7007503B8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		87E852781957297A007503B8 /* UHDMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMapsViewController.h; sourceTree = "<group>"; };
@@ -406,19 +404,10 @@
 			children = (
 				8799DA8E192AB1E8009B3CAB /* Mensa */,
 				8799DA8D192AB1DB009B3CAB /* News */,
-				87E8526F195726F0007503B8 /* Events */,
 				87E85272195727D4007503B8 /* Maps */,
 				87B276CC192E03E90057B505 /* Global */,
 			);
 			name = View;
-			sourceTree = "<group>";
-		};
-		87E8526F195726F0007503B8 /* Events */ = {
-			isa = PBXGroup;
-			children = (
-				87E852701957270C007503B8 /* events.storyboard */,
-			);
-			name = Events;
 			sourceTree = "<group>";
 		};
 		87E85272195727D4007503B8 /* Maps */ = {
@@ -643,7 +632,6 @@
 				87CBE0961908810B0029D9AF /* InfoPlist.strings in Resources */,
 				87DBE7F41919C3F700C16970 /* news.storyboard in Resources */,
 				DC87FDF8191AA00600019F32 /* mensa.storyboard in Resources */,
-				87E852711957270C007503B8 /* events.storyboard in Resources */,
 				87E85274195727E4007503B8 /* maps.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

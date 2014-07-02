@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13D65" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6172.15" systemVersion="14A238x" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="UHDEventItem" representedClassName="UHDEventItem" syncable="YES">
         <attribute name="abstract" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
@@ -43,6 +43,7 @@
     <entity name="UHDTalkItem" representedClassName="UHDTalkItem" syncable="YES">
         <attribute name="abstract" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
+        <attribute name="eventType" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="read" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -59,6 +60,6 @@
         <element name="UHDNewsCategory" positionX="-270" positionY="-207" width="128" height="90"/>
         <element name="UHDNewsItem" positionX="9" positionY="-207" width="128" height="180"/>
         <element name="UHDNewsSource" positionX="-279" positionY="-9" width="128" height="178"/>
-        <element name="UHDTalkItem" positionX="7" positionY="144" width="128" height="223"/>
+        <element name="UHDTalkItem" positionX="7" positionY="144" width="128" height="240"/>
     </elements>
 </model>
