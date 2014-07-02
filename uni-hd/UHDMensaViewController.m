@@ -11,6 +11,7 @@
 // View Controller
 #import "UHDMensaListViewController.h"
 #import "UHDDailyMenuViewController.h"
+#import "UHDMensaDetailViewController.h"
 
 // Model
 #import "UHDMensa.h"
@@ -79,15 +80,16 @@
 }
 
 - (void)configureView
-{
-    self.titleLabel.text = self.mensa ? self.mensa.title : NSLocalizedString(@"No Mensa selected", nil);
+{   self.titleLabel.text = self.mensa ? self.mensa.title : NSLocalizedString(@"No Mensa selected", nil);
+//    if (!self.mensa) {
+//        self.navigationItem.rightBarButtonItem;
+//    }
     
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateStyle = NSDateFormatterLongStyle;
     dateFormatter.timeStyle = NSDateFormatterNoStyle;
     self.dateLabel.text = [dateFormatter stringFromDate:[(UHDDailyMenuViewController *)self.pageViewController.viewControllers[0] date]];
 }
-
 
 #pragma mark - User Interaction
 
@@ -102,11 +104,16 @@
     if ([segue.identifier isEqualToString:@"showSelectMensa"]) {
         UHDMensaListViewController *mensaVC = [segue.destinationViewController viewControllers][0];
         mensaVC.managedObjectContext = self.managedObjectContext;
-    } else if ([segue.identifier isEqualToString:@"embedPageVC"]) {
+    }
+    else if ([segue.identifier isEqualToString:@"embedPageVC"]) {
         self.pageViewController = segue.destinationViewController;
         self.pageViewController.dataSource = self;
         self.pageViewController.delegate = self;
         [self.pageViewController setViewControllers:@[ [self dailyMenuViewControllerForDate:[NSDate date]] ] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+    }
+    else if ([segue.identifier isEqualToString:[NSString stringWithFormat:@"showMensaDetail"]]) {
+        UHDMensaDetailViewController *detailVC = [segue destinationViewController];
+        detailVC.mensa = self.mensa;
     }
 }
 

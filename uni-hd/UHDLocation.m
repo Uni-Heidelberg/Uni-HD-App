@@ -16,4 +16,14 @@
 @dynamic longitude;
 @dynamic mensa;
 
+-(void)setCoordinate:(CLLocationCoordinate2D)coordinate
+{
+    self.latitude = coordinate.latitude;
+    self.longitude = coordinate.longitude;
+}
+
+-(CLLocationCoordinate2D)coordinate
+{
+    return CLLocationCoordinate2DMake(self.latitude, self.longitude);
+}
 @end

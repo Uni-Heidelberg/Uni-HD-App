@@ -38,4 +38,11 @@
     return [[self.menus filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"(date >= %@) AND (date < %@)", startDate, endDate]] anyObject];
 }
 
+# pragma mark - MKAnnotation Protocol
+
+- (CLLocationCoordinate2D)coordinate
+{
+    return self.location.coordinate;
+}
+
 @end

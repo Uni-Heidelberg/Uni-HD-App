@@ -13,6 +13,8 @@
 
 // View Controller
 #import "UHDMensaViewController.h"
+#import "UHDMensaDetailViewController.h"
+
 
 // Model
 #import "UHDMensa.h"
@@ -42,6 +44,13 @@
     
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:[NSString stringWithFormat:@"showMensaDetail"]]) {
+        UHDMensaDetailViewController *detailVC = [segue destinationViewController];
+        detailVC.mensa = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:(UITableViewCell *)sender]];
+    }
+}
 
 #pragma mark - User Interaction
 

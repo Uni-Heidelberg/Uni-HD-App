@@ -16,5 +16,5 @@
 @property (nonatomic) double_t latitude;
 @property (nonatomic) double_t longitude;
 @property (nonatomic, retain) UHDMensa *mensa;
-
+@property (nonatomic) CLLocationCoordinate2D coordinate;
 @end
