@@ -233,9 +233,6 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="IB1-8r-VdX" appends="YES" id="4j0-3U-o1z"/>
-                                </connections>
                             </webView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -249,7 +246,7 @@
                     <navigationItem key="navigationItem" id="XMQ-XG-Liz">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="B8S-Pq-JSY">
                             <connections>
-                                <action selector="UIButton:" destination="cii-2s-9Xp" id="Uac-Xb-u8m"/>
+                                <action selector="shareButtonPressed:" destination="cii-2s-9Xp" id="Hjh-5D-4hA"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -258,7 +255,6 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UC2-ih-bD7" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <tapGestureRecognizer id="IB1-8r-VdX"/>
             </objects>
             <point key="canvasLocation" x="2303" y="292"/>
         </scene>
