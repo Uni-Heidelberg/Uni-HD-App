@@ -7,9 +7,11 @@
 //
 
 @import UIKit;
+#import "UHDNewsCategory.h"
 
 @interface UHDNewsSourcesViewController : UITableViewController
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) UHDNewsCategory *category;
 
 @end

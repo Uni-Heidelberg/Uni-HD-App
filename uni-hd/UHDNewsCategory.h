@@ -11,8 +11,9 @@
 @interface UHDNewsCategory : UHDRemoteManagedObject
 
 @property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) NSSet *sources;
+@property (nonatomic, retain) NSSet *children;
+@property (nonatomic, retain) UHDNewsCategory *parent;
 
-- (NSMutableSet *)mutableSources;
+- (NSMutableSet *)mutableChildren;
 
 @end

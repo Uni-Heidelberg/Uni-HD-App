@@ -10,12 +10,11 @@
 
 @implementation UHDNewsCategory
 
-@dynamic title;
-@dynamic sources;
+@dynamic title, children, parent;
 
-- (NSMutableSet *)mutableSources
+- (NSMutableSet *)mutableChildren
 {
-    return [self mutableSetValueForKey:@"sources"];
+    return [self mutableSetValueForKey:@"children"];
 }
 
 @end

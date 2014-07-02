@@ -10,6 +10,7 @@
 #import "UHDNewsItem.h"
 #import "UHDEventItem.h"
 #import "UHDTalkItem.h"
+#import "UHDTalkSpeaker.h"
 #import "UHDNewsSource.h"
 #import "UHDNewsCategory.h"
 
@@ -34,7 +35,7 @@
     [newsSourceMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId"}];
     [newsSourceMapping addAttributeMappingsFromArray:@[@"title", @"categoryId" ]];
     newsSourceMapping.identificationAttributes = @[ @"remoteObjectId" ];
-    [newsSourceMapping addConnectionForRelationship:@"category" connectedBy:@{ @"categoryId": @"remoteObjectId" }];
+    [newsSourceMapping addConnectionForRelationship:@"parent" connectedBy:@{ @"categoryId": @"remoteObjectId" }];
     [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:newsSourceMapping method:RKRequestMethodAny pathPattern:nil keyPath:@"news.sources" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
 
     
@@ -92,6 +93,23 @@
     // no image for this news
     newsItem.source = newsSource;
 	
+	
+	// Create Colloquium
+	UHDNewsCategory *collocs = [UHDNewsCategory insertNewObjectIntoContext:managedObjectContext];
+	collocs.title = @"Kolloquien";
+	collocs.parent = newsCategory;
+	
+	newsSource = [UHDNewsSource insertNewObjectIntoContext:managedObjectContext];
+	newsSource.title = @"Physikalisches Kolloquium";
+	newsSource.category = collocs;
+	newsSource.subscribed = YES;
+	
+		newsSource = [UHDNewsSource insertNewObjectIntoContext:managedObjectContext];
+	newsSource.title = @"Astro-Kolloquium";
+	newsSource.category = collocs;
+	newsSource.subscribed = YES;
+	
+	
 	// Create Events
 	UHDTalkItem *talkItem = [UHDTalkItem insertNewObjectIntoContext:managedObjectContext];
 	talkItem.title = @"Particle Fever";
@@ -102,8 +120,16 @@
     talkItem.source = newsSource;
 	talkItem.eventType = @"Physikalisches Kolloquium";
 	talkItem.location = @"INF 308, Hörsaal 1";
-	talkItem.speaker = @"Prof. David Kaplan";
-	talkItem.speakerOrigin = @"Department of Physics and Astronomy, John Hopkins University";
+	
+	// Create Speaker
+	UHDTalkSpeaker *talkSpeaker = [UHDTalkSpeaker insertNewObjectIntoContext:managedObjectContext];
+	talkSpeaker.name = @"Prof. David Kaplan";
+	talkSpeaker.affiliation = @"Department of Physics and Astronomy, John Hopkins University";
+	talkSpeaker.url = [NSURL URLWithString:@"http://particlefever.com"];
+	talkSpeaker.email = @"dkaplan@pha.jhu.edu";
+	
+	talkItem.speaker = talkSpeaker;
+	
 
     // Create new NewsSource
     newsCategory = [UHDNewsCategory insertNewObjectIntoContext:managedObjectContext];
@@ -122,6 +148,8 @@
     newsItem.url = [NSURL URLWithString:@"http://www.uni-heidelberg.de"];
     newsItem.source = newsSource;
     newsItem.thumbImage = [UIImage imageNamed:@"heidelberg"];
+	
+	
     
     // Save to store
     [managedObjectContext saveToPersistentStore:NULL];

@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum : NSUInteger {
+    UHDNewsListDisplayModeNews,
+    UHDNewsListDisplayModeEvents,
+} UHDNewsListDisplayMode;
+
 @interface UHDNewsListViewController : UITableViewController
 
 @property (strong, nonatomic) NSArray *sources;
+
+@property (nonatomic) UHDNewsListDisplayMode displayMode;
 
 @end

@@ -7,10 +7,10 @@
 //
 
 #import "UHDEventItem.h"
+@class UHDTalkSpeaker;
 
 @interface UHDTalkItem : UHDEventItem
 
-@property (nonatomic, retain) NSString *speaker;
-@property (nonatomic, retain) NSString *speakerOrigin;
+@property (nonatomic, retain) UHDTalkSpeaker *speaker;
 
 @end

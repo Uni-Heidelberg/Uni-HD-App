@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A2000521920F18A0014C977 /* UHDNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2000511920F18A0014C977 /* UHDNewsDetailViewController.m */; };
+		0A586D8E19646A6600DF86EE /* UHDTalkSpeaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A586D8D19646A6600DF86EE /* UHDTalkSpeaker.m */; };
 		0ACE47B519619BB9004F84F9 /* UHDEventItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE47B419619BB9004F84F9 /* UHDEventItem.m */; };
 		0ACE47B819619F07004F84F9 /* UHDTalkItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE47B719619F07004F84F9 /* UHDTalkItem.m */; };
 		0AD7F3721923F58E00F49551 /* UHDNewsItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7F3711923F58E00F49551 /* UHDNewsItemCell.m */; };
@@ -82,6 +83,8 @@
 /* Begin PBXFileReference section */
 		0A2000501920F18A0014C977 /* UHDNewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsDetailViewController.h; sourceTree = "<group>"; };
 		0A2000511920F18A0014C977 /* UHDNewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsDetailViewController.m; sourceTree = "<group>"; };
+		0A586D8C19646A6600DF86EE /* UHDTalkSpeaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkSpeaker.h; sourceTree = "<group>"; };
+		0A586D8D19646A6600DF86EE /* UHDTalkSpeaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDTalkSpeaker.m; sourceTree = "<group>"; };
 		0ACE47B319619BB9004F84F9 /* UHDEventItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDEventItem.h; sourceTree = "<group>"; };
 		0ACE47B419619BB9004F84F9 /* UHDEventItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDEventItem.m; sourceTree = "<group>"; };
 		0ACE47B619619F07004F84F9 /* UHDTalkItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkItem.h; sourceTree = "<group>"; };
@@ -525,6 +528,8 @@
 			isa = PBXGroup;
 			children = (
 				87F826CE190D422F0008144F /* news.xcdatamodeld */,
+				0A586D8C19646A6600DF86EE /* UHDTalkSpeaker.h */,
+				0A586D8D19646A6600DF86EE /* UHDTalkSpeaker.m */,
 				0ACE47B619619F07004F84F9 /* UHDTalkItem.h */,
 				0ACE47B719619F07004F84F9 /* UHDTalkItem.m */,
 				0ACE47B319619BB9004F84F9 /* UHDEventItem.h */,
@@ -730,6 +735,7 @@
 				DC21B6D71923D27500BAD26D /* UHDDailyMenu.m in Sources */,
 				DC21B6DD1923D27600BAD26D /* UHDMeal.m in Sources */,
 				DC83C93A192BDDA6004CC75B /* UHDMealCell.m in Sources */,
+				0A586D8E19646A6600DF86EE /* UHDTalkSpeaker.m in Sources */,
 				DC87FDFB191AA12D00019F32 /* UHDMensaViewController.m in Sources */,
 				87B974E5192D57330080AA40 /* UHDRemoteDatasourceManager.m in Sources */,
 				DC21B6DA1923D27600BAD26D /* UHDMensaSection.m in Sources */,

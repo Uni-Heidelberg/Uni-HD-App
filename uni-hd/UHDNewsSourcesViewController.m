@@ -26,15 +26,11 @@
 
 @implementation UHDNewsSourcesViewController
 
-
-- (void)viewDidLoad
+- (void)setCategory:(UHDNewsCategory *)category
 {
-    [super viewDidLoad];
-    
-    // redirect datasource
-    self.tableView.dataSource = self.fetchedResultsControllerDataSource;
+	_category = category;
+	self.managedObjectContext = category.managedObjectContext;
 }
-
 
 #pragma mark - User Interaction
 
@@ -45,6 +41,12 @@
     }];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+	if ([segue.identifier isEqualToString:@"showCategory"]) {
+		[segue.destinationViewController setCategory:[self.fetchedResultsControllerDataSource selectedItem]];
+	}
+}
 
 #pragma mark - Data Source
 
@@ -57,18 +59,60 @@
             return nil;
         }
 
-        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsSource entityName]];
-        fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"category.title" ascending:NO], [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO] ];
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsCategory entityName]];
+		NSString *sectionNameKeyPath = nil;
+		if (!self.category) {
+			fetchRequest.predicate = [NSPredicate predicateWithFormat:@"parent.parent = nil && parent != nil"];
+			fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"parent.parent.title" ascending:NO], [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO] ];
+			sectionNameKeyPath = @"parent.title";
+		} else {
+			fetchRequest.predicate = [NSPredicate predicateWithFormat:@"parent = %@", self.category ];
+			fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO] ];
+		}
         
-        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"category.title" cacheName:nil];
+        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:sectionNameKeyPath cacheName:nil];
         
-        VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, id item) {
-            [(UHDNewsSourceCell *)cell configureForSource:item];
-        };
-        
-        self.fetchedResultsControllerDataSource = [[VIFetchedResultsControllerDataSource alloc] initWithFetchedResultsController:fetchedResultsController tableView:self.tableView cellIdentifier:@"newsSourceCell" configureCellBlock:configureCellBlock];
+		VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource = [[VIFetchedResultsControllerDataSource alloc] init];
+		fetchedResultsControllerDataSource.tableView = self.tableView;
+		fetchedResultsControllerDataSource.fetchedResultsController = fetchedResultsController;
+		self.fetchedResultsControllerDataSource = fetchedResultsControllerDataSource;
     }
     return _fetchedResultsControllerDataSource;
 }
+
+#pragma mark - Table View Datasource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return [self.fetchedResultsControllerDataSource numberOfSectionsInTableView:tableView];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	return [self.fetchedResultsControllerDataSource tableView:tableView numberOfRowsInSection:section];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	UHDNewsCategory *item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
+	
+	UITableViewCell *cell = nil;
+	
+	if ([[item entityName] isEqualToString:[UHDNewsSource entityName]]) {
+		cell = [tableView dequeueReusableCellWithIdentifier:@"sourceCell" forIndexPath:indexPath];
+		[(UHDNewsSourceCell *)cell configureForSource:(UHDNewsSource *)item];
+	} else {
+		cell = [tableView dequeueReusableCellWithIdentifier:@"categoryCell" forIndexPath:indexPath];
+		cell.textLabel.text = item.title;
+	}
+	
+	return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+	return [self.fetchedResultsControllerDataSource tableView:tableView titleForHeaderInSection:section];
+}
+
 
 @end

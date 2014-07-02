@@ -11,6 +11,5 @@
 @implementation UHDTalkItem
 
 @dynamic speaker;
-@dynamic speakerOrigin;
 
 @end

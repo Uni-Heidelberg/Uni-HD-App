@@ -29,9 +29,23 @@
     return [UIImage imageWithData:self.thumbIconData];
 }
 
+
 - (void)setThumbIcon:(UIImage *)thumbIcon
 {
     self.thumbIconData = UIImagePNGRepresentation(thumbIcon);
 }
+
+
+- (UHDNewsCategory *) category
+{
+	return self.parent;
+}
+
+
+- (void) setCategory:(UHDNewsCategory *)category
+{
+	self.parent = category;
+}
+
 
 @end
