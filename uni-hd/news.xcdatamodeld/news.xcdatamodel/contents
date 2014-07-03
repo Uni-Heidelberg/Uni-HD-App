@@ -36,20 +36,8 @@
         <attribute name="thumbIconData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <relationship name="eventItems" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="UHDEventItem" inverseName="source" inverseEntity="UHDEventItem" syncable="YES"/>
         <relationship name="newsItems" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="UHDNewsItem" inverseName="source" inverseEntity="UHDNewsItem" syncable="YES"/>
-        <relationship name="talkItems" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="UHDTalkItem" inverseName="source" inverseEntity="UHDTalkItem" syncable="YES"/>
     </entity>
-    <entity name="UHDTalkItem" representedClassName="UHDTalkItem" syncable="YES">
-        <attribute name="abstract" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
-        <attribute name="eventType" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="read" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="sourceId" optional="YES" transient="YES" attributeType="Integer 16" syncable="YES"/>
-        <attribute name="thumbImageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
-        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="url" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <relationship name="source" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDNewsSource" inverseName="talkItems" inverseEntity="UHDNewsSource" syncable="YES"/>
+    <entity name="UHDTalkItem" representedClassName="UHDTalkItem" parentEntity="UHDEventItem" syncable="YES">
         <relationship name="speaker" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDTalkSpeaker" inverseName="talk" inverseEntity="UHDTalkSpeaker" syncable="YES"/>
     </entity>
     <entity name="UHDTalkSpeaker" representedClassName="UHDTalkSpeaker" syncable="YES">
@@ -63,8 +51,8 @@
         <element name="UHDEventItem" positionX="162" positionY="-54" width="128" height="208"/>
         <element name="UHDNewsCategory" positionX="-270" positionY="-207" width="128" height="103"/>
         <element name="UHDNewsItem" positionX="9" positionY="-207" width="128" height="180"/>
-        <element name="UHDNewsSource" positionX="-279" positionY="-9" width="128" height="133"/>
-        <element name="UHDTalkItem" positionX="7" positionY="144" width="128" height="223"/>
+        <element name="UHDNewsSource" positionX="-279" positionY="-9" width="128" height="118"/>
+        <element name="UHDTalkItem" positionX="7" positionY="144" width="128" height="58"/>
         <element name="UHDTalkSpeaker" positionX="205" positionY="243" width="128" height="118"/>
     </elements>
 </model>

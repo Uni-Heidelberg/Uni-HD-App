@@ -94,7 +94,7 @@
     newsItem.source = newsSource;
 	
 	
-	// Create Colloquium
+	// Create Colloquia
 	UHDNewsCategory *collocs = [UHDNewsCategory insertNewObjectIntoContext:managedObjectContext];
 	collocs.title = @"Kolloquien";
 	collocs.parent = newsCategory;
@@ -104,13 +104,6 @@
 	newsSource.category = collocs;
 	newsSource.subscribed = YES;
 	
-		newsSource = [UHDNewsSource insertNewObjectIntoContext:managedObjectContext];
-	newsSource.title = @"Astro-Kolloquium";
-	newsSource.category = collocs;
-	newsSource.subscribed = YES;
-	
-	
-	// Create Events
 	UHDTalkItem *talkItem = [UHDTalkItem insertNewObjectIntoContext:managedObjectContext];
 	talkItem.title = @"Particle Fever";
 	//talkItem.abstract = @"";
@@ -120,6 +113,12 @@
     talkItem.source = newsSource;
 	talkItem.eventType = @"Physikalisches Kolloquium";
 	talkItem.location = @"INF 308, Hörsaal 1";
+	
+	newsSource = [UHDNewsSource insertNewObjectIntoContext:managedObjectContext];
+	newsSource.title = @"Astro-Kolloquium";
+	newsSource.category = collocs;
+	newsSource.subscribed = YES;
+	
 	
 	// Create Speaker
 	UHDTalkSpeaker *talkSpeaker = [UHDTalkSpeaker insertNewObjectIntoContext:managedObjectContext];

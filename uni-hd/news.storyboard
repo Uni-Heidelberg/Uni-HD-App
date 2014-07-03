@@ -343,33 +343,37 @@
                                     </connections>
                                 </button>
                                 <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="All News" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jFF-bN-qhe">
-                                    <rect key="frame" x="75" y="27" width="45" height="14"/>
+                                    <rect key="frame" x="75" y="31" width="45" height="10"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label appearanceType="aqua" opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="News and Events" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PCR-hJ-Ldo">
-                                    <rect key="frame" x="29" y="3" width="137" height="24"/>
+                                <segmentedControl appearanceType="aqua" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="27s-11-N2U">
+                                    <rect key="frame" x="0.0" y="0.0" width="195" height="29"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                    <segments>
+                                        <segment title="News"/>
+                                        <segment title="Events"/>
+                                    </segments>
+                                    <connections>
+                                        <action selector="newsEventsSegmentedControlValueChanged:" destination="Fjz-Xo-mQY" eventType="valueChanged" id="hL6-Ey-S7D"/>
+                                    </connections>
+                                </segmentedControl>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="jFF-bN-qhe" firstAttribute="top" secondItem="PCR-hJ-Ldo" secondAttribute="bottom" id="0V8-5o-C3c"/>
                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="jFF-bN-qhe" secondAttribute="trailing" id="12J-Hp-0AZ"/>
-                                <constraint firstItem="PCR-hJ-Ldo" firstAttribute="top" secondItem="gor-kC-cDL" secondAttribute="top" constant="3" id="5ZR-8V-KwT"/>
-                                <constraint firstItem="PCR-hJ-Ldo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gor-kC-cDL" secondAttribute="leading" id="5hW-Pl-uEB"/>
                                 <constraint firstAttribute="centerX" secondItem="jFF-bN-qhe" secondAttribute="centerX" id="9aQ-e9-ldF"/>
                                 <constraint firstItem="9oN-Tm-wry" firstAttribute="top" secondItem="gor-kC-cDL" secondAttribute="top" id="CJb-7w-Lh3"/>
                                 <constraint firstAttribute="trailing" secondItem="9oN-Tm-wry" secondAttribute="trailing" id="CYS-YM-Uqh"/>
-                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PCR-hJ-Ldo" secondAttribute="trailing" id="JGO-of-GhN"/>
+                                <constraint firstItem="jFF-bN-qhe" firstAttribute="top" secondItem="27s-11-N2U" secondAttribute="bottom" constant="3" id="E1d-lT-j8B"/>
                                 <constraint firstAttribute="bottom" secondItem="9oN-Tm-wry" secondAttribute="bottom" id="OsZ-Pv-HDB"/>
                                 <constraint firstItem="9oN-Tm-wry" firstAttribute="leading" secondItem="gor-kC-cDL" secondAttribute="leading" id="Q3j-Mf-uAG"/>
+                                <constraint firstAttribute="trailing" secondItem="27s-11-N2U" secondAttribute="trailing" id="SHs-jf-a5M"/>
                                 <constraint firstItem="jFF-bN-qhe" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="gor-kC-cDL" secondAttribute="leading" id="ZiC-fv-xRD"/>
                                 <constraint firstAttribute="height" constant="44" id="bmD-ib-B2a"/>
+                                <constraint firstItem="27s-11-N2U" firstAttribute="leading" secondItem="gor-kC-cDL" secondAttribute="leading" id="fdU-1U-P6N"/>
                                 <constraint firstAttribute="bottom" secondItem="jFF-bN-qhe" secondAttribute="bottom" constant="3" id="qB8-aQ-ZhH"/>
-                                <constraint firstAttribute="centerX" secondItem="PCR-hJ-Ldo" secondAttribute="centerX" id="qVl-9q-R4X"/>
+                                <constraint firstItem="27s-11-N2U" firstAttribute="top" secondItem="gor-kC-cDL" secondAttribute="top" id="tbs-3e-LCd"/>
                             </constraints>
                         </view>
                         <barButtonItem key="rightBarButtonItem" title="Sources" id="o0c-az-BLB">
@@ -379,6 +383,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="newsEventsSegmentedControl" destination="27s-11-N2U" id="uXN-6F-twX"/>
                         <outlet property="temporarySelectedSourceLabel" destination="jFF-bN-qhe" id="gTO-4q-6Iy"/>
                     </connections>
                 </viewController>

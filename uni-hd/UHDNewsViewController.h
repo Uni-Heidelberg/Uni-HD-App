@@ -13,5 +13,6 @@
 @interface UHDNewsViewController : UIViewController
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) IBOutlet UISegmentedControl *newsEventsSegmentedControl;
 
 @end

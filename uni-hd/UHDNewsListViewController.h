@@ -16,7 +16,6 @@ typedef enum : NSUInteger {
 @interface UHDNewsListViewController : UITableViewController
 
 @property (strong, nonatomic) NSArray *sources;
-
 @property (nonatomic) UHDNewsListDisplayMode displayMode;
 
 @end

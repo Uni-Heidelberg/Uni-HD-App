@@ -27,10 +27,13 @@
 - (IBAction)showAllNewsButtonPressed:(id)sender;
 - (IBAction)unwindToNews:(UIStoryboardSegue *)segue;
 
+- (IBAction)newsEventsSegmentedControlValueChanged:(id)sender;
+
 @end
 
 
 @implementation UHDNewsViewController
+
 
 - (void)viewDidLoad
 {
@@ -70,6 +73,16 @@
 
 
 #pragma mark - User Interaction
+
+- (IBAction)newsEventsSegmentedControlValueChanged:(id)sender {
+	
+	//[self.logger log:@"SegmentedControl value changed" error:nil];
+	
+	for (UHDNewsListViewController *newsListVC in self.newsListViewControllers) {
+		newsListVC.displayMode = self.newsEventsSegmentedControl.selectedSegmentIndex;
+	}
+	
+}
 
 - (IBAction)showAllNewsButtonPressed:(id)sender
 {

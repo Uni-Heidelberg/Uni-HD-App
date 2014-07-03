@@ -10,10 +10,6 @@
 
 @implementation UHDTalkSpeaker
 
-@dynamic name;
-@dynamic affiliation;
-@dynamic email;
-@dynamic url;
-@dynamic talk;
+@dynamic name, affiliation, email, url, talk;
 
 @end
