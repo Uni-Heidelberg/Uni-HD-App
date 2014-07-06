@@ -64,6 +64,7 @@
 		DC21B6DD1923D27600BAD26D /* UHDMeal.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6DC1923D27600BAD26D /* UHDMeal.m */; };
 		DC21B6E01923D27600BAD26D /* UHDMensa.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6DF1923D27600BAD26D /* UHDMensa.m */; };
 		DC21B6E31923FDC300BAD26D /* UHDDailyMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6E21923FDC300BAD26D /* UHDDailyMenuViewController.m */; };
+		DC462EC1196964F60071ABBC /* UHDFavouritesStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC462EC0196964F60071ABBC /* UHDFavouritesStarView.m */; };
 		DC602447193E23A500B06BF2 /* UHDMensaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC602446193E23A500B06BF2 /* UHDMensaViewController.m */; };
 		DC83C93A192BDDA6004CC75B /* UHDMealCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC83C939192BDDA5004CC75B /* UHDMealCell.m */; };
 		DC87FDF8191AA00600019F32 /* mensa.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC87FDF7191AA00600019F32 /* mensa.storyboard */; };
@@ -174,6 +175,8 @@
 		DC21B6DF1923D27600BAD26D /* UHDMensa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMensa.m; sourceTree = "<group>"; };
 		DC21B6E11923FDC300BAD26D /* UHDDailyMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDDailyMenuViewController.h; sourceTree = "<group>"; };
 		DC21B6E21923FDC300BAD26D /* UHDDailyMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDDailyMenuViewController.m; sourceTree = "<group>"; };
+		DC462EBF196964F50071ABBC /* UHDFavouritesStarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDFavouritesStarView.h; sourceTree = "<group>"; };
+		DC462EC0196964F60071ABBC /* UHDFavouritesStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDFavouritesStarView.m; sourceTree = "<group>"; };
 		DC602445193E23A500B06BF2 /* UHDMensaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMensaViewController.h; sourceTree = "<group>"; };
 		DC602446193E23A500B06BF2 /* UHDMensaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMensaViewController.m; sourceTree = "<group>"; };
 		DC83C938192BDDA5004CC75B /* UHDMealCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMealCell.h; sourceTree = "<group>"; };
@@ -284,6 +287,8 @@
 				DC87FDF7191AA00600019F32 /* mensa.storyboard */,
 				94F484901936620B0063BF9F /* UHDTriangleStatusImageView.h */,
 				94F484911936620B0063BF9F /* UHDTriangleStatusImageView.m */,
+				DC462EBF196964F50071ABBC /* UHDFavouritesStarView.h */,
+				DC462EC0196964F60071ABBC /* UHDFavouritesStarView.m */,
 				DC83C938192BDDA5004CC75B /* UHDMealCell.h */,
 				DC83C939192BDDA5004CC75B /* UHDMealCell.m */,
 			);
@@ -757,6 +762,7 @@
 				87F826EA190D700E0008144F /* VILogger.m in Sources */,
 				DC602447193E23A500B06BF2 /* UHDMensaViewController.m in Sources */,
 				875396081932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.m in Sources */,
+				DC462EC1196964F60071ABBC /* UHDFavouritesStarView.m in Sources */,
 				0B176E711931114200D3C916 /* UHDNewsSourcesViewController.m in Sources */,
 				87600EA4192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m in Sources */,
 				0ACE47B519619BB9004F84F9 /* UHDEventItem.m in Sources */,

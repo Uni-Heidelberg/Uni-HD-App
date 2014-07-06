@@ -7,9 +7,12 @@
 //
 
 #import "UHDMealCell.h"
+#import "UHDFavouritesStarView.h"
 
 
-@interface UHDMealCell () 
+@interface UHDMealCell ()
+@property (nonatomic, strong) UHDFavouritesStarView *greyStarUIView;
+@property (nonatomic, strong) UHDFavouritesStarView *yellowStarUIView;
 @end
 
 @implementation UHDMealCell
@@ -18,24 +21,24 @@
     [super awakeFromNib];
 }
 
--(UIImageView*)checkmarkGreyImageView {
-    if (!_checkmarkGreyImageView) {
-        _checkmarkGreyImageView = [[UIImageView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.contentView.frame), 0, CGRectGetHeight(self.frame), CGRectGetHeight(self.frame))];
-        [_checkmarkGreyImageView setImage:[UIImage imageNamed:@"CheckmarkGrey"]];
-        [_checkmarkGreyImageView setContentMode:UIViewContentModeCenter];
-        [self.backView addSubview:_checkmarkGreyImageView];
+
+-(UHDFavouritesStarView*)greyStarUIView {
+    if (!_greyStarUIView) {
+        _greyStarUIView = [[UHDFavouritesStarView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.contentView.frame), 0, CGRectGetHeight(self.frame), CGRectGetHeight(self.frame))];
+        _greyStarUIView.colour = [[UIColor grayColor]CGColor];
+        _greyStarUIView.scaleFactor = 1.0;
+        [self.backView addSubview:_greyStarUIView];
     }
-    return _checkmarkGreyImageView;
+    return _greyStarUIView;
 }
 
--(UIImageView*)checkmarkGreenImageView {
-    if (!_checkmarkGreenImageView) {
-        _checkmarkGreenImageView = [[UIImageView alloc] initWithFrame:self.checkmarkGreyImageView.bounds];
-        [_checkmarkGreenImageView setImage:[UIImage imageNamed:@"CheckmarkGreen"]];
-        [_checkmarkGreenImageView setContentMode:UIViewContentModeCenter];
-        [self.checkmarkGreyImageView addSubview:_checkmarkGreenImageView];
+-(UHDFavouritesStarView*)yellowStarUIView {
+    if (!_yellowStarUIView) {
+        _yellowStarUIView = [[UHDFavouritesStarView alloc] initWithFrame:self.greyStarUIView.bounds];
+        _yellowStarUIView.colour = [[UIColor yellowColor]CGColor];
+        [self.greyStarUIView addSubview:_yellowStarUIView];
     }
-    return _checkmarkGreenImageView;
+    return _yellowStarUIView;
 }
 
 -(void)setFavourite:(BOOL)favourite animated:(BOOL)animated {
@@ -93,29 +96,24 @@
     }
     if (point.x < 0) {
         [super animateContentViewForPoint:point velocity:velocity];
-        // set the checkmark's frame to match the contentView
-        [self.checkmarkGreyImageView setFrame:CGRectMake(MAX(CGRectGetMaxX(self.frame) - CGRectGetWidth(self.checkmarkGreyImageView.frame), CGRectGetMaxX(self.contentView.frame)), CGRectGetMinY(self.checkmarkGreyImageView.frame), CGRectGetWidth(self.checkmarkGreyImageView.frame), CGRectGetHeight(self.checkmarkGreyImageView.frame))];
+        // set the star's frame to match the contentView
+        [self.greyStarUIView setFrame:CGRectMake(MAX(CGRectGetMaxX(self.frame) - CGRectGetWidth(self.greyStarUIView.frame), CGRectGetMaxX(self.contentView.frame)), CGRectGetMinY(self.greyStarUIView.frame), CGRectGetWidth(self.greyStarUIView.frame), CGRectGetHeight(self.greyStarUIView.frame))];
         if (-point.x >= CGRectGetHeight(self.frame) && self.meal.isFavourite == NO) {
-            [self.checkmarkGreenImageView setAlpha:1];
+            self.yellowStarUIView.scaleFactor = 1;
         } else if (self.meal.isFavourite == NO) {
-            [self.checkmarkGreenImageView setAlpha:0];
+            self.yellowStarUIView.scaleFactor = -point.x/CGRectGetHeight(self.frame);
         } else if (-point.x >= CGRectGetHeight(self.frame) && self.meal.isFavourite == YES) {
             // already a favourite; animate the green checkmark drop when swiped far enough for the action to kick in when user lets go
-                [UIView animateWithDuration:0.25
-                                 animations:^{
-                                     CATransform3D rotate = CATransform3DMakeRotation(-0.4, 0, 0, 1);
-                                     [self.checkmarkGreenImageView.layer setTransform:CATransform3DTranslate(rotate, -10, 20, 0)];
-                                     [self.checkmarkGreenImageView setAlpha:0];
-                                 }];
+            self.yellowStarUIView.scaleFactor = 0;
             self.favouriteBar.hidden = YES;
         } else if (self.meal.isFavourite == YES) {
             // already a favourite; but user panned back to a lower value than the action point
-            CATransform3D rotate = CATransform3DMakeRotation(0, 0, 0, 1);
-            [self.checkmarkGreenImageView.layer setTransform:CATransform3DTranslate(rotate, 0, 0, 0)];
-            [self.checkmarkGreenImageView setAlpha:1];
+            self.yellowStarUIView.scaleFactor = 1 + point.x/CGRectGetHeight(self.frame);
             self.favouriteBar.hidden = NO;
 
-        }}
+        }
+        [self.yellowStarUIView setNeedsDisplay];
+}
 }
 
 -(void)resetCellFromPoint:(CGPoint)point velocity:(CGPoint)velocity {
@@ -124,17 +122,17 @@
         // user did not swipe far enough, animate the checkmark back with the contentView animation
         [UIView animateWithDuration:self.animationDuration
                          animations:^{
-                            [self.checkmarkGreyImageView setFrame:CGRectMake(CGRectGetMaxX(self.frame), CGRectGetMinY(self.checkmarkGreyImageView.frame), CGRectGetWidth(self.checkmarkGreyImageView.frame), CGRectGetHeight(self.checkmarkGreyImageView.frame))];
+                            [self.greyStarUIView setFrame:CGRectMake(CGRectGetMaxX(self.frame), CGRectGetMinY(self.greyStarUIView.frame), CGRectGetWidth(self.greyStarUIView.frame), CGRectGetHeight(self.greyStarUIView.frame))];
                          }];
     }
 }
 
 -(void)cleanupBackView {
     [super cleanupBackView];
-    [_checkmarkGreyImageView removeFromSuperview];
-    _checkmarkGreyImageView = nil;
-    [_checkmarkGreenImageView removeFromSuperview];
-    _checkmarkGreenImageView = nil;
+    [self.greyStarUIView removeFromSuperview];
+    self.greyStarUIView = nil;
+    [self.yellowStarUIView removeFromSuperview];
+    self.yellowStarUIView = nil;
 }
 @end
 

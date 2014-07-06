@@ -16,8 +16,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
 @property (weak, nonatomic) IBOutlet UIView *favouriteBar;
 
-@property (nonatomic, strong) UIImageView *checkmarkGreyImageView;
-@property (nonatomic, strong) UIImageView *checkmarkGreenImageView;
+
 @property (nonatomic, strong) UHDMeal *meal;
 
 -(void)setFavourite:(BOOL)favourite animated:(BOOL)animated;
