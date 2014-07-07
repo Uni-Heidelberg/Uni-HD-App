@@ -14,17 +14,23 @@
 #import "UHDNewsDetailViewController.h"
 
 #import "UHDNewsItem.h"
+#import "UHDEventItem.h"
 #import "UHDTalkItem.h"
 #import "UHDNewsSource.h"
 
 // Table View Cells
 #import "UHDNewsItemCell.h"
+#import "UHDEventItemCell.h"
+//#import "UHDTalkItem."
 #import "UHDNewsItemCell+ConfigureForItem.h"
+
+#import "UHDEventItemCell+ConfigureForItem.h"
+
 
 
 @interface UHDNewsListViewController ()
 
-@property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
+@property (strong, nonatomic, readonly) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSourceNews;
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSourceEvents;
 
@@ -47,7 +53,6 @@
     self.tableView.dataSource = self.fetchedResultsControllerDataSource;
 }
 
-
 - (void)setSources:(NSArray *)sources
 {
     _sources = sources;
@@ -55,8 +60,10 @@
     if (!self.title) {
         self.title = [sources[0] title];
     }
-    self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"source IN %@", self.sources];
-    [self.fetchedResultsControllerDataSource reloadData];
+    self.fetchedResultsControllerDataSourceNews.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"source IN %@", self.sources];
+    self.fetchedResultsControllerDataSourceEvents.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"source IN %@", self.sources];
+    [self.fetchedResultsControllerDataSourceNews reloadData];
+    [self.fetchedResultsControllerDataSourceEvents reloadData];
 }
 
 - (void)setDisplayMode:(UHDNewsListDisplayMode)displayMode
@@ -64,6 +71,18 @@
 	_displayMode = displayMode;
 	[self changeDisplayMode];
 }
+
+- (void) changeDisplayMode
+{
+	/*if (self.displayMode == UHDNewsListDisplayModeNews) {
+    	[self.logger log:@"news mode" error:Nil];
+	}
+	else {
+		[self.logger log:@"events mode" error:Nil];
+	}*/
+	self.tableView.dataSource = self.fetchedResultsControllerDataSource;
+	[self.tableView reloadData];
+};
 
 
 #pragma mark - User Interaction
@@ -88,21 +107,28 @@
         
         newsDetailVC.newsItem = item;
     }
+	else if ([segue.identifier isEqualToString:@"showEventDetail"]) {
+	
+		UHDNewsDetailViewController *newsDetailVC = segue.destinationViewController;
+        
+        UHDEventItem *item = self.fetchedResultsControllerDataSource.selectedItem;
+        item.read = YES;
+        [item.managedObjectContext saveToPersistentStore:NULL];
+        
+        newsDetailVC.newsItem = item;
+	
+	}
+	else if ([segue.identifier isEqualToString:@"showTalkDetail"]) {
+		UHDNewsDetailViewController *newsDetailVC = segue.destinationViewController;
+        
+        UHDTalkItem *item = self.fetchedResultsControllerDataSource.selectedItem;
+        item.read = YES;
+        [item.managedObjectContext saveToPersistentStore:NULL];
+        
+        newsDetailVC.newsItem = item;
+	}
 }
 
-- (void) changeDisplayMode
-{
-	/*if (self.displayMode == UHDNewsListDisplayModeNews) {
-    	[self.logger log:@"news mode" error:Nil];
-	}
-	else {
-		[self.logger log:@"events mode" error:Nil];
-	}*/
-		
-	self.tableView.dataSource = self.fetchedResultsControllerDataSource;
-	[self.tableView setNeedsLayout];
-		
-};
 
 #pragma mark - Data Source
 
@@ -125,7 +151,6 @@
         }
         
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsItem entityName]];
-		//fetchRequest.predicate = [NSPredicate predicateWithFormat:@"source IN %@", self.sources];
 
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
         
@@ -151,18 +176,19 @@
 
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDEventItem entityName]];
 		[fetchRequest setIncludesSubentities:YES];
-		//fetchRequest.predicate = [NSPredicate predicateWithFormat:@"source IN %@", self.sources];
 
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
         
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         
         VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, id item) {
-            [(UHDNewsItemCell *)cell configureForItem:item];
+            [(UHDEventItemCell *)cell configureForItem:item];
         };
-		// TODO: write UHDEventItemCell
+		
+		// TODO: discriminate between UHDEventItemCell and UHDTalkItemCell
+		// override table view delegate methods like in UHDNewsSourcesViewController
         
-        self.fetchedResultsControllerDataSourceEvents = [[VIFetchedResultsControllerDataSource alloc] initWithFetchedResultsController:fetchedResultsController tableView:self.tableView cellIdentifier:@"newsCell" configureCellBlock:configureCellBlock];
+        self.fetchedResultsControllerDataSourceEvents = [[VIFetchedResultsControllerDataSource alloc] initWithFetchedResultsController:fetchedResultsController tableView:self.tableView cellIdentifier:@"eventCell" configureCellBlock:configureCellBlock];
     }
     return _fetchedResultsControllerDataSourceEvents;
 }

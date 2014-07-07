@@ -16,6 +16,10 @@
 #import "UHDNewsSource.h"
 
 
+#define kDisplayModeSegmentIndexNews 0
+#define kDisplayModeSegmentIndexEvents 1
+
+
 @interface UHDNewsViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate, NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
@@ -47,6 +51,7 @@
 - (void)configureView
 {
     self.temporarySelectedSourceLabel.text = [self.pageViewController.viewControllers[0] title];
+	[self updateDisplayMode];
 }
 
 #pragma mark - Fetched Results Controller
@@ -77,11 +82,24 @@
 - (IBAction)newsEventsSegmentedControlValueChanged:(id)sender {
 	
 	//[self.logger log:@"SegmentedControl value changed" error:nil];
+	[self updateDisplayMode];
 	
+}
+
+- (void)updateDisplayMode
+{
 	for (UHDNewsListViewController *newsListVC in self.newsListViewControllers) {
-		newsListVC.displayMode = self.newsEventsSegmentedControl.selectedSegmentIndex;
+		switch (self.newsEventsSegmentedControl.selectedSegmentIndex) {
+			case kDisplayModeSegmentIndexNews:
+				newsListVC.displayMode = UHDNewsListDisplayModeNews;
+				break;
+			case kDisplayModeSegmentIndexEvents:
+				newsListVC.displayMode = UHDNewsListDisplayModeEvents;
+				break;
+			default:
+				break;
+		}
 	}
-	
 }
 
 - (IBAction)showAllNewsButtonPressed:(id)sender

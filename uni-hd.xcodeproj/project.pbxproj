@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		0A2000521920F18A0014C977 /* UHDNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2000511920F18A0014C977 /* UHDNewsDetailViewController.m */; };
 		0A586D8E19646A6600DF86EE /* UHDTalkSpeaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A586D8D19646A6600DF86EE /* UHDTalkSpeaker.m */; };
+		0A7FACFA196B13DB00E2CC9D /* UHDEventItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7FACF9196B13DB00E2CC9D /* UHDEventItemCell.m */; };
+		0A7FACFD196B146100E2CC9D /* UHDEventItemCell+ConfigureForItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7FACFC196B146100E2CC9D /* UHDEventItemCell+ConfigureForItem.m */; };
+		0A7FAD00196B17B000E2CC9D /* UHDTalkItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7FACFF196B17B000E2CC9D /* UHDTalkItemCell.m */; };
+		0A7FAD03196B17E000E2CC9D /* UHDTalkItemCell+ConfigureForItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7FAD02196B17E000E2CC9D /* UHDTalkItemCell+ConfigureForItem.m */; };
 		0ACE47B519619BB9004F84F9 /* UHDEventItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE47B419619BB9004F84F9 /* UHDEventItem.m */; };
 		0ACE47B819619F07004F84F9 /* UHDTalkItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE47B719619F07004F84F9 /* UHDTalkItem.m */; };
 		0AD7F3721923F58E00F49551 /* UHDNewsItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7F3711923F58E00F49551 /* UHDNewsItemCell.m */; };
@@ -86,6 +90,14 @@
 		0A2000511920F18A0014C977 /* UHDNewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsDetailViewController.m; sourceTree = "<group>"; };
 		0A586D8C19646A6600DF86EE /* UHDTalkSpeaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkSpeaker.h; sourceTree = "<group>"; };
 		0A586D8D19646A6600DF86EE /* UHDTalkSpeaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDTalkSpeaker.m; sourceTree = "<group>"; };
+		0A7FACF8196B13DB00E2CC9D /* UHDEventItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDEventItemCell.h; sourceTree = "<group>"; };
+		0A7FACF9196B13DB00E2CC9D /* UHDEventItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDEventItemCell.m; sourceTree = "<group>"; };
+		0A7FACFB196B146100E2CC9D /* UHDEventItemCell+ConfigureForItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UHDEventItemCell+ConfigureForItem.h"; sourceTree = "<group>"; };
+		0A7FACFC196B146100E2CC9D /* UHDEventItemCell+ConfigureForItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UHDEventItemCell+ConfigureForItem.m"; sourceTree = "<group>"; };
+		0A7FACFE196B17B000E2CC9D /* UHDTalkItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkItemCell.h; sourceTree = "<group>"; };
+		0A7FACFF196B17B000E2CC9D /* UHDTalkItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDTalkItemCell.m; sourceTree = "<group>"; };
+		0A7FAD01196B17E000E2CC9D /* UHDTalkItemCell+ConfigureForItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UHDTalkItemCell+ConfigureForItem.h"; sourceTree = "<group>"; };
+		0A7FAD02196B17E000E2CC9D /* UHDTalkItemCell+ConfigureForItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UHDTalkItemCell+ConfigureForItem.m"; sourceTree = "<group>"; };
 		0ACE47B319619BB9004F84F9 /* UHDEventItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDEventItem.h; sourceTree = "<group>"; };
 		0ACE47B419619BB9004F84F9 /* UHDEventItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDEventItem.m; sourceTree = "<group>"; };
 		0ACE47B619619F07004F84F9 /* UHDTalkItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkItem.h; sourceTree = "<group>"; };
@@ -242,6 +254,10 @@
 				87F2BA4D1954789600034813 /* UHDNewsListViewController.m */,
 				0AD7F3731923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.h */,
 				0AD7F3741923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.m */,
+				0A7FACFB196B146100E2CC9D /* UHDEventItemCell+ConfigureForItem.h */,
+				0A7FACFC196B146100E2CC9D /* UHDEventItemCell+ConfigureForItem.m */,
+				0A7FAD01196B17E000E2CC9D /* UHDTalkItemCell+ConfigureForItem.h */,
+				0A7FAD02196B17E000E2CC9D /* UHDTalkItemCell+ConfigureForItem.m */,
 			);
 			name = "News List";
 			sourceTree = "<group>";
@@ -274,6 +290,10 @@
 				0AD7F3711923F58E00F49551 /* UHDNewsItemCell.m */,
 				875396001932B03C00DFEF19 /* UHDNewsSourceCell.h */,
 				875396011932B03C00DFEF19 /* UHDNewsSourceCell.m */,
+				0A7FACF8196B13DB00E2CC9D /* UHDEventItemCell.h */,
+				0A7FACF9196B13DB00E2CC9D /* UHDEventItemCell.m */,
+				0A7FACFE196B17B000E2CC9D /* UHDTalkItemCell.h */,
+				0A7FACFF196B17B000E2CC9D /* UHDTalkItemCell.m */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -730,8 +750,11 @@
 				DC21B6E01923D27600BAD26D /* UHDMensa.m in Sources */,
 				DC21B6D41923D27500BAD26D /* UHDLocation.m in Sources */,
 				94F484921936620B0063BF9F /* UHDTriangleStatusImageView.m in Sources */,
+				0A7FACFD196B146100E2CC9D /* UHDEventItemCell+ConfigureForItem.m in Sources */,
+				0A7FAD03196B17E000E2CC9D /* UHDTalkItemCell+ConfigureForItem.m in Sources */,
 				DC8DCC4F192CC74F0038C4BE /* UHDMealCell+ConfigureForItem.m in Sources */,
 				87B974E8192D5A360080AA40 /* VIManager.m in Sources */,
+				0A7FAD00196B17B000E2CC9D /* UHDTalkItemCell.m in Sources */,
 				87CBE09C1908810B0029D9AF /* UHDAppDelegate.m in Sources */,
 				87A8633819196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m in Sources */,
 				0AD7F3751923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.m in Sources */,
@@ -740,6 +763,7 @@
 				DC21B6D71923D27500BAD26D /* UHDDailyMenu.m in Sources */,
 				DC21B6DD1923D27600BAD26D /* UHDMeal.m in Sources */,
 				DC83C93A192BDDA6004CC75B /* UHDMealCell.m in Sources */,
+				0A7FACFA196B13DB00E2CC9D /* UHDEventItemCell.m in Sources */,
 				0A586D8E19646A6600DF86EE /* UHDTalkSpeaker.m in Sources */,
 				87B974E5192D57330080AA40 /* UHDRemoteDatasourceManager.m in Sources */,
 				DC21B6DA1923D27600BAD26D /* UHDMensaSection.m in Sources */,
