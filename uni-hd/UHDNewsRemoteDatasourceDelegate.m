@@ -158,6 +158,16 @@
     newsSource.subscribed = YES;
     newsSource.thumbIcon = [UIImage imageNamed:@"uhdIcon"];
 	
+	    
+    // Create further NewsArticles
+    newsItem = [UHDNewsItem insertNewObjectIntoContext:managedObjectContext];
+    newsItem.title = @"Novitas!";
+    newsItem.abstract = @"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
+    newsItem.date = [NSDate dateWithTimeIntervalSinceReferenceDate:(-2000*365.25*24*3600)];
+    newsItem.url = [NSURL URLWithString:@"http://www.uni-heidelberg.de"];
+    newsItem.source = newsSource;
+    newsItem.thumbImage = [UIImage imageNamed:@"heidelberg"];
+	
 	
 	// Create Events
 	newsSource = [UHDNewsSource insertNewObjectIntoContext:managedObjectContext];
@@ -173,17 +183,6 @@
 	eventItem.thumbImage = [UIImage imageNamed:@"WM2014"];
 	eventItem.source = newsSource;
 	eventItem.location = @"Café Botanik im Neuenheimer Feld";
-	
-    
-    // Create further NewsArticles
-    newsItem = [UHDNewsItem insertNewObjectIntoContext:managedObjectContext];
-    newsItem.title = @"Novitas!";
-    newsItem.abstract = @"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
-    newsItem.date = [NSDate dateWithTimeIntervalSinceReferenceDate:(-2000*365.25*24*3600)];
-    newsItem.url = [NSURL URLWithString:@"http://www.uni-heidelberg.de"];
-    newsItem.source = newsSource;
-    newsItem.thumbImage = [UIImage imageNamed:@"heidelberg"];
-	
 	
     
     // Save to store

@@ -21,10 +21,10 @@
 // Table View Cells
 #import "UHDNewsItemCell.h"
 #import "UHDEventItemCell.h"
-//#import "UHDTalkItem."
+#import "UHDTalkItemCell.h"
 #import "UHDNewsItemCell+ConfigureForItem.h"
-
 #import "UHDEventItemCell+ConfigureForItem.h"
+#import "UHDTalkItemCell+ConfigureForItem.h"
 
 
 
@@ -48,9 +48,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // redirect data source
-    self.tableView.dataSource = self.fetchedResultsControllerDataSource;
+	self.tableView.dataSource = self;
+	self.tableView.delegate = self;
 }
 
 - (void)setSources:(NSArray *)sources
@@ -80,7 +79,6 @@
 	else {
 		[self.logger log:@"events mode" error:Nil];
 	}*/
-	self.tableView.dataSource = self.fetchedResultsControllerDataSource;
 	[self.tableView reloadData];
 };
 
@@ -156,11 +154,11 @@
         
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         
-        VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, id item) {
-            [(UHDNewsItemCell *)cell configureForItem:item];
-        };
-        
-        self.fetchedResultsControllerDataSourceNews = [[VIFetchedResultsControllerDataSource alloc] initWithFetchedResultsController:fetchedResultsController tableView:self.tableView cellIdentifier:@"newsCell" configureCellBlock:configureCellBlock];
+		VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource = [[VIFetchedResultsControllerDataSource alloc] init];
+		fetchedResultsControllerDataSource.tableView = self.tableView;
+		fetchedResultsControllerDataSource.fetchedResultsController = fetchedResultsController;
+		self.fetchedResultsControllerDataSourceNews = fetchedResultsControllerDataSource;
+		
     }
 	return _fetchedResultsControllerDataSourceNews;
 }
@@ -181,17 +179,69 @@
         
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         
-        VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, id item) {
+        /*VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, id item) {
             [(UHDEventItemCell *)cell configureForItem:item];
         };
 		
 		// TODO: discriminate between UHDEventItemCell and UHDTalkItemCell
 		// override table view delegate methods like in UHDNewsSourcesViewController
         
-        self.fetchedResultsControllerDataSourceEvents = [[VIFetchedResultsControllerDataSource alloc] initWithFetchedResultsController:fetchedResultsController tableView:self.tableView cellIdentifier:@"eventCell" configureCellBlock:configureCellBlock];
+        self.fetchedResultsControllerDataSourceEvents = [[VIFetchedResultsControllerDataSource alloc] initWithFetchedResultsController:fetchedResultsController tableView:self.tableView cellIdentifier:@"eventCell" configureCellBlock:configureCellBlock];*/
+		
+		VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource = [[VIFetchedResultsControllerDataSource alloc] init];
+		fetchedResultsControllerDataSource.tableView = self.tableView;
+		fetchedResultsControllerDataSource.fetchedResultsController = fetchedResultsController;
+		self.fetchedResultsControllerDataSourceEvents = fetchedResultsControllerDataSource;
+		
     }
     return _fetchedResultsControllerDataSourceEvents;
 }
+
+#pragma mark - Table View Datasource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+	return [self.fetchedResultsControllerDataSource numberOfSectionsInTableView:tableView];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+	return [self.fetchedResultsControllerDataSource tableView:tableView numberOfRowsInSection:section];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	UITableViewCell *cell = nil;
+
+	if (self.displayMode == UHDNewsListDisplayModeNews) {
+
+		UHDNewsItem *item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
+	
+		cell = [tableView dequeueReusableCellWithIdentifier:@"newsCell" forIndexPath:indexPath];
+		[(UHDNewsItemCell *)cell configureForItem:item];
+	
+	}
+	else {
+	
+		UHDEventItem *item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
+		
+		if ([[item entityName] isEqualToString:[UHDEventItem entityName]]) {
+			cell = [tableView dequeueReusableCellWithIdentifier:@"eventCell" forIndexPath:indexPath];
+			[(UHDEventItemCell *)cell configureForItem:item];
+		}
+		else {
+			cell = [tableView dequeueReusableCellWithIdentifier:@"talkCell" forIndexPath:indexPath];
+			[(UHDTalkItemCell *)cell configureForItem:(UHDTalkItem *)item];
+		}
+	}
+	return cell;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
+{
+	return [self.fetchedResultsControllerDataSource tableView:tableView titleForHeaderInSection:section];
+}
+
 
 
 @end

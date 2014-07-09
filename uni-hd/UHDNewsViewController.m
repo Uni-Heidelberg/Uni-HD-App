@@ -147,7 +147,7 @@
     if (!_newsListViewControllers) {
         NSMutableArray *viewControllers = [[NSMutableArray alloc] init];
         UHDNewsListViewController *allSourcesVC = [self newsListViewControllerForSources:self.fetchedResultsController.fetchedObjects];
-        allSourcesVC.title = NSLocalizedString(@"All News", nil);
+        allSourcesVC.title = NSLocalizedString(@"All News / Events", nil);
         [viewControllers addObject:allSourcesVC];
         for (UHDNewsSource *source in self.fetchedResultsController.fetchedObjects) {
             [viewControllers addObject:[self newsListViewControllerForSources:@[ source ]]];
