@@ -11,6 +11,5 @@
 @implementation UHDEventItem
 
 @dynamic location;
-@dynamic eventType;
 
 @end

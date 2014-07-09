@@ -74,7 +74,7 @@
     newsSource.title = @"Fakultät für Physik und Astronomie";
     newsSource.category = newsCategory;
     newsSource.subscribed = YES;
-    newsSource.thumbIcon = [UIImage imageNamed:@"physicsIcon"];
+    newsSource.thumbIcon = [UIImage imageNamed:@"physFakIcon"];
 
     // Create NewsArticles
     UHDNewsItem *newsItem = [UHDNewsItem insertNewObjectIntoContext:managedObjectContext];
@@ -94,13 +94,14 @@
     newsItem.source = newsSource;
 	
 	
-	// Create Colloquia
+	// Create Talk
 	UHDNewsCategory *collocs = [UHDNewsCategory insertNewObjectIntoContext:managedObjectContext];
 	collocs.title = @"Kolloquien";
 	collocs.parent = newsCategory;
 	
 	newsSource = [UHDNewsSource insertNewObjectIntoContext:managedObjectContext];
 	newsSource.title = @"Physikalisches Kolloquium";
+	newsSource.thumbIcon = [UIImage imageNamed:@"physInstIcon.png"];
 	newsSource.category = collocs;
 	newsSource.subscribed = YES;
 	
@@ -111,14 +112,7 @@
     talkItem.url = [NSURL URLWithString:@"http://www.physi.uni-heidelberg.de/Veranstaltungen/Ankuendigungen/Kaplan_20.12.2013.pdf"];
     talkItem.thumbImage = [UIImage imageNamed:@"particleFever"];
     talkItem.source = newsSource;
-	talkItem.eventType = @"Physikalisches Kolloquium";
 	talkItem.location = @"INF 308, Hörsaal 1";
-	
-	newsSource = [UHDNewsSource insertNewObjectIntoContext:managedObjectContext];
-	newsSource.title = @"Astro-Kolloquium";
-	newsSource.category = collocs;
-	newsSource.subscribed = YES;
-	
 	
 	// Create Speaker
 	UHDTalkSpeaker *talkSpeaker = [UHDTalkSpeaker insertNewObjectIntoContext:managedObjectContext];
@@ -126,6 +120,31 @@
 	talkSpeaker.affiliation = @"Department of Physics and Astronomy, John Hopkins University";
 	talkSpeaker.url = [NSURL URLWithString:@"http://particlefever.com"];
 	talkSpeaker.email = @"dkaplan@pha.jhu.edu";
+	
+	talkItem.speaker = talkSpeaker;
+	
+	// Create further talk
+	newsSource = [UHDNewsSource insertNewObjectIntoContext:managedObjectContext];
+	newsSource.title = @"Heidelberg Joint Astronomical Colloquium";
+	newsSource.thumbIcon = [UIImage imageNamed:@"zahIcon"];
+	newsSource.category = collocs;
+	newsSource.subscribed = YES;
+	
+	talkItem = [UHDTalkItem insertNewObjectIntoContext:managedObjectContext];
+	talkItem.title = @"The turbulent life-cycle of molecular clouds";
+	//talkItem.abstract = @"";
+    talkItem.date = [NSDate dateWithTimeIntervalSinceReferenceDate:426470417];
+    talkItem.url = [NSURL URLWithString:@"http://www.ita.uni-heidelberg.de/~dullemond/hjac.shtml?lang=de"];
+    talkItem.thumbImage = [UIImage imageNamed:@"astroTalk"];
+    talkItem.source = newsSource;
+	talkItem.location = @"Haus der Astronomie on the Königstuhl";
+
+	// Create Speaker
+	talkSpeaker = [UHDTalkSpeaker insertNewObjectIntoContext:managedObjectContext];
+	talkSpeaker.name = @"Stefanie Walch";
+	talkSpeaker.affiliation = @"Uni Köln";
+	talkSpeaker.url = [NSURL URLWithString:@"http://www.astro.uni-koeln.de/walch"];
+	talkSpeaker.email = @"walch@ph1.uni-koeln.de";
 	
 	talkItem.speaker = talkSpeaker;
 	
@@ -138,6 +157,23 @@
     newsSource.category = newsCategory;
     newsSource.subscribed = YES;
     newsSource.thumbIcon = [UIImage imageNamed:@"uhdIcon"];
+	
+	
+	// Create Events
+	newsSource = [UHDNewsSource insertNewObjectIntoContext:managedObjectContext];
+	newsSource.title = @"Studentenwerk";
+	newsSource.thumbIcon = [UIImage imageNamed:@"studentenwerkIcon"];
+	newsSource.subscribed = YES;
+	newsSource.category = newsCategory;
+	
+	UHDEventItem *eventItem = [UHDEventItem insertNewObjectIntoContext:managedObjectContext];
+	eventItem.title = @"Public Viewing WM-Finale 2014";
+	eventItem.date = [NSDate dateWithTimeIntervalSinceReferenceDate:426556822];
+	eventItem.url = [NSURL URLWithString:@"http://de.fifa.com/worldcup/matches/index.html"];
+	eventItem.thumbImage = [UIImage imageNamed:@"WM2014"];
+	eventItem.source = newsSource;
+	eventItem.location = @"Café Botanik im Neuenheimer Feld";
+	
     
     // Create further NewsArticles
     newsItem = [UHDNewsItem insertNewObjectIntoContext:managedObjectContext];

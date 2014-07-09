@@ -11,6 +11,5 @@
 @interface UHDEventItem : UHDNewsItem
 
 @property (nonatomic, retain) NSString *location;
-@property (nonatomic, retain) NSString *eventType;
 
 @end
