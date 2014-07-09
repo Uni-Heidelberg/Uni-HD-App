@@ -46,7 +46,7 @@
     self.shouldAnimateCellReset = YES;
     self.backViewbackgroundColor = [UIColor colorWithWhite:0.92 alpha:1];
     self.panElasticity = YES;
-    self.panElasticityFactor = 0.55f;
+    self.panElasticityFactor = 0.8f;
     self.panElasticityStartingPoint = 0.0f;
     
     UIView *backgroundView = [[UIView alloc] initWithFrame:self.frame];

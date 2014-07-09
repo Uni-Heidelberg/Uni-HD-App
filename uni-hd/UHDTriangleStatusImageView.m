@@ -14,7 +14,8 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        self.opaque = NO;
+        [self setBackgroundColor:[UIColor clearColor]];
     }
     return self;
 }
@@ -22,11 +23,11 @@
 -(void)drawRect:(CGRect)rect
 {
     CGContextRef ctx = UIGraphicsGetCurrentContext();
-    
+
     CGContextBeginPath(ctx);
-    CGContextMoveToPoint   (ctx, CGRectGetMinX(rect), CGRectGetMinY(rect));  // top left
-    CGContextAddLineToPoint(ctx, CGRectGetMaxX(rect), CGRectGetMidY(rect));  // mid right
-    CGContextAddLineToPoint(ctx, CGRectGetMinX(rect), CGRectGetMaxY(rect));  // bottom left
+    CGContextMoveToPoint   (ctx, CGRectGetMaxX(rect), CGRectGetMinY(rect));  // top right
+    CGContextAddLineToPoint(ctx, CGRectGetMinX(rect), CGRectGetMinY(rect));  // top left
+    CGContextAddLineToPoint(ctx, CGRectGetMaxX(rect), CGRectGetMidY(rect));  // midlle right
     CGContextClosePath(ctx);
     
     CGContextSetRGBFillColor(ctx, 1, 1, 0, 1);
