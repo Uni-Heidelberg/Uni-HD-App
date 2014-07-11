@@ -45,22 +45,27 @@
 
 - (void)refreshWithCompletion:(void (^)(BOOL success, NSError *error))completion
 {
-    NSString *remoteRefreshPath = [self.delegate remoteRefreshPathForRemoteDatasource:self];
-    if (!remoteRefreshPath) {
-        [self.logger log:@"Refresh Failed: remote refresh path not set" forLevel:VILogLevelError];
-        if (completion) completion(NO, nil); // TODO: present NSError instance
+    NSArray *remoteRefreshPaths = [self.delegate remoteRefreshPathsForRemoteDatasource:self];
+    if (!remoteRefreshPaths) {
+        // TODO: present NSError
+        [self.logger log:@"Refresh Failed: remote refresh paths not set" forLevel:VILogLevelError];
+        if (completion) completion(NO, nil);
         return;
     }
     
-    [self.logger log:@"Refresh started ..." object:remoteRefreshPath forLevel:VILogLevelVerbose];
+    [self.logger log:@"Refresh started ..." object:remoteRefreshPaths forLevel:VILogLevelVerbose];
     
-    [self.objectManager getObjectsAtPath:remoteRefreshPath parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        [self.logger log:@"Refresh successful" object:mappingResult forLevel:VILogLevelVerbose];
-        if (completion) completion(YES, nil);
-    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        [self.logger log:@"Refresh failed" error:error];
-        if (completion) completion(NO, error);
-    }];
+    for (NSString *remoteRefreshPath in remoteRefreshPaths) {
+        // TODO: implement queue / call completion only once
+        [self.objectManager getObjectsAtPath:remoteRefreshPath parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+            [self.logger log:@"Refresh successful" object:mappingResult forLevel:VILogLevelVerbose];
+            if (completion) completion(YES, nil);
+        } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+            [self.logger log:@"Refresh failed" error:error];
+            if (completion) completion(NO, error);
+        }];
+    }
+    
 }
 
 - (NSArray *)allItems
