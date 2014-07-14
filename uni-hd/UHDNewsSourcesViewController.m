@@ -32,7 +32,6 @@
 	self.managedObjectContext = category.managedObjectContext;
 }
 
-
 #pragma mark - User Interaction
 
 - (IBAction)refreshControlValueChanged:(UIRefreshControl *)sender
@@ -61,10 +60,11 @@
         }
 
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsCategory entityName]];
+        fetchRequest.includesSubentities = YES;
 		NSString *sectionNameKeyPath = nil;
 		if (!self.category) {
 			fetchRequest.predicate = [NSPredicate predicateWithFormat:@"parent.parent = nil && parent != nil"];
-			fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"parent.parent.title" ascending:NO], [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO] ];
+			fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"parent.title" ascending:NO], [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:NO] ];
 			sectionNameKeyPath = @"parent.title";
 		} else {
 			fetchRequest.predicate = [NSPredicate predicateWithFormat:@"parent = %@", self.category ];

@@ -21,6 +21,8 @@
 #import "UHDNewsViewController.h"
 #import "UHDMensaViewController.h"
 
+// Logging Config
+#import "VIFetchedResultsControllerDataSource.h"
 
 @interface UHDAppDelegate ()
 
@@ -28,7 +30,6 @@
 @property (strong, nonatomic) NSMutableArray *remoteDatasourceDelegates;
 
 - (void)addRemoteDatasourceForKey:(NSString *)key baseURL:(NSURL *)baseURL delegate:(id<UHDRemoteDatasourceDelegate>)delegate;
-- (void)generateSampleDataConditionally:(BOOL)conditionally;
 
 @end
 
@@ -39,8 +40,14 @@
 {
     
     // configure logging
-    [VILogger defaultLogger].logLevel = VILogLevelDebug;
-    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
+#ifdef DEBUG
+    [VILogger defaultLogger].logLevel = VILogLevelWarning;
+#else
+    [VILogger defaultLogger].logLevel = VILogLevelWarning;
+#endif
+    RKLogConfigureByName("RestKit/Network", RKLogLevelOff);
+
+    [VILogger loggerForClass:[VIFetchedResultsControllerDataSource class]].logLevel = VILogLevelVerbose;
     
     
     // enable automatic network indicator display
@@ -49,13 +56,11 @@
     
     // setup remote datasources
     [self addRemoteDatasourceForKey:UHDRemoteDatasourceKeyNews baseURL:[NSURL URLWithString:UHDRemoteBaseURL] delegate:[[UHDNewsRemoteDatasourceDelegate alloc] init]];
-    //[[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyNews] refreshWithCompletion:nil];
     [self addRemoteDatasourceForKey:UHDRemoteDatasourceKeyMensa baseURL:[NSURL URLWithString:UHDRemoteBaseURL] delegate:[[UHDMensaRemoteDatasourceDelegate alloc] init]];
-    //[[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyMensa] refreshWithCompletion:nil];
-
-    
-    // generate sample data
-    [self generateSampleDataConditionally:YES];
+#ifdef DEBUG
+    [[UHDRemoteDatasourceManager defaultManager] generateAllSampleDataIfNeeded];
+#endif
+    [[UHDRemoteDatasourceManager defaultManager] refreshAllWithCompletion:nil];
 
     
     // setup initial view controllers
@@ -125,15 +130,6 @@
     remoteDatasource.delegate = delegate;
     
     [[UHDRemoteDatasourceManager defaultManager] addRemoteDatasource:remoteDatasource forKey:key];
-}
-
-#pragma mark - Sample Data
-
-- (void)generateSampleDataConditionally:(BOOL)conditionally {
-    for (UHDRemoteDatasource *remoteDatasource in [[UHDRemoteDatasourceManager defaultManager] allRemoteDatasources]) {
-        if (conditionally && remoteDatasource.allItems.count > 0) continue;
-        [remoteDatasource generateSampleData];
-    }
 }
 
 @end

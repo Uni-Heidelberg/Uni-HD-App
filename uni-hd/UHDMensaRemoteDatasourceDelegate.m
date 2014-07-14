@@ -23,18 +23,14 @@
 
 - (NSArray *)remoteRefreshPathsForRemoteDatasource:(UHDRemoteDatasource *)remoteDatasource
 {
-    return @[ @"UHDMensen" ];
+    return nil;
 }
 
-- (NSArray *)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource allItemsForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+- (BOOL)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource shouldGenerateSampleDataForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
-    NSError *error = nil;
-    NSArray *allItems = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    if (error) {
-        [self.logger log:@"Fetching all items" error:error];
-    }
-    return allItems;
+    NSArray *allItems = [managedObjectContext executeFetchRequest:fetchRequest error:NULL];
+    return allItems.count == 0;
 }
 
 - (void)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource generateSampleDataForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext

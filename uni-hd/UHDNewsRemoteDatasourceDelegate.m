@@ -25,7 +25,14 @@
     [newsCategoryMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId"}];
     [newsCategoryMapping addAttributeMappingsFromArray:@[ @"title" ]];
     newsCategoryMapping.identificationAttributes = @[ @"remoteObjectId" ];
-    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:newsCategoryMapping method:RKRequestMethodAny pathPattern:@"UHDNewsCategories" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+    newsCategoryMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", newsCategoryMapping.entity];
+    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:newsCategoryMapping method:RKRequestMethodAny pathPattern:@"NewsCategories" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+    // Stubs
+    RKEntityMapping *newsCategoryStubMapping = [RKEntityMapping mappingForEntityForName:[UHDNewsCategory entityName] inManagedObjectStore:objectManager.managedObjectStore];
+    [newsCategoryStubMapping addPropertyMapping:[RKAttributeMapping attributeMappingFromKeyPath:nil toKeyPath:@"remoteObjectId"]];
+    newsCategoryStubMapping.identificationAttributes = @[ @"remoteObjectId" ];
+    newsCategoryStubMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", newsCategoryStubMapping.entity];
+    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:newsCategoryStubMapping method:RKRequestMethodAny pathPattern:@"NewsSources" keyPath:@"categoryId" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
 
     // UHDNewsSource
     
@@ -33,50 +40,56 @@
     [newsSourceMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId"}];
     [newsSourceMapping addAttributeMappingsFromArray:@[@"title", @"categoryId" ]];
     newsSourceMapping.identificationAttributes = @[ @"remoteObjectId" ];
-    [newsSourceMapping addConnectionForRelationship:@"parent" connectedBy:@{ @"categoryId": @"remoteObjectId" }];
-    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:newsSourceMapping method:RKRequestMethodAny pathPattern:@"UHDNewsSources" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+    newsSourceMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", newsSourceMapping.entity];
+    RKConnectionDescription *newsSourceParentConnection = [[RKConnectionDescription alloc] initWithRelationship:[newsSourceMapping.entity relationshipsByName][@"parent"] attributes:@{ @"categoryId": @"remoteObjectId" }];
+    newsSourceParentConnection.includesSubentities = NO;
+    [newsSourceMapping addConnection:newsSourceParentConnection];
+    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:newsSourceMapping method:RKRequestMethodAny pathPattern:@"NewsSources" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+    // Stubs
+    RKEntityMapping *newsSourceStubMapping = [RKEntityMapping mappingForEntityForName:[UHDNewsSource entityName] inManagedObjectStore:objectManager.managedObjectStore];
+    [newsSourceStubMapping addPropertyMapping:[RKAttributeMapping attributeMappingFromKeyPath:nil toKeyPath:@"remoteObjectId"]];
+    newsSourceStubMapping.identificationAttributes = @[ @"remoteObjectId" ];
+    newsSourceStubMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", newsSourceStubMapping.entity];
+    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:newsSourceStubMapping method:RKRequestMethodAny pathPattern:@"NewsItems" keyPath:@"sourceId" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
 
     // UHDNewsItem
     
     RKEntityMapping *newsItemMapping = [RKEntityMapping mappingForEntityForName:[UHDNewsItem entityName] inManagedObjectStore:objectManager.managedObjectStore];
-    [newsItemMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId", @"content": @"abstract", @"link": @"url"}];
-    [newsItemMapping addAttributeMappingsFromArray:@[ @"title", @"date", @"sourceId" ]];
+    [newsItemMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId"}];
+    [newsItemMapping addAttributeMappingsFromArray:@[ @"title", @"date", @"abstract", @"url", @"sourceId" ]];
     newsItemMapping.identificationAttributes = @[ @"remoteObjectId" ];
-    [newsItemMapping addConnectionForRelationship:@"source" connectedBy:@{ @"sourceId": @"remoteObjectId" }];
-    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:newsItemMapping method:RKRequestMethodGET pathPattern:@"UHDNewsItems" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
-
+    RKConnectionDescription *newsItemSourceConnection = [[RKConnectionDescription alloc] initWithRelationship:[newsItemMapping.entity relationshipsByName][@"source"] attributes:@{ @"sourceId": @"remoteObjectId" }];
+    newsItemSourceConnection.includesSubentities = NO;
+    [newsItemMapping addConnection:newsItemSourceConnection];
+    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:newsItemMapping method:RKRequestMethodGET pathPattern:@"NewsItems" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
 }
 
 - (NSArray *)remoteRefreshPathsForRemoteDatasource:(UHDRemoteDatasource *)remoteDatasource
 {
-    return @[ @"UHDNewsItems", @"UHDNewsCategories", @"UHDNewsSources" ];
+    return @[ @"NewsCategories", @"NewsSources", @"NewsItems" ];
 }
 
-- (NSArray *)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource allItemsForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+- (BOOL)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource shouldGenerateSampleDataForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsItem entityName]];
-    NSError *error = nil;
-    NSArray *allItems = [managedObjectContext executeFetchRequest:fetchRequest error:&error];
-    if (error) {
-        [self.logger log:@"Fetching all items" error:error];
-    }
-    return allItems;
+    NSArray *allItems = [managedObjectContext executeFetchRequest:fetchRequest error:NULL];
+    return allItems.count == 0;
 }
 
 - (void)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource generateSampleDataForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
+{    
     // Create NewsSource object with category
     UHDNewsCategory *newsCategory = [UHDNewsCategory insertNewObjectIntoContext:managedObjectContext];
-    newsCategory.title = @"Physik";
+    newsCategory.title = @"[SAMPLE] Physik";
     UHDNewsSource *newsSource = [UHDNewsSource insertNewObjectIntoContext:managedObjectContext];
-    newsSource.title = @"Fakultät für Physik und Astronomie";
+    newsSource.title = @"[SAMPLE] Fakultät für Physik und Astronomie";
     newsSource.category = newsCategory;
     newsSource.subscribed = YES;
     newsSource.thumbIcon = [UIImage imageNamed:@"physFakIcon"];
 
     // Create NewsArticles
     UHDNewsItem *newsItem = [UHDNewsItem insertNewObjectIntoContext:managedObjectContext];
-    newsItem.title = @"Unbelievable exceptional breaking News!";
+    newsItem.title = @"[SAMPLE] Unbelievable exceptional breaking News!";
     newsItem.abstract = @"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.";
     newsItem.date = [NSDate date];
     newsItem.url = [NSURL URLWithString:@"http://www.loremipsum.de/index_e.html"];
@@ -84,7 +97,7 @@
     newsItem.source = newsSource;
     
     newsItem = [UHDNewsItem insertNewObjectIntoContext:managedObjectContext];
-    newsItem.title = @"Wirklich bahnbrechende Neuigkeiten!";
+    newsItem.title = @"[SAMPLE] Wirklich bahnbrechende Neuigkeiten!";
     newsItem.abstract = @"Damit Ihr indess erkennt, woher dieser ganze Irrthum gekommen ist, und weshalb man die Lust anklagt und den Schmerz lobet, so will ich Euch Alles eröffnen und auseinander setzen, was jener Begründer der Wahrheit und gleichsam Baumeister des glücklichen Lebens selbst darüber gesagt hat.";
     newsItem.date = [NSDate dateWithTimeIntervalSince1970:0];
     newsItem.url = [NSURL URLWithString:@"http://www.loremipsum.de"];
@@ -94,17 +107,17 @@
 	
 	// Create Talk
 	UHDNewsCategory *collocs = [UHDNewsCategory insertNewObjectIntoContext:managedObjectContext];
-	collocs.title = @"Kolloquien";
+	collocs.title = @"[SAMPLE] Kolloquien";
 	collocs.parent = newsCategory;
 	
 	newsSource = [UHDNewsSource insertNewObjectIntoContext:managedObjectContext];
-	newsSource.title = @"Physikalisches Kolloquium";
+	newsSource.title = @"[SAMPLE] Physikalisches Kolloquium";
 	newsSource.thumbIcon = [UIImage imageNamed:@"physInstIcon.png"];
 	newsSource.category = collocs;
 	newsSource.subscribed = YES;
 	
 	UHDTalkItem *talkItem = [UHDTalkItem insertNewObjectIntoContext:managedObjectContext];
-	talkItem.title = @"Particle Fever";
+	talkItem.title = @"[SAMPLE] Particle Fever";
 	//talkItem.abstract = @"";
     talkItem.date = [NSDate dateWithTimeIntervalSinceReferenceDate:409251600];
     talkItem.url = [NSURL URLWithString:@"http://www.physi.uni-heidelberg.de/Veranstaltungen/Ankuendigungen/Kaplan_20.12.2013.pdf"];
@@ -123,13 +136,13 @@
 	
 	// Create further talk
 	newsSource = [UHDNewsSource insertNewObjectIntoContext:managedObjectContext];
-	newsSource.title = @"Heidelberg Joint Astronomical Colloquium";
+	newsSource.title = @"[SAMPLE] Heidelberg Joint Astronomical Colloquium";
 	newsSource.thumbIcon = [UIImage imageNamed:@"zahIcon"];
 	newsSource.category = collocs;
 	newsSource.subscribed = YES;
 	
 	talkItem = [UHDTalkItem insertNewObjectIntoContext:managedObjectContext];
-	talkItem.title = @"The turbulent life-cycle of molecular clouds";
+	talkItem.title = @"[SAMPLE] The turbulent life-cycle of molecular clouds";
 	//talkItem.abstract = @"";
     talkItem.date = [NSDate dateWithTimeIntervalSinceReferenceDate:426470417];
     talkItem.url = [NSURL URLWithString:@"http://www.ita.uni-heidelberg.de/~dullemond/hjac.shtml?lang=de"];
@@ -149,9 +162,9 @@
 
     // Create new NewsSource
     newsCategory = [UHDNewsCategory insertNewObjectIntoContext:managedObjectContext];
-    newsCategory.title = @"Uni Allgemein";
+    newsCategory.title = @"[SAMPLE] Uni Allgemein";
     newsSource = [UHDNewsSource insertNewObjectIntoContext:managedObjectContext];
-    newsSource.title = @"Universität Heidelberg";
+    newsSource.title = @"[SAMPLE] Universität Heidelberg";
     newsSource.category = newsCategory;
     newsSource.subscribed = YES;
     newsSource.thumbIcon = [UIImage imageNamed:@"uhdIcon"];
@@ -159,7 +172,7 @@
 	    
     // Create further NewsArticles
     newsItem = [UHDNewsItem insertNewObjectIntoContext:managedObjectContext];
-    newsItem.title = @"Novitas!";
+    newsItem.title = @"[SAMPLE] Novitas!";
     newsItem.abstract = @"Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.";
     newsItem.date = [NSDate dateWithTimeIntervalSinceReferenceDate:(-2000*365.25*24*3600)];
     newsItem.url = [NSURL URLWithString:@"http://www.uni-heidelberg.de"];
@@ -169,13 +182,13 @@
 	
 	// Create Events
 	newsSource = [UHDNewsSource insertNewObjectIntoContext:managedObjectContext];
-	newsSource.title = @"Studentenwerk";
+	newsSource.title = @"[SAMPLE] Studentenwerk";
 	newsSource.thumbIcon = [UIImage imageNamed:@"studentenwerkIcon"];
 	newsSource.subscribed = YES;
 	newsSource.category = newsCategory;
 	
 	UHDEventItem *eventItem = [UHDEventItem insertNewObjectIntoContext:managedObjectContext];
-	eventItem.title = @"Public Viewing WM-Finale 2014";
+	eventItem.title = @"[SAMPLE] Public Viewing WM-Finale 2014";
 	eventItem.date = [NSDate dateWithTimeIntervalSinceReferenceDate:426556822];
 	eventItem.url = [NSURL URLWithString:@"http://de.fifa.com/worldcup/matches/index.html"];
 	eventItem.thumbImage = [UIImage imageNamed:@"WM2014"];

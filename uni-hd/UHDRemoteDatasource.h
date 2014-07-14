@@ -19,17 +19,18 @@
 
 - (void)refreshWithCompletion:(void (^)(BOOL success, NSError *error))completion;
 
-- (NSArray *)allItems;
-- (void)generateSampleData;
+- (void)generateSampleDataIfNeeded;
 
 @end
 
 
-@protocol UHDRemoteDatasourceDelegate
+@protocol UHDRemoteDatasourceDelegate <NSObject>
 
 - (void)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource setupObjectMappingForObjectManager:(RKObjectManager *)objectManager;
 - (NSArray *)remoteRefreshPathsForRemoteDatasource:(UHDRemoteDatasource *)remoteDatasource;
-- (NSArray *)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource allItemsForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
+
+@optional
+- (BOOL)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource shouldGenerateSampleDataForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 - (void)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource generateSampleDataForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 
 @end

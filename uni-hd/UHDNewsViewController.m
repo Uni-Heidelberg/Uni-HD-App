@@ -114,10 +114,8 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"showSources"]) {
-        
         UHDNewsSourcesViewController *newsSourcesVC = (UHDNewsSourcesViewController *)[(UINavigationController *)segue.destinationViewController topViewController];
         newsSourcesVC.managedObjectContext = self.managedObjectContext;
-
     } else if ([segue.identifier isEqualToString:@"embedPageVC"]) {
         self.pageViewController = segue.destinationViewController;
         self.pageViewController.dataSource = self;

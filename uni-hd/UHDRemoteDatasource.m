@@ -53,12 +53,13 @@
         return;
     }
     
-    [self.logger log:@"Refresh started ..." object:remoteRefreshPaths forLevel:VILogLevelVerbose];
+    [self.logger log:@"Refresh started ..." object:remoteRefreshPaths forLevel:VILogLevelInfo];
     
     for (NSString *remoteRefreshPath in remoteRefreshPaths) {
         // TODO: implement queue / call completion only once
         [self.objectManager getObjectsAtPath:remoteRefreshPath parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-            [self.logger log:@"Refresh successful" object:mappingResult forLevel:VILogLevelVerbose];
+            [self.logger log:@"Refresh successful" object:remoteRefreshPath forLevel:VILogLevelInfo];
+            [self.logger log:@"Mapping result" object:mappingResult forLevel:VILogLevelVerbose];
             if (completion) completion(YES, nil);
         } failure:^(RKObjectRequestOperation *operation, NSError *error) {
             [self.logger log:@"Refresh failed" error:error];
@@ -68,13 +69,11 @@
     
 }
 
-- (NSArray *)allItems
+- (void)generateSampleDataIfNeeded
 {
-    return [self.delegate remoteDatasource:self allItemsForManagedObjectContext:self.persistentStack.managedObjectContext];
-}
-
-- (void)generateSampleData {
-    [self.delegate remoteDatasource:self generateSampleDataForManagedObjectContext:self.persistentStack.managedObjectContext];
+    if ([self.delegate respondsToSelector:@selector(remoteDatasource:shouldGenerateSampleDataForManagedObjectContext:)] && [self.delegate remoteDatasource:self shouldGenerateSampleDataForManagedObjectContext:self.persistentStack.managedObjectContext] && [self.delegate respondsToSelector:@selector(remoteDatasource:generateSampleDataForManagedObjectContext:)]) {
+        [self.delegate remoteDatasource:self generateSampleDataForManagedObjectContext:self.persistentStack.managedObjectContext];
+    }
 }
 
 @end

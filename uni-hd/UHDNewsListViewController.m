@@ -56,7 +56,7 @@
 {
     _sources = sources;
     self.managedObjectContext = [(NSManagedObject *)[sources lastObject] managedObjectContext];
-    if (!self.title) {
+    if (!self.title&&self.sources.count > 0) {
         self.title = [sources[0] title];
     }
     self.fetchedResultsControllerDataSourceNews.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"source IN %@", self.sources];

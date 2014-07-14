@@ -34,4 +34,28 @@
     return [self.remoteDatasources allValues];
 }
 
+- (void)refreshAllWithCompletion:(void (^)(BOOL success, NSError *error))completion
+{
+    
+    __block int refreshQueue = 0;
+    __block BOOL successAll = YES;
+    for (UHDRemoteDatasource *remoteDatasource in self.allRemoteDatasources) {
+        refreshQueue++;
+        [remoteDatasource refreshWithCompletion:^(BOOL success, NSError *error) {
+            refreshQueue--;
+            if (!success) successAll = NO;
+            if (refreshQueue == 0) {
+                if (completion) completion(successAll, nil);
+            }
+        }];
+    }
+}
+
+- (void)generateAllSampleDataIfNeeded
+{
+    for (UHDRemoteDatasource *remoteDatasource in self.allRemoteDatasources) {
+        [remoteDatasource generateSampleDataIfNeeded];
+    }
+}
+
 @end
