@@ -6,8 +6,14 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
+
+//Model
+#import "UHDBuilding.h"
+#import "UHDLocationPoints.h"
 
 @interface UHDMapsViewController : UIViewController
+
+@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end
