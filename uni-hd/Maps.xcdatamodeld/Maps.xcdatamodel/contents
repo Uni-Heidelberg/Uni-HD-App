@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="UHDBuilding" syncable="YES">
-        <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDLocationPoints" inverseName="building" inverseEntity="UHDLocationPoints" syncable="YES"/>
-    </entity>
-    <entity name="UHDLocationPoints" syncable="YES">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="14A314h" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="UHDBuilding" representedClassName="UHDBuilding" parentEntity="UHDRemoteManagedLocation" syncable="YES"/>
+    <entity name="UHDRemoteManagedLocation" representedClassName="UHDRemoteManagedLocation" isAbstract="YES" syncable="YES">
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
-        <relationship name="building" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDBuilding" inverseName="location" inverseEntity="UHDBuilding" syncable="YES"/>
+        <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="UHDLocationPoints" positionX="-54" positionY="-9" width="128" height="88"/>
-        <element name="UHDBuilding" positionX="252" positionY="-45" width="128" height="90"/>
+        <element name="UHDBuilding" positionX="-63" positionY="-18" width="128" height="43"/>
+        <element name="UHDRemoteManagedLocation" positionX="-54" positionY="18" width="128" height="103"/>
     </elements>
 </model>

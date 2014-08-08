@@ -10,7 +10,6 @@
 #import "UHDMensa.h"
 #import "UHDDailyMenu.h"
 #import "UHDMeal.h"
-#import "UHDLocation.h"
 #import "UHDMensaSection.h"
 
 
@@ -40,14 +39,9 @@
     
     UHDMensa *mensaItem = [UHDMensa insertNewObjectIntoContext:managedObjectContext];
     mensaItem.title = @"Marstall";
-    mensaItem.remoteObjectId = 0;
+    mensaItem.latitude = 49.41280; //Marstall coordinates
+    mensaItem.longitude = 8.70442;
     
-    //Create Location for Mensa
-    
-    UHDLocation *locationItem = [UHDLocation insertNewObjectIntoContext:managedObjectContext];
-    locationItem.latitude = 49.41280; //Marstall coordinates
-    locationItem.longitude = 8.70442;
-    mensaItem.location = locationItem;
     
     //Create Sections for Mensa
     
@@ -96,14 +90,8 @@
     
     UHDMensa *mensaItem2 = [UHDMensa insertNewObjectIntoContext:managedObjectContext];
     mensaItem2.title = @"Zentralmensa";
-    mensaItem2.remoteObjectId = 1;
-    
-    //Create Location for Mensa
-    
-    UHDLocation *locationItem2 = [UHDLocation insertNewObjectIntoContext:managedObjectContext];
-    locationItem2.latitude = 49.41280; //Marstall coordinates
-    locationItem2.longitude = 8.70442;
-    mensaItem2.location = locationItem2;
+    mensaItem2.latitude = 49.41280; //Marstall coordinates
+    mensaItem2.longitude = 8.70442;
     
     //Create Sections for Mensa
     
@@ -131,14 +119,8 @@
     
     UHDMensa *mensaItem3 = [UHDMensa insertNewObjectIntoContext:managedObjectContext];
     mensaItem3.title = @"Triplex-Mensa";
-    mensaItem3.remoteObjectId = 2;
-    
-    //Create Location for Mensa
-    
-    UHDLocation *locationItem3 = [UHDLocation insertNewObjectIntoContext:managedObjectContext];
-    locationItem3.latitude = 49.41280; //Marstall coordinates
-    locationItem3.longitude = 8.70442;
-    mensaItem3.location = locationItem3;
+    mensaItem3.latitude = 49.41280; //Marstall coordinates
+    mensaItem3.longitude = 8.70442;
     
     //Create Sections for Mensa
     

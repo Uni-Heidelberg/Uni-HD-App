@@ -6,15 +6,8 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import "UHDRemoteManagedObject.h"
+#import "UHDRemoteManagedLocation.h"
 
-@class UHDLocationPoints;
-
-@interface UHDBuilding : UHDRemoteManagedObject <MKAnnotation>
-
-@property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) UHDLocationPoints *location;
-
--(id) initWithTitle:(NSString *) title AndCoordinate:(CLLocationCoordinate2D)coordinate;
+@interface UHDBuilding : UHDRemoteManagedLocation
 
 @end

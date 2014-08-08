@@ -7,7 +7,6 @@
 //
 
 #import "UHDMensaDetailViewController.h"
-#import "UHDLocation.h"
 
 @interface UHDMensaDetailViewController ()
 

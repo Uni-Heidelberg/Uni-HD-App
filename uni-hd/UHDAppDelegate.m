@@ -16,10 +16,12 @@
 #import "UHDRemoteDatasource.h"
 #import "UHDNewsRemoteDatasourceDelegate.h"
 #import "UHDMensaRemoteDatasourceDelegate.h"
+#import "UHDMapsRemoteDatasourceDelegate.h"
 
 // View Controllers
 #import "UHDNewsViewController.h"
 #import "UHDMensaViewController.h"
+#import "UHDMapsViewController.h"
 
 // Logging Config
 #import "VIFetchedResultsControllerDataSource.h"
@@ -57,6 +59,7 @@
     // setup remote datasources
     [self addRemoteDatasourceForKey:UHDRemoteDatasourceKeyNews baseURL:[NSURL URLWithString:UHDRemoteBaseURL] delegate:[[UHDNewsRemoteDatasourceDelegate alloc] init]];
     [self addRemoteDatasourceForKey:UHDRemoteDatasourceKeyMensa baseURL:[NSURL URLWithString:UHDRemoteBaseURL] delegate:[[UHDMensaRemoteDatasourceDelegate alloc] init]];
+    [self addRemoteDatasourceForKey:UHDRemoteDatasourceKeyMaps baseURL:[NSURL URLWithString:UHDRemoteBaseURL] delegate:[[UHDMapsRemoteDatasourceDelegate alloc] init]];
 #ifdef DEBUG
     [[UHDRemoteDatasourceManager defaultManager] generateAllSampleDataIfNeeded];
 #endif
@@ -68,18 +71,20 @@
     // Mensa
     UIStoryboard *mensaStoryboard = [UIStoryboard storyboardWithName:@"mensa" bundle:nil];
     UINavigationController *mensaNavC = [mensaStoryboard instantiateInitialViewController];
-    UHDMensaViewController *mainMensaVC = mensaNavC.viewControllers[0];
+    UHDMensaViewController *mainMensaVC = (UHDMensaViewController *)mensaNavC.topViewController;
     mainMensaVC.managedObjectContext = self.persistentStack.managedObjectContext;
     
     // News
     UIStoryboard *newsStoryboard = [UIStoryboard storyboardWithName:@"news" bundle:nil];
     UINavigationController *newsNavC = [newsStoryboard instantiateInitialViewController];
-    UHDNewsViewController *newsVC = newsNavC.viewControllers[0];
+    UHDNewsViewController *newsVC = (UHDNewsViewController *)newsNavC.topViewController;
     newsVC.managedObjectContext = self.persistentStack.managedObjectContext;
     
     // Maps
     UIStoryboard *mapsStoryboard = [UIStoryboard storyboardWithName:@"maps" bundle:nil];
     UINavigationController *mapsNavC = [mapsStoryboard instantiateInitialViewController];
+    UHDMapsViewController *mapsVC = (UHDMapsViewController *)mapsNavC.topViewController;
+    mapsVC.managedObjectContext = self.persistentStack.managedObjectContext;
     
 
     // create and populate tab bar controller

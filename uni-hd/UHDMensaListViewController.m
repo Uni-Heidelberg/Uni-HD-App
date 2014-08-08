@@ -22,18 +22,12 @@
 
 @interface UHDMensaListViewController ()
 
-@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 
 @end
 
 
 @implementation UHDMensaListViewController
-
-- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
-{
-    _managedObjectContext = managedObjectContext;
-}
 
 - (void)viewDidLoad
 {
@@ -67,10 +61,7 @@
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
 
-        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest
-            managedObjectContext:self.managedObjectContext
-              sectionNameKeyPath:nil
-                    cacheName:nil];
+        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
 
         VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, UHDMensa *item) {
             cell.textLabel.text = item.title;

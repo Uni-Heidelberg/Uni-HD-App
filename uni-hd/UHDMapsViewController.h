@@ -10,7 +10,6 @@
 
 //Model
 #import "UHDBuilding.h"
-#import "UHDLocationPoints.h"
 
 @interface UHDMapsViewController : UIViewController
 

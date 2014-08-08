@@ -21,6 +21,7 @@
 
 #define UHDRemoteDatasourceKeyNews @"UHDRemoteDatasourceKeyNews"
 #define UHDRemoteDatasourceKeyMensa @"UHDRemoteDatasourceKeyMensa"
+#define UHDRemoteDatasourceKeyMaps @"UHDRemoteDatasourceKeyMaps"
 
 #define UHDUserDefaultsKeySelectedMensaId @"UHDUserDefaultsKeySelectedMensaId"
 

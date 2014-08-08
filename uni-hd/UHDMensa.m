@@ -8,13 +8,10 @@
 
 #import "UHDMensa.h"
 #import "UHDDailyMenu.h"
-#import "UHDLocation.h"
 
 
 @implementation UHDMensa
 
-@dynamic title;
-@dynamic location;
 @dynamic menus;
 @dynamic sections;
 
@@ -36,13 +33,6 @@
     NSDate *endDate = [startDate dateByAddingTimeInterval:dayLength];
     
     return [[self.menus filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"(date >= %@) AND (date < %@)", startDate, endDate]] anyObject];
-}
-
-# pragma mark - MKAnnotation Protocol
-
-- (CLLocationCoordinate2D)coordinate
-{
-    return self.location.coordinate;
 }
 
 @end
