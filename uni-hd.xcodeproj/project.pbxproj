@@ -78,6 +78,7 @@
 		DC8DCC4F192CC74F0038C4BE /* UHDMealCell+ConfigureForItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DC8DCC4E192CC74F0038C4BE /* UHDMealCell+ConfigureForItem.m */; };
 		DC94C7E7195B20D300615056 /* UHDMensaDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC94C7E6195B20D300615056 /* UHDMensaDetailViewController.m */; };
 		DCD00AA01996605400DCCB24 /* UHDFavouriteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD00A9F1996605400DCCB24 /* UHDFavouriteCell.m */; };
+		DCD00AA41996911900DCCB24 /* UIColor+UHDFavouriteColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD00AA31996911900DCCB24 /* UIColor+UHDFavouriteColor.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -211,6 +212,8 @@
 		DC94C7E6195B20D300615056 /* UHDMensaDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMensaDetailViewController.m; sourceTree = "<group>"; };
 		DCD00A9E1996605400DCCB24 /* UHDFavouriteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDFavouriteCell.h; sourceTree = "<group>"; };
 		DCD00A9F1996605400DCCB24 /* UHDFavouriteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDFavouriteCell.m; sourceTree = "<group>"; };
+		DCD00AA21996911900DCCB24 /* UIColor+UHDFavouriteColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+UHDFavouriteColor.h"; sourceTree = "<group>"; };
+		DCD00AA31996911900DCCB24 /* UIColor+UHDFavouriteColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+UHDFavouriteColor.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -365,6 +368,8 @@
 			children = (
 				87B276CD192E04110057B505 /* UIColor+UHDBrandColor.h */,
 				87B276CE192E04110057B505 /* UIColor+UHDBrandColor.m */,
+				DCD00AA21996911900DCCB24 /* UIColor+UHDFavouriteColor.h */,
+				DCD00AA31996911900DCCB24 /* UIColor+UHDFavouriteColor.m */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -797,6 +802,7 @@
 				87CBE09C1908810B0029D9AF /* UHDAppDelegate.m in Sources */,
 				87A8633819196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m in Sources */,
 				0AD7F3751923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.m in Sources */,
+				DCD00AA41996911900DCCB24 /* UIColor+UHDFavouriteColor.m in Sources */,
 				87DC1FA5191AB5C600395559 /* mensa.xcdatamodeld in Sources */,
 				87FCA9961995901200B3A55F /* UHDRemoteManagedLocation.m in Sources */,
 				0ACE47B819619F07004F84F9 /* UHDTalkItem.m in Sources */,

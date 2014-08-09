@@ -30,3 +30,4 @@
 
 
 #import "UIColor+UHDBrandColor.h"
+#import "UIColor+UHDFavouriteColor.h"

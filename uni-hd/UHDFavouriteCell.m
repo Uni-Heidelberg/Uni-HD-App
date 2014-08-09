@@ -32,7 +32,7 @@
 -(UHDFavouritesStarView*)yellowStarUIView {
     if (!_yellowStarUIView) {
         _yellowStarUIView = [[UHDFavouritesStarView alloc] initWithFrame:self.greyStarUIView.bounds];
-        _yellowStarUIView.colour = [[UIColor yellowColor]CGColor];
+        _yellowStarUIView.colour = [[UIColor favouriteColor] CGColor];
         [self.greyStarUIView addSubview:_yellowStarUIView];
     }
     return _yellowStarUIView;
