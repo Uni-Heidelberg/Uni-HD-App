@@ -53,14 +53,13 @@
         if (-point.x >= CGRectGetHeight(self.frame) && self.isFavourite == NO) {
             self.yellowStarUIView.scaleFactor = 1;
         } else if (self.isFavourite == NO) {
-            self.yellowStarUIView.scaleFactor = -point.x/CGRectGetHeight(self.frame);
+            self.yellowStarUIView.scaleFactor = pow(-point.x/CGRectGetHeight(self.frame), 4);
         } else if (-point.x >= CGRectGetHeight(self.frame) && self.isFavourite == YES) {
-          
             self.yellowStarUIView.scaleFactor = 0;
        //     self.favouriteBar.hidden = YES;
         } else if (self.isFavourite == YES) {
             // already a favourite; but user panned back to a lower value than the action point
-            self.yellowStarUIView.scaleFactor = 1 + point.x/CGRectGetHeight(self.frame);
+            self.yellowStarUIView.scaleFactor = 1 - pow(point.x/CGRectGetHeight(self.frame), 4);
          //   self.favouriteBar.hidden = NO;
             
         }
