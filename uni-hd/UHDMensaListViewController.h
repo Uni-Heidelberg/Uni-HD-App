@@ -9,9 +9,10 @@
 @import Foundation;
 @import UIKit;
 #import "UHDSelectMensaDelegateProtocol.h"
+#import "UHDMensaCell.h"
 
-@interface UHDMensaListViewController : UITableViewController
 
+@interface UHDMensaListViewController : UITableViewController <RMSwipeTableViewCellDelegate>
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
 @end

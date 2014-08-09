@@ -14,6 +14,7 @@
 
 @dynamic menus;
 @dynamic sections;
+@dynamic isFavourite;
 
 - (NSMutableSet *)mutableMenus
 {

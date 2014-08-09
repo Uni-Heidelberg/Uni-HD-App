@@ -15,6 +15,8 @@
 #import "UHDMensaViewController.h"
 #import "UHDMensaDetailViewController.h"
 
+// View
+#import "UHDMensaCell+ConfigureForItem.h"
 
 // Model
 #import "UHDMensa.h"
@@ -63,14 +65,45 @@
 
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
 
-        VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, UHDMensa *item) {
-            cell.textLabel.text = item.title;
+        VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, id item) {
+            ((UHDMensaCell *)cell).mensa = (UHDMensa *)item;
+            [(UHDMensaCell *)cell configureForMensa:(UHDMensa *)item];
+            __weak UHDMensaListViewController *weakSelf = self;
+            [(UHDMensaCell *)cell setDelegate: weakSelf];
         };
+        
         
         self.fetchedResultsControllerDataSource = [[VIFetchedResultsControllerDataSource alloc] initWithFetchedResultsController:fetchedResultsController tableView:self.tableView cellIdentifier:@"mensaCell" configureCellBlock:configureCellBlock];
         
     }
     return _fetchedResultsControllerDataSource;
 }
+#pragma mark - Swipe Table View Cell Delegate
+
+-(void)swipeTableViewCellDidStartSwiping:(RMSwipeTableViewCell *)swipeTableViewCell {
+    [self.logger log:@"swipeTableViewCellDidStartSwiping: %@" object:swipeTableViewCell forLevel:VILogLevelVerbose];
+}
+
+-(void)swipeTableViewCell:(UHDMensaCell *)swipeTableViewCell didSwipeToPoint:(CGPoint)point velocity:(CGPoint)velocity {
+    [self.logger log:[NSString stringWithFormat:@"swipeTableViewCell: %@ didSwipeToPoint: %@ velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
+}
+
+-(void)swipeTableViewCellWillResetState:(RMSwipeTableViewCell *)swipeTableViewCell fromPoint:(CGPoint)point animation:(RMSwipeTableViewCellAnimationType)animation velocity:(CGPoint)velocity {
+    [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellWillResetState: %@ fromPoint: %@ animation: %lu, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
+    if (-point.x >= CGRectGetHeight(swipeTableViewCell.frame)) {
+        if (((UHDMensaCell *)swipeTableViewCell).mensa.isFavourite) {
+            ((UHDMensaCell *)swipeTableViewCell).mensa.isFavourite = NO;
+        } else {
+            ((UHDMensaCell *)swipeTableViewCell).mensa.isFavourite = YES;
+        }
+        [(UHDMensaCell *)swipeTableViewCell setFavourite:((UHDMensaCell *)swipeTableViewCell).mensa.isFavourite animated:YES];
+    }
+    
+}
+
+-(void)swipeTableViewCellDidResetState:(RMSwipeTableViewCell *)swipeTableViewCell fromPoint:(CGPoint)point animation:(RMSwipeTableViewCellAnimationType)animation velocity:(CGPoint)velocity {
+    [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellDidResetState: %@ fromPoint: %@ animation: %lu, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
+}
+
 
 @end
