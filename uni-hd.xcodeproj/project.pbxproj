@@ -77,6 +77,7 @@
 		DC87FDF8191AA00600019F32 /* mensa.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC87FDF7191AA00600019F32 /* mensa.storyboard */; };
 		DC8DCC4F192CC74F0038C4BE /* UHDMealCell+ConfigureForItem.m in Sources */ = {isa = PBXBuildFile; fileRef = DC8DCC4E192CC74F0038C4BE /* UHDMealCell+ConfigureForItem.m */; };
 		DC94C7E7195B20D300615056 /* UHDMensaDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC94C7E6195B20D300615056 /* UHDMensaDetailViewController.m */; };
+		DCD00AA01996605400DCCB24 /* UHDFavouriteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD00A9F1996605400DCCB24 /* UHDFavouriteCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -208,6 +209,8 @@
 		DC8DCC4E192CC74F0038C4BE /* UHDMealCell+ConfigureForItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UHDMealCell+ConfigureForItem.m"; sourceTree = "<group>"; };
 		DC94C7E5195B20D300615056 /* UHDMensaDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMensaDetailViewController.h; sourceTree = "<group>"; };
 		DC94C7E6195B20D300615056 /* UHDMensaDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMensaDetailViewController.m; sourceTree = "<group>"; };
+		DCD00A9E1996605400DCCB24 /* UHDFavouriteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDFavouriteCell.h; sourceTree = "<group>"; };
+		DCD00A9F1996605400DCCB24 /* UHDFavouriteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDFavouriteCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,6 +330,8 @@
 				DC87FDF7191AA00600019F32 /* mensa.storyboard */,
 				94F484901936620B0063BF9F /* UHDTriangleStatusImageView.h */,
 				94F484911936620B0063BF9F /* UHDTriangleStatusImageView.m */,
+				DCD00A9E1996605400DCCB24 /* UHDFavouriteCell.h */,
+				DCD00A9F1996605400DCCB24 /* UHDFavouriteCell.m */,
 				DC462EBF196964F50071ABBC /* UHDFavouritesStarView.h */,
 				DC462EC0196964F60071ABBC /* UHDFavouritesStarView.m */,
 				DC83C938192BDDA5004CC75B /* UHDMealCell.h */,
@@ -819,6 +824,7 @@
 				DC602447193E23A500B06BF2 /* UHDMensaViewController.m in Sources */,
 				875396081932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.m in Sources */,
 				DC462EC1196964F60071ABBC /* UHDFavouritesStarView.m in Sources */,
+				DCD00AA01996605400DCCB24 /* UHDFavouriteCell.m in Sources */,
 				0B176E711931114200D3C916 /* UHDNewsSourcesViewController.m in Sources */,
 				87600EA4192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m in Sources */,
 				0ACE47B519619BB9004F84F9 /* UHDEventItem.m in Sources */,
