@@ -25,4 +25,16 @@
     return self.mensa.isFavourite;
 }
 
+
+-(void)calculateDistanceWith:(CLLocation *)currentLocation
+{
+    CLLocation *mensaLocation = [[CLLocation alloc]initWithLatitude:self.mensa.latitude longitude:self.mensa.longitude];
+                                 
+    CLLocationDistance distanceBetween = [currentLocation
+                                          distanceFromLocation:mensaLocation];
+    float distanceInKilometers = distanceBetween/1000;
+  self.distanceLabel.text = [[NSString alloc]
+                            initWithFormat:@"%0.1f km",
+                            distanceInKilometers];
+}
 @end

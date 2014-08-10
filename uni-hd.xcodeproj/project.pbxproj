@@ -71,6 +71,7 @@
 		DC21B6DD1923D27600BAD26D /* UHDMeal.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6DC1923D27600BAD26D /* UHDMeal.m */; };
 		DC21B6E01923D27600BAD26D /* UHDMensa.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6DF1923D27600BAD26D /* UHDMensa.m */; };
 		DC21B6E31923FDC300BAD26D /* UHDDailyMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6E21923FDC300BAD26D /* UHDDailyMenuViewController.m */; };
+		DC33313C19976456009AA35A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC33313B19976456009AA35A /* CoreLocation.framework */; };
 		DC462EC1196964F60071ABBC /* UHDFavouritesStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC462EC0196964F60071ABBC /* UHDFavouritesStarView.m */; };
 		DC602447193E23A500B06BF2 /* UHDMensaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC602446193E23A500B06BF2 /* UHDMensaViewController.m */; };
 		DC83C93A192BDDA6004CC75B /* UHDMealCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC83C939192BDDA5004CC75B /* UHDMealCell.m */; };
@@ -199,6 +200,7 @@
 		DC21B6DF1923D27600BAD26D /* UHDMensa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMensa.m; sourceTree = "<group>"; };
 		DC21B6E11923FDC300BAD26D /* UHDDailyMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDDailyMenuViewController.h; sourceTree = "<group>"; };
 		DC21B6E21923FDC300BAD26D /* UHDDailyMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDDailyMenuViewController.m; sourceTree = "<group>"; };
+		DC33313B19976456009AA35A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		DC462EBF196964F50071ABBC /* UHDFavouritesStarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDFavouritesStarView.h; sourceTree = "<group>"; };
 		DC462EC0196964F60071ABBC /* UHDFavouritesStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDFavouritesStarView.m; sourceTree = "<group>"; };
 		DC602445193E23A500B06BF2 /* UHDMensaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMensaViewController.h; sourceTree = "<group>"; };
@@ -238,6 +240,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DC33313C19976456009AA35A /* CoreLocation.framework in Frameworks */,
 				87E85276195728A7007503B8 /* MapKit.framework in Frameworks */,
 				87F826CD190D41450008144F /* CoreData.framework in Frameworks */,
 				87CBE08E1908810B0029D9AF /* CoreGraphics.framework in Frameworks */,
@@ -433,6 +436,7 @@
 		87CBE08A1908810B0029D9AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DC33313B19976456009AA35A /* CoreLocation.framework */,
 				87E85275195728A7007503B8 /* MapKit.framework */,
 				87F826CC190D41450008144F /* CoreData.framework */,
 				87CBE08B1908810B0029D9AF /* Foundation.framework */,

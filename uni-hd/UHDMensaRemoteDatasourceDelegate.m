@@ -39,8 +39,8 @@
     
     UHDMensa *mensaItem = [UHDMensa insertNewObjectIntoContext:managedObjectContext];
     mensaItem.title = @"Marstall";
-    mensaItem.latitude = 49.41280; //Marstall coordinates
-    mensaItem.longitude = 8.70442;
+    mensaItem.latitude = 49.41297656; //Marstall coordinates
+    mensaItem.longitude = 8.70445222;
     
     
     //Create Sections for Mensa
@@ -90,8 +90,8 @@
     
     UHDMensa *mensaItem2 = [UHDMensa insertNewObjectIntoContext:managedObjectContext];
     mensaItem2.title = @"Zentralmensa";
-    mensaItem2.latitude = 49.41280; //Marstall coordinates
-    mensaItem2.longitude = 8.70442;
+    mensaItem2.latitude = 49.41555917; //Marstall coordinates
+    mensaItem2.longitude = 8.67088169;
     
     //Create Sections for Mensa
     
@@ -119,8 +119,8 @@
     
     UHDMensa *mensaItem3 = [UHDMensa insertNewObjectIntoContext:managedObjectContext];
     mensaItem3.title = @"Triplex-Mensa";
-    mensaItem3.latitude = 49.41280; //Marstall coordinates
-    mensaItem3.longitude = 8.70442;
+    mensaItem3.latitude = 49.4107952; //Marstall coordinates
+    mensaItem3.longitude = 8.70567262;
     
     //Create Sections for Mensa
     

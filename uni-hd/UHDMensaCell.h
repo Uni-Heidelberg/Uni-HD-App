@@ -12,10 +12,10 @@
 
 
 
-@interface UHDMensaCell : UHDFavouriteCell
+@interface UHDMensaCell : UHDFavouriteCell 
 
 @property (nonatomic, strong) UHDMensa *mensa;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *mensaLabel;
-
+- (void)calculateDistanceWith:(CLLocation *)currentLocation;
 @end
