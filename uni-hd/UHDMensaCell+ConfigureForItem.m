@@ -13,7 +13,7 @@
 -(void)configureForMensa:(UHDMensa *)mensa{
     
     self.mensaLabel.text = mensa.title;
-    self.distanceLabel.text = [NSString stringWithFormat:@"Dies ist ein Test"];
+    self.mensaImageView.image =[UIImage imageNamed:self.mensa.imageName];
 }
 
 @end

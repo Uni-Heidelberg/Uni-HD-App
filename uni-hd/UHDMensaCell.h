@@ -17,5 +17,6 @@
 @property (nonatomic, strong) UHDMensa *mensa;
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *mensaLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *mensaImageView;
 - (void)calculateDistanceWith:(CLLocation *)currentLocation;
 @end
