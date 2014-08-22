@@ -7,7 +7,6 @@
 //
 
 #import "UHDMealCell.h"
-#import "UHDMeal.h"
 
 @interface UHDMealCell (ConfigureForItem)
 

@@ -10,7 +10,7 @@
 
 @interface UHDMensaDetailViewController ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *mensaPicture;
+@property (weak, nonatomic) IBOutlet UIImageView *mensaImageView;
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 @end
@@ -46,7 +46,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-   
+    self.mensaImageView.image =[UIImage imageNamed:self.mensa.imageName];
+    
+
     // TODO: fix imageframe at startup
 //    CGRect imageFrame = self.mensaPicture.frame;
 //    imageFrame.size.height = self.tableView.tableHeaderView.frame.size.height;
@@ -62,10 +64,10 @@
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView
 {
     CGFloat offset = scrollView.contentOffset.y + scrollView.contentInset.top;
-    CGRect imageFrame = self.mensaPicture.frame;
+    CGRect imageFrame = self.mensaImageView.frame;
     imageFrame.origin.y = offset;
     imageFrame.size.height = - offset + self.tableView.tableHeaderView.frame.size.height;
-    self.mensaPicture.frame = imageFrame;
+    self.mensaImageView.frame = imageFrame;
 }
 
 - (void)configureView

@@ -43,13 +43,11 @@
     
     // configure logging
 #ifdef DEBUG
-    [VILogger defaultLogger].logLevel = VILogLevelWarning;
+    [VILogger defaultLogger].logLevel = VILogLevelDebug;
 #else
     [VILogger defaultLogger].logLevel = VILogLevelWarning;
 #endif
     RKLogConfigureByName("RestKit/Network", RKLogLevelOff);
-
-    [VILogger loggerForClass:[VIFetchedResultsControllerDataSource class]].logLevel = VILogLevelVerbose;
     
     
     // enable automatic network indicator display

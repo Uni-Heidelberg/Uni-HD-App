@@ -17,7 +17,7 @@
 #import "VILogger.h"
 
 
-#define UHDRemoteBaseURL @"http://localhost:3000/api/"
+#define UHDRemoteBaseURL @"http://appserver.physik.uni-heidelberg.de:3000/api/"
 
 #define UHDRemoteDatasourceKeyNews @"UHDRemoteDatasourceKeyNews"
 #define UHDRemoteDatasourceKeyMensa @"UHDRemoteDatasourceKeyMensa"
@@ -30,3 +30,4 @@
 
 
 #import "UIColor+UHDBrandColor.h"
+#import "UIColor+UHDFavouriteColor.h"

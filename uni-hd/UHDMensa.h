@@ -13,6 +13,8 @@
 
 @property (nonatomic, retain) NSSet *menus;
 @property (nonatomic, retain) NSSet *sections;
+@property (nonatomic, assign) Boolean isFavourite;
+@property (nonatomic, retain) NSString * imageName;
 
 - (NSMutableSet *)mutableMenus;
 - (NSMutableSet *)mutableSections;

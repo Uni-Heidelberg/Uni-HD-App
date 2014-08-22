@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RMSwipeTableViewCell.h"
 #import "UHDMeal.h"
+#import "UHDFavouriteCell.h"
 
-@interface UHDMealCell : RMSwipeTableViewCell
+@interface UHDMealCell:UHDFavouriteCell
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
@@ -19,6 +19,5 @@
 
 @property (nonatomic, strong) UHDMeal *meal;
 
--(void)setFavourite:(BOOL)favourite animated:(BOOL)animated;
 
 @end

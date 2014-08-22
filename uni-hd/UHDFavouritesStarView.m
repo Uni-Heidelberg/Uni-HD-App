@@ -35,7 +35,7 @@
     
     
     
-    r = MIN(rect.size.height/2, rect.size.width/2)*self.scaleFactor;
+    r = MIN(rect.size.height*2/5, rect.size.width*2/5)*self.scaleFactor;
     
     theta = 2 * M_PI * (2.0 / 5.0); // 144 degrees
     

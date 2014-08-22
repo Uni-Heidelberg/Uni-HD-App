@@ -14,6 +14,8 @@
 
 @dynamic menus;
 @dynamic sections;
+@dynamic isFavourite;
+@dynamic imageName;
 
 - (NSMutableSet *)mutableMenus
 {
@@ -34,5 +36,7 @@
     
     return [[self.menus filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"(date >= %@) AND (date < %@)", startDate, endDate]] anyObject];
 }
+
+
 
 @end
