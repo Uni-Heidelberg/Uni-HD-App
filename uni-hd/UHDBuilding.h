@@ -8,6 +8,14 @@
 
 #import "UHDRemoteManagedLocation.h"
 
+//@class UHDBuildingsCategory;
+@class UHDRemoteManagedLocation;
+
 @interface UHDBuilding : UHDRemoteManagedLocation
+
+//@property (nonatomic) NSString *title;
+//@property (nonatomic, retain) UIImage *image;
+//@property (nonatomic, retain) UHDBuildingsCategory *category;
+@property (nonatomic) UHDRemoteManagedLocation *location;
 
 @end

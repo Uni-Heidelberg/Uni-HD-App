@@ -1,18 +1,16 @@
 //
-//  UHDMapsViewController.h
+//  UHDMapsSearchTableViewController.h
 //  uni-hd
 //
-//  Created by Nils Fischer on 22.06.14.
+//  Created by Andreas Schachner on 13.08.14.
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
+@import Foundation;
 @import UIKit;
 
-//Model
-#import "UHDBuilding.h"
+@interface UHDMapsSearchTableViewController : UITableViewController
 
-@interface UHDMapsViewController : UIViewController
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-
 
 @end

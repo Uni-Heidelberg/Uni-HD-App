@@ -12,6 +12,7 @@
 
 //Model
 #import "UHDBuilding.h"
+#import "UHDRemoteManagedLocation.h"
 
 
 @interface UHDMapsViewController ()
@@ -20,9 +21,19 @@
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
+//to do: Change Map Style
+//- (void)changeDisplayMode;
+
 @end
 
 @implementation UHDMapsViewController
+
+- (void)viewWillAppear:(BOOL)inAnimated {
+    [super viewWillAppear:inAnimated];
+    
+    
+}
+
 
 - (void)viewDidLoad
 {
@@ -63,6 +74,9 @@
     }
     return _fetchedResultsController;
 }
+
+
+
 
 
 @end

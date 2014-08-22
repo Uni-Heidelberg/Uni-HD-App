@@ -8,7 +8,11 @@
 
 #import "UHDBuilding.h"
 
-
 @implementation UHDBuilding
+
+//@synthesize title;
+//@synthesize image;
+@synthesize location;
+//@synthesize category;
 
 @end
