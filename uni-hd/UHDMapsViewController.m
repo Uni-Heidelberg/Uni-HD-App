@@ -7,12 +7,13 @@
 //
 
 #import "UHDMapsViewController.h"
-#import "VIFetchedResultsControllerDataSource.h"
 #import "UHDRemoteDatasourceManager.h"
 
-//Model
+// Model
 #import "UHDBuilding.h"
-#import "UHDRemoteManagedLocation.h"
+
+// View Controllers
+#import "UHDMapsSearchTableViewController.h"
 
 
 @interface UHDMapsViewController ()
@@ -25,6 +26,7 @@
 //- (void)changeDisplayMode;
 
 @end
+
 
 @implementation UHDMapsViewController
 
@@ -51,6 +53,17 @@
     [self.mapView showAnnotations:allBuildings animated:YES];
     
 }
+
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"showMapsSearch"]) {
+        // Hier muss der MOC (die "Verbindung" zur Datenbank) an den Maps Search VC weitergegeben werden
+        UHDMapsSearchTableViewController *mapsSearchVC = segue.destinationViewController;
+        mapsSearchVC.managedObjectContext = self.managedObjectContext;
+    }
+}
+
 
 - (NSFetchedResultsController *)fetchedResultsController {
     if (!_fetchedResultsController) {

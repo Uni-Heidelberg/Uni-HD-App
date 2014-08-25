@@ -19,10 +19,10 @@
 #import "UHDMapsSearchCell.h"
 
 
-@interface UHDMapsSearchTableViewController ()
+@interface UHDMapsSearchTableViewController () <UISearchDisplayDelegate>
 
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
-//@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (strong, nonatomic) NSArray *filteredObjects;
 
 @end
 
@@ -43,12 +43,6 @@
     self.tableView.delegate = self;
 
 }
-
-//-(void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext{
-    
-  //  managedObjectContext = [(UHDBuilding *)building managedObjectContext];
-
-//}
 
 #pragma mark - Data Source
 
@@ -102,52 +96,54 @@
 #pragma mark - Table View Datasource
 
 
-//- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-//{
-  //  return [[self.fetchedResultsController sections] count];
-//}
-
-
-
-//- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-//{
-//	return [self.fetchedResultsControllerDataSource tableView:tableView numberOfRowsInSection:section];
-//}
-
-//- (NSInteger)tableView:(UITableView *)inTableView numberOfRowsInSection:(NSInteger)inSection { id<NSFetchedResultsSectionInfo> theInfo = [[self.fetchedResultsController sections] objectAtIndex:inSection];
-  //  return [theInfo numberOfObjects];
-//}
-
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.fetchedResultsControllerDataSource.fetchedResultsController.sections.count;
+    if (tableView==self.searchDisplayController.searchResultsTableView) {
+        return 1;
+    }
+    return [self.fetchedResultsControllerDataSource numberOfSectionsInTableView:tableView];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (tableView==self.searchDisplayController.searchResultsTableView) {
+        return self.filteredObjects.count;
+    }
     return [self.fetchedResultsControllerDataSource tableView:tableView numberOfRowsInSection:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-	UITableViewCell *cell = nil;
+	UITableViewCell *cell;
+    UHDBuilding *item;
     
-		UHDBuilding *item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
-        
-		cell = [tableView dequeueReusableCellWithIdentifier:@"mapsSearchCell" forIndexPath:indexPath];
-		[(UHDMapsSearchCell *)cell configureForItem:item];
-
+    if (tableView==self.searchDisplayController.searchResultsTableView) {
+        cell = [self.tableView dequeueReusableCellWithIdentifier:@"mapsSearchCell"];
+        item = [self.filteredObjects objectAtIndex:indexPath.row];
+    } else {
+		cell = [self.tableView dequeueReusableCellWithIdentifier:@"mapsSearchCell" forIndexPath:indexPath];
+		item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
+    }
+    
+    [(UHDMapsSearchCell *)cell configureForItem:item];
 	return cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+    if (tableView==self.searchDisplayController.searchResultsTableView) {
+        return nil;
+    }
     return [self.fetchedResultsControllerDataSource tableView:tableView titleForHeaderInSection:section];
 }
 
 
+#pragma mark - Search Results Filtering
 
-
+- (BOOL)searchDisplayController:(UISearchDisplayController *)controller shouldReloadTableForSearchString:(NSString *)searchString
+{
+    self.filteredObjects = [self.fetchedResultsControllerDataSource.fetchedResultsController.fetchedObjects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", searchString]];
+    return YES;
+}
 
 @end
