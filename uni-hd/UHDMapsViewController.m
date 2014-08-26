@@ -49,6 +49,9 @@
     
     [self.mapView addAnnotations:allBuildings];
     [self.mapView showAnnotations:allBuildings animated:YES];
+    //[self.theView setAnnotation:allBuildings];
+    
+    
     
 }
 
@@ -74,6 +77,7 @@
     }
     return _fetchedResultsController;
 }
+
 
 
 

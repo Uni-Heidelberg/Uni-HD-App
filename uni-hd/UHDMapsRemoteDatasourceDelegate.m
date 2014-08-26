@@ -8,7 +8,7 @@
 
 #import "UHDMapsRemoteDatasourceDelegate.h"
 #import "UHDBuilding.h"
-//#import "UHDBuildingsCategory.h"
+#import "UHDLocationCategory.h"
 
 
 @implementation UHDMapsRemoteDatasourceDelegate
@@ -35,11 +35,11 @@
     //FIRST
     //Create Category
     
-    //UHDBuildingsCategory *category1 = [UHDBuildingsCategory insertNewObjectIntoContext:managedObjectContext];
-    //category1.title = @"Fakultät für Physik";
+    UHDLocationCategory *category1 = [UHDLocationCategory insertNewObjectIntoContext:managedObjectContext];
+    category1.title = @"Fakultät für Physik";
     
-   // UHDBuildingsCategory *category2 =[UHDBuildingsCategory insertNewObjectIntoContext:managedObjectContext];
-    //category2.title = @"Mensen";
+    UHDLocationCategory *category2 =[UHDLocationCategory insertNewObjectIntoContext:managedObjectContext];
+    category2.title = @"Mensen";
     
     //FIRST
     //Create Building Object
@@ -49,7 +49,7 @@
     buildingItem1.latitude = 49.416260; //INF 227 coordinates
     buildingItem1.longitude = 8.672190;
     //buildingItem1.image = [UIImage imageNamed:@"kip"];
-    //buildingItem1.category = category1;
+    buildingItem1.category = category1;
     
     //[category1.mutableBuildings addObject:buildingItem1];
     
@@ -88,7 +88,7 @@
     buildingItem5.latitude = 49.41280; //Marstall coordinates
     buildingItem5.longitude = 8.70442;
     //buildingItem5.image = [UIImage imageNamed:@"marstallhof-01"];
-    //buildingItem5.category = category2;
+    buildingItem5.category = category2;
     
     //[category2.mutableBuildings addObject:buildingItem5];
     

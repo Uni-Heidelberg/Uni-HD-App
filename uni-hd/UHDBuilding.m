@@ -13,6 +13,6 @@
 //@synthesize title;
 //@synthesize image;
 @synthesize location;
-//@synthesize category;
+@synthesize category;
 
 @end

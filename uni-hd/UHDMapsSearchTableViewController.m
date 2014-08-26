@@ -24,6 +24,8 @@
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 //@property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
+@property (strong, nonatomic) NSArray *searchResult;
+
 @end
 
 @implementation UHDMapsSearchTableViewController
@@ -33,14 +35,20 @@
     [super viewDidLoad];
     [self configureView];
     
+    self.tableView.dataSource = self.fetchedResultsControllerDataSource.fetchedResultsController.fetchedObjects;
+    self.tableView.delegate = self;
+    
+    
+    
+    
 }
 
 - (void)configureView
 {
     self.title = @"Suche";
 
-    self.tableView.dataSource = self;
-    self.tableView.delegate = self;
+    //self.tableView.dataSource = self;
+    //self.tableView.delegate = self;
 
 }
 
@@ -145,7 +153,6 @@
 {
     return [self.fetchedResultsControllerDataSource tableView:tableView titleForHeaderInSection:section];
 }
-
 
 
 

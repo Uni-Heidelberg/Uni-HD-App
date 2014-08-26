@@ -33,7 +33,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <mapView appearanceType="aqua" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xq9-aa-Iar">
+                            <mapView appearanceType="aqua" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" restorationIdentifier="mapView" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xq9-aa-Iar">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             </mapView>
@@ -119,7 +119,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2hz-Py-ODY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController id="RXx-IX-5mQ">
+                <searchDisplayController searchResultsTitle="searchResult" id="RXx-IX-5mQ">
                     <connections>
                         <outlet property="delegate" destination="ZZj-nU-e7L" id="H3R-NL-Lp3"/>
                         <outlet property="searchBar" destination="DOI-FI-9fN" id="No4-KP-qZI"/>
