@@ -11,7 +11,6 @@
 @implementation UHDBuilding
 
 //@synthesize title;
-//@synthesize image;
 @synthesize location;
 @synthesize category;
 

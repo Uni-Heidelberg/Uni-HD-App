@@ -11,6 +11,8 @@
 @interface UHDRemoteManagedLocation : UHDRemoteManagedObject <MKAnnotation>
 
 @property (nonatomic, strong) NSString *title;
+@property (nonatomic, strong) NSString *subtitle;
+@property (nonatomic, retain) NSString *imageName;
 @property (nonatomic) double_t latitude;
 @property (nonatomic) double_t longitude;
 

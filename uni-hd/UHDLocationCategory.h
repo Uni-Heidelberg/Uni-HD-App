@@ -7,6 +7,7 @@
 //
 
 #import "UHDRemoteManagedObject.h"
+#import "UHDBuilding.h"
 
 @interface UHDLocationCategory : UHDRemoteManagedObject
 

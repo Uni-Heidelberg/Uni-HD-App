@@ -11,6 +11,8 @@
 @implementation UHDRemoteManagedLocation
 
 @dynamic title;
+@dynamic subtitle;
+@synthesize imageName;
 @dynamic latitude, longitude;
 
 - (CLLocationCoordinate2D)coordinate

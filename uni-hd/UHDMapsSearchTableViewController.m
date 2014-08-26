@@ -22,9 +22,11 @@
 @interface UHDMapsSearchTableViewController () <UISearchDisplayDelegate>
 
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
+
 @property (strong, nonatomic) NSArray *filteredObjects;
 
 @property (strong, nonatomic) NSArray *searchResult;
+
 
 @end
 
@@ -35,35 +37,18 @@
     [super viewDidLoad];
     [self configureView];
     
-    self.tableView.dataSource = self.fetchedResultsControllerDataSource.fetchedResultsController.fetchedObjects;
-    self.tableView.delegate = self;
-    
-    
-    
-    
 }
 
 - (void)configureView
 {
     self.title = @"Suche";
 
-    //self.tableView.dataSource = self;
-    //self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.delegate = self;
 
 }
 
 #pragma mark - Data Source
-
--(void)setBuildingsList:(NSArray *)buildingsList{
-    
-    buildingsList = self.fetchedResultsControllerDataSource.fetchedResultsController.fetchedObjects;
-    
-    //self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"building IN %@", buildingsList];
-    //[self.fetchedResultsControllerDataSource reloadData];
-    
-    [self configureView];
-    
-}
 
 - (VIFetchedResultsControllerDataSource *)fetchedResultsControllerDataSource
 {
@@ -84,9 +69,9 @@
     
         //NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDBuilding entityName]];
     
-        //fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"category.remoteObjectId" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
+       // fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"category.remoteObjectId" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
         
-        //NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"category.title" cacheName:nil];
+       // NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"category.title" cacheName:nil];
         
         //[fetchedResultsController performFetch:NULL];
         
@@ -110,6 +95,7 @@
         return 1;
     }
     return [self.fetchedResultsControllerDataSource numberOfSectionsInTableView:tableView];
+    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -117,13 +103,28 @@
     if (tableView==self.searchDisplayController.searchResultsTableView) {
         return self.filteredObjects.count;
     }
-    return [self.fetchedResultsControllerDataSource tableView:tableView numberOfRowsInSection:section];
+    
+    else {
+        
+        return [self.fetchedResultsControllerDataSource tableView:tableView numberOfRowsInSection:section];
+    }
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 70;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	UITableViewCell *cell;
     UHDBuilding *item;
+    
+    //Configure cell
+    
+    if (cell == nil) {
+        cell = [[UHDMapsSearchCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"mapsSearchCell"];
+    }
     
     if (tableView==self.searchDisplayController.searchResultsTableView) {
         cell = [self.tableView dequeueReusableCellWithIdentifier:@"mapsSearchCell"];
@@ -143,10 +144,23 @@
         return nil;
     }
     return [self.fetchedResultsControllerDataSource tableView:tableView titleForHeaderInSection:section];
+    
 }
 
 
 #pragma mark - Search Results Filtering
+
+-(BOOL)searchDisplayController:(UISearchDisplayController *)Controller shouldReloadTableForSearchString:(NSString *)searchString{
+    
+        NSFetchRequest *theRequest = self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest;
+        NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"title contains[c] %@", searchString];
+        
+        theRequest.predicate = thePredicate;
+        theRequest.fetchLimit = 30;
+        self.filteredObjects = [self.managedObjectContext executeFetchRequest:theRequest error:NULL];
+    
+    return YES;
+}
 
 
 @end

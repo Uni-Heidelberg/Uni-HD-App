@@ -7,6 +7,7 @@
 //
 
 #import "UHDMapsSearchCell+ConfigureForItem.h"
+#
 
 @implementation UHDMapsSearchCell (ConfigureForItem)
 
@@ -14,10 +15,10 @@
     
     // Configure text
     self.titleLabel.text = item.title;
+    self.subtitleLabel.text = item.subtitle;
 
     // Configure Image
-    //UIImage *image = item.image;
-    //self.buildingsImageView.image = image;
+    self.buildingsImageView.image =[UIImage imageNamed:item.imageName];
     
 }
 
