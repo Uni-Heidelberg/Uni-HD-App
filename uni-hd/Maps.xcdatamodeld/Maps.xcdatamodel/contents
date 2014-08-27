@@ -1,15 +1,22 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="13E28" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="UHDBuilding" representedClassName="UHDBuilding" parentEntity="UHDRemoteManagedLocation" syncable="YES">
-        <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="children" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDLocationCategory" inverseName="buildings" inverseEntity="UHDLocationCategory" syncable="YES"/>
+        <attribute name="buildingIdetifier" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDLocationCategory" inverseName="children" inverseEntity="UHDLocationCategory" syncable="YES"/>
+        <relationship name="region" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDCampusRegion" inverseName="building" inverseEntity="UHDCampusRegion" syncable="YES"/>
     </entity>
-    <entity name="UHDLocationCategory" representedClassName="UHDLocationCategory" syncable="YES">
+    <entity name="UHDCampusRegion" syncable="YES">
+        <attribute name="buildingNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="buildings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDBuilding" inverseName="children" inverseEntity="UHDBuilding" syncable="YES"/>
+        <relationship name="building" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDBuilding" inverseName="region" inverseEntity="UHDBuilding" syncable="YES"/>
+    </entity>
+    <entity name="UHDLocationCategory" representedClassName="UHDLocationCategory" syncable="YES">
+        <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="children" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDBuilding" inverseName="category" inverseEntity="UHDBuilding" syncable="YES"/>
     </entity>
     <entity name="UHDRemoteManagedLocation" representedClassName="UHDRemoteManagedLocation" isAbstract="YES" syncable="YES">
+        <attribute name="buildingNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="latitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="longitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
@@ -17,8 +24,9 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="UHDBuilding" positionX="-63" positionY="-18" width="128" height="75"/>
-        <element name="UHDLocationCategory" positionX="133" positionY="89" width="128" height="90"/>
-        <element name="UHDRemoteManagedLocation" positionX="268" positionY="-45" width="128" height="120"/>
+        <element name="UHDBuilding" positionX="-63" positionY="-18" width="128" height="88"/>
+        <element name="UHDCampusRegion" positionX="126" positionY="153" width="128" height="103"/>
+        <element name="UHDLocationCategory" positionX="108" positionY="-99" width="128" height="73"/>
+        <element name="UHDRemoteManagedLocation" positionX="-227" positionY="-45" width="128" height="133"/>
     </elements>
 </model>

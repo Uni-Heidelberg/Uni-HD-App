@@ -13,5 +13,6 @@
 
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSArray *children;
+@property (strong, nonatomic) NSDictionary *dictionary;
 
 @end

@@ -25,6 +25,7 @@
 		0B355881199BCC02008053EE /* UHDMapsSearchCell+ConfigureForItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B355880199BCC02008053EE /* UHDMapsSearchCell+ConfigureForItem.m */; };
 		0B84B31E1993A59C00813CC2 /* UHDBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B84B31D1993A59C00813CC2 /* UHDBuilding.m */; };
 		0BAB274C19A7296600CAB517 /* UHDLocationCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB274B19A7296600CAB517 /* UHDLocationCategory.m */; };
+		0BB49E1919ADC3F60025BD07 /* UHDCampusRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB49E1819ADC3F60025BD07 /* UHDCampusRegion.m */; };
 		0BEC8EB11993B40A00EAB8F6 /* UHDMapsRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BEC8EB01993B40A00EAB8F6 /* UHDMapsRemoteDatasourceDelegate.m */; };
 		6F293EE8DA534A74838601AE /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F757EC4658C40C8B7B4E414 /* libPods.a */; };
 		8701CE4C190C00A600A18F82 /* UHDRemoteDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8701CE4B190C00A600A18F82 /* UHDRemoteDatasource.m */; };
@@ -135,6 +136,8 @@
 		0B84B31D1993A59C00813CC2 /* UHDBuilding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDBuilding.m; sourceTree = "<group>"; };
 		0BAB274A19A7296600CAB517 /* UHDLocationCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDLocationCategory.h; sourceTree = "<group>"; };
 		0BAB274B19A7296600CAB517 /* UHDLocationCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDLocationCategory.m; sourceTree = "<group>"; };
+		0BB49E1719ADC3F60025BD07 /* UHDCampusRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDCampusRegion.h; sourceTree = "<group>"; };
+		0BB49E1819ADC3F60025BD07 /* UHDCampusRegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDCampusRegion.m; sourceTree = "<group>"; };
 		0BEC8EAF1993B40A00EAB8F6 /* UHDMapsRemoteDatasourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMapsRemoteDatasourceDelegate.h; sourceTree = "<group>"; };
 		0BEC8EB01993B40A00EAB8F6 /* UHDMapsRemoteDatasourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMapsRemoteDatasourceDelegate.m; sourceTree = "<group>"; };
 		3F757EC4658C40C8B7B4E414 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -286,6 +289,8 @@
 				87FCA9951995901200B3A55F /* UHDRemoteManagedLocation.m */,
 				0B84B31C1993A59C00813CC2 /* UHDBuilding.h */,
 				0B84B31D1993A59C00813CC2 /* UHDBuilding.m */,
+				0BB49E1719ADC3F60025BD07 /* UHDCampusRegion.h */,
+				0BB49E1819ADC3F60025BD07 /* UHDCampusRegion.m */,
 			);
 			name = Maps;
 			sourceTree = "<group>";
@@ -855,6 +860,7 @@
 				DC83C93A192BDDA6004CC75B /* UHDMealCell.m in Sources */,
 				0A7FACFA196B13DB00E2CC9D /* UHDEventItemCell.m in Sources */,
 				0A586D8E19646A6600DF86EE /* UHDTalkSpeaker.m in Sources */,
+				0BB49E1919ADC3F60025BD07 /* UHDCampusRegion.m in Sources */,
 				87B974E5192D57330080AA40 /* UHDRemoteDatasourceManager.m in Sources */,
 				DC21B6DA1923D27600BAD26D /* UHDMensaSection.m in Sources */,
 				0AD7F3721923F58E00F49551 /* UHDNewsItemCell.m in Sources */,

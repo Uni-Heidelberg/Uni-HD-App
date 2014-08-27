@@ -13,5 +13,7 @@
 //@synthesize title;
 @synthesize location;
 @synthesize category;
+@synthesize campusRegion;
+@synthesize buildingIdentifier;
 
 @end

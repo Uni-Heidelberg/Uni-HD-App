@@ -13,7 +13,7 @@
 //Model
 #import "UHDBuilding.h"
 #import "UHDRemoteManagedLocation.h"
-//#import "UHDBuildingsCategory.h"
+#import "UHDLocationCategory.h"
 
 #import "UHDMapsSearchCell+ConfigureForItem.h"
 #import "UHDMapsSearchCell.h"
@@ -26,7 +26,6 @@
 @property (strong, nonatomic) NSArray *filteredObjects;
 
 @property (strong, nonatomic) NSArray *searchResult;
-
 
 @end
 
@@ -60,8 +59,8 @@
    }
         
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDBuilding entityName]];
-        fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
-        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+        fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"category.remoteObjectId" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
+        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"category.title" cacheName:nil];
         [fetchedResultsController performFetch:NULL];
         
         
@@ -88,13 +87,17 @@
 
 #pragma mark - Table View Datasource
 
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if (tableView==self.searchDisplayController.searchResultsTableView) {
         return 1;
     }
-    return [self.fetchedResultsControllerDataSource numberOfSectionsInTableView:tableView];
+    else{
+        
+        return [self.fetchedResultsControllerDataSource numberOfSectionsInTableView:tableView];
+        
+    }
+
     
 }
 
@@ -103,22 +106,25 @@
     if (tableView==self.searchDisplayController.searchResultsTableView) {
         return self.filteredObjects.count;
     }
-    
-    else {
+    else{
         
         return [self.fetchedResultsControllerDataSource tableView:tableView numberOfRowsInSection:section];
+        
     }
+    
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 70;
+    return 75;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	UITableViewCell *cell;
     UHDBuilding *item;
+
     
     //Configure cell
     
@@ -143,7 +149,9 @@
     if (tableView==self.searchDisplayController.searchResultsTableView) {
         return nil;
     }
-    return [self.fetchedResultsControllerDataSource tableView:tableView titleForHeaderInSection:section];
+    else{
+     return [[[self.fetchedResultsControllerDataSource.fetchedResultsController sections] objectAtIndex:section] title];
+    }
     
 }
 

@@ -12,5 +12,6 @@
 
 @dynamic children;
 @dynamic title;
+@dynamic dictionary;
 
 @end

@@ -91,6 +91,30 @@
     return _fetchedResultsController;
 }
 
+//Show informations in annotations
+
+//- (MKAnnotationView *)mapView:(MKMapView *)inMapView viewForAnnotation:(id<MKAnnotation>)inAnnotation { MKPinAnnotationView *theView = nil;
+    //inMapView = self.mapView;
+    //if(![inAnnotation isKindOfClass:[MKUserLocation class]]) { theView = (MKPinAnnotationView *)[inMapView dequeueReusableAnnotationViewWithIdentifier: @"mapView"];
+        //if(theView == nil) {
+            //UIButton *theLeftButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+            //UIButton *theRightButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+            //theLeftButton.tag = 10;
+            //theRightButton.tag = 20;
+            //theView = [[MKPinAnnotationView alloc] initWithAnnotation:inAnnotation reuseIdentifier:@"mapView"];
+            //theView.pinColor = MKPinAnnotationColorGreen;
+            //theView.canShowCallout = YES;
+            //theView.animatesDrop = YES;
+            //theView.leftCalloutAccessoryView = theLeftButton;
+            //theView.rightCalloutAccessoryView = theRightButton;
+        //}
+        //else {
+        //    theView.annotation = inAnnotation;
+      //  }
+    //}
+  //  return theView;
+//}
+
 
 
 
