@@ -13,7 +13,7 @@
 -(void)configureForMensa:(UHDMensa *)mensa{
     
     self.mensaLabel.text = mensa.title;
-    self.mensaImageView.image =[UIImage imageNamed:self.mensa.imageName];
+    self.mensaImageView.image = self.mensa.image;
 }
 
 @end

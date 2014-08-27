@@ -10,6 +10,10 @@
 
 @interface UHDCampusRegion : UHDRemoteManagedObject
 
-@property (strong, nonatomic) NSString *title;
+@property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSString *identifier;
+@property (nonatomic, retain) NSSet *buildings;
+
+- (NSMutableSet *)mutableBuildings;
 
 @end

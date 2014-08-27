@@ -11,11 +11,11 @@
 @implementation UHDRemoteManagedLocation
 
 @dynamic title;
-@dynamic buildingNumber;
-@dynamic subtitle;
-@synthesize imageName;
 @dynamic latitude, longitude;
+@dynamic category;
 
+
+#pragma mark - MKAnnotation Protocol
 
 - (CLLocationCoordinate2D)coordinate
 {

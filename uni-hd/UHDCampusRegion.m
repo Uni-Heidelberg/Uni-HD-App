@@ -10,6 +10,15 @@
 
 @implementation UHDCampusRegion
 
-@dynamic title;
+@dynamic title, identifier;
+@dynamic buildings;
+
+
+#pragma mark - Mutable To-Many Accessors
+
+- (NSMutableSet *)mutableBuildings
+{
+    return [self mutableSetValueForKey:@"buildings"];
+}
 
 @end

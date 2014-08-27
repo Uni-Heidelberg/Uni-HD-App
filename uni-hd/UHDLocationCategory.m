@@ -10,8 +10,15 @@
 
 @implementation UHDLocationCategory
 
-@dynamic children;
 @dynamic title;
-@dynamic dictionary;
+@dynamic locations;
+
+
+#pragma mark - Mutable To-Many Accessors
+
+- (NSMutableSet *)mutableLocations
+{
+    return [self mutableSetValueForKey:@"locations"];
+}
 
 @end

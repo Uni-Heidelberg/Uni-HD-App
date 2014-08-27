@@ -15,7 +15,7 @@
 @dynamic menus;
 @dynamic sections;
 @dynamic isFavourite;
-@dynamic imageName;
+
 
 - (NSMutableSet *)mutableMenus
 {

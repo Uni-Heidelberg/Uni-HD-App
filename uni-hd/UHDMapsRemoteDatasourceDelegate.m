@@ -7,8 +7,10 @@
 //
 
 #import "UHDMapsRemoteDatasourceDelegate.h"
-#import "UHDBuilding.h"
+
 #import "UHDLocationCategory.h"
+#import "UHDCampusRegion.h"
+#import "UHDBuilding.h"
 
 
 @implementation UHDMapsRemoteDatasourceDelegate
@@ -32,7 +34,7 @@
 
 - (void)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource generateSampleDataForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    //Create categories
+    // Create categories
     
     UHDLocationCategory *category1 = [UHDLocationCategory insertNewObjectIntoContext:managedObjectContext];
     category1.title = @"Fakultät für Physik und Astronomie";
@@ -43,19 +45,27 @@
     UHDLocationCategory *category3 =[UHDLocationCategory insertNewObjectIntoContext:managedObjectContext];
     category3.title = @"Mensen";
     
+    // Create campus regions
+    
+    UHDCampusRegion *inf = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
+    inf.title = @"Im Neuenheimer Feld";
+    inf.identifier = @"INF";
+    
+    
     //FIRST
     //Create Building Object
     
     UHDBuilding *buildingItem1 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
-    buildingItem1.title = @"INF 227";
-    buildingItem1.subtitle = @"Kirchhoff-Institut für Physik";
+    buildingItem1.title = @"Kirchhoff-Institut für Physik";
+    buildingItem1.buildingNumber = @"227";
     buildingItem1.latitude = 49.416260; //INF 227 coordinates
     buildingItem1.longitude = 8.672190;
-    buildingItem1.imageName = @"kip";
     buildingItem1.category = category1;
+    buildingItem1.campusRegion = inf;
+    buildingItem1.image = [UIImage imageNamed:@"kip"];
     
     
-    
+    /*
     //SECOND
     //Create Building Object
     UHDBuilding *buildingItem2 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
@@ -90,7 +100,6 @@
     
     
     
-    
     //FIFTH
     //Create Building Object
     
@@ -101,15 +110,7 @@
     buildingItem5.imageName = @"marstallhof-01";
     buildingItem5.category = category3;
     
-    
-    category1.children = [[NSArray alloc] initWithObjects:buildingItem1, buildingItem2, buildingItem3, nil];
-    category2.children = [[NSArray alloc] initWithObjects:buildingItem4, nil];
-    category3.children = [[NSArray alloc] initWithObjects:buildingItem5, nil];
-    
-    category1.dictionary = [NSDictionary dictionaryWithObject:category1.children forKey:@"data"];
-    category2.dictionary = [NSDictionary dictionaryWithObject:category2.children forKey:@"data"];
-    category3.dictionary = [NSDictionary dictionaryWithObject:category3.children forKey:@"data"];
-
+    */
     
     [managedObjectContext saveToPersistentStore:NULL];
 }

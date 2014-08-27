@@ -46,7 +46,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    self.mensaImageView.image =[UIImage imageNamed:self.mensa.imageName];
+    self.mensaImageView.image = self.mensa.image;
     
 
     // TODO: fix imageframe at startup

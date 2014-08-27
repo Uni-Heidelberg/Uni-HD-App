@@ -34,8 +34,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [self configureView];
     
+    [self configureView];
 }
 
 - (void)configureView
@@ -91,28 +91,18 @@
 {
     if (tableView==self.searchDisplayController.searchResultsTableView) {
         return 1;
-    }
-    else{
-        
+    } else {
         return [self.fetchedResultsControllerDataSource numberOfSectionsInTableView:tableView];
-        
     }
-
-    
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (tableView==self.searchDisplayController.searchResultsTableView) {
         return self.filteredObjects.count;
-    }
-    else{
-        
+    } else {
         return [self.fetchedResultsControllerDataSource tableView:tableView numberOfRowsInSection:section];
-        
     }
-    
-    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -124,13 +114,6 @@
 {
 	UITableViewCell *cell;
     UHDBuilding *item;
-
-    
-    //Configure cell
-    
-    if (cell == nil) {
-        cell = [[UHDMapsSearchCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"mapsSearchCell"];
-    }
     
     if (tableView==self.searchDisplayController.searchResultsTableView) {
         cell = [self.tableView dequeueReusableCellWithIdentifier:@"mapsSearchCell"];
@@ -148,11 +131,9 @@
 {
     if (tableView==self.searchDisplayController.searchResultsTableView) {
         return nil;
+    } else {
+        return [self.fetchedResultsControllerDataSource tableView:tableView titleForHeaderInSection:section];
     }
-    else{
-     return [[[self.fetchedResultsControllerDataSource.fetchedResultsController sections] objectAtIndex:section] title];
-    }
-    
 }
 
 
@@ -160,13 +141,15 @@
 
 -(BOOL)searchDisplayController:(UISearchDisplayController *)Controller shouldReloadTableForSearchString:(NSString *)searchString{
     
+    /* warum nicht einfach die schon geladenen objekte filtern, statt eine neue request auszuführen?
         NSFetchRequest *theRequest = self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest;
         NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"title contains[c] %@", searchString];
         
         theRequest.predicate = thePredicate;
         theRequest.fetchLimit = 30;
         self.filteredObjects = [self.managedObjectContext executeFetchRequest:theRequest error:NULL];
-    
+    */
+    self.filteredObjects = [self.fetchedResultsControllerDataSource.fetchedResultsController.fetchedObjects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", searchString]];
     return YES;
 }
 

@@ -11,8 +11,9 @@
 
 @interface UHDLocationCategory : UHDRemoteManagedObject
 
-@property (strong, nonatomic) NSString *title;
-@property (strong, nonatomic) NSArray *children;
-@property (strong, nonatomic) NSDictionary *dictionary;
+@property (nonatomic, retain) NSString *title;
+@property (nonatomic, retain) NSSet *locations;
+
+- (NSMutableSet *)mutableLocations;
 
 @end

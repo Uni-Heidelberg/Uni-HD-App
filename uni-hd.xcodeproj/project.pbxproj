@@ -283,14 +283,14 @@
 			isa = PBXGroup;
 			children = (
 				87FCA99119958EB100B3A55F /* Maps.xcdatamodeld */,
-				0BAB274A19A7296600CAB517 /* UHDLocationCategory.h */,
-				0BAB274B19A7296600CAB517 /* UHDLocationCategory.m */,
 				87FCA9941995901200B3A55F /* UHDRemoteManagedLocation.h */,
 				87FCA9951995901200B3A55F /* UHDRemoteManagedLocation.m */,
-				0B84B31C1993A59C00813CC2 /* UHDBuilding.h */,
-				0B84B31D1993A59C00813CC2 /* UHDBuilding.m */,
+				0BAB274A19A7296600CAB517 /* UHDLocationCategory.h */,
+				0BAB274B19A7296600CAB517 /* UHDLocationCategory.m */,
 				0BB49E1719ADC3F60025BD07 /* UHDCampusRegion.h */,
 				0BB49E1819ADC3F60025BD07 /* UHDCampusRegion.m */,
+				0B84B31C1993A59C00813CC2 /* UHDBuilding.h */,
+				0B84B31D1993A59C00813CC2 /* UHDBuilding.m */,
 			);
 			name = Maps;
 			sourceTree = "<group>";
@@ -588,9 +588,9 @@
 		87FCA990199578C200B3A55F /* Map View */ = {
 			isa = PBXGroup;
 			children = (
-				0B355875199BC3D1008053EE /* Maps Search */,
 				87E852781957297A007503B8 /* UHDMapsViewController.h */,
 				87E852791957297A007503B8 /* UHDMapsViewController.m */,
+				0B355875199BC3D1008053EE /* Maps Search */,
 			);
 			name = "Map View";
 			sourceTree = "<group>";

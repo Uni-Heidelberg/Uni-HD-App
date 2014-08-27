@@ -15,10 +15,10 @@
     
     // Configure text
     self.titleLabel.text = item.title;
-    self.subtitleLabel.text = item.subtitle;
+    self.subtitleLabel.text = item.identifier;
 
     // Configure Image
-    self.buildingsImageView.image =[UIImage imageNamed:item.imageName];
+    self.buildingsImageView.image = item.image;
     
 }
 
