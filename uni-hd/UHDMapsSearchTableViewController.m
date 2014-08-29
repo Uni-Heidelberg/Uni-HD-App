@@ -139,16 +139,8 @@
 
 #pragma mark - Search Results Filtering
 
--(BOOL)searchDisplayController:(UISearchDisplayController *)Controller shouldReloadTableForSearchString:(NSString *)searchString{
-    
-    /* warum nicht einfach die schon geladenen objekte filtern, statt eine neue request auszuführen?
-        NSFetchRequest *theRequest = self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest;
-        NSPredicate *thePredicate = [NSPredicate predicateWithFormat:@"title contains[c] %@", searchString];
-        
-        theRequest.predicate = thePredicate;
-        theRequest.fetchLimit = 30;
-        self.filteredObjects = [self.managedObjectContext executeFetchRequest:theRequest error:NULL];
-    */
+-(BOOL)searchDisplayController:(UISearchDisplayController *)Controller shouldReloadTableForSearchString:(NSString *)searchString
+{    
     self.filteredObjects = [self.fetchedResultsControllerDataSource.fetchedResultsController.fetchedObjects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"title CONTAINS[cd] %@", searchString]];
     return YES;
 }

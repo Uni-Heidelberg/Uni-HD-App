@@ -51,6 +51,10 @@
     inf.title = @"Im Neuenheimer Feld";
     inf.identifier = @"INF";
     
+    UHDCampusRegion *altstadt = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
+    altstadt.title = @"Altstadt";
+    altstadt.identifier = @"Altstadt";
+    
     
     //FIRST
     //Create Building Object
@@ -65,15 +69,16 @@
     buildingItem1.image = [UIImage imageNamed:@"kip"];
     
     
-    /*
+    
     //SECOND
     //Create Building Object
     UHDBuilding *buildingItem2 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
-    buildingItem2.title = @"INF 226";
-    buildingItem2.subtitle = @"Klaus-Tschira-Gebäude";
+    buildingItem2.title =@"Klaus-Tschira-Gebäude";
+    buildingItem2.buildingNumber = @"226";
     buildingItem2.latitude = 49.416250; //INF 226 coordinates
     buildingItem2.longitude = 8.673171;
     buildingItem2.category = category1;
+    buildingItem2.campusRegion = inf;
     
 
     
@@ -82,9 +87,11 @@
     
     UHDBuilding *buildingItem3 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
     buildingItem3.title = @"INF 308";
+    buildingItem3.buildingNumber = @"308";
     buildingItem3.latitude = 49.417028; //INF 308 coordinates
     buildingItem3.longitude = 8.670807;
     buildingItem3.category = category1;
+    buildingItem3.campusRegion = inf;
     
     
     
@@ -93,9 +100,11 @@
     
     UHDBuilding *buildingItem4 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
     buildingItem4.title = @"INF 288";
+    buildingItem4.buildingNumber = @"288";
     buildingItem4.latitude = 49.417055; //INF 288 coordinates
     buildingItem4.longitude = 8.671665;
     buildingItem4.category = category2;
+    buildingItem4.campusRegion = inf;
     
     
     
@@ -105,12 +114,14 @@
     
     UHDBuilding *buildingItem5 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
     buildingItem5.title = @"Marstall";
+    buildingItem5.buildingNumber = @"";
     buildingItem5.latitude = 49.41280; //Marstall coordinates
     buildingItem5.longitude = 8.70442;
-    buildingItem5.imageName = @"marstallhof-01";
+    buildingItem5.image = [UIImage imageNamed:@"marstallhof-01"];
     buildingItem5.category = category3;
+    buildingItem5.campusRegion = altstadt;
     
-    */
+    
     
     [managedObjectContext saveToPersistentStore:NULL];
 }

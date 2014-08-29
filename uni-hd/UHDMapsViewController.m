@@ -22,8 +22,6 @@
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
-//to do: Change Map Style
-//- (void)changeDisplayMode;
 
 @end
 
@@ -93,30 +91,98 @@
 
 //Show informations in annotations
 
-//- (MKAnnotationView *)mapView:(MKMapView *)inMapView viewForAnnotation:(id<MKAnnotation>)inAnnotation { MKPinAnnotationView *theView = nil;
-    //inMapView = self.mapView;
-    //if(![inAnnotation isKindOfClass:[MKUserLocation class]]) { theView = (MKPinAnnotationView *)[inMapView dequeueReusableAnnotationViewWithIdentifier: @"mapView"];
-        //if(theView == nil) {
-            //UIButton *theLeftButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
-            //UIButton *theRightButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
-            //theLeftButton.tag = 10;
-            //theRightButton.tag = 20;
-            //theView = [[MKPinAnnotationView alloc] initWithAnnotation:inAnnotation reuseIdentifier:@"mapView"];
-            //theView.pinColor = MKPinAnnotationColorGreen;
-            //theView.canShowCallout = YES;
-            //theView.animatesDrop = YES;
-            //theView.leftCalloutAccessoryView = theLeftButton;
-            //theView.rightCalloutAccessoryView = theRightButton;
-        //}
-        //else {
-        //    theView.annotation = inAnnotation;
-      //  }
-    //}
-  //  return theView;
-//}
+/*
+- (MKAnnotationView *)theMapView:(MKMapView *)inMapView viewForAnnotation:(id<MKAnnotation>)inAnnotation {
+    MKPinAnnotationView *theView = nil;
+    inMapView = self.mapView;
+ 
+    if (![inAnnotation isKindOfClass:[MapViewAnnotation class]])
+    {
+    // Return nil (default view) if annotation is
+    // anything but your custom class.
+    return nil;
+    }
+ 
+    theView = (MKPinAnnotationView *)[inMapView dequeueReusableAnnotationViewWithIdentifier: @"mapView"];
+    if(theView == nil) {
+        UIButton *theLeftButton = [UIButton buttonWithType:UIButtonTypeInfoLight];
+        UIButton *theRightButton = [UIButton buttonWithType:UIButtonTypeContactAdd];
+        theLeftButton.tag = 10;
+        theRightButton.tag = 20;
+        theView = [[MKPinAnnotationView alloc] initWithAnnotation:inAnnotation reuseIdentifier:@"mapView"];
+        theView.pinColor = MKPinAnnotationColorGreen;
+        theView.canShowCallout = YES;
+        theView.animatesDrop = YES;
+        theView.leftCalloutAccessoryView = theLeftButton;
+        theView.rightCalloutAccessoryView = theRightButton;
+ 
+    }
+  return theView;
+}
+*/
+/*
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
+{
+    if ([annotation isKindOfClass:[MKUserLocation class]])
+    {
+        return nil;
+    }
+    else if ([annotation isKindOfClass:[MKPointAnnotation class]])
+    {
+        static NSString * const identifier = @"MyCustomAnnotation";
+        UHDBuilding *item;
+        
+        NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
+        [self.mapView addAnnotations:allBuildings];
+        
+        MKAnnotationView* annotationView = [mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+        
+        if (annotationView)
+        {
+            annotationView.annotation = annotation;
+        }
+        else
+        {
+            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation
+                                                          reuseIdentifier:identifier];
+        }
+        
+        // set your annotationView properties
+        
+        annotationView.image = item.image;
+        annotationView.canShowCallout = YES;
+        
+        // if you add QuartzCore to your project, you can set shadows for your image, too
+        //
+        // [annotationView.layer setShadowColor:[UIColor blackColor].CGColor];
+        // [annotationView.layer setShadowOpacity:1.0f];
+        // [annotationView.layer setShadowRadius:5.0f];
+        // [annotationView.layer setShadowOffset:CGSizeMake(0, 0)];
+        // [annotationView setBackgroundColor:[UIColor whiteColor]];
+        
+        return annotationView;
+    }
+    
+    return nil;
+}
+*/
 
+//Configure Map Type
 
-
+- (IBAction)changeMapType:(id)sender {
+    
+    //Segment 1 hat Nummer 0 usw.
+    if (_mapType.selectedSegmentIndex == 0) {
+        [self.mapView setMapType:MKMapTypeStandard];
+    }
+    else if (_mapType.selectedSegmentIndex == 1){
+        [self.mapView setMapType:MKMapTypeHybrid];
+    }
+    else if (_mapType.selectedSegmentIndex == 2){
+        [self.mapView setMapType:MKMapTypeSatellite];
+    }
+    
+}
 
 
 

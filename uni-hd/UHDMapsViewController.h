@@ -12,7 +12,10 @@
 #import "UHDBuilding.h"
 
 @interface UHDMapsViewController : UIViewController
+
+@property (strong, nonatomic) IBOutlet UISegmentedControl *mapType;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+- (IBAction)changeMapType:(id)sender;
 
 
 @end
