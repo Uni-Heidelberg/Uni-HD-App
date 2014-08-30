@@ -23,6 +23,7 @@
     return [NSString stringWithFormat:@"%@ %@", self.campusRegion.identifier, self.buildingNumber];
 }
 
+/*
 - (UIImage *)image {
     return [UIImage imageWithData:self.imageData];
 }
@@ -30,7 +31,7 @@
 - (void)setImage:(UIImage *)image {
     self.imageData = UIImageJPEGRepresentation(image, 1);
 }
-
+*/
 
 #pragma mark - MKAnnotation Protocol
 

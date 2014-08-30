@@ -14,10 +14,10 @@
 
 @property (nonatomic, retain) UHDCampusRegion *campusRegion;
 @property (nonatomic, retain) NSString *buildingNumber;
-@property (nonatomic, retain) NSData *imageData;
+//@property (nonatomic, retain) NSData *imageData;
 
 // Computed Properties
 @property (readonly) NSString *identifier; // calculated by combining the region's identifier and the building number
-@property (nonatomic) UIImage *image;
+//@property (nonatomic) UIImage *image;
 
 @end
