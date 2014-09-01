@@ -11,6 +11,7 @@
 
 
 @interface UHDMensaDetailViewController : UITableViewController
+
 @property UHDMensa *mensa;
 
 @end

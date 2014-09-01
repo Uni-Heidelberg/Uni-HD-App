@@ -18,6 +18,7 @@
 		0AD7F3721923F58E00F49551 /* UHDNewsItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7F3711923F58E00F49551 /* UHDNewsItemCell.m */; };
 		0AD7F3751923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7F3741923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.m */; };
 		0AE2786C192A39CB00ED1641 /* UHDNewsSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE2786B192A39CB00ED1641 /* UHDNewsSource.m */; };
+		0B13624C19B4AF22000ECC3A /* UHDBuildingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B13624B19B4AF22000ECC3A /* UHDBuildingDetailViewController.m */; };
 		0B176E711931114200D3C916 /* UHDNewsSourcesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B176E6D1931114200D3C916 /* UHDNewsSourcesViewController.m */; };
 		0B176E7A1931117700D3C916 /* UHDNewsCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B176E791931117700D3C916 /* UHDNewsCategory.m */; };
 		0B355878199BC434008053EE /* UHDMapsSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B355877199BC434008053EE /* UHDMapsSearchTableViewController.m */; };
@@ -122,6 +123,8 @@
 		0AD7F3741923FA8400F49551 /* UHDNewsItemCell+ConfigureForItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UHDNewsItemCell+ConfigureForItem.m"; sourceTree = "<group>"; };
 		0AE2786A192A39CB00ED1641 /* UHDNewsSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsSource.h; sourceTree = "<group>"; };
 		0AE2786B192A39CB00ED1641 /* UHDNewsSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsSource.m; sourceTree = "<group>"; };
+		0B13624A19B4AF22000ECC3A /* UHDBuildingDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDBuildingDetailViewController.h; sourceTree = "<group>"; };
+		0B13624B19B4AF22000ECC3A /* UHDBuildingDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDBuildingDetailViewController.m; sourceTree = "<group>"; };
 		0B176E6C1931114200D3C916 /* UHDNewsSourcesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsSourcesViewController.h; sourceTree = "<group>"; };
 		0B176E6D1931114200D3C916 /* UHDNewsSourcesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsSourcesViewController.m; sourceTree = "<group>"; };
 		0B176E781931117700D3C916 /* UHDNewsCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsCategory.h; sourceTree = "<group>"; };
@@ -268,6 +271,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B13624919B4AEF3000ECC3A /* Maps Detail */ = {
+			isa = PBXGroup;
+			children = (
+				0B13624A19B4AF22000ECC3A /* UHDBuildingDetailViewController.h */,
+				0B13624B19B4AF22000ECC3A /* UHDBuildingDetailViewController.m */,
+			);
+			name = "Maps Detail";
+			sourceTree = "<group>";
+		};
 		0B355875199BC3D1008053EE /* Maps Search */ = {
 			isa = PBXGroup;
 			children = (
@@ -590,6 +602,7 @@
 			children = (
 				87E852781957297A007503B8 /* UHDMapsViewController.h */,
 				87E852791957297A007503B8 /* UHDMapsViewController.m */,
+				0B13624919B4AEF3000ECC3A /* Maps Detail */,
 				0B355875199BC3D1008053EE /* Maps Search */,
 			);
 			name = "Map View";
@@ -865,6 +878,7 @@
 				DC21B6DA1923D27600BAD26D /* UHDMensaSection.m in Sources */,
 				0AD7F3721923F58E00F49551 /* UHDNewsItemCell.m in Sources */,
 				DCD00AAA19969A7900DCCB24 /* UHDMensaCell+ConfigureForItem.m in Sources */,
+				0B13624C19B4AF22000ECC3A /* UHDBuildingDetailViewController.m in Sources */,
 				872750F21964A1D100FDBC4E /* UHDMensaListViewController.m in Sources */,
 				87E8527D19572BD4007503B8 /* UHDRemoteManagedObject.m in Sources */,
 				DC94C7E7195B20D300615056 /* UHDMensaDetailViewController.m in Sources */,

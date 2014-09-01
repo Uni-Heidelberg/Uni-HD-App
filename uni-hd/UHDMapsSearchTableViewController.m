@@ -9,6 +9,7 @@
 #import "UHDMapsSearchTableViewController.h"
 #import "VIFetchedResultsControllerDataSource.h"
 #import "UHDRemoteDatasourceManager.h"
+#import "UHDBuildingDetailViewController.h"
 
 //Model
 #import "UHDBuilding.h"
@@ -62,19 +63,7 @@
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"category.remoteObjectId" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"category.title" cacheName:nil];
         [fetchedResultsController performFetch:NULL];
-        
-        
-        //NSFetchedResultController mit Category
-    
-        //NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDBuilding entityName]];
-    
-       // fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"category.remoteObjectId" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
-        
-       // NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"category.title" cacheName:nil];
-        
-        //[fetchedResultsController performFetch:NULL];
-        
-        
+
 		VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource = [[VIFetchedResultsControllerDataSource alloc] init];
 		fetchedResultsControllerDataSource.tableView = self.tableView;
 		fetchedResultsControllerDataSource.fetchedResultsController = fetchedResultsController;
@@ -83,6 +72,30 @@
     }
     
 	return _fetchedResultsControllerDataSource;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"showBuildingDetail"]) {
+        NSIndexPath *indexPathForRow = nil;
+        NSIndexPath *indexPathForSection = nil;
+        UHDBuilding *item = nil;
+        NSArray *allBuildings = self.fetchedResultsControllerDataSource.fetchedResultsController.fetchedObjects;
+        
+        
+        if (self.searchDisplayController.active) {
+            indexPathForRow = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            item = [self.filteredObjects objectAtIndex:indexPathForRow.row];
+        } else {
+            indexPathForRow = [self.tableView indexPathForSelectedRow];
+            item = [allBuildings objectAtIndex:indexPathForRow.row];
+        }
+        
+        UHDBuildingDetailViewController *destViewController = segue.destinationViewController;
+        destViewController.building = item;
+    }
+
+
 }
 
 #pragma mark - Table View Datasource
