@@ -77,18 +77,15 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"showBuildingDetail"]) {
-        NSIndexPath *indexPathForRow = nil;
-        NSIndexPath *indexPathForSection = nil;
+        NSIndexPath *indexPath= nil;
         UHDBuilding *item = nil;
-        NSArray *allBuildings = self.fetchedResultsControllerDataSource.fetchedResultsController.fetchedObjects;
-        
-        
+
         if (self.searchDisplayController.active) {
-            indexPathForRow = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
-            item = [self.filteredObjects objectAtIndex:indexPathForRow.row];
+            indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            item = [self.filteredObjects objectAtIndex:indexPath.row];
         } else {
-            indexPathForRow = [self.tableView indexPathForSelectedRow];
-            item = [allBuildings objectAtIndex:indexPathForRow.row];
+            indexPath = [self.tableView indexPathForSelectedRow];
+            item = [self.fetchedResultsControllerDataSource.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.row];
         }
         
         UHDBuildingDetailViewController *destViewController = segue.destinationViewController;
