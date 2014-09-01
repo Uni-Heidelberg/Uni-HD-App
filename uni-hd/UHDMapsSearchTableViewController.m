@@ -76,23 +76,22 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"showBuildingDetail"]) {
-        NSIndexPath *indexPath= nil;
-        UHDBuilding *item = nil;
+    if ([segue.identifier isEqualToString:@"showBuildingDetail"])
+    {
+        UHDBuildingDetailViewController *destViewController = segue.destinationViewController;
 
-        if (self.searchDisplayController.active) {
+        if (self.searchDisplayController.active)
+        {
+            NSIndexPath *indexPath= nil;
+            UHDBuilding *item = nil;
             indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
             item = [self.filteredObjects objectAtIndex:indexPath.row];
-        } else {
-            indexPath = [self.tableView indexPathForSelectedRow];
-            item = [self.fetchedResultsControllerDataSource.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.row];
+            destViewController.building = item;
+        } else
+        {
+            destViewController.building = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:(UITableViewCell *)sender]];
         }
-        
-        UHDBuildingDetailViewController *destViewController = segue.destinationViewController;
-        destViewController.building = item;
     }
-
-
 }
 
 #pragma mark - Table View Datasource

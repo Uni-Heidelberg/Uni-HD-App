@@ -73,7 +73,7 @@
     //SECOND
     //Create Building Object
     UHDBuilding *buildingItem2 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
-    buildingItem2.title =@"Klaus-Tschira-Gebäude";
+    buildingItem2.title =@"Physikalisches Institut (Klaus-Tschira-Gebäude)";
     buildingItem2.buildingNumber = @"226";
     buildingItem2.latitude = 49.416250; //INF 226 coordinates
     buildingItem2.longitude = 8.673171;
