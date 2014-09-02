@@ -14,25 +14,22 @@
 
 // View Controllers
 #import "UHDMapsSearchTableViewController.h"
+#import "UHDBuildingDetailViewController.h"
 
 
-@interface UHDMapsViewController ()
+@interface UHDMapsViewController () <MKMapViewDelegate>
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
+@property (strong, nonatomic) IBOutlet UISegmentedControl *mapTypeControl;
+- (IBAction)mapTypeControlValueChanged:(id)sender;
 
 @end
 
 
 @implementation UHDMapsViewController
-
-- (void)viewWillAppear:(BOOL)inAnimated {
-    [super viewWillAppear:inAnimated];
-    
-    
-}
 
 
 - (void)viewDidLoad
@@ -49,19 +46,6 @@
     
     [self.mapView addAnnotations:allBuildings];
     [self.mapView showAnnotations:allBuildings animated:YES];
-    
-    
-    
-}
-
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"showMapsSearch"]) {
-        // Hier muss der MOC (die "Verbindung" zur Datenbank) an den Maps Search VC weitergegeben werden
-        UHDMapsSearchTableViewController *mapsSearchVC = segue.destinationViewController;
-        mapsSearchVC.managedObjectContext = self.managedObjectContext;
-    }
 }
 
 
@@ -88,67 +72,73 @@
     return _fetchedResultsController;
 }
 
-//Show informations in annotations
+
+#pragma mark - User Interaction
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"showMapsSearch"]) {
+        // Hier muss der MOC (die "Verbindung" zur Datenbank) an den Maps Search VC weitergegeben werden
+        UHDMapsSearchTableViewController *mapsSearchVC = segue.destinationViewController;
+        mapsSearchVC.managedObjectContext = self.managedObjectContext;
+    } else if ([segue.identifier isEqualToString:@"showBuildingDetail"]) {
+        [(UHDBuildingDetailViewController *)segue.destinationViewController setBuilding:(UHDBuilding *)[(MKAnnotationView *)sender annotation]];
+    }
+}
+
+- (IBAction)mapTypeControlValueChanged:(id)sender {
+    
+    //Segment 1 hat Nummer 0 usw.
+    switch (self.mapTypeControl.selectedSegmentIndex) {
+        case 0:
+            self.mapView.mapType = MKMapTypeStandard;
+            break;
+        case 1:
+            self.mapView.mapType = MKMapTypeHybrid;
+            break;
+        case 2:
+            self.mapView.mapType = MKMapTypeSatellite;
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    [self performSegueWithIdentifier:@"showBuildingDetail" sender:view];
+}
+
+
+#pragma mark - Map View Delegate
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
-    UHDBuilding *item;
     NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
     
-    if ([allBuildings containsObject:item]) {
-        
-        annotation = item;
-        
-        if ([annotation isKindOfClass:[MKUserLocation class]]){
-        
-        return nil;
-            
+    if ([allBuildings containsObject:annotation]) {
+
+        MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"UHDBuildingPin"];
+        if (!pinView) {
+            pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"UHDBuildingPin"];
+            pinView.canShowCallout  = YES;
+            pinView.pinColor = MKPinAnnotationColorPurple;
+            UIButton *detailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            pinView.rightCalloutAccessoryView = detailButton;
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)]; // TODO: dynamic size?
+            pinView.leftCalloutAccessoryView = imageView;
+        } else {
+            pinView.annotation = annotation;
         }
-
-        if ([annotation isKindOfClass:[MKPinAnnotationView class]])
         
-        {
-
-            MKPinAnnotationView *pinView = (MKPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"CustomPinAnnotationView"];
-            if (!pinView)
-                {
-                    pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotationView"];
-                    pinView.animatesDrop = YES;
-                    pinView.canShowCallout = YES;
-                    pinView.pinColor = MKPinAnnotationColorPurple;
-                } else {
-                    pinView.annotation = annotation;
-                }
-        
-        UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        pinView.rightCalloutAccessoryView = rightButton;
-        UIImageView *iconView = [[UIImageView alloc] initWithImage:item.image];
-        pinView.leftCalloutAccessoryView = iconView;
+        // Customize Pin View
+        [(UIImageView *)pinView.leftCalloutAccessoryView setImage:[(UHDBuilding *)annotation image]];
         
         return pinView;
-    }
+        
     }
     return nil;
-    
 }
-
-//Configure Map Type
-
-- (IBAction)changeMapType:(id)sender {
-    
-    //Segment 1 hat Nummer 0 usw.
-    if (_mapType.selectedSegmentIndex == 0) {
-        [self.mapView setMapType:MKMapTypeStandard];
-    }
-    else if (_mapType.selectedSegmentIndex == 1){
-        [self.mapView setMapType:MKMapTypeHybrid];
-    }
-    else if (_mapType.selectedSegmentIndex == 2){
-        [self.mapView setMapType:MKMapTypeSatellite];
-    }
-    
-}
-
 
 
 @end
