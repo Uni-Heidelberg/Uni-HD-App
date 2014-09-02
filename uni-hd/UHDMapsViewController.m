@@ -114,25 +114,30 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
+    UHDBuilding *building = (UHDBuilding *)annotation;
     NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
     
-    if ([allBuildings containsObject:annotation]) {
+    if ([allBuildings containsObject:building]) {
 
         MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"UHDBuildingPin"];
         if (!pinView) {
-            pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"UHDBuildingPin"];
+            pinView = [[MKPinAnnotationView alloc] initWithAnnotation:building reuseIdentifier:@"UHDBuildingPin"];
             pinView.canShowCallout  = YES;
             pinView.pinColor = MKPinAnnotationColorPurple;
             UIButton *detailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
             pinView.rightCalloutAccessoryView = detailButton;
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)]; // TODO: dynamic size?
-            pinView.leftCalloutAccessoryView = imageView;
         } else {
-            pinView.annotation = annotation;
+            pinView.annotation = building;
         }
         
         // Customize Pin View
-        [(UIImageView *)pinView.leftCalloutAccessoryView setImage:[(UHDBuilding *)annotation image]];
+        if (building.image) {
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)]; // TODO: dynamic size?
+            imageView.image = building.image;
+            pinView.leftCalloutAccessoryView = imageView;
+        } else {
+            pinView.leftCalloutAccessoryView = nil;
+        }
         
         return pinView;
         
