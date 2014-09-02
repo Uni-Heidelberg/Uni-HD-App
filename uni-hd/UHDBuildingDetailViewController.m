@@ -17,30 +17,11 @@
 
 @implementation UHDBuildingDetailViewController
 
-@synthesize building=_building;
-@synthesize category=_category;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // Configure text
-    self.titleLabel.text = self.building.title;
-    self.subtitleLabel.text = self.building.identifier;
-    self.buildingCategoryLabel.text = self.category.title;
-    
-    // Configure Image
-    self.buildingsImageView.image = self.building.image;
-    
+
     [self configureView];
 }
 
@@ -49,39 +30,15 @@
     _building = building;
     [self configureView];
 }
--(UHDBuilding *)building
-{
-    return _building;
-}
--(void)setCategory:(UHDLocationCategory *)category
-{
-    category = self.building.category;
-    _category = category;
-    [self configureView];
-}
--(UHDLocationCategory *)category
-{
-    return _category;
-}
-
-- (void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-
-}
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-}
 
 
--(void)configureView{
-   self.title = @"Informationen";
-}
-- (void)didReceiveMemoryWarning
+-(void)configureView
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.title = self.building.identifier;
+    self.titleLabel.text = self.building.title;
+    self.subtitleLabel.text = self.building.identifier;
+    self.buildingCategoryLabel.text = self.building.category.title;
+    self.buildingsImageView.image = self.building.image;
 }
 
 @end
