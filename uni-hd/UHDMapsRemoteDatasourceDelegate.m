@@ -51,6 +51,15 @@
     UHDCampusRegion *inf = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
     inf.title = @"Im Neuenheimer Feld";
     inf.identifier = @"INF";
+    inf.overlayTopLeftCoordinateLat = 49.424567;
+    inf.overlayTopLeftCoordinateLong = 8.655322;
+    inf.overlayBottomRightCoordinateLat = 49.410842;
+    inf.overlayBottomRightCoordinateLong = 8.676642;
+    inf.overlayTopRightCoordinateLat = 49.424780;
+    inf.overlayTopRightCoordinateLong = 8.678573;
+    inf.latitude = 49.417586;
+    inf.longitude = 8.666085;
+    //inf.render.overlayImage = [UIImage imageNamed:@"inf"];
     
     UHDCampusRegion *altstadt = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
     altstadt.title = @"Altstadt";

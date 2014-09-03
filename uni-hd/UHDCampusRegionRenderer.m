@@ -10,13 +10,12 @@
 
 @implementation UHDCampusRegionRenderer
 
-@dynamic overlayImage;
-//@dynamic imageData;
+@dynamic campusRegion;
 
 - (instancetype)initWithOverlay:(id<MKOverlay>)overlay overlayImage:(UIImage *)overlayImage {
     self = [super initWithOverlay:overlay];
     if (self) {
-        self.overlayImage = overlayImage;
+        _overlayImage = overlayImage;
     }
     
     return self;
@@ -34,17 +33,6 @@
     CGContextDrawImage(context, theRect, imageReference);
 }
 
-- (MKMapRect)overlayBoundingMapRect {
-    
-    MKMapPoint topLeft = MKMapPointForCoordinate(self.campusRegion.overlayTopLeftCoordinate);
-    MKMapPoint topRight = MKMapPointForCoordinate(self.campusRegion.overlayTopRightCoordinate);
-    MKMapPoint bottomLeft = MKMapPointForCoordinate(self.campusRegion.overlayBottomLeftCoordinate);
-    
-    return MKMapRectMake(topLeft.x,
-                         topLeft.y,
-                         fabs(topLeft.x - topRight.x),
-                         fabs(topLeft.y - bottomLeft.y));
-}
 
 /*
 - (UIImage *)overlayImage {

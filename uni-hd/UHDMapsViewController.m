@@ -11,6 +11,8 @@
 
 // Model
 #import "UHDBuilding.h"
+#import "UHDCampusRegion.h"
+#import "UHDCampusRegionRenderer.h"
 
 // View Controllers
 #import "UHDMapsSearchTableViewController.h"
@@ -20,9 +22,11 @@
 @interface UHDMapsViewController () <MKMapViewDelegate>
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
-@property (strong, nonatomic) MKAnnotationView *mapAnnotationView;
+//@property (strong, nonatomic) MKAnnotationView *mapAnnotationView;
+//@property (strong, nonatomic) MKOverlayView *mapOverlayView;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
+@property (strong, nonatomic) NSFetchedResultsController *regionFetchedResultsController;
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *mapTypeControl;
 - (IBAction)mapTypeControlValueChanged:(id)sender;
@@ -36,7 +40,6 @@
     [super viewWillAppear:inAnimated];
 }
 
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -47,42 +50,37 @@
     // Wenn sich die zugrundeliegende Datenbank ändert kann man darauf reagieren, indem die Delegate Methoden des NSFetchedResultsControllerDelegate implementiert werden (s. Doku).
     // Um die Abfrage umzukonfigurieren (z.B. andere Entities, andere Sortierung usw.) kann die Fetch Request angepasst werden (self.fetchedResultsController.fetchRequest). Danach muss wieder ein performFetch (wie unten) ausgeführt werden.
     
+    self.selectedOptions = [NSMutableArray array];
     NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
-    
     [self.mapView addAnnotations:allBuildings];
     [self.mapView showAnnotations:allBuildings animated:YES];
     
-    MKMapSnapshotOptions *options = [[MKMapSnapshotOptions alloc] init];
-    options.region = self.mapView.region;
-    options.size = self.mapView.frame.size;
-    options.scale = [[UIScreen mainScreen] scale];
+    UHDCampusRegion *campusRegion;
+    //UHDCampusRegion *overlay = [[UHDCampusRegion alloc] initWithRegion:campusRegion];
+    NSArray *overlays = self.regionFetchedResultsController.fetchedObjects;
     
-    NSURL *fileURL = [NSURL fileURLWithPath:@"inf_10_2013"];
-    
-    MKMapSnapshotter *snapshotter = [[MKMapSnapshotter alloc] initWithOptions:options];
-    [snapshotter startWithCompletionHandler:^(MKMapSnapshot *snapshot, NSError *error) {
-        if (error) {
-            NSLog(@"[Error] %@", error);
-            return;
-        }
-        
-        UIImage *image = snapshot.image;
-        NSData *data = UIImagePNGRepresentation(image);
-        [data writeToURL:fileURL atomically:YES];
-    }];
-    
-}
-
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    if ([segue.identifier isEqualToString:@"showMapsSearch"]) {
-        // Hier muss der MOC (die "Verbindung" zur Datenbank) an den Maps Search VC weitergegeben werden
-        UHDMapsSearchTableViewController *mapsSearchVC = segue.destinationViewController;
-        mapsSearchVC.managedObjectContext = self.managedObjectContext;
+    if ([overlays containsObject:campusRegion]) {
+        [self.mapView addOverlay:campusRegion];
     }
+    //[self.mapView addOverlays:overlays];
+
+
+
 }
 
+-(NSFetchedResultsController *)regionFetchedResultsController{
+    
+    if(!_regionFetchedResultsController){
+        
+        NSFetchRequest *theRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDCampusRegion entityName]];
+        theRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
+        theRequest.predicate = [NSPredicate predicateWithFormat:@"title LIKE %@", @"inf"];
+        NSFetchedResultsController *regionFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:theRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+        [regionFetchedResultsController performFetch:NULL];
+        
+    }
+    return _regionFetchedResultsController;
+}
 
 - (NSFetchedResultsController *)fetchedResultsController {
     if (!_fetchedResultsController) {
@@ -105,24 +103,88 @@
     }
     return _fetchedResultsController;
 }
-
-//Show informations in annotations
 /*
+-(void)addOverlay{
+    
+    UHDCampusRegion *campusRegion;
+    UHDCampusRegion *overlay = [[UHDCampusRegion alloc] initWithRegion:campusRegion];
+    
+    NSArray *overlays = self.regionFetchedResultsController.fetchedObjects;
+    
+    if ([overlays containsObject:campusRegion]) {
+        [self.mapView addOverlay:overlay];
+    }
+}
+
+- (void)loadSelectedOptions {
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    [self.mapView removeOverlays:self.mapView.overlays];
+    for (NSNumber *option in self.selectedOptions) {
+        switch ([option integerValue]) {
+            case UHDCampusRegion:
+                [self addOverlay];
+                break;
+            default:
+                break;
+        }
+    }
+}
+*/
+#pragma mark - User Interaction
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"showMapsSearch"]) {
+        // Hier muss der MOC (die "Verbindung" zur Datenbank) an den Maps Search VC weitergegeben werden
+        UHDMapsSearchTableViewController *mapsSearchVC = segue.destinationViewController;
+        mapsSearchVC.managedObjectContext = self.managedObjectContext;
+    } else if ([segue.identifier isEqualToString:@"showBuildingDetail"]) {
+        [(UHDBuildingDetailViewController *)segue.destinationViewController setBuilding:(UHDBuilding *)[(MKAnnotationView *)sender annotation]];
+    }
+}
+
+- (IBAction)mapTypeControlValueChanged:(id)sender {
+    
+    //Segment 1 hat Nummer 0 usw.
+    switch (self.mapTypeControl.selectedSegmentIndex) {
+        case 0:
+            self.mapView.mapType = MKMapTypeStandard;
+            break;
+        case 1:
+            self.mapView.mapType = MKMapTypeHybrid;
+            break;
+        case 2:
+            self.mapView.mapType = MKMapTypeSatellite;
+            break;
+        default:
+            break;
+    }
+}
+
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
+{
+    [self performSegueWithIdentifier:@"showBuildingDetail" sender:view];
+}
+
+
+
+#pragma mark - Map View Delegate
+
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
-    UHDBuilding *item;
-    NSIndexPath *indexPath;
-    item = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    UHDBuilding *building = (UHDBuilding *)annotation;
+    NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
     
-    
-    //if ([allBuildings containsObject:item]) {
-        
-        annotation = item;
-        
-        if ([annotation isKindOfClass:[MKUserLocation class]]){
-        
-        return nil;
-            
+    if ([allBuildings containsObject:building]) {
+
+        MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"UHDBuildingPin"];
+        if (!pinView) {
+            pinView = [[MKPinAnnotationView alloc] initWithAnnotation:building reuseIdentifier:@"UHDBuildingPin"];
+            pinView.canShowCallout  = YES;
+            UIButton *detailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+            pinView.rightCalloutAccessoryView = detailButton;
+        } else {
+            pinView.annotation = building;
         }
         
         // Customize Pin View
@@ -135,53 +197,25 @@
         }
         
         return pinView;
+        
     }
-    //}
+
     return nil;
-    
-}
-*/
-/*
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id)annotation
-{
-    MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"MyPin"];
-    if (!annotationView) {
-        annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MyPin"];
-        annotationView.canShowCallout = YES;
-        annotationView.animatesDrop = YES;
-        annotationView.pinColor = MKPinAnnotationColorPurple;
-    }
-    
-    annotationView.annotation = annotation;
-    
-    return annotationView;
-}
-*/
-
-//Configure Map Type
-
-- (IBAction)changeMapType:(id)sender {
-    
-    //Segment 1 hat Nummer 0 usw.
-    if (_mapType.selectedSegmentIndex == 0) {
-        [self.mapView setMapType:MKMapTypeStandard];
-    }
-    else if (_mapType.selectedSegmentIndex == 1){
-        [self.mapView setMapType:MKMapTypeHybrid];
-    }
-    else if (_mapType.selectedSegmentIndex == 2){
-        [self.mapView setMapType:MKMapTypeSatellite];
-    }
-    
 }
 
-#pragma mark - MKMapViewDelegate
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+    
+    UHDCampusRegion *campusRegion = (UHDCampusRegion *)overlay;
+    NSArray *overlays = self.regionFetchedResultsController.fetchedObjects;
+    
+    if ([overlays containsObject:campusRegion]) {
+        
+            UIImage *overlayImage = [UIImage imageNamed:campusRegion.title];
+            UHDCampusRegionRenderer *overlayView = [[UHDCampusRegionRenderer alloc] initWithOverlay:overlay overlayImage:overlayImage];
+        
+            return overlayView;
 
-- (MKOverlayRenderer *)mapView:(MKMapView *)mapView
-            rendererForOverlay:(id <MKOverlay>)overlay
-{
-    if ([overlay isKindOfClass:[MKTileOverlay class]]) {
-        return [[MKTileOverlayRenderer alloc] initWithTileOverlay:overlay];
+        
     }
     
     return nil;

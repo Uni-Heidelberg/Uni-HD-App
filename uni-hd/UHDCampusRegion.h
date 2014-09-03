@@ -8,16 +8,28 @@
 
 #import "UHDRemoteManagedObject.h"
 
+@class UHDCampusRegionRenderer;
+
 @interface UHDCampusRegion : UHDRemoteManagedObject <MKOverlay>
 
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *identifier;
 @property (nonatomic, retain) NSSet *buildings;
-@property (nonatomic, readonly) CLLocationCoordinate2D overlayTopLeftCoordinate;
-@property (nonatomic, readonly) CLLocationCoordinate2D overlayTopRightCoordinate;
-@property (nonatomic, readonly) CLLocationCoordinate2D overlayBottomLeftCoordinate;
-@property (nonatomic, readonly) CLLocationCoordinate2D overlayBottomRightCoordinate;
+@property (nonatomic) UHDCampusRegionRenderer *render;
+@property (nonatomic) double_t overlayTopLeftCoordinateLat;
+@property (nonatomic) double_t overlayTopLeftCoordinateLong;
+@property (nonatomic) double_t overlayTopRightCoordinateLat;
+@property (nonatomic) double_t overlayTopRightCoordinateLong;
+@property (nonatomic) double_t overlayBottomLeftCoordinateLat;
+@property (nonatomic) double_t overlayBottomLeftCoordinateLong;
+@property (nonatomic) double_t overlayBottomRightCoordinateLat;
+@property (nonatomic) double_t overlayBottomRightCoordinateLong;
+@property (nonatomic) double_t latitude;
+@property (nonatomic) double_t longitude;
+
 
 - (NSMutableSet *)mutableBuildings;
+- (MKMapRect)overlayBoundingMapRect;
+- (instancetype)initWithRegion:(UHDCampusRegion *)campusRegion;
 
 @end
