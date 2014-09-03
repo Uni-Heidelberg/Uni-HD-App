@@ -19,6 +19,7 @@
 @interface UHDMapsViewController ()
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) MKAnnotationView *mapAnnotationView;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
@@ -30,8 +31,6 @@
 
 - (void)viewWillAppear:(BOOL)inAnimated {
     [super viewWillAppear:inAnimated];
-    
-    
 }
 
 
@@ -50,7 +49,24 @@
     [self.mapView addAnnotations:allBuildings];
     [self.mapView showAnnotations:allBuildings animated:YES];
     
+    MKMapSnapshotOptions *options = [[MKMapSnapshotOptions alloc] init];
+    options.region = self.mapView.region;
+    options.size = self.mapView.frame.size;
+    options.scale = [[UIScreen mainScreen] scale];
     
+    NSURL *fileURL = [NSURL fileURLWithPath:@"inf_10_2013"];
+    
+    MKMapSnapshotter *snapshotter = [[MKMapSnapshotter alloc] initWithOptions:options];
+    [snapshotter startWithCompletionHandler:^(MKMapSnapshot *snapshot, NSError *error) {
+        if (error) {
+            NSLog(@"[Error] %@", error);
+            return;
+        }
+        
+        UIImage *image = snapshot.image;
+        NSData *data = UIImagePNGRepresentation(image);
+        [data writeToURL:fileURL atomically:YES];
+    }];
     
 }
 
@@ -89,13 +105,15 @@
 }
 
 //Show informations in annotations
-
+/*
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
     UHDBuilding *item;
-    NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
+    NSIndexPath *indexPath;
+    item = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    if ([allBuildings containsObject:item]) {
+    
+    //if ([allBuildings containsObject:item]) {
         
         annotation = item;
         
@@ -127,10 +145,27 @@
         
         return pinView;
     }
-    }
+    //}
     return nil;
     
 }
+*/
+/*
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id)annotation
+{
+    MKPinAnnotationView *annotationView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"MyPin"];
+    if (!annotationView) {
+        annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"MyPin"];
+        annotationView.canShowCallout = YES;
+        annotationView.animatesDrop = YES;
+        annotationView.pinColor = MKPinAnnotationColorPurple;
+    }
+    
+    annotationView.annotation = annotation;
+    
+    return annotationView;
+}
+*/
 
 //Configure Map Type
 
@@ -147,6 +182,18 @@
         [self.mapView setMapType:MKMapTypeSatellite];
     }
     
+}
+
+#pragma mark - MKMapViewDelegate
+
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView
+            rendererForOverlay:(id <MKOverlay>)overlay
+{
+    if ([overlay isKindOfClass:[MKTileOverlay class]]) {
+        return [[MKTileOverlayRenderer alloc] initWithTileOverlay:overlay];
+    }
+    
+    return nil;
 }
 
 

@@ -66,7 +66,8 @@
     buildingItem1.longitude = 8.672190;
     buildingItem1.category = category1;
     buildingItem1.campusRegion = inf;
-    buildingItem1.image = [UIImage imageNamed:@"kip"];
+    buildingItem1.image = [UIImage imageNamed:@"kip1"];
+    
     
     
     
@@ -79,6 +80,7 @@
     buildingItem2.longitude = 8.673171;
     buildingItem2.category = category1;
     buildingItem2.campusRegion = inf;
+    buildingItem2.image = [UIImage imageNamed:@"kip"];
     
 
     

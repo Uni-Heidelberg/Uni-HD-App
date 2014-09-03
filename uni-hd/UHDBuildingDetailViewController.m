@@ -36,6 +36,7 @@
     // Configure text
     self.titleLabel.text = self.building.title;
     self.subtitleLabel.text = self.building.identifier;
+    self.category = self.building.category;
     self.buildingCategoryLabel.text = self.category.title;
     
     // Configure Image
@@ -55,7 +56,6 @@
 }
 -(void)setCategory:(UHDLocationCategory *)category
 {
-    category = self.building.category;
     _category = category;
     [self configureView];
 }
