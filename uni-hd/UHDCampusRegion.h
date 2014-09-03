@@ -8,11 +8,15 @@
 
 #import "UHDRemoteManagedObject.h"
 
-@interface UHDCampusRegion : UHDRemoteManagedObject
+@interface UHDCampusRegion : UHDRemoteManagedObject <MKOverlay>
 
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *identifier;
 @property (nonatomic, retain) NSSet *buildings;
+@property (nonatomic, readonly) CLLocationCoordinate2D overlayTopLeftCoordinate;
+@property (nonatomic, readonly) CLLocationCoordinate2D overlayTopRightCoordinate;
+@property (nonatomic, readonly) CLLocationCoordinate2D overlayBottomLeftCoordinate;
+@property (nonatomic, readonly) CLLocationCoordinate2D overlayBottomRightCoordinate;
 
 - (NSMutableSet *)mutableBuildings;
 

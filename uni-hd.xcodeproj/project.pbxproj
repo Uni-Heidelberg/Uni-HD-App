@@ -21,6 +21,7 @@
 		0B13624C19B4AF22000ECC3A /* UHDBuildingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B13624B19B4AF22000ECC3A /* UHDBuildingDetailViewController.m */; };
 		0B176E711931114200D3C916 /* UHDNewsSourcesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B176E6D1931114200D3C916 /* UHDNewsSourcesViewController.m */; };
 		0B176E7A1931117700D3C916 /* UHDNewsCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B176E791931117700D3C916 /* UHDNewsCategory.m */; };
+		0B30977019B6E0220073A569 /* UHDCampusRegionRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B30976F19B6E0220073A569 /* UHDCampusRegionRenderer.m */; };
 		0B355878199BC434008053EE /* UHDMapsSearchTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B355877199BC434008053EE /* UHDMapsSearchTableViewController.m */; };
 		0B35587B199BC923008053EE /* UHDMapsSearchCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B35587A199BC923008053EE /* UHDMapsSearchCell.m */; };
 		0B355881199BCC02008053EE /* UHDMapsSearchCell+ConfigureForItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B355880199BCC02008053EE /* UHDMapsSearchCell+ConfigureForItem.m */; };
@@ -129,6 +130,8 @@
 		0B176E6D1931114200D3C916 /* UHDNewsSourcesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsSourcesViewController.m; sourceTree = "<group>"; };
 		0B176E781931117700D3C916 /* UHDNewsCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsCategory.h; sourceTree = "<group>"; };
 		0B176E791931117700D3C916 /* UHDNewsCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsCategory.m; sourceTree = "<group>"; };
+		0B30976E19B6E0220073A569 /* UHDCampusRegionRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDCampusRegionRenderer.h; sourceTree = "<group>"; };
+		0B30976F19B6E0220073A569 /* UHDCampusRegionRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDCampusRegionRenderer.m; sourceTree = "<group>"; };
 		0B355876199BC434008053EE /* UHDMapsSearchTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMapsSearchTableViewController.h; sourceTree = "<group>"; };
 		0B355877199BC434008053EE /* UHDMapsSearchTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMapsSearchTableViewController.m; sourceTree = "<group>"; };
 		0B355879199BC923008053EE /* UHDMapsSearchCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMapsSearchCell.h; sourceTree = "<group>"; };
@@ -301,6 +304,8 @@
 				0BAB274B19A7296600CAB517 /* UHDLocationCategory.m */,
 				0BB49E1719ADC3F60025BD07 /* UHDCampusRegion.h */,
 				0BB49E1819ADC3F60025BD07 /* UHDCampusRegion.m */,
+				0B30976E19B6E0220073A569 /* UHDCampusRegionRenderer.h */,
+				0B30976F19B6E0220073A569 /* UHDCampusRegionRenderer.m */,
 				0B84B31C1993A59C00813CC2 /* UHDBuilding.h */,
 				0B84B31D1993A59C00813CC2 /* UHDBuilding.m */,
 			);
@@ -900,6 +905,7 @@
 				87600EA4192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m in Sources */,
 				0B355881199BCC02008053EE /* UHDMapsSearchCell+ConfigureForItem.m in Sources */,
 				0ACE47B519619BB9004F84F9 /* UHDEventItem.m in Sources */,
+				0B30977019B6E0220073A569 /* UHDCampusRegionRenderer.m in Sources */,
 				0B35587B199BC923008053EE /* UHDMapsSearchCell.m in Sources */,
 				8701CE4C190C00A600A18F82 /* UHDRemoteDatasource.m in Sources */,
 				87E8527A1957297A007503B8 /* UHDMapsViewController.m in Sources */,

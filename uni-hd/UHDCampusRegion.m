@@ -12,6 +12,7 @@
 
 @dynamic title, identifier;
 @dynamic buildings;
+@dynamic overlayBottomLeftCoordinate, overlayBottomRightCoordinate, overlayTopLeftCoordinate,overlayTopRightCoordinate;
 
 
 #pragma mark - Mutable To-Many Accessors

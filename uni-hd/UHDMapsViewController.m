@@ -60,7 +60,6 @@
         // Mit einem Predikat kann die Abfrage gefiltert werden (Kommentar entfernen zum ausprobieren):
         // fetchRequest.predicate = [NSPredicate predicateWithFormat:@"title LIKE %@", @"Marstall"];
         // Siehe z.B. Doku für Infos zur Predikatsyntax
-        
         // Dann kann der NSFetchedResultsController mit der Fetch Request erstellt werden. Das NSManagedObjectContext Objekt, das die "Verbindung" zur Datenbank darstellt, wird dieser Klasse vom App Delegate übergeben.
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         
@@ -123,7 +122,6 @@
         if (!pinView) {
             pinView = [[MKPinAnnotationView alloc] initWithAnnotation:building reuseIdentifier:@"UHDBuildingPin"];
             pinView.canShowCallout  = YES;
-            pinView.pinColor = MKPinAnnotationColorPurple;
             UIButton *detailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
             pinView.rightCalloutAccessoryView = detailButton;
         } else {
