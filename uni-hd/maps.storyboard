@@ -36,6 +36,9 @@
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xq9-aa-Iar">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="519"/>
+                                <connections>
+                                    <outlet property="delegate" destination="aIJ-2O-Ugc" id="9Dp-td-5xf"/>
+                                </connections>
                             </mapView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -48,30 +51,29 @@
                     </view>
                     <navigationItem key="navigationItem" id="ueJ-uc-S7n">
                         <nil key="title"/>
-                        <barButtonItem key="leftBarButtonItem" systemItem="search" id="Spf-3b-leU">
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="3NJ-8J-lNS">
+                            <rect key="frame" x="56" y="7" width="209" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Standard"/>
+                                <segment title="Hybrid"/>
+                                <segment title="Satellit"/>
+                            </segments>
+                            <connections>
+                                <action selector="mapTypeControlValueChanged:" destination="aIJ-2O-Ugc" eventType="valueChanged" id="9iv-2b-7r7"/>
+                            </connections>
+                        </segmentedControl>
+                        <barButtonItem key="rightBarButtonItem" systemItem="search" id="Spf-3b-leU">
                             <connections>
                                 <action selector="searchButton:" destination="aIJ-2O-Ugc" id="bUB-Pa-grs"/>
                                 <segue destination="ZZj-nU-e7L" kind="push" identifier="showMapsSearch" id="SeQ-L1-m92"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" id="Rag-N8-4Pn">
-                            <segmentedControl key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="jDA-Ue-TUI">
-                                <rect key="frame" x="95" y="7" width="209" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <segments>
-                                    <segment title="Standard"/>
-                                    <segment title="Hybrid"/>
-                                    <segment title="Satellit"/>
-                                </segments>
-                                <connections>
-                                    <action selector="changeMapType:" destination="aIJ-2O-Ugc" eventType="valueChanged" id="ikV-Oa-dQZ"/>
-                                </connections>
-                            </segmentedControl>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="mapType" destination="jDA-Ue-TUI" id="O05-CW-Mjy"/>
+                        <outlet property="mapTypeControl" destination="3NJ-8J-lNS" id="qPO-ii-5bU"/>
                         <outlet property="mapView" destination="Xq9-aa-Iar" id="KNz-rb-ZVA"/>
+                        <segue destination="nig-j7-y6F" kind="push" identifier="showBuildingDetail" id="GGs-Wn-AyI"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4zZ-Tt-bCA" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -87,7 +89,7 @@
                         <viewControllerLayoutGuide type="bottom" id="lik-u6-AC7"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="lj2-c1-m3I">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="Tbj-SM-A3F">
@@ -261,4 +263,7 @@
         <simulatedOrientationMetrics key="orientation"/>
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="GGs-Wn-AyI"/>
+    </inferredMetricsTieBreakers>
 </document>

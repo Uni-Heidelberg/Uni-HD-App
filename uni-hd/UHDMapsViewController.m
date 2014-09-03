@@ -14,15 +14,18 @@
 
 // View Controllers
 #import "UHDMapsSearchTableViewController.h"
+#import "UHDBuildingDetailViewController.h"
 
 
-@interface UHDMapsViewController ()
+@interface UHDMapsViewController () <MKMapViewDelegate>
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) MKAnnotationView *mapAnnotationView;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
+@property (strong, nonatomic) IBOutlet UISegmentedControl *mapTypeControl;
+- (IBAction)mapTypeControlValueChanged:(id)sender;
 
 @end
 
@@ -92,7 +95,6 @@
         // Mit einem Predikat kann die Abfrage gefiltert werden (Kommentar entfernen zum ausprobieren):
         // fetchRequest.predicate = [NSPredicate predicateWithFormat:@"title LIKE %@", @"Marstall"];
         // Siehe z.B. Doku für Infos zur Predikatsyntax
-        
         // Dann kann der NSFetchedResultsController mit der Fetch Request erstellt werden. Das NSManagedObjectContext Objekt, das die "Verbindung" zur Datenbank darstellt, wird dieser Klasse vom App Delegate übergeben.
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         
@@ -122,26 +124,15 @@
         return nil;
             
         }
-
-        if ([annotation isKindOfClass:[MKPinAnnotationView class]])
         
-        {
-
-            MKPinAnnotationView *pinView = (MKPinAnnotationView*)[mapView dequeueReusableAnnotationViewWithIdentifier:@"CustomPinAnnotationView"];
-            if (!pinView)
-                {
-                    pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CustomPinAnnotationView"];
-                    pinView.animatesDrop = YES;
-                    pinView.canShowCallout = YES;
-                    pinView.pinColor = MKPinAnnotationColorPurple;
-                } else {
-                    pinView.annotation = annotation;
-                }
-        
-        UIButton* rightButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        pinView.rightCalloutAccessoryView = rightButton;
-        UIImageView *iconView = [[UIImageView alloc] initWithImage:item.image];
-        pinView.leftCalloutAccessoryView = iconView;
+        // Customize Pin View
+        if (building.image) {
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)]; // TODO: dynamic size?
+            imageView.image = building.image;
+            pinView.leftCalloutAccessoryView = imageView;
+        } else {
+            pinView.leftCalloutAccessoryView = nil;
+        }
         
         return pinView;
     }
@@ -195,7 +186,6 @@
     
     return nil;
 }
-
 
 
 @end

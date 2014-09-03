@@ -11,6 +11,7 @@
 #import "UHDLocationCategory.h"
 #import "UHDCampusRegion.h"
 #import "UHDBuilding.h"
+#import "UHDCampusRegionRenderer.h"
 
 
 @implementation UHDMapsRemoteDatasourceDelegate

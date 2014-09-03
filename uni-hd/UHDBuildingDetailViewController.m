@@ -17,17 +17,6 @@
 
 @implementation UHDBuildingDetailViewController
 
-@synthesize building=_building;
-@synthesize category=_category;
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
 
 - (void)viewDidLoad
 {
@@ -75,13 +64,13 @@
 }
 
 
--(void)configureView{
-   self.title = @"Informationen";
-}
-- (void)didReceiveMemoryWarning
+-(void)configureView
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    self.title = self.building.identifier;
+    self.titleLabel.text = self.building.title;
+    self.subtitleLabel.text = self.building.identifier;
+    self.buildingCategoryLabel.text = self.building.category.title;
+    self.buildingsImageView.image = self.building.image;
 }
 
 @end

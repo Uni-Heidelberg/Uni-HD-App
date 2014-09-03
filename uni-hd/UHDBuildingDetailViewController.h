@@ -14,7 +14,6 @@
 @interface UHDBuildingDetailViewController : UIViewController
 
 @property (strong, nonatomic) UHDBuilding *building;
-@property (strong,nonatomic) UHDLocationCategory *category;
 
 @property (strong, nonatomic) IBOutlet UIImageView *buildingsImageView;
 @property (strong, nonatomic) IBOutlet UILabel *subtitleLabel;
