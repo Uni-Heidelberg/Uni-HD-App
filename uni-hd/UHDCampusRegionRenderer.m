@@ -11,6 +11,7 @@
 @implementation UHDCampusRegionRenderer
 
 @dynamic campusRegion;
+@dynamic imageData;
 
 - (instancetype)initWithOverlay:(id<MKOverlay>)overlay overlayImage:(UIImage *)overlayImage {
     self = [super initWithOverlay:overlay];
@@ -34,7 +35,7 @@
 }
 
 
-/*
+
 - (UIImage *)overlayImage {
     return [UIImage imageWithData:self.imageData];
 }
@@ -42,5 +43,5 @@
 - (void)setImage:(UIImage *)image {
     self.imageData = UIImageJPEGRepresentation(image, 1);
 }
-*/
+
 @end

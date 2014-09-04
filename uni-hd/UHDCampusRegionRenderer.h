@@ -13,10 +13,11 @@
 @interface UHDCampusRegionRenderer : MKOverlayRenderer
 
 @property (nonatomic) UHDCampusRegion *campusRegion;
+@property (nonatomic, retain) NSData *imageData;
+
 @property (nonatomic) UIImage *overlayImage;
 
 - (instancetype)initWithOverlay:(id<MKOverlay>)overlay overlayImage:(UIImage *)overlayImage;
 
-//@property (nonatomic, retain) NSData *imageData;
 
 @end

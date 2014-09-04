@@ -59,7 +59,7 @@
     inf.overlayTopRightCoordinateLong = 8.678573;
     inf.latitude = 49.417586;
     inf.longitude = 8.666085;
-    //inf.render.overlayImage = [UIImage imageNamed:@"inf"];
+    inf.render.overlayImage = [UIImage imageNamed:@"inf"];
     
     UHDCampusRegion *altstadt = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
     altstadt.title = @"Altstadt";

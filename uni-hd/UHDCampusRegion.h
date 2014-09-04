@@ -15,7 +15,7 @@
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *identifier;
 @property (nonatomic, retain) NSSet *buildings;
-@property (nonatomic) UHDCampusRegionRenderer *render;
+@property (nonatomic, retain) UHDCampusRegionRenderer *render;
 @property (nonatomic) double_t overlayTopLeftCoordinateLat;
 @property (nonatomic) double_t overlayTopLeftCoordinateLong;
 @property (nonatomic) double_t overlayTopRightCoordinateLat;
