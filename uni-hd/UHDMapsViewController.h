@@ -8,13 +8,8 @@
 
 @import UIKit;
 
-//Model
-#import "UHDBuilding.h"
-
 @interface UHDMapsViewController : UIViewController
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property (nonatomic, strong) NSMutableArray *selectedOptions;
-
 
 @end

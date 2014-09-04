@@ -12,11 +12,14 @@
 // Model
 #import "UHDBuilding.h"
 #import "UHDCampusRegion.h"
-#import "UHDCampusRegionRenderer.h"
+
 
 // View Controllers
 #import "UHDMapsSearchTableViewController.h"
 #import "UHDBuildingDetailViewController.h"
+
+//View
+#import "UHDCampusRegionRenderer.h"
 
 
 @interface UHDMapsViewController () <MKMapViewDelegate>
@@ -50,19 +53,11 @@
     // Wenn sich die zugrundeliegende Datenbank ändert kann man darauf reagieren, indem die Delegate Methoden des NSFetchedResultsControllerDelegate implementiert werden (s. Doku).
     // Um die Abfrage umzukonfigurieren (z.B. andere Entities, andere Sortierung usw.) kann die Fetch Request angepasst werden (self.fetchedResultsController.fetchRequest). Danach muss wieder ein performFetch (wie unten) ausgeführt werden.
     
-    self.selectedOptions = [NSMutableArray array];
     NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
     [self.mapView addAnnotations:allBuildings];
     [self.mapView showAnnotations:allBuildings animated:YES];
     
-    UHDCampusRegion *campusRegion;
-    //UHDCampusRegion *overlay = [[UHDCampusRegion alloc] initWithRegion:campusRegion];
-    NSArray *overlays = self.regionFetchedResultsController.fetchedObjects;
-    
-    if ([overlays containsObject:campusRegion]) {
-        [self.mapView addOverlay:campusRegion];
-    }
-    //[self.mapView addOverlays:overlays];
+    [self.mapView addOverlays:self.regionFetchedResultsController.fetchedObjects];
 
 
 
@@ -74,9 +69,9 @@
         
         NSFetchRequest *theRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDCampusRegion entityName]];
         theRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
-        theRequest.predicate = [NSPredicate predicateWithFormat:@"title LIKE %@", @"inf"];
         NSFetchedResultsController *regionFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:theRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         [regionFetchedResultsController performFetch:NULL];
+        self.regionFetchedResultsController = regionFetchedResultsController;
         
     }
     return _regionFetchedResultsController;
@@ -103,33 +98,7 @@
     }
     return _fetchedResultsController;
 }
-/*
--(void)addOverlay{
-    
-    UHDCampusRegion *campusRegion;
-    UHDCampusRegion *overlay = [[UHDCampusRegion alloc] initWithRegion:campusRegion];
-    
-    NSArray *overlays = self.regionFetchedResultsController.fetchedObjects;
-    
-    if ([overlays containsObject:campusRegion]) {
-        [self.mapView addOverlay:overlay];
-    }
-}
 
-- (void)loadSelectedOptions {
-    [self.mapView removeAnnotations:self.mapView.annotations];
-    [self.mapView removeOverlays:self.mapView.overlays];
-    for (NSNumber *option in self.selectedOptions) {
-        switch ([option integerValue]) {
-            case UHDCampusRegion:
-                [self addOverlay];
-                break;
-            default:
-                break;
-        }
-    }
-}
-*/
 #pragma mark - User Interaction
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -210,11 +179,9 @@
     
     if ([overlays containsObject:campusRegion]) {
         
-            UIImage *overlayImage = [UIImage imageNamed:campusRegion.title];
-            UHDCampusRegionRenderer *overlayView = [[UHDCampusRegionRenderer alloc] initWithOverlay:overlay overlayImage:overlayImage];
-        
+            //UIImage *overlayImage = [UIImage imageNamed:campusRegion.identifier];
+            UHDCampusRegionRenderer *overlayView = [[UHDCampusRegionRenderer alloc] initWithCampusRegion:campusRegion];
             return overlayView;
-
         
     }
     

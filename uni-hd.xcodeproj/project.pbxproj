@@ -304,8 +304,6 @@
 				0BAB274B19A7296600CAB517 /* UHDLocationCategory.m */,
 				0BB49E1719ADC3F60025BD07 /* UHDCampusRegion.h */,
 				0BB49E1819ADC3F60025BD07 /* UHDCampusRegion.m */,
-				0B30976E19B6E0220073A569 /* UHDCampusRegionRenderer.h */,
-				0B30976F19B6E0220073A569 /* UHDCampusRegionRenderer.m */,
 				0B84B31C1993A59C00813CC2 /* UHDBuilding.h */,
 				0B84B31D1993A59C00813CC2 /* UHDBuilding.m */,
 			);
@@ -607,6 +605,8 @@
 			children = (
 				87E852781957297A007503B8 /* UHDMapsViewController.h */,
 				87E852791957297A007503B8 /* UHDMapsViewController.m */,
+				0B30976E19B6E0220073A569 /* UHDCampusRegionRenderer.h */,
+				0B30976F19B6E0220073A569 /* UHDCampusRegionRenderer.m */,
 				0B13624919B4AEF3000ECC3A /* Maps Detail */,
 				0B355875199BC3D1008053EE /* Maps Search */,
 			);

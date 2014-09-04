@@ -12,65 +12,21 @@
 
 @dynamic title, identifier;
 @dynamic buildings;
-@dynamic overlayBottomLeftCoordinateLat,overlayBottomLeftCoordinateLong, overlayBottomRightCoordinateLat, overlayBottomRightCoordinateLong, overlayTopLeftCoordinateLat, overlayTopLeftCoordinateLong, overlayTopRightCoordinateLat, overlayTopRightCoordinateLong;
-@dynamic render;
 @synthesize boundingMapRect;
 @synthesize coordinate;
-@dynamic longitude, latitude;
+@dynamic centerLongitude, centerLatitude, deltaLatitude, deltaLongitude;
 
--(CLLocationCoordinate2D)midCoordinate{
+-(MKMapRect)boundingMapRect{
     
-    return CLLocationCoordinate2DMake(self.latitude, self.longitude);
+    return MKMapRectMake(self.centerLatitude - self.deltaLatitude / 2, self.centerLongitude - self.deltaLongitude / 2, self.deltaLatitude, self.deltaLongitude);
     
 }
 
--(CLLocationCoordinate2D)overlayTopLeftCoordinate{
+-(CLLocationCoordinate2D)coordinate{
     
-    return CLLocationCoordinate2DMake(self.overlayTopLeftCoordinateLat, self.overlayTopLeftCoordinateLong);
-    
-}
-
--(CLLocationCoordinate2D)overlayTopRightCoordinate{
-    
-    return CLLocationCoordinate2DMake(self.overlayTopRightCoordinateLat, self.overlayTopRightCoordinateLong);
+    return CLLocationCoordinate2DMake(self.centerLatitude, self.centerLongitude);
     
 }
-
--(CLLocationCoordinate2D)overlayBottomLeftCoordinate{
-    
-    return CLLocationCoordinate2DMake(self.overlayBottomLeftCoordinateLat, self.overlayBottomLeftCoordinateLong);
-    
-}
-
--(CLLocationCoordinate2D)overlayBottomRightCoordinate{
-    
-    return CLLocationCoordinate2DMake(self.overlayBottomRightCoordinateLat, self.overlayBottomRightCoordinateLong);
-    
-}
-
-- (MKMapRect)overlayBoundingMapRect {
-    
-    MKMapPoint topLeft = MKMapPointForCoordinate(self.overlayTopLeftCoordinate);
-    MKMapPoint topRight = MKMapPointForCoordinate(self.overlayTopRightCoordinate);
-    MKMapPoint bottomRight = MKMapPointForCoordinate(self.overlayBottomRightCoordinate);
-    
-    return MKMapRectMake(topLeft.x,
-                         topLeft.y,
-                         fabs(topLeft.x - topRight.x),
-                         fabs(topRight.y - bottomRight.y));
-}
-
-- (instancetype)initWithRegion:(UHDCampusRegion *)campusRegion {
-    self = [super init];
-    if (self) {
-        boundingMapRect = self.overlayBoundingMapRect;
-        coordinate = self.midCoordinate;
-    }
-    
-    return self;
-}
-
-
 
 #pragma mark - Mutable To-Many Accessors
 
