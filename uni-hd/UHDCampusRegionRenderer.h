@@ -9,12 +9,8 @@
 #import <MapKit/MapKit.h>
 #import "UHDCampusRegion.h"
 
-
 @interface UHDCampusRegionRenderer : MKOverlayRenderer
 
-@property (nonatomic) UIImage *overlayImage;
-
 - (instancetype)initWithCampusRegion:(UHDCampusRegion *)campusRegion;
-
 
 @end

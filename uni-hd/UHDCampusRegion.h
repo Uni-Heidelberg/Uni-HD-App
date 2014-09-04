@@ -18,8 +18,10 @@
 @property (nonatomic) double_t deltaLatitude;
 @property (nonatomic) double_t deltaLongitude;
 
+// Computed Properties
+- (MKCoordinateRegion)coordinateRegion;
 
-
+// Mutable To-Many Accessors
 - (NSMutableSet *)mutableBuildings;
 
 

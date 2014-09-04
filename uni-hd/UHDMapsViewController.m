@@ -22,14 +22,12 @@
 #import "UHDCampusRegionRenderer.h"
 
 
-@interface UHDMapsViewController () <MKMapViewDelegate>
+@interface UHDMapsViewController () <MKMapViewDelegate, NSFetchedResultsControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
-//@property (strong, nonatomic) MKAnnotationView *mapAnnotationView;
-//@property (strong, nonatomic) MKOverlayView *mapOverlayView;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
-@property (strong, nonatomic) NSFetchedResultsController *regionFetchedResultsController;
+@property (strong, nonatomic) NSFetchedResultsController *campusRegionsFetchedResultsController;
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *mapTypeControl;
 - (IBAction)mapTypeControlValueChanged:(id)sender;
@@ -38,10 +36,6 @@
 
 
 @implementation UHDMapsViewController
-
-- (void)viewWillAppear:(BOOL)inAnimated {
-    [super viewWillAppear:inAnimated];
-}
 
 - (void)viewDidLoad
 {
@@ -53,28 +47,30 @@
     // Wenn sich die zugrundeliegende Datenbank ändert kann man darauf reagieren, indem die Delegate Methoden des NSFetchedResultsControllerDelegate implementiert werden (s. Doku).
     // Um die Abfrage umzukonfigurieren (z.B. andere Entities, andere Sortierung usw.) kann die Fetch Request angepasst werden (self.fetchedResultsController.fetchRequest). Danach muss wieder ein performFetch (wie unten) ausgeführt werden.
     
+    // Add overlays
+    NSArray *allCampusRegions = self.campusRegionsFetchedResultsController.fetchedObjects;
+    [self.mapView addOverlays:allCampusRegions];
+
+    // Add all annotations
     NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
     [self.mapView addAnnotations:allBuildings];
     [self.mapView showAnnotations:allBuildings animated:YES];
-    
-    [self.mapView addOverlays:self.regionFetchedResultsController.fetchedObjects];
-
-
 
 }
 
--(NSFetchedResultsController *)regionFetchedResultsController{
+- (NSFetchedResultsController *)campusRegionsFetchedResultsController{
     
-    if(!_regionFetchedResultsController){
+    if(!_campusRegionsFetchedResultsController){
         
         NSFetchRequest *theRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDCampusRegion entityName]];
-        theRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
-        NSFetchedResultsController *regionFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:theRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-        [regionFetchedResultsController performFetch:NULL];
-        self.regionFetchedResultsController = regionFetchedResultsController;
+        theRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"remoteObjectId" ascending:YES]];
+        NSFetchedResultsController *campusRegionsFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:theRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+        campusRegionsFetchedResultsController.delegate = self;
+        [campusRegionsFetchedResultsController performFetch:NULL];
+        self.campusRegionsFetchedResultsController = campusRegionsFetchedResultsController;
         
     }
-    return _regionFetchedResultsController;
+    return _campusRegionsFetchedResultsController;
 }
 
 - (NSFetchedResultsController *)fetchedResultsController {
@@ -90,7 +86,7 @@
         // Siehe z.B. Doku für Infos zur Predikatsyntax
         // Dann kann der NSFetchedResultsController mit der Fetch Request erstellt werden. Das NSManagedObjectContext Objekt, das die "Verbindung" zur Datenbank darstellt, wird dieser Klasse vom App Delegate übergeben.
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-        
+        fetchedResultsController.delegate = self;
         // Die Datenbankabfrage kann nun ausgeführt werden.
         [fetchedResultsController performFetch:NULL];
         
@@ -136,7 +132,6 @@
 }
 
 
-
 #pragma mark - Map View Delegate
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
@@ -158,7 +153,7 @@
         
         // Customize Pin View
         if (building.image) {
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)]; // TODO: dynamic size?
+            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 50)]; // TODO: dynamic size?
             imageView.image = building.image;
             pinView.leftCalloutAccessoryView = imageView;
         } else {
@@ -172,21 +167,67 @@
     return nil;
 }
 
-- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
-    
-    UHDCampusRegion *campusRegion = (UHDCampusRegion *)overlay;
-    NSArray *overlays = self.regionFetchedResultsController.fetchedObjects;
-    
-    if ([overlays containsObject:campusRegion]) {
-        
-            //UIImage *overlayImage = [UIImage imageNamed:campusRegion.identifier];
-            UHDCampusRegionRenderer *overlayView = [[UHDCampusRegionRenderer alloc] initWithCampusRegion:campusRegion];
-            return overlayView;
-        
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
+{
+    NSArray *allOverlays = self.campusRegionsFetchedResultsController.fetchedObjects;
+    if ([allOverlays containsObject:overlay]) {
+
+        return [[UHDCampusRegionRenderer alloc] initWithCampusRegion:(UHDCampusRegion *)overlay];
+
     }
-    
     return nil;
 }
 
+
+#pragma mark - Fetched Results Controller Delegate
+
+- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
+    if (controller == self.campusRegionsFetchedResultsController) {
+        [self.mapView removeOverlays:controller.fetchedObjects];
+    } else if (controller == self.fetchedResultsController) {
+    }
+}
+- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
+    if (controller == self.campusRegionsFetchedResultsController) {
+        [self.mapView addOverlays:controller.fetchedObjects];
+    }
+}
+
+- (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
+{
+    if (controller == self.campusRegionsFetchedResultsController) {
+        switch (type) {
+            case NSFetchedResultsChangeDelete:
+                [self.mapView removeOverlay:anObject];
+                break;
+            case NSFetchedResultsChangeInsert:
+                [self.mapView addOverlay:anObject];
+                break;
+            case NSFetchedResultsChangeUpdate:
+                [self.mapView removeOverlay:anObject];
+                [self.mapView addOverlay:anObject];
+                break;
+            case NSFetchedResultsChangeMove:
+            default:
+                break;
+        }
+    } else if (controller == self.fetchedResultsController) {
+        switch (type) {
+            case NSFetchedResultsChangeDelete:
+                [self.mapView removeAnnotation:anObject];
+                break;
+            case NSFetchedResultsChangeInsert:
+                [self.mapView addAnnotation:anObject];
+                break;
+            case NSFetchedResultsChangeUpdate:
+                [self.mapView removeAnnotation:anObject];
+                [self.mapView addAnnotation:anObject];
+                break;
+            case NSFetchedResultsChangeMove:
+            default:
+                break;
+        }
+    }
+}
 
 @end

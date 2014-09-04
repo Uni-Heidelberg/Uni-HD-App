@@ -16,8 +16,5 @@
 @property (nonatomic) double_t latitude;
 @property (nonatomic) double_t longitude;
 @property (nonatomic, retain) UHDLocationCategory *category;
-@property (nonatomic, retain) NSData *imageData;
-
-@property (nonatomic) UIImage *image;
 
 @end

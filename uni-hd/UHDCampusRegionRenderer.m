@@ -7,29 +7,43 @@
 //
 
 #import "UHDCampusRegionRenderer.h"
-#import "UHDCampusRegion.h"
+
+
+@interface UHDCampusRegionRenderer ()
+
+@property (strong, nonatomic) UIImage *overlayImage;
+
+@end
+
 
 @implementation UHDCampusRegionRenderer
 
-- (instancetype)initWithCampusRegion:(UHDCampusRegion *)campusRegion{
-    self = [super initWithOverlay:campusRegion];
-    if (self) {
+- (instancetype)initWithCampusRegion:(UHDCampusRegion *)campusRegion
+{
+    if ((self = [super initWithOverlay:campusRegion])) {
         self.overlayImage = [UIImage imageNamed:campusRegion.identifier];
     }
     
     return self;
 }
 
-- (void)drawMapRect:(MKMapRect)mapRect zoomScale:(MKZoomScale)zoomScale inContext:(CGContextRef)context {
+
+- (void)drawMapRect:(MKMapRect)mapRect zoomScale:(MKZoomScale)zoomScale inContext:(CGContextRef)context
+{
+    CGRect imageRect = [self rectForMapRect:self.overlay.boundingMapRect];
+    CGRect tileRect = [self rectForMapRect:mapRect];
+
+    // only draw a tile of the image
+    CGContextAddRect(context, tileRect);
+    CGContextClip(context);
     
-    CGImageRef imageReference = self.overlayImage.CGImage;
-    
-    MKMapRect theMapRect = self.overlay.boundingMapRect;
-    CGRect theRect = [self rectForMapRect:theMapRect];
-    
+    // set opacity
+    CGContextSetAlpha(context, 0.5);
+
+    // draw image
     CGContextScaleCTM(context, 1.0, -1.0);
-    CGContextTranslateCTM(context, 0.0, -theRect.size.height);
-    CGContextDrawImage(context, theRect, imageReference);
+    CGContextTranslateCTM(context, 0.0, -imageRect.size.height);
+    CGContextDrawImage(context, imageRect, self.overlayImage.CGImage);
 }
 
 

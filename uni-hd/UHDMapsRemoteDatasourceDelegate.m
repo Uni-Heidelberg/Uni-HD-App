@@ -62,11 +62,10 @@
     inf.overlayTopRightCoordinateLong = 8.678573;
     49.424228, 8.676694
      */
-    inf.deltaLatitude = 0.013436;
-    inf.deltaLongitude = 0.021361;
     inf.centerLatitude = 49.417586;
     inf.centerLongitude = 8.666085;
-    
+    inf.deltaLatitude = 0.013436;
+    inf.deltaLongitude = 0.021361;
     UHDCampusRegion *altstadt = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
     altstadt.title = @"Altstadt";
     altstadt.identifier = @"Altstadt";
