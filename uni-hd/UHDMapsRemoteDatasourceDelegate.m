@@ -52,23 +52,32 @@
     inf.title = @"Im Neuenheimer Feld";
     inf.identifier = @"INF";
     /*
-    inf.overlayTopLeftCoordinateLat = 49.424567;
-    inf.overlayTopLeftCoordinateLong = 8.655322;
-    49.424232, 8.655333
-    inf.overlayBottomRightCoordinateLat = 49.410842;
-    inf.overlayBottomRightCoordinateLong = 8.676642;
-    49.410792, 8.676694
-    inf.overlayTopRightCoordinateLat = 49.424780;
-    inf.overlayTopRightCoordinateLong = 8.678573;
-    49.424228, 8.676694
+    Top Left: 49.424232, 8.655333
+    Bottom Right: 49.410792, 8.676694
+    Top Right: 49.424228, 8.676694
      */
     inf.centerLatitude = 49.417586;
     inf.centerLongitude = 8.666085;
     inf.deltaLatitude = 0.013436;
     inf.deltaLongitude = 0.021361;
+    
+    
     UHDCampusRegion *altstadt = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
     altstadt.title = @"Altstadt";
     altstadt.identifier = @"Altstadt";
+    altstadt.centerLatitude = 49.411482;
+    altstadt.centerLongitude = 8.707346;
+    altstadt.deltaLatitude = 0.008758;
+    altstadt.deltaLongitude = 0.029726;
+    /*
+     Punkt linke Seite: 49.409210, 8.692483
+     Punkt oben: 49.415861, 8.712368
+     */
+    
+    UHDCampusRegion *bergheim = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
+    bergheim.title = @"Bergheim";
+    bergheim.identifier = @"Bergheim";
+    
     
     
     //FIRST
