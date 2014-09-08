@@ -59,9 +59,9 @@
     inf.centerLatitude = 49.41763;
     inf.centerLongitude = 8.666255;
     // Höhe
-    inf.deltaLatitude = 0.01415;
+    inf.deltaLatitude = 0.01416;
     // Breite
-    inf.deltaLongitude = 0.0228;
+    inf.deltaLongitude = 0.0221;
     
     
     UHDCampusRegion *altstadt = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
