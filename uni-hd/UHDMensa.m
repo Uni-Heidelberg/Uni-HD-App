@@ -17,6 +17,31 @@
 @dynamic isFavourite;
 
 
+// TODO: implement attributes with relationships to maps module
+- (NSString *)buildingNumber {
+    return nil;
+}
+- (void)setBuildingNumber:(NSString *)buildingNumber {
+    return;
+}
+- (UHDCampusRegion *)campusRegion {
+    return nil;
+}
+- (void)setCampusRegion:(UHDCampusRegion *)campusRegion {
+    return;
+}
+- (UHDLocationCategory *)category {
+    return nil;
+}
+- (void)setCategory:(UHDLocationCategory *)category {
+    return;
+}
+- (NSString *)identifier {
+    return self.title;
+}
+
+#pragma mark - Mutable To-Many Accessors
+
 - (NSMutableSet *)mutableMenus
 {
     return [self mutableSetValueForKey:@"menus"];
@@ -27,6 +52,8 @@
 }
 
 
+#pragma mark - Convenience Methods
+
 - (UHDDailyMenu *)dailyMenuForDate:(NSDate *)date
 {
     NSDate *startDate;
@@ -36,7 +63,5 @@
     
     return [[self.menus filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"(date >= %@) AND (date < %@)", startDate, endDate]] anyObject];
 }
-
-
 
 @end

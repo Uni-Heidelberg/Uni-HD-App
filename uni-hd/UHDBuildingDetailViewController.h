@@ -8,16 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "UHDBuilding.h"
-#import "UHDLocationCategory.h"
 
-
-@interface UHDBuildingDetailViewController : UIViewController
+@interface UHDBuildingDetailViewController : UITableViewController
 
 @property (strong, nonatomic) UHDBuilding *building;
-
-@property (strong, nonatomic) IBOutlet UIImageView *buildingsImageView;
-@property (strong, nonatomic) IBOutlet UILabel *subtitleLabel;
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet UILabel *buildingCategoryLabel;
 
 @end

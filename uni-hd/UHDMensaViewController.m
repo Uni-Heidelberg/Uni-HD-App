@@ -80,11 +80,12 @@
 }
 
 - (void)configureView
-{   self.titleLabel.text = self.mensa ? self.mensa.title : NSLocalizedString(@"No Mensa selected", nil);
-//    if (!self.mensa) {
-//        self.navigationItem.rightBarButtonItem;
-//    }
+{
     
+    self.titleLabel.text = (self.mensa != nil) ? self.mensa.title : NSLocalizedString(@"No Mensa selected", nil);
+
+    self.navigationItem.rightBarButtonItem.enabled = self.mensa != nil;
+
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateStyle = NSDateFormatterLongStyle;
     dateFormatter.timeStyle = NSDateFormatterNoStyle;
