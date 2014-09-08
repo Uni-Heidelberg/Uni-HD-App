@@ -11,12 +11,16 @@
 
 @interface UHDBuildingDetailViewController ()
 
--(void)configureView;
+@property (weak, nonatomic) IBOutlet UILabel *identifierLabel;
+@property (weak, nonatomic) IBOutlet UILabel *categoryLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+
+- (void)configureView;
 
 @end
 
 @implementation UHDBuildingDetailViewController
-
 
 - (void)viewDidLoad
 {
@@ -25,20 +29,51 @@
     [self configureView];
 }
 
--(void)setBuilding:(UHDBuilding *)building
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    self.headerImageView.image = self.building.image;
+    
+    // TODO: fix imageframe at startup
+    //    CGRect imageFrame = self.mensaPicture.frame;
+    //    imageFrame.size.height = self.tableView.tableHeaderView.frame.size.height;
+    //    self.mensaPicture.frame = imageFrame;
+    
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    // TODO: fix imageframe at startup
+    [self scrollViewDidScroll:self.tableView];
+}
+
+- (void)setBuilding:(UHDBuilding *)building
 {
     _building = building;
     [self configureView];
 }
 
-
 -(void)configureView
 {
-    self.title = self.building.identifier;
-    self.titleLabel.text = self.building.title;
-    self.subtitleLabel.text = self.building.identifier;
-    self.buildingCategoryLabel.text = self.building.category.title;
-    self.buildingsImageView.image = self.building.image;
+    if (self.building) {
+        self.title = self.building.title;
+        self.identifierLabel.text = self.building.identifier;
+        self.categoryLabel.text = self.building.category.title;
+        self.headerImageView.image = self.building.image;
+        [self.mapView removeAnnotations:self.mapView.annotations];
+        [self.mapView addAnnotation:self.building];
+        [self.mapView showAnnotations:@[ self.building ] animated:NO];
+    }
+}
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+{
+    CGFloat offset = scrollView.contentOffset.y + scrollView.contentInset.top;
+    CGRect imageFrame = self.headerImageView.frame;
+    imageFrame.origin.y = offset;
+    imageFrame.size.height = - offset + self.tableView.tableHeaderView.frame.size.height;
+    self.headerImageView.frame = imageFrame;
 }
 
 @end
