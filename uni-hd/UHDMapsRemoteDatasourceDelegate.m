@@ -56,16 +56,18 @@
     Bottom Right: 49.410792, 8.676694
     Top Right: 49.424228, 8.676694
      */
-    inf.centerLatitude = 49.417586;
-    inf.centerLongitude = 8.666085;
-    inf.deltaLatitude = 0.013436;
-    inf.deltaLongitude = 0.021361;
+    inf.centerLatitude = 49.41763;
+    inf.centerLongitude = 8.666255;
+    // Höhe
+    inf.deltaLatitude = 0.01415;
+    // Breite
+    inf.deltaLongitude = 0.0228;
     
     
     UHDCampusRegion *altstadt = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
     altstadt.title = @"Altstadt";
     altstadt.identifier = @"Altstadt";
-    altstadt.centerLatitude = 49.411482;
+    altstadt.centerLatitude = 49.4110;
     altstadt.centerLongitude = 8.707346;
     altstadt.deltaLatitude = 0.008758;
     altstadt.deltaLongitude = 0.029726;
