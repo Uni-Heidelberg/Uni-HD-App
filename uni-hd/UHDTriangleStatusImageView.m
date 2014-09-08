@@ -30,7 +30,7 @@
     CGContextAddLineToPoint(ctx, CGRectGetMaxX(rect), CGRectGetMidY(rect));  // midlle right
     CGContextClosePath(ctx);
     
-    CGContextSetRGBFillColor(ctx, 1, 1, 0, 1);
+    CGContextSetFillColorWithColor(ctx, [UIColor favouriteColor].CGColor);
     CGContextFillPath(ctx);
 }
 

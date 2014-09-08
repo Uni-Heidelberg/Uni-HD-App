@@ -385,12 +385,12 @@
 			isa = PBXGroup;
 			children = (
 				DC87FDF7191AA00600019F32 /* mensa.storyboard */,
-				94F484901936620B0063BF9F /* UHDTriangleStatusImageView.h */,
-				94F484911936620B0063BF9F /* UHDTriangleStatusImageView.m */,
 				DCD00A9E1996605400DCCB24 /* UHDFavouriteCell.h */,
 				DCD00A9F1996605400DCCB24 /* UHDFavouriteCell.m */,
 				DC462EBF196964F50071ABBC /* UHDFavouritesStarView.h */,
 				DC462EC0196964F60071ABBC /* UHDFavouritesStarView.m */,
+				94F484901936620B0063BF9F /* UHDTriangleStatusImageView.h */,
+				94F484911936620B0063BF9F /* UHDTriangleStatusImageView.m */,
 				DC83C938192BDDA5004CC75B /* UHDMealCell.h */,
 				DC83C939192BDDA5004CC75B /* UHDMealCell.m */,
 				DCD00AA51996996700DCCB24 /* UHDMensaCell.h */,

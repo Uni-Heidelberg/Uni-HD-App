@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface UHDTriangleStatusImageView : UIView
+@property UIColor* colour;
 
 @end

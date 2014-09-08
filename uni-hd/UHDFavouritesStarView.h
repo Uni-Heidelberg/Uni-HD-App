@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UHDFavouritesStarView : UIView
-@property CGColorRef colour;
+@property UIColor* colour;
 @property double scaleFactor;
 
 @end

@@ -12,6 +12,6 @@
 
 + (UIColor *)favouriteColor
 {
-    return [UIColor yellowColor];
+    return [UIColor colorWithRed:241/255. green:196/255. blue:15/255. alpha:1];
 }
 @end

@@ -35,8 +35,7 @@
     
     
     
-    r = MIN(rect.size.height*2/5, rect.size.width*2/5)*self.scaleFactor;
-    
+    r = MIN(40,MIN(rect.size.height*2/5, rect.size.width*2/5))*self.scaleFactor;
     theta = 2 * M_PI * (2.0 / 5.0); // 144 degrees
     
     CGContextBeginPath(ctx);
@@ -54,7 +53,7 @@
     }
     
     CGContextClosePath(ctx);
-    CGContextSetFillColorWithColor(ctx, self.colour);
+    CGContextSetFillColorWithColor(ctx, self.colour.CGColor);
     CGContextFillPath(ctx);
 }
 

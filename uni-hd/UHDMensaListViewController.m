@@ -56,8 +56,22 @@
 {
     if ([segue.identifier isEqualToString:[NSString stringWithFormat:@"showMensaDetail"]]) {
         UHDMensaDetailViewController *detailVC = [segue destinationViewController];
-        detailVC.mensa = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:(UITableViewCell *)sender]];
+        UITableViewCell *owningCell = [self parentCellForView:sender];
+        detailVC.mensa = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:owningCell]];
     }
+}
+-(UITableViewCell *)parentCellForView:(id)theView
+{
+    id viewSuperView = [theView superview];
+    while (viewSuperView != nil) {
+        if ([viewSuperView isKindOfClass:[UITableViewCell class]]) {
+            return (UITableViewCell *)viewSuperView;
+        }
+        else {
+            viewSuperView = [viewSuperView superview];
+        }
+    }
+    return nil;
 }
 
 #pragma mark - User Interaction

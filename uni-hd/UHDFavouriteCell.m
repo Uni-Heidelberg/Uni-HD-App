@@ -22,7 +22,7 @@
 -(UHDFavouritesStarView*)greyStarUIView {
     if (!_greyStarUIView) {
         _greyStarUIView = [[UHDFavouritesStarView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.contentView.frame), 0, CGRectGetHeight(self.frame), CGRectGetHeight(self.frame))];
-        _greyStarUIView.colour = [[UIColor grayColor]CGColor];
+        _greyStarUIView.colour = [UIColor grayColor];
         _greyStarUIView.scaleFactor = 1.0;
         [self.backView addSubview:_greyStarUIView];
     }
@@ -32,7 +32,7 @@
 -(UHDFavouritesStarView*)yellowStarUIView {
     if (!_yellowStarUIView) {
         _yellowStarUIView = [[UHDFavouritesStarView alloc] initWithFrame:self.greyStarUIView.bounds];
-        _yellowStarUIView.colour = [[UIColor favouriteColor] CGColor];
+        _yellowStarUIView.colour = [UIColor favouriteColor];
         [self.greyStarUIView addSubview:_yellowStarUIView];
     }
     return _yellowStarUIView;
