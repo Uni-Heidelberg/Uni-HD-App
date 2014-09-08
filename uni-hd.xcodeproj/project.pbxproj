@@ -37,6 +37,7 @@
 		875396021932B03C00DFEF19 /* UHDNewsSourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 875396011932B03C00DFEF19 /* UHDNewsSourceCell.m */; };
 		875396081932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 875396071932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.m */; };
 		87600EA4192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87600EA3192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m */; };
+		877AEE8819BD370300ED270D /* UHDBuildingAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 877AEE8719BD370300ED270D /* UHDBuildingAnnotationView.m */; };
 		8799DA96192AB4D9009B3CAB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE0B01908810B0029D9AF /* XCTest.framework */; };
 		8799DA97192AB4D9009B3CAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08B1908810B0029D9AF /* Foundation.framework */; };
 		8799DA98192AB4D9009B3CAB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08F1908810B0029D9AF /* UIKit.framework */; };
@@ -160,6 +161,8 @@
 		875396071932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UHDNewsSourceCell+ConfigureForSource.m"; sourceTree = "<group>"; };
 		87600EA2192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMensaRemoteDatasourceDelegate.h; sourceTree = "<group>"; };
 		87600EA3192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMensaRemoteDatasourceDelegate.m; sourceTree = "<group>"; };
+		877AEE8619BD370300ED270D /* UHDBuildingAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDBuildingAnnotationView.h; sourceTree = "<group>"; };
+		877AEE8719BD370300ED270D /* UHDBuildingAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDBuildingAnnotationView.m; sourceTree = "<group>"; };
 		8799DA95192AB4D9009B3CAB /* uni-hd-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "uni-hd-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8799DA9B192AB4D9009B3CAB /* uni-hd-tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "uni-hd-tests-Info.plist"; sourceTree = "<group>"; };
 		8799DA9D192AB4D9009B3CAB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -538,6 +541,8 @@
 				0B35587A199BC923008053EE /* UHDMapsSearchCell.m */,
 				0B30976E19B6E0220073A569 /* UHDCampusRegionRenderer.h */,
 				0B30976F19B6E0220073A569 /* UHDCampusRegionRenderer.m */,
+				877AEE8619BD370300ED270D /* UHDBuildingAnnotationView.h */,
+				877AEE8719BD370300ED270D /* UHDBuildingAnnotationView.m */,
 			);
 			name = Maps;
 			sourceTree = "<group>";
@@ -857,6 +862,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				DC21B6E01923D27600BAD26D /* UHDMensa.m in Sources */,
+				877AEE8819BD370300ED270D /* UHDBuildingAnnotationView.m in Sources */,
 				94F484921936620B0063BF9F /* UHDTriangleStatusImageView.m in Sources */,
 				0A7FACFD196B146100E2CC9D /* UHDEventItemCell+ConfigureForItem.m in Sources */,
 				0A7FAD03196B17E000E2CC9D /* UHDTalkItemCell+ConfigureForItem.m in Sources */,
