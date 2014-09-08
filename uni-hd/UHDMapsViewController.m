@@ -13,13 +13,13 @@
 #import "UHDBuilding.h"
 #import "UHDCampusRegion.h"
 
-
 // View Controllers
 #import "UHDMapsSearchTableViewController.h"
 #import "UHDBuildingDetailViewController.h"
 
 //View
 #import "UHDCampusRegionRenderer.h"
+#import "UHDBuildingAnnotationView.h"
 
 
 @interface UHDMapsViewController () <MKMapViewDelegate, NSFetchedResultsControllerDelegate>
@@ -50,6 +50,7 @@
     // Add overlays
     NSArray *allCampusRegions = self.campusRegionsFetchedResultsController.fetchedObjects;
     [self.mapView addOverlays:allCampusRegions];
+    [self.mapView addAnnotations:allCampusRegions];
 
     // Add all annotations
     NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
@@ -141,27 +142,16 @@
     
     if ([allBuildings containsObject:building]) {
 
-        MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"UHDBuildingPin"];
-        if (!pinView) {
-            pinView = [[MKPinAnnotationView alloc] initWithAnnotation:building reuseIdentifier:@"UHDBuildingPin"];
-            pinView.canShowCallout  = YES;
-            UIButton *detailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-            pinView.rightCalloutAccessoryView = detailButton;
+        static NSString *buildingAnnotationViewIdentifier = @"buildingAnnotation";
+        UHDBuildingAnnotationView *buildingAnnotationView = (UHDBuildingAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:buildingAnnotationViewIdentifier];
+        if (!buildingAnnotationView) {
+            buildingAnnotationView = [[UHDBuildingAnnotationView alloc] initWithAnnotation:building reuseIdentifier:@"UHDBuildingPin"];
+            buildingAnnotationView.canShowCallout = YES;
         } else {
-            pinView.annotation = building;
+            buildingAnnotationView.annotation = building;
         }
         
-        // Customize Pin View
-        if (building.image) {
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 50)]; // TODO: dynamic size?
-            imageView.image = building.image;
-            pinView.leftCalloutAccessoryView = imageView;
-        } else {
-            pinView.leftCalloutAccessoryView = nil;
-        }
-        
-        return pinView;
-        
+        return buildingAnnotationView;
     }
 
     return nil;
@@ -180,18 +170,6 @@
 
 
 #pragma mark - Fetched Results Controller Delegate
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    if (controller == self.campusRegionsFetchedResultsController) {
-        [self.mapView removeOverlays:controller.fetchedObjects];
-    } else if (controller == self.fetchedResultsController) {
-    }
-}
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    if (controller == self.campusRegionsFetchedResultsController) {
-        [self.mapView addOverlays:controller.fetchedObjects];
-    }
-}
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
 {

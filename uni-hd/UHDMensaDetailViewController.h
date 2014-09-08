@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "UHDMensa.h"
+#import "UHDBuildingDetailViewController.h"
 
+@interface UHDMensaDetailViewController : UHDBuildingDetailViewController
 
-@interface UHDMensaDetailViewController : UITableViewController
-
-@property UHDMensa *mensa;
+@property (nonatomic) UHDMensa *mensa;
 
 @end
