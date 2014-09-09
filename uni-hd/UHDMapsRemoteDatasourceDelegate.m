@@ -61,13 +61,13 @@
     // Höhe
     inf.deltaLatitude = 0.01416;
     // Breite
-    inf.deltaLongitude = 0.0221;
+    inf.deltaLongitude = 0.0222;
     
     
     UHDCampusRegion *altstadt = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
     altstadt.title = @"Altstadt";
     altstadt.identifier = @"Altstadt";
-    altstadt.centerLatitude = 49.4110;
+    altstadt.centerLatitude = 49.4114;
     altstadt.centerLongitude = 8.707346;
     altstadt.deltaLatitude = 0.008758;
     altstadt.deltaLongitude = 0.029726;
@@ -79,6 +79,17 @@
     UHDCampusRegion *bergheim = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
     bergheim.title = @"Bergheim";
     bergheim.identifier = @"Bergheim";
+    bergheim.centerLatitude = 49.409425;
+    bergheim.centerLongitude = 8.687439;
+    bergheim.deltaLatitude = 0.004;
+    bergheim.deltaLongitude = 0.0115;
+    
+    /*
+    Oben: 49.41150
+    Unten: 49.40750
+    rechts: 8.69300
+    links: 8.68150
+    */
     
     
     
