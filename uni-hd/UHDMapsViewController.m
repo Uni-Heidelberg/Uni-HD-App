@@ -77,18 +77,10 @@
 - (NSFetchedResultsController *)fetchedResultsController {
     if (!_fetchedResultsController) {
 
-        // Ein NSFetchedResultsController Objekt holt Daten aus der Core Data Datenbank und reagiert auf Änderungen.
-        
-        // Es benötigt eine Fetch Request, das die Entity beschreibt, deren Datenbankeinträge abgefragt werden sollen und einige Eigenschaften wie die Sortierung.
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDBuilding entityName]];
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
-        // Mit einem Predikat kann die Abfrage gefiltert werden (Kommentar entfernen zum ausprobieren):
-        // fetchRequest.predicate = [NSPredicate predicateWithFormat:@"title LIKE %@", @"Marstall"];
-        // Siehe z.B. Doku für Infos zur Predikatsyntax
-        // Dann kann der NSFetchedResultsController mit der Fetch Request erstellt werden. Das NSManagedObjectContext Objekt, das die "Verbindung" zur Datenbank darstellt, wird dieser Klasse vom App Delegate übergeben.
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         fetchedResultsController.delegate = self;
-        // Die Datenbankabfrage kann nun ausgeführt werden.
         [fetchedResultsController performFetch:NULL];
         
         self.fetchedResultsController = fetchedResultsController;
@@ -111,7 +103,6 @@
 
 - (IBAction)mapTypeControlValueChanged:(id)sender {
     
-    //Segment 1 hat Nummer 0 usw.
     switch (self.mapTypeControl.selectedSegmentIndex) {
         case 0:
             self.mapView.mapType = MKMapTypeStandard;
@@ -160,10 +151,9 @@
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
 {
     NSArray *allOverlays = self.campusRegionsFetchedResultsController.fetchedObjects;
-    if ([allOverlays containsObject:overlay]) {
-
+    if ([allOverlays containsObject:overlay])
+    {
         return [[UHDCampusRegionRenderer alloc] initWithCampusRegion:(UHDCampusRegion *)overlay];
-
     }
     return nil;
 }
