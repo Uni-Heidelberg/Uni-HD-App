@@ -13,6 +13,8 @@
 
 @property (strong, nonatomic) UIImage *overlayImage;
 
+@property (nonatomic) CGFloat *angle;
+
 @end
 
 
@@ -22,6 +24,7 @@
 {
     if ((self = [super initWithOverlay:campusRegion])) {
         self.overlayImage = [UIImage imageNamed:campusRegion.identifier];
+        self.angle = campusRegion.overlayAngle;
     }
     
     return self;
@@ -42,6 +45,7 @@
 
     // draw image
     CGContextScaleCTM(context, 1.0, -1.0);
+    CGContextRotateCTM(context, *(self.angle));
     CGContextTranslateCTM(context, 0.0, -imageRect.size.height);
     CGContextDrawImage(context, imageRect, self.overlayImage.CGImage);
 }

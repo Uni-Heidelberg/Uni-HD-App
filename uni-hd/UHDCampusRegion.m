@@ -20,6 +20,7 @@ MKMapRect MKMapRectForCoordinateRegion(MKCoordinateRegion region)
 @dynamic title, identifier;
 @dynamic buildings;
 @dynamic centerLongitude, centerLatitude, deltaLatitude, deltaLongitude;
+@dynamic overlayAngle;
 
 
 # pragma mark - Computed Properties
