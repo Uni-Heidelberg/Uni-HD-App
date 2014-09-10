@@ -31,9 +31,10 @@
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *mapTypeControl;
 - (IBAction)mapTypeControlValueChanged:(id)sender;
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *trackingButton;
+//@property (strong, nonatomic) IBOutlet MKUserTrackingBarButtonItem *trackingButton;
+@property (weak, nonatomic) IBOutlet UIView *toolbarView;
 @property (strong, nonatomic)IBOutlet UIToolbar *toolbar;
-@property (strong, nonatomic) CLLocationManager *locationManager;
+
 
 
 @end
@@ -60,6 +61,12 @@
     NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
     [self.mapView addAnnotations:allBuildings];
     [self.mapView showAnnotations:allBuildings animated:YES];
+    
+    UIBarButtonItem *trackingButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
+    NSMutableArray *items = [[NSMutableArray alloc] initWithArray:self.toolbar.items];
+    [items addObject:trackingButton];
+    [self.toolbar setItems:items animated:YES];
+    [self.toolbarView setAlpha:0.7];
     
 
     
@@ -95,39 +102,6 @@
     return _fetchedResultsController;
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation {
-    CLLocationCoordinate2D currentCoordinates;
-    currentCoordinates.latitude = newLocation.coordinate.latitude;
-    currentCoordinates.longitude = newLocation.coordinate.longitude;
-    
-    MKCoordinateRegion viewRegion = MKCoordinateRegionMake(currentCoordinates, _mapView.region.span);
-    [_mapView setRegion:viewRegion animated:YES];
-    [self.locationManager stopUpdatingLocation];
-    
-}
-
-/*
--(void)setTrackingButton:(UIBarButtonItem *)trackingButton{
-    self.trackingButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
-    NSMutableArray *items = [[NSMutableArray alloc] initWithArray:self.toolbar.items];
-    [items addObject:self.trackingButton];
-    [self.toolbar setItems:items];
-    
-}
- */
--(UIBarButtonItem *)trackingButton{
-    
-    self.trackingButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
-    NSMutableArray *items = [[NSMutableArray alloc] initWithArray:self.toolbar.items];
-    [items addObject:self.trackingButton];
-    [self.toolbar setItems:items];
-    return self.trackingButton;
-}
-
-- (IBAction)moveToCurrentLocation:(id)sender {
-
-    [self.locationManager startUpdatingLocation];
-}
 
 #pragma mark - User Interaction
 
