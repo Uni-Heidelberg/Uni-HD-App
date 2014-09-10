@@ -48,21 +48,21 @@
     
     // Create campus regions
     
+    
     UHDCampusRegion *inf = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
     inf.title = @"Im Neuenheimer Feld";
     inf.identifier = @"INF";
-    /*
-    Top Left: 49.424232, 8.655333
-    Bottom Right: 49.410792, 8.676694
-    Top Right: 49.424228, 8.676694
-     */
     inf.centerLatitude = 49.41763;
     inf.centerLongitude = 8.666255;
     // Höhe
     inf.deltaLatitude = 0.01416;
     // Breite
     inf.deltaLongitude = 0.0222;
-    
+    /*
+     Top Left: 49.424232, 8.655333
+     Bottom Right: 49.410792, 8.676694
+     Top Right: 49.424228, 8.676694
+     */
     
     UHDCampusRegion *altstadt = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
     altstadt.title = @"Altstadt";
@@ -83,6 +83,7 @@
     bergheim.centerLongitude = 8.687439;
     bergheim.deltaLatitude = 0.004;
     bergheim.deltaLongitude = 0.0115;
+    bergheim.overlayAngle = 0.1;
     
     /*
     Oben: 49.41150

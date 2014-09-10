@@ -13,7 +13,7 @@
 
 @property (strong, nonatomic) UIImage *overlayImage;
 
-@property (nonatomic) CGFloat *angle;
+@property (nonatomic) double_t angle;
 
 @end
 
@@ -44,10 +44,11 @@
     CGContextSetAlpha(context, 0.5);
 
     // draw image
+    CGContextRotateCTM(context, self.angle);
     CGContextScaleCTM(context, 1.0, -1.0);
-    CGContextRotateCTM(context, *(self.angle));
     CGContextTranslateCTM(context, 0.0, -imageRect.size.height);
     CGContextDrawImage(context, imageRect, self.overlayImage.CGImage);
+    
 }
 
 

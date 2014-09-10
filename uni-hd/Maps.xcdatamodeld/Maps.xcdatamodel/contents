@@ -11,7 +11,7 @@
         <attribute name="deltaLatitude" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
         <attribute name="deltaLongitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="overlayAngle" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="overlayAngle" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
         <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="buildings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDBuilding" inverseName="campusRegion" inverseEntity="UHDBuilding" syncable="YES"/>
