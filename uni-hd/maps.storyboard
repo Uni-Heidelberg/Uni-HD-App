@@ -40,13 +40,35 @@
                                     <outlet property="delegate" destination="aIJ-2O-Ugc" id="9Dp-td-5xf"/>
                                 </connections>
                             </mapView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="y8I-KJ-gkq">
+                                <rect key="frame" x="0.0" y="64" width="320" height="39"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SQu-Lg-Hxp">
+                                        <rect key="frame" x="0.0" y="-2" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                        <items>
+                                            <barButtonItem title="Item" id="ebk-Pz-5wV">
+                                                <connections>
+                                                    <action selector="moveToCurrentLocation:" destination="aIJ-2O-Ugc" id="MY5-pU-rbh"/>
+                                                </connections>
+                                            </barButtonItem>
+                                        </items>
+                                    </toolbar>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="y8I-KJ-gkq" secondAttribute="trailing" id="AQK-WT-eF1"/>
                             <constraint firstItem="Xq9-aa-Iar" firstAttribute="leading" secondItem="BjU-po-Hso" secondAttribute="leading" id="ESM-BJ-zFp"/>
+                            <constraint firstItem="De8-19-bGo" firstAttribute="top" secondItem="y8I-KJ-gkq" secondAttribute="bottom" constant="416" id="MEU-iZ-yuh"/>
                             <constraint firstAttribute="trailing" secondItem="Xq9-aa-Iar" secondAttribute="trailing" id="bFR-HD-1mB"/>
                             <constraint firstItem="De8-19-bGo" firstAttribute="top" secondItem="Xq9-aa-Iar" secondAttribute="bottom" id="qNk-aZ-OdN"/>
                             <constraint firstItem="Xq9-aa-Iar" firstAttribute="top" secondItem="BjU-po-Hso" secondAttribute="top" id="u9f-by-mkV"/>
+                            <constraint firstItem="y8I-KJ-gkq" firstAttribute="leading" secondItem="BjU-po-Hso" secondAttribute="leading" id="yqj-Hh-8SK"/>
+                            <constraint firstItem="y8I-KJ-gkq" firstAttribute="top" secondItem="xWL-UC-T7M" secondAttribute="bottom" id="ytu-Hh-FlJ"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ueJ-uc-S7n">
@@ -73,6 +95,8 @@
                     <connections>
                         <outlet property="mapTypeControl" destination="3NJ-8J-lNS" id="qPO-ii-5bU"/>
                         <outlet property="mapView" destination="Xq9-aa-Iar" id="KNz-rb-ZVA"/>
+                        <outlet property="toolbar" destination="SQu-Lg-Hxp" id="LYF-mZ-ERx"/>
+                        <outlet property="trackingButton" destination="ebk-Pz-5wV" id="Cd5-ce-dFa"/>
                         <segue destination="gkq-iR-bWQ" kind="push" identifier="showBuildingDetail" id="Fmo-8j-4Wr"/>
                     </connections>
                 </viewController>
@@ -176,11 +200,11 @@
             <objects>
                 <tableViewController id="gkq-iR-bWQ" customClass="UHDBuildingDetailViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="BVQ-TA-W9D">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <view key="tableHeaderView" contentMode="scaleToFill" id="NsZ-Ha-Uov">
-                            <rect key="frame" x="0.0" y="0.0" width="320" height="191"/>
+                            <rect key="frame" x="0.0" y="64" width="320" height="191"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hpB-C9-x0x">
@@ -228,7 +252,7 @@
                             <tableViewSection headerTitle="Lage" id="Ape-4g-rdp">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="198" id="9ja-nc-rE0">
-                                        <rect key="frame" x="0.0" y="246" width="320" height="198"/>
+                                        <rect key="frame" x="0.0" y="310" width="320" height="198"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="9ja-nc-rE0" id="iNK-ih-SqN">
                                             <rect key="frame" x="0.0" y="0.0" width="320" height="197"/>
@@ -274,6 +298,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="fD3-qV-arr"/>
+        <segue reference="Fmo-8j-4Wr"/>
     </inferredMetricsTieBreakers>
 </document>

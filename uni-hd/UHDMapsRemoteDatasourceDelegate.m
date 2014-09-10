@@ -79,17 +79,25 @@
     UHDCampusRegion *bergheim = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
     bergheim.title = @"Bergheim";
     bergheim.identifier = @"Bergheim";
-    bergheim.centerLatitude = 49.409425;
-    bergheim.centerLongitude = 8.687439;
-    bergheim.deltaLatitude = 0.004;
-    bergheim.deltaLongitude = 0.0115;
-    bergheim.overlayAngle = 0.1;
+    bergheim.centerLatitude = 49.4085;
+    bergheim.centerLongitude = 8.68685;
+    bergheim.deltaLatitude = 0.00315;
+    bergheim.deltaLongitude = 0.01095;
+    bergheim.overlayAngle = -0.268;
     
     /*
-    Oben: 49.41150
-    Unten: 49.40750
-    rechts: 8.69300
-    links: 8.68150
+     Oben: 49.41150
+     Unten: 49.40750
+     rechts: 8.69300
+     links: 8.68150
+     Ursprünglich:
+     bergheim.centerLatitude = 49.409425;
+     bergheim.centerLongitude = 8.687439;
+     bergheim.deltaLatitude = 0.004;
+     bergheim.deltaLongitude = 0.0115;
+     Angepasst:
+     bergheim.centerLatitude = 49.4088;
+     bergheim.centerLongitude = 8.6867;
     */
     
     
