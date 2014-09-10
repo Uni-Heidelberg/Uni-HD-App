@@ -63,10 +63,11 @@
      Bottom Right: 49.410792, 8.676694
      Top Right: 49.424228, 8.676694
      */
+    inf.overlayImageURL = [NSURL URLWithString:@"overlay_inf"];
     
     UHDCampusRegion *altstadt = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
     altstadt.title = @"Altstadt";
-    altstadt.identifier = @"Altstadt";
+    altstadt.identifier = @"ALT";
     altstadt.centerLatitude = 49.4114;
     altstadt.centerLongitude = 8.707346;
     altstadt.deltaLatitude = 0.008758;
@@ -75,15 +76,17 @@
      Punkt linke Seite: 49.409210, 8.692483
      Punkt oben: 49.415861, 8.712368
      */
+    altstadt.overlayImageURL = [NSURL URLWithString:@"overlay_alt"];
     
     UHDCampusRegion *bergheim = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
     bergheim.title = @"Bergheim";
-    bergheim.identifier = @"Bergheim";
+    bergheim.identifier = @"BERG";
     bergheim.centerLatitude = 49.4085;
     bergheim.centerLongitude = 8.68685;
     bergheim.deltaLatitude = 0.00315;
     bergheim.deltaLongitude = 0.01095;
     bergheim.overlayAngle = -0.268;
+    bergheim.overlayImageURL = [NSURL URLWithString:@"overlay_berg"];
     
     /*
      Oben: 49.41150
@@ -162,7 +165,7 @@
     
     UHDBuilding *buildingItem5 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
     buildingItem5.title = @"Marstall";
-    buildingItem5.buildingNumber = @"";
+    buildingItem5.buildingNumber = @"2010";
     buildingItem5.latitude = 49.41280; //Marstall coordinates
     buildingItem5.longitude = 8.70442;
     buildingItem5.image = [UIImage imageNamed:@"marstallhof-01"];

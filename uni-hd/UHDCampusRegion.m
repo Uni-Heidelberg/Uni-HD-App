@@ -29,6 +29,11 @@ MKMapRect MKMapRectForCoordinateRegion(MKCoordinateRegion region)
     return MKCoordinateRegionMake(CLLocationCoordinate2DMake(self.centerLatitude, self.centerLongitude), MKCoordinateSpanMake(self.deltaLatitude, self.deltaLongitude));
 }
 
+- (UIImage *)overlayImage {
+    // TODO: download file from server and cache it
+    return [UIImage imageNamed:[self.overlayImageURL lastPathComponent]];
+}
+
 
 #pragma mark - MKOverlay
 
