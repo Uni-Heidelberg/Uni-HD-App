@@ -54,7 +54,6 @@
     // Add overlays
     NSArray *allCampusRegions = self.campusRegionsFetchedResultsController.fetchedObjects;
     [self.mapView addOverlays:allCampusRegions];
-    [self.mapView addAnnotations:allCampusRegions];
 
     // Add all annotations
     NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
@@ -177,7 +176,7 @@
         static NSString *buildingAnnotationViewIdentifier = @"buildingAnnotation";
         UHDBuildingAnnotationView *buildingAnnotationView = (UHDBuildingAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:buildingAnnotationViewIdentifier];
         if (!buildingAnnotationView) {
-            buildingAnnotationView = [[UHDBuildingAnnotationView alloc] initWithAnnotation:building reuseIdentifier:@"UHDBuildingPin"];
+            buildingAnnotationView = [[UHDBuildingAnnotationView alloc] initWithAnnotation:building reuseIdentifier:buildingAnnotationViewIdentifier];
             buildingAnnotationView.canShowCallout = YES;
         } else {
             buildingAnnotationView.annotation = building;
@@ -194,7 +193,7 @@
     NSArray *allOverlays = self.campusRegionsFetchedResultsController.fetchedObjects;
     if ([allOverlays containsObject:overlay])
     {
-        return [[UHDCampusRegionRenderer alloc] initWithCampusRegion:(UHDCampusRegion *)overlay];
+        return [[UHDCampusRegionRenderer alloc] initWithOverlay:(UHDCampusRegion *)overlay];
     }
     return nil;
 }

@@ -11,6 +11,8 @@
 
 @interface UHDCampusRegionRenderer : MKOverlayRenderer
 
-- (instancetype)initWithCampusRegion:(UHDCampusRegion *)campusRegion;
+@property (nonatomic, readonly) UHDCampusRegion *overlay;
+
+- (id)initWithOverlay:(UHDCampusRegion *)overlay;
 
 @end
