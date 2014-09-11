@@ -8,16 +8,18 @@
 
 #import "UHDRemoteManagedLocation.h"
 
-@class UHDCampusRegion;
+@class UHDLocationCategory, UHDCampusRegion;
 
 @interface UHDBuilding : UHDRemoteManagedLocation
 
+@property (nonatomic, retain) UHDLocationCategory *category;
 @property (nonatomic, retain) UHDCampusRegion *campusRegion;
+@property (nonatomic, retain) NSDictionary *addressDictionary;
 @property (nonatomic, retain) NSString *buildingNumber;
 @property (nonatomic, retain) NSData *imageData;
 
 // Computed Properties
-@property (readonly) NSString *identifier; // calculated by combining the region's identifier and the building number
+@property (readonly) NSString *campusIdentifier; // calculated by combining the campus region's identifier and the building number
 @property (nonatomic) UIImage *image;
 
 @end

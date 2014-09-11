@@ -15,7 +15,7 @@
     
     // Configure text
     self.titleLabel.text = item.title;
-    self.subtitleLabel.text = item.identifier;
+    self.subtitleLabel.text = item.campusIdentifier;
 
     // Configure Image
     self.buildingsImageView.image = item.image;

@@ -51,12 +51,11 @@
     UHDCampusRegion *inf = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
     inf.title = @"Im Neuenheimer Feld";
     inf.identifier = @"INF";
-    inf.centerLatitude = 49.41763;
-    inf.centerLongitude = 8.666255;
+    inf.location = [[CLLocation alloc] initWithLatitude:49.41763 longitude:8.666255];
     // Höhe
-    inf.deltaLatitude = 0.01416;
+    inf.spanLatitude = 0.01416;
     // Breite
-    inf.deltaLongitude = 0.0222;
+    inf.spanLongitude = 0.0222;
     /*
      Top Left: 49.424232, 8.655333
      Bottom Right: 49.410792, 8.676694
@@ -67,10 +66,9 @@
     UHDCampusRegion *altstadt = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
     altstadt.title = @"Altstadt";
     altstadt.identifier = @"ALT";
-    altstadt.centerLatitude = 49.4114;
-    altstadt.centerLongitude = 8.707346;
-    altstadt.deltaLatitude = 0.008758;
-    altstadt.deltaLongitude = 0.029726;
+    altstadt.location = [[CLLocation alloc] initWithLatitude:49.4114 longitude:8.707346];
+    altstadt.spanLatitude = 0.008758;
+    altstadt.spanLongitude = 0.029726;
     /*
      Punkt linke Seite: 49.409210, 8.692483
      Punkt oben: 49.415861, 8.712368
@@ -80,10 +78,9 @@
     UHDCampusRegion *bergheim = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
     bergheim.title = @"Bergheim";
     bergheim.identifier = @"BERG";
-    bergheim.centerLatitude = 49.4085;
-    bergheim.centerLongitude = 8.68685;
-    bergheim.deltaLatitude = 0.00315;
-    bergheim.deltaLongitude = 0.01095;
+    bergheim.location = [[CLLocation alloc] initWithLatitude:49.4085 longitude:8.68685];
+    bergheim.spanLatitude = 0.00315;
+    bergheim.spanLongitude = 0.01095;
     bergheim.overlayAngle = -0.268;
     bergheim.overlayImageURL = [NSURL URLWithString:@"https://dl.dropboxusercontent.com/s/rycj0hzqntbx28j/berg.png"];
     
@@ -110,8 +107,7 @@
     UHDBuilding *buildingItem1 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
     buildingItem1.title = @"Kirchhoff-Institut für Physik";
     buildingItem1.buildingNumber = @"227";
-    buildingItem1.latitude = 49.416260; //INF 227 coordinates
-    buildingItem1.longitude = 8.672190;
+    buildingItem1.location = [[CLLocation alloc] initWithLatitude:49.416260 longitude:8.672190];
     buildingItem1.category = category1;
     buildingItem1.campusRegion = inf;
     buildingItem1.image = [UIImage imageNamed:@"kip1"];
@@ -124,8 +120,7 @@
     UHDBuilding *buildingItem2 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
     buildingItem2.title =@"Physikalisches Institut (Klaus-Tschira-Gebäude)";
     buildingItem2.buildingNumber = @"226";
-    buildingItem2.latitude = 49.416250; //INF 226 coordinates
-    buildingItem2.longitude = 8.673171;
+    buildingItem2.location = [[CLLocation alloc] initWithLatitude:49.416250 longitude:8.673171];
     buildingItem2.category = category1;
     buildingItem2.campusRegion = inf;
     buildingItem2.image = [UIImage imageNamed:@"kip"];
@@ -138,8 +133,7 @@
     UHDBuilding *buildingItem3 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
     buildingItem3.title = @"INF 308";
     buildingItem3.buildingNumber = @"308";
-    buildingItem3.latitude = 49.417028; //INF 308 coordinates
-    buildingItem3.longitude = 8.670807;
+    buildingItem3.location = [[CLLocation alloc] initWithLatitude:49.417028 longitude:8.670807];
     buildingItem3.category = category1;
     buildingItem3.campusRegion = inf;
     
@@ -151,8 +145,7 @@
     UHDBuilding *buildingItem4 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
     buildingItem4.title = @"INF 288";
     buildingItem4.buildingNumber = @"288";
-    buildingItem4.latitude = 49.417055; //INF 288 coordinates
-    buildingItem4.longitude = 8.671665;
+    buildingItem4.location = [[CLLocation alloc] initWithLatitude:49.417055 longitude:8.671665];
     buildingItem4.category = category2;
     buildingItem4.campusRegion = inf;
     
@@ -165,12 +158,10 @@
     UHDBuilding *buildingItem5 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
     buildingItem5.title = @"Marstall";
     buildingItem5.buildingNumber = @"2010";
-    buildingItem5.latitude = 49.41280; //Marstall coordinates
-    buildingItem5.longitude = 8.70442;
+    buildingItem5.location = [[CLLocation alloc] initWithLatitude:49.41280 longitude:8.70442];
     buildingItem5.image = [UIImage imageNamed:@"marstallhof-01"];
     buildingItem5.category = category3;
     buildingItem5.campusRegion = altstadt;
-    
     
     
     [managedObjectContext saveToPersistentStore:NULL];

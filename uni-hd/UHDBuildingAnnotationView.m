@@ -48,11 +48,11 @@
         CGContextSetLineWidth(context, frameWidth);
         CGContextStrokeEllipseInRect(context, rect);
         
-        if (building.identifier) {
+        if (building.campusIdentifier) {
             CGRect captionRect = CGRectInset(rect, frameWidth + 1, frameWidth + 1);
             NSMutableParagraphStyle *captionParagraphStyle = [[NSMutableParagraphStyle alloc] init];
             captionParagraphStyle.alignment = NSTextAlignmentCenter;
-            NSAttributedString *caption = [[NSAttributedString alloc] initWithString:building.identifier attributes:@{ NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [UIFont boldSystemFontOfSize:9], NSParagraphStyleAttributeName: captionParagraphStyle }];
+            NSAttributedString *caption = [[NSAttributedString alloc] initWithString:building.campusIdentifier attributes:@{ NSForegroundColorAttributeName: [UIColor whiteColor], NSFontAttributeName: [UIFont boldSystemFontOfSize:9], NSParagraphStyleAttributeName: captionParagraphStyle }];
             CGRect captionTextRect = [caption boundingRectWithSize:captionRect.size options:NSStringDrawingUsesLineFragmentOrigin context:nil];
             [caption drawInRect:CGRectMake(captionRect.origin.x + captionRect.size.width / 2 - captionTextRect.size.width / 2, captionRect.origin.y + captionRect.size.height / 2 - captionTextRect.size.height / 2, captionTextRect.size.width, captionTextRect.size.height)];
         }

@@ -11,15 +11,14 @@
 @implementation UHDRemoteManagedLocation
 
 @dynamic title;
-@dynamic latitude, longitude;
-@dynamic category;
+@dynamic location;
 
 
 #pragma mark - MKAnnotation Protocol
 
 - (CLLocationCoordinate2D)coordinate
 {
-    return CLLocationCoordinate2DMake(self.latitude, self.longitude);
+    return self.location.coordinate;
 }
 
 @end
