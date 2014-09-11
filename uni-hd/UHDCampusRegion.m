@@ -14,18 +14,24 @@ MKMapRect MKMapRectForCoordinateRegion(MKCoordinateRegion region)
 }
 
 #import "UHDCampusRegion.h"
+#import "UHDRemoteDatasourceManager.h"
+#import "UHDMapsRemoteDatasourceDelegate.h"
 
 @implementation UHDCampusRegion
 
-@dynamic title, identifier;
+@dynamic identifier;
 @dynamic buildings;
-@dynamic centerLongitude, centerLatitude, deltaLatitude, deltaLongitude;
-
+@dynamic overlayImageURL, overlayAngle;
+@dynamic spanLatitude, spanLongitude;
 
 # pragma mark - Computed Properties
 
 - (MKCoordinateRegion)coordinateRegion {
-    return MKCoordinateRegionMake(CLLocationCoordinate2DMake(self.centerLatitude, self.centerLongitude), MKCoordinateSpanMake(self.deltaLatitude, self.deltaLongitude));
+    return MKCoordinateRegionMake(self.coordinate, MKCoordinateSpanMake(self.spanLatitude, self.spanLongitude));
+}
+
+- (UIImage *)overlayImage {
+    return [(UHDMapsRemoteDatasourceDelegate *)[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyMaps].delegate overlayImageForUrl:self.overlayImageURL];
 }
 
 
@@ -33,10 +39,6 @@ MKMapRect MKMapRectForCoordinateRegion(MKCoordinateRegion region)
 
 - (MKMapRect)boundingMapRect {
     return MKMapRectForCoordinateRegion(self.coordinateRegion);
-}
-
-- (CLLocationCoordinate2D)coordinate {
-    return self.coordinateRegion.center;
 }
 
 

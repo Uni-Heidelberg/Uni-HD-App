@@ -58,7 +58,7 @@
 {
     if (self.building) {
         self.title = self.building.title;
-        self.identifierLabel.text = self.building.identifier;
+        self.identifierLabel.text = self.building.campusIdentifier;
         self.categoryLabel.text = self.building.category.title;
         self.headerImageView.image = self.building.image;
         [self.mapView removeAnnotations:self.mapView.annotations];

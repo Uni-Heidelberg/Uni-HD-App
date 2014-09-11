@@ -28,7 +28,7 @@
 
 -(void)calculateDistanceWith:(CLLocation *)currentLocation
 {
-    CLLocation *mensaLocation = [[CLLocation alloc]initWithLatitude:self.mensa.latitude longitude:self.mensa.longitude];
+    CLLocation *mensaLocation = self.mensa.location;
                                  
     CLLocationDistance distanceBetween = [currentLocation
                                           distanceFromLocation:mensaLocation];

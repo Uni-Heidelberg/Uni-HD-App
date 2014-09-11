@@ -40,8 +40,7 @@
     UHDMensa *mensaItem = [UHDMensa insertNewObjectIntoContext:managedObjectContext];
     mensaItem.title = @"Marstall";
     mensaItem.image = [UIImage imageNamed:@"marstallhof-01"];
-    mensaItem.latitude = 49.41297656; //Marstall coordinates
-    mensaItem.longitude = 8.70445222;
+    mensaItem.location = [[CLLocation alloc] initWithLatitude:49.41297656 longitude:8.70445222];
     
     
     //Create Sections for Mensa
@@ -92,8 +91,7 @@
     UHDMensa *mensaItem2 = [UHDMensa insertNewObjectIntoContext:managedObjectContext];
     mensaItem2.title = @"Zentralmensa";
     mensaItem2.image = [UIImage imageNamed:@"zentralmensa-01"];
-    mensaItem2.latitude = 49.41555917; //Marstall coordinates
-    mensaItem2.longitude = 8.67088169;
+    mensaItem2.location = [[CLLocation alloc] initWithLatitude:49.41555917 longitude:8.67088169];
     
     //Create Sections for Mensa
     
@@ -122,8 +120,7 @@
     UHDMensa *mensaItem3 = [UHDMensa insertNewObjectIntoContext:managedObjectContext];
     mensaItem3.title = @"Triplex-Mensa";
     mensaItem3.image = [UIImage imageNamed:@"triplexmensa-01"];
-    mensaItem3.latitude = 49.4107952; //Marstall coordinates
-    mensaItem3.longitude = 8.70567262;
+    mensaItem3.location = [[CLLocation alloc] initWithLatitude:49.4107952 longitude:8.70567262];
     
     //Create Sections for Mensa
     

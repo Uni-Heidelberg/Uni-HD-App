@@ -13,13 +13,13 @@
 #import "UHDBuilding.h"
 #import "UHDCampusRegion.h"
 
-
 // View Controllers
 #import "UHDMapsSearchTableViewController.h"
 #import "UHDBuildingDetailViewController.h"
 
 //View
-#import "UHDCampusRegionRenderer.h"
+#import "VIImageOverlayRenderer.h"
+#import "UHDBuildingAnnotationView.h"
 
 
 @interface UHDMapsViewController () <MKMapViewDelegate, NSFetchedResultsControllerDelegate>
@@ -31,6 +31,11 @@
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *mapTypeControl;
 - (IBAction)mapTypeControlValueChanged:(id)sender;
+//@property (strong, nonatomic) IBOutlet MKUserTrackingBarButtonItem *trackingButton;
+@property (weak, nonatomic) IBOutlet UIView *toolbarView;
+@property (strong, nonatomic)IBOutlet UIToolbar *toolbar;
+
+
 
 @end
 
@@ -55,6 +60,15 @@
     NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
     [self.mapView addAnnotations:allBuildings];
     [self.mapView showAnnotations:allBuildings animated:YES];
+    
+    UIBarButtonItem *trackingButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
+    NSMutableArray *items = [[NSMutableArray alloc] initWithArray:self.toolbar.items];
+    [items addObject:trackingButton];
+    [self.toolbar setItems:items animated:YES];
+    [self.toolbarView setAlpha:0.7];
+    
+
+    
 
 }
 
@@ -76,24 +90,17 @@
 - (NSFetchedResultsController *)fetchedResultsController {
     if (!_fetchedResultsController) {
 
-        // Ein NSFetchedResultsController Objekt holt Daten aus der Core Data Datenbank und reagiert auf Änderungen.
-        
-        // Es benötigt eine Fetch Request, das die Entity beschreibt, deren Datenbankeinträge abgefragt werden sollen und einige Eigenschaften wie die Sortierung.
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDBuilding entityName]];
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
-        // Mit einem Predikat kann die Abfrage gefiltert werden (Kommentar entfernen zum ausprobieren):
-        // fetchRequest.predicate = [NSPredicate predicateWithFormat:@"title LIKE %@", @"Marstall"];
-        // Siehe z.B. Doku für Infos zur Predikatsyntax
-        // Dann kann der NSFetchedResultsController mit der Fetch Request erstellt werden. Das NSManagedObjectContext Objekt, das die "Verbindung" zur Datenbank darstellt, wird dieser Klasse vom App Delegate übergeben.
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         fetchedResultsController.delegate = self;
-        // Die Datenbankabfrage kann nun ausgeführt werden.
         [fetchedResultsController performFetch:NULL];
         
         self.fetchedResultsController = fetchedResultsController;
     }
     return _fetchedResultsController;
 }
+
 
 #pragma mark - User Interaction
 
@@ -110,7 +117,6 @@
 
 - (IBAction)mapTypeControlValueChanged:(id)sender {
     
-    //Segment 1 hat Nummer 0 usw.
     switch (self.mapTypeControl.selectedSegmentIndex) {
         case 0:
             self.mapView.mapType = MKMapTypeStandard;
@@ -141,27 +147,16 @@
     
     if ([allBuildings containsObject:building]) {
 
-        MKPinAnnotationView *pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"UHDBuildingPin"];
-        if (!pinView) {
-            pinView = [[MKPinAnnotationView alloc] initWithAnnotation:building reuseIdentifier:@"UHDBuildingPin"];
-            pinView.canShowCallout  = YES;
-            UIButton *detailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-            pinView.rightCalloutAccessoryView = detailButton;
+        static NSString *buildingAnnotationViewIdentifier = @"buildingAnnotation";
+        UHDBuildingAnnotationView *buildingAnnotationView = (UHDBuildingAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:buildingAnnotationViewIdentifier];
+        if (!buildingAnnotationView) {
+            buildingAnnotationView = [[UHDBuildingAnnotationView alloc] initWithAnnotation:building reuseIdentifier:buildingAnnotationViewIdentifier];
+            buildingAnnotationView.canShowCallout = YES;
         } else {
-            pinView.annotation = building;
+            buildingAnnotationView.annotation = building;
         }
         
-        // Customize Pin View
-        if (building.image) {
-            UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 50)]; // TODO: dynamic size?
-            imageView.image = building.image;
-            pinView.leftCalloutAccessoryView = imageView;
-        } else {
-            pinView.leftCalloutAccessoryView = nil;
-        }
-        
-        return pinView;
-        
+        return buildingAnnotationView;
     }
 
     return nil;
@@ -170,28 +165,17 @@
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
 {
     NSArray *allOverlays = self.campusRegionsFetchedResultsController.fetchedObjects;
-    if ([allOverlays containsObject:overlay]) {
-
-        return [[UHDCampusRegionRenderer alloc] initWithCampusRegion:(UHDCampusRegion *)overlay];
-
+    if ([allOverlays containsObject:overlay])
+    {
+        VIImageOverlayRenderer *renderer = [[VIImageOverlayRenderer alloc] initWithOverlay:(UHDCampusRegion *)overlay];
+        renderer.opacity = 0.8;
+        return renderer;
     }
     return nil;
 }
 
 
 #pragma mark - Fetched Results Controller Delegate
-
-- (void)controllerWillChangeContent:(NSFetchedResultsController *)controller {
-    if (controller == self.campusRegionsFetchedResultsController) {
-        [self.mapView removeOverlays:controller.fetchedObjects];
-    } else if (controller == self.fetchedResultsController) {
-    }
-}
-- (void)controllerDidChangeContent:(NSFetchedResultsController *)controller {
-    if (controller == self.campusRegionsFetchedResultsController) {
-        [self.mapView addOverlays:controller.fetchedObjects];
-    }
-}
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
 {

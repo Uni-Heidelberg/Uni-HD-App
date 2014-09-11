@@ -6,23 +6,23 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import "UHDRemoteManagedObject.h"
+#import "UHDRemoteManagedLocation.h"
+#import "VIImageOverlayRenderer.h"
 
-@interface UHDCampusRegion : UHDRemoteManagedObject <MKOverlay>
+@interface UHDCampusRegion : UHDRemoteManagedLocation <VIImageOverlay>
 
-@property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *identifier;
 @property (nonatomic, retain) NSSet *buildings;
-@property (nonatomic) double_t centerLatitude;
-@property (nonatomic) double_t centerLongitude;
-@property (nonatomic) double_t deltaLatitude;
-@property (nonatomic) double_t deltaLongitude;
+@property (nonatomic, retain) NSURL *overlayImageURL;
+@property (nonatomic) double_t overlayAngle;
+@property (nonatomic) double_t spanLatitude;
+@property (nonatomic) double_t spanLongitude;
 
 // Computed Properties
 - (MKCoordinateRegion)coordinateRegion;
+- (UIImage *)overlayImage;
 
 // Mutable To-Many Accessors
 - (NSMutableSet *)mutableBuildings;
-
 
 @end

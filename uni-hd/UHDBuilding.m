@@ -12,14 +12,15 @@
 
 @implementation UHDBuilding
 
-@dynamic buildingNumber;
-@dynamic campusRegion;
+@dynamic category;
+@dynamic campusRegion, buildingNumber;
+@dynamic addressDictionary;
 @dynamic imageData;
 
 
 #pragma mark - Computed Properties
 
-- (NSString *)identifier {
+- (NSString *)campusIdentifier {
     return [NSString stringWithFormat:@"%@ %@", self.campusRegion.identifier, self.buildingNumber];
 }
 
@@ -36,7 +37,7 @@
 // mostly inherited from UHDRemoteManagedLocation
 
 - (NSString *)subtitle {
-    return self.identifier;
+    return self.campusIdentifier;
 }
 
 @end

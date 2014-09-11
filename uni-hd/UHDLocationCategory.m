@@ -11,14 +11,14 @@
 @implementation UHDLocationCategory
 
 @dynamic title;
-@dynamic locations;
+@dynamic buildings;
 
 
 #pragma mark - Mutable To-Many Accessors
 
-- (NSMutableSet *)mutableLocations
+- (NSMutableSet *)mutableBuildings
 {
-    return [self mutableSetValueForKey:@"locations"];
+    return [self mutableSetValueForKey:@"buildings"];
 }
 
 @end
