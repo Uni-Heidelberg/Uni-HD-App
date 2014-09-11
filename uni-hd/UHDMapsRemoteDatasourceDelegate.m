@@ -11,7 +11,6 @@
 #import "UHDLocationCategory.h"
 #import "UHDCampusRegion.h"
 #import "UHDBuilding.h"
-#import "UHDCampusRegionRenderer.h"
 
 
 @implementation UHDMapsRemoteDatasourceDelegate
@@ -63,7 +62,7 @@
      Bottom Right: 49.410792, 8.676694
      Top Right: 49.424228, 8.676694
      */
-    inf.overlayImageURL = [NSURL URLWithString:@"overlay_inf"];
+    inf.overlayImageURL = [NSURL URLWithString:@"https://dl.dropboxusercontent.com/s/40xqkz48pww7x9o/inf.png"];
     
     UHDCampusRegion *altstadt = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
     altstadt.title = @"Altstadt";
@@ -76,7 +75,7 @@
      Punkt linke Seite: 49.409210, 8.692483
      Punkt oben: 49.415861, 8.712368
      */
-    altstadt.overlayImageURL = [NSURL URLWithString:@"overlay_alt"];
+    altstadt.overlayImageURL = [NSURL URLWithString:@"https://dl.dropboxusercontent.com/s/ppavffrpx5uceis/alt.png"];
     
     UHDCampusRegion *bergheim = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
     bergheim.title = @"Bergheim";
@@ -86,7 +85,7 @@
     bergheim.deltaLatitude = 0.00315;
     bergheim.deltaLongitude = 0.01095;
     bergheim.overlayAngle = -0.268;
-    bergheim.overlayImageURL = [NSURL URLWithString:@"overlay_berg"];
+    bergheim.overlayImageURL = [NSURL URLWithString:@"https://dl.dropboxusercontent.com/s/rycj0hzqntbx28j/berg.png"];
     
     /*
      Oben: 49.41150
@@ -177,5 +176,46 @@
     [managedObjectContext saveToPersistentStore:NULL];
 }
 
+
+- (UIImage *)overlayImageForUrl:(NSURL *)overlayImageURL
+{
+    UIImage *overlayImage = nil;
+    
+    // use in-project file
+    // TODO: remove this option?
+    if (!overlayImage) {
+        overlayImage = [UIImage imageNamed:[overlayImageURL lastPathComponent]];
+        if (overlayImage) [self.logger log:@"Using in-project overlay image file." object:overlayImageURL forLevel:VILogLevelVerbose];
+    }
+
+    // use cached file
+    NSString *cachedFile = [NSTemporaryDirectory() stringByAppendingPathComponent:overlayImageURL.lastPathComponent];
+    if (!overlayImage) {
+        if ([[NSFileManager defaultManager] fileExistsAtPath:cachedFile]) {
+            overlayImage = [UIImage imageWithContentsOfFile:cachedFile];
+            [self.logger log:@"Cached overlay image file found." object:overlayImageURL forLevel:VILogLevelVerbose];
+        }
+    }
+    
+    // download and cache
+    if (!overlayImage) {
+        [self.logger log:@"Downloading overlay image..." object:overlayImageURL forLevel:VILogLevelVerbose];
+        NSData *imageData = [NSData dataWithContentsOfURL:overlayImageURL];
+        if (imageData) {
+            [imageData writeToFile:cachedFile atomically:YES];
+            overlayImage = [UIImage imageWithData:imageData];
+            [self.logger log:@"Done downloading overlay image and written to cache file." object:overlayImageURL forLevel:VILogLevelVerbose];
+        } else {
+            [self.logger log:@"Could not download overlay image file." object:overlayImageURL forLevel:VILogLevelWarning];
+        }
+    }
+    
+    if (!overlayImage) {
+        [self.logger log:@"Unable to retrieve overlay image." object:overlayImageURL forLevel:VILogLevelError];
+    }
+    
+    return overlayImage;
+
+}
 
 @end

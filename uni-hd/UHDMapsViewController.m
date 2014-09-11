@@ -18,7 +18,7 @@
 #import "UHDBuildingDetailViewController.h"
 
 //View
-#import "UHDCampusRegionRenderer.h"
+#import "VIImageOverlayRenderer.h"
 #import "UHDBuildingAnnotationView.h"
 
 
@@ -167,7 +167,9 @@
     NSArray *allOverlays = self.campusRegionsFetchedResultsController.fetchedObjects;
     if ([allOverlays containsObject:overlay])
     {
-        return [[UHDCampusRegionRenderer alloc] initWithOverlay:(UHDCampusRegion *)overlay];
+        VIImageOverlayRenderer *renderer = [[VIImageOverlayRenderer alloc] initWithOverlay:(UHDCampusRegion *)overlay];
+        renderer.opacity = 0.8;
+        return renderer;
     }
     return nil;
 }

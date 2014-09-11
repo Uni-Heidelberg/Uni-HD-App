@@ -7,8 +7,9 @@
 //
 
 #import "UHDRemoteManagedObject.h"
+#import "VIImageOverlayRenderer.h"
 
-@interface UHDCampusRegion : UHDRemoteManagedObject <MKOverlay>
+@interface UHDCampusRegion : UHDRemoteManagedObject <VIImageOverlay>
 
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *identifier;

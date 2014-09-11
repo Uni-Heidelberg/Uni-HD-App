@@ -14,13 +14,15 @@ MKMapRect MKMapRectForCoordinateRegion(MKCoordinateRegion region)
 }
 
 #import "UHDCampusRegion.h"
+#import "UHDRemoteDatasourceManager.h"
+#import "UHDMapsRemoteDatasourceDelegate.h"
 
 @implementation UHDCampusRegion
 
 @dynamic title, identifier;
 @dynamic buildings;
 @dynamic centerLongitude, centerLatitude, deltaLatitude, deltaLongitude;
-@dynamic overlayAngle;
+@dynamic overlayImageURL, overlayAngle;
 
 
 # pragma mark - Computed Properties
@@ -30,8 +32,7 @@ MKMapRect MKMapRectForCoordinateRegion(MKCoordinateRegion region)
 }
 
 - (UIImage *)overlayImage {
-    // TODO: download file from server and cache it
-    return [UIImage imageNamed:[self.overlayImageURL lastPathComponent]];
+    return [(UHDMapsRemoteDatasourceDelegate *)[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyMaps].delegate overlayImageForUrl:self.overlayImageURL];
 }
 
 
