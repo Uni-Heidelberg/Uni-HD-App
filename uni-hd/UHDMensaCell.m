@@ -32,9 +32,8 @@
                                  
     CLLocationDistance distanceBetween = [currentLocation
                                           distanceFromLocation:mensaLocation];
-    float distanceInKilometers = distanceBetween/1000;
-  self.distanceLabel.text = [[NSString alloc]
-                            initWithFormat:@"%0.1f km",
-                            distanceInKilometers];
+    self.mensa.currentDistanceInKm = distanceBetween/1000;
+
+    //NSLog(@"the current Distance for Mensa %@ is %f", self.mensa.title, self.mensa.currentDistanceInKm);
 }
 @end

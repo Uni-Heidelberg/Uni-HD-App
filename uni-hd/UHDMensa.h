@@ -14,6 +14,7 @@
 @property (nonatomic, retain) NSSet *menus;
 @property (nonatomic, retain) NSSet *sections;
 @property (nonatomic, assign) Boolean isFavourite;
+@property float currentDistanceInKm;
 
 - (NSMutableSet *)mutableMenus;
 - (NSMutableSet *)mutableSections;

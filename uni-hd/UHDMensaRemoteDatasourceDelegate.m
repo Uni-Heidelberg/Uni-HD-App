@@ -41,6 +41,7 @@
     mensaItem.title = @"Marstall";
     mensaItem.image = [UIImage imageNamed:@"marstallhof-01"];
     mensaItem.location = [[CLLocation alloc] initWithLatitude:49.41297656 longitude:8.70445222];
+    mensaItem.remoteObjectId = 0;
     
     
     //Create Sections for Mensa
@@ -92,6 +93,8 @@
     mensaItem2.title = @"Zentralmensa";
     mensaItem2.image = [UIImage imageNamed:@"zentralmensa-01"];
     mensaItem2.location = [[CLLocation alloc] initWithLatitude:49.41555917 longitude:8.67088169];
+    mensaItem2.remoteObjectId = 1;
+
     
     //Create Sections for Mensa
     
@@ -121,6 +124,8 @@
     mensaItem3.title = @"Triplex-Mensa";
     mensaItem3.image = [UIImage imageNamed:@"triplexmensa-01"];
     mensaItem3.location = [[CLLocation alloc] initWithLatitude:49.4107952 longitude:8.70567262];
+    mensaItem3.remoteObjectId = 2;
+
     
     //Create Sections for Mensa
     

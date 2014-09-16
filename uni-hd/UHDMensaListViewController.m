@@ -1,5 +1,5 @@
 //
-//  UHDMensaViewController.m
+//  UHDMensaListViewController.m
 //  uni-hd
 //
 //  Created by Felix on 07.05.14.
@@ -25,6 +25,9 @@
 @interface UHDMensaListViewController ()
 
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
+@property   NSFetchRequest *fetchRequest;
+- (IBAction)segmentedControlPressed:(id)sender;
+- (IBAction)refreshControlValueChanged:(id)sender;
 
 @end
 
@@ -42,12 +45,12 @@
     self.locationManager = [[CLLocationManager alloc]init];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.delegate = self;
-    [self.locationManager startUpdatingLocation];
+    [self.locationManager startMonitoringSignificantLocationChanges];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.locationManager stopUpdatingLocation];
+    [self.locationManager stopMonitoringSignificantLocationChanges];
 
 }
 
@@ -76,6 +79,29 @@
 
 #pragma mark - User Interaction
 
+- (IBAction)segmentedControlPressed:(id)sender{
+    if( ((UISegmentedControl *)sender).selectedSegmentIndex == 0){
+        self.fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
+    }
+    else if (((UISegmentedControl *)sender).selectedSegmentIndex == 1){
+        self.fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"currentDistanceInKm" ascending:YES]];
+    }
+    
+    NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+    VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, id item) {
+        ((UHDMensaCell *)cell).mensa = (UHDMensa *)item;
+        [(UHDMensaCell *)cell configureForMensa:(UHDMensa *)item];
+        __weak UHDMensaListViewController *weakSelf = self;
+        [(UHDMensaCell *)cell setDelegate: weakSelf];
+    };
+    self.fetchedResultsControllerDataSource = [[VIFetchedResultsControllerDataSource alloc] initWithFetchedResultsController:fetchedResultsController tableView:self.tableView cellIdentifier:@"mensaCell" configureCellBlock:configureCellBlock];
+    [self.tableView reloadData];
+}
+
+- (IBAction)refreshControlValueChanged:(id)sender {
+    
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [[NSUserDefaults standardUserDefaults] setObject:@([(UHDMensa *)self.fetchedResultsControllerDataSource.selectedItem remoteObjectId]) forKey:UHDUserDefaultsKeySelectedMensaId];
@@ -86,10 +112,10 @@
 - (VIFetchedResultsControllerDataSource *)fetchedResultsControllerDataSource {
     if (!_fetchedResultsControllerDataSource) {
         
-        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
-        fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
+        self.fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
+        self.fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
 
-        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
 
         VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, id item) {
             ((UHDMensaCell *)cell).mensa = (UHDMensa *)item;
@@ -98,11 +124,13 @@
             [(UHDMensaCell *)cell setDelegate: weakSelf];
         };
         
-        
         self.fetchedResultsControllerDataSource = [[VIFetchedResultsControllerDataSource alloc] initWithFetchedResultsController:fetchedResultsController tableView:self.tableView cellIdentifier:@"mensaCell" configureCellBlock:configureCellBlock];
         
     }
     return _fetchedResultsControllerDataSource;
+}
+
+- (IBAction)segementedControlPressed:(id)sender {
 }
 #pragma mark - Swipe Table View Cell Delegate
 

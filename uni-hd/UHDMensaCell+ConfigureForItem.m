@@ -14,6 +14,9 @@
     
     self.mensaLabel.text = mensa.title;
     self.mensaImageView.image = self.mensa.image;
+    self.distanceLabel.text = [[NSString alloc]
+                               initWithFormat:@"%0.1f km",
+                               self.mensa.currentDistanceInKm];
 }
 
 @end
