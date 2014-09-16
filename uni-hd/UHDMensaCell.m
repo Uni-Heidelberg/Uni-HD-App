@@ -8,18 +8,22 @@
 
 #import "UHDMensaCell.h"
 
+@interface UHDMensaCell()
+@end
+
 @implementation UHDMensaCell
 
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
     if (self) {
-        // Initialization code
+        
     }
     return self;
 }
 - (void)setIsFavourite:(Boolean)isFavourite {
     self.mensa.isFavourite = isFavourite;
+
 }
 - (Boolean)isFavourite {
     return self.mensa.isFavourite;
