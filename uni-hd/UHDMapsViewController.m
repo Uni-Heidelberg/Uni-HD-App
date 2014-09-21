@@ -16,6 +16,7 @@
 // View Controllers
 #import "UHDMapsSearchTableViewController.h"
 #import "UHDBuildingDetailViewController.h"
+#import "UHDConfigureMapViewController.h"
 
 //View
 #import "VIImageOverlayRenderer.h"
@@ -29,11 +30,10 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSFetchedResultsController *campusRegionsFetchedResultsController;
 
-@property (strong, nonatomic) IBOutlet UISegmentedControl *mapTypeControl;
-- (IBAction)mapTypeControlValueChanged:(id)sender;
-//@property (strong, nonatomic) IBOutlet MKUserTrackingBarButtonItem *trackingButton;
-@property (weak, nonatomic) IBOutlet UIView *toolbarView;
-@property (strong, nonatomic)IBOutlet UIToolbar *toolbar;
+
+- (IBAction)unwindToMap:(UIStoryboardSegue *)segue;
+
+
 
 
 
@@ -62,11 +62,18 @@
     [self.mapView showAnnotations:allBuildings animated:YES];
     
     UIBarButtonItem *trackingButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
-    NSMutableArray *items = [[NSMutableArray alloc] initWithArray:self.toolbar.items];
-    [items addObject:trackingButton];
-    [self.toolbar setItems:items animated:YES];
-    [self.toolbarView setAlpha:0.7];
+    [self.navigationItem setLeftBarButtonItem:trackingButton animated:YES];
     
+    UISearchBar *theSearchBar = [[UISearchBar alloc] init];
+    [self.navigationItem setTitleView:theSearchBar];
+    
+    
+    /*
+     NSMutableArray *items = [[NSMutableArray alloc] initWithArray:self.toolbar.items];
+     [items addObject:trackingButton];
+     [self.toolbar setItems:items animated:YES];
+     [self.toolbarView setAlpha:0.7];
+     */
 
     
 
@@ -113,24 +120,19 @@
     } else if ([segue.identifier isEqualToString:@"showBuildingDetail"]) {
         [(UHDBuildingDetailViewController *)segue.destinationViewController setBuilding:(UHDBuilding *)[(MKAnnotationView *)sender annotation]];
     }
+    /*
+    else if ([segue.identifier isEqualToString:@"showMapConfiguration"]){
+        
+        [(UHDConfigureMapViewController *)segue.destinationViewController setMapView:self.mapView];
+        
+    }*/
 }
 
-- (IBAction)mapTypeControlValueChanged:(id)sender {
+- (IBAction)unwindToMap:(UIStoryboardSegue *)segue{
     
-    switch (self.mapTypeControl.selectedSegmentIndex) {
-        case 0:
-            self.mapView.mapType = MKMapTypeStandard;
-            break;
-        case 1:
-            self.mapView.mapType = MKMapTypeHybrid;
-            break;
-        case 2:
-            self.mapView.mapType = MKMapTypeSatellite;
-            break;
-        default:
-            break;
-    }
 }
+
+
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
