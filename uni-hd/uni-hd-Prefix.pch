@@ -24,6 +24,8 @@
 #define UHDRemoteDatasourceKeyMaps @"UHDRemoteDatasourceKeyMaps"
 
 #define UHDUserDefaultsKeySelectedMensaId @"UHDUserDefaultsKeySelectedMensaId"
+#define UHDUserDefaultsKeyMapType @"kUHDUserDefaultsKeyMapType"
+#define UHDUserDefaultsKeyShowCampusOverlay @"kUHDUserDefaultsKeyShowCampusOverlay"
 
 
 #import "UHDRemoteDatasourceManager.h"

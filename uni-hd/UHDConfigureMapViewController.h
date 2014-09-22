@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UHDConfigureMapViewController : UIViewController
-
-@property (strong, nonatomic) MKMapView *mapView;
+@interface UHDConfigureMapViewController : UITableViewController
 
 @end

@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eca-DM-luB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="eca-DM-luB">
     <dependencies>
         <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Campus-->
@@ -22,49 +23,6 @@
             </objects>
             <point key="canvasLocation" x="98" y="34"/>
         </scene>
-        <!--Einstellungen-->
-        <scene sceneID="FUZ-X5-kfe">
-            <objects>
-                <viewController id="PgG-OG-20i" customClass="UHDConfigureMapViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="TDm-10-Xh6"/>
-                        <viewControllerLayoutGuide type="bottom" id="Dz6-Vw-MbB"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="S5X-GB-iSm">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="zrW-g1-veC">
-                                <rect key="frame" x="20" y="93" width="280" height="30"/>
-                                <segments>
-                                    <segment title="Standard"/>
-                                    <segment title="Hybrid"/>
-                                    <segment title="Satellit"/>
-                                </segments>
-                                <connections>
-                                    <action selector="mapTypeControlValueChanged:" destination="PgG-OG-20i" eventType="valueChanged" id="Ijq-1L-crh"/>
-                                    <action selector="mapTypeControlValueChanged:" destination="aIJ-2O-Ugc" eventType="valueChanged" id="ktZ-4u-7hc"/>
-                                </connections>
-                            </segmentedControl>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                    </view>
-                    <navigationItem key="navigationItem" title="Einstellungen" id="YGS-yf-NS8">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="cWd-cF-kBJ">
-                            <connections>
-                                <segue destination="4jg-Fm-vRd" kind="unwind" identifier="unwindToMap" unwindAction="unwindToMap:" id="bzC-Mf-1Tb"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="mapTypeControl" destination="zrW-g1-veC" id="eqB-zh-qjx"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="QzL-cR-aHv" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="4jg-Fm-vRd" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="1194" y="-998"/>
-        </scene>
         <!--Navigation Controller-->
         <scene sceneID="CBJ-Rc-g9F">
             <objects>
@@ -73,12 +31,103 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="PgG-OG-20i" kind="relationship" relationship="rootViewController" id="SJ8-sT-gsf"/>
+                        <segue destination="Ywf-aI-I7P" kind="relationship" relationship="rootViewController" id="aed-TJ-lmW"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3yH-q9-csQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="596" y="-998"/>
+        </scene>
+        <!--Map Configuration-->
+        <scene sceneID="s9B-gs-n32">
+            <objects>
+                <tableViewController id="Ywf-aI-I7P" customClass="UHDConfigureMapViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="kBR-vQ-UDK">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Appearance" id="MGE-61-CA2">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Owj-Ep-8Ve">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Owj-Ep-8Ve" id="sCq-AV-UBu">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VHA-jB-dHG">
+                                                    <rect key="frame" x="55.5" y="8" width="209" height="28.5"/>
+                                                    <segments>
+                                                        <segment title="Standard"/>
+                                                        <segment title="Hybrid"/>
+                                                        <segment title="Satellite"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="mapTypeControlValueChanged:" destination="Ywf-aI-I7P" eventType="valueChanged" id="sRq-Vz-trf"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="VHA-jB-dHG" secondAttribute="trailing" id="BPk-Lp-1Hu"/>
+                                                <constraint firstAttribute="bottomMargin" secondItem="VHA-jB-dHG" secondAttribute="bottom" id="JUq-jM-RWO"/>
+                                                <constraint firstItem="VHA-jB-dHG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sCq-AV-UBu" secondAttribute="leadingMargin" id="nx0-pz-HP9"/>
+                                                <constraint firstItem="VHA-jB-dHG" firstAttribute="top" secondItem="sCq-AV-UBu" secondAttribute="topMargin" id="om5-tf-qYd"/>
+                                                <constraint firstAttribute="centerX" secondItem="VHA-jB-dHG" secondAttribute="centerX" id="pyR-H7-wN9"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="JVV-Oi-Ofq">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JVV-Oi-Ofq" id="XIe-dD-Wf3">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Campus Overlay" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5f7-ik-Cbd">
+                                                    <rect key="frame" x="8" y="11.5" width="175.5" height="20.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yoM-Ts-Fit">
+                                                    <rect key="frame" x="263" y="8" width="51" height="27.5"/>
+                                                    <connections>
+                                                        <action selector="showCampusOverlaySwitchValueChanged:" destination="Ywf-aI-I7P" eventType="valueChanged" id="wGV-F7-Kz5"/>
+                                                    </connections>
+                                                </switch>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="yoM-Ts-Fit" secondAttribute="trailing" id="5Zn-87-b5j"/>
+                                                <constraint firstAttribute="bottomMargin" relation="lessThanOrEqual" secondItem="yoM-Ts-Fit" secondAttribute="bottom" id="6bs-D4-bxk"/>
+                                                <constraint firstItem="yoM-Ts-Fit" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5f7-ik-Cbd" secondAttribute="trailing" id="93b-0n-WbF"/>
+                                                <constraint firstAttribute="centerY" secondItem="5f7-ik-Cbd" secondAttribute="centerY" id="Npg-FX-FUL"/>
+                                                <constraint firstItem="yoM-Ts-Fit" firstAttribute="top" relation="greaterThanOrEqual" secondItem="XIe-dD-Wf3" secondAttribute="topMargin" id="OQF-oe-mF5"/>
+                                                <constraint firstItem="5f7-ik-Cbd" firstAttribute="leading" secondItem="XIe-dD-Wf3" secondAttribute="leadingMargin" id="PIL-Nb-nTZ"/>
+                                                <constraint firstAttribute="centerY" secondItem="yoM-Ts-Fit" secondAttribute="centerY" id="bOW-S3-V40"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="Ywf-aI-I7P" id="3ph-oO-sFL"/>
+                            <outlet property="delegate" destination="Ywf-aI-I7P" id="M1O-Nl-1d0"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Map Configuration" id="3Nt-7G-XNd">
+                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="Qi6-Tz-MjB">
+                            <connections>
+                                <segue destination="8YN-hH-zML" kind="unwind" unwindAction="unwindToMap:" id="NGq-So-cvl"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapTypeControl" destination="VHA-jB-dHG" id="RHa-jq-j5l"/>
+                        <outlet property="showCampusOverlaySwitch" destination="yoM-Ts-Fit" id="M3i-3o-TlX"/>
+                    </connections>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K3S-Zf-VmD" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="8YN-hH-zML" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="1235" y="-998"/>
         </scene>
         <!--Maps View Controller-->
         <scene sceneID="TgM-vV-o9g">
@@ -98,34 +147,30 @@
                                     <outlet property="delegate" destination="aIJ-2O-Ugc" id="9Dp-td-5xf"/>
                                 </connections>
                             </mapView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jc2-iC-9en">
-                                <rect key="frame" x="252" y="20" width="48" height="30"/>
-                                <state key="normal" title="Search">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="ZZj-nU-e7L" kind="push" identifier="showMapsSearch" id="Pn0-DT-yfC"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Jc2-iC-9en" firstAttribute="top" secondItem="xWL-UC-T7M" secondAttribute="bottom" constant="20" id="2aH-zb-IO6"/>
                             <constraint firstItem="Xq9-aa-Iar" firstAttribute="leading" secondItem="BjU-po-Hso" secondAttribute="leading" id="ESM-BJ-zFp"/>
-                            <constraint firstItem="De8-19-bGo" firstAttribute="top" secondItem="Jc2-iC-9en" secondAttribute="bottom" constant="405" id="L4C-zK-QtM"/>
                             <constraint firstAttribute="trailing" secondItem="Xq9-aa-Iar" secondAttribute="trailing" id="bFR-HD-1mB"/>
                             <constraint firstItem="De8-19-bGo" firstAttribute="top" secondItem="Xq9-aa-Iar" secondAttribute="bottom" id="f5w-54-KuK"/>
-                            <constraint firstAttribute="trailing" secondItem="Jc2-iC-9en" secondAttribute="trailing" constant="20" id="pGJ-VN-JV6"/>
                             <constraint firstItem="Xq9-aa-Iar" firstAttribute="top" secondItem="BjU-po-Hso" secondAttribute="top" id="u9f-by-mkV"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ueJ-uc-S7n">
                         <nil key="title"/>
-                        <barButtonItem key="rightBarButtonItem" systemItem="action" id="Spf-3b-leU">
-                            <connections>
-                                <action selector="searchButton:" destination="aIJ-2O-Ugc" id="bUB-Pa-grs"/>
-                                <segue destination="mK7-43-8Nz" kind="modal" identifier="showMapConfiguration" id="WM4-hj-mKh"/>
-                            </connections>
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="1i1-if-DDD">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="OlN-xa-DVq" userLabel="Configuration Button">
+                                <rect key="frame" x="278" y="413" width="22" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="mK7-43-8Nz" kind="popover" identifier="showMapConfiguration" popoverAnchorView="OlN-xa-DVq" id="ANM-JA-QeA">
+                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                                    </segue>
+                                </connections>
+                            </button>
                         </barButtonItem>
                     </navigationItem>
                     <connections>

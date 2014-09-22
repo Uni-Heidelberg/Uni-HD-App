@@ -8,64 +8,83 @@
 
 #import "UHDConfigureMapViewController.h"
 
-@interface UHDConfigureMapViewController ()  <MKMapViewDelegate>
+
+@interface UHDConfigureMapViewController ()
 
 @property (strong, nonatomic) IBOutlet UISegmentedControl *mapTypeControl;
 - (IBAction)mapTypeControlValueChanged:(id)sender;
 
+@property (strong, nonatomic) IBOutlet UISwitch *showCampusOverlaySwitch;
+
 @end
 
-@implementation UHDConfigureMapViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
+@implementation UHDConfigureMapViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    [self configureView];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(configureView) name:NSUserDefaultsDidChangeNotification object:nil];
 }
 
-- (void)didReceiveMemoryWarning
+- (void)configureView
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    NSUInteger selectedSegmentIndex = 0;
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyMapType]) {
+        switch ([(NSNumber *)[[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyMapType] unsignedIntegerValue]) {
+            case MKMapTypeStandard:
+                selectedSegmentIndex = 0;
+                break;
+            case MKMapTypeHybrid:
+                selectedSegmentIndex = 1;
+                break;
+            case MKMapTypeSatellite:
+                selectedSegmentIndex = 2;
+                break;
+            default:
+                selectedSegmentIndex = -1;
+                break;
+        }
+    } else {
+        selectedSegmentIndex = -1;
+    }
+    self.mapTypeControl.selectedSegmentIndex = selectedSegmentIndex;
+    
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyShowCampusOverlay]) {
+        self.showCampusOverlaySwitch.on = [(NSNumber *)[[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyShowCampusOverlay] boolValue];
+    } else {
+        self.showCampusOverlaySwitch.on = YES;
+    }
 }
+
 
 #pragma mark - User Interaction
 
-- (IBAction)mapTypeControlValueChanged:(id)sender {
-    
+- (IBAction)mapTypeControlValueChanged:(id)sender
+{
+    MKMapType selectedMapType = MKMapTypeStandard;
     switch (self.mapTypeControl.selectedSegmentIndex) {
         case 0:
-            _mapView.mapType = MKMapTypeStandard;
+            selectedMapType = MKMapTypeStandard;
             break;
         case 1:
-            _mapView.mapType = MKMapTypeHybrid;
+            selectedMapType = MKMapTypeHybrid;
             break;
         case 2:
-            _mapView.mapType = MKMapTypeSatellite;
+            selectedMapType = MKMapTypeSatellite;
             break;
         default:
             break;
     }
+    [[NSUserDefaults standardUserDefaults] setObject:@( selectedMapType ) forKey:UHDUserDefaultsKeyMapType];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (IBAction)showCampusOverlaySwitchValueChanged:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    [[NSUserDefaults standardUserDefaults] setObject:@( self.showCampusOverlaySwitch.isOn ) forKey:UHDUserDefaultsKeyShowCampusOverlay];
 }
-*/
 
 @end

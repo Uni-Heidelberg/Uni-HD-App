@@ -42,6 +42,13 @@
     self.locationManager = [[CLLocationManager alloc]init];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.delegate = self;
+    // trigger location authorization
+    // TODO: inform user first
+    if ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined) {
+        if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+            [self.locationManager requestWhenInUseAuthorization];
+        }
+    }
     [self.locationManager startUpdatingLocation];
 }
 - (void)viewWillDisappear:(BOOL)animated

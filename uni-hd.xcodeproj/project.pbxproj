@@ -765,6 +765,9 @@
 					8799DA94192AB4D9009B3CAB = {
 						TestTargetID = 87CBE0871908810B0029D9AF;
 					};
+					87CBE0871908810B0029D9AF = {
+						DevelopmentTeam = SZEDS83NVF;
+					};
 				};
 			};
 			buildConfigurationList = 87CBE0831908810B0029D9AF /* Build configuration list for PBXProject "uni-hd" */;
@@ -1105,6 +1108,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "uni-hd/uni-hd-Prefix.pch";
 				INFOPLIST_FILE = "uni-hd/uni-hd-Info.plist";
@@ -1119,6 +1123,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "uni-hd/uni-hd-Prefix.pch";
 				INFOPLIST_FILE = "uni-hd/uni-hd-Info.plist";

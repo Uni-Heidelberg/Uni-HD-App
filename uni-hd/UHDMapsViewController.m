@@ -16,26 +16,21 @@
 // View Controllers
 #import "UHDMapsSearchTableViewController.h"
 #import "UHDBuildingDetailViewController.h"
-#import "UHDConfigureMapViewController.h"
 
 //View
 #import "VIImageOverlayRenderer.h"
 #import "UHDBuildingAnnotationView.h"
 
 
-@interface UHDMapsViewController () <MKMapViewDelegate, NSFetchedResultsControllerDelegate>
+@interface UHDMapsViewController () <MKMapViewDelegate, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSFetchedResultsController *campusRegionsFetchedResultsController;
 
-
 - (IBAction)unwindToMap:(UIStoryboardSegue *)segue;
-
-
-
-
 
 @end
 
@@ -46,37 +41,54 @@
 {
     [super viewDidLoad];
     
-    // Das self.fetchedResultsController Attribut wird verwendet (unten ist der Getter, der das Objekt erstellt wenn es noch nicht existiert)
-    // In den anderen View Controllern wird häufig VIFetchedResultsControllerDataSource verwendet. Diese Klasse implementiert nützliche Zusatzfunktionalität um einen NSFetchedResultsController, hauptsächlich um die Objekte einfach in einer Table View darstellen zu können (Animationen bei Änderungen usw.). Hier brauchen wir das erstmal nicht, da wir keine Table View haben.
-    // In der Dokumentation zu NSFetchedResultsController sind die Methoden beschrieben, die zur Verfügung stehen (cmd+shift+0).
-    // Wenn sich die zugrundeliegende Datenbank ändert kann man darauf reagieren, indem die Delegate Methoden des NSFetchedResultsControllerDelegate implementiert werden (s. Doku).
-    // Um die Abfrage umzukonfigurieren (z.B. andere Entities, andere Sortierung usw.) kann die Fetch Request angepasst werden (self.fetchedResultsController.fetchRequest). Danach muss wieder ein performFetch (wie unten) ausgeführt werden.
+    // trigger location authorization
+    // TODO: inform user first
+    CLLocationManager *locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    self.locationManager = locationManager;
+    if ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined) {
+        if ([locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
+            [locationManager requestWhenInUseAuthorization];
+        }
+    }
+
+    
+    // Configure UI
+    
+    UIBarButtonItem *trackingButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
+    self.navigationItem.leftBarButtonItem = trackingButton;
+    
+    UISearchBar *searchBar = [[UISearchBar alloc] init];
+    self.navigationItem.titleView = searchBar;
+
+    
+    // Register Notifications
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsDidChange:) name:NSUserDefaultsDidChangeNotification object:[NSUserDefaults standardUserDefaults]];
+    
+    [self configureView];
+
+}
+
+- (void)configureView
+{
+    // Configure map view
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyMapType]) {
+        self.mapView.mapType = [[[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyMapType] unsignedIntegerValue];
+    } else {
+        self.mapView.mapType = MKMapTypeStandard;
+    }
     
     // Add overlays
     NSArray *allCampusRegions = self.campusRegionsFetchedResultsController.fetchedObjects;
-    [self.mapView addOverlays:allCampusRegions];
-
+    [self.mapView removeOverlays:allCampusRegions];
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyShowCampusOverlay] || [[[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyShowCampusOverlay] boolValue]) {
+        [self.mapView addOverlays:allCampusRegions];
+    }
+    
     // Add all annotations
     NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
-    [self.mapView addAnnotations:allBuildings];
+    [self.mapView removeAnnotations:allBuildings];
     [self.mapView showAnnotations:allBuildings animated:YES];
-    
-    UIBarButtonItem *trackingButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
-    [self.navigationItem setLeftBarButtonItem:trackingButton animated:YES];
-    
-    UISearchBar *theSearchBar = [[UISearchBar alloc] init];
-    [self.navigationItem setTitleView:theSearchBar];
-    
-    
-    /*
-     NSMutableArray *items = [[NSMutableArray alloc] initWithArray:self.toolbar.items];
-     [items addObject:trackingButton];
-     [self.toolbar setItems:items animated:YES];
-     [self.toolbarView setAlpha:0.7];
-     */
-
-    
-
 }
 
 - (NSFetchedResultsController *)campusRegionsFetchedResultsController{
@@ -114,29 +126,30 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"showMapsSearch"]) {
-        // Hier muss der MOC (die "Verbindung" zur Datenbank) an den Maps Search VC weitergegeben werden
         UHDMapsSearchTableViewController *mapsSearchVC = segue.destinationViewController;
         mapsSearchVC.managedObjectContext = self.managedObjectContext;
     } else if ([segue.identifier isEqualToString:@"showBuildingDetail"]) {
         [(UHDBuildingDetailViewController *)segue.destinationViewController setBuilding:(UHDBuilding *)[(MKAnnotationView *)sender annotation]];
+    } else if ([segue.identifier isEqualToString:@"showMapConfiguration"]) {
+
     }
-    /*
-    else if ([segue.identifier isEqualToString:@"showMapConfiguration"]){
-        
-        [(UHDConfigureMapViewController *)segue.destinationViewController setMapView:self.mapView];
-        
-    }*/
 }
 
-- (IBAction)unwindToMap:(UIStoryboardSegue *)segue{
+- (IBAction)unwindToMap:(UIStoryboardSegue *)segue {
     
 }
-
-
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
     [self performSegueWithIdentifier:@"showBuildingDetail" sender:view];
+}
+
+
+#pragma mark - Notification responses
+
+- (void)userDefaultsDidChange:(NSNotification *)notification
+{
+    [self configureView];
 }
 
 
