@@ -66,8 +66,9 @@
     NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:NULL];
     if (result.count > 0) {
         self.mensa = result.firstObject;
+        [self.logger log:@"Found selected Mensa" object:self.mensa.title forLevel:VILogLevelDebug];
     } else {
-        [self.logger log:@"selected invalid mensa" forLevel:VILogLevelError];
+        [self.logger log:@"Selected invalid mensa" forLevel:VILogLevelError];
     }
     
 }
