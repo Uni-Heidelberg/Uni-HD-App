@@ -33,6 +33,7 @@
 
 @end
 
+
 @implementation UHDMensaViewController
 
 - (void)viewDidLoad
@@ -53,11 +54,11 @@
 
 - (void)loadSelectedMensa
 {
-    [self.logger log:@"loading selected mensa from user defaults..." forLevel:VILogLevelVerbose];
+    [self.logger log:@"Loading selected mensa from user defaults..." forLevel:VILogLevelDebug];
     
     NSNumber *mensaId = [[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeySelectedMensaId];
     if (!mensaId) {
-        [self.logger log:@"no mensa selected" forLevel:VILogLevelVerbose];
+        [self.logger log:@"No mensa selected" forLevel:VILogLevelDebug];
         return;
     }
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];

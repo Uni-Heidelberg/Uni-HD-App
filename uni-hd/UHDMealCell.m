@@ -7,19 +7,26 @@
 //
 
 #import "UHDMealCell.h"
-#import "UHDFavouritesStarView.h"
 
 
 @interface UHDMealCell ()
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
+@property (weak, nonatomic) IBOutlet UIView *favouriteBar;
+
 @end
+
 
 @implementation UHDMealCell
 
-- (void)setIsFavourite:(Boolean)isFavourite {
-    self.meal.isFavourite = isFavourite;
-}
-- (Boolean)isFavourite {
-    return self.meal.isFavourite;
+- (void)configureForMeal:(UHDMeal *)meal
+{
+    self.titleLabel.text = meal.title;
+    self.priceLabel.text = meal.price;
+    
+    self.isFavourite = meal.isFavourite;
+    self.favouriteBar.hidden = !meal.isFavourite;
 }
 
 @end

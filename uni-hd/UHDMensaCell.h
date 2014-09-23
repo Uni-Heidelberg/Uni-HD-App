@@ -8,16 +8,9 @@
 
 #import "UHDFavouriteCell.h"
 #import "UHDMensa.h"
-#import "UHDSelectMensaDelegateProtocol.h"
-
-
 
 @interface UHDMensaCell : UHDFavouriteCell 
 
-@property (nonatomic, strong) UHDMensa *mensa;
-@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
-@property (weak, nonatomic) IBOutlet UILabel *mensaLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *mensaImageView;
+- (void)configureForMensa:(UHDMensa *)mensa;
 
-- (void)calculateDistanceWith:(CLLocation *)currentLocation;
 @end

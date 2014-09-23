@@ -7,17 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UHDMeal.h"
 #import "UHDFavouriteCell.h"
+#import "UHDMeal.h"
 
-@interface UHDMealCell:UHDFavouriteCell
+@interface UHDMealCell : UHDFavouriteCell
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *priceLabel;
-@property (weak, nonatomic) IBOutlet UIView *favouriteBar;
-
-
-@property (nonatomic, strong) UHDMeal *meal;
-
+- (void)configureForMeal:(UHDMeal *)meal;
 
 @end

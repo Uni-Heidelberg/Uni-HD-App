@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "UHDMensa.h"
 #import "UHDBuildingDetailViewController.h"
 

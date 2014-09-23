@@ -8,36 +8,30 @@
 
 #import "UHDMensaCell.h"
 
+
 @interface UHDMensaCell()
+
+@property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *mensaLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *mensaImageView;
+
 @end
+
 
 @implementation UHDMensaCell
 
-- (id)initWithFrame:(CGRect)frame
+-(void)configureForMensa:(UHDMensa *)mensa
 {
-    self = [super initWithFrame:frame];
-    if (self) {
-        
+    self.mensaLabel.text = mensa.title;
+    self.mensaImageView.image = mensa.image;
+    if (mensa.currentDistance >= 0) {
+        MKDistanceFormatter *distanceFormatter = [[MKDistanceFormatter alloc] init];
+        self.distanceLabel.text = [distanceFormatter stringFromDistance:mensa.currentDistance];
+    } else {
+        self.distanceLabel.text = NSLocalizedString(@"Distance unavailable", nil);
     }
-    return self;
-}
-- (void)setIsFavourite:(Boolean)isFavourite {
-    self.mensa.isFavourite = isFavourite;
 
-}
-- (Boolean)isFavourite {
-    return self.mensa.isFavourite;
+    self.isFavourite = mensa.isFavourite;
 }
 
-
--(void)calculateDistanceWith:(CLLocation *)currentLocation
-{
-    CLLocation *mensaLocation = self.mensa.location;
-                                 
-    CLLocationDistance distanceBetween = [currentLocation
-                                          distanceFromLocation:mensaLocation];
-    self.mensa.currentDistanceInKm = distanceBetween/1000;
-
-    //NSLog(@"the current Distance for Mensa %@ is %f", self.mensa.title, self.mensa.currentDistanceInKm);
-}
 @end

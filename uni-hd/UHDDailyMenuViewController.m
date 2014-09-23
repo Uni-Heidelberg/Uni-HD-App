@@ -9,12 +9,10 @@
 #import "UHDDailyMenuViewController.h"
 #import "UHDMensa.h"
 #import "UHDMealCell.h"
-#import "UHDMealCell+ConfigureForItem.h"
 #import "VIFetchedResultsControllerDataSource.h"
-#import "RMSwipeTableViewCell.h"
 
 
-@interface UHDDailyMenuViewController ()
+@interface UHDDailyMenuViewController () <RMSwipeTableViewCellDelegate>
 
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 
@@ -31,6 +29,7 @@
 {
     if (_dailyMenu == dailyMenu) return;
     _dailyMenu = dailyMenu;
+    
     self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"menu == %@", self.dailyMenu];
     [self.fetchedResultsControllerDataSource reloadData];
     
@@ -73,12 +72,10 @@
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.dailyMenu.managedObjectContext
             sectionNameKeyPath:@"section.title" cacheName:nil];
         
+        __weak UHDDailyMenuViewController *weakSelf = self;
         VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, id item) {
-            ((UHDMealCell *)cell).meal = (UHDMeal *)item;
             [(UHDMealCell *)cell configureForMeal:(UHDMeal *)item];
-            __weak UHDDailyMenuViewController *weakSelf = self;
-            [(UHDMealCell *)cell setDelegate: weakSelf];
-
+            [(UHDMealCell *)cell setDelegate:weakSelf];
         };
         
         self.fetchedResultsControllerDataSource = [[VIFetchedResultsControllerDataSource alloc] initWithFetchedResultsController:fetchedResultsController tableView:self.tableView cellIdentifier:@"mealCell" configureCellBlock:configureCellBlock];
@@ -124,21 +121,20 @@
     [self.logger log:[NSString stringWithFormat:@"swipeTableViewCell: %@ didSwipeToPoint: %@ velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
 }
 
--(void)swipeTableViewCellWillResetState:(RMSwipeTableViewCell *)swipeTableViewCell fromPoint:(CGPoint)point animation:(RMSwipeTableViewCellAnimationType)animation velocity:(CGPoint)velocity {
-    [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellWillResetState: %@ fromPoint: %@ animation: %lu, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
-    if (-point.x >= CGRectGetHeight(swipeTableViewCell.frame)) {
-        if (((UHDMealCell *)swipeTableViewCell).meal.isFavourite) {
-            ((UHDMealCell *)swipeTableViewCell).meal.isFavourite = NO;
-        } else {
-            ((UHDMealCell *)swipeTableViewCell).meal.isFavourite = YES;
-        }
-        [(UHDMealCell *)swipeTableViewCell setFavourite:((UHDMealCell *)swipeTableViewCell).meal.isFavourite animated:YES];
-        }
-    
+-(void)swipeTableViewCellWillResetState:(RMSwipeTableViewCell *)swipeTableViewCell fromPoint:(CGPoint)point animation:(RMSwipeTableViewCellAnimationType)animation velocity:(CGPoint)velocity
+{
+    [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellWillResetState: %@ fromPoint: %@ animation: %u, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
+
+    if ([(UHDFavouriteCell *)swipeTableViewCell shouldTriggerForPoint:point]) {
+        UHDMeal *meal = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:swipeTableViewCell]];
+        
+        meal.isFavourite = !meal.isFavourite;
+        [meal.managedObjectContext saveToPersistentStore:nil];
+    }
 }
 
 -(void)swipeTableViewCellDidResetState:(RMSwipeTableViewCell *)swipeTableViewCell fromPoint:(CGPoint)point animation:(RMSwipeTableViewCellAnimationType)animation velocity:(CGPoint)velocity {
-    [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellDidResetState: %@ fromPoint: %@ animation: %lu, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
+    [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellDidResetState: %@ fromPoint: %@ animation: %u, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
 }
 
 

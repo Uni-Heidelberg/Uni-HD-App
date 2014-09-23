@@ -9,7 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface UHDFavouritesStarView : UIView
-@property UIColor* colour;
-@property double scaleFactor;
+
+@property (strong, nonatomic) UIColor *color;
+@property (nonatomic) CGFloat scaleFactor;
 
 @end

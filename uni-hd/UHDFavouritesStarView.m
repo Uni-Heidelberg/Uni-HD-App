@@ -19,42 +19,22 @@
     return self;
 }
 
-
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
 - (void)drawRect:(CGRect)rect
 {
-    // Drawing code
-    CGContextRef ctx = UIGraphicsGetCurrentContext();
-    CGContextClearRect(ctx, rect);
+    CGFloat r = MIN(rect.size.height, rect.size.width) / 2 * self.scaleFactor;
+    CGFloat theta = 2 * M_PI * (2.0 / 5.0); // 144 degrees
+
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, CGRectGetMidX(rect), CGRectGetMidY(rect)-r);
     
-    
-    int k;
-    
-    double r, theta;
-    
-    
-    
-    r = MIN(40,MIN(rect.size.height*2/5, rect.size.width*2/5))*self.scaleFactor;
-    theta = 2 * M_PI * (2.0 / 5.0); // 144 degrees
-    
-    CGContextBeginPath(ctx);
-    
-    CGContextMoveToPoint(ctx, CGRectGetMidX(rect), CGRectGetMidY(rect)-r);
-    
-    for (k = 1; k < 5; k++) {
-        
-        CGContextAddLineToPoint (ctx,
-                                 
-                                CGRectGetMidX(rect) + r * sin(k * theta),
-                                 
-                                CGRectGetMidY(rect) - r * cos(k * theta));
-        
+    for (int k = 1; k < 5; k++) {
+        CGContextAddLineToPoint(context, CGRectGetMidX(rect) + r * sin(k * theta), CGRectGetMidY(rect) - r * cos(k * theta));
     }
     
-    CGContextClosePath(ctx);
-    CGContextSetFillColorWithColor(ctx, self.colour.CGColor);
-    CGContextFillPath(ctx);
+    CGContextClosePath(context);
+    [self.color setFill];
+    CGContextFillPath(context);
 }
 
 

@@ -8,12 +8,9 @@
 
 @import Foundation;
 @import UIKit;
-#import "UHDSelectMensaDelegateProtocol.h"
-#import "UHDMensaCell.h"
 
-@interface UHDMensaListViewController : UITableViewController <RMSwipeTableViewCellDelegate,CLLocationManagerDelegate>
+@interface UHDMensaListViewController : UITableViewController
+
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
-@property CLLocationManager *locationManager;
-
 
 @end

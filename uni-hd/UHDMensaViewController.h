@@ -7,7 +7,6 @@
 //
 
 @import UIKit;
-#import "UHDMensa.h"
 
 @interface UHDMensaViewController : UIViewController
 

@@ -10,7 +10,8 @@
 
 @interface UHDFavouriteCell : RMSwipeTableViewCell
 
--(void)setFavourite:(BOOL)favourite animated:(BOOL)animated;
+@property (nonatomic) BOOL isFavourite;
 
-@property (nonatomic, assign) Boolean isFavourite;
+- (BOOL)shouldTriggerForPoint:(CGPoint)point;
+
 @end

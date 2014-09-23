@@ -16,19 +16,22 @@
 #import "UHDMensaDetailViewController.h"
 
 // View
-#import "UHDMensaCell+ConfigureForItem.h"
+#import "UHDMensaCell.h"
 #import "UHDFavouriteMensaCell.h"
 
 // Model
 #import "UHDMensa.h"
 
 
-@interface UHDMensaListViewController ()
+@interface UHDMensaListViewController () <RMSwipeTableViewCellDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
-@property   NSFetchRequest *fetchRequest;
-@property UHDFavouriteMensaCell *favouriteCell;
-- (IBAction)segmentedControlPressed:(id)sender;
+
+@property CLLocationManager *locationManager;
+
+@property (weak, nonatomic) IBOutlet UISegmentedControl *sortControl;
+
+- (IBAction)sortControlValueChanged:(id)sender;
 - (IBAction)refreshControlValueChanged:(id)sender;
 
 @end
@@ -36,84 +39,90 @@
 
 @implementation UHDMensaListViewController
 
+
+#pragma mark - View Lifecycle
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // redirect datasource
+    // Redirect datasource
     self.tableView.dataSource = self.fetchedResultsControllerDataSource;
     
-    //create instance of CLLocationManager
-    self.locationManager = [[CLLocationManager alloc]init];
+    // Setup CLLocationManager
+    self.locationManager = [[CLLocationManager alloc] init];
     self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
     self.locationManager.delegate = self;
     // trigger location authorization
     // TODO: inform user first
     if ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined) {
+        // TODO: remove availability check
         if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
             [self.locationManager requestWhenInUseAuthorization];
         }
     }
-    [self.locationManager startMonitoringSignificantLocationChanges];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self.locationManager startUpdatingLocation];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.locationManager stopMonitoringSignificantLocationChanges];
-
+    [self.locationManager stopUpdatingLocation];
 }
 
+
+#pragma mark - User interaction
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:[NSString stringWithFormat:@"showMensaDetail"]]) {
-        UHDMensaDetailViewController *detailVC = [segue destinationViewController];
-        UITableViewCell *owningCell = [self parentCellForView:sender];
-        detailVC.mensa = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:owningCell]];
+    if ([segue.identifier isEqualToString:@"showMensaDetail"]) {
+        UHDMensaDetailViewController *detailVC = segue.destinationViewController;
+        UITableViewCell *cell = [self cellForSubview:sender];
+        detailVC.mensa = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:cell]];
+    } else if ([segue.identifier isEqualToString:@"selectMensa"]) {
+        [[NSUserDefaults standardUserDefaults] setObject:@([(UHDMensa *)self.fetchedResultsControllerDataSource.selectedItem remoteObjectId]) forKey:UHDUserDefaultsKeySelectedMensaId];
     }
 }
--(UITableViewCell *)parentCellForView:(id)theView
+
+-(UITableViewCell *)cellForSubview:(id)theView
 {
     id viewSuperView = [theView superview];
     while (viewSuperView != nil) {
         if ([viewSuperView isKindOfClass:[UITableViewCell class]]) {
             return (UITableViewCell *)viewSuperView;
-        }
-        else {
+        } else {
             viewSuperView = [viewSuperView superview];
         }
     }
     return nil;
 }
 
-#pragma mark - User Interaction
-
-- (IBAction)segmentedControlPressed:(id)sender{
-    if( ((UISegmentedControl *)sender).selectedSegmentIndex == 0){
-        self.fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
-    }
-    else if (((UISegmentedControl *)sender).selectedSegmentIndex == 1){
-        self.fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"currentDistanceInKm" ascending:YES]];
-    }
-    
-    NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-    VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, id item) {
-        ((UHDMensaCell *)cell).mensa = (UHDMensa *)item;
-        [(UHDMensaCell *)cell configureForMensa:(UHDMensa *)item];
-        __weak UHDMensaListViewController *weakSelf = self;
-        [(UHDMensaCell *)cell setDelegate: weakSelf];
-    };
-    self.fetchedResultsControllerDataSource = [[VIFetchedResultsControllerDataSource alloc] initWithFetchedResultsController:fetchedResultsController tableView:self.tableView cellIdentifier:@"mensaCell" configureCellBlock:configureCellBlock];
-    [self.tableView reloadData];
-}
-
-- (IBAction)refreshControlValueChanged:(id)sender {
-    
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (IBAction)sortControlValueChanged:(id)sender
 {
-    [[NSUserDefaults standardUserDefaults] setObject:@([(UHDMensa *)self.fetchedResultsControllerDataSource.selectedItem remoteObjectId]) forKey:UHDUserDefaultsKeySelectedMensaId];
+    NSArray *sortDescriptors = nil;
+    switch (self.sortControl.selectedSegmentIndex) {
+        case 0:
+            sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES] ];
+            break;
+        case 1:
+            sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"currentDistance" ascending:YES], [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES] ];
+            break;
+        default:
+            break;
+    }
+    self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.sortDescriptors = sortDescriptors;
+    [self.fetchedResultsControllerDataSource reloadData];
+}
+
+- (IBAction)refreshControlValueChanged:(UIRefreshControl *)sender
+{
+    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyMensa] refreshWithCompletion:^(BOOL success, NSError *error) {
+        [sender endRefreshing];
+    }];
 }
 
 #pragma mark - Table View Datasource
@@ -121,16 +130,15 @@
 - (VIFetchedResultsControllerDataSource *)fetchedResultsControllerDataSource {
     if (!_fetchedResultsControllerDataSource) {
         
-        self.fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
-        self.fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
+        fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES] ];
 
-        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:self.fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
 
+        __weak UHDMensaListViewController *weakSelf = self;
         VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, id item) {
-            ((UHDMensaCell *)cell).mensa = (UHDMensa *)item;
             [(UHDMensaCell *)cell configureForMensa:(UHDMensa *)item];
-            __weak UHDMensaListViewController *weakSelf = self;
-            [(UHDMensaCell *)cell setDelegate: weakSelf];
+            [(UHDMensaCell *)cell setDelegate:weakSelf];
         };
         
         self.fetchedResultsControllerDataSource = [[VIFetchedResultsControllerDataSource alloc] initWithFetchedResultsController:fetchedResultsController tableView:self.tableView cellIdentifier:@"mensaCell" configureCellBlock:configureCellBlock];
@@ -139,8 +147,7 @@
     return _fetchedResultsControllerDataSource;
 }
 
-- (IBAction)segementedControlPressed:(id)sender {
-}
+
 #pragma mark - Swipe Table View Cell Delegate
 
 -(void)swipeTableViewCellDidStartSwiping:(RMSwipeTableViewCell *)swipeTableViewCell {
@@ -151,43 +158,45 @@
     [self.logger log:[NSString stringWithFormat:@"swipeTableViewCell: %@ didSwipeToPoint: %@ velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
 }
 
--(void)swipeTableViewCellWillResetState:(RMSwipeTableViewCell *)swipeTableViewCell fromPoint:(CGPoint)point animation:(RMSwipeTableViewCellAnimationType)animation velocity:(CGPoint)velocity {
+-(void)swipeTableViewCellWillResetState:(RMSwipeTableViewCell *)swipeTableViewCell fromPoint:(CGPoint)point animation:(RMSwipeTableViewCellAnimationType)animation velocity:(CGPoint)velocity
+{
     [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellWillResetState: %@ fromPoint: %@ animation: %u, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
+    
     if (-point.x >= CGRectGetHeight(swipeTableViewCell.frame)) {
-        if (((UHDMensaCell *)swipeTableViewCell).mensa.isFavourite) {
-            ((UHDMensaCell *)swipeTableViewCell).mensa.isFavourite = NO;
-        } else {
-            ((UHDMensaCell *)swipeTableViewCell).mensa.isFavourite = YES;
-            if (self.favouriteCell==nil) {
+        UHDMensa *mensa = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:swipeTableViewCell]];
+        
+        mensa.isFavourite = !mensa.isFavourite;
+        [mensa.managedObjectContext saveToPersistentStore:nil];
+        
+/*            if (self.favouriteCell==nil) {
                 self.favouriteCell = [[UHDFavouriteMensaCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"favouriteCell"];
             }
-            [self.favouriteCell addFavouriteMensa:((UHDMensaCell *)swipeTableViewCell).mensa];
-        }
-        [(UHDMensaCell *)swipeTableViewCell setFavourite:((UHDMensaCell *)swipeTableViewCell).mensa.isFavourite animated:YES];
+            [self.favouriteCell addFavouriteMensa:((UHDMensaCell *)swipeTableViewCell).mensa];*/
     }
 
 }
 
 -(void)swipeTableViewCellDidResetState:(RMSwipeTableViewCell *)swipeTableViewCell fromPoint:(CGPoint)point animation:(RMSwipeTableViewCellAnimationType)animation velocity:(CGPoint)velocity {
-    [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellDidResetState: %@ fromPoint: %@ animation: %lu, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
+    [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellDidResetState: %@ fromPoint: %@ animation: %u, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
 }
+
+
 #pragma mark - CLLocationManager Delegate
 
-
--(void)locationManager:(CLLocationManager *)manager
-   didUpdateToLocation:(CLLocation *)newLocation
-          fromLocation:(CLLocation *)oldLocation
+-(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
 {
-    int k = [self.tableView numberOfRowsInSection:0];
-
-    for (int i=0; i<k; i++) {
-        UHDMensaCell *cell = (UHDMensaCell*)[self.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:i inSection:0]];
-        [cell calculateDistanceWith: newLocation];
+    for (UHDMensa *mensa in self.fetchedResultsControllerDataSource.fetchedResultsController.fetchedObjects) {
+        mensa.currentDistance = [mensa.location distanceFromLocation:newLocation];
     }
+    [self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
 }
 
 -(void)locationManager:(CLLocationManager *)manager
       didFailWithError:(NSError *)error
 {
+    for (UHDMensa *mensa in self.fetchedResultsControllerDataSource.fetchedResultsController.fetchedObjects) {
+        mensa.currentDistance = -1;
+    }
+    [self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
 }
 @end

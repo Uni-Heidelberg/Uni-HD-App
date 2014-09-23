@@ -15,7 +15,7 @@
 @dynamic menus;
 @dynamic sections;
 @dynamic isFavourite;
-
+@dynamic currentDistance;
 
 // TODO: implement attributes with relationships to maps module
 - (NSString *)buildingNumber {

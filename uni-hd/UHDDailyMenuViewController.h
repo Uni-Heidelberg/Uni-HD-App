@@ -8,12 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "UHDDailyMenu.h"
-#import "UHDSelectMensaDelegateProtocol.h"
-#import "UHDMealCell.h"
 
-@interface UHDDailyMenuViewController : UITableViewController <RMSwipeTableViewCellDelegate>
+@interface UHDDailyMenuViewController : UITableViewController
 
 @property (strong, nonatomic) UHDDailyMenu *dailyMenu;
-@property (strong, nonatomic) NSDate *date; // to store date if no daily menu object is set
+
+/// To store date if no daily menu object is set
+@property (strong, nonatomic) NSDate *date;
 
 @end

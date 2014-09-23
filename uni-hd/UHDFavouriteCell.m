@@ -9,80 +9,65 @@
 #import "UHDFavouriteCell.h"
 #import "UHDFavouritesStarView.h"
 
+#define kUHDFavouriteCellStarSize 44
+#define kUHDFavouriteCellStarOffset 10
+#define kUHDFavouriteCellTriggerLength 30
 
 @interface UHDFavouriteCell ()
 
-@property (nonatomic, strong) UHDFavouritesStarView *greyStarUIView;
-@property (nonatomic, strong) UHDFavouritesStarView *yellowStarUIView;
+@property (strong, nonatomic) UHDFavouritesStarView *backgroundStarUIView;
+@property (strong, nonatomic) UHDFavouritesStarView *favouriteStarUIView;
+
 @end
 
 @implementation UHDFavouriteCell
 
-
--(UHDFavouritesStarView*)greyStarUIView {
-    if (!_greyStarUIView) {
-        _greyStarUIView = [[UHDFavouritesStarView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.contentView.frame), 0, CGRectGetHeight(self.frame), CGRectGetHeight(self.frame))];
-        _greyStarUIView.colour = [UIColor grayColor];
-        _greyStarUIView.scaleFactor = 1.0;
-        [self.backView addSubview:_greyStarUIView];
+- (UHDFavouritesStarView *)backgroundStarUIView {
+    if (!_backgroundStarUIView) {
+        _backgroundStarUIView = [[UHDFavouritesStarView alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.contentView.frame), CGRectGetMidY(self.backView.frame) - kUHDFavouriteCellStarSize / 2, kUHDFavouriteCellStarSize + 2 * kUHDFavouriteCellStarOffset, kUHDFavouriteCellStarSize)];
+        _backgroundStarUIView.color = [UIColor whiteColor];
+        _backgroundStarUIView.scaleFactor = 1.0;
+        [self.backView addSubview:_backgroundStarUIView];
     }
-    return _greyStarUIView;
+    return _backgroundStarUIView;
 }
 
--(UHDFavouritesStarView*)yellowStarUIView {
-    if (!_yellowStarUIView) {
-        _yellowStarUIView = [[UHDFavouritesStarView alloc] initWithFrame:self.greyStarUIView.bounds];
-        _yellowStarUIView.colour = [UIColor favouriteColor];
-        [self.greyStarUIView addSubview:_yellowStarUIView];
+- (UHDFavouritesStarView*)favouriteStarUIView {
+    if (!_favouriteStarUIView) {
+        _favouriteStarUIView = [[UHDFavouritesStarView alloc] initWithFrame:self.backgroundStarUIView.bounds];
+        _favouriteStarUIView.color = [UIColor favouriteColor];
+        [self.backgroundStarUIView addSubview:_favouriteStarUIView];
     }
-    return _yellowStarUIView;
-}
-
-- (void)setFavourite:(BOOL)favourite animated:(BOOL)animated {
-    self.isFavourite = favourite;
+    return _favouriteStarUIView;
 }
 
 -(void)animateContentViewForPoint:(CGPoint)point velocity:(CGPoint)velocity {
-    if (point.x > 0) {
-        return;
-    }
     if (point.x < 0) {
         [super animateContentViewForPoint:point velocity:velocity];
-        // set the star's frame to match the contentView
-        [self.greyStarUIView setFrame:CGRectMake(MAX(CGRectGetMaxX(self.frame) - CGRectGetWidth(self.greyStarUIView.frame), CGRectGetMaxX(self.contentView.frame)), CGRectGetMinY(self.greyStarUIView.frame), CGRectGetWidth(self.greyStarUIView.frame), CGRectGetHeight(self.greyStarUIView.frame))];
-        if (-point.x >= CGRectGetHeight(self.frame) && self.isFavourite == NO) {
-            self.yellowStarUIView.scaleFactor = 1;
-        } else if (self.isFavourite == NO) {
-            self.yellowStarUIView.scaleFactor = pow(-point.x/CGRectGetHeight(self.frame), 4);
-        } else if (-point.x >= CGRectGetHeight(self.frame) && self.isFavourite == YES) {
-            self.yellowStarUIView.scaleFactor = 0;
-       //     self.favouriteBar.hidden = YES;
-        } else if (self.isFavourite == YES) {
-            // already a favourite; but user panned back to a lower value than the action point
-            self.yellowStarUIView.scaleFactor = 1 - pow(point.x/CGRectGetHeight(self.frame), 4);
-         //   self.favouriteBar.hidden = NO;
-            
+        
+        [self.backgroundStarUIView setFrame:CGRectMake(MAX(CGRectGetMaxX(self.frame) - self.backgroundStarUIView.frame.size.width, CGRectGetMaxX(self.contentView.frame)), self.backgroundStarUIView.frame.origin.y, self.backgroundStarUIView.frame.size.width, self.backgroundStarUIView.frame.size.height)];
+        
+        CGFloat panLength = -point.x - self.backgroundStarUIView.frame.size.width;
+        CGFloat scaleFactor = MAX(MIN(panLength / kUHDFavouriteCellTriggerLength, 1), 0);
+        if (self.isFavourite) {
+            scaleFactor = 1 - scaleFactor;
         }
-        [self.yellowStarUIView setNeedsDisplay];
+        self.favouriteStarUIView.scaleFactor = scaleFactor;
+        [self.favouriteStarUIView setNeedsDisplay];
     }
 }
 
--(void)resetCellFromPoint:(CGPoint)point velocity:(CGPoint)velocity {
-    [super resetCellFromPoint:point velocity:velocity];
-    if (point.x < 0 && -point.x <= CGRectGetHeight(self.frame)) {
-        // user did not swipe far enough, animate the checkmark back with the contentView animation
-        [UIView animateWithDuration:self.animationDuration
-                         animations:^{
-                             [self.greyStarUIView setFrame:CGRectMake(CGRectGetMaxX(self.frame), CGRectGetMinY(self.greyStarUIView.frame), CGRectGetWidth(self.greyStarUIView.frame), CGRectGetHeight(self.greyStarUIView.frame))];
-                         }];
-    }
+- (BOOL)shouldTriggerForPoint:(CGPoint)point
+{
+    return -point.x - self.backgroundStarUIView.frame.size.width >= kUHDFavouriteCellTriggerLength;
 }
 
 -(void)cleanupBackView {
     [super cleanupBackView];
-    [self.greyStarUIView removeFromSuperview];
-    self.greyStarUIView = nil;
-    [self.yellowStarUIView removeFromSuperview];
-    self.yellowStarUIView = nil;
+    [self.backgroundStarUIView removeFromSuperview];
+    self.backgroundStarUIView = nil;
+    [self.favouriteStarUIView removeFromSuperview];
+    self.favouriteStarUIView = nil;
 }
+
 @end

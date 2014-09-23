@@ -12,6 +12,7 @@
 
 + (UIColor *)favouriteColor
 {
-    return [UIColor colorWithRed:241/255. green:196/255. blue:15/255. alpha:1];
+    //return [UIColor colorWithRed:241/255. green:196/255. blue:15/255. alpha:1];
+    return [UIColor brandColor];
 }
 @end
