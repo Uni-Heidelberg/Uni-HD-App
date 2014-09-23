@@ -64,6 +64,14 @@
     [[UHDRemoteDatasourceManager defaultManager] refreshAllWithCompletion:nil];
 
     
+    // configure default styles
+    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
+    [UINavigationBar appearance].barTintColor = [UIColor brandColor];
+    [UINavigationBar appearance].tintColor = [UIColor whiteColor];
+    [UINavigationBar appearance].titleTextAttributes = @{ NSForegroundColorAttributeName: [UIColor whiteColor] };
+    [UILabel appearanceWhenContainedIn:[UINavigationBar class], nil].textColor = [UIColor whiteColor];
+
+    
     // setup initial view controllers
     
     // Mensa
@@ -95,12 +103,6 @@
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];
 
-    // configure default navigation bar style and status bar style
-    [UIApplication sharedApplication].statusBarStyle = UIStatusBarStyleLightContent;
-    [UINavigationBar appearance].barTintColor = [UIColor brandColor];
-    [UINavigationBar appearance].tintColor = [UIColor whiteColor];
-    [UINavigationBar appearance].titleTextAttributes = @{ NSForegroundColorAttributeName: [UIColor whiteColor] };
-    [UILabel appearanceWhenContainedIn:[UINavigationBar class], nil].textColor = [UIColor whiteColor];
 
     return YES;
 }
