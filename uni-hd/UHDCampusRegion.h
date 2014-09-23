@@ -20,7 +20,7 @@
 
 // Computed Properties
 - (MKCoordinateRegion)coordinateRegion;
-- (UIImage *)overlayImage;
+@property (readonly) UIImage *overlayImage;
 
 // Mutable To-Many Accessors
 - (NSMutableSet *)mutableBuildings;
