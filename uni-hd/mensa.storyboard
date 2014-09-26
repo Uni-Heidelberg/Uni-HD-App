@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="7iw-G4-EQc">
     <dependencies>
-        <deployment defaultVersion="1808" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
@@ -259,8 +258,15 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SKF-Bq-7fD" customClass="UHDMensaDayPicker" customModule="uni_hd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="60"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="5L9-DT-MhD"/>
+                                </constraints>
+                            </view>
                             <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kt9-P5-ewq">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="455"/>
+                                <rect key="frame" x="0.0" y="60" width="320" height="395"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="COc-8j-LBc" kind="embed" identifier="embedPageVC" id="OvG-WP-bbu"/>
@@ -269,10 +275,13 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="kt9-P5-ewq" firstAttribute="top" secondItem="Kne-O9-Op3" secondAttribute="bottom" id="Rjd-VD-k40"/>
+                            <constraint firstItem="kt9-P5-ewq" firstAttribute="top" secondItem="SKF-Bq-7fD" secondAttribute="bottom" id="I9F-Yv-EZX"/>
                             <constraint firstAttribute="trailing" secondItem="kt9-P5-ewq" secondAttribute="trailing" id="Vp2-q1-p9N"/>
                             <constraint firstItem="JIh-mA-MJy" firstAttribute="top" secondItem="kt9-P5-ewq" secondAttribute="bottom" id="hJt-Ry-W6g"/>
                             <constraint firstItem="kt9-P5-ewq" firstAttribute="leading" secondItem="oAQ-Tf-ZHf" secondAttribute="leading" id="iAh-89-6Os"/>
+                            <constraint firstAttribute="leading" secondItem="SKF-Bq-7fD" secondAttribute="leading" id="kyg-Wm-nNW"/>
+                            <constraint firstAttribute="trailing" secondItem="SKF-Bq-7fD" secondAttribute="trailing" id="pYh-7F-pKp"/>
+                            <constraint firstItem="SKF-Bq-7fD" firstAttribute="top" secondItem="Kne-O9-Op3" secondAttribute="bottom" id="sxr-OZ-ce4"/>
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" bottom="YES"/>
@@ -285,62 +294,51 @@
                                 </segue>
                             </connections>
                         </barButtonItem>
-                        <view key="titleView" contentMode="scaleToFill" id="Kn6-rs-mUK">
-                            <rect key="frame" x="75" y="0.0" width="195" height="44"/>
+                        <view key="titleView" contentMode="scaleToFill" id="Kn6-rs-mUK" userLabel="title view">
+                            <rect key="frame" x="75" y="0.0" width="185" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zvS-q4-D92">
-                                    <rect key="frame" x="0.0" y="0.0" width="195" height="44"/>
-                                    <state key="normal">
-                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="todayButtonPressed:" destination="T28-IL-f43" eventType="touchUpInside" id="2un-4j-ZCm"/>
-                                    </connections>
-                                </button>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T8M-n8-Ijw">
-                                    <rect key="frame" x="86" y="27" width="24" height="14"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" misplaced="YES" text="Mensa Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ua6-YB-hC0">
-                                    <rect key="frame" x="52" y="3" width="91" height="21"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BhK-2z-4jb" userLabel="centered title view">
+                                    <rect key="frame" x="32" y="10.5" width="121" height="23.5"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Mensa Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ua6-YB-hC0">
+                                            <rect key="frame" x="0.0" y="0.0" width="91" height="23.5"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cyD-2R-AqC">
+                                            <rect key="frame" x="99" y="1.5" width="22" height="22"/>
+                                            <state key="normal">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <segue destination="PlF-L6-ulV" kind="push" identifier="showMensaDetail" id="ABh-eb-d6C"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstItem="cyD-2R-AqC" firstAttribute="centerY" secondItem="ua6-YB-hC0" secondAttribute="centerY" id="3kQ-XY-bjE"/>
+                                        <constraint firstAttribute="bottom" secondItem="ua6-YB-hC0" secondAttribute="bottom" id="Je1-0M-Yot"/>
+                                        <constraint firstItem="ua6-YB-hC0" firstAttribute="leading" secondItem="BhK-2z-4jb" secondAttribute="leading" id="NRa-dr-JFn"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="cyD-2R-AqC" secondAttribute="bottom" id="TSn-Ax-gi1"/>
+                                        <constraint firstItem="cyD-2R-AqC" firstAttribute="leading" secondItem="ua6-YB-hC0" secondAttribute="trailing" constant="8" symbolic="YES" id="TuU-Zq-HQg"/>
+                                        <constraint firstAttribute="trailing" secondItem="cyD-2R-AqC" secondAttribute="trailing" id="YPz-bG-02r"/>
+                                        <constraint firstItem="ua6-YB-hC0" firstAttribute="top" secondItem="BhK-2z-4jb" secondAttribute="top" id="euP-hY-KXu"/>
+                                        <constraint firstItem="cyD-2R-AqC" firstAttribute="top" relation="greaterThanOrEqual" secondItem="BhK-2z-4jb" secondAttribute="top" id="oUU-vj-WCc"/>
+                                    </constraints>
+                                </view>
                             </subviews>
                             <constraints>
-                                <constraint firstAttribute="bottom" secondItem="zvS-q4-D92" secondAttribute="bottom" id="2fM-8N-p6b"/>
-                                <constraint firstAttribute="centerX" secondItem="ua6-YB-hC0" secondAttribute="centerX" id="327-1y-y8j"/>
-                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="T8M-n8-Ijw" secondAttribute="trailing" id="FRJ-h9-Lpu"/>
-                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ua6-YB-hC0" secondAttribute="trailing" id="KeV-8N-mLW"/>
-                                <constraint firstAttribute="trailing" secondItem="zvS-q4-D92" secondAttribute="trailing" id="RkM-wE-usc"/>
-                                <constraint firstAttribute="height" constant="44" id="Szl-Kv-Web"/>
-                                <constraint firstAttribute="centerX" secondItem="T8M-n8-Ijw" secondAttribute="centerX" id="U0s-um-mBR"/>
-                                <constraint firstItem="T8M-n8-Ijw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Kn6-rs-mUK" secondAttribute="leading" id="bdO-q9-JrJ"/>
-                                <constraint firstItem="T8M-n8-Ijw" firstAttribute="top" secondItem="ua6-YB-hC0" secondAttribute="bottom" id="dvR-KG-ukR"/>
-                                <constraint firstItem="ua6-YB-hC0" firstAttribute="top" secondItem="Kn6-rs-mUK" secondAttribute="top" constant="3" id="eNu-jw-okb"/>
-                                <constraint firstItem="zvS-q4-D92" firstAttribute="leading" secondItem="Kn6-rs-mUK" secondAttribute="leading" id="jiE-7z-hnd"/>
-                                <constraint firstAttribute="bottom" secondItem="T8M-n8-Ijw" secondAttribute="bottom" constant="3" id="q8C-h6-FVm"/>
-                                <constraint firstItem="zvS-q4-D92" firstAttribute="top" secondItem="Kn6-rs-mUK" secondAttribute="top" id="uUN-dm-TaJ"/>
-                                <constraint firstItem="ua6-YB-hC0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Kn6-rs-mUK" secondAttribute="leading" id="yAa-Vl-E9s"/>
+                                <constraint firstAttribute="centerX" secondItem="BhK-2z-4jb" secondAttribute="centerX" id="gLB-bR-irN"/>
+                                <constraint firstAttribute="centerY" secondItem="BhK-2z-4jb" secondAttribute="centerY" id="ipn-jI-ff2"/>
                             </constraints>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="JgE-90-POw">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="C4m-h4-aBq">
-                                <rect key="frame" x="282" y="11" width="22" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="PlF-L6-ulV" kind="push" identifier="showMensaDetail" id="i6C-fK-wQe"/>
-                                </connections>
-                            </button>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Heute" id="ith-G9-7Hn"/>
                     </navigationItem>
                     <connections>
-                        <outlet property="dateLabel" destination="T8M-n8-Ijw" id="1OV-cz-TGF"/>
+                        <outlet property="dayPicker" destination="SKF-Bq-7fD" id="a0r-F6-0hs"/>
                         <outlet property="titleLabel" destination="ua6-YB-hC0" id="RED-xz-DUr"/>
                     </connections>
                 </viewController>
@@ -499,6 +497,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="iln-OO-g8M"/>
+        <segue reference="ABh-eb-d6C"/>
     </inferredMetricsTieBreakers>
 </document>

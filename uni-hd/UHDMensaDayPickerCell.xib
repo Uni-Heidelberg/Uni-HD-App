@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="14A361c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="mensaDayPickerCell" id="gTV-IL-0wX" customClass="UHDMensaDayPickerCell" customModule="uni_hd" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="72" height="70"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="72" height="70"/>
+                <subviews>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ks4-on-aiK" userLabel="spacer">
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" id="hwY-0H-MTc"/>
+                        </constraints>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vWn-jU-qgO" userLabel="topView">
+                        <rect key="frame" x="30.5" y="6.5" width="10" height="13.5"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iBv-KO-77k">
+                                <rect key="frame" x="0.0" y="0.0" width="10" height="13.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="iBv-KO-77k" firstAttribute="top" secondItem="vWn-jU-qgO" secondAttribute="top" id="CdZ-aC-yXK"/>
+                            <constraint firstItem="iBv-KO-77k" firstAttribute="leading" secondItem="vWn-jU-qgO" secondAttribute="leading" id="Gza-Nb-HpJ"/>
+                            <constraint firstAttribute="bottom" secondItem="iBv-KO-77k" secondAttribute="bottom" id="WQ5-CR-oFs"/>
+                            <constraint firstAttribute="trailing" secondItem="iBv-KO-77k" secondAttribute="trailing" id="jr8-i0-Lin"/>
+                        </constraints>
+                    </view>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AB1-bn-KMV" userLabel="spacer">
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MhX-Of-io8" userLabel="selectionIndicatorView">
+                        <rect key="frame" x="18" y="26.5" width="36" height="36"/>
+                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="MhX-Of-io8" secondAttribute="height" multiplier="1:1" id="3Kv-92-jch"/>
+                            <constraint firstAttribute="height" constant="36" id="tJL-WC-lnF"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="18"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdL-14-UGR">
+                        <rect key="frame" x="25.5" y="34" width="20.5" height="21.5"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ted-KV-Eb3" userLabel="spacer">
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstItem="MhX-Of-io8" firstAttribute="centerX" secondItem="vWn-jU-qgO" secondAttribute="centerX" id="3iy-Wf-T1V"/>
+                <constraint firstItem="MhX-Of-io8" firstAttribute="top" secondItem="AB1-bn-KMV" secondAttribute="bottom" id="5ev-kg-141"/>
+                <constraint firstItem="mdL-14-UGR" firstAttribute="centerY" secondItem="MhX-Of-io8" secondAttribute="centerY" id="7jj-TO-YIu"/>
+                <constraint firstItem="AB1-bn-KMV" firstAttribute="top" secondItem="vWn-jU-qgO" secondAttribute="bottom" id="AjN-Or-Lxx"/>
+                <constraint firstItem="vWn-jU-qgO" firstAttribute="top" secondItem="Ks4-on-aiK" secondAttribute="bottom" id="ClD-iL-eUp"/>
+                <constraint firstAttribute="bottom" secondItem="ted-KV-Eb3" secondAttribute="bottom" id="Eez-Tn-Dd3"/>
+                <constraint firstItem="ted-KV-Eb3" firstAttribute="centerX" secondItem="Ks4-on-aiK" secondAttribute="centerX" id="Hia-UF-e97"/>
+                <constraint firstAttribute="centerX" secondItem="MhX-Of-io8" secondAttribute="centerX" id="LoN-T0-6CQ"/>
+                <constraint firstItem="ted-KV-Eb3" firstAttribute="centerX" secondItem="AB1-bn-KMV" secondAttribute="centerX" id="U09-s4-Z8E"/>
+                <constraint firstItem="ted-KV-Eb3" firstAttribute="top" secondItem="MhX-Of-io8" secondAttribute="bottom" id="Yfu-uF-dH4"/>
+                <constraint firstItem="vWn-jU-qgO" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="top" constant="2" id="ZCY-fm-sCM"/>
+                <constraint firstAttribute="centerX" secondItem="MhX-Of-io8" secondAttribute="centerX" id="aKg-BI-HRg"/>
+                <constraint firstItem="ted-KV-Eb3" firstAttribute="width" secondItem="Ks4-on-aiK" secondAttribute="width" id="agM-cS-7rn"/>
+                <constraint firstItem="ted-KV-Eb3" firstAttribute="width" secondItem="AB1-bn-KMV" secondAttribute="width" id="b6R-Q6-Rh3"/>
+                <constraint firstItem="ted-KV-Eb3" firstAttribute="height" secondItem="AB1-bn-KMV" secondAttribute="height" id="dJ5-8y-MBh"/>
+                <constraint firstItem="mdL-14-UGR" firstAttribute="centerX" secondItem="MhX-Of-io8" secondAttribute="centerX" id="dS2-N9-qRJ"/>
+                <constraint firstItem="Ks4-on-aiK" firstAttribute="height" secondItem="AB1-bn-KMV" secondAttribute="height" id="eI1-Ms-5QP"/>
+                <constraint firstItem="MhX-Of-io8" firstAttribute="centerY" secondItem="vWn-jU-qgO" secondAttribute="centerY" id="gvW-4N-t3t"/>
+                <constraint firstAttribute="centerY" secondItem="MhX-Of-io8" secondAttribute="centerY" priority="250" id="pvz-l0-Op1"/>
+                <constraint firstAttribute="centerX" secondItem="Ks4-on-aiK" secondAttribute="centerX" id="qyw-sZ-fKL"/>
+                <constraint firstItem="MhX-Of-io8" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vWn-jU-qgO" secondAttribute="bottom" constant="8" id="taG-Kr-g4a"/>
+                <constraint firstItem="Ks4-on-aiK" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="w50-Mb-W2v"/>
+            </constraints>
+            <size key="customSize" width="83" height="87"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="ZCY-fm-sCM"/>
+                    <exclude reference="aKg-BI-HRg"/>
+                    <exclude reference="gvW-4N-t3t"/>
+                    <exclude reference="pvz-l0-Op1"/>
+                    <exclude reference="taG-Kr-g4a"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="dayLabel" destination="mdL-14-UGR" id="ctC-Yf-nki"/>
+                <outlet property="selectionIndicatorView" destination="MhX-Of-io8" id="2by-wr-x8b"/>
+                <outlet property="weekdayLabel" destination="iBv-KO-77k" id="YXj-wg-kbc"/>
+            </connections>
+            <point key="canvasLocation" x="449" y="313"/>
+        </collectionViewCell>
+    </objects>
+</document>

@@ -33,3 +33,7 @@
 
 #import "UIColor+UHDBrandColor.h"
 #import "UIColor+UHDFavouriteColor.h"
+
+
+// Swift classes
+#import "uni_hd-Swift.h"
