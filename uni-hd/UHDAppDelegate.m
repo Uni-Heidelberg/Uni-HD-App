@@ -99,7 +99,7 @@
     
     // create and populate window
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-    self.window.tintColor = [UIColor brandColor];   // set brand tint color TODO: move in category
+    self.window.tintColor = [UIColor brandColor];
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];
 

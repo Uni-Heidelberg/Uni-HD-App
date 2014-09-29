@@ -335,7 +335,11 @@
                                 <constraint firstAttribute="centerY" secondItem="BhK-2z-4jb" secondAttribute="centerY" id="ipn-jI-ff2"/>
                             </constraints>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" title="Heute" id="ith-G9-7Hn"/>
+                        <barButtonItem key="rightBarButtonItem" title="Heute" id="ith-G9-7Hn">
+                            <connections>
+                                <action selector="quickDateSelectionButtonPressed:" destination="T28-IL-f43" id="RmM-YA-9p0"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="dayPicker" destination="SKF-Bq-7fD" id="a0r-F6-0hs"/>
@@ -459,6 +463,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="emptyView" destination="bpe-6b-5l7" id="ZuC-cA-HWh"/>
+                        <outlet property="emptyViewLabel" destination="ERu-f1-DlV" id="aVx-cW-In9"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Ld-xY-dQ3" userLabel="First Responder" sceneMemberID="firstResponder"/>

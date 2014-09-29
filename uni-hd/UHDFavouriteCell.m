@@ -41,6 +41,12 @@
     return _favouriteStarUIView;
 }
 
+- (UIView *)backView {
+    UIView *backView = [super backView];
+    backView.backgroundColor = [UIColor groupTableViewBackgroundColor];
+    return backView;
+}
+
 -(void)animateContentViewForPoint:(CGPoint)point velocity:(CGPoint)velocity {
     if (point.x < 0) {
         [super animateContentViewForPoint:point velocity:velocity];

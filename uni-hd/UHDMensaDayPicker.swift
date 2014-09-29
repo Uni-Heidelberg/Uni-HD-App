@@ -8,20 +8,23 @@
 
 import UIKit
 
-
+@objc
 protocol UHDMensaDayPickerDelegate {
     
-    func dayPicker(dayPicker: UHDMensaDayPicker, didSelectDate date: NSDate)
+    optional func dayPicker(dayPicker: UHDMensaDayPicker, canSelectDate date: NSDate) -> Bool
+    optional func dayPicker(dayPicker: UHDMensaDayPicker, didSelectDate date: NSDate?, previousDate: NSDate?)
     
 }
+
+@objc
 
 
 class UHDMensaDayPicker: UIView {
     
     
-    internal var delegate: UHDMensaDayPickerDelegate?
+    @IBOutlet internal var delegate: UHDMensaDayPickerDelegate?
     
-    internal var selectedDate: NSDate?
+    internal private(set) var selectedDate: NSDate?
     
 
     private lazy var collectionView: UICollectionView = {
@@ -43,6 +46,15 @@ class UHDMensaDayPicker: UIView {
     private let collectionViewLength = 50
     private let startDate = NSDate()
     
+    
+    func selectDate(date: NSDate, animated: Bool, scrollPosition: UICollectionViewScrollPosition)
+    {
+        let previousDate = selectedDate
+        selectedDate = date
+        collectionView.selectItemAtIndexPath(indexPathForDate(date), animated: animated, scrollPosition: scrollPosition)
+        delegate?.dayPicker?(self, didSelectDate: date, previousDate: previousDate)
+    }
+    
 
     // MARK: View Management
     
@@ -50,7 +62,7 @@ class UHDMensaDayPicker: UIView {
     {
         super.awakeFromNib()
         self.addSubview(collectionView)
-        collectionView.scrollToItemAtIndexPath(indexPathForIndex(centerIndex), atScrollPosition: .Left, animated: false)
+        collectionView.scrollToItemAtIndexPath(indexPathForDate(startDate), atScrollPosition: .Left, animated: false);
     }
     
     override func layoutSubviews() {
@@ -116,6 +128,7 @@ extension UHDMensaDayPicker: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("mensaDayPickerCell", forIndexPath: indexPath) as UHDMensaDayPickerCell
         let date = dateForIndexPath(indexPath)
         cell.configureForDate(date)
+        cell.enabled = delegate?.dayPicker?(self, canSelectDate: date) ?? true
         return cell
     }
     
@@ -187,11 +200,12 @@ extension UHDMensaDayPicker: UICollectionViewDelegate {
     
     
     // MARK: Date Selection
-    
+        
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
+        let previousDate = selectedDate
         selectedDate = dateForIndexPath(indexPath)
-        delegate?.dayPicker(self, didSelectDate: dateForIndexPath(indexPath))
+        delegate?.dayPicker?(self, didSelectDate: selectedDate, previousDate: previousDate)
     }
 
 }

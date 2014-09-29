@@ -17,7 +17,7 @@
 #import "UHDMensa.h"
 
 
-@interface UHDMensaViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate>
+@interface UHDMensaViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UHDMensaDayPickerDelegate>
 
 @property (strong, nonatomic) UHDMensa *mensa;
 
@@ -28,7 +28,7 @@
 
 - (void)configureView;
 
-- (IBAction)todayButtonPressed:(id)sender;
+- (IBAction)quickDateSelectionButtonPressed:(id)sender;
 - (IBAction)unwindToMainMensa:(UIStoryboardSegue *)segue;
 
 @end
@@ -39,10 +39,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+
+    self.dayPicker.delegate = self; // TODO: move to storyboard
+
     [self loadSelectedMensa];
-    
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsDidChange:) name:NSUserDefaultsDidChangeNotification object:[NSUserDefaults standardUserDefaults]];
+    
+    //[self.dayPicker selectDate:[NSDate date] animated:NO scrollPosition:UICollectionViewScrollPositionLeft];
     
     [self configureView];
 }
@@ -77,16 +80,15 @@
 {
     if (mensa == _mensa) return;
     _mensa = mensa;
-    [self.pageViewController setViewControllers:@[ [self dailyMenuViewControllerForDate:[NSDate date]] ] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
     [self configureView];
 }
 
 - (void)configureView
 {
-    
     self.titleLabel.text = (self.mensa != nil) ? self.mensa.title : NSLocalizedString(@"No Mensa selected", nil);
 
-    self.navigationItem.rightBarButtonItem.enabled = self.mensa != nil;
+    UIBarButtonItem *quickDateSelectionButton = self.navigationItem.rightBarButtonItem;
+    quickDateSelectionButton.title = self.dayPicker.selectedDate != nil && [[NSCalendar currentCalendar] isDateInToday:self.dayPicker.selectedDate] ? NSLocalizedString(@"Tomorrow", nil) : NSLocalizedString(@"Today", nil);
 
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateStyle = NSDateFormatterLongStyle;
@@ -94,13 +96,8 @@
     //self.dateLabel.text = [dateFormatter stringFromDate:[(UHDDailyMenuViewController *)self.pageViewController.viewControllers[0] date]];
 }
 
-#pragma mark - User Interaction
 
-- (IBAction)todayButtonPressed:(id)sender
-{
-    [self.pageViewController setViewControllers:@[ [self dailyMenuViewControllerForDate:[NSDate date]] ] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
-    [self configureView];
-}
+#pragma mark - User Interaction
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -125,12 +122,41 @@
     
 }
 
+- (IBAction)quickDateSelectionButtonPressed:(id)sender
+{
+    NSDate *date = [NSDate date];
+    if ([[NSCalendar currentCalendar] isDateInToday:self.dayPicker.selectedDate]) {
+        NSDateComponents *oneDay = [[NSDateComponents alloc] init];
+        oneDay.day = 1;
+        date = [[NSCalendar currentCalendar] dateByAddingComponents:oneDay toDate:date options:0];
+    }
+    [self.dayPicker selectDate:date animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
+}
+
+
+#pragma mark - Day Picker Delegate
+
+- (BOOL)dayPicker:(UHDMensaDayPicker *)dayPicker canSelectDate:(NSDate *)date
+{
+    return [self.mensa dailyMenuForDate:date] != nil;
+}
+
+- (void)dayPicker:(UHDMensaDayPicker *)dayPicker didSelectDate:(NSDate *)date previousDate:(NSDate *)previousDate
+{
+    if (!date) {
+        // TODO
+    } else if (![[NSCalendar currentCalendar] isDate:date inSameDayAsDate:((UHDDailyMenuViewController *)self.pageViewController.viewControllers.firstObject).date]) {
+        [self.pageViewController setViewControllers:@[ [self dailyMenuViewControllerForDate:date] ] direction:([date compare:previousDate] == NSOrderedAscending) ? UIPageViewControllerNavigationDirectionReverse : UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    }
+    [self configureView];
+}
+
 
 #pragma mark - Page View Controller Delegate
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
 {
-    [self configureView];
+    [self.dayPicker selectDate:((UHDDailyMenuViewController *)pageViewController.viewControllers.firstObject).date animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
 }
 
 

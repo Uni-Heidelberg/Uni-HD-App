@@ -14,10 +14,8 @@ class UHDMensaDayPickerCell: UICollectionViewCell {
     @IBOutlet private weak var selectionIndicatorView: UIView!
     @IBOutlet private weak var dayLabel: UILabel!
     
-    var isToday = false
-    
-    var effectiveTintColor: UIColor {
-        return isToday ? tintColor : UIColor.blackColor()
+    private var effectiveTintColor: UIColor {
+        return enabled ? ( isToday ? tintColor : UIColor.blackColor() ) : UIColor.lightGrayColor()
     }
     
     private lazy var dayFormatter: NSDateFormatter = {
@@ -32,12 +30,21 @@ class UHDMensaDayPickerCell: UICollectionViewCell {
         return formatter
     }()
 
+    
     override var selected: Bool {
         didSet {
             configureView()
         }
     }
     override var highlighted: Bool {
+        didSet {
+            configureView()
+        }
+    }
+    
+    private var isToday = false
+
+    var enabled: Bool = false {
         didSet {
             configureView()
         }
@@ -56,7 +63,7 @@ class UHDMensaDayPickerCell: UICollectionViewCell {
         dayLabel.textColor = selected ? UIColor.whiteColor() : effectiveTintColor
     }
     
-    func configureForDate(date: NSDate)
+    internal func configureForDate(date: NSDate)
     {
         isToday = NSCalendar.currentCalendar().isDateInToday(date)
         
