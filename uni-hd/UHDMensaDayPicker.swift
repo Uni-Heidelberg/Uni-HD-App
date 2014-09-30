@@ -18,41 +18,69 @@ protocol UHDMensaDayPickerDelegate {
 
 @objc
 
-
 class UHDMensaDayPicker: UIView {
     
+
+    var itemWidth: CGFloat = 50 {
+        didSet {
+            self.setNeedsLayout()
+        }
+    }
     
-    @IBOutlet internal var delegate: UHDMensaDayPickerDelegate?
+    @IBOutlet var delegate: UHDMensaDayPickerDelegate?
     
-    internal private(set) var selectedDate: NSDate?
+    private(set) var selectedDate: NSDate? {
+        didSet(previousDate) {
+            if let selectedDate = selectedDate {
+                let dateFormatter = NSDateFormatter()
+                dateFormatter.dateStyle = .FullStyle
+                selectedDateButton.setTitle(dateFormatter.stringFromDate(selectedDate), forState: .Normal)
+            } else {
+                selectedDateButton.setTitle(nil, forState: .Normal)
+            }
+            delegate?.dayPicker?(self, didSelectDate: selectedDate, previousDate: previousDate)
+        }
+    }
     
 
-    private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .Horizontal
-        layout.minimumLineSpacing = 0
-        layout.minimumInteritemSpacing = 0
-        let collectionView = UICollectionView(frame: self.bounds, collectionViewLayout: layout)
-        collectionView.backgroundColor = UIColor.clearColor()
-        collectionView.dataSource = self
-        collectionView.delegate = self
-        collectionView.showsHorizontalScrollIndicator = false
-        collectionView.showsVerticalScrollIndicator = false
-        collectionView.registerNib(UINib(nibName: "UHDMensaDayPickerCell", bundle: NSBundle(forClass: UHDMensaDayPickerCell.self)), forCellWithReuseIdentifier: "mensaDayPickerCell")
-        return collectionView
-        }()
+    @IBOutlet private var collectionView: UICollectionView!
     
+    @IBOutlet private var selectedDateButton: UIButton!
+
+
     private var centerIndex = 0
     private let collectionViewLength = 50
     private let startDate = NSDate()
     
     
+    // MARK: Public Interface
+    
     func selectDate(date: NSDate, animated: Bool, scrollPosition: UICollectionViewScrollPosition)
     {
-        let previousDate = selectedDate
-        selectedDate = date
+        if scrollPosition != .None && indexPathForDate(date) == nil {
+            recenterToIndex(indexForDate(date))
+        }
         collectionView.selectItemAtIndexPath(indexPathForDate(date), animated: animated, scrollPosition: scrollPosition)
-        delegate?.dayPicker?(self, didSelectDate: date, previousDate: previousDate)
+        selectedDate = date
+    }
+    
+    func scrollToDate(date: NSDate, atScrollPosition scrollPosition: UICollectionViewScrollPosition, animated: Bool)
+    {
+        let index = indexForDate(date)
+        if indexPathForIndex(index) == nil && scrollPosition != .None {
+            recenterToIndex(index)
+        }
+        collectionView.scrollToItemAtIndexPath(indexPathForIndex(index)!, atScrollPosition: scrollPosition, animated: animated)
+    }
+    
+    
+    // MARK: User Interaction
+    
+    @IBAction func selectedDatePressed(sender: UIButton)
+    {
+        if let selectedDate = selectedDate {
+            scrollToDate(selectedDate, atScrollPosition: .Left, animated: true)
+        }
     }
     
 
@@ -61,37 +89,38 @@ class UHDMensaDayPicker: UIView {
     override func awakeFromNib()
     {
         super.awakeFromNib()
-        self.addSubview(collectionView)
-        collectionView.scrollToItemAtIndexPath(indexPathForDate(startDate), atScrollPosition: .Left, animated: false);
+        // TODO: find a way to scroll to startDate on on load. changing itemWidth messes up the solution below
+        // collectionView.scrollToItemAtIndexPath(indexPathForDate(startDate), atScrollPosition: .Left, animated: false);
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        collectionView.frame = self.bounds
-        (collectionView.collectionViewLayout as UICollectionViewFlowLayout).itemSize = CGSize(width: collectionView.frame.size.height, height: collectionView.frame.size.height)
+        (collectionView.collectionViewLayout as UICollectionViewFlowLayout).itemSize = CGSize(width: itemWidth, height: collectionView.bounds.height)
+        collectionView.collectionViewLayout.invalidateLayout() // TODO: make sure this works
     }
     
     
-    // MARK: Index Management
+    // MARK: Index Path / Index Conversion
     
     private func indexForIndexPath(indexPath: NSIndexPath) -> Int
     {
         return indexPath.row - collectionViewLength / 2 + centerIndex
     }
     
-    private func indexPathForIndex(index: Int) -> NSIndexPath
+    private func indexPathForIndex(index: Int) -> NSIndexPath?
     {
-        return NSIndexPath(forRow: index + collectionViewLength / 2 - centerIndex, inSection: 0)
+        let row = index - centerIndex + collectionViewLength / 2
+        return row >= 0 && row < collectionViewLength ? NSIndexPath(forRow: row, inSection: 0) : nil
     }
     
     
-    // MARK: Date Management
+    // MARK: Index / Date Conversion
     
     private func dateForIndex(index: Int) -> NSDate
     {
         let deltaDays = NSDateComponents()
         deltaDays.day = index
-        return NSCalendar.currentCalendar().dateByAddingComponents(deltaDays, toDate: startDate, options: NSCalendarOptions.allZeros)!
+        return NSCalendar.currentCalendar().dateByAddingComponents(deltaDays, toDate: startDate, options: .allZeros)!
     }
     
     private func dateForIndexPath(indexPath: NSIndexPath) -> NSDate
@@ -104,7 +133,7 @@ class UHDMensaDayPicker: UIView {
         return NSCalendar.currentCalendar().components(.DayCalendarUnit, fromDate: startDate, toDate: date, options: .allZeros).day
     }
     
-    private func indexPathForDate(date: NSDate) -> NSIndexPath
+    private func indexPathForDate(date: NSDate) -> NSIndexPath?
     {
         return indexPathForIndex(indexForDate(date))
     }
@@ -147,46 +176,34 @@ extension UHDMensaDayPicker: UICollectionViewDelegate {
         if scrollView != collectionView {
             return
         }
-        
-        let itemWidth = (collectionView.collectionViewLayout as UICollectionViewFlowLayout).itemSize.width
-        let adjustment: InfiniteScrollAdjustment = InfiniteScrollAdjustment(contentOffset: scrollView.contentOffset.x, itemWidth: itemWidth, collectionViewLength: collectionViewLength)
-        
-        // TODO: make if-clause
-        switch adjustment {
-        case .None:
-            break
-        default:
-            
-            var newCenterIndex = indexForIndexPath(collectionView.indexPathForItemAtPoint(collectionView.contentOffset)!)
-            var newContentOffset = CGPoint(x: collectionView.contentOffset.x, y: collectionView.contentOffset.y)
-            
-            switch adjustment {
-            case .Leading(let adjustment):
-                newCenterIndex += 1
-                newContentOffset.x += adjustment
-            case .Trailing(let adjustment):
-                newContentOffset.x -= adjustment
-            default:
-                break
-            }
-            
-            centerIndex = newCenterIndex
-            collectionView.contentOffset = newContentOffset
-            
-            if let selectedDate = selectedDate {
-                collectionView.selectItemAtIndexPath(indexPathForDate(selectedDate), animated: false, scrollPosition: UICollectionViewScrollPosition.allZeros)
-            }
+  
+        if scrollView.contentOffset.x <= itemWidth * CGFloat(collectionViewLength) / 4 || scrollView.contentOffset.x >= itemWidth * CGFloat(collectionViewLength) * 3 / 4 {
+            recenterToIndex(indexForIndexPath(collectionView.indexPathForItemAtPoint(collectionView.contentOffset)!))
         }
     }
     
+    private func recenterToIndex(index: Int)
+    {
+        if indexPathForIndex(index) != nil {
+            collectionView.contentOffset.x -= itemWidth * CGFloat(index - centerIndex)
+        }
+        centerIndex = index
+        collectionView.reloadItemsAtIndexPaths(collectionView.indexPathsForVisibleItems()) // TODO: necessary?
+        
+        if let selectedDate = selectedDate {
+            collectionView.selectItemAtIndexPath(indexPathForDate(selectedDate), animated: false, scrollPosition: .None)
+        }
+    }
+    
+
+    // MARK: Snapping to item bounds
+
     func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>)
     {
         if scrollView != collectionView {
             return
         }
-        
-        // MARK: Snapping to item bounds
-        
+
         let itemWidth = (collectionView.collectionViewLayout as UICollectionViewFlowLayout).itemSize.width
         let indexOfItemToSnap = Int(round(targetContentOffset.memory.x / itemWidth))
         
@@ -203,29 +220,7 @@ extension UHDMensaDayPicker: UICollectionViewDelegate {
         
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
-        let previousDate = selectedDate
         selectedDate = dateForIndexPath(indexPath)
-        delegate?.dayPicker?(self, didSelectDate: selectedDate, previousDate: previousDate)
     }
 
-}
-
-enum InfiniteScrollAdjustment {
-    
-    case Leading(adjustment: CGFloat), Trailing(adjustment: CGFloat), None
-    
-    init(contentOffset: CGFloat, itemWidth: CGFloat, collectionViewLength: Int) {
-        
-        let trailingAdjustment = itemWidth * ceil(CGFloat(collectionViewLength) / 4)
-        
-        switch contentOffset {
-        case _ where contentOffset <= itemWidth * floor(CGFloat(collectionViewLength) / 4):
-            self = .Leading(adjustment: itemWidth * floor(CGFloat(collectionViewLength) / 4))
-        case _ where contentOffset >= itemWidth * ceil(CGFloat(collectionViewLength) * 3 / 4):
-            self = .Trailing(adjustment: itemWidth * ceil(CGFloat(collectionViewLength) / 4))
-        default:
-            self = .None
-        }
-        
-    }
 }

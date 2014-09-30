@@ -41,7 +41,6 @@
 		87600EA4192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87600EA3192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m */; };
 		877AEE8819BD370300ED270D /* UHDBuildingAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 877AEE8719BD370300ED270D /* UHDBuildingAnnotationView.m */; };
 		87839F3A19D4D70B00E5E6C8 /* UHDMensaDayPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87839F3819D4D70B00E5E6C8 /* UHDMensaDayPickerCell.swift */; };
-		87839F3B19D4D70B00E5E6C8 /* UHDMensaDayPickerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87839F3919D4D70B00E5E6C8 /* UHDMensaDayPickerCell.xib */; };
 		87839F3D19D52A3B00E5E6C8 /* UHDMensaDayPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87839F3C19D52A3B00E5E6C8 /* UHDMensaDayPicker.swift */; };
 		8799DA96192AB4D9009B3CAB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE0B01908810B0029D9AF /* XCTest.framework */; };
 		8799DA97192AB4D9009B3CAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08B1908810B0029D9AF /* Foundation.framework */; };
@@ -210,7 +209,6 @@
 		877AEE8619BD370300ED270D /* UHDBuildingAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDBuildingAnnotationView.h; sourceTree = "<group>"; };
 		877AEE8719BD370300ED270D /* UHDBuildingAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDBuildingAnnotationView.m; sourceTree = "<group>"; };
 		87839F3819D4D70B00E5E6C8 /* UHDMensaDayPickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UHDMensaDayPickerCell.swift; sourceTree = "<group>"; };
-		87839F3919D4D70B00E5E6C8 /* UHDMensaDayPickerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UHDMensaDayPickerCell.xib; sourceTree = "<group>"; };
 		87839F3C19D52A3B00E5E6C8 /* UHDMensaDayPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UHDMensaDayPicker.swift; sourceTree = "<group>"; };
 		8799DA95192AB4D9009B3CAB /* uni-hd-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "uni-hd-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8799DA9B192AB4D9009B3CAB /* uni-hd-tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "uni-hd-tests-Info.plist"; sourceTree = "<group>"; };
@@ -461,7 +459,6 @@
 				DC3A86A219C8A41A00ABCA56 /* UHDFavouriteMensaCell.m */,
 				87839F3C19D52A3B00E5E6C8 /* UHDMensaDayPicker.swift */,
 				87839F3819D4D70B00E5E6C8 /* UHDMensaDayPickerCell.swift */,
-				87839F3919D4D70B00E5E6C8 /* UHDMensaDayPickerCell.xib */,
 			);
 			name = Mensa;
 			sourceTree = "<group>";
@@ -925,7 +922,6 @@
 				87CBE0AA1908810B0029D9AF /* Images.xcassets in Resources */,
 				87CBE0961908810B0029D9AF /* InfoPlist.strings in Resources */,
 				87DBE7F41919C3F700C16970 /* news.storyboard in Resources */,
-				87839F3B19D4D70B00E5E6C8 /* UHDMensaDayPickerCell.xib in Resources */,
 				DC87FDF8191AA00600019F32 /* mensa.storyboard in Resources */,
 				87E85274195727E4007503B8 /* maps.storyboard in Resources */,
 			);

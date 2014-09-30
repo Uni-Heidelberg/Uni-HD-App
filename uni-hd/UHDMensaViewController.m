@@ -40,14 +40,13 @@
 {
     [super viewDidLoad];
 
-    self.dayPicker.delegate = self; // TODO: move to storyboard
-
     [self loadSelectedMensa];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsDidChange:) name:NSUserDefaultsDidChangeNotification object:[NSUserDefaults standardUserDefaults]];
     
-    //[self.dayPicker selectDate:[NSDate date] animated:NO scrollPosition:UICollectionViewScrollPositionLeft];
-    
-    [self configureView];
+    self.dayPicker.itemWidth = self.dayPicker.bounds.size.width / 7;
+    self.dayPicker.delegate = self; // TODO: move to storyboard
+    [self.dayPicker selectDate:[NSDate date] animated:NO scrollPosition:UICollectionViewScrollPositionLeft];
+
 }
 
 - (void)userDefaultsDidChange:(NSNotification *)notification
@@ -109,7 +108,7 @@
         self.pageViewController = segue.destinationViewController;
         self.pageViewController.dataSource = self;
         self.pageViewController.delegate = self;
-        [self.pageViewController setViewControllers:@[ [self dailyMenuViewControllerForDate:[NSDate date]] ] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil];
+        [self.pageViewController setViewControllers:@[ [self dailyMenuViewControllerForDate:[NSDate date]] ] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil]; // default (initial) view controller
     }
     else if ([segue.identifier isEqualToString:[NSString stringWithFormat:@"showMensaDetail"]]) {
         UHDMensaDetailViewController *detailVC = [segue destinationViewController];

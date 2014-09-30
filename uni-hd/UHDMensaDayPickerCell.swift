@@ -62,7 +62,7 @@ class UHDMensaDayPickerCell: UICollectionViewCell {
         selectionIndicatorView.hidden = !selected
         dayLabel.textColor = selected ? UIColor.whiteColor() : effectiveTintColor
     }
-    
+        
     internal func configureForDate(date: NSDate)
     {
         isToday = NSCalendar.currentCalendar().isDateInToday(date)
