@@ -73,4 +73,9 @@ class UHDMensaDayPickerCell: UICollectionViewCell {
         weekdayLabel.text = weekdayFormatter.stringFromDate(date)
     }
     
+    override func tintColorDidChange() {
+        super.tintColorDidChange()
+        self.configureView()
+    }
+    
 }
