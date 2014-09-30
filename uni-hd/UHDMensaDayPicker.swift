@@ -32,6 +32,11 @@ class UHDMensaDayPicker: UIView {
     
     private(set) var selectedDate: NSDate? {
         didSet(previousDate) {
+            // remote time components
+            if let selectedDate = selectedDate {
+                self.selectedDate = NSCalendar.currentCalendar().dateBySettingHour(0, minute: 0, second: 0, ofDate: selectedDate, options: .allZeros)
+            }
+            // update interface
             if let selectedDate = selectedDate {
                 let dateFormatter = NSDateFormatter()
                 dateFormatter.dateStyle = .FullStyle
@@ -50,13 +55,17 @@ class UHDMensaDayPicker: UIView {
 
     private var centerIndex = 0
     private let collectionViewLength = 50
-    private let startDate = NSDate()
+    private let startDate: NSDate = {
+       return NSCalendar.currentCalendar().dateBySettingHour(0, minute: 0, second: 0, ofDate: NSDate(), options: .allZeros)
+    }()
     
     
     // MARK: Public Interface
     
     func selectDate(date: NSDate, animated: Bool, scrollPosition: UICollectionViewScrollPosition)
     {
+        let date = NSCalendar.currentCalendar().dateBySettingHour(0, minute: 0, second: 0, ofDate: date, options: .allZeros)
+        
         if scrollPosition != .None && indexPathForDate(date) == nil {
             recenterToIndex(indexForDate(date))
         }
@@ -135,7 +144,7 @@ class UHDMensaDayPicker: UIView {
     
     private func indexForDate(date: NSDate) -> Int
     {
-        return NSCalendar.currentCalendar().components(.DayCalendarUnit, fromDate: startDate, toDate: date, options: .allZeros).day
+        return NSCalendar.currentCalendar().components(.DayCalendarUnit, fromDate: startDate, toDate: date, options: NSCalendarOptions.allZeros).day
     }
     
     private func indexPathForDate(date: NSDate) -> NSIndexPath?

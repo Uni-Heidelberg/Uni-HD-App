@@ -31,8 +31,7 @@
     if (_dailyMenu == dailyMenu) return;
     _dailyMenu = dailyMenu;
     
-    self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"menu == %@", self.dailyMenu];
-    [self.fetchedResultsControllerDataSource reloadData];
+    self.fetchedResultsControllerDataSource = nil;
     
     [self configureView];
 }
@@ -59,6 +58,8 @@
     dateFormatter.dateStyle = NSDateFormatterShortStyle;
     self.emptyViewLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Menu unavailable for %@", nil), [dateFormatter stringFromDate:self.date]];
     self.tableView.tableHeaderView = self.dailyMenu ? nil : self.emptyView;
+    
+    [self.tableView reloadData];
 }
 
 - (VIFetchedResultsControllerDataSource *)fetchedResultsControllerDataSource {
@@ -93,11 +94,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
+    if (!self.dailyMenu) return 0;
     return [self.fetchedResultsControllerDataSource numberOfSectionsInTableView:tableView];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if (!self.dailyMenu) return 0;
     return [self.fetchedResultsControllerDataSource tableView:tableView numberOfRowsInSection:section];
 }
 
