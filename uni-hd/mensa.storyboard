@@ -277,7 +277,7 @@
                                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                                     <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                                     <subviews>
-                                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xvt-Ej-1LI" userLabel="spacer">
+                                                        <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xvt-Ej-1LI" userLabel="spacer">
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" id="rdx-ew-z1H"/>
@@ -301,7 +301,7 @@
                                                                 <constraint firstItem="22E-yK-uHa" firstAttribute="top" secondItem="Yn8-8x-RWs" secondAttribute="top" id="DLQ-9t-Gf7"/>
                                                             </constraints>
                                                         </view>
-                                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e6T-NR-9lP" userLabel="spacer">
+                                                        <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="e6T-NR-9lP" userLabel="spacer">
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Fo-wc-RwI" userLabel="selectionIndicatorView">
@@ -323,7 +323,7 @@
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H3w-p8-RNi" userLabel="spacer">
+                                                        <view hidden="YES" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="H3w-p8-RNi" userLabel="spacer">
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </view>
                                                     </subviews>
@@ -355,11 +355,11 @@
                                                 </constraints>
                                                 <variation key="default">
                                                     <mask key="constraints">
-                                                        <exclude reference="LF5-iU-YRp"/>
                                                         <exclude reference="Tj9-Bq-suK"/>
+                                                        <exclude reference="nQx-6E-3Q2"/>
                                                         <exclude reference="ofi-WC-BSt"/>
                                                         <exclude reference="uzE-69-FGM"/>
-                                                        <exclude reference="nQx-6E-3Q2"/>
+                                                        <exclude reference="LF5-iU-YRp"/>
                                                     </mask>
                                                 </variation>
                                                 <connections>

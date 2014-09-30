@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VILogKit
 
 @objc
 protocol UHDMensaDayPickerDelegate {
@@ -23,7 +24,7 @@ class UHDMensaDayPicker: UIView {
 
     var itemWidth: CGFloat = 50 {
         didSet {
-            self.setNeedsLayout()
+            adjustItemSize()
         }
     }
     
@@ -91,10 +92,15 @@ class UHDMensaDayPicker: UIView {
         super.awakeFromNib()
         // TODO: find a way to scroll to startDate on on load. changing itemWidth messes up the solution below
         // collectionView.scrollToItemAtIndexPath(indexPathForDate(startDate), atScrollPosition: .Left, animated: false);
+        adjustItemSize()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
+        adjustItemSize()
+    }
+    
+    private func adjustItemSize() {
         (collectionView.collectionViewLayout as UICollectionViewFlowLayout).itemSize = CGSize(width: itemWidth, height: collectionView.bounds.height)
         collectionView.collectionViewLayout.invalidateLayout() // TODO: make sure this works
     }
@@ -178,7 +184,7 @@ extension UHDMensaDayPicker: UICollectionViewDelegate {
         }
   
         if scrollView.contentOffset.x <= itemWidth * CGFloat(collectionViewLength) / 4 || scrollView.contentOffset.x >= itemWidth * CGFloat(collectionViewLength) * 3 / 4 {
-            recenterToIndex(indexForIndexPath(collectionView.indexPathForItemAtPoint(collectionView.contentOffset)!))
+            recenterToIndex(centerIndex + Int(scrollView.contentOffset.x / itemWidth) - collectionViewLength / 2)
         }
     }
     
@@ -193,6 +199,8 @@ extension UHDMensaDayPicker: UICollectionViewDelegate {
         if let selectedDate = selectedDate {
             collectionView.selectItemAtIndexPath(indexPathForDate(selectedDate), animated: false, scrollPosition: .None)
         }
+
+        logger.log("Recentered to index \(index).", forLevel: .Debug)
     }
     
 
@@ -223,4 +231,14 @@ extension UHDMensaDayPicker: UICollectionViewDelegate {
         selectedDate = dateForIndexPath(indexPath)
     }
 
+}
+
+
+// MARK: Logging
+
+extension UHDMensaDayPicker {
+    
+    var logger: VILogger {
+        return VILogger.loggerForKeyPath("UHDMensaDayPicker")
+    }
 }
