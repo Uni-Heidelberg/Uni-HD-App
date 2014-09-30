@@ -35,13 +35,13 @@
 		870591DB19C0DDFA003E2906 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 870591DA19C0DDFA003E2906 /* UIImage+ImageEffects.m */; };
 		870591DF19C10922003E2906 /* VIImageOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 870591DE19C10922003E2906 /* VIImageOverlayRenderer.m */; };
 		872750F21964A1D100FDBC4E /* UHDMensaListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC87FDFA191AA12D00019F32 /* UHDMensaListViewController.m */; };
+		8734357A19DB6C67005ED0E8 /* VIOSFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87539B6D19DB46820084658D /* VIOSFramework.framework */; };
+		8734357B19DB6C67005ED0E8 /* VIOSFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87539B6D19DB46820084658D /* VIOSFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8734358019DB6C73005ED0E8 /* VILogKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8734357F19DB6C73005ED0E8 /* VILogKit.framework */; };
+		8734358119DB6C73005ED0E8 /* VILogKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8734357F19DB6C73005ED0E8 /* VILogKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8737FF0C193F9EB0007D61C4 /* VIFetchedResultsControllerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8737FF0B193F9EB0007D61C4 /* VIFetchedResultsControllerDataSource.m */; };
 		875396021932B03C00DFEF19 /* UHDNewsSourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 875396011932B03C00DFEF19 /* UHDNewsSourceCell.m */; };
 		875396081932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 875396071932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.m */; };
-		87539B7019DB469E0084658D /* VIOSFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87539B6D19DB46820084658D /* VIOSFramework.framework */; };
-		87539B7119DB469E0084658D /* VIOSFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87539B6D19DB46820084658D /* VIOSFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		87539B7919DB495D0084658D /* VILogKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87539B7819DB495D0084658D /* VILogKit.framework */; };
-		87539B7A19DB495D0084658D /* VILogKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87539B7819DB495D0084658D /* VILogKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		87600EA4192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87600EA3192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m */; };
 		877AEE8819BD370300ED270D /* UHDBuildingAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 877AEE8719BD370300ED270D /* UHDBuildingAnnotationView.m */; };
 		87839F3A19D4D70B00E5E6C8 /* UHDMensaDayPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87839F3819D4D70B00E5E6C8 /* UHDMensaDayPickerCell.swift */; };
@@ -100,6 +100,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		8734357C19DB6C67005ED0E8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87539B6619DB46820084658D /* VIOSFramework.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 87F86EF11991E82A00B8A166;
+			remoteInfo = VIOSFramework;
+		};
 		87539B6C19DB46820084658D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 87539B6619DB46820084658D /* VIOSFramework.xcodeproj */;
@@ -114,13 +121,6 @@
 			remoteGlobalIDString = 87F86EFD1991E82A00B8A166;
 			remoteInfo = VIOSFrameworkTests;
 		};
-		87539B7219DB469F0084658D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 87539B6619DB46820084658D /* VIOSFramework.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 87F86EF11991E82A00B8A166;
-			remoteInfo = VIOSFramework;
-		};
 		8799DAA2192AB4D9009B3CAB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 87CBE0801908810B0029D9AF /* Project object */;
@@ -131,14 +131,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		87EBB05E19D2319300F5E3AD /* Embed Frameworks */ = {
+		8734357E19DB6C68005ED0E8 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				87539B7119DB469E0084658D /* VIOSFramework.framework in Embed Frameworks */,
-				87539B7A19DB495D0084658D /* VILogKit.framework in Embed Frameworks */,
+				8734357B19DB6C67005ED0E8 /* VIOSFramework.framework in Embed Frameworks */,
+				8734358119DB6C73005ED0E8 /* VILogKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,6 +202,7 @@
 		870591DD19C10922003E2906 /* VIImageOverlayRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIImageOverlayRenderer.h; sourceTree = "<group>"; };
 		870591DE19C10922003E2906 /* VIImageOverlayRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIImageOverlayRenderer.m; sourceTree = "<group>"; };
 		8720978719D232D100269AA6 /* uni-hd-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uni-hd-Bridging-Header.h"; sourceTree = "<group>"; };
+		8734357F19DB6C73005ED0E8 /* VILogKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = VILogKit.framework; path = "/Users/knl/Library/Developer/Xcode/DerivedData/uni-hd-fedgpnezxqnymdbsirnvjggrhebd/Build/Products/Debug-iphoneos/VILogKit.framework"; sourceTree = "<absolute>"; };
 		8737FF0A193F9EB0007D61C4 /* VIFetchedResultsControllerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIFetchedResultsControllerDataSource.h; path = "VIOSFramework/Data Sources/VIFetchRequestDataSource/VIFetchedResultsControllerDataSource.h"; sourceTree = "<group>"; };
 		8737FF0B193F9EB0007D61C4 /* VIFetchedResultsControllerDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIFetchedResultsControllerDataSource.m; path = "VIOSFramework/Data Sources/VIFetchRequestDataSource/VIFetchedResultsControllerDataSource.m"; sourceTree = "<group>"; };
 		875396001932B03C00DFEF19 /* UHDNewsSourceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsSourceCell.h; sourceTree = "<group>"; };
@@ -209,7 +210,6 @@
 		875396061932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UHDNewsSourceCell+ConfigureForSource.h"; sourceTree = "<group>"; };
 		875396071932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UHDNewsSourceCell+ConfigureForSource.m"; sourceTree = "<group>"; };
 		87539B6619DB46820084658D /* VIOSFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VIOSFramework.xcodeproj; path = VIOSFramework/VIOSFramework.xcodeproj; sourceTree = "<group>"; };
-		87539B7819DB495D0084658D /* VILogKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = VILogKit.framework; path = "/Users/knl/Library/Developer/Xcode/DerivedData/uni-hd-fedgpnezxqnymdbsirnvjggrhebd/Build/Products/Debug-iphoneos/VILogKit.framework"; sourceTree = "<absolute>"; };
 		87600EA2192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMensaRemoteDatasourceDelegate.h; sourceTree = "<group>"; };
 		87600EA3192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMensaRemoteDatasourceDelegate.m; sourceTree = "<group>"; };
 		877AEE8619BD370300ED270D /* UHDBuildingAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDBuildingAnnotationView.h; sourceTree = "<group>"; };
@@ -317,8 +317,8 @@
 			files = (
 				DC33313C19976456009AA35A /* CoreLocation.framework in Frameworks */,
 				87E85276195728A7007503B8 /* MapKit.framework in Frameworks */,
-				87539B7019DB469E0084658D /* VIOSFramework.framework in Frameworks */,
-				87539B7919DB495D0084658D /* VILogKit.framework in Frameworks */,
+				8734357A19DB6C67005ED0E8 /* VIOSFramework.framework in Frameworks */,
+				8734358019DB6C73005ED0E8 /* VILogKit.framework in Frameworks */,
 				87F826CD190D41450008144F /* CoreData.framework in Frameworks */,
 				87CBE08E1908810B0029D9AF /* CoreGraphics.framework in Frameworks */,
 				87CBE0901908810B0029D9AF /* UIKit.framework in Frameworks */,
@@ -549,7 +549,6 @@
 		87CBE07F1908810B0029D9AF = {
 			isa = PBXGroup;
 			children = (
-				87539B7819DB495D0084658D /* VILogKit.framework */,
 				87CBE0911908810B0029D9AF /* uni-hd */,
 				8799DA99192AB4D9009B3CAB /* uni-hd-tests */,
 				87CBE08A1908810B0029D9AF /* Frameworks */,
@@ -578,6 +577,7 @@
 				87CBE08F1908810B0029D9AF /* UIKit.framework */,
 				87CBE0B01908810B0029D9AF /* XCTest.framework */,
 				3F757EC4658C40C8B7B4E414 /* libPods.a */,
+				8734357F19DB6C73005ED0E8 /* VILogKit.framework */,
 				87F826EC190D70220008144F /* VIOSFramework (Objective-C) */,
 				87539B6619DB46820084658D /* VIOSFramework.xcodeproj */,
 			);
@@ -850,12 +850,12 @@
 				87CBE0851908810B0029D9AF /* Frameworks */,
 				87CBE0861908810B0029D9AF /* Resources */,
 				41B63B46B90D4A2C87CA4844 /* Copy Pods Resources */,
-				87EBB05E19D2319300F5E3AD /* Embed Frameworks */,
+				8734357E19DB6C68005ED0E8 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				87539B7319DB469F0084658D /* PBXTargetDependency */,
+				8734357D19DB6C67005ED0E8 /* PBXTargetDependency */,
 			);
 			name = "uni-hd";
 			productName = "uni-hd";
@@ -1095,10 +1095,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		87539B7319DB469F0084658D /* PBXTargetDependency */ = {
+		8734357D19DB6C67005ED0E8 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = VIOSFramework;
-			targetProxy = 87539B7219DB469F0084658D /* PBXContainerItemProxy */;
+			targetProxy = 8734357C19DB6C67005ED0E8 /* PBXContainerItemProxy */;
 		};
 		8799DAA3192AB4D9009B3CAB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
