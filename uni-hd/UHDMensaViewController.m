@@ -26,10 +26,12 @@
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 
-- (void)configureView;
+- (void)configureViewAnimated:(BOOL)animated;
 
 - (IBAction)quickDateSelectionButtonPressed:(id)sender;
 - (IBAction)unwindToMainMensa:(UIStoryboardSegue *)segue;
+
+- (UHDDailyMenuViewController *)dailyMenuViewControllerForDate:(NSDate *)date;
 
 @end
 
@@ -46,6 +48,8 @@
     self.dayPicker.itemWidth = self.dayPicker.bounds.size.width / 7;
     self.dayPicker.delegate = self; // TODO: move to storyboard
     [self.dayPicker selectDate:[NSDate date] animated:NO scrollPosition:UICollectionViewScrollPositionLeft];
+    
+    [self configureViewAnimated:NO];
 
 }
 
@@ -79,20 +83,31 @@
 {
     if (mensa == _mensa) return;
     _mensa = mensa;
-    [self configureView];
+    [self configureViewAnimated:NO];
 }
 
-- (void)configureView
+- (void)configureViewAnimated:(BOOL)animated
 {
     self.titleLabel.text = (self.mensa != nil) ? self.mensa.title : NSLocalizedString(@"No Mensa selected", nil);
 
     UIBarButtonItem *quickDateSelectionButton = self.navigationItem.rightBarButtonItem;
     quickDateSelectionButton.title = self.dayPicker.selectedDate != nil && [[NSCalendar currentCalendar] isDateInToday:self.dayPicker.selectedDate] ? NSLocalizedString(@"Tomorrow", nil) : NSLocalizedString(@"Today", nil);
+    
+    [self updateVisibleDailyMenuAnimated:animated];
+}
 
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateStyle = NSDateFormatterLongStyle;
-    dateFormatter.timeStyle = NSDateFormatterNoStyle;
-    //self.dateLabel.text = [dateFormatter stringFromDate:[(UHDDailyMenuViewController *)self.pageViewController.viewControllers[0] date]];
+- (void)updateVisibleDailyMenuAnimated:(BOOL)animated
+{
+    UHDDailyMenuViewController *previousDailyMenuVC = ((UHDDailyMenuViewController *)self.pageViewController.viewControllers.firstObject);
+    
+    NSDate *date = self.dayPicker.selectedDate;
+    NSDate *previousDate = previousDailyMenuVC.date;
+
+    if (!date) {
+        // TODO
+    } else if (previousDailyMenuVC == nil || previousDailyMenuVC.dailyMenu.mensa != self.mensa || ![[NSCalendar currentCalendar] isDate:date inSameDayAsDate:previousDailyMenuVC.date]) {
+        [self.pageViewController setViewControllers:@[ [self dailyMenuViewControllerForDate:date] ] direction:([date compare:previousDate] == NSOrderedAscending) ? UIPageViewControllerNavigationDirectionReverse : UIPageViewControllerNavigationDirectionForward animated:animated completion:nil];
+    }
 }
 
 
@@ -108,7 +123,6 @@
         self.pageViewController = segue.destinationViewController;
         self.pageViewController.dataSource = self;
         self.pageViewController.delegate = self;
-        [self.pageViewController setViewControllers:@[ [self dailyMenuViewControllerForDate:[NSDate date]] ] direction:UIPageViewControllerNavigationDirectionForward animated:NO completion:nil]; // default (initial) view controller
     }
     else if ([segue.identifier isEqualToString:[NSString stringWithFormat:@"showMensaDetail"]]) {
         UHDMensaDetailViewController *detailVC = [segue destinationViewController];
@@ -130,6 +144,7 @@
         date = [[NSCalendar currentCalendar] dateByAddingComponents:oneDay toDate:date options:0];
     }
     [self.dayPicker selectDate:date animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
+    [self configureViewAnimated:YES];
 }
 
 
@@ -140,14 +155,9 @@
     return [self.mensa dailyMenuForDate:date] != nil;
 }
 
-- (void)dayPicker:(UHDMensaDayPicker *)dayPicker didSelectDate:(NSDate *)date previousDate:(NSDate *)previousDate
+- (void)dayPicker:(UHDMensaDayPicker *)dayPicker didSelectDate:(NSDate *)date
 {
-    if (!date) {
-        // TODO
-    } else if (![[NSCalendar currentCalendar] isDate:date inSameDayAsDate:((UHDDailyMenuViewController *)self.pageViewController.viewControllers.firstObject).date]) {
-        [self.pageViewController setViewControllers:@[ [self dailyMenuViewControllerForDate:date] ] direction:([date compare:previousDate] == NSOrderedAscending) ? UIPageViewControllerNavigationDirectionReverse : UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
-    }
-    [self configureView];
+    [self configureViewAnimated:YES];
 }
 
 
@@ -155,7 +165,7 @@
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
 {
-    [self.dayPicker selectDate:((UHDDailyMenuViewController *)pageViewController.viewControllers.firstObject).date animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
+    if (completed) [self.dayPicker selectDate:((UHDDailyMenuViewController *)pageViewController.viewControllers.firstObject).date animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
 }
 
 

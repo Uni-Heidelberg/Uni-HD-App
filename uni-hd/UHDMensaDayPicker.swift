@@ -13,7 +13,7 @@ import VILogKit
 protocol UHDMensaDayPickerDelegate {
     
     optional func dayPicker(dayPicker: UHDMensaDayPicker, canSelectDate date: NSDate) -> Bool
-    optional func dayPicker(dayPicker: UHDMensaDayPicker, didSelectDate date: NSDate?, previousDate: NSDate?)
+    optional func dayPicker(dayPicker: UHDMensaDayPicker, didSelectDate date: NSDate?)
     
 }
 
@@ -39,7 +39,6 @@ class UHDMensaDayPicker: UIView {
             } else {
                 selectedDateButton.setTitle(nil, forState: .Normal)
             }
-            delegate?.dayPicker?(self, didSelectDate: selectedDate, previousDate: previousDate)
         }
     }
     
@@ -229,6 +228,7 @@ extension UHDMensaDayPicker: UICollectionViewDelegate {
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
         selectedDate = dateForIndexPath(indexPath)
+        delegate?.dayPicker?(self, didSelectDate: selectedDate)
     }
 
 }
