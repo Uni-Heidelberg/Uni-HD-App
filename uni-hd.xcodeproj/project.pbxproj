@@ -35,11 +35,9 @@
 		870591DB19C0DDFA003E2906 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 870591DA19C0DDFA003E2906 /* UIImage+ImageEffects.m */; };
 		870591DF19C10922003E2906 /* VIImageOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 870591DE19C10922003E2906 /* VIImageOverlayRenderer.m */; };
 		872750F21964A1D100FDBC4E /* UHDMensaListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC87FDFA191AA12D00019F32 /* UHDMensaListViewController.m */; };
-		8734357A19DB6C67005ED0E8 /* VIOSFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87539B6D19DB46820084658D /* VIOSFramework.framework */; };
-		8734357B19DB6C67005ED0E8 /* VIOSFramework.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87539B6D19DB46820084658D /* VIOSFramework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		8734358019DB6C73005ED0E8 /* VILogKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8734357F19DB6C73005ED0E8 /* VILogKit.framework */; };
-		8734358119DB6C73005ED0E8 /* VILogKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8734357F19DB6C73005ED0E8 /* VILogKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8737FF0C193F9EB0007D61C4 /* VIFetchedResultsControllerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8737FF0B193F9EB0007D61C4 /* VIFetchedResultsControllerDataSource.m */; };
+		87475E8C19E320420028A9BF /* VILogKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87475E8B19E320420028A9BF /* VILogKit.framework */; };
+		87475E8D19E320420028A9BF /* VILogKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87475E8B19E320420028A9BF /* VILogKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		875396021932B03C00DFEF19 /* UHDNewsSourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 875396011932B03C00DFEF19 /* UHDNewsSourceCell.m */; };
 		875396081932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 875396071932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.m */; };
 		87600EA4192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87600EA3192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m */; };
@@ -100,27 +98,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		8734357C19DB6C67005ED0E8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 87539B6619DB46820084658D /* VIOSFramework.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 87F86EF11991E82A00B8A166;
-			remoteInfo = VIOSFramework;
-		};
-		87539B6C19DB46820084658D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 87539B6619DB46820084658D /* VIOSFramework.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 87F86EF21991E82A00B8A166;
-			remoteInfo = VIOSFramework;
-		};
-		87539B6E19DB46820084658D /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 87539B6619DB46820084658D /* VIOSFramework.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 87F86EFD1991E82A00B8A166;
-			remoteInfo = VIOSFrameworkTests;
-		};
 		8799DAA2192AB4D9009B3CAB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 87CBE0801908810B0029D9AF /* Project object */;
@@ -137,8 +114,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				8734357B19DB6C67005ED0E8 /* VIOSFramework.framework in Embed Frameworks */,
-				8734358119DB6C73005ED0E8 /* VILogKit.framework in Embed Frameworks */,
+				87475E8D19E320420028A9BF /* VILogKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -202,14 +178,13 @@
 		870591DD19C10922003E2906 /* VIImageOverlayRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIImageOverlayRenderer.h; sourceTree = "<group>"; };
 		870591DE19C10922003E2906 /* VIImageOverlayRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIImageOverlayRenderer.m; sourceTree = "<group>"; };
 		8720978719D232D100269AA6 /* uni-hd-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uni-hd-Bridging-Header.h"; sourceTree = "<group>"; };
-		8734357F19DB6C73005ED0E8 /* VILogKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = VILogKit.framework; path = "/Users/knl/Library/Developer/Xcode/DerivedData/uni-hd-fedgpnezxqnymdbsirnvjggrhebd/Build/Products/Debug-iphoneos/VILogKit.framework"; sourceTree = "<absolute>"; };
 		8737FF0A193F9EB0007D61C4 /* VIFetchedResultsControllerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIFetchedResultsControllerDataSource.h; path = "VIOSFramework/Data Sources/VIFetchRequestDataSource/VIFetchedResultsControllerDataSource.h"; sourceTree = "<group>"; };
 		8737FF0B193F9EB0007D61C4 /* VIFetchedResultsControllerDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIFetchedResultsControllerDataSource.m; path = "VIOSFramework/Data Sources/VIFetchRequestDataSource/VIFetchedResultsControllerDataSource.m"; sourceTree = "<group>"; };
+		87475E8B19E320420028A9BF /* VILogKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = VILogKit.framework; path = "/Users/knl/Library/Developer/Xcode/DerivedData/uni-hd-fedgpnezxqnymdbsirnvjggrhebd/Build/Products/Debug-iphoneos/VILogKit.framework"; sourceTree = "<absolute>"; };
 		875396001932B03C00DFEF19 /* UHDNewsSourceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsSourceCell.h; sourceTree = "<group>"; };
 		875396011932B03C00DFEF19 /* UHDNewsSourceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsSourceCell.m; sourceTree = "<group>"; };
 		875396061932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UHDNewsSourceCell+ConfigureForSource.h"; sourceTree = "<group>"; };
 		875396071932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UHDNewsSourceCell+ConfigureForSource.m"; sourceTree = "<group>"; };
-		87539B6619DB46820084658D /* VIOSFramework.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VIOSFramework.xcodeproj; path = VIOSFramework/VIOSFramework.xcodeproj; sourceTree = "<group>"; };
 		87600EA2192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMensaRemoteDatasourceDelegate.h; sourceTree = "<group>"; };
 		87600EA3192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMensaRemoteDatasourceDelegate.m; sourceTree = "<group>"; };
 		877AEE8619BD370300ED270D /* UHDBuildingAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDBuildingAnnotationView.h; sourceTree = "<group>"; };
@@ -317,13 +292,12 @@
 			files = (
 				DC33313C19976456009AA35A /* CoreLocation.framework in Frameworks */,
 				87E85276195728A7007503B8 /* MapKit.framework in Frameworks */,
-				8734357A19DB6C67005ED0E8 /* VIOSFramework.framework in Frameworks */,
-				8734358019DB6C73005ED0E8 /* VILogKit.framework in Frameworks */,
 				87F826CD190D41450008144F /* CoreData.framework in Frameworks */,
 				87CBE08E1908810B0029D9AF /* CoreGraphics.framework in Frameworks */,
 				87CBE0901908810B0029D9AF /* UIKit.framework in Frameworks */,
 				87CBE08C1908810B0029D9AF /* Foundation.framework in Frameworks */,
 				6F293EE8DA534A74838601AE /* libPods.a in Frameworks */,
+				87475E8C19E320420028A9BF /* VILogKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -449,15 +423,6 @@
 			name = "News Sources";
 			sourceTree = "<group>";
 		};
-		87539B6719DB46820084658D /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				87539B6D19DB46820084658D /* VIOSFramework.framework */,
-				87539B6F19DB46820084658D /* VIOSFrameworkTests.xctest */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		8799DA8D192AB1DB009B3CAB /* News */ = {
 			isa = PBXGroup;
 			children = (
@@ -577,9 +542,8 @@
 				87CBE08F1908810B0029D9AF /* UIKit.framework */,
 				87CBE0B01908810B0029D9AF /* XCTest.framework */,
 				3F757EC4658C40C8B7B4E414 /* libPods.a */,
-				8734357F19DB6C73005ED0E8 /* VILogKit.framework */,
+				87475E8B19E320420028A9BF /* VILogKit.framework */,
 				87F826EC190D70220008144F /* VIOSFramework (Objective-C) */,
-				87539B6619DB46820084658D /* VIOSFramework.xcodeproj */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -855,7 +819,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				8734357D19DB6C67005ED0E8 /* PBXTargetDependency */,
 			);
 			name = "uni-hd";
 			productName = "uni-hd";
@@ -891,12 +854,6 @@
 			mainGroup = 87CBE07F1908810B0029D9AF;
 			productRefGroup = 87CBE0891908810B0029D9AF /* Products */;
 			projectDirPath = "";
-			projectReferences = (
-				{
-					ProductGroup = 87539B6719DB46820084658D /* Products */;
-					ProjectRef = 87539B6619DB46820084658D /* VIOSFramework.xcodeproj */;
-				},
-			);
 			projectRoot = "";
 			targets = (
 				87CBE0871908810B0029D9AF /* uni-hd */,
@@ -904,23 +861,6 @@
 			);
 		};
 /* End PBXProject section */
-
-/* Begin PBXReferenceProxy section */
-		87539B6D19DB46820084658D /* VIOSFramework.framework */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.framework;
-			path = VIOSFramework.framework;
-			remoteRef = 87539B6C19DB46820084658D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		87539B6F19DB46820084658D /* VIOSFrameworkTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = VIOSFrameworkTests.xctest;
-			remoteRef = 87539B6E19DB46820084658D /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8799DA93192AB4D9009B3CAB /* Resources */ = {
@@ -1095,11 +1035,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		8734357D19DB6C67005ED0E8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = VIOSFramework;
-			targetProxy = 8734357C19DB6C67005ED0E8 /* PBXContainerItemProxy */;
-		};
 		8799DAA3192AB4D9009B3CAB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 87CBE0871908810B0029D9AF /* uni-hd */;
