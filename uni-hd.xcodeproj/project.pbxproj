@@ -36,6 +36,8 @@
 		870591DF19C10922003E2906 /* VIImageOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 870591DE19C10922003E2906 /* VIImageOverlayRenderer.m */; };
 		872750F21964A1D100FDBC4E /* UHDMensaListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC87FDFA191AA12D00019F32 /* UHDMensaListViewController.m */; };
 		8737FF0C193F9EB0007D61C4 /* VIFetchedResultsControllerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8737FF0B193F9EB0007D61C4 /* VIFetchedResultsControllerDataSource.m */; };
+		87475EC119E32B300028A9BF /* VILogKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87475EBE19E32B240028A9BF /* VILogKit.framework */; };
+		87475EC219E32B300028A9BF /* VILogKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87475EBE19E32B240028A9BF /* VILogKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		875396021932B03C00DFEF19 /* UHDNewsSourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 875396011932B03C00DFEF19 /* UHDNewsSourceCell.m */; };
 		875396081932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 875396071932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.m */; };
 		87600EA4192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87600EA3192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m */; };
@@ -96,6 +98,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		87475EBD19E32B240028A9BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87475EB819E32B230028A9BF /* VILogKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 87539B1F19DB23F00084658D;
+			remoteInfo = VILogKit;
+		};
+		87475EBF19E32B240028A9BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87475EB819E32B230028A9BF /* VILogKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 87539B2A19DB23F00084658D;
+			remoteInfo = VILogKitTests;
+		};
+		87475EC319E32B300028A9BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87475EB819E32B230028A9BF /* VILogKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 87539B1E19DB23F00084658D;
+			remoteInfo = VILogKit;
+		};
 		8799DAA2192AB4D9009B3CAB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 87CBE0801908810B0029D9AF /* Project object */;
@@ -112,6 +135,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				87475EC219E32B300028A9BF /* VILogKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -177,7 +201,7 @@
 		8720978719D232D100269AA6 /* uni-hd-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uni-hd-Bridging-Header.h"; sourceTree = "<group>"; };
 		8737FF0A193F9EB0007D61C4 /* VIFetchedResultsControllerDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIFetchedResultsControllerDataSource.h; path = "VIOSFramework/Data Sources/VIFetchRequestDataSource/VIFetchedResultsControllerDataSource.h"; sourceTree = "<group>"; };
 		8737FF0B193F9EB0007D61C4 /* VIFetchedResultsControllerDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIFetchedResultsControllerDataSource.m; path = "VIOSFramework/Data Sources/VIFetchRequestDataSource/VIFetchedResultsControllerDataSource.m"; sourceTree = "<group>"; };
-		87475E8B19E320420028A9BF /* VILogKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = VILogKit.framework; path = "/Users/knl/Library/Developer/Xcode/DerivedData/uni-hd-fedgpnezxqnymdbsirnvjggrhebd/Build/Products/Debug-iphoneos/VILogKit.framework"; sourceTree = "<absolute>"; };
+		87475EB819E32B230028A9BF /* VILogKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VILogKit.xcodeproj; path = VILogKit/VILogKit.xcodeproj; sourceTree = "<group>"; };
 		875396001932B03C00DFEF19 /* UHDNewsSourceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsSourceCell.h; sourceTree = "<group>"; };
 		875396011932B03C00DFEF19 /* UHDNewsSourceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsSourceCell.m; sourceTree = "<group>"; };
 		875396061932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UHDNewsSourceCell+ConfigureForSource.h"; sourceTree = "<group>"; };
@@ -294,6 +318,7 @@
 				87CBE0901908810B0029D9AF /* UIKit.framework in Frameworks */,
 				87CBE08C1908810B0029D9AF /* Foundation.framework in Frameworks */,
 				6F293EE8DA534A74838601AE /* libPods.a in Frameworks */,
+				87475EC119E32B300028A9BF /* VILogKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,6 +405,15 @@
 				8737FF0B193F9EB0007D61C4 /* VIFetchedResultsControllerDataSource.m */,
 			);
 			name = VIFetchedResultsControllerDataSource;
+			sourceTree = "<group>";
+		};
+		87475EB919E32B230028A9BF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				87475EBE19E32B240028A9BF /* VILogKit.framework */,
+				87475EC019E32B240028A9BF /* VILogKitTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		875395FD1932B00400DFEF19 /* News List */ = {
@@ -538,8 +572,8 @@
 				87CBE08F1908810B0029D9AF /* UIKit.framework */,
 				87CBE0B01908810B0029D9AF /* XCTest.framework */,
 				3F757EC4658C40C8B7B4E414 /* libPods.a */,
-				87475E8B19E320420028A9BF /* VILogKit.framework */,
 				87F826EC190D70220008144F /* VIOSFramework (Objective-C) */,
+				87475EB819E32B230028A9BF /* VILogKit.xcodeproj */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -815,6 +849,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				87475EC419E32B300028A9BF /* PBXTargetDependency */,
 			);
 			name = "uni-hd";
 			productName = "uni-hd";
@@ -850,6 +885,12 @@
 			mainGroup = 87CBE07F1908810B0029D9AF;
 			productRefGroup = 87CBE0891908810B0029D9AF /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 87475EB919E32B230028A9BF /* Products */;
+					ProjectRef = 87475EB819E32B230028A9BF /* VILogKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				87CBE0871908810B0029D9AF /* uni-hd */,
@@ -857,6 +898,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		87475EBE19E32B240028A9BF /* VILogKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = VILogKit.framework;
+			remoteRef = 87475EBD19E32B240028A9BF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		87475EC019E32B240028A9BF /* VILogKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = VILogKitTests.xctest;
+			remoteRef = 87475EBF19E32B240028A9BF /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		8799DA93192AB4D9009B3CAB /* Resources */ = {
@@ -1031,6 +1089,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		87475EC419E32B300028A9BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = VILogKit;
+			targetProxy = 87475EC319E32B300028A9BF /* PBXContainerItemProxy */;
+		};
 		8799DAA3192AB4D9009B3CAB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 87CBE0871908810B0029D9AF /* uni-hd */;
