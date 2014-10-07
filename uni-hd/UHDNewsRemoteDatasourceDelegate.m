@@ -118,7 +118,7 @@
 	
 	UHDTalkItem *talkItem = [UHDTalkItem insertNewObjectIntoContext:managedObjectContext];
 	talkItem.title = @"[SAMPLE] Particle Fever";
-	//talkItem.abstract = @"";
+	//talkItem.abstract = @"A exciting film about the LHC at CERN.";
     talkItem.date = [NSDate dateWithTimeIntervalSinceReferenceDate:409251600];
     talkItem.url = [NSURL URLWithString:@"http://www.physi.uni-heidelberg.de/Veranstaltungen/Ankuendigungen/Kaplan_20.12.2013.pdf"];
     talkItem.thumbImage = [UIImage imageNamed:@"particleFever"];
@@ -143,7 +143,7 @@
 	
 	talkItem = [UHDTalkItem insertNewObjectIntoContext:managedObjectContext];
 	talkItem.title = @"[SAMPLE] The turbulent life-cycle of molecular clouds";
-	//talkItem.abstract = @"";
+	//talkItem.abstract = @"This talk is about fundamental mechanisms in the dynamic of quantum many-body systems.";
     talkItem.date = [NSDate dateWithTimeIntervalSinceReferenceDate:426470417];
     talkItem.url = [NSURL URLWithString:@"http://www.ita.uni-heidelberg.de/~dullemond/hjac.shtml?lang=de"];
     talkItem.thumbImage = [UIImage imageNamed:@"astroTalk"];
@@ -194,6 +194,7 @@
 	eventItem.thumbImage = [UIImage imageNamed:@"WM2014"];
 	eventItem.source = newsSource;
 	eventItem.location = @"Café Botanik im Neuenheimer Feld";
+	//eventItem.abstract = @"Ein wahrhaft packendes Spiel - am Ende kann man nur sagen: Super, Mario!";
 	
     
     // Save to store
