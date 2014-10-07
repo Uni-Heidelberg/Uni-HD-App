@@ -14,8 +14,6 @@
 - (void)awakeFromNib
 {
 	[super awakeFromNib];
-    //self.readBarView.backgroundColor = [UIColor brandColor];
-	self.readBarView.textColor = [UIColor brandColor];
 	[self layoutIfNeeded];
 }
 

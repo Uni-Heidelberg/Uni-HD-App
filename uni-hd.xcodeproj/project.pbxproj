@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A0CEC0D19E44F55009C9F5B /* UHDReadIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0CEC0C19E44F55009C9F5B /* UHDReadIndicatorView.m */; };
 		0A2000521920F18A0014C977 /* UHDNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2000511920F18A0014C977 /* UHDNewsDetailViewController.m */; };
 		0A586D8E19646A6600DF86EE /* UHDTalkSpeaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A586D8D19646A6600DF86EE /* UHDTalkSpeaker.m */; };
 		0A7FACFA196B13DB00E2CC9D /* UHDEventItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7FACF9196B13DB00E2CC9D /* UHDEventItemCell.m */; };
@@ -144,6 +145,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0A0CEC0B19E44F55009C9F5B /* UHDReadIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDReadIndicatorView.h; sourceTree = "<group>"; };
+		0A0CEC0C19E44F55009C9F5B /* UHDReadIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDReadIndicatorView.m; sourceTree = "<group>"; };
 		0A2000501920F18A0014C977 /* UHDNewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsDetailViewController.h; sourceTree = "<group>"; };
 		0A2000511920F18A0014C977 /* UHDNewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsDetailViewController.m; sourceTree = "<group>"; };
 		0A586D8C19646A6600DF86EE /* UHDTalkSpeaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkSpeaker.h; sourceTree = "<group>"; };
@@ -470,6 +473,8 @@
 				0A7FACFF196B17B000E2CC9D /* UHDTalkItemCell.m */,
 				0ACD9BFA19E41F4200C0E67A /* UHDAutoLayoutMultilineLabel.h */,
 				0ACD9BFC19E41FA800C0E67A /* UHDAutoLayoutMultilineLabel.m */,
+				0A0CEC0B19E44F55009C9F5B /* UHDReadIndicatorView.h */,
+				0A0CEC0C19E44F55009C9F5B /* UHDReadIndicatorView.m */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -1028,6 +1033,7 @@
 				877AEE8819BD370300ED270D /* UHDBuildingAnnotationView.m in Sources */,
 				94F484921936620B0063BF9F /* UHDTriangleStatusImageView.m in Sources */,
 				0A7FACFD196B146100E2CC9D /* UHDEventItemCell+ConfigureForItem.m in Sources */,
+				0A0CEC0D19E44F55009C9F5B /* UHDReadIndicatorView.m in Sources */,
 				0A7FAD03196B17E000E2CC9D /* UHDTalkItemCell+ConfigureForItem.m in Sources */,
 				0B84B31E1993A59C00813CC2 /* UHDBuilding.m in Sources */,
 				87B974E8192D5A360080AA40 /* VIManager.m in Sources */,

@@ -24,12 +24,7 @@
     self.dateLabel.text = [dateFormatter stringFromDate:item.date];
     
     // Configure read indicator
-    self.readBarView.hidden = item.read;
-	
-	// Change size of read indicator dynamically?
-	
-	//CGFloat fontsize = self.titleLabel.bounds.size.height;
-	//self.readBarView.font = [self.readBarView.font fontWithSize:fontsize];
+    self.readIndicatorContainerView.hidden = item.read;
 	
     //self.backgroundColor = item.read ? [UIColor whiteColor] : [UIColor colorWithWhite:0.97 alpha:1];
     
