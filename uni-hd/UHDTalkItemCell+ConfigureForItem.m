@@ -33,7 +33,9 @@
 	
 	// update layout of multiline labels for changed text lengths
 	
-	// TODO: use UHDAutoLayoutMultilineLabels class to update preferredMaxLayoutWidth and fix AutoLayout issue in affiliationLabel
+	// TODO: use UHDAutoLayoutMultilineLabels class to update preferredMaxLayoutWidth
+	
+	// TODO: fix bad layout after rotatiting back to vertical
 	
 	// TODO: use Self sizing cells? (Row Height Estimation, iOS 8)
 	
@@ -45,7 +47,6 @@
 	self.abstractLabel.preferredMaxLayoutWidth = self.abstractLabel.frame.size.width;
 	[self setNeedsLayout];
     [self layoutIfNeeded];
-	
 }
 
 @end

@@ -10,6 +10,8 @@
 
 @implementation UHDAutoLayoutMultilineLabel : UILabel
 
+// TODO: functions are apparently not called... (see also UHDTalkItemCell+ConfigureForItem.m)
+
 - (void)setBounds:(CGRect)bounds {
   if (bounds.size.width != self.bounds.size.width) {
     [self setNeedsUpdateConstraints];

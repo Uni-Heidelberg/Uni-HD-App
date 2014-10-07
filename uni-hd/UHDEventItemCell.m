@@ -10,4 +10,11 @@
 
 @implementation UHDEventItemCell
 
+- (void)awakeFromNib {
+	[super awakeFromNib];
+	
+	// fixes multiline label autolayout issue that layout is only updated when cell is dequeued
+	[self layoutIfNeeded];
+}
+
 @end

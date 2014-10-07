@@ -26,6 +26,8 @@
 	// Configure image
 	self.eventImageView.image = item.thumbImage;
 	
+	// TODO: bad layout after rotatiting back to vertical
+	
 	// update layout of multiline labels for changed text lengths
 	self.titleLabel.preferredMaxLayoutWidth = self.titleLabel.frame.size.width;
 	self.dateLabel.preferredMaxLayoutWidth = self.dateLabel.bounds.size.width;

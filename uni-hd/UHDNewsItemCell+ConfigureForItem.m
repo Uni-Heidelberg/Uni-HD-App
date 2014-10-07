@@ -25,7 +25,13 @@
     
     // Configure read indicator
     self.readBarView.hidden = item.read;
-    self.backgroundColor = item.read ? [UIColor whiteColor] : [UIColor colorWithWhite:0.97 alpha:1];
+	
+	// Change size of read indicator dynamically?
+	
+	//CGFloat fontsize = self.titleLabel.bounds.size.height;
+	//self.readBarView.font = [self.readBarView.font fontWithSize:fontsize];
+	
+    //self.backgroundColor = item.read ? [UIColor whiteColor] : [UIColor colorWithWhite:0.97 alpha:1];
     
     // Configure Image
     UIImage *image = item.thumbImage;

@@ -13,7 +13,10 @@
 
 - (void)awakeFromNib
 {
-    self.readBarView.backgroundColor = [UIColor brandColor];
+	[super awakeFromNib];
+    //self.readBarView.backgroundColor = [UIColor brandColor];
+	self.readBarView.textColor = [UIColor brandColor];
+	[self layoutIfNeeded];
 }
 
 // Override getters to return the respective constraint
