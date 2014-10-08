@@ -23,6 +23,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *talkImageView;
 @property (weak, nonatomic) IBOutlet UILabel *sourceLabel;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageSpacingLayoutConstraint;
+@property (nonatomic) CGFloat imageSpacingConstraintInitialConstant;
+
 @end
 
 
@@ -30,12 +33,7 @@
 
 - (void)awakeFromNib {
 	[super awakeFromNib];
-	
-	// fixes multiline label autolayout issue that layout is only updated when cell is dequeued
-	[self updateConstraints];
-	[self updateConstraintsIfNeeded];
-	[self setNeedsLayout];
-	[self layoutIfNeeded];
+	self.imageSpacingConstraintInitialConstant = self.imageSpacingLayoutConstraint.constant;
 }
 
 - (void)configureForItem:(UHDTalkItem *)item
@@ -58,22 +56,14 @@
     
     // Configure image
     self.talkImageView.image = item.thumbImage;
+	if (item.thumbImage) {
+		self.imageSpacingLayoutConstraint.constant = self.imageSpacingConstraintInitialConstant;
+	}
+	else {
+		self.imageSpacingLayoutConstraint.constant = 0;
+	}
     
-    
-    // update layout of multiline labels for changed text lengths
-    
-    
-    // TODO: fix bad layout after rotatiting back to vertical
-    
-    // TODO: use Self sizing cells? (Row Height Estimation, iOS 8)
-    
-    self.titleLabel.preferredMaxLayoutWidth = self.titleLabel.frame.size.width;
-    self.speakerLabel.preferredMaxLayoutWidth = self.speakerLabel.frame.size.width;
-    self.affiliationLabel.preferredMaxLayoutWidth = self.affiliationLabel.frame.size.width;
-    self.dateLabel.preferredMaxLayoutWidth = self.dateLabel.frame.size.width;
-    self.locationLabel.preferredMaxLayoutWidth = self.locationLabel.frame.size.width;
-    self.abstractLabel.preferredMaxLayoutWidth = self.abstractLabel.frame.size.width;
-    [self setNeedsLayout];
+    // Layout multiline labels for updated content
     [self layoutIfNeeded];
 }
 

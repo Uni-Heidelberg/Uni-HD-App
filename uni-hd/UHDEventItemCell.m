@@ -18,6 +18,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *eventImageView;
 @property (weak, nonatomic) IBOutlet UILabel *sourceLabel;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageSpacingLayoutConstraint;
+@property (nonatomic) CGFloat imageSpacingConstraintInitialConstant;
+
 @end
 
 
@@ -25,9 +28,7 @@
 
 - (void)awakeFromNib {
 	[super awakeFromNib];
-	
-	// fixes multiline label autolayout issue that layout is only updated when cell is dequeued
-	[self layoutIfNeeded];
+	self.imageSpacingConstraintInitialConstant = self.imageSpacingLayoutConstraint.constant;
 }
 
 -(void) configureForItem:(UHDEventItem *)item
@@ -46,14 +47,14 @@
     
     // Configure image
     self.eventImageView.image = item.thumbImage;
-    
-    // TODO: bad layout after rotatiting back to vertical
+	if (item.thumbImage) {
+		self.imageSpacingLayoutConstraint.constant = self.imageSpacingConstraintInitialConstant;
+	}
+	else {
+		self.imageSpacingLayoutConstraint.constant = 0;
+	}
 	
-    // update layout of multiline labels for changed text lengths
-    self.titleLabel.preferredMaxLayoutWidth = self.titleLabel.frame.size.width;
-    self.dateLabel.preferredMaxLayoutWidth = self.dateLabel.bounds.size.width;
-    self.locationLabel.preferredMaxLayoutWidth = self.locationLabel.frame.size.width;
-    self.abstractLabel.preferredMaxLayoutWidth = self.abstractLabel.frame.size.width;
+    // Layout multiline labels for updated content
     [self layoutIfNeeded];
 }
 

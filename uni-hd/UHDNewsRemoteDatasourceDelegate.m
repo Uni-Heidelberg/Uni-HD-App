@@ -98,7 +98,8 @@
     
     newsItem = [UHDNewsItem insertNewObjectIntoContext:managedObjectContext];
     newsItem.title = @"[SAMPLE] Wirklich bahnbrechende Neuigkeiten!";
-    newsItem.abstract = @"Damit Ihr indess erkennt, woher dieser ganze Irrthum gekommen ist, und weshalb man die Lust anklagt und den Schmerz lobet, so will ich Euch Alles eröffnen und auseinander setzen, was jener Begründer der Wahrheit und gleichsam Baumeister des glücklichen Lebens selbst darüber gesagt hat.";
+    newsItem.abstract = @"Damit Ihr indess erkennt, woher";
+		//dieser ganze Irrthum gekommen ist, und weshalb man die Lust anklagt und den Schmerz lobet, so will ich Euch Alles eröffnen und auseinander setzen, was jener Begründer der Wahrheit und gleichsam Baumeister des glücklichen Lebens selbst darüber gesagt hat.";
     newsItem.date = [NSDate dateWithTimeIntervalSince1970:0];
     newsItem.url = [NSURL URLWithString:@"http://www.loremipsum.de"];
     // no image for this news
@@ -118,7 +119,7 @@
 	
 	UHDTalkItem *talkItem = [UHDTalkItem insertNewObjectIntoContext:managedObjectContext];
 	talkItem.title = @"[SAMPLE] Particle Fever";
-	//talkItem.abstract = @"A exciting film about the LHC at CERN.";
+	talkItem.abstract = @"A exciting film about the LHC at CERN.";
     talkItem.date = [NSDate dateWithTimeIntervalSinceReferenceDate:409251600];
     talkItem.url = [NSURL URLWithString:@"http://www.physi.uni-heidelberg.de/Veranstaltungen/Ankuendigungen/Kaplan_20.12.2013.pdf"];
     talkItem.thumbImage = [UIImage imageNamed:@"particleFever"];
@@ -196,6 +197,13 @@
 	eventItem.location = @"Café Botanik im Neuenheimer Feld";
 	//eventItem.abstract = @"Ein wahrhaft packendes Spiel - am Ende kann man nur sagen: Super, Mario!";
 	
+	eventItem = [UHDEventItem insertNewObjectIntoContext:managedObjectContext];
+	eventItem.title = @"KinoCafé";
+	eventItem.date = [NSDate date];
+	eventItem.url = [NSURL URLWithString:@"https://www.facebook.com/studierendenwerk.heidelberg"];
+	eventItem.source = newsSource;
+	eventItem.location = @"Marstallcafé";
+	eventItem.abstract = @"Morgen läuft der neueste Film von und mit Matthias Schweighöfer. ICI-Clubmitgleider zahlen im Oktober keinen Eintritt. Clubausweise gibt es für 2 Euro ab 18.30 Uhr im Marstallcafé.";
     
     // Save to store
     [managedObjectContext saveToPersistentStore:NULL];

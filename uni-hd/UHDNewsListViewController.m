@@ -220,8 +220,6 @@
 			cell = [tableView dequeueReusableCellWithIdentifier:@"talkCell" forIndexPath:indexPath];
 			[(UHDTalkItemCell *)cell configureForItem:(UHDTalkItem *)item];
 		}
-		[cell setNeedsLayout];
-		[cell layoutIfNeeded];
 	}
 	return cell;
 }
