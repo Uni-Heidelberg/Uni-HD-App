@@ -8,26 +8,19 @@
 
 #import "UHDReadIndicatorView.h"
 
+IB_DESIGNABLE
 @implementation UHDReadIndicatorView
 
-/*
-- (id)initWithFrame:(CGRect)inFrame {
-    self = [super initWithFrame:inFrame];
-    if(self != nil) {
-        // initialize
-    }
-    return self;
+- (CGSize)intrinsicContentSize {
+    return CGSizeMake(12, 12);
 }
-*/
 
-- (void)drawRect:(CGRect)inRectangle {
-    CGContextRef theContext = UIGraphicsGetCurrentContext();
-    CGRect theBounds = self.bounds;
-    CGContextSaveGState(theContext);
-	CGContextSetFillColorWithColor(theContext, [[UIColor brandColor] CGColor]);
-    CGContextAddEllipseInRect(theContext, theBounds);
-    CGContextFillPath(theContext);
-    CGContextRestoreGState(theContext);
+- (void)drawRect:(CGRect)rect {
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGFloat circleSize = MIN(rect.size.width, rect.size.height);
+    CGRect circleRect = CGRectMake(rect.size.width/2 - circleSize/2, rect.size.height/2 - circleSize/2, circleSize, circleSize);
+    [self.tintColor setFill];
+    CGContextFillEllipseInRect(context, circleRect);
 }
 
 @end

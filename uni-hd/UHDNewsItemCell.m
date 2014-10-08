@@ -8,33 +8,56 @@
 
 #import "UHDNewsItemCell.h"
 
+// Model
+#import "UHDNewsSource.h"
+
+// Views
+#import "UHDReadIndicatorView.h"
+
+
+@interface UHDNewsItemCell ()
+
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *abstractLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *newsImageView;
+@property (weak, nonatomic) IBOutlet UILabel *sourceLabel;
+@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UHDReadIndicatorView *readIndicatorView;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageSpacingLayoutConstraint;
+@property (nonatomic) CGFloat imageSpacingConstraintInitialConstant;
+
+@end
+
 
 @implementation UHDNewsItemCell
 
-- (void)awakeFromNib
-{
-	[super awakeFromNib];
-	[self layoutIfNeeded];
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.imageSpacingConstraintInitialConstant = self.imageSpacingLayoutConstraint.constant;
 }
 
-// Override getters to return the respective constraint
+- (void)configureForItem:(UHDNewsItem *)item {
+    
+    // Configure text
+    self.titleLabel.text = item.title;
+    self.abstractLabel.text = item.abstract;
+    self.sourceLabel.text = item.source.title;
+    
+    // Configure date
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    dateFormatter.dateStyle = NSDateFormatterMediumStyle;
+    self.dateLabel.text = [dateFormatter stringFromDate:item.date];
+    
+    // Configure read indicator
+    self.readIndicatorView.hidden = item.read;
+    
+    // Configure Image
+    self.newsImageView.image = item.thumbImage;
+    self.imageSpacingLayoutConstraint.constant = (self.newsImageView.image) ? self.imageSpacingConstraintInitialConstant : 0;
 
-- (NSArray *)layoutContraintsWithImage
-{
-    if (!_layoutContraintsWithImage) {
-        UIView *newsImageView = self.newsImageView;
-        UIView *abstractLabel = self.abstractLabel;
-        self.layoutContraintsWithImage = [NSLayoutConstraint constraintsWithVisualFormat:@"[newsImageView]-8-[abstractLabel]" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:NSDictionaryOfVariableBindings(newsImageView, abstractLabel)];
-    }
-    return _layoutContraintsWithImage;
-}
-
-- (NSArray *)layoutContraintsWithoutImage
-{
-    if (!_layoutContraintsWithoutImage) {
-        self.layoutContraintsWithoutImage = @[ [NSLayoutConstraint constraintWithItem:self.abstractLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.titleLabel attribute:NSLayoutAttributeLeading multiplier:1 constant:0] ];
-    }
-    return _layoutContraintsWithoutImage;
+    // Layout multiline labels for updated content
+    [self layoutIfNeeded];
 }
 
 @end

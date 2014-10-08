@@ -7,16 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import	"UHDAutoLayoutMultilineLabel.h"
+#import "UHDTalkItem.h"
 
 @interface UHDTalkItemCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UHDAutoLayoutMultilineLabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UHDAutoLayoutMultilineLabel *speakerLabel;
-@property (weak, nonatomic) IBOutlet UHDAutoLayoutMultilineLabel *affiliationLabel;
-@property (weak, nonatomic) IBOutlet UHDAutoLayoutMultilineLabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UHDAutoLayoutMultilineLabel *locationLabel;
-@property (weak, nonatomic) IBOutlet UHDAutoLayoutMultilineLabel *abstractLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *talkImageView;
+- (void)configureForItem:(UHDTalkItem *)item;
 
 @end

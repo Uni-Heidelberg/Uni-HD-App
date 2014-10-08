@@ -7,13 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UHDEventItem.h"
 
 @interface UHDEventItemCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
-@property (weak, nonatomic) IBOutlet UILabel *abstractLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *eventImageView;
+-(void) configureForItem:(UHDEventItem *)item;
 
 @end

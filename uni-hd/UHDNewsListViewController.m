@@ -11,21 +11,13 @@
 #import "VIFetchedResultsControllerDataSource.h"
 #import "UHDRemoteDatasourceManager.h"
 
+// View Controllers
 #import "UHDNewsDetailViewController.h"
-
-#import "UHDNewsItem.h"
-#import "UHDEventItem.h"
-#import "UHDTalkItem.h"
-#import "UHDNewsSource.h"
 
 // Table View Cells
 #import "UHDNewsItemCell.h"
 #import "UHDEventItemCell.h"
 #import "UHDTalkItemCell.h"
-#import "UHDNewsItemCell+ConfigureForItem.h"
-#import "UHDEventItemCell+ConfigureForItem.h"
-#import "UHDTalkItemCell+ConfigureForItem.h"
-
 
 
 @interface UHDNewsListViewController ()
@@ -38,12 +30,16 @@
 
 - (IBAction)refreshControlValueChanged:(id)sender;
 
-- (void)changeDisplayMode;
-
 @end
 
 
 @implementation UHDNewsListViewController
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 200;
+}
 
 - (void)viewDidLoad
 {
@@ -68,19 +64,8 @@
 - (void)setDisplayMode:(UHDNewsListDisplayMode)displayMode
 {
 	_displayMode = displayMode;
-	[self changeDisplayMode];
+    [self.tableView reloadData];
 }
-
-- (void) changeDisplayMode
-{
-	/*if (self.displayMode == UHDNewsListDisplayModeNews) {
-    	[self.logger log:@"news mode" error:Nil];
-	}
-	else {
-		[self.logger log:@"events mode" error:Nil];
-	}*/
-	[self.tableView reloadData];
-};
 
 
 #pragma mark - User Interaction
@@ -215,9 +200,11 @@
 
 	if (self.displayMode == UHDNewsListDisplayModeNews) {
 
-		UHDNewsItem *item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
+        static NSString *newsCellIdentifier = @"newsCell";
+
+        UHDNewsItem *item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
 	
-		cell = [tableView dequeueReusableCellWithIdentifier:@"newsCell" forIndexPath:indexPath];
+        cell = [tableView dequeueReusableCellWithIdentifier:newsCellIdentifier forIndexPath:indexPath];
 		[(UHDNewsItemCell *)cell configureForItem:item];
 	
 	}
