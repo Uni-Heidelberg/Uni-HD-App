@@ -7,6 +7,7 @@
 //
 
 #import "UHDTalkItemCell.h"
+#import "UHDNewsSource.h"
 
 // Model
 #import "UHDTalkSpeaker.h"
@@ -20,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *abstractLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *talkImageView;
+@property (weak, nonatomic) IBOutlet UILabel *sourceLabel;
 
 @end
 
@@ -42,6 +44,7 @@
     self.titleLabel.text = item.title;
     self.locationLabel.text = item.location;
     self.abstractLabel.text = item.abstract;
+	self.sourceLabel.text = item.source.title;
     
     // Configure speaker information
     self.speakerLabel.text = item.speaker.name;
