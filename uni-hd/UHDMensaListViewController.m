@@ -21,12 +21,16 @@
 // Model
 #import "UHDMensa.h"
 
+// Swift
+#import "uni_hd-Swift.h"
 
 @interface UHDMensaListViewController () <RMSwipeTableViewCellDelegate, CLLocationManagerDelegate>
 
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 
 @property CLLocationManager *locationManager;
+@property  UHDFavouriteMensenView *favouriteMensenview;
+
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *sortControl;
 
@@ -166,11 +170,18 @@
         
         mensa.isFavourite = !mensa.isFavourite;
         [mensa.managedObjectContext saveToPersistentStore:nil];
-        
-/*            if (self.favouriteCell==nil) {
-                self.favouriteCell = [[UHDFavouriteMensaCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"favouriteCell"];
-            }
-            [self.favouriteCell addFavouriteMensa:((UHDMensaCell *)swipeTableViewCell).mensa];*/
+        if (mensa.isFavourite) {
+            if(self.favouriteMensenview == nil){
+             self.favouriteMensenview = [[UHDFavouriteMensenView alloc] init];
+            // NSLog(@"FavouriteMensenViewInitialized");
+        }
+            [self.favouriteMensenview addMensaToMensenArray:mensa];
+            // NSLog(@"Mensa added to MensaArray");
+        }
+        else {
+            [self.favouriteMensenview removeMensaFromMensenArray:mensa];
+            // NSLog(@"Mensa removed from MensaArray");
+        }
     }
 
 }

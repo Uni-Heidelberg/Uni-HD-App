@@ -9,10 +9,17 @@
 import Foundation
 import UIKit
 
+
 class UHDFavouriteMensenView: UIView {
     var favouriteMensenArray = [UHDMensa]()
     func addMensaToMensenArray (favouriteMensa:UHDMensa){
         favouriteMensenArray.append(favouriteMensa)
-        println("favouriteMensenArray is of type [UHDMensa] with \(favouriteMensenArray.count) items.")
+}
+    func removeMensaFromMensenArray (favouriteMensa:UHDMensa){
+        for (i, value) in enumerate(favouriteMensenArray) {
+            if favouriteMensa == value {
+                favouriteMensenArray.removeAtIndex(i)
+            }
+        }
 }
 }
