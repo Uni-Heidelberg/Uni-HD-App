@@ -29,7 +29,7 @@
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 
 @property CLLocationManager *locationManager;
-@property  UHDFavouriteMensenView *favouriteMensenview;
+
 
 
 @property (weak, nonatomic) IBOutlet UISegmentedControl *sortControl;
@@ -70,6 +70,9 @@
 {
     [super viewWillAppear:animated];
     [self.locationManager startUpdatingLocation];
+    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
+    view.backgroundColor = [UIColor redColor];
+    self.tableView.tableHeaderView = view;
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -171,16 +174,17 @@
         mensa.isFavourite = !mensa.isFavourite;
         [mensa.managedObjectContext saveToPersistentStore:nil];
         if (mensa.isFavourite) {
-            if(self.favouriteMensenview == nil){
-             self.favouriteMensenview = [[UHDFavouriteMensenView alloc] init];
-            // NSLog(@"FavouriteMensenViewInitialized");
-        }
-            [self.favouriteMensenview addMensaToMensenArray:mensa];
-            // NSLog(@"Mensa added to MensaArray");
+//            if(self.headerView == nil){
+//                self.tableView.tableHeaderView = self.headerView;
+//             NSLog(@"HeaderView assigned");
+//        }
+           
+            [(UHDFavouriteMensenView *)self.tableView.tableHeaderView addMensaToMensenArray:mensa];
+             NSLog(@"Mensa added to MensaArray");
         }
         else {
-            [self.favouriteMensenview removeMensaFromMensenArray:mensa];
-            // NSLog(@"Mensa removed from MensaArray");
+            [(UHDFavouriteMensenView *)self.tableView.tableHeaderView removeMensaFromMensenArray:mensa];
+             NSLog(@"Mensa removed from MensaArray");
         }
     }
 
