@@ -86,7 +86,6 @@
 		DC21B6E01923D27600BAD26D /* UHDMensa.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6DF1923D27600BAD26D /* UHDMensa.m */; };
 		DC21B6E31923FDC300BAD26D /* UHDDailyMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6E21923FDC300BAD26D /* UHDDailyMenuViewController.m */; };
 		DC33313C19976456009AA35A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC33313B19976456009AA35A /* CoreLocation.framework */; };
-		DC3A86A319C8A41A00ABCA56 /* UHDFavouriteMensaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC3A86A219C8A41A00ABCA56 /* UHDFavouriteMensaCell.m */; };
 		DC462EC1196964F60071ABBC /* UHDFavouritesStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC462EC0196964F60071ABBC /* UHDFavouritesStarView.m */; };
 		DC602447193E23A500B06BF2 /* UHDMensaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC602446193E23A500B06BF2 /* UHDMensaViewController.m */; };
 		DC83C93A192BDDA6004CC75B /* UHDMealCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC83C939192BDDA5004CC75B /* UHDMealCell.m */; };
@@ -274,8 +273,6 @@
 		DC21B6E11923FDC300BAD26D /* UHDDailyMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDDailyMenuViewController.h; sourceTree = "<group>"; };
 		DC21B6E21923FDC300BAD26D /* UHDDailyMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDDailyMenuViewController.m; sourceTree = "<group>"; };
 		DC33313B19976456009AA35A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		DC3A86A119C8A41900ABCA56 /* UHDFavouriteMensaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDFavouriteMensaCell.h; sourceTree = "<group>"; };
-		DC3A86A219C8A41A00ABCA56 /* UHDFavouriteMensaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDFavouriteMensaCell.m; sourceTree = "<group>"; };
 		DC462EBF196964F50071ABBC /* UHDFavouritesStarView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDFavouritesStarView.h; sourceTree = "<group>"; };
 		DC462EC0196964F60071ABBC /* UHDFavouritesStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDFavouritesStarView.m; sourceTree = "<group>"; };
 		DC602445193E23A500B06BF2 /* UHDMensaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMensaViewController.h; sourceTree = "<group>"; };
@@ -474,8 +471,6 @@
 			children = (
 				DC87FDF7191AA00600019F32 /* mensa.storyboard */,
 				87EBB04719D22D9B00F5E3AD /* Table View Cells */,
-				DC3A86A119C8A41900ABCA56 /* UHDFavouriteMensaCell.h */,
-				DC3A86A219C8A41A00ABCA56 /* UHDFavouriteMensaCell.m */,
 				87839F3C19D52A3B00E5E6C8 /* UHDMensaDayPicker.swift */,
 				87839F3819D4D70B00E5E6C8 /* UHDMensaDayPickerCell.swift */,
 			);
@@ -1078,7 +1073,6 @@
 				87B276CF192E04110057B505 /* UIColor+UHDBrandColor.m in Sources */,
 				0A2000521920F18A0014C977 /* UHDNewsDetailViewController.m in Sources */,
 				87F826D0190D422F0008144F /* news.xcdatamodeld in Sources */,
-				DC3A86A319C8A41A00ABCA56 /* UHDFavouriteMensaCell.m in Sources */,
 				87CBE0981908810B0029D9AF /* main.m in Sources */,
 				87839F3D19D52A3B00E5E6C8 /* UHDMensaDayPicker.swift in Sources */,
 				87EE2556191924E20092DF7F /* UHDNewsViewController.m in Sources */,

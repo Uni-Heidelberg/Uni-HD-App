@@ -17,7 +17,6 @@
 
 // View
 #import "UHDMensaCell.h"
-#import "UHDFavouriteMensaCell.h"
 
 // Model
 #import "UHDMensa.h"
