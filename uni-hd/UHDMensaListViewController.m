@@ -24,8 +24,9 @@
 // Swift
 #import "uni_hd-Swift.h"
 
-@interface UHDMensaListViewController () <RMSwipeTableViewCellDelegate, CLLocationManagerDelegate>
+@interface UHDMensaListViewController () <RMSwipeTableViewCellDelegate, CLLocationManagerDelegate,UHDFavouriteMensenViewDelegate>
 
+@property (strong, nonatomic) IBOutlet UHDFavouriteMensenView *headerView;
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 
 @property CLLocationManager *locationManager;
@@ -64,15 +65,15 @@
             [self.locationManager requestWhenInUseAuthorization];
         }
     }
+    self.headerView.delegate = self;
+
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     [self.locationManager startUpdatingLocation];
-    UIView *view = [[UIView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 100)];
-    view.backgroundColor = [UIColor redColor];
-    self.tableView.tableHeaderView = view;
+    [self.headerView refreshHeaderViewForMensa:nil];
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
@@ -173,21 +174,12 @@
         
         mensa.isFavourite = !mensa.isFavourite;
         [mensa.managedObjectContext saveToPersistentStore:nil];
-        if (mensa.isFavourite) {
-//            if(self.headerView == nil){
-//                self.tableView.tableHeaderView = self.headerView;
-//             NSLog(@"HeaderView assigned");
-//        }
-           
-            [(UHDFavouriteMensenView *)self.tableView.tableHeaderView addMensaToMensenArray:mensa];
-             NSLog(@"Mensa added to MensaArray");
-        }
-        else {
-            [(UHDFavouriteMensenView *)self.tableView.tableHeaderView removeMensaFromMensenArray:mensa];
-             NSLog(@"Mensa removed from MensaArray");
-        }
+            if(self.tableView.tableHeaderView == nil){
+                self.tableView.tableHeaderView = self.headerView;
+                self.headerView.delegate = self;
+            }
+            [self.headerView refreshHeaderViewForMensa:mensa];
     }
-
 }
 
 -(void)swipeTableViewCellDidResetState:(RMSwipeTableViewCell *)swipeTableViewCell fromPoint:(CGPoint)point animation:(RMSwipeTableViewCellAnimationType)animation velocity:(CGPoint)velocity {
@@ -212,5 +204,10 @@
         mensa.currentDistance = -1;
     }
     [self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
+}
+#pragma mark - UHDFavouriteMensenView Delegate
+
+-(void)dismissTableHeaderView{
+    self.tableView.tableHeaderView=nil;
 }
 @end

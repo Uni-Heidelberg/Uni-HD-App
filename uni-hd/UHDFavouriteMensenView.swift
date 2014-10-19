@@ -8,20 +8,24 @@
 
 import Foundation
 import UIKit
-
+@objc
+protocol UHDFavouriteMensenViewDelegate {
+    
+    func dismissTableHeaderView()
+    
+}
+@objc
 
 class UHDFavouriteMensenView: UIView {
-    @IBOutlet private weak var imageView1: UIImageView!
-    @IBOutlet private weak var imageView2: UIImageView!
-    @IBOutlet private weak var imageView3: UIImageView!
-
+    @IBOutlet var imageViews: Array<UIImageView>!
+    var delegate: UHDFavouriteMensenViewDelegate?
+    
     var favouriteMensenArray: [UHDMensa] = []{
-didSet {
-    for (i, value) in enumerate(favouriteMensenArray) {
-        if i==0 {imageView1.image = value.image}
-        if i==1 {imageView2.image = value.image}
-        if i==2 {imageView3.image = value.image}
-        }
+        didSet {
+            if oldValue.count>favouriteMensenArray.count{
+                
+            self.imageViews[oldValue.count-1].image=nil
+            }
     }
     }
     func addMensaToMensenArray (favouriteMensa:UHDMensa){
@@ -33,5 +37,23 @@ didSet {
                 favouriteMensenArray.removeAtIndex(i)
             }
         }
-}
+    }
+    func refreshHeaderViewForMensa(newFavouriteMensa:UHDMensa){
+        
+        if(newFavouriteMensa.isFavourite){
+        self.addMensaToMensenArray(newFavouriteMensa)
+        //Mensa added to MensaArray
+        }
+        if(!newFavouriteMensa.isFavourite){
+        self.removeMensaFromMensenArray(newFavouriteMensa)
+        //Mensa removed from MensaArray
+        }
+        if favouriteMensenArray.count == 0
+        {
+            delegate?.dismissTableHeaderView()
+        }
+        for (i, value) in enumerate(favouriteMensenArray) {
+            self.imageViews[i].image = value.image
+        }
+    }
 }

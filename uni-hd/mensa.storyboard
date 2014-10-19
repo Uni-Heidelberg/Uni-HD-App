@@ -28,6 +28,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="I14-3B-nYs" customClass="UHDFavouriteMensenView" customModule="uni_hd" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="64" width="320" height="78"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fgf-00-OPb">
+                                    <rect key="frame" x="8" y="4" width="65" height="70"/>
+                                </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yD2-IP-N7z">
+                                    <rect key="frame" x="81" y="4" width="65" height="70"/>
+                                </imageView>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vul-Ld-qdU">
+                                    <rect key="frame" x="154" y="4" width="65" height="70"/>
+                                </imageView>
+                            </subviews>
+                            <connections>
+                                <outletCollection property="imageViews" destination="fgf-00-OPb" collectionClass="NSMutableArray" id="lTm-jE-i9Z"/>
+                                <outletCollection property="imageViews" destination="yD2-IP-N7z" collectionClass="NSMutableArray" id="Ku7-l9-OBp"/>
+                                <outletCollection property="imageViews" destination="vul-Ld-qdU" collectionClass="NSMutableArray" id="nP9-rN-axe"/>
+                            </connections>
+                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="mensaCell" rowHeight="140" id="1Hx-W2-Lgq" customClass="UHDMensaCell">
                                 <rect key="frame" x="0.0" y="226" width="320" height="140"/>
@@ -107,6 +127,7 @@
                         </connections>
                     </refreshControl>
                     <connections>
+                        <outlet property="headerView" destination="I14-3B-nYs" id="LK4-qe-HqR"/>
                         <outlet property="sortControl" destination="UTb-tn-cFY" id="5XU-1F-eIR"/>
                     </connections>
                 </tableViewController>
@@ -598,6 +619,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="iln-OO-g8M"/>
+        <segue reference="ABh-eb-d6C"/>
     </inferredMetricsTieBreakers>
 </document>
