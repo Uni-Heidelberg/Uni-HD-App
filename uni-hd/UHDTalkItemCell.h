@@ -7,11 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UHDTalkItem.h"
 
 @interface UHDTalkItemCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *speakerLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *talkImageView;
+- (void)configureForItem:(UHDTalkItem *)item;
 
 @end

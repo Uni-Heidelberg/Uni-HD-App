@@ -56,7 +56,8 @@ class UHDMensaDayPicker: UIView {
     private var centerIndex = 0
     private let collectionViewLength = 50
     private let startDate: NSDate = {
-       return NSCalendar.currentCalendar().dateBySettingHour(0, minute: 0, second: 0, ofDate: NSDate(), options: .allZeros)
+       return NSCalendar.currentCalendar().dateBySettingHour(0, minute: 0, second: 0, ofDate: NSDate(), options: .allZeros)!
+	   // TODO: Change startDate into an optional value, which is the defaul return type of the function (no forced unwrapping).
     }()
     
     
@@ -64,13 +65,15 @@ class UHDMensaDayPicker: UIView {
     
     func selectDate(date: NSDate, animated: Bool, scrollPosition: UICollectionViewScrollPosition)
     {
-        let date = NSCalendar.currentCalendar().dateBySettingHour(0, minute: 0, second: 0, ofDate: date, options: .allZeros)
-        
-        if scrollPosition != .None && indexPathForDate(date) == nil {
+        let currentDate: NSDate? = NSCalendar.currentCalendar().dateBySettingHour(0, minute: 0, second: 0, ofDate: date, options: .allZeros)
+		
+		if let date = currentDate {
+			if scrollPosition != .None && indexPathForDate(date) == nil {
             recenterToIndex(indexForDate(date))
-        }
-        collectionView.selectItemAtIndexPath(indexPathForDate(date), animated: animated, scrollPosition: scrollPosition)
-        selectedDate = date
+			}
+			collectionView.selectItemAtIndexPath(indexPathForDate(date), animated: animated, scrollPosition: scrollPosition)
+			selectedDate = date
+		}
     }
     
     func scrollToDate(date: NSDate, atScrollPosition scrollPosition: UICollectionViewScrollPosition, animated: Bool)
@@ -247,7 +250,7 @@ extension UHDMensaDayPicker: UICollectionViewDelegate {
 
 extension UHDMensaDayPicker {
     
-    var logger: VILogger {
-        return VILogger.loggerForKeyPath("UHDMensaDayPicker")
+    var logger: Logger {
+        return Logger.loggerForKeyPath("UHDMensaDayPicker")
     }
 }
