@@ -1,5 +1,5 @@
 //
-//  UHDMensaDayPicker.swift
+//  MensaDayPicker.swift
 //  uni-hd
 //
 //  Created by Nils Fischer on 25.09.14.
@@ -10,16 +10,16 @@ import UIKit
 import VILogKit
 
 @objc
-protocol UHDMensaDayPickerDelegate {
+protocol MensaDayPickerDelegate {
     
-    optional func dayPicker(dayPicker: UHDMensaDayPicker, canSelectDate date: NSDate) -> Bool
-    optional func dayPicker(dayPicker: UHDMensaDayPicker, didSelectDate date: NSDate?)
+    optional func dayPicker(dayPicker: MensaDayPicker, canSelectDate date: NSDate) -> Bool
+    optional func dayPicker(dayPicker: MensaDayPicker, didSelectDate date: NSDate?)
     
 }
 
 @objc
 
-class UHDMensaDayPicker: UIView {
+class MensaDayPicker: UIView {
     
 
     var itemWidth: CGFloat = 50 {
@@ -28,11 +28,11 @@ class UHDMensaDayPicker: UIView {
         }
     }
     
-    @IBOutlet var delegate: UHDMensaDayPickerDelegate?
+    @IBOutlet var delegate: MensaDayPickerDelegate?
     
     private(set) var selectedDate: NSDate? {
         didSet(previousDate) {
-            // remote time components
+            // remove time components
             if let selectedDate = selectedDate {
                 self.selectedDate = NSCalendar.currentCalendar().dateBySettingHour(0, minute: 0, second: 0, ofDate: selectedDate, options: .allZeros)
             }
@@ -57,7 +57,7 @@ class UHDMensaDayPicker: UIView {
     private let collectionViewLength = 50
     private let startDate: NSDate = {
        return NSCalendar.currentCalendar().dateBySettingHour(0, minute: 0, second: 0, ofDate: NSDate(), options: .allZeros)!
-	   // TODO: Change startDate into an optional value, which is the defaul return type of the function (no forced unwrapping).
+	   // TODO: Change startDate into an optional value, which is the default return type of the function (no forced unwrapping).
     }()
     
     
@@ -65,15 +65,14 @@ class UHDMensaDayPicker: UIView {
     
     func selectDate(date: NSDate, animated: Bool, scrollPosition: UICollectionViewScrollPosition)
     {
-        let currentDate: NSDate? = NSCalendar.currentCalendar().dateBySettingHour(0, minute: 0, second: 0, ofDate: date, options: .allZeros)
-		
-		if let date = currentDate {
-			if scrollPosition != .None && indexPathForDate(date) == nil {
-            recenterToIndex(indexForDate(date))
-			}
-			collectionView.selectItemAtIndexPath(indexPathForDate(date), animated: animated, scrollPosition: scrollPosition)
-			selectedDate = date
-		}
+        selectedDate = date
+        
+        if let date = selectedDate {
+            if scrollPosition != .None && indexPathForDate(date) == nil {
+                recenterToIndex(indexForDate(date))
+            }
+            collectionView.selectItemAtIndexPath(indexPathForDate(date), animated: animated, scrollPosition: scrollPosition)
+        }
     }
     
     func scrollToDate(date: NSDate, atScrollPosition scrollPosition: UICollectionViewScrollPosition, animated: Bool)
@@ -101,9 +100,9 @@ class UHDMensaDayPicker: UIView {
     override func awakeFromNib()
     {
         super.awakeFromNib()
-        // TODO: find a way to scroll to startDate on on load. changing itemWidth messes up the solution below
-        // collectionView.scrollToItemAtIndexPath(indexPathForDate(startDate), atScrollPosition: .Left, animated: false);
         adjustItemSize()
+        // TODO: find a way to scroll to startDate on on load. changing itemWidth messes up the solution below
+        //collectionView.scrollToItemAtIndexPath(indexPathForDate(startDate)!, atScrollPosition: .Left, animated: false);
     }
     
     override func layoutSubviews() {
@@ -114,6 +113,7 @@ class UHDMensaDayPicker: UIView {
     private func adjustItemSize() {
         (collectionView.collectionViewLayout as UICollectionViewFlowLayout).itemSize = CGSize(width: itemWidth, height: collectionView.bounds.height)
         collectionView.collectionViewLayout.invalidateLayout() // TODO: make sure this works
+        collectionView.contentSize = collectionView.collectionViewLayout.collectionViewContentSize() // TODO: check this. contentSize is zeros otherwise and initial scrolling does not work.
     }
     
     
@@ -160,7 +160,7 @@ class UHDMensaDayPicker: UIView {
 
 // MARK: Collection View Datasource
 
-extension UHDMensaDayPicker: UICollectionViewDataSource {
+extension MensaDayPicker: UICollectionViewDataSource {
     
     func collectionView(collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int
@@ -171,7 +171,7 @@ extension UHDMensaDayPicker: UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView,
         cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("mensaDayPickerCell", forIndexPath: indexPath) as UHDMensaDayPickerCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("mensaDayPickerCell", forIndexPath: indexPath) as MensaDayPickerCell
         let date = dateForIndexPath(indexPath)
         cell.configureForDate(date)
         cell.enabled = delegate?.dayPicker?(self, canSelectDate: date) ?? true
@@ -183,7 +183,7 @@ extension UHDMensaDayPicker: UICollectionViewDataSource {
 
 // MARK: Collection View Delegate
 
-extension UHDMensaDayPicker: UICollectionViewDelegate {
+extension MensaDayPicker: UICollectionViewDelegate {
     
     
     // MARK: Infinite Scrolling
@@ -248,9 +248,9 @@ extension UHDMensaDayPicker: UICollectionViewDelegate {
 
 // MARK: Logging
 
-extension UHDMensaDayPicker {
+extension MensaDayPicker {
     
     var logger: Logger {
-        return Logger.loggerForKeyPath("UHDMensaDayPicker")
+        return Logger.loggerForKeyPath("MensaDayPicker")
     }
 }

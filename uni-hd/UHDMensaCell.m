@@ -13,7 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *mensaLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *mensaImageView;
+@property (weak, nonatomic) IBOutlet CircularProgressView *hoursProgressView;
 
 @end
 
@@ -23,14 +23,8 @@
 -(void)configureForMensa:(UHDMensa *)mensa
 {
     self.mensaLabel.text = mensa.title;
-    self.mensaImageView.image = mensa.image;
-    if (mensa.currentDistance >= 0) {
-        MKDistanceFormatter *distanceFormatter = [[MKDistanceFormatter alloc] init];
-        self.distanceLabel.text = [distanceFormatter stringFromDistance:mensa.currentDistance];
-    } else {
-        self.distanceLabel.text = NSLocalizedString(@"Distance unavailable", nil);
-    }
-
+    [self.hoursProgressView configureForHoursOfMensa:mensa];
+    self.distanceLabel.attributedText = mensa.attributedStatusDescription;
     self.isFavourite = mensa.isFavourite;
 }
 

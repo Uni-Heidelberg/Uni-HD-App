@@ -21,10 +21,12 @@
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1.0</string>
+	<string>0</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
-	<key>NSLocationWhenInUseUsageDescription</key>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>TODO: add description here</string>
+	<key>NSLocationWhenInUseUsageDescription - 2</key>
 	<string>TODO: add description here</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>

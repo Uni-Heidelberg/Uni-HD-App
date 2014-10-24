@@ -24,12 +24,12 @@
 // Swift
 #import "uni_hd-Swift.h"
 
-@interface UHDMensaListViewController () <RMSwipeTableViewCellDelegate, CLLocationManagerDelegate,UHDFavouriteMensenViewDelegate>
+@interface UHDMensaListViewController () <RMSwipeTableViewCellDelegate, CLLocationManagerDelegate>
 
-@property (strong, nonatomic) IBOutlet UHDFavouriteMensenView *headerView;
+@property (strong, nonatomic) IBOutlet FavouriteMensenView *headerView;
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 
-@property CLLocationManager *locationManager;
+@property (strong, nonatomic) CLLocationManager *locationManager;
 
 
 
@@ -46,39 +46,53 @@
 
 #pragma mark - View Lifecycle
 
+- (void)awakeFromNib
+{
+    [super awakeFromNib];
+    
+    // Configure View
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 90;
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
-    // Redirect datasource
-    self.tableView.dataSource = self.fetchedResultsControllerDataSource;
-    
     // Setup CLLocationManager
     self.locationManager = [[CLLocationManager alloc] init];
-    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    self.locationManager.desiredAccuracy = kCLLocationAccuracyBest; // TODO: reconsider accuracy
     self.locationManager.delegate = self;
     // trigger location authorization
-    // TODO: inform user first
     if ([CLLocationManager authorizationStatus]==kCLAuthorizationStatusNotDetermined) {
         // TODO: remove availability check
-        if ([self.locationManager respondsToSelector:@selector(requestWhenInUseAuthorization)]) {
-            [self.locationManager requestWhenInUseAuthorization];
+        if ([self.locationManager respondsToSelector:@selector(requestAlwaysAuthorization)]) {
+            [self.locationManager requestAlwaysAuthorization]; // "Always" needed for significant location change
         }
     }
-    self.headerView.delegate = self;
 
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    [self.locationManager startUpdatingLocation];
-    [self.headerView refreshHeaderViewForMensa:nil];
+    [self.locationManager startMonitoringSignificantLocationChanges];  // TODO: reconsider accuracy
 }
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
-    [self.locationManager stopUpdatingLocation];
+    [self.locationManager stopMonitoringSignificantLocationChanges];
+}
+
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
+{
+    _managedObjectContext = managedObjectContext;
+    
+    // Redirect datasource
+    self.tableView.dataSource = self.fetchedResultsControllerDataSource;
+
+    // Pass MOC on to favourite view
+    self.headerView.managedObjectContext = self.managedObjectContext;
 }
 
 
@@ -135,7 +149,7 @@
 #pragma mark - Table View Datasource
 
 - (VIFetchedResultsControllerDataSource *)fetchedResultsControllerDataSource {
-    if (!_fetchedResultsControllerDataSource) {
+    if (!_fetchedResultsControllerDataSource && self.managedObjectContext) {
         
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
         fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES] ];
@@ -169,16 +183,11 @@
 {
     [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellWillResetState: %@ fromPoint: %@ animation: %u, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
     
-    if (-point.x >= CGRectGetHeight(swipeTableViewCell.frame)) {
+    if ([(UHDFavouriteCell *)swipeTableViewCell shouldTriggerForPoint:point]) {
         UHDMensa *mensa = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:swipeTableViewCell]];
         
         mensa.isFavourite = !mensa.isFavourite;
         [mensa.managedObjectContext saveToPersistentStore:nil];
-            if(self.tableView.tableHeaderView == nil){
-                self.tableView.tableHeaderView = self.headerView;
-                self.headerView.delegate = self;
-            }
-            [self.headerView refreshHeaderViewForMensa:mensa];
     }
 }
 
@@ -189,25 +198,21 @@
 
 #pragma mark - CLLocationManager Delegate
 
--(void)locationManager:(CLLocationManager *)manager didUpdateToLocation:(CLLocation *)newLocation fromLocation:(CLLocation *)oldLocation
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
     for (UHDMensa *mensa in self.fetchedResultsControllerDataSource.fetchedResultsController.fetchedObjects) {
-        mensa.currentDistance = [mensa.location distanceFromLocation:newLocation];
+        mensa.currentDistance = [mensa.location distanceFromLocation:locations.lastObject];
     }
-    [self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
+    //[self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
 }
 
--(void)locationManager:(CLLocationManager *)manager
+- (void)locationManager:(CLLocationManager *)manager
       didFailWithError:(NSError *)error
 {
     for (UHDMensa *mensa in self.fetchedResultsControllerDataSource.fetchedResultsController.fetchedObjects) {
         mensa.currentDistance = -1;
     }
-    [self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
+    //[self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
 }
-#pragma mark - UHDFavouriteMensenView Delegate
 
--(void)dismissTableHeaderView{
-    self.tableView.tableHeaderView=nil;
-}
 @end

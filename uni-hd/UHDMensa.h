@@ -8,6 +8,7 @@
 
 #import "UHDBuilding.h"
 @class UHDDailyMenu;
+@class Hours;
 
 @interface UHDMensa : UHDBuilding
 
@@ -16,6 +17,8 @@
 @property (nonatomic, assign) BOOL isFavourite;
 
 @property (nonatomic) CLLocationDistance currentDistance;
+@property (readonly) Hours *hours; // TODO: not yet implemented properly
+@property (readonly) NSAttributedString * attributedStatusDescription;
 
 - (NSMutableSet *)mutableMenus;
 - (NSMutableSet *)mutableSections;

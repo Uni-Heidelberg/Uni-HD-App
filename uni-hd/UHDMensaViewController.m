@@ -17,12 +17,12 @@
 #import "UHDMensa.h"
 
 
-@interface UHDMensaViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate, UHDMensaDayPickerDelegate>
+@interface UHDMensaViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate, MensaDayPickerDelegate>
 
 @property (strong, nonatomic) UHDMensa *mensa;
 
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet UHDMensaDayPicker *dayPicker;
+@property (strong, nonatomic) IBOutlet MensaDayPicker *dayPicker;
 
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 
@@ -45,7 +45,7 @@
     [self loadSelectedMensa];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsDidChange:) name:NSUserDefaultsDidChangeNotification object:[NSUserDefaults standardUserDefaults]];
     
-    self.dayPicker.itemWidth = self.dayPicker.bounds.size.width / 7;
+    self.dayPicker.itemWidth = 45; // TODO: make dynamic
     self.dayPicker.delegate = self; // TODO: move to storyboard
     [self.dayPicker selectDate:[NSDate date] animated:NO scrollPosition:UICollectionViewScrollPositionLeft];
     
@@ -72,9 +72,9 @@
     NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:NULL];
     if (result.count > 0) {
         self.mensa = result.firstObject;
-        [self.logger log:@"Found selected Mensa" object:self.mensa.title forLevel:VILogLevelDebug];
+        [self.logger log:@"Found selected Mensa." object:self.mensa.title forLevel:VILogLevelDebug];
     } else {
-        [self.logger log:@"Selected invalid mensa" forLevel:VILogLevelError];
+        [self.logger log:@"Selected invalid mensa." forLevel:VILogLevelError];
     }
     
 }
@@ -150,12 +150,12 @@
 
 #pragma mark - Day Picker Delegate
 
-- (BOOL)dayPicker:(UHDMensaDayPicker *)dayPicker canSelectDate:(NSDate *)date
+- (BOOL)dayPicker:(MensaDayPicker *)dayPicker canSelectDate:(NSDate *)date
 {
     return [self.mensa dailyMenuForDate:date] != nil;
 }
 
-- (void)dayPicker:(UHDMensaDayPicker *)dayPicker didSelectDate:(NSDate *)date
+- (void)dayPicker:(MensaDayPicker *)dayPicker didSelectDate:(NSDate *)date
 {
     [self configureViewAnimated:YES];
 }

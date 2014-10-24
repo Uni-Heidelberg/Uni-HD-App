@@ -1,5 +1,5 @@
 //
-//  UHDMensaDayPickerCell.swift
+//  MensaDayPickerCell.swift
 //  uni-hd
 //
 //  Created by Nils Fischer on 25.09.14.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UHDMensaDayPickerCell: UICollectionViewCell {
+class MensaDayPickerCell: UICollectionViewCell {
     
     @IBOutlet private weak var weekdayLabel: UILabel!
     @IBOutlet private weak var selectionIndicatorView: UIView!

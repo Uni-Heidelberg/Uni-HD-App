@@ -9,7 +9,6 @@
 #import "UHDMensa.h"
 #import "UHDDailyMenu.h"
 
-
 @implementation UHDMensa
 
 @dynamic menus;
@@ -51,6 +50,21 @@
     return [self mutableSetValueForKey:@"sections"];
 }
 
+
+#pragma mark - Computed Properties
+
+- (Hours *)hours {
+    return [[Hours alloc] init];
+}
+
+- (NSAttributedString *)attributedStatusDescription {
+    NSMutableAttributedString *attributedStatusDescription = [[NSMutableAttributedString alloc] initWithAttributedString:self.hours.attributedDescription];
+    if (self.currentDistance >= 0) {
+        MKDistanceFormatter *distanceFormatter = [[MKDistanceFormatter alloc] init];
+        [attributedStatusDescription appendAttributedString:[[NSAttributedString alloc] initWithString:[NSString stringWithFormat:@", %@ entfernt", [distanceFormatter stringFromDistance:self.currentDistance]]]];
+    }
+    return attributedStatusDescription;
+}
 
 #pragma mark - Convenience Methods
 
