@@ -171,10 +171,10 @@
                             <outlet property="delegate" destination="otg-ia-fKW" id="9bi-lt-QiV"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="lXf-JQ-lwZ">
+                    <navigationItem key="navigationItem" prompt="Select a Mensa." id="lXf-JQ-lwZ">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="UTb-tn-cFY">
-                            <rect key="frame" x="178" y="7" width="244" height="30"/>
+                            <rect key="frame" x="178" y="37" width="244" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Alle Mensen"/>
@@ -686,6 +686,6 @@
         <image name="Billiardkugel7" width="215" height="194"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ABh-eb-d6C"/>
+        <segue reference="ZoX-P8-0Hs"/>
     </inferredMetricsTieBreakers>
 </document>
