@@ -30,8 +30,7 @@
 @property (strong, nonatomic) NSFetchedResultsController *favouritesResultsController;
 
 @property (strong, nonatomic) CLLocationManager *locationManager;
-@property (strong, nonatomic) UILabel *sectionHeaderLabel1;
-@property (strong, nonatomic) UILabel *sectionHeaderLabel2;
+
 
 
 
@@ -145,36 +144,55 @@
     }];
 }
 
--(void)updateSectionHeaders{
-    NSArray *list;
-    list = [NSArray arrayWithObjects:
-            @"Favoriten",
-            @"weitere Mensen",nil];
-    
-    NSString *string1 =[list objectAtIndex:0];
-    [self.sectionHeaderLabel1 setText:string1];
-    NSString *string2 =[list objectAtIndex:1];
-    [self.sectionHeaderLabel2 setText:string2];
-    
-}
+
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    NSArray *list = [NSArray arrayWithObjects:
+                     @"Favoriten",
+                     @"alle Mensen",nil];
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
     /* Create custom view to display section header... */
     if (section == 0) {
-        self.sectionHeaderLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
-        [self.sectionHeaderLabel1 setFont:[UIFont boldSystemFontOfSize:12]];
-        [view addSubview:self.sectionHeaderLabel1];
+        UILabel *sectionHeaderLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
+        NSString *string1 =[list objectAtIndex:0];
+        [sectionHeaderLabel1 setText:string1];
+        [sectionHeaderLabel1 setFont:[UIFont boldSystemFontOfSize:12]];
+        [view addSubview:sectionHeaderLabel1];
+        
     }
     else if (section == 1) {
-        self.sectionHeaderLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
-        [self.sectionHeaderLabel2 setFont:[UIFont boldSystemFontOfSize:12]];
-        [view addSubview:self.sectionHeaderLabel2];
+        UILabel*sectionHeaderLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
+        NSString *string2 =[list objectAtIndex:1];
+        [sectionHeaderLabel2 setText:string2];
+        [sectionHeaderLabel2 setFont:[UIFont boldSystemFontOfSize:12]];
+        [view addSubview:sectionHeaderLabel2];
     }
     [view setBackgroundColor:[UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0]]; //your background color...
-    [self updateSectionHeaders];
-    
     return view;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
+    if (section ==0 && self.favouritesResultsController.fetchedObjects.count == 0){
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 45)];
+        UILabel *footerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,view.bounds.size.width,view.bounds.size.height)];
+        footerLabel.textAlignment = NSTextAlignmentCenter;
+        footerLabel.text = [NSString stringWithFormat:@"Swipe Mensa to mark as favourite."];
+        [view addSubview:footerLabel];
+        
+        return view;
+    }
+    else{
+        return nil;
+    }
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    if (section == 0 && self.favouritesResultsController.fetchedObjects.count == 0){
+        return 60;
+        
+    }
+    else{
+        return 0.0;
+    }
 }
 
 #pragma mark - Table View Datasource
@@ -312,7 +330,6 @@
         UHDMensa *mensa = [self mensaForIndexPath:[self.tableView indexPathForCell:swipeTableViewCell]];
         mensa.isFavourite = !mensa.isFavourite;
         [mensa.managedObjectContext saveToPersistentStore:nil];
-        [self updateSectionHeaders];
     }
 }
 
