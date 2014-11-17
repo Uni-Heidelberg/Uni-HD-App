@@ -203,8 +203,8 @@
     for (UHDMensa *mensa in self.fetchedResultsControllerDataSource.fetchedResultsController.fetchedObjects) {
         mensa.currentDistance = [mensa.location distanceFromLocation:locations.lastObject];
     }
-    //[self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
 }
+
 
 - (void)locationManager:(CLLocationManager *)manager
       didFailWithError:(NSError *)error
@@ -212,7 +212,6 @@
     for (UHDMensa *mensa in self.fetchedResultsControllerDataSource.fetchedResultsController.fetchedObjects) {
         mensa.currentDistance = -1;
     }
-    //[self.tableView reloadRowsAtIndexPaths:self.tableView.indexPathsForVisibleRows withRowAnimation:UITableViewRowAnimationNone];
 }
 
 @end
