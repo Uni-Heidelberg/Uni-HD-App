@@ -135,7 +135,7 @@
             break;
     }
     self.fetchedResultsController.fetchRequest.sortDescriptors = sortDescriptors;
-    //[self.fetchedResultsControllerDataSource reloadData];
+    [self.fetchedResultsController performFetch:nil];
 }
 
 - (IBAction)refreshControlValueChanged:(UIRefreshControl *)sender
