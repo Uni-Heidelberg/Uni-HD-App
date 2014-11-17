@@ -15,6 +15,8 @@
 // Model
 #import "UHDNewsSource.h"
 
+// Sources Navigation Bar
+#import "UHDNewsSourcesNavigationBar.h"
 
 #define kDisplayModeSegmentIndexNews 0
 #define kDisplayModeSegmentIndexEvents 1
@@ -25,6 +27,8 @@
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 @property (strong, nonatomic) NSMutableArray *newsListViewControllers;
+
+@property (strong, nonatomic) IBOutlet UHDNewsSourcesNavigationBar *sourcesNavigationBar;
 
 @property (strong, nonatomic) IBOutlet UILabel *temporarySelectedSourceLabel; // TODO: implement proper source navigation bar
 
@@ -52,6 +56,9 @@
 {
     self.temporarySelectedSourceLabel.text = [self.pageViewController.viewControllers[0] title];
 	[self updateDisplayMode];
+	
+	// set currently subscribed sources to display in sources navigation bar
+	self.sourcesNavigationBar.sources = [self.fetchedResultsController fetchedObjects];
 }
 
 #pragma mark - Fetched Results Controller
