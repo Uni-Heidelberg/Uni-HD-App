@@ -135,6 +135,7 @@
     }
     self.fetchedResultsController.fetchRequest.sortDescriptors = sortDescriptors;
     [self.fetchedResultsController performFetch:nil];
+    [self.tableView reloadData];
 }
 
 - (IBAction)refreshControlValueChanged:(UIRefreshControl *)sender
@@ -147,43 +148,32 @@
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    NSArray *list = [NSArray arrayWithObjects:
-                     @"Favoriten",
-                     @"alle Mensen",nil];
+    NSArray *list = @[ @"Favoriten", @"Alle Mensen" ];
     UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
-    /* Create custom view to display section header... */
-    if (section == 0) {
-        UILabel *sectionHeaderLabel1 = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
-        NSString *string1 =[list objectAtIndex:0];
-        [sectionHeaderLabel1 setText:string1];
-        [sectionHeaderLabel1 setFont:[UIFont boldSystemFontOfSize:12]];
-        [view addSubview:sectionHeaderLabel1];
-        
-    }
-    else if (section == 1) {
-        UILabel*sectionHeaderLabel2 = [[UILabel alloc] initWithFrame:CGRectMake(10, 5, tableView.frame.size.width, 18)];
-        NSString *string2 =[list objectAtIndex:1];
-        [sectionHeaderLabel2 setText:string2];
-        [sectionHeaderLabel2 setFont:[UIFont boldSystemFontOfSize:12]];
-        [view addSubview:sectionHeaderLabel2];
-    }
-    [view setBackgroundColor:[UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0]]; //your background color...
+    view.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0];
+    UILabel *sectionHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, view.bounds.size.width - 30, view.bounds.size.height)];
+    sectionHeaderLabel.text = list[section];
+    sectionHeaderLabel.font = [UIFont boldSystemFontOfSize:14];
+    sectionHeaderLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    [view addSubview:sectionHeaderLabel];
     return view;
 }
+
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    if (section ==0 && self.favouritesResultsController.fetchedObjects.count == 0){
+    if (section==0 && self.favouritesResultsController.fetchedObjects.count == 0){
         UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 45)];
-        UILabel *footerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0,0,view.bounds.size.width,view.bounds.size.height)];
+        UILabel *footerLabel = [[UILabel alloc] initWithFrame:view.bounds];
+        footerLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
         footerLabel.textAlignment = NSTextAlignmentCenter;
         footerLabel.text = [NSString stringWithFormat:@"Swipe Mensa to mark as favourite."];
+        footerLabel.font = [UIFont systemFontOfSize:14];
+        footerLabel.textColor = [UIColor lightGrayColor];
         [view addSubview:footerLabel];
-        
         return view;
     }
-    else{
-        return nil;
-    }
+    return nil;
 }
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     if (section == 0 && self.favouritesResultsController.fetchedObjects.count == 0){
@@ -342,6 +332,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
+    [self.logger log:@"Received location update." object:locations forLevel:VILogLevelDebug];
     for (UHDMensa *mensa in self.fetchedResultsController.fetchedObjects) {
         mensa.currentDistance = [mensa.location distanceFromLocation:locations.lastObject];
     }
@@ -351,6 +342,7 @@
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error
 {
+    [self.logger log:@"Failed to receive location update." forLevel:VILogLevelDebug];
     for (UHDMensa *mensa in self.fetchedResultsController.fetchedObjects) {
         mensa.currentDistance = -1;
     }
