@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7iw-G4-EQc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7iw-G4-EQc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -29,58 +29,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="I14-3B-nYs" customClass="FavouriteMensenView" customModule="uni_hd" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="64" width="600" height="78"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ud8-EV-C2u" userLabel="TODO: make this a collection view">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="78"/>
-                                    <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fgf-00-OPb">
-                                            <rect key="frame" x="0.0" y="0.0" width="78" height="78"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="fgf-00-OPb" secondAttribute="height" multiplier="1:1" id="oR9-EZ-PbQ"/>
-                                            </constraints>
-                                        </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yD2-IP-N7z">
-                                            <rect key="frame" x="78" y="0.0" width="78" height="78"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="yD2-IP-N7z" secondAttribute="height" multiplier="1:1" id="bwv-WR-hiB"/>
-                                            </constraints>
-                                        </imageView>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="vul-Ld-qdU">
-                                            <rect key="frame" x="156" y="0.0" width="78" height="78"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" secondItem="vul-Ld-qdU" secondAttribute="height" multiplier="1:1" id="Opt-5R-sMb"/>
-                                            </constraints>
-                                        </imageView>
-                                    </subviews>
-                                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <constraints>
-                                        <constraint firstItem="fgf-00-OPb" firstAttribute="top" secondItem="ud8-EV-C2u" secondAttribute="top" id="4Jv-Hd-Jl4"/>
-                                        <constraint firstAttribute="bottom" secondItem="fgf-00-OPb" secondAttribute="bottom" id="7nA-nh-jEn"/>
-                                        <constraint firstItem="fgf-00-OPb" firstAttribute="leading" secondItem="ud8-EV-C2u" secondAttribute="leading" id="8xh-TX-OsR"/>
-                                        <constraint firstItem="vul-Ld-qdU" firstAttribute="leading" secondItem="yD2-IP-N7z" secondAttribute="trailing" id="OyK-3j-1Qx"/>
-                                        <constraint firstItem="yD2-IP-N7z" firstAttribute="top" secondItem="ud8-EV-C2u" secondAttribute="top" id="RA5-aR-AeL"/>
-                                        <constraint firstAttribute="bottom" secondItem="vul-Ld-qdU" secondAttribute="bottom" id="RMa-lu-EOs"/>
-                                        <constraint firstAttribute="bottom" secondItem="yD2-IP-N7z" secondAttribute="bottom" id="cLT-Nq-sFV"/>
-                                        <constraint firstItem="vul-Ld-qdU" firstAttribute="top" secondItem="ud8-EV-C2u" secondAttribute="top" id="eKq-0j-WYD"/>
-                                        <constraint firstItem="yD2-IP-N7z" firstAttribute="leading" secondItem="fgf-00-OPb" secondAttribute="trailing" id="spq-6R-Nxc"/>
-                                    </constraints>
-                                </view>
-                            </subviews>
-                            <constraints>
-                                <constraint firstAttribute="trailing" secondItem="ud8-EV-C2u" secondAttribute="trailing" id="HrD-Sj-8br"/>
-                                <constraint firstItem="ud8-EV-C2u" firstAttribute="top" secondItem="I14-3B-nYs" secondAttribute="top" id="ToW-LF-1Hx"/>
-                                <constraint firstItem="ud8-EV-C2u" firstAttribute="leading" secondItem="I14-3B-nYs" secondAttribute="leading" id="hQI-7i-9gu"/>
-                                <constraint firstAttribute="bottom" secondItem="ud8-EV-C2u" secondAttribute="bottom" id="ptN-p5-mec"/>
-                            </constraints>
-                            <connections>
-                                <outletCollection property="imageViews" destination="fgf-00-OPb" collectionClass="NSMutableArray" id="AmV-Tx-cMD"/>
-                                <outletCollection property="imageViews" destination="yD2-IP-N7z" collectionClass="NSMutableArray" id="YS6-4L-XXm"/>
-                                <outletCollection property="imageViews" destination="vul-Ld-qdU" collectionClass="NSMutableArray" id="LfL-Rk-bH8"/>
-                            </connections>
-                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="mensaCell" rowHeight="90" id="1Hx-W2-Lgq" customClass="UHDMensaCell">
                                 <rect key="frame" x="0.0" y="226" width="320" height="140"/>
@@ -117,18 +65,18 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yh9-Oc-8DV">
-                                            <rect key="frame" x="78" y="21" width="492" height="46.5"/>
+                                            <rect key="frame" x="78" y="21.5" width="484" height="46.5"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Mensa Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Pj-Wn-hoL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="492" height="21.5"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
-                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Status" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htI-xy-Kfp">
-                                                    <rect key="frame" x="0.0" y="29" width="492" height="17"/>
+                                                    <rect key="frame" x="0.0" y="29.5" width="484" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Mensa Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Pj-Wn-hoL">
+                                                    <rect key="frame" x="0.0" y="0.0" width="484" height="21.5"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
@@ -150,7 +98,7 @@
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="yh9-Oc-8DV" secondAttribute="bottom" id="6Wz-fm-iTQ"/>
                                         <constraint firstItem="qLb-lB-7J7" firstAttribute="top" relation="greaterThanOrEqual" secondItem="0ej-4z-jcc" secondAttribute="topMargin" id="Aff-L0-qg1"/>
                                         <constraint firstAttribute="centerY" secondItem="yh9-Oc-8DV" secondAttribute="centerY" id="IPB-mD-Bv3"/>
-                                        <constraint firstItem="VHt-21-Gkz" firstAttribute="leading" secondItem="yh9-Oc-8DV" secondAttribute="trailing" id="J4A-Ko-gEw"/>
+                                        <constraint firstItem="VHt-21-Gkz" firstAttribute="leading" secondItem="yh9-Oc-8DV" secondAttribute="trailing" constant="8" symbolic="YES" id="J4A-Ko-gEw"/>
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="qLb-lB-7J7" secondAttribute="bottom" id="Zuv-Ex-28g"/>
                                         <constraint firstItem="yh9-Oc-8DV" firstAttribute="leading" secondItem="qLb-lB-7J7" secondAttribute="trailing" constant="10" id="hoW-rv-Cgj"/>
                                         <constraint firstAttribute="centerY" secondItem="VHt-21-Gkz" secondAttribute="centerY" id="i9J-Gt-3LE"/>
@@ -171,10 +119,10 @@
                             <outlet property="delegate" destination="otg-ia-fKW" id="9bi-lt-QiV"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="lXf-JQ-lwZ">
+                    <navigationItem key="navigationItem" prompt="Select a Mensa." id="lXf-JQ-lwZ">
                         <nil key="title"/>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="UTb-tn-cFY">
-                            <rect key="frame" x="178" y="7" width="244" height="30"/>
+                            <rect key="frame" x="178" y="37" width="244" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Alle Mensen"/>
@@ -197,7 +145,6 @@
                         </connections>
                     </refreshControl>
                     <connections>
-                        <outlet property="headerView" destination="I14-3B-nYs" id="LK4-qe-HqR"/>
                         <outlet property="sortControl" destination="UTb-tn-cFY" id="5XU-1F-eIR"/>
                     </connections>
                 </tableViewController>
@@ -337,7 +284,7 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yn8-8x-RWs" userLabel="topView">
-                                                            <rect key="frame" x="21" y="0.5" width="9" height="12"/>
+                                                            <rect key="frame" x="21" y="1" width="9" height="12"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="22E-yK-uHa">
                                                                     <rect key="frame" x="0.0" y="0.0" width="9" height="12"/>
@@ -358,7 +305,7 @@
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Fo-wc-RwI" userLabel="selectionIndicatorView">
-                                                            <rect key="frame" x="7" y="13.5" width="36" height="36"/>
+                                                            <rect key="frame" x="7" y="14" width="36" height="36"/>
                                                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="7Fo-wc-RwI" secondAttribute="height" multiplier="1:1" id="UEC-zq-c5C"/>
@@ -371,7 +318,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0HP-5o-lOe">
-                                                            <rect key="frame" x="14.5" y="20.5" width="20.5" height="21.5"/>
+                                                            <rect key="frame" x="15" y="21" width="21" height="22"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -488,13 +435,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BhK-2z-4jb" userLabel="centered title view">
                                     <rect key="frame" x="32" y="11" width="121" height="22"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Mensa Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ua6-YB-hC0">
-                                            <rect key="frame" x="0.0" y="0.0" width="91" height="22"/>
-                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cyD-2R-AqC">
+                                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoLight" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cyD-2R-AqC">
                                             <rect key="frame" x="99" y="0.0" width="22" height="22"/>
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
@@ -503,6 +444,12 @@
                                                 <segue destination="PlF-L6-ulV" kind="show" identifier="showMensaDetail" id="ABh-eb-d6C"/>
                                             </connections>
                                         </button>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Mensa Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ua6-YB-hC0">
+                                            <rect key="frame" x="0.0" y="0.0" width="91" height="22"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
@@ -686,6 +633,6 @@
         <image name="Billiardkugel7" width="215" height="194"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ABh-eb-d6C"/>
+        <segue reference="ZoX-P8-0Hs"/>
     </inferredMetricsTieBreakers>
 </document>
