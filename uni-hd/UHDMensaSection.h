@@ -7,14 +7,17 @@
 //
 
 #import "UHDRemoteManagedObject.h"
-
-@class UHDMeal, UHDMensa;
+@class UHDDailyMenu, UHDMensa;
 
 @interface UHDMensaSection : UHDRemoteManagedObject
 
-@property (nonatomic, retain) NSString * title;
-@property (nonatomic, retain) NSSet *meals;
+@property (nonatomic, retain) NSString *title;
+
 @property (nonatomic, retain) UHDMensa *mensa;
+@property (nonatomic, retain) NSSet *menus;
+- (NSMutableSet *)mutableMenus;
+
+- (UHDDailyMenu *)dailyMenuForDate:(NSDate *)date;
 
 @end
 

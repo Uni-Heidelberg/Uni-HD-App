@@ -15,7 +15,7 @@
 
 @dynamic date;
 @dynamic meals;
-@dynamic mensa;
+@dynamic section;
 
 - (NSMutableSet *)mutableMeals
 {

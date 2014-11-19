@@ -7,14 +7,13 @@
 //
 
 #import "UHDMensa.h"
-#import "UHDDailyMenu.h"
+#import "UHDMensaSection.h"
 
 @implementation UHDMensa
 
-@dynamic menus;
-@dynamic sections;
 @dynamic isFavourite;
 @dynamic currentDistance;
+@dynamic sections;
 
 // TODO: implement attributes with relationships to maps module
 - (NSString *)buildingNumber {
@@ -41,10 +40,6 @@
 
 #pragma mark - Mutable To-Many Accessors
 
-- (NSMutableSet *)mutableMenus
-{
-    return [self mutableSetValueForKey:@"menus"];
-}
 - (NSMutableSet *)mutableSections
 {
     return [self mutableSetValueForKey:@"sections"];
@@ -66,16 +61,15 @@
     return attributedStatusDescription;
 }
 
+
 #pragma mark - Convenience Methods
 
-- (UHDDailyMenu *)dailyMenuForDate:(NSDate *)date
+- (BOOL)hasMenuForDate:(NSDate *)date
 {
-    NSDate *startDate;
-    NSTimeInterval dayLength;
-    [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay startDate:&startDate interval:&dayLength forDate:date];
-    NSDate *endDate = [startDate dateByAddingTimeInterval:dayLength];
-    
-    return [[self.menus filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"(date >= %@) AND (date < %@)", startDate, endDate]] anyObject];
+    for (UHDMensaSection *section in self.sections) {
+        if ([section dailyMenuForDate:date]) return YES;
+    }
+    return NO;
 }
 
 @end

@@ -5,6 +5,7 @@ platform :ios, '8.0'
 pod 'RestKit'
 pod 'RestKit/Testing'
 pod 'RestKit/Search'
+pod 'RKCLLocationValueTransformer'
 
 pod 'RMSwipeTableViewCell'
 
