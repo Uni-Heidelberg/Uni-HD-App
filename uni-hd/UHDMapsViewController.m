@@ -22,13 +22,15 @@
 #import "UHDBuildingAnnotationView.h"
 
 
-@interface UHDMapsViewController () <MKMapViewDelegate, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate>
+@interface UHDMapsViewController () <MKMapViewDelegate, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate>
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSFetchedResultsController *campusRegionsFetchedResultsController;
+
+@property (weak, nonatomic) id<MKAnnotation> selectedAnnotation;
 
 - (IBAction)unwindToMap:(UIStoryboardSegue *)segue;
 
@@ -66,6 +68,21 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsDidChange:) name:NSUserDefaultsDidChangeNotification object:[NSUserDefaults standardUserDefaults]];
     
     [self configureView];
+    
+    // Add Tap Gesture Recognizer
+    UITapGestureRecognizer *mapViewTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapOnMapView:)];
+    mapViewTapGestureRecognizer.delegate = self;
+    [self.mapView addGestureRecognizer:mapViewTapGestureRecognizer];
+    // Make sure double-taps don't trigger the single tap gesture recognizer
+    UITapGestureRecognizer *mapViewDoubleTapGestureRecognizer = [[UITapGestureRecognizer alloc] init];
+    mapViewDoubleTapGestureRecognizer.numberOfTapsRequired = 2;
+    mapViewDoubleTapGestureRecognizer.delegate = self;
+    [self.mapView addGestureRecognizer:mapViewDoubleTapGestureRecognizer];
+    [mapViewTapGestureRecognizer requireGestureRecognizerToFail:mapViewDoubleTapGestureRecognizer];
+    
+    // Show appropriate region
+    // TODO: limit scrolling to max region
+    self.mapView.region = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(49.4085, 8.68685), 5000, 5000);
 
 }
 
@@ -78,17 +95,21 @@
         self.mapView.mapType = MKMapTypeStandard;
     }
     
-    // Add overlays
+    // Add campus region overlays
     NSArray *allCampusRegions = self.campusRegionsFetchedResultsController.fetchedObjects;
     [self.mapView removeOverlays:allCampusRegions];
     if (![[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyShowCampusOverlay] || [[[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyShowCampusOverlay] boolValue]) {
         [self.mapView addOverlays:allCampusRegions];
     }
     
-    // Add all annotations
-    NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
+    // Add building overlays to verify their map rect
+    /*NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
+    [self.mapView removeOverlays:allBuildings];
+    [self.mapView addOverlays:allBuildings];*/
+    // Add building annotations for testing purposes
+    /*NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
     [self.mapView removeAnnotations:allBuildings];
-    [self.mapView showAnnotations:allBuildings animated:YES];
+    [self.mapView addAnnotations:allBuildings];*/
 }
 
 - (NSFetchedResultsController *)campusRegionsFetchedResultsController{
@@ -144,6 +165,28 @@
     [self performSegueWithIdentifier:@"showBuildingDetail" sender:view];
 }
 
+- (void)handleTapOnMapView:(UITapGestureRecognizer *)gestureRecognizer
+{
+    if (gestureRecognizer.state==UIGestureRecognizerStateEnded) {
+
+        id<MKAnnotation> selectedAnnotation = self.selectedAnnotation;
+        self.selectedAnnotation = nil;
+        [self.mapView removeAnnotation:selectedAnnotation];
+        
+        CLLocationCoordinate2D coordinate = [self.mapView convertPoint:[gestureRecognizer locationInView:self.mapView] toCoordinateFromView:self.mapView];
+        for (UHDBuilding *building in self.fetchedResultsController.fetchedObjects) {
+            if (MKMapRectContainsPoint([building boundingMapRect], MKMapPointForCoordinate(coordinate))) {
+                // Tapped on building
+                // Continue for already annotated buildings
+                if ([self.mapView.annotations containsObject:building]) continue;
+                // Present (empty) annotation with callout
+                self.selectedAnnotation = building;
+                [self.mapView addAnnotation:building];
+                [self.mapView selectAnnotation:building animated:YES];
+            }
+        }
+    }
+}
 
 #pragma mark - Notification responses
 
@@ -159,9 +202,8 @@
 {
     UHDBuilding *building = (UHDBuilding *)annotation;
     NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
-    
-    if ([allBuildings containsObject:building]) {
 
+    if ([allBuildings containsObject:building]) {
         static NSString *buildingAnnotationViewIdentifier = @"buildingAnnotation";
         UHDBuildingAnnotationView *buildingAnnotationView = (UHDBuildingAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:buildingAnnotationViewIdentifier];
         if (!buildingAnnotationView) {
@@ -170,25 +212,60 @@
         } else {
             buildingAnnotationView.annotation = building;
         }
-        
+        buildingAnnotationView.shouldHideImage = building == self.selectedAnnotation;
         return buildingAnnotationView;
     }
 
     return nil;
 }
 
+- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
+{
+    // TODO: Only necessary because selection is strangely cleared right after tap occured
+    if (self.selectedAnnotation && view.annotation == self.selectedAnnotation) {
+        [mapView selectAnnotation:view.annotation animated:NO];
+    }
+}
+
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
 {
-    NSArray *allOverlays = self.campusRegionsFetchedResultsController.fetchedObjects;
-    if ([allOverlays containsObject:overlay])
+    NSArray *allCampusRegions = self.campusRegionsFetchedResultsController.fetchedObjects;
+    NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
+    if ([allCampusRegions containsObject:overlay])
     {
         VIImageOverlayRenderer *renderer = [[VIImageOverlayRenderer alloc] initWithOverlay:(UHDCampusRegion *)overlay];
         renderer.opacity = 0.8;
+        return renderer;
+    } else if ([allBuildings containsObject:overlay]) {
+        // Show the building's map rect for testing purposes
+        MKMapRect boundingMapRect = [overlay boundingMapRect];
+        MKMapPoint polygonPoints[4] = {
+            boundingMapRect.origin,
+            MKMapPointMake(boundingMapRect.origin.x + boundingMapRect.size.width, boundingMapRect.origin.y),
+            MKMapPointMake(boundingMapRect.origin.x + boundingMapRect.size.width, boundingMapRect.origin.y + boundingMapRect.size.height),
+            MKMapPointMake(boundingMapRect.origin.x, boundingMapRect.origin.y + boundingMapRect.size.height)
+        };
+        MKPolygonRenderer *renderer = [[MKPolygonRenderer alloc] initWithPolygon:[MKPolygon polygonWithPoints:polygonPoints count:4]];
+        renderer.fillColor = [UIColor blackColor];
         return renderer;
     }
     return nil;
 }
 
+
+#pragma mark - Gesture Recognizer Delegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    // TODO: there should be a better way to make the callout button work...
+    if ([touch.view isKindOfClass:[UIControl class]]) {
+        return NO;
+    }
+    return YES;
+}
 
 #pragma mark - Fetched Results Controller Delegate
 

@@ -16,6 +16,7 @@
 @dynamic campusRegion, buildingNumber;
 @dynamic addressDictionary;
 @dynamic imageData;
+@dynamic spanLatitude, spanLongitude;
 
 
 #pragma mark - Computed Properties
@@ -32,6 +33,16 @@
     self.imageData = UIImageJPEGRepresentation(image, 1);
 }
 
+- (MKCoordinateRegion)coordinateRegion {
+    return MKCoordinateRegionMake(self.coordinate, MKCoordinateSpanMake(self.spanLatitude, self.spanLongitude));
+}
+
+- (void)setCoordinateRegion:(MKCoordinateRegion)coordinateRegion {
+    self.coordinate = coordinateRegion.center;
+    self.spanLatitude = coordinateRegion.span.latitudeDelta;
+    self.spanLongitude = coordinateRegion.span.longitudeDelta;
+}
+
 #pragma mark - MKAnnotation Protocol
 
 // mostly inherited from UHDRemoteManagedLocation
@@ -39,5 +50,12 @@
 - (NSString *)subtitle {
     return self.campusIdentifier;
 }
+
+#pragma mark - MKOverlay Protocol
+
+- (MKMapRect)boundingMapRect {
+    return MKMapRectForCoordinateRegion(self.coordinateRegion);
+}
+
 
 @end

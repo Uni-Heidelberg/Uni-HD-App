@@ -9,6 +9,8 @@
 #import "UHDRemoteManagedObject.h"
 
 
+MKMapRect MKMapRectForCoordinateRegion(MKCoordinateRegion region);
+
 @interface UHDRemoteManagedLocation : UHDRemoteManagedObject <MKAnnotation>
 
 @property (nonatomic, retain) NSString *title;

@@ -6,12 +6,6 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-MKMapRect MKMapRectForCoordinateRegion(MKCoordinateRegion region)
-{
-    MKMapPoint a = MKMapPointForCoordinate(CLLocationCoordinate2DMake(region.center.latitude + region.span.latitudeDelta / 2, region.center.longitude - region.span.longitudeDelta / 2));
-    MKMapPoint b = MKMapPointForCoordinate(CLLocationCoordinate2DMake(region.center.latitude - region.span.latitudeDelta / 2, region.center.longitude + region.span.longitudeDelta / 2));
-    return MKMapRectMake(MIN(a.x, b.x), MIN(a.y, b.y), ABS(a.x - b.x), ABS(a.y - b.y));
-}
 
 #import "UHDCampusRegion.h"
 #import "UHDRemoteDatasourceManager.h"
@@ -54,7 +48,7 @@ MKMapRect MKMapRectForCoordinateRegion(MKCoordinateRegion region)
 }
 
 
-#pragma mark - MKOverlay
+#pragma mark - MKOverlay Protocol
 
 - (MKMapRect)boundingMapRect {
     return MKMapRectForCoordinateRegion(self.coordinateRegion);

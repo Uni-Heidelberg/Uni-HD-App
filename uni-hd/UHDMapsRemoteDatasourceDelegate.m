@@ -108,6 +108,8 @@
     buildingItem1.title = @"Kirchhoff-Institut für Physik";
     buildingItem1.buildingNumber = @"227";
     buildingItem1.location = [[CLLocation alloc] initWithLatitude:49.416260 longitude:8.672190];
+    buildingItem1.spanLatitude = 0.0005;
+    buildingItem1.spanLongitude = 0.0009;
     buildingItem1.category = category1;
     buildingItem1.campusRegion = inf;
     buildingItem1.image = [UIImage imageNamed:@"kip1"];

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="5064" systemVersion="14A343f" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14B17" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="UHDBuilding" representedClassName="UHDBuilding" parentEntity="UHDRemoteManagedLocation" syncable="YES">
         <attribute name="addressDictionary" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="buildingNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
+        <attribute name="spanLatitude" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
+        <attribute name="spanLongitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="campusRegion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDCampusRegion" inverseName="buildings" inverseEntity="UHDCampusRegion" syncable="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDLocationCategory" inverseName="buildings" inverseEntity="UHDLocationCategory" syncable="YES"/>
     </entity>
@@ -26,7 +28,7 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="UHDBuilding" positionX="-54" positionY="261" width="128" height="118"/>
+        <element name="UHDBuilding" positionX="-54" positionY="261" width="128" height="150"/>
         <element name="UHDCampusRegion" positionX="414" positionY="72" width="128" height="28"/>
         <element name="UHDLocationCategory" positionX="108" positionY="-99" width="128" height="88"/>
         <element name="UHDRemoteManagedLocation" positionX="-227" positionY="-45" width="128" height="88"/>
