@@ -42,9 +42,11 @@
     
     RKEntityMapping *mensaSectionMapping = [RKEntityMapping mappingForEntityForName:[UHDMensaSection entityName] inManagedObjectStore:objectManager.managedObjectStore];
     [mensaSectionMapping addAttributeMappingsFromDictionary:@{ @"id": @"remoteObjectId" }];
-    [mensaSectionMapping addAttributeMappingsFromArray:@[ @"title" ]];
+    [mensaSectionMapping addAttributeMappingsFromArray:@[ @"title", @"mensaId" ]];
     mensaSectionMapping.identificationAttributes = @[ @"remoteObjectId" ];
     mensaSectionMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", mensaSectionMapping.entity];
+    RKConnectionDescription *mensaSectionMensaConnection = [[RKConnectionDescription alloc] initWithRelationship:[mensaSectionMapping.entity relationshipsByName][@"mensa"] attributes:@{ @"mensaId": @"remoteObjectId" }];
+    [mensaSectionMapping addConnection:mensaSectionMensaConnection];
     [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:mensaSectionMapping method:RKRequestMethodAny pathPattern:@"MensaSections" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
     // Stubs
     RKEntityMapping *mensaSectionStubMapping = [RKEntityMapping mappingForEntityForName:[UHDMensaSection entityName] inManagedObjectStore:objectManager.managedObjectStore];
@@ -54,22 +56,6 @@
     [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:mensaSectionStubMapping method:RKRequestMethodAny pathPattern:@"MensaDailyMenus" keyPath:@"sectionId" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
     
     
-    // Daily Menu
-    
-    RKEntityMapping *dailyMenuMapping = [RKEntityMapping mappingForEntityForName:[UHDDailyMenu entityName] inManagedObjectStore:objectManager.managedObjectStore];
-    [dailyMenuMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId"}];
-    [dailyMenuMapping addAttributeMappingsFromArray:@[ @"date" ]];
-    dailyMenuMapping.identificationAttributes = @[ @"remoteObjectId" ];
-    dailyMenuMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", dailyMenuMapping.entity];
-    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:dailyMenuMapping method:RKRequestMethodAny pathPattern:@"MensaDailyMenus" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
-    // Stubs
-    RKEntityMapping *dailyMenuStubMapping = [RKEntityMapping mappingForEntityForName:[UHDDailyMenu entityName] inManagedObjectStore:objectManager.managedObjectStore];
-    [dailyMenuStubMapping addPropertyMapping:[RKAttributeMapping attributeMappingFromKeyPath:nil toKeyPath:@"remoteObjectId"]];
-    dailyMenuStubMapping.identificationAttributes = @[ @"remoteObjectId" ];
-    dailyMenuStubMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", dailyMenuStubMapping.entity];
-    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:dailyMenuStubMapping method:RKRequestMethodAny pathPattern:@"MensaMeals" keyPath:@"menuId" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
-
-    
     // Meal
     
     RKEntityMapping *mealMapping = [RKEntityMapping mappingForEntityForName:[UHDMeal entityName] inManagedObjectStore:objectManager.managedObjectStore];
@@ -78,11 +64,24 @@
     mealMapping.identificationAttributes = @[ @"remoteObjectId" ];
     mealMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", mealMapping.entity];
     [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:mealMapping method:RKRequestMethodAny pathPattern:@"MensaMeals" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+
+    
+    // Daily Menu
+    
+    RKEntityMapping *dailyMenuMapping = [RKEntityMapping mappingForEntityForName:[UHDDailyMenu entityName] inManagedObjectStore:objectManager.managedObjectStore];
+    [dailyMenuMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId"}];
+    [dailyMenuMapping addAttributeMappingsFromArray:@[ @"date", @"sectionId" ]];
+    dailyMenuMapping.identificationAttributes = @[ @"remoteObjectId" ];
+    dailyMenuMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", dailyMenuMapping.entity];
+    [dailyMenuMapping addRelationshipMappingWithSourceKeyPath:@"meals" mapping:mealMapping];
+    RKConnectionDescription *dailyMenuSectionConnection = [[RKConnectionDescription alloc] initWithRelationship:[dailyMenuMapping.entity relationshipsByName][@"section"] attributes:@{ @"sectionId": @"remoteObjectId" }];
+    [dailyMenuMapping addConnection:dailyMenuSectionConnection];
+    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:dailyMenuMapping method:RKRequestMethodAny pathPattern:@"MensaDailyMenus" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
 }
 
 - (NSArray *)remoteRefreshPathsForRemoteDatasource:(UHDRemoteDatasource *)remoteDatasource
 {
-    return @[ @"Mensas", @"MensaSections", @"MensaDailyMenus", @"MensaMeals" ];
+    return @[ @"Mensas", @"MensaSections", @"MensaDailyMenus?filter[include]=meals"/*, @"MensaMeals?filter[include]=menus"*/ ];
 }
 
 - (BOOL)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource shouldGenerateSampleDataForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext

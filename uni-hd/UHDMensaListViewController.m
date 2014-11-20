@@ -100,7 +100,7 @@
     if ([segue.identifier isEqualToString:@"showMensaDetail"]) {
         UHDMensaDetailViewController *detailVC = segue.destinationViewController;
         UITableViewCell *cell = [self cellForSubview:sender];
-        detailVC.mensa = [self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:cell]];
+        detailVC.mensa = [self mensaForIndexPath:[self.tableView indexPathForCell:cell]];
     } else if ([segue.identifier isEqualToString:@"selectMensa"]) {
         
         [[NSUserDefaults standardUserDefaults] setObject:@([(UHDMensa *)[self mensaForIndexPath:self.tableView.indexPathForSelectedRow] remoteObjectId]) forKey:UHDUserDefaultsKeySelectedMensaId];
@@ -146,6 +146,80 @@
 }
 
 
+#pragma mark - Fetched Results Controller Setup
+
+- (NSFetchedResultsController *)fetchedResultsController {
+    if (!_fetchedResultsController && self.managedObjectContext) {
+        
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
+        fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
+        
+        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+        _fetchedResultsController.delegate = self;
+        [_fetchedResultsController performFetch:nil];
+        
+    }
+    return _fetchedResultsController;
+}
+- (NSFetchedResultsController *)favouritesResultsController {
+    if (!_favouritesResultsController && self.managedObjectContext) {
+        
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
+        fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"remoteObjectId" ascending:YES]];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"isFavourite == 1"];
+        //TODO: sortdescriptor im model
+        
+        _favouritesResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath: @"isFavourite" cacheName:nil];
+        _favouritesResultsController.delegate = self;
+        [_favouritesResultsController performFetch:nil];
+        
+        
+    }
+    return _favouritesResultsController;
+}
+
+
+#pragma mark - Table View Datasource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
+{
+    return 2;
+}
+- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)sectionIndex
+{
+    if (sectionIndex==0) {
+        return self.favouritesResultsController.fetchedObjects.count;
+    }
+    else  {
+        return self.fetchedResultsController.fetchedObjects.count;
+    }
+}
+- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
+{
+    id cell = [tableView dequeueReusableCellWithIdentifier:@"mensaCell"  forIndexPath:indexPath];
+    id object;
+    if (indexPath.section==0){
+        object = [self.favouritesResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
+    }
+    else if (indexPath.section==1){
+        object = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
+    }
+    [(UHDMensaCell *)cell configureForMensa:(UHDMensa *)object];
+    [(UHDMensaCell *)cell setDelegate:self];
+    return cell;
+    
+}
+
+- (UHDMensa*)mensaForIndexPath:(NSIndexPath*)indexPath
+{
+    if (indexPath.section==0){
+        return [self.favouritesResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
+    } else {
+        return [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
+    }
+    return nil;
+}
+
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     NSArray *list = @[ @"Favoriten", @"Alle Mensen" ];
@@ -185,80 +259,8 @@
     }
 }
 
-#pragma mark - Table View Datasource
 
-- (NSFetchedResultsController *)fetchedResultsController {
-    if (!_fetchedResultsController && self.managedObjectContext) {
-        
-        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
-        fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
-        
-        _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-        _fetchedResultsController.delegate = self;
-        [_fetchedResultsController performFetch:nil];
-        
-    }
-    return _fetchedResultsController;
-}
-- (NSFetchedResultsController *)favouritesResultsController {
-    if (!_favouritesResultsController && self.managedObjectContext) {
-        
-        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
-        fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"remoteObjectId" ascending:YES]];
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"isFavourite == 1"];
-        //TODO: sortdescriptor im model
-        
-        _favouritesResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath: @"isFavourite" cacheName:nil];
-        _favouritesResultsController.delegate = self;
-        [_favouritesResultsController performFetch:nil];
-        
-        
-    }
-    return _favouritesResultsController;
-}
-
-#pragma mark - Table View Methods
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView*)tableView
-{
-    return 2;
-}
-- (NSInteger)tableView:(UITableView*)tableView numberOfRowsInSection:(NSInteger)sectionIndex
-{
-    if (sectionIndex==0) {
-        return self.favouritesResultsController.fetchedObjects.count;
-    }
-    else  {
-        return self.fetchedResultsController.fetchedObjects.count;
-    }
-}
-- (UITableViewCell*)tableView:(UITableView*)tableView cellForRowAtIndexPath:(NSIndexPath*)indexPath
-{
-    id cell = [tableView dequeueReusableCellWithIdentifier:@"mensaCell"  forIndexPath:indexPath];
-    id object;
-    if (indexPath.section==0){
-        object = [self.favouritesResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
-    }
-    else if (indexPath.section==1){
-        object = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
-    }
-    [(UHDMensaCell *)cell configureForMensa:(UHDMensa *)object];
-    [(UHDMensaCell *)cell setDelegate:self];
-    return cell;
-    
-}
-- (UHDMensa*)mensaForIndexPath:(NSIndexPath*)indexPath{
-    id object;
-    if (indexPath.section==0){
-        object = [self.favouritesResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
-    }
-    else {
-        object = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
-    }
-    return object;
-}
-
-#pragma mark NSFetchedResultsControllerDelegate
+#pragma mark Fetched Results Controller Delegate
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController*)controller
 {
@@ -302,6 +304,7 @@
     }
 }
 
+
 #pragma mark - Swipe Table View Cell Delegate
 
 -(void)swipeTableViewCellDidStartSwiping:(RMSwipeTableViewCell *)swipeTableViewCell {
@@ -328,7 +331,7 @@
 }
 
 
-#pragma mark - CLLocationManager Delegate
+#pragma mark - Location Manager Delegate
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
@@ -337,7 +340,6 @@
         mensa.currentDistance = [mensa.location distanceFromLocation:locations.lastObject];
     }
 }
-
 
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error
