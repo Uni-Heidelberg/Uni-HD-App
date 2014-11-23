@@ -16,14 +16,16 @@
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UIButton *sourceButton;
 
+- (IBAction)sourceButtonPressed:(id)sender;
+
 @end
 
 @implementation UHDNewsSourcesNavigationBar
 
-
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    
 	self.collectionView.dataSource = self;
 	self.collectionView.delegate = self;
 	
@@ -42,6 +44,15 @@
 
 	_sources = sources;
 	[self.collectionView reloadData];
+}
+
+- (void)setSelectedSourceIndex:(NSUInteger)selectedSourceIndex {
+
+    _selectedSourceIndex = selectedSourceIndex;
+    
+    [self.logger log:[NSString stringWithFormat:@"selected source index: %lu", selectedSourceIndex] error:nil];
+    
+    [self configureSourceButton];
 }
 
 
@@ -71,11 +82,6 @@
 }
 
 // TODO: implement centering of currently selected source
-/*
-- (void)scrollToItemAtIndexPath:(NSIndexPath *)indexPath
-               atScrollPosition:(UICollectionViewScrollPosition)scrollPosition
-                       animated:(BOOL)animated
-*/
 
 
 #pragma mark - Collection view layout
@@ -91,10 +97,22 @@
 	collectionView.contentSize = collectionView.collectionViewLayout.collectionViewContentSize() // TODO: check this. contentSize is zeros otherwise and initial scrolling does not work.
 	*/
 	
-	self.collectionView.contentInset = UIEdgeInsetsMake(0, self.itemWidth, 0, self.itemWidth);
+	self.collectionView.contentInset = UIEdgeInsetsMake(0, 0.5 * self.collectionView.bounds.size.width, 0, 0.5 * self.collectionView.bounds.size.width);
 	
 }
 
+- (void) configureSourceButton {
+    
+    if (self.selectedSourceIndex == NSNotFound) {
+        [self.sourceButton setTitle:@"All News" forState:UIControlStateNormal];
+    }
+    else {
+        [self.sourceButton setTitle:((UHDNewsSource *) self.sources[self.selectedSourceIndex]).title forState:UIControlStateNormal];
+    }
+    
+    [self.sourceButton sizeToFit];
+    
+}
 
 - (void)setItemWidth:(CGFloat)itemWidth {
 
@@ -103,5 +121,34 @@
 }
 
 // TODO: use UIDynamics features to simulate springs between source items
+
+
+
+# pragma mark - Collection view user interaction
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+
+    if (indexPath.row == 0) {
+        self.selectedSourceIndex = NSNotFound;
+    }
+    else {
+        self.selectedSourceIndex = indexPath.row - 1;
+    }
+}
+
+
+- (IBAction)sourceButtonPressed:(id)sender {
+    
+    NSIndexPath *indexPath;
+    
+    if (self.selectedSourceIndex == NSNotFound) {
+        indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+    }
+    else {
+        indexPath = [NSIndexPath indexPathForRow:(self.selectedSourceIndex + 1) inSection:0];
+    }
+
+    [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
+}
 
 @end

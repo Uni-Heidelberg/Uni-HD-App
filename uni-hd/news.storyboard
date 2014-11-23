@@ -535,15 +535,19 @@
                                         <state key="normal" title="Selected Source">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
+                                        <connections>
+                                            <action selector="sourceButtonPressed:" destination="egv-gy-J1B" eventType="touchUpInside" id="d16-I9-89e"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
                                     <constraint firstItem="j2K-cJ-TL9" firstAttribute="top" secondItem="iA7-J3-8fe" secondAttribute="bottom" id="0gY-ya-gpN"/>
+                                    <constraint firstAttribute="centerX" secondItem="j2K-cJ-TL9" secondAttribute="centerX" id="7B3-5P-9cS"/>
                                     <constraint firstAttribute="height" constant="90" id="IeP-yv-K9o"/>
                                     <constraint firstAttribute="bottom" secondItem="j2K-cJ-TL9" secondAttribute="bottom" constant="8" id="QkG-aP-dLI"/>
-                                    <constraint firstAttribute="trailing" secondItem="j2K-cJ-TL9" secondAttribute="trailing" id="XgZ-Dv-iI3"/>
-                                    <constraint firstItem="j2K-cJ-TL9" firstAttribute="leading" secondItem="egv-gy-J1B" secondAttribute="leading" id="pCo-qF-HMA"/>
+                                    <constraint firstAttribute="trailing" secondItem="j2K-cJ-TL9" secondAttribute="trailing" priority="500" id="XgZ-Dv-iI3"/>
+                                    <constraint firstItem="j2K-cJ-TL9" firstAttribute="leading" secondItem="egv-gy-J1B" secondAttribute="leading" priority="500" id="pCo-qF-HMA"/>
                                     <constraint firstAttribute="trailing" secondItem="iA7-J3-8fe" secondAttribute="trailing" id="pcI-nH-Gi5"/>
                                     <constraint firstItem="iA7-J3-8fe" firstAttribute="top" secondItem="egv-gy-J1B" secondAttribute="top" id="ps3-BF-8XR"/>
                                     <constraint firstItem="iA7-J3-8fe" firstAttribute="leading" secondItem="egv-gy-J1B" secondAttribute="leading" id="qrd-17-Mb8"/>

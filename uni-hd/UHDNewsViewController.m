@@ -59,6 +59,16 @@
 	
 	// set currently subscribed sources to display in sources navigation bar
 	self.sourcesNavigationBar.sources = [self.fetchedResultsController fetchedObjects];
+    
+    // set currently selected source
+    NSUInteger currentViewControllerIndex = [self.newsListViewControllers indexOfObject:self.pageViewController.viewControllers[0]];
+    
+    if (currentViewControllerIndex == 0) {
+        self.sourcesNavigationBar.selectedSourceIndex = NSNotFound;
+    }
+    else {
+        self.sourcesNavigationBar.selectedSourceIndex = currentViewControllerIndex - 1;
+    }
 }
 
 #pragma mark - Fetched Results Controller
