@@ -22,7 +22,7 @@
 #define kDisplayModeSegmentIndexEvents 1
 
 
-@interface UHDNewsViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate, NSFetchedResultsControllerDelegate>
+@interface UHDNewsViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate, NSFetchedResultsControllerDelegate, UHDNewsSourcesNavigationBarDelegate>
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) UIPageViewController *pageViewController;
@@ -49,6 +49,8 @@
 
     // TODO: fix scroll view insets & extend under both bars
     
+    self.sourcesNavigationBar.delegate = self;
+    
     [self configureView];
 }
 
@@ -61,13 +63,15 @@
 	self.sourcesNavigationBar.sources = [self.fetchedResultsController fetchedObjects];
     
     // set currently selected source
-    NSUInteger currentViewControllerIndex = [self.newsListViewControllers indexOfObject:self.pageViewController.viewControllers[0]];
+    /*NSUInteger currentViewControllerIndex = [self.newsListViewControllers indexOfObject:self.pageViewController.viewControllers[0]];
+    */
+    NSArray *currentSources = ((UHDNewsListViewController *) self.pageViewController.viewControllers[0]).sources;
     
-    if (currentViewControllerIndex == 0) {
-        self.sourcesNavigationBar.selectedSourceIndex = NSNotFound;
+    if ([currentSources count] > 1) {
+        self.sourcesNavigationBar.selectedSource = nil;
     }
     else {
-        self.sourcesNavigationBar.selectedSourceIndex = currentViewControllerIndex - 1;
+        self.sourcesNavigationBar.selectedSource = currentSources[0];
     }
 }
 
@@ -144,6 +148,34 @@
 - (IBAction)unwindToNews:(UIStoryboardSegue *)segue
 {
     
+}
+
+#pragma mark - Sources Navigation Bar Delegate
+
+- (void)sourcesNavigationBar:(UHDNewsSourcesNavigationBar *)navigationBar didSelectSource:(UHDNewsSource *)source {
+    
+    [self.logger log:[NSString stringWithFormat:@"Switch Page View Controller to Source: %@", source.title] forLevel:VILogLevelDebug];
+    
+    UHDNewsListViewController *newsListVC;
+    
+    if (source == nil) {
+        newsListVC = self.newsListViewControllers[0];
+    }
+    else {
+        NSEnumerator *reversedEnumerator = [self.newsListViewControllers reverseObjectEnumerator];
+        UHDNewsListViewController *VC;
+        while (VC = [reversedEnumerator nextObject]) {
+            if ([VC.sources containsObject:source]) {
+                newsListVC = VC;
+                break;
+            }
+        }
+    }
+    
+    UHDNewsViewController __weak *weakSelf = self;
+    [self.pageViewController setViewControllers:@[ newsListVC ] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:^(BOOL finished) {
+        [weakSelf configureView];
+    }];
 }
 
 

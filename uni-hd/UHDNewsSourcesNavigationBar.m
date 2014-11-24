@@ -14,6 +14,7 @@
 @interface UHDNewsSourcesNavigationBar () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
+
 @property (weak, nonatomic) IBOutlet UIButton *sourceButton;
 
 - (IBAction)sourceButtonPressed:(id)sender;
@@ -46,15 +47,27 @@
 	[self.collectionView reloadData];
 }
 
+
+- (void)setSelectedSource:(UHDNewsSource *)selectedSource {
+    
+    _selectedSource = selectedSource;
+    
+    [self.logger log:[NSString stringWithFormat:@"Selected source: %@", selectedSource.title] forLevel:VILogLevelDebug];
+    
+    [self updateSourceButton];
+    
+}
+
+/*
 - (void)setSelectedSourceIndex:(NSUInteger)selectedSourceIndex {
 
     _selectedSourceIndex = selectedSourceIndex;
     
-    [self.logger log:[NSString stringWithFormat:@"selected source index: %lu", selectedSourceIndex] error:nil];
+    [self.logger log:[NSString stringWithFormat:@"selected source index: %lu", selectedSourceIndex] forLevel:VILogLevelDebug];
     
-    [self configureSourceButton];
+    [self updateSourceButton];
 }
-
+*/
 
 #pragma mark - Collection View Controller Datasource
 
@@ -71,17 +84,25 @@
 	
 	if (indexPath.row == 0) {
 		// TODO: find suitable icon for all sources
-		cell.sourceIconImageView.image = [UIImage imageNamed:@"Billiardkugel1"];
+		//cell.sourceIconImageView.image = [UIImage imageNamed:@"Billiardkugel1"];
+        cell.sourceIconImageView.image = nil;
+        cell.sourceIconImageView.backgroundColor = [UIColor whiteColor];
 	}
 	else {
+    
 		UHDNewsSource *source = [self.sources objectAtIndex:(indexPath.row - 1)];
-		cell.sourceIconImageView.image = source.thumbIcon;
-	}
+        if (source.thumbIcon != nil) {
+            cell.sourceIconImageView.backgroundColor = [UIColor clearColor];
+            cell.sourceIconImageView.image = source.thumbIcon;
+        }
+        else {
+            cell.sourceIconImageView.backgroundColor = [UIColor whiteColor];
+            cell.sourceIconImageView.image = nil;
+        }
+    }
 
 	return cell;
 }
-
-// TODO: implement centering of currently selected source
 
 
 #pragma mark - Collection view layout
@@ -97,17 +118,17 @@
 	collectionView.contentSize = collectionView.collectionViewLayout.collectionViewContentSize() // TODO: check this. contentSize is zeros otherwise and initial scrolling does not work.
 	*/
 	
-	self.collectionView.contentInset = UIEdgeInsetsMake(0, 0.5 * self.collectionView.bounds.size.width, 0, 0.5 * self.collectionView.bounds.size.width);
+	//self.collectionView.contentInset = UIEdgeInsetsMake(0, 0.5 * self.collectionView.bounds.size.width, 0, 0.5 * self.collectionView.bounds.size.width);
 	
 }
 
-- (void) configureSourceButton {
+- (void) updateSourceButton {
     
-    if (self.selectedSourceIndex == NSNotFound) {
-        [self.sourceButton setTitle:@"All News" forState:UIControlStateNormal];
+    if (self.selectedSource == nil) {
+        [self.sourceButton setTitle:@"All News / Events" forState:UIControlStateNormal];
     }
     else {
-        [self.sourceButton setTitle:((UHDNewsSource *) self.sources[self.selectedSourceIndex]).title forState:UIControlStateNormal];
+        [self.sourceButton setTitle:self.selectedSource.title forState:UIControlStateNormal];
     }
     
     [self.sourceButton sizeToFit];
@@ -120,6 +141,7 @@
 	[self adjustItemSize];
 }
 
+
 // TODO: use UIDynamics features to simulate springs between source items
 
 
@@ -129,11 +151,13 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
 
     if (indexPath.row == 0) {
-        self.selectedSourceIndex = NSNotFound;
+        self.selectedSource = nil;
     }
     else {
-        self.selectedSourceIndex = indexPath.row - 1;
+        self.selectedSource = self.sources[indexPath.row - 1];
     }
+    
+    [self.delegate sourcesNavigationBar:self didSelectSource:self.selectedSource];
 }
 
 
@@ -141,11 +165,11 @@
     
     NSIndexPath *indexPath;
     
-    if (self.selectedSourceIndex == NSNotFound) {
+    if (self.selectedSource == nil) {
         indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     }
     else {
-        indexPath = [NSIndexPath indexPathForRow:(self.selectedSourceIndex + 1) inSection:0];
+        indexPath = [NSIndexPath indexPathForRow:([self.sources indexOfObject:self.selectedSource] + 1) inSection:0];
     }
 
     [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
