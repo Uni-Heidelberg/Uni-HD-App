@@ -26,6 +26,11 @@
 // Logging Config
 #import "VIFetchedResultsControllerDataSource.h"
 
+
+// tmp
+#import "UHDDailyMenu.h"
+#import "UHDMeal.h"
+
 @interface UHDAppDelegate ()
 
 @property (strong, nonatomic) UHDPersistentStack *persistentStack;
@@ -47,7 +52,7 @@
 #else
     [VILogger defaultLogger].logLevel = VILogLevelWarning;
 #endif
-    RKLogConfigureByName("RestKit/Network", RKLogLevelOff);
+    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
 
     
     // enable automatic network indicator display
@@ -103,7 +108,7 @@
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];
 
-
+    
     return YES;
 }
 

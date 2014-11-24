@@ -73,7 +73,7 @@
         NSTimeInterval dayLength;
         [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay startDate:&startDate interval:&dayLength forDate:self.date];
         NSDate *endDate = [startDate dateByAddingTimeInterval:dayLength];
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"menu.section.mensa == %@ AND (menu.date >= %@) AND (menu.date <= %@)", self.mensa, startDate, endDate];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"ANY menus.section.mensa == %@"/* AND (menu.date >= %@) AND (menu.date <= %@)"*/, self.mensa/*, startDate, endDate*/];
         
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.mensa.managedObjectContext
             sectionNameKeyPath:@"menu.section.title" cacheName:nil];
