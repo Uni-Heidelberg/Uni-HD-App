@@ -10,6 +10,7 @@
 #import "UHDMensa.h"
 #import "UHDMealCell.h"
 #import "VIFetchedResultsControllerDataSource.h"
+#import "UHDDailyMenu.h"
 
 
 @interface UHDDailyMenuViewController () <RMSwipeTableViewCellDelegate>
@@ -68,15 +69,16 @@
         }
 
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMeal entityName]];
-        fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"menu.section.remoteObjectId" ascending:YES], [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES] ];
+        fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"remoteObjectId" ascending:YES]];
+        
         NSDate *startDate;
         NSTimeInterval dayLength;
         [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay startDate:&startDate interval:&dayLength forDate:self.date];
         NSDate *endDate = [startDate dateByAddingTimeInterval:dayLength];
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"ANY menus.section.mensa == %@"/* AND (menu.date >= %@) AND (menu.date <= %@)"*/, self.mensa/*, startDate, endDate*/];
-        
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"ANY (menus.section.mensa == %@ AND (menus.date >= %@) AND (menus.date <= %@))", self.mensa, startDate, endDate];
+
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.mensa.managedObjectContext
-            sectionNameKeyPath:@"menu.section.title" cacheName:nil];
+            sectionNameKeyPath:nil cacheName:nil];
         
         __weak UHDDailyMenuViewController *weakSelf = self;
         VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, id item) {
