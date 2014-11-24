@@ -55,19 +55,10 @@
     [self.logger log:[NSString stringWithFormat:@"Selected source: %@", selectedSource.title] forLevel:VILogLevelDebug];
     
     [self updateSourceButton];
+    [self.collectionView reloadData];
     
 }
 
-/*
-- (void)setSelectedSourceIndex:(NSUInteger)selectedSourceIndex {
-
-    _selectedSourceIndex = selectedSourceIndex;
-    
-    [self.logger log:[NSString stringWithFormat:@"selected source index: %lu", selectedSourceIndex] forLevel:VILogLevelDebug];
-    
-    [self updateSourceButton];
-}
-*/
 
 #pragma mark - Collection View Controller Datasource
 
@@ -81,18 +72,35 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	UHDSourceCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"sourceCollectionViewCell" forIndexPath:indexPath];
+
+    // TODO: find suitable icon for "all sources"
 	
 	if (indexPath.row == 0) {
-		// TODO: find suitable icon for all sources
-		//cell.sourceIconImageView.image = [UIImage imageNamed:@"Billiardkugel1"];
+    
+        if (self.selectedSource == nil) {
+            cell.sourceSelectionIndicatorView.hidden = NO;
+        }
+        else {
+            cell.sourceSelectionIndicatorView.hidden = YES;
+        }
+        
         cell.sourceIconImageView.image = nil;
         cell.sourceIconImageView.backgroundColor = [UIColor whiteColor];
+        
 	}
 	else {
     
 		UHDNewsSource *source = [self.sources objectAtIndex:(indexPath.row - 1)];
+        
+        if (self.selectedSource == source) {
+            cell.sourceSelectionIndicatorView.hidden = NO;
+        }
+        else {
+            cell.sourceSelectionIndicatorView.hidden = YES;
+        }
+        
         if (source.thumbIcon != nil) {
-            cell.sourceIconImageView.backgroundColor = [UIColor clearColor];
+            cell.sourceIconImageView.backgroundColor = [UIColor groupTableViewBackgroundColor];
             cell.sourceIconImageView.image = source.thumbIcon;
         }
         else {

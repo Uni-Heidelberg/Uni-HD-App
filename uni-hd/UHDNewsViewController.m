@@ -30,7 +30,7 @@
 
 @property (strong, nonatomic) IBOutlet UHDNewsSourcesNavigationBar *sourcesNavigationBar;
 
-@property (strong, nonatomic) IBOutlet UILabel *temporarySelectedSourceLabel; // TODO: implement proper source navigation bar
+//@property (strong, nonatomic) IBOutlet UILabel *temporarySelectedSourceLabel; // TODO: implement proper source navigation bar
 
 - (IBAction)showAllNewsButtonPressed:(id)sender;
 - (IBAction)unwindToNews:(UIStoryboardSegue *)segue;
@@ -56,7 +56,7 @@
 
 - (void)configureView
 {
-    self.temporarySelectedSourceLabel.text = [self.pageViewController.viewControllers[0] title];
+    //self.temporarySelectedSourceLabel.text = [self.pageViewController.viewControllers[0] title];
 	[self updateDisplayMode];
 	
 	// set currently subscribed sources to display in sources navigation bar
@@ -158,6 +158,9 @@
     
     UHDNewsListViewController *newsListVC;
     
+    NSUInteger currentSourceIndex = [self.newsListViewControllers indexOfObject:self.pageViewController.viewControllers[0]];
+    NSUInteger newSourceIndex = 0;
+    
     if (source == nil) {
         newsListVC = self.newsListViewControllers[0];
     }
@@ -167,15 +170,20 @@
         while (VC = [reversedEnumerator nextObject]) {
             if ([VC.sources containsObject:source]) {
                 newsListVC = VC;
+                newSourceIndex = [self.newsListViewControllers indexOfObject:VC];
                 break;
             }
         }
     }
     
-    UHDNewsViewController __weak *weakSelf = self;
-    [self.pageViewController setViewControllers:@[ newsListVC ] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:^(BOOL finished) {
-        [weakSelf configureView];
-    }];
+    if (newSourceIndex < currentSourceIndex) {
+        [self.pageViewController setViewControllers:@[ newsListVC ] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+    }
+    else {
+        [self.pageViewController setViewControllers:@[ newsListVC ] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    }
+    
+    //[self configureView];
 }
 
 
