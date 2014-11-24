@@ -17,6 +17,10 @@
 	// configure circular Image View
 	self.sourceIconImageView.layer.cornerRadius = self.sourceIconImageView.bounds.size.height / 2;
 	self.sourceIconImageView.layer.masksToBounds = YES;
+    
+    // configure circular Source Selection Indicator View
+    self.sourceSelectionIndicatorView.layer.cornerRadius = self.sourceSelectionIndicatorView.bounds.size.height / 2;
+	self.sourceSelectionIndicatorView.layer.masksToBounds = YES;
 }
 
 @end
