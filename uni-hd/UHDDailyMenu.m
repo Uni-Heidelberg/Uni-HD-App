@@ -17,9 +17,9 @@
 @dynamic meals;
 @dynamic section;
 
-- (NSMutableSet *)mutableMeals
+- (NSMutableOrderedSet *)mutableMeals
 {
-    return [self mutableSetValueForKey:@"meals"];
+    return [self mutableOrderedSetValueForKey:@"meals"];
 }
 
 @end

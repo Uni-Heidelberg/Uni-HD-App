@@ -63,31 +63,36 @@
             [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
             return nil;
         }
+        
+        // Get date range for set date
         NSDate *startDate;
         NSTimeInterval dayLength;
         [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay startDate:&startDate interval:&dayLength forDate:self.date];
         NSDate *endDate = [startDate dateByAddingTimeInterval:dayLength];
         
-        
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDDailyMenu entityName]];
-        fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"section.remoteObjectId" ascending:YES]];
-        //TODO: add meal title sorting
+        fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"section.title" ascending:YES]];
         fetchRequest.predicate = [NSPredicate predicateWithFormat:@"section.mensa == %@ AND date >=%@ AND date <= %@", self.mensa, startDate, endDate];
-        
         
         _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.mensa.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         _fetchedResultsController.delegate = self;
         [_fetchedResultsController performFetch:nil];
-        
     }
     
     return _fetchedResultsController;
-    
-    //  fetchRequest.predicate = [NSPredicate predicateWithFormat:@"SUBQUERY(menus, $menu, $menu.section.mensa == %@ AND ($menu.date >= %@) AND ($menu.date <= %@)).@count > 0", self.mensa, startDate, endDate];
-    
-    
 }
 
+
+#pragma mark - Index Path to Model Conversion
+
+- (NSOrderedSet *)mealsInSection:(NSInteger)section {
+    UHDDailyMenu *dailyMenu = [self.fetchedResultsController.fetchedObjects objectAtIndex:section];
+    return dailyMenu.meals;
+}
+
+- (UHDMeal *)mealForIndexPath:(NSIndexPath *)indexPath {
+    return [[self mealsInSection:indexPath.section] objectAtIndex:indexPath.row];
+}
 
 
 #pragma mark - Table View Datasource
@@ -95,27 +100,23 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     if (!(self.mensa && self.date)) return 0;
-    
     return self.fetchedResultsController.fetchedObjects.count;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     if (!(self.mensa && self.date)) return 0;
-    UHDDailyMenu* dailyMenu = [self.fetchedResultsController.fetchedObjects objectAtIndex:section];
-    return dailyMenu.meals.count;
+    return [self mealsInSection:section].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UHDMealCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mealCell" forIndexPath:indexPath];
+    UHDMeal *meal = [self mealForIndexPath:indexPath];
     
-    id cell = [tableView dequeueReusableCellWithIdentifier:@"mealCell"  forIndexPath:indexPath];
-    UHDDailyMenu * dailyMenu = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
-    NSArray * meals = [dailyMenu.meals sortedArrayUsingDescriptors: @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]]];
-    UHDMeal * meal = [meals objectAtIndex:indexPath.row];
+    [cell configureForMeal:meal];
+    cell.delegate = self;
     
-    [(UHDMealCell *)cell configureForMeal:meal];
-    [(UHDMealCell *)cell setDelegate:self];
     return cell;
 }
 
@@ -124,9 +125,7 @@
     // TODO: test efficiency
     
     UHDMealCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mealCell"];
-    UHDDailyMenu * dailyMenu = [self.fetchedResultsController.fetchedObjects objectAtIndex:indexPath.section];
-    NSArray * meals = [dailyMenu.meals sortedArrayUsingDescriptors: @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]]];
-    UHDMeal * meal = [meals objectAtIndex:indexPath.row];
+    UHDMeal *meal = [self mealForIndexPath:indexPath];
     [cell configureForMeal:meal];
     [cell layoutIfNeeded];
     return [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height + 1.; // TODO: remove + 1.
@@ -134,7 +133,7 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    UHDDailyMenu * dailyMenu = [self.fetchedResultsController.fetchedObjects objectAtIndex:section];
+    UHDDailyMenu *dailyMenu = [self.fetchedResultsController.fetchedObjects objectAtIndex:section];
     return dailyMenu.section.title;
 }
 
@@ -153,8 +152,7 @@
     [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellWillResetState: %@ fromPoint: %@ animation: %u, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
     
     if ([(UHDFavouriteCell *)swipeTableViewCell shouldTriggerForPoint:point]) {
-        UHDMeal *meal = [self.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:swipeTableViewCell]];
-        
+        UHDMeal *meal = [self mealForIndexPath:[self.tableView indexPathForCell:swipeTableViewCell]];
         meal.isFavourite = !meal.isFavourite;
         [meal.managedObjectContext saveToPersistentStore:nil];
     }

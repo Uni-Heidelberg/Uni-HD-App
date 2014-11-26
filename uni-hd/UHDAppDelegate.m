@@ -52,7 +52,7 @@
 #else
     [VILogger defaultLogger].logLevel = VILogLevelWarning;
 #endif
-    RKLogConfigureByName("RestKit/Network", RKLogLevelTrace);
+    RKLogConfigureByName("RestKit/Network", RKLogLevelOff);
 
     
     // enable automatic network indicator display

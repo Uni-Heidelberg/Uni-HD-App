@@ -4,7 +4,7 @@
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="sectionId" optional="YES" transient="YES" attributeType="Integer 16" syncable="YES"/>
-        <relationship name="meals" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDMeal" inverseName="menus" inverseEntity="UHDMeal" syncable="YES"/>
+        <relationship name="meals" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="UHDMeal" inverseName="menus" inverseEntity="UHDMeal" syncable="YES"/>
         <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDMensaSection" inverseName="menus" inverseEntity="UHDMensaSection" syncable="YES"/>
     </entity>
     <entity name="UHDMeal" representedClassName="UHDMeal" syncable="YES">
@@ -31,7 +31,7 @@
         <relationship name="menus" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="UHDDailyMenu" inverseName="section" inverseEntity="UHDDailyMenu" syncable="YES"/>
     </entity>
     <elements>
-        <element name="UHDDailyMenu" positionX="0" positionY="0" width="128" height="28"/>
+        <element name="UHDDailyMenu" positionX="0" positionY="0" width="128" height="120"/>
         <element name="UHDMeal" positionX="0" positionY="0" width="128" height="120"/>
         <element name="UHDMensa" positionX="0" positionY="0" width="128" height="28"/>
         <element name="UHDMensaSection" positionX="0" positionY="0" width="128" height="30"/>
