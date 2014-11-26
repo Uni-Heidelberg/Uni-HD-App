@@ -18,6 +18,7 @@
 
 
 #define UHDRemoteBaseURL @"http://appserver.physik.uni-heidelberg.de/api/"
+#define UHDRemoteStaticContentBaseURL @"http://appserver.physik.uni-heidelberg.de/static/"
 
 #define UHDRemoteDatasourceKeyNews @"UHDRemoteDatasourceKeyNews"
 #define UHDRemoteDatasourceKeyMensa @"UHDRemoteDatasourceKeyMensa"
