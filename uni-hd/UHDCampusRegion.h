@@ -9,7 +9,7 @@
 #import "UHDRemoteManagedLocation.h"
 #import "VIImageOverlayRenderer.h"
 
-@interface UHDCampusRegion : UHDRemoteManagedLocation <VIImageOverlay>
+@interface UHDCampusRegion : UHDRemoteManagedLocation <MKOverlay>
 
 @property (nonatomic, retain) NSString *identifier;
 @property (nonatomic, retain) NSSet *buildings;

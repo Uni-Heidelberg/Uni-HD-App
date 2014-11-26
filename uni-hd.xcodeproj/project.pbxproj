@@ -48,6 +48,7 @@
 		877AEE8819BD370300ED270D /* UHDBuildingAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 877AEE8719BD370300ED270D /* UHDBuildingAnnotationView.m */; };
 		87839F3A19D4D70B00E5E6C8 /* MensaDayPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87839F3819D4D70B00E5E6C8 /* MensaDayPickerCell.swift */; };
 		87839F3D19D52A3B00E5E6C8 /* MensaDayPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87839F3C19D52A3B00E5E6C8 /* MensaDayPicker.swift */; };
+		87902D831A25331200186CC5 /* CachedTileOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87902D821A25331200186CC5 /* CachedTileOverlay.swift */; };
 		8799DA96192AB4D9009B3CAB /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE0B01908810B0029D9AF /* XCTest.framework */; };
 		8799DA97192AB4D9009B3CAB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08B1908810B0029D9AF /* Foundation.framework */; };
 		8799DA98192AB4D9009B3CAB /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08F1908810B0029D9AF /* UIKit.framework */; };
@@ -220,6 +221,7 @@
 		877AEE8719BD370300ED270D /* UHDBuildingAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDBuildingAnnotationView.m; sourceTree = "<group>"; };
 		87839F3819D4D70B00E5E6C8 /* MensaDayPickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MensaDayPickerCell.swift; sourceTree = "<group>"; };
 		87839F3C19D52A3B00E5E6C8 /* MensaDayPicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MensaDayPicker.swift; sourceTree = "<group>"; };
+		87902D821A25331200186CC5 /* CachedTileOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CachedTileOverlay.swift; path = VIOSFramework/Views/CachedTileOverlay/CachedTileOverlay.swift; sourceTree = "<group>"; };
 		8799DA95192AB4D9009B3CAB /* uni-hd-tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "uni-hd-tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8799DA9B192AB4D9009B3CAB /* uni-hd-tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "uni-hd-tests-Info.plist"; sourceTree = "<group>"; };
 		8799DA9D192AB4D9009B3CAB /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -516,6 +518,14 @@
 			name = "News Sources";
 			sourceTree = "<group>";
 		};
+		87902D841A25332100186CC5 /* CachedTileOverlay */ = {
+			isa = PBXGroup;
+			children = (
+				87902D821A25331200186CC5 /* CachedTileOverlay.swift */,
+			);
+			name = CachedTileOverlay;
+			sourceTree = "<group>";
+		};
 		8799DA8D192AB1DB009B3CAB /* News */ = {
 			isa = PBXGroup;
 			children = (
@@ -628,7 +638,7 @@
 				87CBE08F1908810B0029D9AF /* UIKit.framework */,
 				87CBE0B01908810B0029D9AF /* XCTest.framework */,
 				3F757EC4658C40C8B7B4E414 /* libPods.a */,
-				87F826EC190D70220008144F /* VIOSFramework (Objective-C) */,
+				87F826EC190D70220008144F /* VIOSFramework */,
 				87475EB819E32B230028A9BF /* VILogKit.xcodeproj */,
 			);
 			name = Frameworks;
@@ -791,7 +801,7 @@
 			path = VIOSFramework/VILogger;
 			sourceTree = "<group>";
 		};
-		87F826EC190D70220008144F /* VIOSFramework (Objective-C) */ = {
+		87F826EC190D70220008144F /* VIOSFramework */ = {
 			isa = PBXGroup;
 			children = (
 				8733B3F019F9FFD6007263AC /* CircularProgressView */,
@@ -800,8 +810,9 @@
 				87F826E7190D700E0008144F /* VILogger */,
 				8737FF0D193F9EB5007D61C4 /* VIFetchedResultsControllerDataSource */,
 				870591DC19C10922003E2906 /* VIImageOverlayRenderer */,
+				87902D841A25332100186CC5 /* CachedTileOverlay */,
 			);
-			name = "VIOSFramework (Objective-C)";
+			name = VIOSFramework;
 			sourceTree = "<group>";
 		};
 		87FCA990199578C200B3A55F /* Map View */ = {
@@ -1110,6 +1121,7 @@
 				DC21B6DA1923D27600BAD26D /* UHDMensaSection.m in Sources */,
 				0AD7F3721923F58E00F49551 /* UHDNewsItemCell.m in Sources */,
 				0B13624C19B4AF22000ECC3A /* UHDBuildingDetailViewController.m in Sources */,
+				87902D831A25331200186CC5 /* CachedTileOverlay.swift in Sources */,
 				872750F21964A1D100FDBC4E /* UHDMensaListViewController.m in Sources */,
 				87E8527D19572BD4007503B8 /* UHDRemoteManagedObject.m in Sources */,
 				DC94C7E7195B20D300615056 /* UHDMensaDetailViewController.m in Sources */,

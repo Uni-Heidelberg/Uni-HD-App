@@ -93,6 +93,8 @@
     UIBarButtonItem *quickDateSelectionButton = self.navigationItem.rightBarButtonItem;
     quickDateSelectionButton.title = self.dayPicker.selectedDate != nil && [[NSCalendar currentCalendar] isDateInToday:self.dayPicker.selectedDate] ? NSLocalizedString(@"Tomorrow", nil) : NSLocalizedString(@"Today", nil);
     
+    [self.dayPicker reloadData];
+    
     [self updateVisibleDailyMenuAnimated:animated];
 }
 

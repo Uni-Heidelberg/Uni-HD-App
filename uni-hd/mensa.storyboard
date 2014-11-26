@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B17" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7iw-G4-EQc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6250" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="7iw-G4-EQc">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6244"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -284,7 +284,7 @@
                                                             </constraints>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yn8-8x-RWs" userLabel="topView">
-                                                            <rect key="frame" x="21" y="1" width="9" height="12"/>
+                                                            <rect key="frame" x="21" y="0.5" width="9" height="12"/>
                                                             <subviews>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="M" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="22E-yK-uHa">
                                                                     <rect key="frame" x="0.0" y="0.0" width="9" height="12"/>
@@ -305,7 +305,7 @@
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                         </view>
                                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Fo-wc-RwI" userLabel="selectionIndicatorView">
-                                                            <rect key="frame" x="7" y="14" width="36" height="36"/>
+                                                            <rect key="frame" x="7" y="13.5" width="36" height="36"/>
                                                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="7Fo-wc-RwI" secondAttribute="height" multiplier="1:1" id="UEC-zq-c5C"/>
@@ -318,7 +318,7 @@
                                                             </userDefinedRuntimeAttributes>
                                                         </view>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0HP-5o-lOe">
-                                                            <rect key="frame" x="15" y="21" width="21" height="22"/>
+                                                            <rect key="frame" x="15.5" y="20.5" width="20.5" height="21.5"/>
                                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <nil key="highlightedColor"/>
@@ -633,6 +633,6 @@
         <image name="Billiardkugel7" width="215" height="194"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ZoX-P8-0Hs"/>
+        <segue reference="ABh-eb-d6C"/>
     </inferredMetricsTieBreakers>
 </document>

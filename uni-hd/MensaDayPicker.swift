@@ -84,6 +84,14 @@ class MensaDayPicker: UIView {
         collectionView.scrollToItemAtIndexPath(indexPathForIndex(index)!, atScrollPosition: scrollPosition, animated: animated)
     }
     
+    func reloadData()
+    {
+        self.collectionView.reloadData()
+        if let date = selectedDate {
+            collectionView.selectItemAtIndexPath(indexPathForDate(date), animated: false, scrollPosition: .allZeros)
+        }
+    }
+    
     
     // MARK: User Interaction
     
