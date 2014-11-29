@@ -162,6 +162,7 @@
         }
         
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsItem entityName]];
+		[fetchRequest setIncludesSubentities:NO];
 		
 		// Idea: write custom comparator for sorting items by calendar week
 		/*
