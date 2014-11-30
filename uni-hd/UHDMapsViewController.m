@@ -97,15 +97,9 @@
     
     // Add campus region overlays
     NSArray *allCampusRegions = self.campusRegionsFetchedResultsController.fetchedObjects;
-    // TODO: remove overlays, make sure to not add them twice
+    [self.mapView removeOverlays:allCampusRegions];
     if (![[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyShowCampusOverlay] || [[[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyShowCampusOverlay] boolValue]) {
-        for (UHDCampusRegion *campusRegion in allCampusRegions) {
-            CachedTileOverlay *campusRegionOverlay = [[CachedTileOverlay alloc] initWithURLTemplate:[NSString stringWithFormat:@"%@map-tiles/%@/{z}/{x}/{y}.png", UHDRemoteStaticContentBaseURL, [campusRegion.identifier lowercaseString]]];
-            campusRegionOverlay.geometryFlipped = YES;
-            campusRegionOverlay.minimumZ = 13;
-            campusRegionOverlay.maximumZ = 17;
-            [self.mapView addOverlay:campusRegionOverlay level:MKOverlayLevelAboveLabels];
-        }
+        [self.mapView addOverlays:allCampusRegions level:MKOverlayLevelAboveLabels];
     }
     
     // Add building overlays to verify their map rect
@@ -237,9 +231,9 @@
 {
     NSArray *allCampusRegions = self.campusRegionsFetchedResultsController.fetchedObjects;
     NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
-    if ([overlay isKindOfClass:[MKTileOverlay class]]) {
-
-        return [[MKTileOverlayRenderer alloc] initWithTileOverlay:overlay];
+    if ([allCampusRegions containsObject:overlay]) {
+        
+        return [[CampusRegionOverlayRenderer alloc] initWithCampusRegion:(UHDCampusRegion *)overlay];
         
     } else if ([allBuildings containsObject:overlay]) {
         // Show the building's map rect for testing purposes

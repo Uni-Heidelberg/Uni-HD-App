@@ -61,7 +61,7 @@
      Bottom Right: 49.410792, 8.676694
      Top Right: 49.424228, 8.676694
      */
-    inf.overlayImageURL = [NSURL URLWithString:@"https://dl.dropboxusercontent.com/s/40xqkz48pww7x9o/inf.png"];
+    //inf.overlayImageURL = [NSURL URLWithString:@"https://dl.dropboxusercontent.com/s/40xqkz48pww7x9o/inf.png"];
     
     UHDCampusRegion *altstadt = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
     altstadt.title = @"Altstadt";
@@ -73,7 +73,7 @@
      Punkt linke Seite: 49.409210, 8.692483
      Punkt oben: 49.415861, 8.712368
      */
-    altstadt.overlayImageURL = [NSURL URLWithString:@"https://dl.dropboxusercontent.com/s/ppavffrpx5uceis/alt.png"];
+    //altstadt.overlayImageURL = [NSURL URLWithString:@"https://dl.dropboxusercontent.com/s/ppavffrpx5uceis/alt.png"];
     
     UHDCampusRegion *bergheim = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
     bergheim.title = @"Bergheim";
@@ -81,8 +81,8 @@
     bergheim.location = [[CLLocation alloc] initWithLatitude:49.4085 longitude:8.68685];
     bergheim.spanLatitude = 0.00315;
     bergheim.spanLongitude = 0.01095;
-    bergheim.overlayAngle = -0.268;
-    bergheim.overlayImageURL = [NSURL URLWithString:@"https://dl.dropboxusercontent.com/s/rycj0hzqntbx28j/berg.png"];
+    //bergheim.overlayAngle = -0.268;
+    //bergheim.overlayImageURL = [NSURL URLWithString:@"https://dl.dropboxusercontent.com/s/rycj0hzqntbx28j/berg.png"];
     
     /*
      Oben: 49.41150
@@ -170,6 +170,7 @@
 }
 
 
+/* not necessary anymore
 - (UIImage *)overlayImageForUrl:(NSURL *)overlayImageURL
 {
     UIImage *overlayImage = nil;
@@ -210,6 +211,6 @@
     
     return overlayImage;
 
-}
+} */
 
 @end

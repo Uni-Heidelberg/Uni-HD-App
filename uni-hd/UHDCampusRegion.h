@@ -13,14 +13,11 @@
 
 @property (nonatomic, retain) NSString *identifier;
 @property (nonatomic, retain) NSSet *buildings;
-@property (nonatomic, retain) NSURL *overlayImageURL;
-@property (nonatomic) double_t overlayAngle;
 @property (nonatomic) double_t spanLatitude;
 @property (nonatomic) double_t spanLongitude;
 
 // Computed Properties
 - (MKCoordinateRegion)coordinateRegion;
-@property (readonly) UIImage *overlayImage;
 
 // Mutable To-Many Accessors
 - (NSMutableSet *)mutableBuildings;
