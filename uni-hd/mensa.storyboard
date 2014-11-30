@@ -65,30 +65,39 @@
                                             </userDefinedRuntimeAttributes>
                                         </view>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yh9-Oc-8DV">
-                                            <rect key="frame" x="78" y="21.5" width="484" height="46.5"/>
+                                            <rect key="frame" x="78" y="22" width="484" height="46.5"/>
                                             <subviews>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Status" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="htI-xy-Kfp">
-                                                    <rect key="frame" x="0.0" y="29.5" width="484" height="17"/>
+                                                    <rect key="frame" x="0.0" y="29" width="484" height="17"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Mensa Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Pj-Wn-hoL">
-                                                    <rect key="frame" x="0.0" y="0.0" width="484" height="21.5"/>
+                                                    <rect key="frame" x="27" y="0.0" width="457" height="21.5"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="favouriteSymbol" translatesAutoresizingMaskIntoConstraints="NO" id="alS-yc-5YC">
+                                                    <rect key="frame" x="0.0" y="-0.5" width="22" height="22.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" secondItem="alS-yc-5YC" secondAttribute="height" multiplier="1:1" id="G2g-Tz-sVV"/>
+                                                        <constraint firstAttribute="width" constant="22" id="teP-wc-bUk"/>
+                                                    </constraints>
+                                                </imageView>
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstItem="htI-xy-Kfp" firstAttribute="top" secondItem="3Pj-Wn-hoL" secondAttribute="bottom" constant="8" id="3mW-f9-U7F"/>
                                                 <constraint firstAttribute="trailing" secondItem="3Pj-Wn-hoL" secondAttribute="trailing" id="4W8-mD-ocg"/>
+                                                <constraint firstItem="alS-yc-5YC" firstAttribute="centerY" secondItem="3Pj-Wn-hoL" secondAttribute="centerY" id="JzV-11-GUj"/>
+                                                <constraint firstItem="3Pj-Wn-hoL" firstAttribute="leading" secondItem="alS-yc-5YC" secondAttribute="trailing" constant="5" id="LQU-OY-4sG"/>
                                                 <constraint firstItem="3Pj-Wn-hoL" firstAttribute="top" secondItem="yh9-Oc-8DV" secondAttribute="top" id="Ozq-6Z-CC1"/>
                                                 <constraint firstAttribute="trailing" secondItem="htI-xy-Kfp" secondAttribute="trailing" id="Rs8-xr-WJj"/>
-                                                <constraint firstItem="3Pj-Wn-hoL" firstAttribute="leading" secondItem="htI-xy-Kfp" secondAttribute="leading" id="Zq1-XR-309"/>
-                                                <constraint firstItem="3Pj-Wn-hoL" firstAttribute="leading" secondItem="yh9-Oc-8DV" secondAttribute="leading" id="a8b-L8-myZ"/>
                                                 <constraint firstAttribute="bottom" secondItem="htI-xy-Kfp" secondAttribute="bottom" id="koM-aQ-PLl"/>
+                                                <constraint firstItem="htI-xy-Kfp" firstAttribute="leading" secondItem="yh9-Oc-8DV" secondAttribute="leading" id="q1O-CP-NLU"/>
+                                                <constraint firstItem="alS-yc-5YC" firstAttribute="leading" secondItem="yh9-Oc-8DV" secondAttribute="leading" id="zyt-LD-Vtd"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -108,6 +117,8 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="distanceLabel" destination="htI-xy-Kfp" id="JYK-EJ-YVY"/>
+                                    <outlet property="favouriteSymbolSpacingConstraint" destination="LQU-OY-4sG" id="bij-1t-Rsd"/>
+                                    <outlet property="favouriteSymbolView" destination="alS-yc-5YC" id="pq2-Mo-7LB"/>
                                     <outlet property="hoursProgressView" destination="qLb-lB-7J7" id="VWA-TB-anW"/>
                                     <outlet property="mensaLabel" destination="3Pj-Wn-hoL" id="ccZ-BM-dzA"/>
                                     <segue destination="cWY-ub-8Cl" kind="unwind" identifier="selectMensa" unwindAction="unwindToMainMensa:" id="JYv-Xo-Gob"/>
@@ -158,7 +169,7 @@
                 </label>
                 <exit id="cWY-ub-8Cl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2658" y="-1452"/>
+            <point key="canvasLocation" x="2658" y="-1452.5"/>
         </scene>
         <!--Mensa Detail View Controller-->
         <scene sceneID="j0n-t2-fNc">
@@ -631,8 +642,9 @@
         <image name="Billiardkugel1" width="212" height="207"/>
         <image name="Billiardkugel2" width="194" height="194"/>
         <image name="Billiardkugel7" width="215" height="194"/>
+        <image name="favouriteSymbol" width="23" height="23"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="ABh-eb-d6C"/>
+        <segue reference="ZoX-P8-0Hs"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -15,7 +15,12 @@
 
 @dynamic title;
 @dynamic price;
-@dynamic menu;
+@dynamic menus;
 @dynamic isFavourite;
+
+- (NSMutableSet *)mutableMenus
+{
+    return [self mutableSetValueForKey:@"menus"];
+}
 
 @end

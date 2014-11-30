@@ -8,14 +8,13 @@
 
 #import "UHDRemoteManagedObject.h"
 
-@class UHDDailyMenu;
-
 @interface UHDMeal : UHDRemoteManagedObject
 
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *price;
 @property (nonatomic, assign) Boolean isFavourite;
 
-@property (nonatomic, retain) UHDDailyMenu *menu;
+@property (nonatomic, retain) NSSet *menus;
+- (NSMutableSet *)mutableMenus;
 
 @end
