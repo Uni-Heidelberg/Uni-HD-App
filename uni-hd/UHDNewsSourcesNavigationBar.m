@@ -72,20 +72,18 @@
 -(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
 	UHDSourceCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"sourceCollectionViewCell" forIndexPath:indexPath];
-
-    // TODO: find suitable icon for "all sources"
 	
 	if (indexPath.row == 0) {
     
         if (self.selectedSource == nil) {
-            cell.sourceSelectionIndicatorView.hidden = NO;
+            cell.sourceIconImageView.alpha = 1;
         }
         else {
-            cell.sourceSelectionIndicatorView.hidden = YES;
+            cell.sourceIconImageView.alpha = 0.3;
         }
         
-        cell.sourceIconImageView.image = nil;
-        cell.sourceIconImageView.backgroundColor = [UIColor whiteColor];
+        cell.sourceIconImageView.image = [UIImage imageNamed:@"all_news_symbol"];
+        cell.sourceIconImageView.backgroundColor = [UIColor brandColor];
         
 	}
 	else {
@@ -93,10 +91,10 @@
 		UHDNewsSource *source = [self.sources objectAtIndex:(indexPath.row - 1)];
         
         if (self.selectedSource == source) {
-            cell.sourceSelectionIndicatorView.hidden = NO;
+            cell.sourceIconImageView.alpha = 1;
         }
         else {
-            cell.sourceSelectionIndicatorView.hidden = YES;
+            cell.sourceIconImageView.alpha = 0.3;
         }
         
         if (source.thumbIcon != nil) {

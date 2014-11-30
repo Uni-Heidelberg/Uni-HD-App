@@ -22,7 +22,8 @@
 @property (weak, nonatomic) IBOutlet UIImageView *newsImageView;
 @property (weak, nonatomic) IBOutlet UILabel *sourceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UHDReadIndicatorView *readIndicatorView;
+
+@property (weak, nonatomic) IBOutlet UIImageView *readIndicatorImageView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageSpacingLayoutConstraint;
 @property (nonatomic) CGFloat imageSpacingConstraintInitialConstant;
@@ -50,7 +51,15 @@
     self.dateLabel.text = [dateFormatter stringFromDate:item.date];
     
     // Configure read indicator
-    self.readIndicatorView.hidden = item.read;
+	if (item.read) {
+		self.readIndicatorImageView.backgroundColor = [UIColor colorWithWhite:0.6 alpha:1];
+	}
+	else {
+		self.readIndicatorImageView.backgroundColor = [UIColor brandColor];
+	}
+	self.readIndicatorImageView.layer.cornerRadius = 5;
+	self.readIndicatorImageView.layer.masksToBounds = YES;
+	
     
     // Configure Image
     self.newsImageView.image = item.thumbImage;

@@ -12,6 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UIImageView *sourceIconImageView;
 
-@property (weak, nonatomic) IBOutlet UIView *sourceSelectionIndicatorView;
+//@property (weak, nonatomic) IBOutlet UIView *sourceSelectionIndicatorView;
 
 @end
