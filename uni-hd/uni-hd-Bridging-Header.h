@@ -6,3 +6,4 @@
 
 #import "UHDMensa.h"
 #import "UHDMensaListViewController.h"
+#import "UHDCampusRegion.h"
