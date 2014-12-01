@@ -20,6 +20,52 @@
 #import "UHDTalkItemCell.h"
 
 
+typedef enum : NSUInteger {
+    UHDNewsDatePeriodLater = 0,
+    UHDNewsDatePeriodNext7Days,
+    UHDNewsDatePeriodTomorrow,
+    UHDNewsDatePeriodToday,
+    UHDNewsDatePeriodYesterday,
+    UHDNewsDatePeriodPrevious7Days,
+    UHDNewsDatePeriodEarlier
+} UHDNewsDatePeriod;
+
+
+@interface UHDNewsItem (Sectioning)
+
+@property (nonatomic, readonly) NSInteger datePeriod;
+
+@end
+
+@implementation UHDNewsItem (Sectioning)
+
+- (NSInteger)datePeriod {
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDate *date = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:self.date options:0];
+    NSDate *today = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:[NSDate date] options:0];
+    
+    NSInteger daysFromNow = [calendar components:NSCalendarUnitDay fromDate:today toDate:date options:0].day;
+    switch (daysFromNow) {
+        case 1: return UHDNewsDatePeriodTomorrow;
+        case 0: return UHDNewsDatePeriodToday;
+        case -1: return UHDNewsDatePeriodYesterday;
+        default:
+            if (daysFromNow < -7) {
+                return UHDNewsDatePeriodEarlier;
+            } else if (daysFromNow < -1) {
+                return UHDNewsDatePeriodPrevious7Days;
+            } else if (daysFromNow > 7) {
+                return UHDNewsDatePeriodLater;
+            } else if (daysFromNow > 1) {
+                return UHDNewsDatePeriodNext7Days;
+            }
+            return UHDNewsDatePeriodEarlier;
+    }
+}
+
+@end
+
+
 @interface UHDNewsListViewController ()
 
 @property (strong, nonatomic, readonly) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
@@ -184,7 +230,7 @@
 
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
         
-        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"daysFromNow" cacheName:nil];
+        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"datePeriod" cacheName:nil];
         
 		VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource = [[VIFetchedResultsControllerDataSource alloc] init];
 		fetchedResultsControllerDataSource.tableView = self.tableView;
@@ -290,19 +336,23 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    NSInteger daysFromNow = [(UHDNewsItem *)[[(id<NSFetchedResultsSectionInfo>)[self.fetchedResultsControllerDataSource.fetchedResultsController.sections objectAtIndex:section] objects] firstObject] daysFromNow];
+    NSInteger datePeriod = [(UHDNewsItem *)[[(id<NSFetchedResultsSectionInfo>)[self.fetchedResultsControllerDataSource.fetchedResultsController.sections objectAtIndex:section] objects] firstObject] datePeriod];
 
-    switch (daysFromNow) {
-        case -7:
-            return NSLocalizedString(@"Last 7 days", nil);
-        case -1:
+    switch (datePeriod) {
+        case UHDNewsDatePeriodEarlier:
+            return NSLocalizedString(@"Earlier", nil);
+        case UHDNewsDatePeriodPrevious7Days:
+            return NSLocalizedString(@"Previous 7 days", nil);
+        case UHDNewsDatePeriodYesterday:
             return NSLocalizedString(@"Yesterday", nil);
-        case 0:
+        case UHDNewsDatePeriodToday:
             return NSLocalizedString(@"Today", nil);
-        case 1:
+        case UHDNewsDatePeriodTomorrow:
             return NSLocalizedString(@"Tomorrow", nil);
-        case 7:
+        case UHDNewsDatePeriodNext7Days:
             return NSLocalizedString(@"Next 7 days", nil);
+        case UHDNewsDatePeriodLater:
+            return NSLocalizedString(@"Later", nil);
             
         default:
             return nil;

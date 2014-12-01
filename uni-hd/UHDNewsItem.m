@@ -35,14 +35,6 @@
 }
 
 
-- (NSInteger)daysFromNow {
-    
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDate *date = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:self.date options:0];
-    NSDate *today = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:[NSDate date] options:0];
-    
-    return [calendar components:NSCalendarUnitDay fromDate:today toDate:date options:0].day;
-    
 	/*
 	[self willAccessValueForKey:@"simplifiedDate"];
 	
@@ -58,7 +50,6 @@
 	[self didAccessValueForKey:@"simplifiedDate"];
 	
 	return simplifiedDate;*/
-}
 
 
 /*- (void)setDate:(NSDate *)date {
