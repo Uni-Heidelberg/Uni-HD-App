@@ -29,6 +29,7 @@
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSFetchedResultsController *campusRegionsFetchedResultsController;
+/*@property (strong, nonatomic) UISearchBar *mapssearchbar;*/
 
 - (IBAction)unwindToMap:(UIStoryboardSegue *)segue;
 
@@ -142,6 +143,18 @@
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
     [self performSegueWithIdentifier:@"showBuildingDetail" sender:view];
+}
+
+-(IBAction)showBuildingSearch:(UIStoryboardSegue *)segue {
+    
+    
+    
+}
+
+-(void)navigationView:(UINavigationBar *)navigationBar navigationBarItem:(UINavigationItem *)view calloutAccessoryControlTapped:(UISearchBar *)control{
+    
+    [self performSegueWithIdentifier:@"showMapsSearch" sender:view];
+    
 }
 
 

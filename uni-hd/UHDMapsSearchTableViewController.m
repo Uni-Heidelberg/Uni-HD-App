@@ -37,6 +37,9 @@
     [super viewDidLoad];
     
     [self configureView];
+    
+    UISearchBar *searchBar = [[UISearchBar alloc] init];
+    self.navigationItem.titleView = searchBar;
 }
 
 - (void)configureView
@@ -80,17 +83,11 @@
     {
         UHDBuildingDetailViewController *destViewController = segue.destinationViewController;
 
-        if (self.searchDisplayController.active)
-        {
             NSIndexPath *indexPath= nil;
             UHDBuilding *item = nil;
-            indexPath = [self.searchDisplayController.searchResultsTableView indexPathForSelectedRow];
+            indexPath = [self.tableView indexPathForSelectedRow];
             item = [self.filteredObjects objectAtIndex:indexPath.row];
             destViewController.building = item;
-        } else
-        {
-            destViewController.building = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:(UITableViewCell *)sender]];
-        }
     }
 }
 
@@ -98,20 +95,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (tableView==self.searchDisplayController.searchResultsTableView) {
+ 
         return 1;
-    } else {
-        return [self.fetchedResultsControllerDataSource numberOfSectionsInTableView:tableView];
-    }
+
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (tableView==self.searchDisplayController.searchResultsTableView) {
+
         return self.filteredObjects.count;
-    } else {
-        return [self.fetchedResultsControllerDataSource tableView:tableView numberOfRowsInSection:section];
-    }
+
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -124,13 +117,8 @@
 	UITableViewCell *cell;
     UHDBuilding *item;
     
-    if (tableView==self.searchDisplayController.searchResultsTableView) {
         cell = [self.tableView dequeueReusableCellWithIdentifier:@"mapsSearchCell"];
         item = [self.filteredObjects objectAtIndex:indexPath.row];
-    } else {
-		cell = [self.tableView dequeueReusableCellWithIdentifier:@"mapsSearchCell" forIndexPath:indexPath];
-		item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
-    }
     
     [(UHDMapsSearchCell *)cell configureForItem:item];
 	return cell;
@@ -138,11 +126,8 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    if (tableView==self.searchDisplayController.searchResultsTableView) {
         return nil;
-    } else {
-        return [self.fetchedResultsControllerDataSource tableView:tableView titleForHeaderInSection:section];
-    }
+
 }
 
 
