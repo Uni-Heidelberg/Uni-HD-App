@@ -52,14 +52,10 @@
     
     // Configure read indicator
 	if (item.read) {
-		self.readIndicatorImageView.backgroundColor = [UIColor colorWithWhite:0.6 alpha:1];
+        self.readIndicatorImageView.tintColor = [UIColor lightGrayColor];
+	} else {
+        self.readIndicatorImageView.tintColor = [UIColor brandColor];
 	}
-	else {
-		self.readIndicatorImageView.backgroundColor = [UIColor brandColor];
-	}
-	self.readIndicatorImageView.layer.cornerRadius = 5;
-	self.readIndicatorImageView.layer.masksToBounds = YES;
-	
     
     // Configure Image
     self.newsImageView.image = item.thumbImage;

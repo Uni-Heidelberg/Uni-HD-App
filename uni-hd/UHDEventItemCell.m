@@ -32,7 +32,7 @@
 	self.imageSpacingConstraintInitialConstant = self.imageSpacingLayoutConstraint.constant;
 }
 
--(void) configureForItem:(UHDEventItem *)item
+-(void)configureForItem:(UHDEventItem *)item
 {
     // Configure text
     self.titleLabel.text = item.title;
@@ -50,8 +50,7 @@
     self.eventImageView.image = item.thumbImage;
 	if (item.thumbImage) {
 		self.imageSpacingLayoutConstraint.constant = self.imageSpacingConstraintInitialConstant;
-	}
-	else {
+	} else {
 		self.imageSpacingLayoutConstraint.constant = 0;
 	}
 	

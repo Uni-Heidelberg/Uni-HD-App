@@ -19,8 +19,6 @@
 @dynamic thumbImageData;
 @dynamic source;
 
-@dynamic simplifiedDate;
-
 
 #pragma mark - Convenience accessors
 
@@ -37,8 +35,15 @@
 }
 
 
-- (NSDate *)simplifiedDate {
-	
+- (NSInteger)daysFromNow {
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDate *date = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:self.date options:0];
+    NSDate *today = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:[NSDate date] options:0];
+    
+    return [calendar components:NSCalendarUnitDay fromDate:today toDate:date options:0].day;
+    
+	/*
 	[self willAccessValueForKey:@"simplifiedDate"];
 	
 	// Use user's current calendar and time zone
@@ -52,20 +57,21 @@
 	
 	[self didAccessValueForKey:@"simplifiedDate"];
 	
-	return simplifiedDate;
+	return simplifiedDate;*/
 }
 
 
-- (void)setDate:(NSDate *)date {
+/*- (void)setDate:(NSDate *)date {
 	
 	[self willChangeValueForKey:@"date"];
-	[self willChangeValueForKey:@"simplifiedDate"];
+//	[self willChangeValueForKey:@"simplifiedDate"];
 	
 	[self setPrimitiveValue:date forKey:@"date"];
 	
 	[self didChangeValueForKey:@"date"];
-	[self didChangeValueForKey:@"simplifiedDate"];
+//	[self didChangeValueForKey:@"simplifiedDate"];
 	
-}
+    [self computeDatePeriod];
+}*/
 
 @end

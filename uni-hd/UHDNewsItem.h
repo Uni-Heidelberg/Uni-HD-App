@@ -19,13 +19,9 @@
 @property (nonatomic, retain) NSData *thumbImageData;
 @property (nonatomic, retain) UHDNewsSource *source;
 
-@property (nonatomic, retain) NSDate *simplifiedDate;
+@property (nonatomic, readonly) NSInteger daysFromNow;
 
 - (UIImage *)thumbImage;
 - (void)setThumbImage:(UIImage *)thumbImage;
-
-- (NSDate *)simplifiedDate;
-
-- (void)setDate:(NSDate *)date;
 
 @end

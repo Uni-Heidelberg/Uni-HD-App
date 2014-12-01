@@ -59,8 +59,7 @@
     self.talkImageView.image = item.thumbImage;
 	if (item.thumbImage) {
 		self.imageSpacingLayoutConstraint.constant = self.imageSpacingConstraintInitialConstant;
-	}
-	else {
+	} else {
 		self.imageSpacingLayoutConstraint.constant = 0;
 	}
     

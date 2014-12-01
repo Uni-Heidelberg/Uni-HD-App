@@ -14,7 +14,6 @@
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="read" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <attribute name="simplifiedDate" optional="YES" transient="YES" attributeType="Date" syncable="YES"/>
         <attribute name="sourceId" optional="YES" transient="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="thumbImageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -41,7 +40,7 @@
     <elements>
         <element name="UHDEventItem" positionX="162" positionY="-54" width="128" height="58"/>
         <element name="UHDNewsCategory" positionX="-270" positionY="-207" width="128" height="103"/>
-        <element name="UHDNewsItem" positionX="9" positionY="-207" width="128" height="193"/>
+        <element name="UHDNewsItem" positionX="9" positionY="-207" width="128" height="178"/>
         <element name="UHDNewsSource" positionX="-279" positionY="-9" width="128" height="118"/>
         <element name="UHDTalkItem" positionX="7" positionY="144" width="128" height="58"/>
         <element name="UHDTalkSpeaker" positionX="205" positionY="243" width="128" height="118"/>

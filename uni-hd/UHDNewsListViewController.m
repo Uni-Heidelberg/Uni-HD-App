@@ -147,8 +147,7 @@
 {
     if (self.displayMode == UHDNewsListDisplayModeNews) {
 		return self.fetchedResultsControllerDataSourceNews;
-	}
-	else {
+	} else {
 		return self.fetchedResultsControllerDataSourceEvents;
 	}
 }
@@ -185,7 +184,7 @@
 
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
         
-        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"daysFromNow" cacheName:nil];
         
 		VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource = [[VIFetchedResultsControllerDataSource alloc] init];
 		fetchedResultsControllerDataSource.tableView = self.tableView;
@@ -241,31 +240,31 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-	//return [self.fetchedResultsControllerDataSource numberOfSectionsInTableView:tableView];
+	return [self.fetchedResultsControllerDataSource numberOfSectionsInTableView:tableView];
 	
-	return [self.sectionsArray count];
+	//return [self.sectionsArray count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-	//return [self.fetchedResultsControllerDataSource tableView:tableView numberOfRowsInSection:section];
+	return [self.fetchedResultsControllerDataSource tableView:tableView numberOfRowsInSection:section];
 	
-	return [[self.sectionsDictionary objectForKey:self.sectionsArray[section]] count];
+	//return [[self.sectionsDictionary objectForKey:self.sectionsArray[section]] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	UITableViewCell *cell = nil;
 	
-	NSArray *items = [self.sectionsDictionary objectForKey:self.sectionsArray[indexPath.section]];
+	//NSArray *items = [self.sectionsDictionary objectForKey:self.sectionsArray[indexPath.section]];
 
 	if (self.displayMode == UHDNewsListDisplayModeNews) {
 
         static NSString *newsCellIdentifier = @"newsCell";
 
-        //UHDNewsItem *item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
+        UHDNewsItem *item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
 		
-		UHDNewsItem *item = items[indexPath.row];
+		//UHDNewsItem *item = items[indexPath.row];
 	
         cell = [tableView dequeueReusableCellWithIdentifier:newsCellIdentifier forIndexPath:indexPath];
 		[(UHDNewsItemCell *)cell configureForItem:item];
@@ -273,9 +272,9 @@
 	}
 	else {
 	
-		//UHDEventItem *item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
+		UHDEventItem *item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
 		
-		UHDEventItem *item = items[indexPath.row];
+		//UHDEventItem *item = items[indexPath.row];
 		
 		if ([[item entityName] isEqualToString:[UHDEventItem entityName]]) {
 			cell = [tableView dequeueReusableCellWithIdentifier:@"eventCell" forIndexPath:indexPath];
@@ -291,8 +290,27 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
+    NSInteger daysFromNow = [(UHDNewsItem *)[[(id<NSFetchedResultsSectionInfo>)[self.fetchedResultsControllerDataSource.fetchedResultsController.sections objectAtIndex:section] objects] firstObject] daysFromNow];
+
+    switch (daysFromNow) {
+        case -7:
+            return NSLocalizedString(@"Last 7 days", nil);
+        case -1:
+            return NSLocalizedString(@"Yesterday", nil);
+        case 0:
+            return NSLocalizedString(@"Today", nil);
+        case 1:
+            return NSLocalizedString(@"Tomorrow", nil);
+        case 7:
+            return NSLocalizedString(@"Next 7 days", nil);
+            
+        default:
+            return nil;
+            break;
+    }
+    
 	// Use user's current calendar and time zone
-	NSCalendar *calendar = [NSCalendar currentCalendar];
+	/*NSCalendar *calendar = [NSCalendar currentCalendar];
 	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
 	[calendar setTimeZone:timeZone];
 	
@@ -312,7 +330,7 @@
 	
 	return sectionHeader;
 	
-	//return [self.fetchedResultsControllerDataSource tableView:tableView titleForHeaderInSection:section];
+	//return [self.fetchedResultsControllerDataSource tableView:tableView titleForHeaderInSection:section];*/
 }
 
 
