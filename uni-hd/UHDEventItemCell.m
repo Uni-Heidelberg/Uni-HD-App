@@ -17,7 +17,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *abstractLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *eventImageView;
 @property (weak, nonatomic) IBOutlet UILabel *sourceLabel;
-@property (weak, nonatomic) IBOutlet NSLayoutConstraint *eventIndicatorView;
+@property (weak, nonatomic) IBOutlet UIImageView *eventIndicatorView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageSpacingLayoutConstraint;
 @property (nonatomic) CGFloat imageSpacingConstraintInitialConstant;
@@ -45,6 +45,13 @@
     dateFormatter.dateStyle = NSDateFormatterFullStyle;
     dateFormatter.timeStyle = NSDateFormatterShortStyle;
     self.dateLabel.text = [dateFormatter stringFromDate:item.date];
+	
+	// Configure indicator
+	if (item.read) {
+        self.eventIndicatorView.tintColor = [UIColor lightGrayColor];
+	} else {
+        self.eventIndicatorView.tintColor = [UIColor brandColor];
+	}
     
     // Configure image
     self.eventImageView.image = item.thumbImage;

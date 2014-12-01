@@ -128,8 +128,9 @@ typedef enum : NSUInteger {
 		UHDNewsDetailViewController *newsDetailVC = segue.destinationViewController;
         
         UHDEventItem *item = self.fetchedResultsControllerDataSource.selectedItem;
-        item.read = YES;
-        [item.managedObjectContext saveToPersistentStore:NULL];
+		
+		//item.read = YES;
+        //[item.managedObjectContext saveToPersistentStore:NULL];
         
         newsDetailVC.newsItem = item;
 	
@@ -138,8 +139,9 @@ typedef enum : NSUInteger {
 		UHDNewsDetailViewController *newsDetailVC = segue.destinationViewController;
         
         UHDTalkItem *item = self.fetchedResultsControllerDataSource.selectedItem;
-        item.read = YES;
-        [item.managedObjectContext saveToPersistentStore:NULL];
+		
+		//item.read = YES;
+        //[item.managedObjectContext saveToPersistentStore:NULL];
         
         newsDetailVC.newsItem = item;
 	}

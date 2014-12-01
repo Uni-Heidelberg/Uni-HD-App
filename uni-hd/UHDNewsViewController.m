@@ -31,6 +31,8 @@
 @property (weak, nonatomic) IBOutlet UHDNewsSourcesNavigationBar *sourcesNavigationBar;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *newsEventsSegmentedControl;
 
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *preferencesBarButtonItem;
+
 - (IBAction)showAllNewsButtonPressed:(id)sender;
 - (IBAction)unwindToNews:(UIStoryboardSegue *)segue;
 
@@ -48,9 +50,29 @@
     // TODO: fix scroll view insets & extend under both bars
     
     self.sourcesNavigationBar.delegate = self;
+	
+	[self configureBarButtonItem];
     
     [self configureView];
 }
+
+
+- (void)configureBarButtonItem {
+
+	/*UIImage *image = [UIImage imageNamed:@"preferences"];
+	CGRect frame = CGRectMake(0, 0, 22, 22);
+	UIButton *button = [[UIButton alloc] initWithFrame:frame];
+	[button setImage:image forState:UIControlStateNormal];
+	[button setTintColor:[UIColor whiteColor]];
+	[button addTarget:self action:@selector(preferencesButtonPressed:) forControlEvents:UIControlEventTouchDown];
+	UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
+	[self.navigationItem setRightBarButtonItem:barButtonItem];*/
+	
+	[self.preferencesBarButtonItem setTitle:nil];
+	[self.preferencesBarButtonItem setImage:[UIImage imageNamed:@"preferences"]];
+	[self.preferencesBarButtonItem setTintColor:[UIColor whiteColor]];
+}
+
 
 - (void)configureView
 {

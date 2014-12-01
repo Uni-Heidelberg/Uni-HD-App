@@ -12,4 +12,16 @@
 
 @dynamic location;
 
+- (BOOL)read {
+
+	NSDate *today = [NSDate date];
+	
+	if ([self.date compare:today] == NSOrderedAscending) {
+		return YES;
+	}
+	else {
+		return NO;
+	}
+}
+
 @end

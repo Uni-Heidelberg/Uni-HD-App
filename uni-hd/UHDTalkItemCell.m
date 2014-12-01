@@ -54,6 +54,13 @@
     dateFormatter.dateStyle = NSDateFormatterFullStyle;
     dateFormatter.timeStyle = NSDateFormatterShortStyle;
     self.dateLabel.text = [dateFormatter stringFromDate:item.date];
+	
+	// Configure indicator
+	if (item.read) {
+        self.talkIndicatorView.tintColor = [UIColor lightGrayColor];
+	} else {
+        self.talkIndicatorView.tintColor = [UIColor brandColor];
+	}
     
     // Configure image
     self.talkImageView.image = item.thumbImage;

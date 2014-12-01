@@ -82,8 +82,8 @@
             cell.sourceIconImageView.alpha = 0.3;
         }
         
-        cell.sourceIconImageView.image = [UIImage imageNamed:@"all_news_symbol"];
-        cell.sourceIconImageView.backgroundColor = [UIColor brandColor];
+        cell.sourceIconImageView.image = [UIImage imageNamed:@"all_news_icon"];
+        cell.sourceIconImageView.tintColor = [UIColor brandColor];
         
 	}
 	else {
