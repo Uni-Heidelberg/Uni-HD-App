@@ -48,7 +48,7 @@
     [VILogger defaultLogger].logLevel = VILogLevelWarning;
 #endif
     RKLogConfigureByName("RestKit/Network", RKLogLevelOff);
-    
+
     
     // enable automatic network indicator display
     [AFNetworkActivityIndicatorManager sharedManager].enabled = YES;

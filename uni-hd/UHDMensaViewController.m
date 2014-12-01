@@ -93,6 +93,8 @@
     UIBarButtonItem *quickDateSelectionButton = self.navigationItem.rightBarButtonItem;
     quickDateSelectionButton.title = self.dayPicker.selectedDate != nil && [[NSCalendar currentCalendar] isDateInToday:self.dayPicker.selectedDate] ? NSLocalizedString(@"Tomorrow", nil) : NSLocalizedString(@"Today", nil);
     
+    [self.dayPicker reloadData];
+    
     [self updateVisibleDailyMenuAnimated:animated];
 }
 
@@ -105,7 +107,7 @@
 
     if (!date) {
         // TODO
-    } else if (previousDailyMenuVC == nil || previousDailyMenuVC.dailyMenu.mensa != self.mensa || ![[NSCalendar currentCalendar] isDate:date inSameDayAsDate:previousDailyMenuVC.date]) {
+    } else if (previousDailyMenuVC == nil || previousDailyMenuVC.mensa != self.mensa || ![[NSCalendar currentCalendar] isDate:date inSameDayAsDate:previousDailyMenuVC.date]) {
         [self.pageViewController setViewControllers:@[ [self dailyMenuViewControllerForDate:date] ] direction:([date compare:previousDate] == NSOrderedAscending) ? UIPageViewControllerNavigationDirectionReverse : UIPageViewControllerNavigationDirectionForward animated:animated completion:nil];
     }
 }
@@ -152,7 +154,7 @@
 
 - (BOOL)dayPicker:(MensaDayPicker *)dayPicker canSelectDate:(NSDate *)date
 {
-    return [self.mensa dailyMenuForDate:date] != nil;
+    return [self.mensa hasMenuForDate:date];
 }
 
 - (void)dayPicker:(MensaDayPicker *)dayPicker didSelectDate:(NSDate *)date
@@ -174,7 +176,7 @@
 - (UHDDailyMenuViewController *)dailyMenuViewControllerForDate:(NSDate *)date
 {
     UHDDailyMenuViewController *dailyMenuVC = [self.storyboard instantiateViewControllerWithIdentifier:@"dailyMenu"];
-    dailyMenuVC.dailyMenu = [self.mensa dailyMenuForDate:date];
+    dailyMenuVC.mensa = self.mensa;
     dailyMenuVC.date = date;
     return dailyMenuVC;
 }

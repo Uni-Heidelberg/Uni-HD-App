@@ -6,12 +6,6 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-MKMapRect MKMapRectForCoordinateRegion(MKCoordinateRegion region)
-{
-    MKMapPoint a = MKMapPointForCoordinate(CLLocationCoordinate2DMake(region.center.latitude + region.span.latitudeDelta / 2, region.center.longitude - region.span.longitudeDelta / 2));
-    MKMapPoint b = MKMapPointForCoordinate(CLLocationCoordinate2DMake(region.center.latitude - region.span.latitudeDelta / 2, region.center.longitude + region.span.longitudeDelta / 2));
-    return MKMapRectMake(MIN(a.x, b.x), MIN(a.y, b.y), ABS(a.x - b.x), ABS(a.y - b.y));
-}
 
 #import "UHDCampusRegion.h"
 #import "UHDRemoteDatasourceManager.h"
@@ -20,8 +14,6 @@ MKMapRect MKMapRectForCoordinateRegion(MKCoordinateRegion region)
 
 @interface UHDCampusRegion ()
 
-@property (strong) UIImage *overlayImage;
-
 @end
 
 
@@ -29,10 +21,7 @@ MKMapRect MKMapRectForCoordinateRegion(MKCoordinateRegion region)
 
 @dynamic identifier;
 @dynamic buildings;
-@dynamic overlayImageURL, overlayAngle;
 @dynamic spanLatitude, spanLongitude;
-
-@synthesize overlayImage = _overlayImage;
 
 
 # pragma mark - Computed Properties
@@ -41,20 +30,8 @@ MKMapRect MKMapRectForCoordinateRegion(MKCoordinateRegion region)
     return MKCoordinateRegionMake(self.coordinate, MKCoordinateSpanMake(self.spanLatitude, self.spanLongitude));
 }
 
-- (UIImage *)overlayImage {
-    // TODO: set nil to trigger reload when overlayImageURL changes
-    if (!_overlayImage) {
-        self.overlayImage = [(UHDMapsRemoteDatasourceDelegate *)[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyMaps].delegate overlayImageForUrl:self.overlayImageURL];
-    }
-    return _overlayImage;
-}
 
-- (void)setOverlayImage:(UIImage *)overlayImage {
-    _overlayImage = overlayImage;
-}
-
-
-#pragma mark - MKOverlay
+#pragma mark - MKOverlay Protocol
 
 - (MKMapRect)boundingMapRect {
     return MKMapRectForCoordinateRegion(self.coordinateRegion);

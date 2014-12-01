@@ -10,6 +10,4 @@
 
 @interface UHDMapsRemoteDatasourceDelegate : NSObject <UHDRemoteDatasourceDelegate>
 
-- (UIImage *)overlayImageForUrl:(NSURL *)overlayImageURL;
-
 @end

@@ -7,13 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UHDDailyMenu.h"
+#import "UHDMensa.h"
 
 @interface UHDDailyMenuViewController : UITableViewController
 
-@property (strong, nonatomic) UHDDailyMenu *dailyMenu;
-
-/// To store date if no daily menu object is set
+@property (strong, nonatomic) UHDMensa *mensa;
 @property (strong, nonatomic) NSDate *date;
 
 @end

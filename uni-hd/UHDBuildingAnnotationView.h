@@ -12,6 +12,7 @@
 @interface UHDBuildingAnnotationView : MKAnnotationView
 
 @property (strong, nonatomic) UHDBuilding *annotation;
+@property (nonatomic) BOOL shouldHideImage;
 
 - (id)initWithAnnotation:(UHDBuilding *)annotation reuseIdentifier:(NSString *)reuseIdentifier;
 

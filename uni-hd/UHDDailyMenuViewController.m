@@ -26,23 +26,20 @@
 
 @implementation UHDDailyMenuViewController
 
-- (void)setDailyMenu:(UHDDailyMenu *)dailyMenu
+- (void)setMensa:(UHDMensa *)mensa
 {
-    if (_dailyMenu == dailyMenu) return;
-    _dailyMenu = dailyMenu;
+    if (_mensa == mensa) return;
+    _mensa = mensa;
     
     self.fetchedResultsControllerDataSource = nil;
     
     [self configureView];
 }
 
-- (NSDate *)date
+- (void)setDate:(NSDate *)date
 {
-    if (self.dailyMenu) {
-        return self.dailyMenu.date;
-    } else {
-        return _date;
-    }
+    _date = date;
+    [self configureView];
 }
 
 - (void)viewDidLoad
@@ -57,7 +54,7 @@
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
     dateFormatter.dateStyle = NSDateFormatterShortStyle;
     self.emptyViewLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Menu unavailable for %@", nil), [dateFormatter stringFromDate:self.date]];
-    self.tableView.tableHeaderView = self.dailyMenu ? nil : self.emptyView;
+    self.tableView.tableHeaderView = (self.mensa && self.date) ? nil : self.emptyView;
     
     [self.tableView reloadData];
 }
@@ -65,17 +62,21 @@
 - (VIFetchedResultsControllerDataSource *)fetchedResultsControllerDataSource {
     if (!_fetchedResultsControllerDataSource)
     {
-        if (!self.dailyMenu.managedObjectContext) {
+        if (!self.mensa.managedObjectContext) {
             [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
             return nil;
         }
 
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMeal entityName]];
-        fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"section.remoteObjectId" ascending:YES],[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"menu == %@", self.dailyMenu];
+        fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"menu.section.remoteObjectId" ascending:YES], [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES] ];
+        NSDate *startDate;
+        NSTimeInterval dayLength;
+        [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay startDate:&startDate interval:&dayLength forDate:self.date];
+        NSDate *endDate = [startDate dateByAddingTimeInterval:dayLength];
+        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"menu.section.mensa == %@ AND (menu.date >= %@) AND (menu.date <= %@)", self.mensa, startDate, endDate];
         
-        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.dailyMenu.managedObjectContext
-            sectionNameKeyPath:@"section.title" cacheName:nil];
+        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.mensa.managedObjectContext
+            sectionNameKeyPath:@"menu.section.title" cacheName:nil];
         
         __weak UHDDailyMenuViewController *weakSelf = self;
         VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, id item) {
@@ -94,13 +95,13 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (!self.dailyMenu) return 0;
+    if (!(self.mensa && self.date)) return 0;
     return [self.fetchedResultsControllerDataSource numberOfSectionsInTableView:tableView];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    if (!self.dailyMenu) return 0;
+    if (!(self.mensa && self.date)) return 0;
     return [self.fetchedResultsControllerDataSource tableView:tableView numberOfRowsInSection:section];
 }
 

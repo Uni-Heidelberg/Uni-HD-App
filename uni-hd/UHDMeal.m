@@ -16,7 +16,6 @@
 @dynamic title;
 @dynamic price;
 @dynamic menu;
-@dynamic section;
 @dynamic isFavourite;
 
 @end

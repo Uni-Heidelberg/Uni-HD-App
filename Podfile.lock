@@ -25,6 +25,8 @@ PODS:
     - TransitionKit (= 2.1.0)
   - RestKit/Testing (0.23.1):
     - RestKit/Network
+  - RKCLLocationValueTransformer (1.1.0):
+    - RKValueTransformers (~> 1.1.0)
   - RKValueTransformers (1.1.0)
   - RMSwipeTableViewCell (0.6)
   - SOCKit (1.1)
@@ -34,15 +36,17 @@ DEPENDENCIES:
   - RestKit
   - RestKit/Search
   - RestKit/Testing
+  - RKCLLocationValueTransformer
   - RMSwipeTableViewCell
 
 SPEC CHECKSUMS:
   AFNetworking: 80c4e0652b08eb34e25b9c0ff3c82556fe5967b4
   ISO8601DateFormatterValueTransformer: a705384ea6531255258e25b6480ba1180db703a0
   RestKit: 0b5f1bbc43b81beba158262a1adae48ac062eb1e
+  RKCLLocationValueTransformer: 4803de0b5bdd81a1ebedb93a8a1d715f92ceb3f4
   RKValueTransformers: b705e7b4651b9206b94600408462b74554bba969
   RMSwipeTableViewCell: 150021ada2d86b21db04556f08351462bd58919b
   SOCKit: d8d0dd3688ae1026c12367570da8fa8e1a6980fb
   TransitionKit: 6a6f3ddda38ae758778aa889dcb930e4f8d64edc
 
-COCOAPODS: 0.34.1
+COCOAPODS: 0.34.4

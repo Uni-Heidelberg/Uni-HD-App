@@ -13,7 +13,26 @@
 @implementation UHDMensaSection
 
 @dynamic title;
-@dynamic meals;
+@dynamic menus;
 @dynamic mensa;
+
+#pragma mark - Mutable To-Many Accessors
+
+- (NSMutableSet *)mutableMenus
+{
+    return [self mutableSetValueForKey:@"menus"];
+}
+
+#pragma mark - Convenience Methods
+
+- (UHDDailyMenu *)dailyMenuForDate:(NSDate *)date
+{
+    NSDate *startDate;
+    NSTimeInterval dayLength;
+    [[NSCalendar currentCalendar] rangeOfUnit:NSCalendarUnitDay startDate:&startDate interval:&dayLength forDate:date];
+    NSDate *endDate = [startDate dateByAddingTimeInterval:dayLength];
+    
+    return [[self.menus filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"(date >= %@) AND (date < %@)", startDate, endDate]] anyObject];
+}
 
 @end

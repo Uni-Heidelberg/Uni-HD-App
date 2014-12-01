@@ -15,18 +15,22 @@
 // Model
 #import "UHDNewsSource.h"
 
+// Sources Navigation Bar
+#import "UHDNewsSourcesNavigationBar.h"
 
 #define kDisplayModeSegmentIndexNews 0
 #define kDisplayModeSegmentIndexEvents 1
 
 
-@interface UHDNewsViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate, NSFetchedResultsControllerDelegate>
+@interface UHDNewsViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate, NSFetchedResultsControllerDelegate, UHDNewsSourcesNavigationBarDelegate>
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 @property (strong, nonatomic) NSMutableArray *newsListViewControllers;
 
-@property (strong, nonatomic) IBOutlet UILabel *temporarySelectedSourceLabel; // TODO: implement proper source navigation bar
+@property (strong, nonatomic) IBOutlet UHDNewsSourcesNavigationBar *sourcesNavigationBar;
+
+//@property (strong, nonatomic) IBOutlet UILabel *temporarySelectedSourceLabel; // TODO: implement proper source navigation bar
 
 - (IBAction)showAllNewsButtonPressed:(id)sender;
 - (IBAction)unwindToNews:(UIStoryboardSegue *)segue;
@@ -45,13 +49,30 @@
 
     // TODO: fix scroll view insets & extend under both bars
     
+    self.sourcesNavigationBar.delegate = self;
+    
     [self configureView];
 }
 
 - (void)configureView
 {
-    self.temporarySelectedSourceLabel.text = [self.pageViewController.viewControllers[0] title];
+    //self.temporarySelectedSourceLabel.text = [self.pageViewController.viewControllers[0] title];
 	[self updateDisplayMode];
+	
+	// set currently subscribed sources to display in sources navigation bar
+	self.sourcesNavigationBar.sources = [self.fetchedResultsController fetchedObjects];
+    
+    // set currently selected source
+    /*NSUInteger currentViewControllerIndex = [self.newsListViewControllers indexOfObject:self.pageViewController.viewControllers[0]];
+    */
+    NSArray *currentSources = ((UHDNewsListViewController *) self.pageViewController.viewControllers[0]).sources;
+    
+    if ([currentSources count] > 1) {
+        self.sourcesNavigationBar.selectedSource = nil;
+    }
+    else {
+        self.sourcesNavigationBar.selectedSource = currentSources[0];
+    }
 }
 
 #pragma mark - Fetched Results Controller
@@ -127,6 +148,42 @@
 - (IBAction)unwindToNews:(UIStoryboardSegue *)segue
 {
     
+}
+
+#pragma mark - Sources Navigation Bar Delegate
+
+- (void)sourcesNavigationBar:(UHDNewsSourcesNavigationBar *)navigationBar didSelectSource:(UHDNewsSource *)source {
+    
+    [self.logger log:[NSString stringWithFormat:@"Switch Page View Controller to Source: %@", source.title] forLevel:VILogLevelDebug];
+    
+    UHDNewsListViewController *newsListVC;
+    
+    NSUInteger currentSourceIndex = [self.newsListViewControllers indexOfObject:self.pageViewController.viewControllers[0]];
+    NSUInteger newSourceIndex = 0;
+    
+    if (source == nil) {
+        newsListVC = self.newsListViewControllers[0];
+    }
+    else {
+        NSEnumerator *reversedEnumerator = [self.newsListViewControllers reverseObjectEnumerator];
+        UHDNewsListViewController *VC;
+        while (VC = [reversedEnumerator nextObject]) {
+            if ([VC.sources containsObject:source]) {
+                newsListVC = VC;
+                newSourceIndex = [self.newsListViewControllers indexOfObject:VC];
+                break;
+            }
+        }
+    }
+    
+    if (newSourceIndex < currentSourceIndex) {
+        [self.pageViewController setViewControllers:@[ newsListVC ] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+    }
+    else {
+        [self.pageViewController setViewControllers:@[ newsListVC ] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+    }
+    
+    //[self configureView];
 }
 
 

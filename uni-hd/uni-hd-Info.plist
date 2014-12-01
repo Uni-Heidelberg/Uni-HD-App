@@ -28,6 +28,8 @@
 	<string>TODO: add description here</string>
 	<key>NSLocationWhenInUseUsageDescription - 2</key>
 	<string>TODO: add description here</string>
+	<key>UILaunchStoryboardName</key>
+	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

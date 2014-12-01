@@ -26,12 +26,19 @@
     [self configureView];
 }
 
+- (void)setShouldHideImage:(BOOL)shouldHideImage {
+    if (self.shouldHideImage != shouldHideImage) {
+        _shouldHideImage = shouldHideImage;
+        [self configureView];
+    }
+}
+
 - (void)configureView
 {
     UHDBuilding *building = self.annotation;
     
     // image
-    if (building) {
+    if (!self.shouldHideImage && building) {
         
         CGRect rect = CGRectMake(0, 0, 44, 44);
         

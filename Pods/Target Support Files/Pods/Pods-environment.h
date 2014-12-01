@@ -18,6 +18,12 @@
 #define COCOAPODS_VERSION_MINOR_ISO8601DateFormatterValueTransformer 6
 #define COCOAPODS_VERSION_PATCH_ISO8601DateFormatterValueTransformer 0
 
+// RKCLLocationValueTransformer
+#define COCOAPODS_POD_AVAILABLE_RKCLLocationValueTransformer
+#define COCOAPODS_VERSION_MAJOR_RKCLLocationValueTransformer 1
+#define COCOAPODS_VERSION_MINOR_RKCLLocationValueTransformer 1
+#define COCOAPODS_VERSION_PATCH_RKCLLocationValueTransformer 0
+
 // RKValueTransformers
 #define COCOAPODS_POD_AVAILABLE_RKValueTransformers
 #define COCOAPODS_VERSION_MAJOR_RKValueTransformers 1

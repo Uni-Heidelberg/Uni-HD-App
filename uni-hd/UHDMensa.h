@@ -7,22 +7,19 @@
 //
 
 #import "UHDBuilding.h"
-@class UHDDailyMenu;
 @class Hours;
 
 @interface UHDMensa : UHDBuilding
 
-@property (nonatomic, retain) NSSet *menus;
-@property (nonatomic, retain) NSSet *sections;
 @property (nonatomic, assign) BOOL isFavourite;
-
 @property (nonatomic) CLLocationDistance currentDistance;
 @property (readonly) Hours *hours; // TODO: not yet implemented properly
 @property (readonly) NSAttributedString * attributedStatusDescription;
 
-- (NSMutableSet *)mutableMenus;
+@property (nonatomic, retain) NSSet *sections;
 - (NSMutableSet *)mutableSections;
-- (UHDDailyMenu *)dailyMenuForDate:(NSDate *)date;
+
+- (BOOL)hasMenuForDate:(NSDate *)date;
 
 @end
 
