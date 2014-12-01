@@ -34,9 +34,9 @@
     self.thumbImageData = UIImageJPEGRepresentation(thumbImage, 1);
 }
 
+// Idea: add a trancient attribute 'simplifiedDate' to group items in sections (cf. 'reducedDate' in UHDNewsListViewController)
 
-	/*
-	[self willAccessValueForKey:@"simplifiedDate"];
+/*	[self willAccessValueForKey:@"simplifiedDate"];
 	
 	// Use user's current calendar and time zone
 	NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -49,10 +49,12 @@
 	
 	[self didAccessValueForKey:@"simplifiedDate"];
 	
-	return simplifiedDate;*/
+	return simplifiedDate;
+*/
 
 
-/*- (void)setDate:(NSDate *)date {
+/*
+- (void)setDate:(NSDate *)date {
 	
 	[self willChangeValueForKey:@"date"];
 //	[self willChangeValueForKey:@"simplifiedDate"];

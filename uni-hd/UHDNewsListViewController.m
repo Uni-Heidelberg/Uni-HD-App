@@ -21,49 +21,13 @@
 
 
 typedef enum : NSUInteger {
-    UHDNewsDatePeriodLater = 0,
+    UHDNewsDatePeriodLaterOrEarlier = 0,
     UHDNewsDatePeriodNext7Days,
     UHDNewsDatePeriodTomorrow,
     UHDNewsDatePeriodToday,
     UHDNewsDatePeriodYesterday,
-    UHDNewsDatePeriodPrevious7Days,
-    UHDNewsDatePeriodEarlier
+    UHDNewsDatePeriodLast7Days,
 } UHDNewsDatePeriod;
-
-
-@interface UHDNewsItem (Sectioning)
-
-@property (nonatomic, readonly) NSInteger datePeriod;
-
-@end
-
-@implementation UHDNewsItem (Sectioning)
-
-- (NSInteger)datePeriod {
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-    NSDate *date = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:self.date options:0];
-    NSDate *today = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:[NSDate date] options:0];
-    
-    NSInteger daysFromNow = [calendar components:NSCalendarUnitDay fromDate:today toDate:date options:0].day;
-    switch (daysFromNow) {
-        case 1: return UHDNewsDatePeriodTomorrow;
-        case 0: return UHDNewsDatePeriodToday;
-        case -1: return UHDNewsDatePeriodYesterday;
-        default:
-            if (daysFromNow < -7) {
-                return UHDNewsDatePeriodEarlier;
-            } else if (daysFromNow < -1) {
-                return UHDNewsDatePeriodPrevious7Days;
-            } else if (daysFromNow > 7) {
-                return UHDNewsDatePeriodLater;
-            } else if (daysFromNow > 1) {
-                return UHDNewsDatePeriodNext7Days;
-            }
-            return UHDNewsDatePeriodEarlier;
-    }
-}
-
-@end
 
 
 @interface UHDNewsListViewController ()
@@ -74,16 +38,20 @@ typedef enum : NSUInteger {
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
-
-@property (strong, nonatomic) NSMutableDictionary *sectionsDictionary;
-@property (strong, nonatomic) NSArray *sectionsArray;
 @property (strong, nonatomic) NSDateFormatter *sectionDateFormatter;
 
-
 - (IBAction)refreshControlValueChanged:(id)sender;
-- (void)groupFetchedItemsByWeek;
 
 @end
+
+
+// category on UHDNewsItem
+@interface UHDNewsItem (Sectioning)
+
+@property (nonatomic, readonly) NSDate *reducedDate;
+
+@end
+
 
 
 @implementation UHDNewsListViewController
@@ -100,10 +68,9 @@ typedef enum : NSUInteger {
 {
     [super viewDidLoad];
 	
-	// set Date Formatter
+	// set date format
 	self.sectionDateFormatter = [[NSDateFormatter alloc] init];
-	[self.sectionDateFormatter setDateStyle:NSDateFormatterMediumStyle];
-	[self.sectionDateFormatter setTimeStyle:NSDateFormatterNoStyle];
+	[self.sectionDateFormatter setDateFormat:@"MMMM yyyy"];
 	
 	self.tableView.dataSource = self;
 	self.tableView.delegate = self;
@@ -121,16 +88,12 @@ typedef enum : NSUInteger {
     self.fetchedResultsControllerDataSourceEvents.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"source IN %@", self.sources];
     [self.fetchedResultsControllerDataSourceNews reloadData];
     [self.fetchedResultsControllerDataSourceEvents reloadData];
-	
-	[self groupFetchedItemsByWeek];
 }
 
 
 - (void)setDisplayMode:(UHDNewsListDisplayMode)displayMode
 {
 	_displayMode = displayMode;
-	
-	[self groupFetchedItemsByWeek];
 	
     [self.tableView reloadData];
 }
@@ -152,11 +115,7 @@ typedef enum : NSUInteger {
         
         UHDNewsDetailViewController *newsDetailVC = segue.destinationViewController;
 		
-		NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
-		NSArray *items = [self.sectionsDictionary objectForKey:self.sectionsArray[indexPath.section]];
-		UHDNewsItem *item = items[indexPath.row];
-		
-		//UHDNewsItem *item = self.fetchedResultsControllerDataSource.selectedItem;
+		UHDNewsItem *item = self.fetchedResultsControllerDataSource.selectedItem;
 		
 		// Mark item as read
 		item.read = YES;
@@ -230,7 +189,7 @@ typedef enum : NSUInteger {
 
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
         
-        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"datePeriod" cacheName:nil];
+        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"reducedDate" cacheName:nil];
         
 		VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource = [[VIFetchedResultsControllerDataSource alloc] init];
 		fetchedResultsControllerDataSource.tableView = self.tableView;
@@ -261,7 +220,7 @@ typedef enum : NSUInteger {
 
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]];
         
-        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
+        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"reducedDate" cacheName:nil];
         
         /*VITableViewCellConfigureBlock configureCellBlock = ^(UITableViewCell *cell, id item) {
             [(UHDEventItemCell *)cell configureForItem:item];
@@ -336,130 +295,106 @@ typedef enum : NSUInteger {
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-    NSInteger datePeriod = [(UHDNewsItem *)[[(id<NSFetchedResultsSectionInfo>)[self.fetchedResultsControllerDataSource.fetchedResultsController.sections objectAtIndex:section] objects] firstObject] datePeriod];
-
-    switch (datePeriod) {
-        case UHDNewsDatePeriodEarlier:
-            return NSLocalizedString(@"Earlier", nil);
-        case UHDNewsDatePeriodPrevious7Days:
-            return NSLocalizedString(@"Previous 7 days", nil);
+	NSDate *date = [(UHDNewsItem *)[[(id<NSFetchedResultsSectionInfo>)[self.fetchedResultsControllerDataSource.fetchedResultsController.sections objectAtIndex:section] objects] firstObject] reducedDate];
+	
+	UHDNewsDatePeriod datePeriod = [self datePeriodForDate:date];
+	
+	switch (datePeriod) {
+        case UHDNewsDatePeriodLast7Days:
+            return NSLocalizedString(@"Letzte 7 Tage", nil);
         case UHDNewsDatePeriodYesterday:
-            return NSLocalizedString(@"Yesterday", nil);
+            return NSLocalizedString(@"Gestern", nil);
         case UHDNewsDatePeriodToday:
-            return NSLocalizedString(@"Today", nil);
+            return NSLocalizedString(@"Heute", nil);
         case UHDNewsDatePeriodTomorrow:
-            return NSLocalizedString(@"Tomorrow", nil);
+            return NSLocalizedString(@"Morgen", nil);
         case UHDNewsDatePeriodNext7Days:
-            return NSLocalizedString(@"Next 7 days", nil);
-        case UHDNewsDatePeriodLater:
-            return NSLocalizedString(@"Later", nil);
+            return NSLocalizedString(@"Nächste 7 Tage", nil);
+        case UHDNewsDatePeriodLaterOrEarlier:
+            return [self.sectionDateFormatter stringFromDate:date];
             
         default:
             return nil;
             break;
-    }
+	}
+
+}
+
+
+# pragma mark - Sectioning
+
+- (UHDNewsDatePeriod)datePeriodForDate: (NSDate *)date {
+
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
+	[calendar setTimeZone:timeZone];
+	
+    NSDate *reducedDate = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:date options:0];
+    NSDate *today = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:[NSDate date] options:0];
     
-	// Use user's current calendar and time zone
-	/*NSCalendar *calendar = [NSCalendar currentCalendar];
-	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
-	[calendar setTimeZone:timeZone];
-	
-	NSDate *startDate = self.sectionsArray[section];
-	
-	NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
-	[dateComponents setWeekOfYear:1];
-	[dateComponents setDay:-1];
-	
-	NSDate *endDate = [calendar dateByAddingComponents:dateComponents toDate:startDate options:0];
-	
-	NSString *startDateString = [self.sectionDateFormatter stringFromDate:startDate];
-	NSString *endDateString = [self.sectionDateFormatter stringFromDate:endDate];
-	
-	
-	NSString *sectionHeader = [NSString stringWithFormat:@"%@ - %@", startDateString, endDateString];
-	
-	return sectionHeader;
-	
-	//return [self.fetchedResultsControllerDataSource tableView:tableView titleForHeaderInSection:section];*/
+    NSInteger daysFromNow = [calendar components:NSCalendarUnitDay fromDate:today toDate:reducedDate options:0].day;
+    switch (daysFromNow) {
+        case 1: return UHDNewsDatePeriodTomorrow;
+        case 0: return UHDNewsDatePeriodToday;
+        case -1: return UHDNewsDatePeriodYesterday;
+        default:
+            if (ABS(daysFromNow) > 7) {
+                return UHDNewsDatePeriodLaterOrEarlier;
+            } else if (daysFromNow < -1) {
+                return UHDNewsDatePeriodLast7Days;
+            } else if (daysFromNow > 1) {
+                return UHDNewsDatePeriodNext7Days;
+            }
+            return UHDNewsDatePeriodLaterOrEarlier;
+    }
 }
 
 
-# pragma mark - Table View Section Headers
+@end
 
 
-- (NSDate *)dateOfBeginningCalendarWeekForDate: (NSDate *)date {
+@implementation UHDNewsItem (Sectioning)
+
+- (NSDate *)reducedDate {
 	
-	// Use user's current calendar and time zone
 	NSCalendar *calendar = [NSCalendar currentCalendar];
 	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
 	[calendar setTimeZone:timeZone];
 	
-	NSDateComponents *dateComponents = [calendar components:NSCalendarUnitYear | NSCalendarUnitYearForWeekOfYear | NSCalendarUnitWeekOfYear fromDate:date];
+	NSDate *reducedDate = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:self.date options:0];
+	NSDate *today = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:[NSDate date] options:0];
 	
-	NSDate *beginningOfCalendarWeek = [calendar dateFromComponents:dateComponents];
+	NSInteger daysFromNow = [calendar components:NSCalendarUnitDay fromDate:today toDate:reducedDate options:0].day;
 	
-	// Add one day to let week start on Monday: can cause trouble when item's date is Sunday
-	/*
-	NSDateComponents *dayComponent = [[NSDateComponents alloc] init];
-	[dayComponent setDay:1];
-	beginningOfCalendarWeek = [calendar dateByAddingComponents:dayComponent toDate:beginningOfCalendarWeek options:0];
-	*/
-	
-	
-	/*
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-	[self.logger log:[NSString stringWithFormat:@"test date: %@", [dateFormatter stringFromDate:beginningOfCalendarWeek]] forLevel:VILogLevelDebug];
-	*/
-	
-	return beginningOfCalendarWeek;
-}
 
-
-- (void)groupFetchedItemsByWeek {
-
-	self.sectionsDictionary = [[NSMutableDictionary alloc] init];
+	if (ABS(daysFromNow) <= 1) {
+	// corresponding to 'today', 'yesterday' or 'tomorrow'
+		return reducedDate;
+	}
 	
-	// Use user's current calendar and time zone
-	NSCalendar *calendar = [NSCalendar currentCalendar];
-	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
-	[calendar setTimeZone:timeZone];
+	NSDateComponents *reducedDateComponents;
 	
-	/*
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
-	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-	*/
+	if (ABS(daysFromNow) > 7) {
+	// corresponding to 'earlier' or 'later'
 	
-	for (UHDNewsItem *item in self.fetchedResultsControllerDataSource.fetchedResultsController.fetchedObjects) {
+		reducedDateComponents = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth fromDate:reducedDate];
+		reducedDate = [calendar dateFromComponents:reducedDateComponents];
+	}
+	else {
+	// corresponding to 'next 7 days' or 'last 7 days'
 	
-		//[self.logger log:[NSString stringWithFormat:@"date of news item: %@", [dateFormatter stringFromDate:item.date]] forLevel:VILogLevelDebug];
-		
-		NSDate *week = [self dateOfBeginningCalendarWeekForDate:item.date];
-		
-		//[self.logger log:[NSString stringWithFormat:@"week of news item: %@", [dateFormatter stringFromDate:week]] forLevel:VILogLevelDebug];
-		
-		NSMutableArray *items = [self.sectionsDictionary objectForKey:week];
-		if (items == nil) {
-			items = [NSMutableArray arrayWithObject:item];
-			[self.sectionsDictionary setObject:items forKey:week];
+		// add +/- 7 days to today
+		NSDateComponents *days = [[NSDateComponents alloc] init];
+		if (daysFromNow > 0) {
+			days.day = 7;
 		}
 		else {
-			[[self.sectionsDictionary objectForKey:week] addObject:item];
+			days.day = -7;
 		}
-		
-	};
+		reducedDate = [calendar dateByAddingComponents:days toDate:today options:0];
+	}
 	
-	NSArray *weeks = [self.sectionsDictionary allKeys];
-	
-	NSArray *sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"self" ascending:NO] ];
-	
-	self.sectionsArray = [weeks sortedArrayUsingDescriptors:sortDescriptors];
-	
-	//[self.logger log:[NSString stringWithFormat:@"number of weeks: %lu", [weeks count]] forLevel:VILogLevelDebug];
-
+	return reducedDate;
 }
-
 
 @end
