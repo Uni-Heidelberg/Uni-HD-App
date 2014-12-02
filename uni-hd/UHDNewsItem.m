@@ -34,7 +34,7 @@
     self.thumbImageData = UIImageJPEGRepresentation(thumbImage, 1);
 }
 
-// Idea: add a trancient attribute 'simplifiedDate' to group items in sections (cf. 'reducedDate' in UHDNewsListViewController)
+// Idea: add a transient attribute 'simplifiedDate' to group items in sections (cf. 'reducedDate' in UHDNewsListViewController)
 
 /*	[self willAccessValueForKey:@"simplifiedDate"];
 	
