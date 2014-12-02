@@ -14,7 +14,7 @@
 #import "UHDCampusRegion.h"
 
 // View Controllers
-#import "UHDMapsSearchTableViewController.h"
+#import "UHDMapsSearchResultsViewController.h"
 #import "UHDBuildingDetailViewController.h"
 
 //View
@@ -22,13 +22,17 @@
 #import "UHDBuildingAnnotationView.h"
 
 
-@interface UHDMapsViewController () <MKMapViewDelegate, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate>
+@interface UHDMapsViewController () <MKMapViewDelegate, NSFetchedResultsControllerDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UISearchControllerDelegate, UHDMapsSearchResultsViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 
+@property (strong, nonatomic) UHDMapsSearchResultsViewController *searchResultsViewController;
+
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSFetchedResultsController *campusRegionsFetchedResultsController;
+
+@property (strong, nonatomic) UISearchController *searchController;
 
 @property (weak, nonatomic) id<MKAnnotation> selectedAnnotation;
 
@@ -53,21 +57,27 @@
             [locationManager requestWhenInUseAuthorization];
         }
     }
-
     
-    // Configure UI
-    
+    // Add tracking button
     UIBarButtonItem *trackingButton = [[MKUserTrackingBarButtonItem alloc] initWithMapView:self.mapView];
     self.navigationItem.leftBarButtonItem = trackingButton;
     
-    UISearchBar *searchBar = [[UISearchBar alloc] init];
-    self.navigationItem.titleView = searchBar;
-
+    // Add Search Bar & Controller
+    UHDMapsSearchResultsViewController *searchResultsViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"searchResults"];
+    searchResultsViewController.delegate = self;
+    searchResultsViewController.managedObjectContext = self.managedObjectContext;
+    self.searchResultsViewController = searchResultsViewController;
+    UISearchController *searchController = [[UISearchController alloc] initWithSearchResultsController:searchResultsViewController];
+    searchController.searchResultsUpdater = searchResultsViewController;
+    searchController.delegate = self;
+    searchController.hidesNavigationBarDuringPresentation = NO;
+    searchController.dimsBackgroundDuringPresentation = NO;
+    self.navigationItem.titleView = searchController.searchBar;
+    self.searchController = searchController;
+    self.definesPresentationContext = YES;
     
     // Register Notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsDidChange:) name:NSUserDefaultsDidChangeNotification object:[NSUserDefaults standardUserDefaults]];
-    
-    [self configureView];
     
     // Add Tap Gesture Recognizer
     UITapGestureRecognizer *mapViewTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapOnMapView:)];
@@ -84,6 +94,7 @@
     // TODO: limit scrolling to max region
     self.mapView.region = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(49.4085, 8.68685), 5000, 5000);
 
+    [self configureView];
 }
 
 - (void)configureView
@@ -146,14 +157,20 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"showMapsSearch"]) {
-        UHDMapsSearchTableViewController *mapsSearchVC = segue.destinationViewController;
-        mapsSearchVC.managedObjectContext = self.managedObjectContext;
-    } else if ([segue.identifier isEqualToString:@"showBuildingDetail"]) {
+    if ([segue.identifier isEqualToString:@"showBuildingDetail"]) {
         [(UHDBuildingDetailViewController *)segue.destinationViewController setBuilding:(UHDBuilding *)[(MKAnnotationView *)sender annotation]];
     } else if ([segue.identifier isEqualToString:@"showMapConfiguration"]) {
-
+        
     }
+}
+
+- (void)searchResultsViewController:(UHDMapsSearchResultsViewController *)viewController didSelectBuilding:(UHDBuilding *)building
+{
+    [self.searchController setActive:NO];
+    [self.mapView removeAnnotation:self.selectedAnnotation];
+    self.selectedAnnotation = building;
+    [self.mapView showAnnotations:@[ building ] animated:YES];
+    [self.mapView selectAnnotation:building animated:YES];
 }
 
 - (IBAction)unwindToMap:(UIStoryboardSegue *)segue {
@@ -168,7 +185,7 @@
 - (void)handleTapOnMapView:(UITapGestureRecognizer *)gestureRecognizer
 {
     if (gestureRecognizer.state==UIGestureRecognizerStateEnded) {
-
+        
         id<MKAnnotation> selectedAnnotation = self.selectedAnnotation;
         self.selectedAnnotation = nil;
         [self.mapView removeAnnotation:selectedAnnotation];
@@ -187,6 +204,15 @@
         }
     }
 }
+
+
+#pragma mark - Search Controller Delegate
+
+/*- (void)presentSearchController:(UISearchController *)searchController
+{
+    [self.searchResultsContainerView addSubview:self.searchResultsViewController.view];
+}*/
+
 
 #pragma mark - Notification responses
 
@@ -212,7 +238,7 @@
         } else {
             buildingAnnotationView.annotation = building;
         }
-        buildingAnnotationView.shouldHideImage = building == self.selectedAnnotation;
+        //buildingAnnotationView.shouldHideImage = building == self.selectedAnnotation;
         return buildingAnnotationView;
     }
 

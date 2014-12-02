@@ -7,15 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UHDBuilding.h"
 
-@interface UHDMapsSearchCell : UITableViewCell
-
+@interface UHDBuildingCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *subtitleLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *buildingsImageView;
 
-
-
+- (void)configureForBuilding:(UHDBuilding *)item;
 
 @end
