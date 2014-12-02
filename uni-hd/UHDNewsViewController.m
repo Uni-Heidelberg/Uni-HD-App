@@ -28,11 +28,9 @@
 @property (strong, nonatomic) UIPageViewController *pageViewController;
 @property (strong, nonatomic) NSMutableArray *newsListViewControllers;
 
-@property (strong, nonatomic) IBOutlet UHDNewsSourcesNavigationBar *sourcesNavigationBar;
+@property (weak, nonatomic) IBOutlet UHDNewsSourcesNavigationBar *sourcesNavigationBar;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *newsEventsSegmentedControl;
 
-//@property (strong, nonatomic) IBOutlet UILabel *temporarySelectedSourceLabel; // TODO: implement proper source navigation bar
-
-- (IBAction)showAllNewsButtonPressed:(id)sender;
 - (IBAction)unwindToNews:(UIStoryboardSegue *)segue;
 
 - (IBAction)newsEventsSegmentedControlValueChanged:(id)sender;
@@ -41,7 +39,6 @@
 
 
 @implementation UHDNewsViewController
-
 
 - (void)viewDidLoad
 {
@@ -56,22 +53,21 @@
 
 - (void)configureView
 {
-    //self.temporarySelectedSourceLabel.text = [self.pageViewController.viewControllers[0] title];
 	[self updateDisplayMode];
 	
 	// set currently subscribed sources to display in sources navigation bar
 	self.sourcesNavigationBar.sources = [self.fetchedResultsController fetchedObjects];
-    
     // set currently selected source
-    /*NSUInteger currentViewControllerIndex = [self.newsListViewControllers indexOfObject:self.pageViewController.viewControllers[0]];
-    */
-    NSArray *currentSources = ((UHDNewsListViewController *) self.pageViewController.viewControllers[0]).sources;
-    
+    NSArray *currentSources = ((UHDNewsListViewController *)self.pageViewController.viewControllers[0]).sources;
     if ([currentSources count] > 1) {
         self.sourcesNavigationBar.selectedSource = nil;
-    }
-    else {
+    } else {
         self.sourcesNavigationBar.selectedSource = currentSources[0];
+    }
+    
+    // make sure only active table view scrolls to top
+    for (UHDNewsListViewController *vc in self.newsListViewControllers) {
+        vc.tableView.scrollsToTop = [self.pageViewController.viewControllers containsObject:vc];
     }
 }
 
@@ -101,10 +97,7 @@
 #pragma mark - User Interaction
 
 - (IBAction)newsEventsSegmentedControlValueChanged:(id)sender {
-	
-	//[self.logger log:@"SegmentedControl value changed" error:nil];
 	[self updateDisplayMode];
-	
 }
 
 - (void)updateDisplayMode
@@ -123,13 +116,8 @@
 	}
 }
 
-- (IBAction)showAllNewsButtonPressed:(id)sender
-{
-    // TODO/BUG: neighbouring view controllers are not updated
-    UHDNewsViewController __weak *weakSelf = self;
-    [self.pageViewController setViewControllers:@[ self.newsListViewControllers[0] ] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:^(BOOL finished) {
-        [weakSelf configureView];
-    }];
+- (IBAction)todayButtonPressed:(id)sender {
+    // TODO: scroll to today section
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -141,7 +129,7 @@
         self.pageViewController = segue.destinationViewController;
         self.pageViewController.dataSource = self;
         self.pageViewController.delegate = self;
-        [self.pageViewController setViewControllers:@[ [self pageViewController:self.pageViewController viewControllerAfterViewController:nil] ] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        [self.pageViewController setViewControllers:@[ self.newsListViewControllers[0] ] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     }
 }
 
@@ -152,38 +140,32 @@
 
 #pragma mark - Sources Navigation Bar Delegate
 
-- (void)sourcesNavigationBar:(UHDNewsSourcesNavigationBar *)navigationBar didSelectSource:(UHDNewsSource *)source {
-    
+- (void)sourcesNavigationBar:(UHDNewsSourcesNavigationBar *)navigationBar didSelectSource:(UHDNewsSource *)source
+{
     [self.logger log:[NSString stringWithFormat:@"Switch Page View Controller to Source: %@", source.title] forLevel:VILogLevelDebug];
     
-    UHDNewsListViewController *newsListVC;
-    
     NSUInteger currentSourceIndex = [self.newsListViewControllers indexOfObject:self.pageViewController.viewControllers[0]];
-    NSUInteger newSourceIndex = 0;
+    NSUInteger selectedSourceIndex = 0;
     
-    if (source == nil) {
-        newsListVC = self.newsListViewControllers[0];
-    }
-    else {
-        NSEnumerator *reversedEnumerator = [self.newsListViewControllers reverseObjectEnumerator];
-        UHDNewsListViewController *VC;
-        while (VC = [reversedEnumerator nextObject]) {
-            if ([VC.sources containsObject:source]) {
-                newsListVC = VC;
-                newSourceIndex = [self.newsListViewControllers indexOfObject:VC];
+    UHDNewsListViewController *selectedNewsListVC = nil;
+    if (source != nil) {
+        for (int i=1; i<self.newsListViewControllers.count; i++) {
+            UHDNewsListViewController *newsListVC = self.newsListViewControllers[i];
+            if ([newsListVC.sources containsObject:source]) {
+                selectedNewsListVC = newsListVC;
+                selectedSourceIndex = [self.newsListViewControllers indexOfObject:selectedNewsListVC];
                 break;
             }
         }
     }
-    
-    if (newSourceIndex < currentSourceIndex) {
-        [self.pageViewController setViewControllers:@[ newsListVC ] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:nil];
+    if (selectedNewsListVC == nil) {
+        selectedNewsListVC = self.newsListViewControllers[0];
+        selectedSourceIndex = 0;
     }
-    else {
-        [self.pageViewController setViewControllers:@[ newsListVC ] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
-    }
+
+    UIPageViewControllerNavigationDirection navigationDirection = (selectedSourceIndex > currentSourceIndex) ? UIPageViewControllerNavigationDirectionForward : UIPageViewControllerNavigationDirectionReverse;
     
-    //[self configureView];
+    [self.pageViewController setViewControllers:@[ selectedNewsListVC ] direction:navigationDirection animated:YES completion:nil];
 }
 
 
@@ -202,12 +184,12 @@
     if (!_newsListViewControllers) {
         NSMutableArray *viewControllers = [[NSMutableArray alloc] init];
         UHDNewsListViewController *allSourcesVC = [self newsListViewControllerForSources:self.fetchedResultsController.fetchedObjects];
-        allSourcesVC.title = NSLocalizedString(@"All News / Events", nil);
+        allSourcesVC.title = NSLocalizedString(@"All News & Events", nil);
         [viewControllers addObject:allSourcesVC];
         for (UHDNewsSource *source in self.fetchedResultsController.fetchedObjects) {
             [viewControllers addObject:[self newsListViewControllerForSources:@[ source ]]];
         }
-        self.newsListViewControllers = viewControllers;
+        _newsListViewControllers = viewControllers;
     }
     return _newsListViewControllers;
 }
@@ -236,7 +218,7 @@
 {
     NSInteger currentIndex = [self.newsListViewControllers indexOfObject:viewController];
     if (currentIndex == NSNotFound) {
-        currentIndex = -1;
+        currentIndex = 1;
     }
     NSInteger prevIndex = currentIndex - 1;
     if (prevIndex < 0) {

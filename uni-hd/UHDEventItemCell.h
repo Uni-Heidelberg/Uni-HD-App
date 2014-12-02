@@ -11,6 +11,6 @@
 
 @interface UHDEventItemCell : UITableViewCell
 
--(void) configureForItem:(UHDEventItem *)item;
+-(void)configureForItem:(UHDEventItem *)item;
 
 @end

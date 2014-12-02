@@ -22,6 +22,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *abstractLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *talkImageView;
 @property (weak, nonatomic) IBOutlet UILabel *sourceLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *talkIndicatorView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageSpacingLayoutConstraint;
 @property (nonatomic) CGFloat imageSpacingConstraintInitialConstant;
@@ -53,13 +54,19 @@
     dateFormatter.dateStyle = NSDateFormatterFullStyle;
     dateFormatter.timeStyle = NSDateFormatterShortStyle;
     self.dateLabel.text = [dateFormatter stringFromDate:item.date];
+	
+	// Configure indicator
+	if (item.read) {
+        self.talkIndicatorView.tintColor = [UIColor lightGrayColor];
+	} else {
+        self.talkIndicatorView.tintColor = [UIColor brandColor];
+	}
     
     // Configure image
     self.talkImageView.image = item.thumbImage;
 	if (item.thumbImage) {
 		self.imageSpacingLayoutConstraint.constant = self.imageSpacingConstraintInitialConstant;
-	}
-	else {
+	} else {
 		self.imageSpacingLayoutConstraint.constant = 0;
 	}
     

@@ -199,7 +199,10 @@
 	
 	eventItem = [UHDEventItem insertNewObjectIntoContext:managedObjectContext];
 	eventItem.title = @"KinoCafé";
-	eventItem.date = [NSDate date];
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	NSDateComponents *oneDay = [[NSDateComponents alloc] init];
+	oneDay.day = 1;
+	eventItem.date = [calendar dateByAddingComponents:oneDay toDate:[NSDate date] options:0];
 	eventItem.url = [NSURL URLWithString:@"https://www.facebook.com/studierendenwerk.heidelberg"];
 	eventItem.source = newsSource;
 	eventItem.location = @"Marstallcafé";

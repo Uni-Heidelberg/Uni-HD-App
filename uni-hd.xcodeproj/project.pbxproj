@@ -238,6 +238,8 @@
 		87B974E4192D57330080AA40 /* UHDRemoteDatasourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDRemoteDatasourceManager.m; sourceTree = "<group>"; };
 		87B974E6192D5A360080AA40 /* VIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIManager.h; path = VIOSFramework/Managers/VIManager.h; sourceTree = "<group>"; };
 		87B974E7192D5A360080AA40 /* VIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIManager.m; path = VIOSFramework/Managers/VIManager.m; sourceTree = "<group>"; };
+		87CB17A51A2CC2A200499AED /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		87CB17A61A2CC2A200499AED /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		87CBE0881908810B0029D9AF /* uni-hd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uni-hd.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		87CBE08B1908810B0029D9AF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		87CBE08D1908810B0029D9AF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -943,17 +945,18 @@
 						TestTargetID = 87CBE0871908810B0029D9AF;
 					};
 					87CBE0871908810B0029D9AF = {
-						DevelopmentTeam = 6HU7B83869;
+						DevelopmentTeam = SZEDS83NVF;
 					};
 				};
 			};
 			buildConfigurationList = 87CBE0831908810B0029D9AF /* Build configuration list for PBXProject "uni-hd" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = de;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
+				de,
 			);
 			mainGroup = 87CBE07F1908810B0029D9AF;
 			productRefGroup = 87CBE0891908810B0029D9AF /* Products */;
@@ -1185,6 +1188,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				8799DA9D192AB4D9009B3CAB /* en */,
+				87CB17A61A2CC2A200499AED /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1193,6 +1197,7 @@
 			isa = PBXVariantGroup;
 			children = (
 				87CBE0951908810B0029D9AF /* en */,
+				87CB17A51A2CC2A200499AED /* de */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
