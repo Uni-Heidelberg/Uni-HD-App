@@ -15,8 +15,8 @@
 @property (nonatomic, retain) NSDate *date;
 
 @property (nonatomic, retain) UHDMensaSection *section;
-@property (nonatomic, retain) NSSet *meals;
-- (NSMutableSet *)mutableMeals;
+@property (nonatomic, retain) NSOrderedSet *meals;
+- (NSMutableOrderedSet *)mutableMeals;
 
 @end
 

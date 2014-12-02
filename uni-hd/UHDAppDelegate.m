@@ -26,6 +26,11 @@
 // Logging Config
 #import "VIFetchedResultsControllerDataSource.h"
 
+
+// tmp
+#import "UHDDailyMenu.h"
+#import "UHDMeal.h"
+
 @interface UHDAppDelegate ()
 
 @property (strong, nonatomic) UHDPersistentStack *persistentStack;
@@ -103,7 +108,7 @@
     self.window.rootViewController = tabBarController;
     [self.window makeKeyAndVisible];
 
-
+    
     return YES;
 }
 

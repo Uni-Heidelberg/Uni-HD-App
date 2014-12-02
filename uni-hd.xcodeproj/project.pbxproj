@@ -943,7 +943,7 @@
 						TestTargetID = 87CBE0871908810B0029D9AF;
 					};
 					87CBE0871908810B0029D9AF = {
-						DevelopmentTeam = SZEDS83NVF;
+						DevelopmentTeam = 6HU7B83869;
 					};
 				};
 			};

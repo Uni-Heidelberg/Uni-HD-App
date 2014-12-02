@@ -14,6 +14,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *distanceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *mensaLabel;
 @property (weak, nonatomic) IBOutlet CircularProgressView *hoursProgressView;
+@property (weak, nonatomic) IBOutlet UIImageView *favouriteSymbolView;
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *favouriteSymbolSpacingConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *favouriteSymbolHiddenConstraint;
 
 @end
 
@@ -26,6 +29,16 @@
     [self.hoursProgressView configureForHoursOfMensa:mensa];
     self.distanceLabel.attributedText = mensa.attributedStatusDescription;
     self.isFavourite = mensa.isFavourite;
+    self.favouriteSymbolView.hidden = !mensa.isFavourite;
+    [self.favouriteSymbolView.superview removeConstraint: self.isFavourite ? self.favouriteSymbolHiddenConstraint : self.favouriteSymbolSpacingConstraint];
+    [self.favouriteSymbolView.superview addConstraint: self.isFavourite ? self.favouriteSymbolSpacingConstraint : self.favouriteSymbolHiddenConstraint];
+}
+
+- (NSLayoutConstraint *)favouriteSymbolHiddenConstraint {
+    if (!_favouriteSymbolHiddenConstraint) {
+        self.favouriteSymbolHiddenConstraint = [NSLayoutConstraint constraintWithItem:self.mensaLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.mensaLabel.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    }
+    return _favouriteSymbolHiddenConstraint;
 }
 
 @end
