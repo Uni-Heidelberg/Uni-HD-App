@@ -29,6 +29,7 @@
     
 	self.collectionView.dataSource = self;
 	self.collectionView.delegate = self;
+    self.collectionView.scrollsToTop = NO;
 	
 	self.itemWidth = 50;
 }

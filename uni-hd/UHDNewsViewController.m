@@ -31,9 +31,6 @@
 @property (weak, nonatomic) IBOutlet UHDNewsSourcesNavigationBar *sourcesNavigationBar;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *newsEventsSegmentedControl;
 
-@property (strong, nonatomic) IBOutlet UIBarButtonItem *preferencesBarButtonItem;
-
-- (IBAction)showAllNewsButtonPressed:(id)sender;
 - (IBAction)unwindToNews:(UIStoryboardSegue *)segue;
 
 - (IBAction)newsEventsSegmentedControlValueChanged:(id)sender;
@@ -50,29 +47,9 @@
     // TODO: fix scroll view insets & extend under both bars
     
     self.sourcesNavigationBar.delegate = self;
-	
-	[self configureBarButtonItem];
     
     [self configureView];
 }
-
-
-- (void)configureBarButtonItem {
-
-	/*UIImage *image = [UIImage imageNamed:@"preferences"];
-	CGRect frame = CGRectMake(0, 0, 22, 22);
-	UIButton *button = [[UIButton alloc] initWithFrame:frame];
-	[button setImage:image forState:UIControlStateNormal];
-	[button setTintColor:[UIColor whiteColor]];
-	[button addTarget:self action:@selector(preferencesButtonPressed:) forControlEvents:UIControlEventTouchDown];
-	UIBarButtonItem *barButtonItem = [[UIBarButtonItem alloc] initWithCustomView:button];
-	[self.navigationItem setRightBarButtonItem:barButtonItem];*/
-	
-	[self.preferencesBarButtonItem setTitle:nil];
-	[self.preferencesBarButtonItem setImage:[UIImage imageNamed:@"preferences"]];
-	[self.preferencesBarButtonItem setTintColor:[UIColor whiteColor]];
-}
-
 
 - (void)configureView
 {
@@ -80,13 +57,17 @@
 	
 	// set currently subscribed sources to display in sources navigation bar
 	self.sourcesNavigationBar.sources = [self.fetchedResultsController fetchedObjects];
-    
     // set currently selected source
     NSArray *currentSources = ((UHDNewsListViewController *)self.pageViewController.viewControllers[0]).sources;
     if ([currentSources count] > 1) {
         self.sourcesNavigationBar.selectedSource = nil;
     } else {
         self.sourcesNavigationBar.selectedSource = currentSources[0];
+    }
+    
+    // make sure only active table view scrolls to top
+    for (UHDNewsListViewController *vc in self.newsListViewControllers) {
+        vc.tableView.scrollsToTop = [self.pageViewController.viewControllers containsObject:vc];
     }
 }
 
@@ -135,13 +116,8 @@
 	}
 }
 
-- (IBAction)showAllNewsButtonPressed:(id)sender
-{
-    // TODO: check if neighbouring view controllers are updated
-    UHDNewsViewController __weak *weakSelf = self;
-    [self.pageViewController setViewControllers:@[ self.newsListViewControllers[0] ] direction:UIPageViewControllerNavigationDirectionReverse animated:YES completion:^(BOOL finished) {
-        [weakSelf configureView];
-    }];
+- (IBAction)todayButtonPressed:(id)sender {
+    // TODO: scroll to today section
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -153,7 +129,7 @@
         self.pageViewController = segue.destinationViewController;
         self.pageViewController.dataSource = self;
         self.pageViewController.delegate = self;
-        [self.pageViewController setViewControllers:@[ [self pageViewController:self.pageViewController viewControllerAfterViewController:nil] ] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+        [self.pageViewController setViewControllers:@[ self.newsListViewControllers[0] ] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     }
 }
 

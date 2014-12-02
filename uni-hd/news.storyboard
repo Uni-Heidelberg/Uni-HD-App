@@ -96,34 +96,21 @@
                                         <constraint firstItem="fZS-qJ-MIY" firstAttribute="leading" secondItem="vyV-qo-DV2" secondAttribute="leading" id="1GT-b9-IuR"/>
                                         <constraint firstItem="227-eV-5a5" firstAttribute="leading" secondItem="fZS-qJ-MIY" secondAttribute="trailing" constant="8" id="92z-Bw-TAU"/>
                                         <constraint firstItem="vyV-qo-DV2" firstAttribute="leading" secondItem="ftv-or-tGk" secondAttribute="leading" id="97M-2Z-Ygx"/>
-                                        <constraint firstItem="vyV-qo-DV2" firstAttribute="centerY" secondItem="dDn-Vl-vbq" secondAttribute="centerY" id="AUu-Gl-qou"/>
                                         <constraint firstItem="vyV-qo-DV2" firstAttribute="leading" secondItem="QUX-Fe-flL" secondAttribute="leadingMargin" constant="8" id="Agb-PY-YSw"/>
                                         <constraint firstItem="dDn-Vl-vbq" firstAttribute="top" secondItem="ftv-or-tGk" secondAttribute="bottom" constant="8" symbolic="YES" id="Bpr-uf-piA"/>
                                         <constraint firstAttribute="trailing" secondItem="HEN-9f-YgJ" secondAttribute="trailing" id="CQq-XG-VzV"/>
-                                        <constraint firstItem="fZS-qJ-MIY" firstAttribute="top" relation="greaterThanOrEqual" secondItem="vyV-qo-DV2" secondAttribute="bottom" constant="8" id="FWA-vy-Gnc"/>
                                         <constraint firstItem="HEN-9f-YgJ" firstAttribute="leading" secondItem="ftv-or-tGk" secondAttribute="trailing" constant="8" symbolic="YES" id="GDX-qc-Nhj"/>
                                         <constraint firstItem="ftv-or-tGk" firstAttribute="top" secondItem="HEN-9f-YgJ" secondAttribute="top" id="I9v-b7-Z7j"/>
                                         <constraint firstItem="fZS-qJ-MIY" firstAttribute="height" secondItem="227-eV-5a5" secondAttribute="height" id="Ixc-uc-AEo"/>
-                                        <constraint firstItem="vyV-qo-DV2" firstAttribute="top" secondItem="dDn-Vl-vbq" secondAttribute="top" constant="2" id="LuM-hk-pye"/>
                                         <constraint firstItem="227-eV-5a5" firstAttribute="top" secondItem="dDn-Vl-vbq" secondAttribute="bottom" constant="8" symbolic="YES" id="MRy-jI-yTh"/>
                                         <constraint firstItem="dDn-Vl-vbq" firstAttribute="trailing" secondItem="227-eV-5a5" secondAttribute="trailing" id="PWn-aX-lcf"/>
                                         <constraint firstItem="dDn-Vl-vbq" firstAttribute="leading" secondItem="vyV-qo-DV2" secondAttribute="trailing" constant="8" id="PZU-IA-vfm"/>
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="227-eV-5a5" secondAttribute="bottom" constant="8" id="ROj-Ce-ufl"/>
-                                        <constraint firstItem="vyV-qo-DV2" firstAttribute="centerY" secondItem="dDn-Vl-vbq" secondAttribute="centerY" constant="0.25" id="VeM-xS-2oT"/>
+                                        <constraint firstItem="vyV-qo-DV2" firstAttribute="centerY" secondItem="dDn-Vl-vbq" secondAttribute="centerY" id="VeM-xS-2oT"/>
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="fZS-qJ-MIY" secondAttribute="bottom" id="Xb1-er-35d"/>
                                         <constraint firstItem="dDn-Vl-vbq" firstAttribute="trailing" secondItem="HEN-9f-YgJ" secondAttribute="trailing" id="eEB-NI-2YR"/>
-                                        <constraint firstItem="ftv-or-tGk" firstAttribute="centerY" secondItem="vyV-qo-DV2" secondAttribute="centerY" id="kaf-rg-dnw"/>
                                         <constraint firstItem="ftv-or-tGk" firstAttribute="top" secondItem="QUX-Fe-flL" secondAttribute="topMargin" id="pMq-bs-Wvx"/>
-                                        <constraint firstItem="ftv-or-tGk" firstAttribute="leading" secondItem="vyV-qo-DV2" secondAttribute="trailing" constant="8" id="wzQ-ZU-LJx"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="kaf-rg-dnw"/>
-                                            <exclude reference="wzQ-ZU-LJx"/>
-                                            <exclude reference="AUu-Gl-qou"/>
-                                            <exclude reference="LuM-hk-pye"/>
-                                        </mask>
-                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="abstractLabel" destination="227-eV-5a5" id="Gm7-3d-Tzg"/>
@@ -385,7 +372,7 @@
             </objects>
             <point key="canvasLocation" x="3408" y="308"/>
         </scene>
-        <!--Sources-->
+        <!--Quellen-->
         <scene sceneID="rCr-bY-e3B">
             <objects>
                 <tableViewController id="qn2-Bf-d7y" customClass="UHDNewsSourcesViewController" sceneMemberID="viewController">
@@ -462,7 +449,7 @@
                             <outlet property="delegate" destination="qn2-Bf-d7y" id="vGH-De-bHw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Sources" id="45r-ml-GWi">
+                    <navigationItem key="navigationItem" title="Quellen" id="45r-ml-GWi">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="yzw-dJ-wnC">
                             <connections>
                                 <segue destination="Ycq-LD-503" kind="unwind" identifier="unwindToNews" unwindAction="unwindToNews:" id="Gob-uH-jeq"/>
@@ -647,6 +634,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="79D-Us-YG5">
                         <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" image="preferences" id="s16-dW-Q2y"/>
                         <view key="titleView" contentMode="scaleToFill" id="gor-kC-cDL">
                             <rect key="frame" x="202.5" y="0.0" width="195" height="44"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -656,9 +644,6 @@
                                     <state key="normal">
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
-                                    <connections>
-                                        <action selector="showAllNewsButtonPressed:" destination="Fjz-Xo-mQY" eventType="touchUpInside" id="jAF-sF-ewp"/>
-                                    </connections>
                                 </button>
                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="27s-11-N2U">
                                     <rect key="frame" x="0.0" y="8" width="195" height="29"/>
@@ -689,15 +674,14 @@
                                 </mask>
                             </variation>
                         </view>
-                        <barButtonItem key="rightBarButtonItem" title="Preferences" id="o0c-az-BLB">
+                        <barButtonItem key="rightBarButtonItem" title="Heute" id="QsC-d6-f8b">
                             <connections>
-                                <segue destination="Kp2-aO-tOg" kind="presentation" identifier="showSources" id="hgu-E2-IlZ"/>
+                                <action selector="todayButtonPressed:" destination="Fjz-Xo-mQY" id="wAh-yN-KVY"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="newsEventsSegmentedControl" destination="27s-11-N2U" id="uXN-6F-twX"/>
-                        <outlet property="preferencesBarButtonItem" destination="o0c-az-BLB" id="wvr-I4-Afx"/>
                         <outlet property="sourcesNavigationBar" destination="egv-gy-J1B" id="qrc-4N-fa0"/>
                     </connections>
                 </viewController>
@@ -710,6 +694,7 @@
         <image name="event_symbol" width="18" height="18"/>
         <image name="news_symbol" width="13" height="13"/>
         <image name="physicsIcon" width="212" height="207"/>
+        <image name="preferences" width="18" height="18"/>
         <image name="talk_icon" width="13" height="13"/>
     </resources>
     <inferredMetricsTieBreakers>
