@@ -134,7 +134,7 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
     UHDDailyMenu *dailyMenu = [self.fetchedResultsController.fetchedObjects objectAtIndex:section];
-    return dailyMenu.section.title;
+    return [NSString stringWithFormat:NSLocalizedString(@"Ausgabe %@", nil), dailyMenu.section.title];
 }
 
 #pragma mark - Swipe Table View Cell Delegate
