@@ -2,7 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "news_symbol.pdf"
+      "scale" : "1x",
+      "filename" : "news_symbol_1x.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x",
+      "filename" : "news_symbol_2x.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x",
+      "filename" : "news_symbol_3x.png"
     }
   ],
   "info" : {
