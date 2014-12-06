@@ -132,7 +132,7 @@
 - (void) updateSourceButton {
     
     if (self.selectedSource == nil) {
-        [self.sourceButton setTitle:@"All News / Events" forState:UIControlStateNormal];
+        [self.sourceButton setTitle:@"All News & Events" forState:UIControlStateNormal];
     }
     else {
         [self.sourceButton setTitle:self.selectedSource.title forState:UIControlStateNormal];
