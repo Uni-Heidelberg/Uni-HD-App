@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14B25" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14B25" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="UHDEventItem" representedClassName="UHDEventItem" parentEntity="UHDNewsItem" syncable="YES">
         <attribute name="location" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <entity name="UHDNewsCategory" representedClassName="UHDNewsCategory" syncable="YES">
+        <attribute name="parentId" optional="YES" transient="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="children" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDNewsCategory" inverseName="parent" inverseEntity="UHDNewsCategory" syncable="YES"/>
@@ -21,7 +22,7 @@
         <relationship name="source" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDNewsSource" inverseName="newsItems" inverseEntity="UHDNewsSource" syncable="YES"/>
     </entity>
     <entity name="UHDNewsSource" representedClassName="UHDNewsSource" parentEntity="UHDNewsCategory" syncable="YES">
-        <attribute name="categoryId" optional="YES" transient="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="categoryId" optional="YES" transient="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="subscribed" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="thumbIconData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <relationship name="eventItems" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="UHDEventItem" syncable="YES"/>
@@ -39,7 +40,7 @@
     </entity>
     <elements>
         <element name="UHDEventItem" positionX="162" positionY="-54" width="128" height="58"/>
-        <element name="UHDNewsCategory" positionX="-270" positionY="-207" width="128" height="103"/>
+        <element name="UHDNewsCategory" positionX="-270" positionY="-207" width="128" height="118"/>
         <element name="UHDNewsItem" positionX="9" positionY="-207" width="128" height="178"/>
         <element name="UHDNewsSource" positionX="-279" positionY="-9" width="128" height="118"/>
         <element name="UHDTalkItem" positionX="7" positionY="144" width="128" height="58"/>

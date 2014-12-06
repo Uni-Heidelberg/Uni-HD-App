@@ -2,7 +2,18 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "talk_icon.pdf"
+      "scale" : "1x",
+      "filename" : "talk_symbol_1x.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "2x",
+      "filename" : "talk_symbol_2x.png"
+    },
+    {
+      "idiom" : "universal",
+      "scale" : "3x",
+      "filename" : "talk_symbol_3x.png"
     }
   ],
   "info" : {
