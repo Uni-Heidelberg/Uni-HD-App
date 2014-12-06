@@ -15,6 +15,7 @@
 #import "UHDBuilding.h"
 #import "UHDRemoteManagedLocation.h"
 #import "UHDLocationCategory.h"
+#import "UHDCampusRegion.h"
 
 // Table View Cells
 #import "UHDBuildingCell.h"
@@ -43,6 +44,7 @@
 
 - (void)configureView
 {
+    
 }
 
 #pragma mark - Data Source
@@ -60,14 +62,14 @@
         fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"category.title" ascending:YES], [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES] ];
         
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"category.title" cacheName:nil];
-
-		VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource = [[VIFetchedResultsControllerDataSource alloc] initWithFetchedResultsController:fetchedResultsController tableView:self.tableView cellIdentifier:@"buildingCell" configureCellBlock:^(UITableViewCell *cell, id item) {
+        
+        VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource = [[VIFetchedResultsControllerDataSource alloc] initWithFetchedResultsController:fetchedResultsController tableView:self.tableView cellIdentifier:@"buildingCell" configureCellBlock:^(UITableViewCell *cell, id item) {
             [(UHDBuildingCell *)cell configureForBuilding:(UHDBuilding *)item];
         }];
         _fetchedResultsControllerDataSource = fetchedResultsControllerDataSource;
     }
     
-	return _fetchedResultsControllerDataSource;
+    return _fetchedResultsControllerDataSource;
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -80,9 +82,13 @@
 #pragma mark - Search Results Filtering
 
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController
-{    
-    //self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"title LIKE[cd] %@", searchController.searchBar.text];
+{
+    self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(title CONTAINS[cd] %@) OR (buildingNumber CONTAINS[cd] %@) OR (campusRegion.title CONTAINS[cd] %@) OR (campusRegion.identifier BEGINSWITH[cd] %@)", searchController.searchBar.text, searchController.searchBar.text, searchController.searchBar.text, searchController.searchBar.text];
+    //self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"subtitle CONTAINS[cd] %@", searchController.searchBar.text];
+    //LIKE[cd]
     [self.fetchedResultsControllerDataSource reloadData];
+    
+    
 }
 
 

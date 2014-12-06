@@ -136,6 +136,7 @@
     buildingItem3.title = @"INF 308";
     buildingItem3.buildingNumber = @"308";
     buildingItem3.location = [[CLLocation alloc] initWithLatitude:49.417028 longitude:8.670807];
+    buildingItem4.image = [UIImage imageNamed:@"INF308"];
     buildingItem3.category = category1;
     buildingItem3.campusRegion = inf;
     
@@ -148,6 +149,7 @@
     buildingItem4.title = @"INF 288";
     buildingItem4.buildingNumber = @"288";
     buildingItem4.location = [[CLLocation alloc] initWithLatitude:49.417055 longitude:8.671665];
+    buildingItem4.image = [UIImage imageNamed:@"INF288"];
     buildingItem4.category = category2;
     buildingItem4.campusRegion = inf;
     

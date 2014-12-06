@@ -17,6 +17,7 @@
 #import "UHDMapsSearchResultsViewController.h"
 #import "UHDBuildingDetailViewController.h"
 
+
 //View
 #import "VIImageOverlayRenderer.h"
 #import "UHDBuildingAnnotationView.h"
@@ -31,6 +32,8 @@
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSFetchedResultsController *campusRegionsFetchedResultsController;
+//@property (strong, nonatomic) IBOutlet UISearchBar *mapsSearchBar;
+//@property (strong, nonatomic) UITapGestureRecognizer *tapSearchBar;
 
 @property (strong, nonatomic) UISearchController *searchController;
 
@@ -90,10 +93,11 @@
     [self.mapView addGestureRecognizer:mapViewDoubleTapGestureRecognizer];
     [mapViewTapGestureRecognizer requireGestureRecognizerToFail:mapViewDoubleTapGestureRecognizer];
     
+    
     // Show appropriate region
     // TODO: limit scrolling to max region
     self.mapView.region = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(49.4085, 8.68685), 5000, 5000);
-
+    
     [self configureView];
 }
 
@@ -113,14 +117,15 @@
         [self.mapView addOverlays:allCampusRegions level:MKOverlayLevelAboveLabels];
     }
     
+    
     // Add building overlays to verify their map rect
     /*NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
-    [self.mapView removeOverlays:allBuildings];
-    [self.mapView addOverlays:allBuildings];*/
+     [self.mapView removeOverlays:allBuildings];
+     [self.mapView addOverlays:allBuildings];*/
     // Add building annotations for testing purposes
     /*NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
-    [self.mapView removeAnnotations:allBuildings];
-    [self.mapView addAnnotations:allBuildings];*/
+     [self.mapView removeAnnotations:allBuildings];
+     [self.mapView addAnnotations:allBuildings];*/
 }
 
 - (NSFetchedResultsController *)campusRegionsFetchedResultsController{
@@ -140,7 +145,7 @@
 
 - (NSFetchedResultsController *)fetchedResultsController {
     if (!_fetchedResultsController) {
-
+        
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDBuilding entityName]];
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
@@ -177,6 +182,9 @@
     
 }
 
+- (IBAction)showMapsSearchViewController:(id)sender {
+}
+
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control
 {
     [self performSegueWithIdentifier:@"showBuildingDetail" sender:view];
@@ -205,13 +213,22 @@
     }
 }
 
+- (void)handleTapOnSearchBar:(UITapGestureRecognizer *)gestureRecognizer
+{
+    if (gestureRecognizer.state==UIGestureRecognizerStateEnded) {
+        
+        //[gestureRecognizer locationInView:self.mapsSearchBar];
+        
+        
+    }
+}
 
 #pragma mark - Search Controller Delegate
 
 /*- (void)presentSearchController:(UISearchController *)searchController
-{
-    [self.searchResultsContainerView addSubview:self.searchResultsViewController.view];
-}*/
+ {
+ [self.searchResultsContainerView addSubview:self.searchResultsViewController.view];
+ }*/
 
 
 #pragma mark - Notification responses
@@ -228,7 +245,7 @@
 {
     UHDBuilding *building = (UHDBuilding *)annotation;
     NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
-
+    
     if ([allBuildings containsObject:building]) {
         static NSString *buildingAnnotationViewIdentifier = @"buildingAnnotation";
         UHDBuildingAnnotationView *buildingAnnotationView = (UHDBuildingAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:buildingAnnotationViewIdentifier];
@@ -241,7 +258,7 @@
         //buildingAnnotationView.shouldHideImage = building == self.selectedAnnotation;
         return buildingAnnotationView;
     }
-
+    
     return nil;
 }
 
@@ -332,3 +349,4 @@
 }
 
 @end
+

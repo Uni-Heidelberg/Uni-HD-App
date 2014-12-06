@@ -8,6 +8,8 @@
 
 #import "UHDBuildingCell.h"
 #import "UHDBuilding.h"
+#import "UHDCampusRegion.h"
+
 
 
 @implementation UHDBuildingCell
@@ -17,6 +19,7 @@
     // Configure text
     self.titleLabel.text = item.title;
     self.subtitleLabel.text = item.campusIdentifier;
+    self.campusRegionLabel.text = item.campusRegion.title;
     
     // Configure Image
     self.buildingsImageView.image = item.image;
