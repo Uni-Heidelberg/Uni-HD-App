@@ -13,7 +13,7 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
-@property (weak, nonatomic) IBOutlet UIView *favouriteBar;
+@property (weak, nonatomic) IBOutlet UIImageView *favouriteSign;
 
 @end
 
@@ -24,9 +24,8 @@
 {
     self.titleLabel.text = meal.title;
     self.priceLabel.text = meal.price;
-    
     self.isFavourite = meal.isFavourite;
-    self.favouriteBar.hidden = !meal.isFavourite;
+    self.favouriteSign.hidden = !meal.isFavourite;
 }
 
 @end
