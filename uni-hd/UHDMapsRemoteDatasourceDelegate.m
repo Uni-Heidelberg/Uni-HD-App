@@ -136,7 +136,7 @@
     buildingItem3.title = @"INF 308";
     buildingItem3.buildingNumber = @"308";
     buildingItem3.location = [[CLLocation alloc] initWithLatitude:49.417028 longitude:8.670807];
-    buildingItem4.image = [UIImage imageNamed:@"INF308"];
+    buildingItem3.image = [UIImage imageNamed:@"INF308"];
     buildingItem3.category = category1;
     buildingItem3.campusRegion = inf;
     
