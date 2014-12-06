@@ -297,7 +297,7 @@ typedef enum : NSUInteger {
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-	NSDate *date = [(UHDNewsItem *)[[(id<NSFetchedResultsSectionInfo>)[self.fetchedResultsControllerDataSource.fetchedResultsController.sections objectAtIndex:section] objects] firstObject] reducedDate];
+	NSDate *date = [(UHDNewsItem *)[[(id<NSFetchedResultsSectionInfo>)[self.fetchedResultsControllerDataSource.fetchedResultsController.sections objectAtIndex:section] objects] firstObject] date];
 	
 	UHDNewsDatePeriod datePeriod = [self datePeriodForDate:date];
 	
