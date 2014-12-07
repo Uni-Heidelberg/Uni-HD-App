@@ -23,6 +23,11 @@
 
 @implementation UHDMensaCell
 
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    self.favouriteSymbolView.tintColor = [UIColor favouriteColor];
+}
+
 -(void)configureForMensa:(UHDMensa *)mensa
 {
     self.mensaLabel.text = mensa.title;

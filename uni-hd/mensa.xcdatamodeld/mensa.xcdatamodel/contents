@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6252" systemVersion="14B25" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14B25" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="UHDDailyMenu" representedClassName="UHDDailyMenu" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" syncable="YES"/>
         <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
@@ -8,8 +8,11 @@
         <relationship name="section" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDMensaSection" inverseName="menus" inverseEntity="UHDMensaSection" syncable="YES"/>
     </entity>
     <entity name="UHDMeal" representedClassName="UHDMeal" syncable="YES">
-        <attribute name="isFavourite" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="isFavourite" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="isVegetarian" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="priceBed" optional="YES" attributeType="Float" syncable="YES"/>
+        <attribute name="priceGuest" optional="YES" attributeType="Float" syncable="YES"/>
+        <attribute name="priceStud" optional="YES" attributeType="Float" syncable="YES"/>
         <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="menus" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDDailyMenu" inverseName="meals" inverseEntity="UHDDailyMenu" syncable="YES"/>
@@ -31,9 +34,9 @@
         <relationship name="menus" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="UHDDailyMenu" inverseName="section" inverseEntity="UHDDailyMenu" syncable="YES"/>
     </entity>
     <elements>
-        <element name="UHDDailyMenu" positionX="0" positionY="0" width="128" height="120"/>
-        <element name="UHDMeal" positionX="0" positionY="0" width="128" height="120"/>
-        <element name="UHDMensa" positionX="0" positionY="0" width="128" height="28"/>
-        <element name="UHDMensaSection" positionX="0" positionY="0" width="128" height="30"/>
+        <element name="UHDDailyMenu" positionX="-54" positionY="-36" width="128" height="118"/>
+        <element name="UHDMeal" positionX="124" positionY="-36" width="128" height="163"/>
+        <element name="UHDMensa" positionX="-414" positionY="-36" width="128" height="148"/>
+        <element name="UHDMensaSection" positionX="-236" positionY="-36" width="128" height="118"/>
     </elements>
 </model>

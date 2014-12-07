@@ -45,22 +45,44 @@
 {
     [super viewDidLoad];
     
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 100;
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(managedObjectContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:nil];
+    
     [self configureView];
 }
 
 - (void)configureView
 {
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateStyle = NSDateFormatterShortStyle;
-    self.emptyViewLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Menu unavailable for %@", nil), [dateFormatter stringFromDate:self.date]];
-    self.tableView.tableHeaderView = (self.mensa && self.date) ? nil : self.emptyView;
+    if (!self.mensa) {
+        self.emptyViewLabel.text = NSLocalizedString(@"Wähle eine Mensa.", nil);
+        self.tableView.tableHeaderView = self.emptyView;
+    } else if (!self.date) {
+        self.emptyViewLabel.text = NSLocalizedString(@"Wähle ein Datum.", nil);
+        self.tableView.tableHeaderView = self.emptyView;
+    } else if (![self.mensa hasMenuForDate:self.date]) {
+        if ([[NSCalendar currentCalendar] isDateInWeekend:self.date]) { // TODO: make this dynamic by checking mensa's hours when implemented
+            self.emptyViewLabel.text = NSLocalizedString(@"Feiertag!", nil);
+        } else {
+            self.emptyViewLabel.text = NSLocalizedString(@"Kein Speiseplan verfügbar.", nil);
+        }
+        self.tableView.tableHeaderView = self.emptyView;
+    } else {
+        self.tableView.tableHeaderView = nil;
+    }
 }
 
 - (NSFetchedResultsController *)fetchedResultsController {
     if (!_fetchedResultsController)
     {
         if (!self.mensa.managedObjectContext) {
-            [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
+            [self.logger log:@"Unable to create fetched results controller without a managed object context." forLevel:VILogLevelWarning];
+            return nil;
+        }
+        
+        if (!(self.mensa && self.date)) {
+            [self.logger log:@"Mensa and date need to be set to create fetched results controller." forLevel:VILogLevelWarning];
             return nil;
         }
         
@@ -83,6 +105,24 @@
 }
 
 
+#pragma mark - User Interaction
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UHDMeal *meal = [self mealForIndexPath:indexPath];
+    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    [alertController addAction:[UIAlertAction actionWithTitle: meal.isFavourite ? NSLocalizedString(@"Favorit Markierung entfernen", nil) : NSLocalizedString(@"Als Favorit markieren", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        meal.isFavourite = !meal.isFavourite;
+        [meal.managedObjectContext saveToPersistentStore:nil];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }]];
+    [alertController addAction:[UIAlertAction actionWithTitle:NSLocalizedString(@"Abbrechen", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    }]];
+    [self presentViewController:alertController animated:YES completion:nil];
+}
+
+
 #pragma mark - Index Path to Model Conversion
 
 - (NSOrderedSet *)mealsInSection:(NSInteger)section {
@@ -92,6 +132,16 @@
 
 - (UHDMeal *)mealForIndexPath:(NSIndexPath *)indexPath {
     return [[self mealsInSection:indexPath.section] objectAtIndex:indexPath.row];
+}
+
+- (NSIndexPath *)indexPathForMeal:(UHDMeal *)meal {
+    for (int section=0; section<[self numberOfSectionsInTableView:self.tableView]; section++) {
+        NSUInteger row = [[self mealsInSection:section] indexOfObject:meal];
+        if (row!=NSNotFound) {
+            return [NSIndexPath indexPathForRow:row inSection:section];
+        }
+    }
+    return nil;
 }
 
 
@@ -115,20 +165,9 @@
     UHDMeal *meal = [self mealForIndexPath:indexPath];
     
     [cell configureForMeal:meal];
-    cell.delegate = self;
+    //cell.delegate = self;
     
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // TODO: test efficiency
-    
-    UHDMealCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mealCell"];
-    UHDMeal *meal = [self mealForIndexPath:indexPath];
-    [cell configureForMeal:meal];
-    [cell layoutIfNeeded];
-    return [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height + 1.; // TODO: remove + 1.
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
@@ -137,7 +176,25 @@
     return [NSString stringWithFormat:NSLocalizedString(@"Ausgabe %@", nil), dailyMenu.section.title];
 }
 
-#pragma mark - Swipe Table View Cell Delegate
+
+#pragma mark - Managed Object Context Save Notification
+
+- (void)managedObjectContextDidSave:(NSNotification *)notification {
+    NSSet *updatedObjects = (NSSet *)notification.userInfo[NSUpdatedObjectsKey];
+    [self.tableView beginUpdates];
+    for (NSManagedObject *updatedObject in updatedObjects) {
+        if (![updatedObject.entityName isEqualToString:[UHDMeal entityName]]) {
+            continue;
+        }
+        NSIndexPath *indexPath = [self indexPathForMeal:(UHDMeal *)updatedObject];
+        if (indexPath) {
+            [self.tableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
+        }
+    }
+    [self.tableView endUpdates];
+}
+
+/*#pragma mark - Swipe Table View Cell Delegate
 
 -(void)swipeTableViewCellDidStartSwiping:(RMSwipeTableViewCell *)swipeTableViewCell {
     [self.logger log:@"swipeTableViewCellDidStartSwiping: %@" object:swipeTableViewCell forLevel:VILogLevelVerbose];
@@ -160,7 +217,7 @@
 
 -(void)swipeTableViewCellDidResetState:(RMSwipeTableViewCell *)swipeTableViewCell fromPoint:(CGPoint)point animation:(RMSwipeTableViewCellAnimationType)animation velocity:(CGPoint)velocity {
     [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellDidResetState: %@ fromPoint: %@ animation: %u, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
-}
+}*/
 
 
 @end

@@ -14,13 +14,29 @@
 @implementation UHDMeal
 
 @dynamic title;
-@dynamic price;
 @dynamic menus;
 @dynamic isFavourite;
+@dynamic isVegetarian;
+@dynamic priceStud, priceBed, priceGuest;
 
 - (NSMutableSet *)mutableMenus
 {
     return [self mutableSetValueForKey:@"menus"];
+}
+
+- (NSString *)localizedPriceDescription {
+    NSNumberFormatter *currencyFormatter = [[NSNumberFormatter alloc] init];
+    currencyFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    currencyFormatter.currencyCode = @"EUR";
+    return [NSString stringWithFormat:@"S: %@ / B: %@ / G: %@", [currencyFormatter stringFromNumber:self.priceStud], [currencyFormatter stringFromNumber:self.priceBed], [currencyFormatter stringFromNumber:self.priceGuest]];
+}
+
+- (NSString *)localizedExtrasDescription {
+    NSString *description = @"1, 3, 7"; // TODO: get from database
+    if (self.isVegetarian) {
+        description = [[NSString stringWithFormat:@"%@ | ", NSLocalizedString(@"vegetarisch", nil)] stringByAppendingString:description];
+    }
+    return description;
 }
 
 @end
