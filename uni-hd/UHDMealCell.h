@@ -10,7 +10,7 @@
 #import "UHDFavouriteCell.h"
 #import "UHDMeal.h"
 
-@interface UHDMealCell : UHDFavouriteCell
+@interface UHDMealCell : UITableViewCell
 
 - (void)configureForMeal:(UHDMeal *)meal;
 

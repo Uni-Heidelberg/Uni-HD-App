@@ -11,10 +11,16 @@
 @interface UHDMeal : UHDRemoteManagedObject
 
 @property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) NSString *price;
-@property (nonatomic, assign) Boolean isFavourite;
+@property (nonatomic, retain) NSNumber *priceStud;
+@property (nonatomic, retain) NSNumber *priceBed;
+@property (nonatomic, retain) NSNumber *priceGuest;
+@property (nonatomic) BOOL isFavourite;
+@property (nonatomic) BOOL isVegetarian;
 
 @property (nonatomic, retain) NSSet *menus;
 - (NSMutableSet *)mutableMenus;
+
+@property (nonatomic, readonly) NSString *localizedPriceDescription;
+@property (nonatomic, readonly) NSString *localizedExtrasDescription;
 
 @end

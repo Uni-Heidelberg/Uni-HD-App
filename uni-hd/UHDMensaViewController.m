@@ -88,12 +88,12 @@
 
 - (void)configureViewAnimated:(BOOL)animated
 {
-    self.titleLabel.text = (self.mensa != nil) ? self.mensa.title : NSLocalizedString(@"No Mensa selected", nil);
+    self.titleLabel.text = (self.mensa != nil) ? self.mensa.title : NSLocalizedString(@"Keine Mensa ausgewählt", nil);
 
     UIBarButtonItem *quickDateSelectionButton = self.navigationItem.rightBarButtonItem;
-    quickDateSelectionButton.title = self.dayPicker.selectedDate != nil && [[NSCalendar currentCalendar] isDateInToday:self.dayPicker.selectedDate] ? NSLocalizedString(@"Tomorrow", nil) : NSLocalizedString(@"Today", nil);
+    quickDateSelectionButton.title = self.dayPicker.selectedDate != nil && [[NSCalendar currentCalendar] isDateInToday:self.dayPicker.selectedDate] ? NSLocalizedString(@"Morgen", nil) : NSLocalizedString(@"Heute", nil);
     
-    [self.dayPicker reloadData];
+    [self.dayPicker reloadData]; // TODO: really necessary here?
     
     [self updateVisibleDailyMenuAnimated:animated];
 }
@@ -167,7 +167,10 @@
 
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
 {
-    if (completed) [self.dayPicker selectDate:((UHDDailyMenuViewController *)pageViewController.viewControllers.firstObject).date animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
+    if (completed) {
+        [self.dayPicker selectDate:((UHDDailyMenuViewController *)pageViewController.viewControllers.firstObject).date animated:YES scrollPosition:UICollectionViewScrollPositionLeft];
+        [self configureViewAnimated:YES];
+    }
 }
 
 
