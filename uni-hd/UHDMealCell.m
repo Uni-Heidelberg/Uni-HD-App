@@ -13,7 +13,11 @@
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *priceLabel;
-@property (weak, nonatomic) IBOutlet UIView *favouriteBar;
+@property (weak, nonatomic) IBOutlet UILabel *extrasLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *favouriteSymbolView;
+
+@property (strong, nonatomic) IBOutlet NSLayoutConstraint *favouriteSymbolSpacingConstraint;
+@property (strong, nonatomic) NSLayoutConstraint *favouriteSymbolHiddenConstraint;
 
 @end
 
@@ -23,10 +27,19 @@
 - (void)configureForMeal:(UHDMeal *)meal
 {
     self.titleLabel.text = meal.title;
-    self.priceLabel.text = meal.price;
-    
-    self.isFavourite = meal.isFavourite;
-    self.favouriteBar.hidden = !meal.isFavourite;
+    self.priceLabel.text = meal.localizedPriceDescription;
+    self.extrasLabel.text = meal.localizedExtrasDescription;
+    //self.isFavourite = meal.isFavourite;
+    self.favouriteSymbolView.hidden = !meal.isFavourite;
+    [self.favouriteSymbolView.superview removeConstraint: meal.isFavourite ? self.favouriteSymbolHiddenConstraint : self.favouriteSymbolSpacingConstraint];
+    [self.favouriteSymbolView.superview addConstraint: meal.isFavourite ? self.favouriteSymbolSpacingConstraint : self.favouriteSymbolHiddenConstraint];
+}
+
+- (NSLayoutConstraint *)favouriteSymbolHiddenConstraint {
+    if (!_favouriteSymbolHiddenConstraint) {
+        self.favouriteSymbolHiddenConstraint = [NSLayoutConstraint constraintWithItem:self.extrasLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.titleLabel attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+    }
+    return _favouriteSymbolHiddenConstraint;
 }
 
 @end
