@@ -19,7 +19,7 @@
 - (void)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource setupObjectMappingForObjectManager:(RKObjectManager *)objectManager
 {
     
-    // Canteen
+    // Mensa
     
     RKEntityMapping *mensaMapping = [RKEntityMapping mappingForEntityForName:[UHDMensa entityName] inManagedObjectStore:objectManager.managedObjectStore];
     [mensaMapping addAttributeMappingsFromDictionary:@{ @"id": @"remoteObjectId" }];
@@ -38,7 +38,7 @@
     [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:mensaStubMapping method:RKRequestMethodAny pathPattern:@"CanteenSections" keyPath:@"canteenId" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
     
     
-    // Canteen Section
+    // Mensa Section
     
     RKEntityMapping *mensaSectionMapping = [RKEntityMapping mappingForEntityForName:[UHDMensaSection entityName] inManagedObjectStore:objectManager.managedObjectStore];
     [mensaSectionMapping addAttributeMappingsFromDictionary:@{ @"id": @"remoteObjectId", @"canteenId": @"mensaId" }];
@@ -59,7 +59,7 @@
     // Meal
     
     RKEntityMapping *mealMapping = [RKEntityMapping mappingForEntityForName:[UHDMeal entityName] inManagedObjectStore:objectManager.managedObjectStore];
-    [mealMapping addAttributeMappingsFromDictionary:@{ @"id": @"remoteObjectId", @"priceStud": @"price" }];
+    [mealMapping addAttributeMappingsFromDictionary:@{ @"id": @"remoteObjectId", @"vegetarian": @"isVegetarian", @"priceStud": @"priceStud", @"priceBed": @"priceBed", @"priceGuest": @"priceGuest" }];
     [mealMapping addAttributeMappingsFromArray:@[ @"title" ]];
     mealMapping.identificationAttributes = @[ @"remoteObjectId" ];
     mealMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", mealMapping.entity];
