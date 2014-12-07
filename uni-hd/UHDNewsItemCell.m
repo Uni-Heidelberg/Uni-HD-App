@@ -63,6 +63,8 @@
 
     // Layout multiline labels for updated content
     [self layoutIfNeeded];
+	
+	//[self.logger log:[NSString stringWithFormat:@"Height of symbol: %f", self.readIndicatorImageView.bounds.size.height] forLevel:VILogLevelDebug];
 }
 
 @end

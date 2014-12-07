@@ -15,9 +15,9 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
-@property (weak, nonatomic) IBOutlet UIButton *sourceButton;
+//@property (weak, nonatomic) IBOutlet UIButton *sourceButton;
 
-- (IBAction)sourceButtonPressed:(id)sender;
+//- (IBAction)sourceButtonPressed:(id)sender;
 
 @end
 
@@ -31,7 +31,7 @@
 	self.collectionView.delegate = self;
     self.collectionView.scrollsToTop = NO;
 	
-	self.itemWidth = 50;
+	self.itemWidth = 60;
 }
 
 
@@ -46,6 +46,7 @@
 
 	_sources = sources;
 	[self.collectionView reloadData];
+	[self scrollToSelectedSource];
 }
 
 
@@ -54,8 +55,7 @@
     _selectedSource = selectedSource;
     
     [self.logger log:[NSString stringWithFormat:@"Selected source: %@", selectedSource.title] forLevel:VILogLevelDebug];
-    
-    [self updateSourceButton];
+	
     [self.collectionView reloadData];
     
 }
@@ -129,18 +129,6 @@
 	
 }
 
-- (void) updateSourceButton {
-    
-    if (self.selectedSource == nil) {
-        [self.sourceButton setTitle:@"All News & Events" forState:UIControlStateNormal];
-    }
-    else {
-        [self.sourceButton setTitle:self.selectedSource.title forState:UIControlStateNormal];
-    }
-    
-    [self.sourceButton sizeToFit];
-    
-}
 
 - (void)setItemWidth:(CGFloat)itemWidth {
 
@@ -168,7 +156,7 @@
 }
 
 
-- (IBAction)sourceButtonPressed:(id)sender {
+- (void)scrollToSelectedSource {
     
     NSIndexPath *indexPath;
     
@@ -181,5 +169,6 @@
 
     [self.collectionView scrollToItemAtIndexPath:indexPath atScrollPosition:UICollectionViewScrollPositionCenteredHorizontally animated:YES];
 }
+
 
 @end

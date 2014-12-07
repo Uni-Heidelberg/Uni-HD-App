@@ -29,11 +29,14 @@
 @property (strong, nonatomic) NSMutableArray *newsListViewControllers;
 
 @property (weak, nonatomic) IBOutlet UHDNewsSourcesNavigationBar *sourcesNavigationBar;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *newsEventsSegmentedControl;
+@property (weak, nonatomic) IBOutlet UIButton *sourceButton;
+
+//@property (weak, nonatomic) IBOutlet UISegmentedControl *newsEventsSegmentedControl;
 
 - (IBAction)unwindToNews:(UIStoryboardSegue *)segue;
 
-- (IBAction)newsEventsSegmentedControlValueChanged:(id)sender;
+//- (IBAction)newsEventsSegmentedControlValueChanged:(id)sender;
+- (IBAction)sourceButtonPressed:(id)sender;
 
 @end
 
@@ -57,13 +60,16 @@
 	
 	// set currently subscribed sources to display in sources navigation bar
 	self.sourcesNavigationBar.sources = [self.fetchedResultsController fetchedObjects];
-    // set currently selected source
+
+    // set currently selected source and update sourceButton
     NSArray *currentSources = ((UHDNewsListViewController *)self.pageViewController.viewControllers[0]).sources;
     if ([currentSources count] > 1) {
         self.sourcesNavigationBar.selectedSource = nil;
     } else {
         self.sourcesNavigationBar.selectedSource = currentSources[0];
     }
+	
+	[self updateSourceButton];
     
     // make sure only active table view scrolls to top
     for (UHDNewsListViewController *vc in self.newsListViewControllers) {
@@ -96,13 +102,23 @@
 
 #pragma mark - User Interaction
 
+/*
 - (IBAction)newsEventsSegmentedControlValueChanged:(id)sender {
 	[self updateDisplayMode];
 }
+*/
+
+- (IBAction)sourceButtonPressed:(id)sender {
+	
+	[self configureView];
+	
+}
+
 
 - (void)updateDisplayMode
 {
 	for (UHDNewsListViewController *newsListVC in self.newsListViewControllers) {
+		/*
 		switch (self.newsEventsSegmentedControl.selectedSegmentIndex) {
 			case kDisplayModeSegmentIndexNews:
 				newsListVC.displayMode = UHDNewsListDisplayModeNews;
@@ -113,11 +129,34 @@
 			default:
 				break;
 		}
+		*/
+		newsListVC.displayMode = UHDNewsListDisplayModeAll;
 	}
 }
 
+
+- (void)updateSourceButton {
+	
+	UHDNewsSource *source = self.sourcesNavigationBar.selectedSource;
+	
+	if (source == nil) {
+		[self.sourceButton setTitle:NSLocalizedString(@"Alle News und Veranstaltungen", nil) forState:UIControlStateNormal];
+	}
+	else {
+		[self.sourceButton setTitle:source.title forState:UIControlStateNormal];
+	}
+	
+	self.sourceButton.titleLabel.lineBreakMode = NSLineBreakByWordWrapping;
+	self.sourceButton.titleLabel.textAlignment = NSTextAlignmentCenter;
+	self.sourceButton.titleLabel.numberOfLines = 2;
+	
+	[self.sourceButton sizeToFit];
+}
+
+
 - (IBAction)todayButtonPressed:(id)sender {
-    // TODO: scroll to today section
+	
+	[self.pageViewController.viewControllers[0] scrollToToday];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
@@ -166,6 +205,8 @@
     UIPageViewControllerNavigationDirection navigationDirection = (selectedSourceIndex > currentSourceIndex) ? UIPageViewControllerNavigationDirectionForward : UIPageViewControllerNavigationDirectionReverse;
     
     [self.pageViewController setViewControllers:@[ selectedNewsListVC ] direction:navigationDirection animated:YES completion:nil];
+	
+	[self updateSourceButton];
 }
 
 
