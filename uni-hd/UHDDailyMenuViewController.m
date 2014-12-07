@@ -180,8 +180,8 @@
 #pragma mark - Managed Object Context Save Notification
 
 - (void)managedObjectContextDidSave:(NSNotification *)notification {
+    // FIXME: some exceptions are thrown here...
     NSSet *updatedObjects = (NSSet *)notification.userInfo[NSUpdatedObjectsKey];
-    [self.tableView beginUpdates];
     for (NSManagedObject *updatedObject in updatedObjects) {
         if (![updatedObject.entityName isEqualToString:[UHDMeal entityName]]) {
             continue;
@@ -191,7 +191,6 @@
             [self.tableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
         }
     }
-    [self.tableView endUpdates];
 }
 
 /*#pragma mark - Swipe Table View Cell Delegate
