@@ -576,18 +576,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <containerView contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2uD-l0-zXb">
-                                <rect key="frame" x="0.0" y="124" width="600" height="427"/>
+                            <containerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2uD-l0-zXb">
+                                <rect key="frame" x="0.0" y="119" width="600" height="437"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                 <connections>
                                     <segue destination="asw-kS-WrP" kind="embed" identifier="embedPageVC" id="Nyh-d1-Gif"/>
                                 </connections>
                             </containerView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="egv-gy-J1B" customClass="UHDNewsSourcesNavigationBar">
-                                <rect key="frame" x="0.0" y="64" width="600" height="60"/>
+                                <rect key="frame" x="0.0" y="64" width="600" height="55"/>
                                 <subviews>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="iA7-J3-8fe">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="55"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="b20-UP-5Gc">
                                             <size key="itemSize" width="50" height="50"/>
@@ -635,7 +635,7 @@
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="IeP-yv-K9o"/>
+                                    <constraint firstAttribute="height" constant="55" id="IeP-yv-K9o"/>
                                     <constraint firstAttribute="trailing" secondItem="iA7-J3-8fe" secondAttribute="trailing" id="pcI-nH-Gi5"/>
                                     <constraint firstItem="iA7-J3-8fe" firstAttribute="top" secondItem="egv-gy-J1B" secondAttribute="top" id="ps3-BF-8XR"/>
                                     <constraint firstItem="iA7-J3-8fe" firstAttribute="leading" secondItem="egv-gy-J1B" secondAttribute="leading" id="qrd-17-Mb8"/>

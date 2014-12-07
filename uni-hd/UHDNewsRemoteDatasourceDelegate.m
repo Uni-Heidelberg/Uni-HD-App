@@ -28,6 +28,7 @@
     newsCategoryMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", newsCategoryMapping.entity];
     [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:newsCategoryMapping method:RKRequestMethodAny pathPattern:@"categories" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
     RKConnectionDescription *newsCategoryParentConnection = [[RKConnectionDescription alloc] initWithRelationship:[newsCategoryMapping.entity relationshipsByName][@"parent"] attributes:@{ @"parentId": @"remoteObjectId" }];
+    newsCategoryParentConnection.includesSubentities = NO;
     [newsCategoryMapping addConnection:newsCategoryParentConnection];
     // Stubs
     RKEntityMapping *newsCategoryStubMapping = [RKEntityMapping mappingForEntityForName:[UHDNewsCategory entityName] inManagedObjectStore:objectManager.managedObjectStore];
@@ -61,6 +62,7 @@
     [newsItemMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId"}];
     [newsItemMapping addAttributeMappingsFromArray:@[ @"title", @"date", @"abstract", @"url", @"sourceId" ]];
     newsItemMapping.identificationAttributes = @[ @"remoteObjectId" ];
+    newsItemMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", newsItemMapping.entity];
     RKConnectionDescription *newsItemSourceConnection = [[RKConnectionDescription alloc] initWithRelationship:[newsItemMapping.entity relationshipsByName][@"source"] attributes:@{ @"sourceId": @"remoteObjectId" }];
     newsItemSourceConnection.includesSubentities = NO;
     [newsItemMapping addConnection:newsItemSourceConnection];
@@ -72,6 +74,7 @@
     [eventItemMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId", @"building": @"location"}];
     [eventItemMapping addAttributeMappingsFromArray:@[ @"title", @"date", @"abstract", @"url", @"sourceId" ]];
     eventItemMapping.identificationAttributes = @[ @"remoteObjectId" ];
+    eventItemMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", eventItemMapping.entity];
     RKConnectionDescription *eventItemSourceConnection = [[RKConnectionDescription alloc] initWithRelationship:[eventItemMapping.entity relationshipsByName][@"source"] attributes:@{ @"sourceId": @"remoteObjectId" }];
     eventItemSourceConnection.includesSubentities = NO;
     [eventItemMapping addConnection:newsItemSourceConnection];
