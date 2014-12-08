@@ -97,10 +97,16 @@
     UHDMapsViewController *mapsVC = (UHDMapsViewController *)mapsNavC.topViewController;
     mapsVC.managedObjectContext = self.persistentStack.managedObjectContext;
     
+    // Settings
+    UIStoryboard *settingsStoryboard = [UIStoryboard storyboardWithName:@"settings" bundle:nil];
+    UINavigationController *settingsNavC = [settingsStoryboard instantiateInitialViewController];
+    UHDSettingsViewController *settingsVC = (UHDSettingsViewController *)settingsNavC.topViewController;
+    settingsVC.managedObjectContext = self.persistentStack.managedObjectContext;
+    
 
     // create and populate tab bar controller
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = @[mensaNavC, newsNavC, mapsNavC];
+    tabBarController.viewControllers = @[mensaNavC, newsNavC, mapsNavC, settingsNavC];
     
     // create and populate window
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

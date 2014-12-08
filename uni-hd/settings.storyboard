@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="9xk-1Q-ShN">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6247"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--Konfiguration-->
+        <scene sceneID="zXU-vS-Lwk">
+            <objects>
+                <tableViewController id="G0K-i0-IdS" customClass="UHDSettingsViewController" customModule="uni_hd" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="d0L-nY-siC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                        <sections>
+                            <tableViewSection headerTitle="Mensa" id="RIu-SL-NWG">
+                                <cells>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="fbw-eo-G5a">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fbw-eo-G5a" id="pfs-T6-d2R">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="oJ1-AI-iVa">
+                                                    <rect key="frame" x="317" y="8" width="275" height="29"/>
+                                                    <segments>
+                                                        <segment title="Student"/>
+                                                        <segment title="Bediensteter"/>
+                                                        <segment title="Gast"/>
+                                                    </segments>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstAttribute="trailingMargin" secondItem="oJ1-AI-iVa" secondAttribute="trailing" id="7f8-Bd-a9u"/>
+                                                <constraint firstAttribute="centerY" secondItem="oJ1-AI-iVa" secondAttribute="centerY" id="IiG-xx-FE4"/>
+                                                <constraint firstItem="oJ1-AI-iVa" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pfs-T6-d2R" secondAttribute="leadingMargin" id="MYV-ig-sW2"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
+                        </sections>
+                        <connections>
+                            <outlet property="dataSource" destination="G0K-i0-IdS" id="iKK-OU-MB7"/>
+                            <outlet property="delegate" destination="G0K-i0-IdS" id="1id-4g-5oX"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Konfiguration" id="LB1-jk-YyK"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yuB-kj-ITb" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="134" y="328"/>
+        </scene>
+        <!--Konfiguration-->
+        <scene sceneID="6Hr-RH-IJ1">
+            <objects>
+                <navigationController id="9xk-1Q-ShN" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Konfiguration" image="preferences" id="Ir2-YF-nAU"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="sTx-6d-Y3d">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="G0K-i0-IdS" kind="relationship" relationship="rootViewController" id="iXu-lN-w4O"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PCx-WL-ef2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-686" y="328"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="preferences" width="18" height="18"/>
+    </resources>
+</document>
