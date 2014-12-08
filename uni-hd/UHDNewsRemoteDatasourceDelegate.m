@@ -77,13 +77,33 @@
     eventItemMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", eventItemMapping.entity];
     RKConnectionDescription *eventItemSourceConnection = [[RKConnectionDescription alloc] initWithRelationship:[eventItemMapping.entity relationshipsByName][@"source"] attributes:@{ @"sourceId": @"remoteObjectId" }];
     eventItemSourceConnection.includesSubentities = NO;
-    [eventItemMapping addConnection:newsItemSourceConnection];
+    [eventItemMapping addConnection:eventItemSourceConnection];
     [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:eventItemMapping method:RKRequestMethodGET pathPattern:@"events" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+
+    // UHDTalkSpeaker
+    
+    RKEntityMapping *speakerMapping = [RKEntityMapping mappingForEntityForName:[UHDTalkSpeaker entityName] inManagedObjectStore:objectManager.managedObjectStore];
+    [speakerMapping addAttributeMappingsFromArray:@[ @"name", @"affiliation", @"email", @"url", @"talkId" ]];
+
+    // UHDTalkItem
+    
+    RKEntityMapping *talkItemMapping = [RKEntityMapping mappingForEntityForName:[UHDTalkItem entityName] inManagedObjectStore:objectManager.managedObjectStore];
+    [talkItemMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId", @"building": @"location"}];
+    [talkItemMapping addAttributeMappingsFromArray:@[ @"title", @"date", @"abstract", @"url", @"sourceId" ]];
+    [talkItemMapping addRelationshipMappingWithSourceKeyPath:@"speaker" mapping:speakerMapping];
+    talkItemMapping.identificationAttributes = @[ @"remoteObjectId" ];
+    talkItemMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", talkItemMapping.entity];
+    RKConnectionDescription *talkItemSourceConnection = [[RKConnectionDescription alloc] initWithRelationship:[talkItemMapping.entity relationshipsByName][@"source"] attributes:@{ @"sourceId": @"remoteObjectId" }];
+    talkItemSourceConnection.includesSubentities = NO;
+    [talkItemMapping addConnection:talkItemSourceConnection];
+    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:talkItemMapping method:RKRequestMethodGET pathPattern:@"talks" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+    
+
 }
 
 - (NSArray *)remoteRefreshPathsForRemoteDatasource:(UHDRemoteDatasource *)remoteDatasource
 {
-    return @[ @"categories", @"sources", @"articles", @"events" ];
+    return @[ @"categories", @"sources", @"articles", @"events", @"talks?speaker=object" ];
 }
 
 - (BOOL)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource shouldGenerateSampleDataForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
