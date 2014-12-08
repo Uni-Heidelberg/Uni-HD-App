@@ -43,13 +43,14 @@ typedef enum : NSUInteger {
 @end
 
 
+/*
 // category on UHDNewsItem
 @interface UHDNewsItem (Sectioning)
 
 @property (nonatomic, readonly) NSDate *reducedDate;
 
 @end
-
+*/
 
 
 @implementation UHDNewsListViewController
@@ -68,7 +69,9 @@ typedef enum : NSUInteger {
 	
 	// set date format
 	self.sectionDateFormatter = [[NSDateFormatter alloc] init];
-	[self.sectionDateFormatter setDateFormat:@"MMMM yyyy"];
+	[self.sectionDateFormatter setCalendar:[NSCalendar currentCalendar]];
+	NSString *formatTemplate = [NSDateFormatter dateFormatFromTemplate:@"MMMM YYYY" options:0 locale:[NSLocale currentLocale]];
+	[self.sectionDateFormatter setDateFormat:formatTemplate];
 	
 	self.tableView.dataSource = self;
 	self.tableView.delegate = self;
@@ -212,9 +215,11 @@ typedef enum : NSUInteger {
 			}
 		}
 		
+		//[fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"reducedDate" ascending:NO], [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]]];
 		[fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]]];
-        
-        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"reducedDate" cacheName:nil];
+		
+		
+        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"sectionIdentifier" cacheName:nil];
         
 		VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource = [[VIFetchedResultsControllerDataSource alloc] init];
 		fetchedResultsControllerDataSource.tableView = self.tableView;
@@ -237,7 +242,7 @@ typedef enum : NSUInteger {
 - (void)updateFetchedResultsControllerForChangedDisplayMode {
 
 	NSFetchRequest *fetchRequest = self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest;
-	NSEntityDescription *entityDescription = [NSEntityDescription entityForName:[UHDEventItem entityName] inManagedObjectContext:self.managedObjectContext];
+	NSEntityDescription *entityDescription;
 
 	if (self.displayMode == UHDNewsListDisplayModeEvents) {
 		entityDescription = [NSEntityDescription entityForName:[UHDEventItem entityName] inManagedObjectContext:self.managedObjectContext];
@@ -327,29 +332,38 @@ typedef enum : NSUInteger {
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
-	NSDate *date = [(UHDNewsItem *)[[(id<NSFetchedResultsSectionInfo>)[self.fetchedResultsControllerDataSource.fetchedResultsController.sections objectAtIndex:section] objects] firstObject] date];
+	id <NSFetchedResultsSectionInfo> theSection = [[self.fetchedResultsControllerDataSource.fetchedResultsController sections] objectAtIndex:section];
 	
-	UHDNewsDatePeriod datePeriod = [self datePeriodForDate:date];
+	NSString *sectionName = [theSection name];
 	
-	switch (datePeriod) {
-        case UHDNewsDatePeriodLast7Days:
-            return NSLocalizedString(@"Letzte 7 Tage", nil);
-        case UHDNewsDatePeriodYesterday:
-            return NSLocalizedString(@"Gestern", nil);
-        case UHDNewsDatePeriodToday:
-            return NSLocalizedString(@"Heute", nil);
-        case UHDNewsDatePeriodTomorrow:
-            return NSLocalizedString(@"Morgen", nil);
-        case UHDNewsDatePeriodNext7Days:
-            return NSLocalizedString(@"Nächste 7 Tage", nil);
-        case UHDNewsDatePeriodLaterOrEarlier:
-            return [self.sectionDateFormatter stringFromDate:date];
-            
-        default:
-            return nil;
-            break;
+	if ([sectionName isEqualToString:@"today"]) {
+		return NSLocalizedString(@"Heute", nil);
 	}
+	if ([sectionName isEqualToString:@"tomorrow"]) {
+		return NSLocalizedString(@"Morgen", nil);
+	}
+	if ([sectionName isEqualToString:@"yesterday"]) {
+		return NSLocalizedString(@"Gestern", nil);
+	}
+	if ([sectionName isEqualToString:@"next7days"]) {
+		return NSLocalizedString(@"Nächste 7 Tage", nil);
+	}
+	if ([sectionName isEqualToString:@"last7days"]) {
+		return NSLocalizedString(@"Letzte 7 Tage", nil);
+	}
+	
+	NSInteger numericSection = [[theSection name] integerValue];
+	NSInteger year = numericSection / 1000;
+	NSInteger month = numericSection - (year * 1000);
+    
+    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+    dateComponents.year = year;
+    dateComponents.month = month;
+    NSDate *sectionDate = [[NSCalendar currentCalendar] dateFromComponents:dateComponents];
 
+	NSString *titleString = [self.sectionDateFormatter stringFromDate:sectionDate];
+
+	return titleString;
 }
 
 
@@ -384,14 +398,14 @@ typedef enum : NSUInteger {
 
 @end
 
-
+/*
 @implementation UHDNewsItem (Sectioning)
 
 - (NSDate *)reducedDate {
 	
 	NSCalendar *calendar = [NSCalendar currentCalendar];
-	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
-	[calendar setTimeZone:timeZone];
+	//NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
+	//[calendar setTimeZone:timeZone];
 	
 	NSDate *reducedDate = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:self.date options:0];
 	NSDate *today = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:[NSDate date] options:0];
@@ -430,3 +444,4 @@ typedef enum : NSUInteger {
 }
 
 @end
+*/
