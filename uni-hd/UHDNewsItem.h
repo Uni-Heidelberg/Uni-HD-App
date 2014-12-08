@@ -19,6 +19,8 @@
 @property (nonatomic, retain) NSData *thumbImageData;
 @property (nonatomic, retain) UHDNewsSource *source;
 
+@property (nonatomic) NSString *sectionIdentifier;
+
 - (UIImage *)thumbImage;
 - (void)setThumbImage:(UIImage *)thumbImage;
 
