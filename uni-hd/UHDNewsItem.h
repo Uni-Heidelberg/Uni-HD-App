@@ -7,6 +7,19 @@
 //
 
 #import "UHDRemoteManagedObject.h"
+
+
+typedef enum : NSUInteger {
+    UHDSectioningPeriodEarlier = 0,
+    UHDSectioningPeriodLast7days,
+    UHDSectioningPeriodYesterday,
+	UHDSectioningPeriodToday,
+	UHDSectioningPeriodTomorrow,
+	UHDSectioningPeriodNext7days,
+	UHDSectioningPeriodLater,
+} UHDSectioningPeriod;
+
+
 @class UHDNewsSource;
 
 @interface UHDNewsItem : UHDRemoteManagedObject

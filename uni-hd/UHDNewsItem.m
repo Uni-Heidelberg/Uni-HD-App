@@ -44,9 +44,10 @@
     self.thumbImageData = UIImageJPEGRepresentation(thumbImage, 1);
 }
 
-// Experimentally:
 
-/*
+# pragma mark - Sectioning
+
+
 - (NSString *)sectionIdentifier {
 	
 	// Create and cache the section identifier on demand.
@@ -54,101 +55,53 @@
     [self willAccessValueForKey:@"sectionIdentifier"];
     NSString *tmp = [self primitiveSectionIdentifier];
     [self didAccessValueForKey:@"sectionIdentifier"];
+	
+	//Format of the identifier string: @"YYYYMMSS", where the last two digits "SS" are a number of the enum type UHDSectioningPeriod. This format ensures that the section names are always in a chronological order.
 
     if (!tmp) {
 	
 		NSCalendar *calendar = [NSCalendar currentCalendar];
-		
-		NSDate *reducedDate = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:self.date options:0];
+		NSDate *date = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:self.date options:0];
 		NSDate *today = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:[NSDate date] options:0];
-		
-		NSInteger daysFromNow = [calendar components:NSCalendarUnitDay fromDate:today toDate:reducedDate options:0].day;
+		NSInteger daysFromNow = [calendar components:NSCalendarUnitDay fromDate:today toDate:date options:0].day;
 
-		NSDateComponents *reducedDateComponents = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth fromDate:reducedDate];
+		NSDateComponents *dateComponents = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth fromDate:date];
+		NSDateComponents *currentDateComponents = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth fromDate:today];
 		
-		NSInteger currentMonth = [calendar component:NSCalendarUnitMonth fromDate:today];
-
+		NSInteger monthOfDateID = dateComponents.year * 100 * 100 + dateComponents.month * 100;
+		NSInteger currentMonthID = currentDateComponents.year * 100 * 100 + currentDateComponents.month * 100;
 
 		switch (daysFromNow) {
 			case 0:
-				tmp = @"today";
-				//tmp = [NSString stringWithFormat:@"%ld", ([reducedDateComponents year] * 10000) + currentMonth * 100 + 21];
+				tmp = [NSString stringWithFormat:@"%ld", currentMonthID + UHDSectioningPeriodToday];
 				break;
 			case 1:
-				tmp = @"tomorrow";
-				//tmp = [NSString stringWithFormat:@"%ld", ([reducedDateComponents year] * 10000) + currentMonth * 100 + 22];
+				tmp = [NSString stringWithFormat:@"%ld", currentMonthID + UHDSectioningPeriodTomorrow];
 				break;
 			case -1:
-				tmp = @"yesterday";
-				//tmp = [NSString stringWithFormat:@"%ld", ([reducedDateComponents year] * 10000) + currentMonth * 100 + 20];
+				tmp = [NSString stringWithFormat:@"%ld", currentMonthID + UHDSectioningPeriodYesterday];
 				break;
 			default:
 				if (daysFromNow > 7) {
-					if (reducedDateComponents.month == currentMonth) {
-						tmp = [NSString stringWithFormat:@"%ld", ([reducedDateComponents year] * 10000) + [reducedDateComponents month] * 100 + 90];
+					if ( (dateComponents.year == currentDateComponents.year) && (dateComponents.month == currentDateComponents.month) ) {
+						tmp = [NSString stringWithFormat:@"%ld", currentMonthID + UHDSectioningPeriodLater];
 					}
 					else {
-						tmp = [NSString stringWithFormat:@"%ld", ([reducedDateComponents year] * 10000) + currentMonth * 100];
+						tmp = [NSString stringWithFormat:@"%ld", monthOfDateID];
 					}
 				}
 				else if (daysFromNow > 0) {
-					tmp = [NSString stringWithFormat:@"%ld", ([reducedDateComponents year] * 10000) + currentMonth * 100 + 30];
+					tmp = [NSString stringWithFormat:@"%ld", currentMonthID + UHDSectioningPeriodNext7days];
 				}
 				else if (daysFromNow >= -7) {
-					tmp = [NSString stringWithFormat:@"%ld", ([reducedDateComponents year] * 10000) + currentMonth * 100 + 10];
+					tmp = [NSString stringWithFormat:@"%ld", currentMonthID + UHDSectioningPeriodLast7days];
 				}
 				else {
-					tmp = [NSString stringWithFormat:@"%ld", ([reducedDateComponents year] * 10000) + [reducedDateComponents month]];
-				}
-		
-		[self setPrimitiveSectionIdentifier:tmp];
-	}
-	
-	return tmp;
-}
-*/
-
-- (NSString *)sectionIdentifier {
-	
-	// Create and cache the section identifier on demand.
-
-    [self willAccessValueForKey:@"sectionIdentifier"];
-    NSString *tmp = [self primitiveSectionIdentifier];
-    [self didAccessValueForKey:@"sectionIdentifier"];
-
-    if (!tmp) {
-	
-		NSCalendar *calendar = [NSCalendar currentCalendar];
-		
-		NSDate *reducedDate = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:self.date options:0];
-		NSDate *today = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:[NSDate date] options:0];
-		
-		NSInteger daysFromNow = [calendar components:NSCalendarUnitDay fromDate:today toDate:reducedDate options:0].day;
-
-		switch (daysFromNow) {
-			case 0:
-				tmp = @"today";
-				break;
-			case 1:
-				tmp = @"tomorrow";
-				break;
-			case -1:
-				tmp = @"yesterday";
-				break;
-			default:
-				if (ABS(daysFromNow) > 7) {
-					/*
-					Sections are organized by month and year. Create the section identifier as a string representing the number (year * 1000) + month; this way they will be correctly ordered chronologically regardless of the actual name of the month.
-					*/
-					NSDateComponents *reducedDateComponents = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth fromDate:reducedDate];
-					tmp = [NSString stringWithFormat:@"%ld", ([reducedDateComponents year] * 1000) + [reducedDateComponents month]];
-				}
-				else {
-					if (daysFromNow > 0) {
-						tmp = @"next7days";
+					if ( (dateComponents.year == currentDateComponents.year) && (dateComponents.month == currentDateComponents.month) ) {
+						tmp = [NSString stringWithFormat:@"%ld", currentMonthID + UHDSectioningPeriodEarlier];
 					}
 					else {
-						tmp = @"last7days";
+						tmp = [NSString stringWithFormat:@"%ld", monthOfDateID];
 					}
 				}
 		}
@@ -162,7 +115,7 @@
 
 - (void)setDate:(NSDate *)newDate
 {
-    // If the time stamp changes, the section identifier become invalid.
+    // If the date changes, the section identifier becomes invalid.
     [self willChangeValueForKey:@"date"];
     [self setPrimitiveDate:newDate];
     [self didChangeValueForKey:@"date"];
@@ -173,7 +126,7 @@
 
 + (NSSet *)keyPathsForValuesAffectingSectionIdentifier
 {
-    // If the value of timeStamp changes, the section identifier may change as well.
+    // If the value of date changes, the section identifier may change as well.
     return [NSSet setWithObject:@"date"];
 }
 
