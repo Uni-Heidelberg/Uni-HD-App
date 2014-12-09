@@ -17,12 +17,11 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *speakerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *affiliationLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
-@property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *abstractLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *talkImageView;
 @property (weak, nonatomic) IBOutlet UILabel *sourceLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *talkIndicatorView;
+@property (weak, nonatomic) IBOutlet UILabel *shortDateAndTimeLabel;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageSpacingLayoutConstraint;
 @property (nonatomic) CGFloat imageSpacingConstraintInitialConstant;
@@ -41,7 +40,7 @@
 {
     // Configure text
     self.titleLabel.text = item.title;
-    self.locationLabel.text = item.location;
+    //self.locationLabel.text = item.location;
     self.abstractLabel.text = item.abstract;
 	self.sourceLabel.text = item.source.title;
     
@@ -49,11 +48,19 @@
     self.speakerLabel.text = item.speaker.name;
     self.affiliationLabel.text = item.speaker.affiliation;
     
-    // Configure date and time
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateStyle = NSDateFormatterFullStyle;
-    dateFormatter.timeStyle = NSDateFormatterShortStyle;
-    self.dateLabel.text = [dateFormatter stringFromDate:item.date];
+	// Configure date and time
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
+	[calendar setTimeZone:timeZone];
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setCalendar:calendar];
+	/*
+	NSString *formatTemplate = [NSDateFormatter dateFormatFromTemplate:@"MMMM YYYY" options:0 locale:[NSLocale currentLocale]];
+	[dateFormatter setDateFormat:formatTemplate];
+	*/
+	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+	self.shortDateAndTimeLabel.text = [dateFormatter stringFromDate:item.date];
 	
 	// Configure indicator
 	if (item.read) {

@@ -59,7 +59,11 @@
     
     // Configure Image
     self.newsImageView.image = item.thumbImage;
-    self.imageSpacingLayoutConstraint.constant = (self.newsImageView.image) ? self.imageSpacingConstraintInitialConstant : 0;
+	if (item.thumbImage) {
+		self.imageSpacingLayoutConstraint.constant = self.imageSpacingConstraintInitialConstant;
+	} else {
+		self.imageSpacingLayoutConstraint.constant = 0;
+	}
 
     // Layout multiline labels for updated content
     [self layoutIfNeeded];
