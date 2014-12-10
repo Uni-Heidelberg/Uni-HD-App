@@ -120,7 +120,8 @@
     //SECOND
     //Create Building Object
     UHDBuilding *buildingItem2 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
-    buildingItem2.title =@"Physikalisches Institut (Klaus-Tschira-Gebäude)";
+    buildingItem2.title =@"Klaus-Tschira-Gebäude";
+    //(Physikalisches Institut)
     buildingItem2.buildingNumber = @"226";
     buildingItem2.location = [[CLLocation alloc] initWithLatitude:49.416250 longitude:8.673171];
     buildingItem2.category = category1;
