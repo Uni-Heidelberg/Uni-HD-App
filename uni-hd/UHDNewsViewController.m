@@ -53,7 +53,7 @@
     
     [self configureView];
 	
-	[((UHDNewsListViewController *)self.pageViewController.viewControllers[0]) scrollToToday];
+	[(UHDNewsListViewController *)self.pageViewController.viewControllers[0] scrollToToday];
 }
 
 - (void)configureView
@@ -65,7 +65,7 @@
 
     // set currently selected source and update sourceButton
     NSArray *currentSources = ((UHDNewsListViewController *)self.pageViewController.viewControllers[0]).sources;
-    if ([currentSources count] > 1) {
+    if (currentSources.count != 1) {
         self.sourcesNavigationBar.selectedSource = nil;
     } else {
         self.sourcesNavigationBar.selectedSource = currentSources[0];

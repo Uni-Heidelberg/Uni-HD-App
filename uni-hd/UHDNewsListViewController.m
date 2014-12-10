@@ -58,8 +58,9 @@ typedef enum : NSUInteger {
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 200;
+    self.tableView.estimatedRowHeight = 120;
 }
 
 
@@ -237,26 +238,27 @@ typedef enum : NSUInteger {
 
 - (void)updateFetchedResultsControllerForChangedDisplayMode {
 
-	NSFetchRequest *fetchRequest = self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest;
-	NSEntityDescription *entityDescription;
+    if (self.fetchedResultsControllerDataSource) {
+        NSFetchRequest *fetchRequest = self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest;
+        NSEntityDescription *entityDescription;
 
-	if (self.displayMode == UHDNewsListDisplayModeEvents) {
-		entityDescription = [NSEntityDescription entityForName:[UHDEventItem entityName] inManagedObjectContext:self.managedObjectContext];
-		[fetchRequest setIncludesSubentities:YES];
-	}
-	else {
-		entityDescription = [NSEntityDescription entityForName:[UHDNewsItem entityName] inManagedObjectContext:self.managedObjectContext];
-		if (self.displayMode == UHDNewsListDisplayModeAll) {
-			[fetchRequest setIncludesSubentities:YES];
-		}
-		else {
-			[fetchRequest setIncludesSubentities:NO];
-		}
-	}
-	[fetchRequest setEntity:entityDescription];
-	
-	[self.fetchedResultsControllerDataSource reloadData];
-
+        if (self.displayMode == UHDNewsListDisplayModeEvents) {
+            entityDescription = [NSEntityDescription entityForName:[UHDEventItem entityName] inManagedObjectContext:self.managedObjectContext];
+            [fetchRequest setIncludesSubentities:YES];
+        }
+        else {
+            entityDescription = [NSEntityDescription entityForName:[UHDNewsItem entityName] inManagedObjectContext:self.managedObjectContext];
+            if (self.displayMode == UHDNewsListDisplayModeAll) {
+                [fetchRequest setIncludesSubentities:YES];
+            }
+            else {
+                [fetchRequest setIncludesSubentities:NO];
+            }
+        }
+        [fetchRequest setEntity:entityDescription];
+        
+        [self.fetchedResultsControllerDataSource reloadData];
+    }
 }
 
 

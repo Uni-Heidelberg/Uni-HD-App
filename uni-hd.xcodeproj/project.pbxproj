@@ -43,7 +43,6 @@
 		87475EC119E32B300028A9BF /* VILogKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87475EBE19E32B240028A9BF /* VILogKit.framework */; };
 		87475EC219E32B300028A9BF /* VILogKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87475EBE19E32B240028A9BF /* VILogKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		875396021932B03C00DFEF19 /* UHDNewsSourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 875396011932B03C00DFEF19 /* UHDNewsSourceCell.m */; };
-		875396081932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 875396071932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.m */; };
 		8755970E1A3492CB004AF87B /* VIMultilineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8755970D1A3492CB004AF87B /* VIMultilineLabel.swift */; };
 		875F43B71A1BD250006C4112 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 875F43B61A1BD250006C4112 /* LaunchScreen.storyboard */; };
 		87600EA4192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87600EA3192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m */; };
@@ -214,8 +213,6 @@
 		87475EB819E32B230028A9BF /* VILogKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VILogKit.xcodeproj; path = VILogKit/VILogKit.xcodeproj; sourceTree = "<group>"; };
 		875396001932B03C00DFEF19 /* UHDNewsSourceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsSourceCell.h; sourceTree = "<group>"; };
 		875396011932B03C00DFEF19 /* UHDNewsSourceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsSourceCell.m; sourceTree = "<group>"; };
-		875396061932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UHDNewsSourceCell+ConfigureForSource.h"; sourceTree = "<group>"; };
-		875396071932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UHDNewsSourceCell+ConfigureForSource.m"; sourceTree = "<group>"; };
 		8755970D1A3492CB004AF87B /* VIMultilineLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VIMultilineLabel.swift; path = VIOSFramework/Views/VIMultilineLabel/VIMultilineLabel.swift; sourceTree = "<group>"; };
 		875F43B61A1BD250006C4112 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		87600EA2192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMensaRemoteDatasourceDelegate.h; sourceTree = "<group>"; };
@@ -530,8 +527,6 @@
 			children = (
 				0B176E6C1931114200D3C916 /* UHDNewsSourcesViewController.h */,
 				0B176E6D1931114200D3C916 /* UHDNewsSourcesViewController.m */,
-				875396061932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.h */,
-				875396071932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.m */,
 			);
 			name = "News Sources";
 			sourceTree = "<group>";
@@ -1209,7 +1204,6 @@
 				87F826EA190D700E0008144F /* VILogger.m in Sources */,
 				87FCA99319958EB100B3A55F /* Maps.xcdatamodeld in Sources */,
 				DC602447193E23A500B06BF2 /* UHDMensaViewController.m in Sources */,
-				875396081932B11200DFEF19 /* UHDNewsSourceCell+ConfigureForSource.m in Sources */,
 				DC462EC1196964F60071ABBC /* UHDFavouritesStarView.m in Sources */,
 				DCD00AA01996605400DCCB24 /* UHDFavouriteCell.m in Sources */,
 				0B176E711931114200D3C916 /* UHDNewsSourcesViewController.m in Sources */,

@@ -16,6 +16,5 @@
 - (UHDRemoteDatasource *)remoteDatasourceForKey:(NSString *)key;
 - (NSArray *)allRemoteDatasources;
 - (void)refreshAllWithCompletion:(void (^)(BOOL success, NSError *error))completion;
-- (void)generateAllSampleDataIfNeeded;
 
 @end

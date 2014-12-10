@@ -21,6 +21,10 @@
     return [self mutableSetValueForKey:@"newsItems"];
 }
 
+- (int)subscribedCount {
+    return (self.subscribed ? 1 : 0) + [super subscribedCount];
+}
+
 #pragma mark - Convenience accessors
 
 - (UIImage *)thumbIcon
