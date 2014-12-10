@@ -29,13 +29,13 @@
     [mensaMapping addAttributeMappingsFromArray:@[ @"title" ]];
     mensaMapping.identificationAttributes = @[ @"remoteObjectId" ];
     mensaMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", mensaMapping.entity];
-    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:mensaMapping method:RKRequestMethodAny pathPattern:@"Canteens" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:mensaMapping method:RKRequestMethodAny pathPattern:@"canteens" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
     // Stubs
     RKEntityMapping *mensaStubMapping = [RKEntityMapping mappingForEntityForName:[UHDMensa entityName] inManagedObjectStore:objectManager.managedObjectStore];
     [mensaStubMapping addPropertyMapping:[RKAttributeMapping attributeMappingFromKeyPath:nil toKeyPath:@"remoteObjectId"]];
     mensaStubMapping.identificationAttributes = @[ @"remoteObjectId" ];
     mensaStubMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", mensaStubMapping.entity];
-    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:mensaStubMapping method:RKRequestMethodAny pathPattern:@"CanteenSections" keyPath:@"canteenId" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:mensaStubMapping method:RKRequestMethodAny pathPattern:@"sections" keyPath:@"canteenId" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
     
     
     // Mensa Section
@@ -47,13 +47,13 @@
     mensaSectionMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", mensaSectionMapping.entity];
     RKConnectionDescription *mensaSectionMensaConnection = [[RKConnectionDescription alloc] initWithRelationship:[mensaSectionMapping.entity relationshipsByName][@"mensa"] attributes:@{ @"mensaId": @"remoteObjectId" }];
     [mensaSectionMapping addConnection:mensaSectionMensaConnection];
-    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:mensaSectionMapping method:RKRequestMethodAny pathPattern:@"CanteenSections" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:mensaSectionMapping method:RKRequestMethodAny pathPattern:@"sections" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
     // Stubs
     RKEntityMapping *mensaSectionStubMapping = [RKEntityMapping mappingForEntityForName:[UHDMensaSection entityName] inManagedObjectStore:objectManager.managedObjectStore];
     [mensaSectionStubMapping addPropertyMapping:[RKAttributeMapping attributeMappingFromKeyPath:nil toKeyPath:@"remoteObjectId"]];
     mensaSectionStubMapping.identificationAttributes = @[ @"remoteObjectId" ];
     mensaSectionStubMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", mensaSectionStubMapping.entity];
-    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:mensaSectionStubMapping method:RKRequestMethodAny pathPattern:@"CanteenDailyMenus" keyPath:@"sectionId" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:mensaSectionStubMapping method:RKRequestMethodAny pathPattern:@"daily-menus" keyPath:@"sectionId" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
     
     
     // Meal
@@ -63,7 +63,7 @@
     [mealMapping addAttributeMappingsFromArray:@[ @"title" ]];
     mealMapping.identificationAttributes = @[ @"remoteObjectId" ];
     mealMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", mealMapping.entity];
-    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:mealMapping method:RKRequestMethodAny pathPattern:@"CanteenMeals" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+    //[objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:mealMapping method:RKRequestMethodAny pathPattern:@"meals" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
 
     
     // Daily Menu
@@ -76,12 +76,12 @@
     [dailyMenuMapping addRelationshipMappingWithSourceKeyPath:@"meals" mapping:mealMapping];
     RKConnectionDescription *dailyMenuSectionConnection = [[RKConnectionDescription alloc] initWithRelationship:[dailyMenuMapping.entity relationshipsByName][@"section"] attributes:@{ @"sectionId": @"remoteObjectId" }];
     [dailyMenuMapping addConnection:dailyMenuSectionConnection];
-    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:dailyMenuMapping method:RKRequestMethodAny pathPattern:@"CanteenDailyMenus" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:dailyMenuMapping method:RKRequestMethodAny pathPattern:@"daily-menus" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
 }
 
 - (NSArray *)remoteRefreshPathsForRemoteDatasource:(UHDRemoteDatasource *)remoteDatasource
 {
-    return @[ @"Canteens", @"CanteenSections", @"CanteenDailyMenus?filter[include]=meals"/*, @"CanteenMeals?filter[include]=menus"*/ ];
+    return @[ @"canteens", @"sections", @"daily-menus?filter[include]=meals" ];
 }
 
 - (BOOL)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource shouldGenerateSampleDataForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext

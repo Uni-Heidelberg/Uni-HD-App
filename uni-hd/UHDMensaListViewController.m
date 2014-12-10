@@ -79,7 +79,33 @@
 {
     [super viewWillAppear:animated];
     [self.locationManager startMonitoringSignificantLocationChanges];  // TODO: reconsider accuracy
+    if ([self indexPathOfSelectedMensa]==nil) {
+        [self.logger log:@"No Mensa selected" forLevel:VILogLevelDebug];
+    }
+    else {
+        [self.tableView selectRowAtIndexPath: [self indexPathOfSelectedMensa] animated:animated scrollPosition:UITableViewScrollPositionNone];
+    }
+
 }
+-(NSIndexPath *)indexPathOfSelectedMensa{
+    [self.logger log:@"Loading selected mensa from user defaults..." forLevel:VILogLevelDebug];
+
+    NSNumber *mensaId = [[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeySelectedMensaId];
+    if (!mensaId) {
+    }
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
+    fetchRequest.predicate = [NSPredicate predicateWithFormat:@"remoteObjectId == %@", mensaId];
+    NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:NULL];
+    if (result.count > 0) {
+        UHDMensa* selectedMensa = result.firstObject;
+        [self.logger log:@"Found selected Mensa." object:selectedMensa.title forLevel:VILogLevelDebug];
+        return [self indexPathForMensa:selectedMensa];
+    } else {
+        [self.logger log:@"Selected invalid mensa." forLevel:VILogLevelError];
+        return nil;
+    }
+}
+
 - (void)viewWillDisappear:(BOOL)animated
 {
     [super viewWillDisappear:animated];
@@ -102,7 +128,6 @@
         UITableViewCell *cell = [self cellForSubview:sender];
         detailVC.mensa = [self mensaForIndexPath:[self.tableView indexPathForCell:cell]];
     } else if ([segue.identifier isEqualToString:@"selectMensa"]) {
-        
         [[NSUserDefaults standardUserDefaults] setObject:@([(UHDMensa *)[self mensaForIndexPath:self.tableView.indexPathForSelectedRow] remoteObjectId]) forKey:UHDUserDefaultsKeySelectedMensaId];
     }
 }
@@ -218,6 +243,17 @@
         return [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
     }
     return nil;
+}
+- (NSIndexPath *)indexPathForMensa:(UHDMensa *)mensa
+{
+    if (mensa == 0) {
+        [self.logger log:@"No Mensa selected." forLevel:VILogLevelDebug];
+        return nil;
+    } else {
+        NSIndexPath *oldIndexPath = [self.fetchedResultsController indexPathForObject:mensa];
+        NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:oldIndexPath.row inSection:oldIndexPath.section+1];
+        return newIndexPath;
+    }
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
@@ -349,5 +385,6 @@
         mensa.currentDistance = -1;
     }
 }
+     
 
 @end

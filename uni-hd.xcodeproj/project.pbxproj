@@ -33,6 +33,8 @@
 		8701CE50190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8701CE4F190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.m */; };
 		870591DB19C0DDFA003E2906 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 870591DA19C0DDFA003E2906 /* UIImage+ImageEffects.m */; };
 		870591DF19C10922003E2906 /* VIImageOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 870591DE19C10922003E2906 /* VIImageOverlayRenderer.m */; };
+		872673271A36053800ABC599 /* UHDSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872673261A36053800ABC599 /* UHDSettingsViewController.swift */; };
+		8726732A1A36055B00ABC599 /* settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872673291A36055B00ABC599 /* settings.storyboard */; };
 		872750F21964A1D100FDBC4E /* UHDMensaListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC87FDFA191AA12D00019F32 /* UHDMensaListViewController.m */; };
 		8733B3F219F9FFD6007263AC /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8733B3F119F9FFD6007263AC /* CircularProgressView.swift */; };
 		8733B3F619FA110D007263AC /* CircularProgressView+ConfigureForMensa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8733B3F519FA110D007263AC /* CircularProgressView+ConfigureForMensa.swift */; };
@@ -203,6 +205,8 @@
 		870591DD19C10922003E2906 /* VIImageOverlayRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIImageOverlayRenderer.h; sourceTree = "<group>"; };
 		870591DE19C10922003E2906 /* VIImageOverlayRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIImageOverlayRenderer.m; sourceTree = "<group>"; };
 		8720978719D232D100269AA6 /* uni-hd-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uni-hd-Bridging-Header.h"; sourceTree = "<group>"; };
+		872673261A36053800ABC599 /* UHDSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UHDSettingsViewController.swift; sourceTree = "<group>"; };
+		872673291A36055B00ABC599 /* settings.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = settings.storyboard; sourceTree = "<group>"; };
 		8733B3F119F9FFD6007263AC /* CircularProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		8733B3F519FA110D007263AC /* CircularProgressView+ConfigureForMensa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CircularProgressView+ConfigureForMensa.swift"; sourceTree = "<group>"; };
 		8733B3F919FA13BD007263AC /* Hours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hours.swift; sourceTree = "<group>"; };
@@ -434,6 +438,22 @@
 				0A0CEC0C19E44F55009C9F5B /* UHDReadIndicatorView.m */,
 			);
 			name = "Table View Cells";
+			sourceTree = "<group>";
+		};
+		872673251A36050500ABC599 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				872673261A36053800ABC599 /* UHDSettingsViewController.swift */,
+			);
+			name = Settings;
+			sourceTree = "<group>";
+		};
+		872673281A36054B00ABC599 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				872673291A36055B00ABC599 /* settings.storyboard */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		8733B3F019F9FFD6007263AC /* CircularProgressView */ = {
@@ -677,6 +697,7 @@
 				8799DA8E192AB1E8009B3CAB /* Mensa */,
 				8799DA8D192AB1DB009B3CAB /* News */,
 				87E85272195727D4007503B8 /* Maps */,
+				872673281A36054B00ABC599 /* Settings */,
 				87B276CC192E03E90057B505 /* Global */,
 				875F43B61A1BD250006C4112 /* LaunchScreen.storyboard */,
 			);
@@ -766,6 +787,7 @@
 				87FF70F71923EFD600FCF5F4 /* Mensa */,
 				87FF70F81923EFE500FCF5F4 /* News */,
 				87E852771957295B007503B8 /* Maps */,
+				872673251A36050500ABC599 /* Settings */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -1008,6 +1030,7 @@
 				87DBE7F41919C3F700C16970 /* news.storyboard in Resources */,
 				875F43B71A1BD250006C4112 /* LaunchScreen.storyboard in Resources */,
 				DC87FDF8191AA00600019F32 /* mensa.storyboard in Resources */,
+				8726732A1A36055B00ABC599 /* settings.storyboard in Resources */,
 				87E85274195727E4007503B8 /* maps.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1093,6 +1116,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				872673271A36053800ABC599 /* UHDSettingsViewController.swift in Sources */,
 				DC21B6E01923D27600BAD26D /* UHDMensa.m in Sources */,
 				877AEE8819BD370300ED270D /* UHDBuildingAnnotationView.m in Sources */,
 				94F484921936620B0063BF9F /* UHDTriangleStatusImageView.m in Sources */,
