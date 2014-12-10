@@ -1,20 +1,24 @@
 #!/bin/bash
+
+branches=("Mensa" "News" "Maps" "Settings")
+
+for branch in "${branches[@]}"; do
+	git checkout $branch
+	git pull --rebase
+done
+
 git checkout develop
-git merge Mensa
-git merge News
-git merge Maps
-git merge Settings
+
+for branch in "${branches[@]}"; do
+	git merge $branch
+done
+
 git push
-git checkout Mensa
-git merge develop
-git push
-git checkout News
-git merge develop
-git push
-git checkout Maps
-git merge develop
-git push
-git checkout Settings
-git merge develop
-git push
+
+for branch in "${branches[@]}"; do
+	git checkout $branch
+	git merge develop
+	git push
+done
+
 git checkout develop
