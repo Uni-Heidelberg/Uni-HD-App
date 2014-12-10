@@ -74,16 +74,38 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"showBuildingDetail"]) {
-        ((UHDBuildingDetailViewController *)segue.destinationViewController).building = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:self.tableView.indexPathForSelectedRow];
+    if ([segue.identifier isEqualToString:@"showBuildingDetailFromSearchResults"]) {
+        //((UHDBuildingDetailViewController *)segue.destinationViewController).building = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:self.tableView.indexPathForSelectedRow];
+        [(UHDBuildingDetailViewController *)segue.destinationViewController setBuilding:(UHDBuilding *)[self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:self.tableView.indexPathForSelectedRow]];
     }
 }
 
 #pragma mark - Search Results Filtering
 
+
+
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController
 {
-    self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(title CONTAINS[cd] %@) OR (buildingNumber CONTAINS[cd] %@) OR (campusRegion.title CONTAINS[cd] %@) OR (campusRegion.identifier BEGINSWITH[cd] %@)", searchController.searchBar.text, searchController.searchBar.text, searchController.searchBar.text, searchController.searchBar.text];
+    //NSArray *searchTerms = [searchController.searchBar.text componentsSeparatedByString:@" "];
+    NSCharacterSet *whitespaceCharacter = [NSCharacterSet whitespaceCharacterSet];
+    NSArray *searchTerms = [searchController.searchBar.text componentsSeparatedByCharactersInSet:whitespaceCharacter];
+    NSString *predicateFormat = @"(title CONTAINS[cd] %@) OR (buildingNumber CONTAINS[cd] %@) OR (campusRegion.title CONTAINS[cd] %@) OR (campusRegion.identifier BEGINSWITH[cd] %@)";
+    NSPredicate *predicate;
+    if ([searchTerms count] == 1) {
+        NSString *term = [searchTerms objectAtIndex:0];
+        predicate = [NSPredicate predicateWithFormat:predicateFormat, term, term, term, term];
+    } else {
+        NSMutableArray *subPredicates = [NSMutableArray array];
+        for (NSString *term in searchTerms) {
+            NSPredicate *p = [NSPredicate predicateWithFormat:predicateFormat, term, term, term, term];
+            [subPredicates addObject:p];
+        }
+        predicate = [NSCompoundPredicate andPredicateWithSubpredicates:subPredicates];
+    }
+    
+    self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = predicate;
+    
+    //self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(title CONTAINS[cd] %@) OR (buildingNumber CONTAINS[cd] %@) OR (campusRegion.title CONTAINS[cd] %@) OR (campusRegion.identifier BEGINSWITH[cd] %@)", searchController.searchBar.text, searchController.searchBar.text, searchController.searchBar.text, searchController.searchBar.text];
     //self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"subtitle CONTAINS[cd] %@", searchController.searchBar.text];
     //LIKE[cd]
     [self.fetchedResultsControllerDataSource reloadData];
