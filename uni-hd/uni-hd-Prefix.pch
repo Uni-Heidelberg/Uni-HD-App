@@ -32,8 +32,7 @@
 #import "UHDRemoteDatasourceManager.h"
 
 
-#import "UIColor+UHDBrandColor.h"
-#import "UIColor+UHDFavouriteColor.h"
+#import "UIColor+UHDColors.h"
 
 
 // Swift classes

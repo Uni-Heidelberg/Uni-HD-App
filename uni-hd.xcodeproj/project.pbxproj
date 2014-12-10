@@ -61,7 +61,7 @@
 		8799DAA9192ABCBA009B3CAB /* UHDPersistentStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FF70FD1924097E00FCF5F4 /* UHDPersistentStack.m */; };
 		8799DAAA192ABDE9009B3CAB /* VILogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F826E9190D700E0008144F /* VILogger.m */; };
 		87A8633819196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A8633719196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m */; };
-		87B276CF192E04110057B505 /* UIColor+UHDBrandColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B276CE192E04110057B505 /* UIColor+UHDBrandColor.m */; };
+		87B276CF192E04110057B505 /* UIColor+UHDColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B276CE192E04110057B505 /* UIColor+UHDColors.m */; };
 		87B974E5192D57330080AA40 /* UHDRemoteDatasourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B974E4192D57330080AA40 /* UHDRemoteDatasourceManager.m */; };
 		87B974E8192D5A360080AA40 /* VIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B974E7192D5A360080AA40 /* VIManager.m */; };
 		87CBE08C1908810B0029D9AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08B1908810B0029D9AF /* Foundation.framework */; };
@@ -101,7 +101,6 @@
 		DC87FDF8191AA00600019F32 /* mensa.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC87FDF7191AA00600019F32 /* mensa.storyboard */; };
 		DC94C7E7195B20D300615056 /* UHDMensaDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC94C7E6195B20D300615056 /* UHDMensaDetailViewController.m */; };
 		DCD00AA01996605400DCCB24 /* UHDFavouriteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD00A9F1996605400DCCB24 /* UHDFavouriteCell.m */; };
-		DCD00AA41996911900DCCB24 /* UIColor+UHDFavouriteColor.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD00AA31996911900DCCB24 /* UIColor+UHDFavouriteColor.m */; };
 		DCD00AA71996996800DCCB24 /* UHDMensaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD00AA61996996800DCCB24 /* UHDMensaCell.m */; };
 /* End PBXBuildFile section */
 
@@ -235,8 +234,8 @@
 		8799DAA7192AB4F8009B3CAB /* UHDDatabaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDDatabaseTests.m; sourceTree = "<group>"; };
 		87A8633619196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+VIInsertIntoContextCategory.h"; path = "VIOSFramework/Categories/NSManagedObject+VIInsertIntoContextCategory/NSManagedObject+VIInsertIntoContextCategory.h"; sourceTree = "<group>"; };
 		87A8633719196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+VIInsertIntoContextCategory.m"; path = "VIOSFramework/Categories/NSManagedObject+VIInsertIntoContextCategory/NSManagedObject+VIInsertIntoContextCategory.m"; sourceTree = "<group>"; };
-		87B276CD192E04110057B505 /* UIColor+UHDBrandColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+UHDBrandColor.h"; sourceTree = "<group>"; };
-		87B276CE192E04110057B505 /* UIColor+UHDBrandColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+UHDBrandColor.m"; sourceTree = "<group>"; };
+		87B276CD192E04110057B505 /* UIColor+UHDColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+UHDColors.h"; sourceTree = "<group>"; };
+		87B276CE192E04110057B505 /* UIColor+UHDColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+UHDColors.m"; sourceTree = "<group>"; };
 		87B974E3192D57330080AA40 /* UHDRemoteDatasourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDRemoteDatasourceManager.h; sourceTree = "<group>"; };
 		87B974E4192D57330080AA40 /* UHDRemoteDatasourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDRemoteDatasourceManager.m; sourceTree = "<group>"; };
 		87B974E6192D5A360080AA40 /* VIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIManager.h; path = VIOSFramework/Managers/VIManager.h; sourceTree = "<group>"; };
@@ -305,8 +304,6 @@
 		DC94C7E6195B20D300615056 /* UHDMensaDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMensaDetailViewController.m; sourceTree = "<group>"; };
 		DCD00A9E1996605400DCCB24 /* UHDFavouriteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDFavouriteCell.h; sourceTree = "<group>"; };
 		DCD00A9F1996605400DCCB24 /* UHDFavouriteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDFavouriteCell.m; sourceTree = "<group>"; };
-		DCD00AA21996911900DCCB24 /* UIColor+UHDFavouriteColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+UHDFavouriteColor.h"; sourceTree = "<group>"; };
-		DCD00AA31996911900DCCB24 /* UIColor+UHDFavouriteColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+UHDFavouriteColor.m"; sourceTree = "<group>"; };
 		DCD00AA51996996700DCCB24 /* UHDMensaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMensaCell.h; sourceTree = "<group>"; };
 		DCD00AA61996996800DCCB24 /* UHDMensaCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMensaCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -379,7 +376,7 @@
 			name = "Configure Map";
 			sourceTree = "<group>";
 		};
-		0B84B30619939B8300813CC2 /* Maps */ = {
+		0B84B30619939B8300813CC2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				87FCA99119958EB100B3A55F /* Maps.xcdatamodeld */,
@@ -392,7 +389,7 @@
 				0BAB274A19A7296600CAB517 /* UHDLocationCategory.h */,
 				0BAB274B19A7296600CAB517 /* UHDLocationCategory.m */,
 			);
-			name = Maps;
+			name = Model;
 			sourceTree = "<group>";
 		};
 		0B92851A18BB90357BD92164 /* Pods */ = {
@@ -440,20 +437,20 @@
 			name = "Table View Cells";
 			sourceTree = "<group>";
 		};
-		872673251A36050500ABC599 /* Settings */ = {
+		872673251A36050500ABC599 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
 				872673261A36053800ABC599 /* UHDSettingsViewController.swift */,
 			);
-			name = Settings;
+			name = "View Controller";
 			sourceTree = "<group>";
 		};
-		872673281A36054B00ABC599 /* Settings */ = {
+		872673281A36054B00ABC599 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				872673291A36055B00ABC599 /* settings.storyboard */,
 			);
-			name = Settings;
+			name = View;
 			sourceTree = "<group>";
 		};
 		8733B3F019F9FFD6007263AC /* CircularProgressView */ = {
@@ -539,6 +536,66 @@
 			name = "News Sources";
 			sourceTree = "<group>";
 		};
+		875C08DA1A38BBEE00F08EBE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				DC87FDF7191AA00600019F32 /* mensa.storyboard */,
+				87EBB04719D22D9B00F5E3AD /* Table View Cells */,
+				8733B3F819FA116A007263AC /* Favourite Mensen */,
+				8733B3F419FA10F6007263AC /* Day Picker */,
+				8733B3F719FA1114007263AC /* Hours Progress */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		875C08DB1A38BC1100F08EBE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				87DBE7F31919C3F700C16970 /* news.storyboard */,
+				0AF7D4371A0C43D800BD8423 /* Sources Navigation Bar */,
+				871BE3AA19E4F295005A600A /* Table View Cells */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		875C08DC1A38BC2800F08EBE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				87E85273195727E4007503B8 /* maps.storyboard */,
+				875C08DD1A38BC3600F08EBE /* Table View Cells */,
+				875C08DE1A38BC4200F08EBE /* Map View */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		875C08DD1A38BC3600F08EBE /* Table View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				0B355879199BC923008053EE /* UHDBuildingCell.h */,
+				0B35587A199BC923008053EE /* UHDBuildingCell.m */,
+			);
+			name = "Table View Cells";
+			sourceTree = "<group>";
+		};
+		875C08DE1A38BC4200F08EBE /* Map View */ = {
+			isa = PBXGroup;
+			children = (
+				877AEE8619BD370300ED270D /* UHDBuildingAnnotationView.h */,
+				877AEE8719BD370300ED270D /* UHDBuildingAnnotationView.m */,
+				876799121A28EB4400372BD3 /* CampusRegionOverlayRenderer.swift */,
+			);
+			name = "Map View";
+			sourceTree = "<group>";
+		};
+		875C08DF1A38BC9200F08EBE /* Colors */ = {
+			isa = PBXGroup;
+			children = (
+				87B276CD192E04110057B505 /* UIColor+UHDColors.h */,
+				87B276CE192E04110057B505 /* UIColor+UHDColors.m */,
+			);
+			name = Colors;
+			sourceTree = "<group>";
+		};
 		87902D841A25332100186CC5 /* CachedTileOverlay */ = {
 			isa = PBXGroup;
 			children = (
@@ -550,9 +607,9 @@
 		8799DA8D192AB1DB009B3CAB /* News */ = {
 			isa = PBXGroup;
 			children = (
-				87DBE7F31919C3F700C16970 /* news.storyboard */,
-				0AF7D4371A0C43D800BD8423 /* Sources Navigation Bar */,
-				871BE3AA19E4F295005A600A /* Table View Cells */,
+				87FF70F81923EFE500FCF5F4 /* View Controller */,
+				875C08DB1A38BC1100F08EBE /* View */,
+				DC21B6A41923CDA800BAD26D /* Model */,
 			);
 			name = News;
 			sourceTree = "<group>";
@@ -560,11 +617,9 @@
 		8799DA8E192AB1E8009B3CAB /* Mensa */ = {
 			isa = PBXGroup;
 			children = (
-				DC87FDF7191AA00600019F32 /* mensa.storyboard */,
-				87EBB04719D22D9B00F5E3AD /* Table View Cells */,
-				8733B3F819FA116A007263AC /* Favourite Mensen */,
-				8733B3F419FA10F6007263AC /* Day Picker */,
-				8733B3F719FA1114007263AC /* Hours Progress */,
+				87FF70F71923EFD600FCF5F4 /* View Controller */,
+				875C08DA1A38BBEE00F08EBE /* View */,
+				DC21B6A31923CC8700BAD26D /* Model */,
 			);
 			name = Mensa;
 			sourceTree = "<group>";
@@ -589,15 +644,13 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		87B276CC192E03E90057B505 /* Global */ = {
+		87B276CC192E03E90057B505 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				87B276CD192E04110057B505 /* UIColor+UHDBrandColor.h */,
-				87B276CE192E04110057B505 /* UIColor+UHDBrandColor.m */,
-				DCD00AA21996911900DCCB24 /* UIColor+UHDFavouriteColor.h */,
-				DCD00AA31996911900DCCB24 /* UIColor+UHDFavouriteColor.m */,
+				875F43B61A1BD250006C4112 /* LaunchScreen.storyboard */,
+				875C08DF1A38BC9200F08EBE /* Colors */,
 			);
-			name = Global;
+			name = View;
 			sourceTree = "<group>";
 		};
 		87B974E9192D5A3F0080AA40 /* VIManager */ = {
@@ -670,9 +723,11 @@
 			children = (
 				87CBE09A1908810B0029D9AF /* UHDAppDelegate.h */,
 				87CBE09B1908810B0029D9AF /* UHDAppDelegate.m */,
-				87EE2557191924E90092DF7F /* View Controller */,
-				87DBE7F51919C40100C16970 /* View */,
-				87F826CB190D40B40008144F /* Model */,
+				8799DA8E192AB1E8009B3CAB /* Mensa */,
+				8799DA8D192AB1DB009B3CAB /* News */,
+				87E85272195727D4007503B8 /* Maps */,
+				87EE2557191924E90092DF7F /* Settings */,
+				87DBE7F51919C40100C16970 /* Global */,
 				87CBE0A91908810B0029D9AF /* Images.xcassets */,
 				87CBE0921908810B0029D9AF /* Supporting Files */,
 			);
@@ -691,33 +746,26 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		87DBE7F51919C40100C16970 /* View */ = {
+		87DBE7F51919C40100C16970 /* Global */ = {
 			isa = PBXGroup;
 			children = (
-				8799DA8E192AB1E8009B3CAB /* Mensa */,
-				8799DA8D192AB1DB009B3CAB /* News */,
-				87E85272195727D4007503B8 /* Maps */,
-				872673281A36054B00ABC599 /* Settings */,
-				87B276CC192E03E90057B505 /* Global */,
-				875F43B61A1BD250006C4112 /* LaunchScreen.storyboard */,
+				87B276CC192E03E90057B505 /* View */,
+				87F826CB190D40B40008144F /* Model */,
 			);
-			name = View;
+			name = Global;
 			sourceTree = "<group>";
 		};
 		87E85272195727D4007503B8 /* Maps */ = {
 			isa = PBXGroup;
 			children = (
-				87E85273195727E4007503B8 /* maps.storyboard */,
-				0B355879199BC923008053EE /* UHDBuildingCell.h */,
-				0B35587A199BC923008053EE /* UHDBuildingCell.m */,
-				877AEE8619BD370300ED270D /* UHDBuildingAnnotationView.h */,
-				877AEE8719BD370300ED270D /* UHDBuildingAnnotationView.m */,
-				876799121A28EB4400372BD3 /* CampusRegionOverlayRenderer.swift */,
+				87E852771957295B007503B8 /* View Controller */,
+				875C08DC1A38BC2800F08EBE /* View */,
+				0B84B30619939B8300813CC2 /* Model */,
 			);
 			name = Maps;
 			sourceTree = "<group>";
 		};
-		87E852771957295B007503B8 /* Maps */ = {
+		87E852771957295B007503B8 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
 				87FCA990199578C200B3A55F /* Map View */,
@@ -725,7 +773,7 @@
 				0B48B1CA19C75BA4009C7977 /* Configure Map */,
 				0B13624919B4AEF3000ECC3A /* Building Detail */,
 			);
-			name = Maps;
+			name = "View Controller";
 			sourceTree = "<group>";
 		};
 		87EBB04319D1E1E000F5E3AD /* Mensa View */ = {
@@ -781,15 +829,13 @@
 			name = "Table View Cells";
 			sourceTree = "<group>";
 		};
-		87EE2557191924E90092DF7F /* View Controller */ = {
+		87EE2557191924E90092DF7F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				87FF70F71923EFD600FCF5F4 /* Mensa */,
-				87FF70F81923EFE500FCF5F4 /* News */,
-				87E852771957295B007503B8 /* Maps */,
-				872673251A36050500ABC599 /* Settings */,
+				872673251A36050500ABC599 /* View Controller */,
+				872673281A36054B00ABC599 /* View */,
 			);
-			name = "View Controller";
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		87EE255F1919439B0092DF7F /* Categories */ = {
@@ -808,9 +854,6 @@
 			children = (
 				8701CE4D190C00AF00A18F82 /* Data Persistence */,
 				87B974EA192D68C30080AA40 /* Remote Datasources */,
-				DC21B6A41923CDA800BAD26D /* News */,
-				DC21B6A31923CC8700BAD26D /* Mensa */,
-				0B84B30619939B8300813CC2 /* Maps */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -849,7 +892,7 @@
 			name = "Map View";
 			sourceTree = "<group>";
 		};
-		87FF70F71923EFD600FCF5F4 /* Mensa */ = {
+		87FF70F71923EFD600FCF5F4 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
 				87EBB04319D1E1E000F5E3AD /* Mensa View */,
@@ -857,20 +900,20 @@
 				87EBB04519D1E1F100F5E3AD /* Daily Menu */,
 				87EBB04619D1E1F900F5E3AD /* Mensa List */,
 			);
-			name = Mensa;
+			name = "View Controller";
 			sourceTree = "<group>";
 		};
-		87FF70F81923EFE500FCF5F4 /* News */ = {
+		87FF70F81923EFE500FCF5F4 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
 				875395FD1932B00400DFEF19 /* News List */,
 				875395FE1932B00F00DFEF19 /* News Detail */,
 				875395FF1932B01700DFEF19 /* News Sources */,
 			);
-			name = News;
+			name = "View Controller";
 			sourceTree = "<group>";
 		};
-		DC21B6A31923CC8700BAD26D /* Mensa */ = {
+		DC21B6A31923CC8700BAD26D /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				87DC1FA3191AB5C600395559 /* mensa.xcdatamodeld */,
@@ -884,10 +927,10 @@
 				DC21B6DC1923D27600BAD26D /* UHDMeal.m */,
 				8733B3F919FA13BD007263AC /* Hours.swift */,
 			);
-			name = Mensa;
+			name = Model;
 			sourceTree = "<group>";
 		};
-		DC21B6A41923CDA800BAD26D /* News */ = {
+		DC21B6A41923CDA800BAD26D /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				87F826CE190D422F0008144F /* news.xcdatamodeld */,
@@ -904,7 +947,7 @@
 				0B176E781931117700D3C916 /* UHDNewsCategory.h */,
 				0B176E791931117700D3C916 /* UHDNewsCategory.m */,
 			);
-			name = News;
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1128,7 +1171,6 @@
 				87CBE09C1908810B0029D9AF /* UHDAppDelegate.m in Sources */,
 				DCD00AA71996996800DCCB24 /* UHDMensaCell.m in Sources */,
 				87A8633819196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m in Sources */,
-				DCD00AA41996911900DCCB24 /* UIColor+UHDFavouriteColor.m in Sources */,
 				870591DF19C10922003E2906 /* VIImageOverlayRenderer.m in Sources */,
 				87DC1FA5191AB5C600395559 /* mensa.xcdatamodeld in Sources */,
 				0B355878199BC434008053EE /* UHDMapsSearchResultsViewController.m in Sources */,
@@ -1180,7 +1222,7 @@
 				0BAB274C19A7296600CAB517 /* UHDLocationCategory.m in Sources */,
 				0A5EFF321A0ECB3700A6C999 /* UHDNewsSourcesNavigationBar.m in Sources */,
 				0AE2786C192A39CB00ED1641 /* UHDNewsSource.m in Sources */,
-				87B276CF192E04110057B505 /* UIColor+UHDBrandColor.m in Sources */,
+				87B276CF192E04110057B505 /* UIColor+UHDColors.m in Sources */,
 				0A2000521920F18A0014C977 /* UHDNewsDetailViewController.m in Sources */,
 				87F826D0190D422F0008144F /* news.xcdatamodeld in Sources */,
 				87CBE0981908810B0029D9AF /* main.m in Sources */,
