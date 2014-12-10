@@ -34,8 +34,6 @@
 {
     [super viewDidLoad];
     
-    self.tableView.estimatedRowHeight = 70;
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.dataSource = self.fetchedResultsControllerDataSource;
     self.tableView.delegate = self;
     
@@ -86,13 +84,15 @@
 
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController
 {
-    //NSArray *searchTerms = [searchController.searchBar.text componentsSeparatedByString:@" "];
-    NSCharacterSet *whitespaceCharacter = [NSCharacterSet whitespaceCharacterSet];
-    NSArray *searchTerms = [searchController.searchBar.text componentsSeparatedByCharactersInSet:whitespaceCharacter];
-    NSString *predicateFormat = @"(title CONTAINS[cd] %@) OR (buildingNumber CONTAINS[cd] %@) OR (campusRegion.title CONTAINS[cd] %@) OR (campusRegion.identifier BEGINSWITH[cd] %@)";
+    self.logger.logLevel = VILogLevelVerbose;
+    
+    NSString *searchText = [searchController.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    [self.logger log:@"Updating search results for search text" object:searchText forLevel:VILogLevelVerbose];
+    NSArray *searchTerms = [searchText componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSString *predicateFormat = @"(title CONTAINS[cd] %@) OR (buildingNumber CONTAINS[cd] %@) OR (campusRegion.title CONTAINS[cd] %@) OR (campusRegion.identifier CONTAINS[cd] %@)";
     NSPredicate *predicate;
     if ([searchTerms count] == 1) {
-        NSString *term = [searchTerms objectAtIndex:0];
+        NSString *term = [searchTerms firstObject];
         predicate = [NSPredicate predicateWithFormat:predicateFormat, term, term, term, term];
     } else {
         NSMutableArray *subPredicates = [NSMutableArray array];
@@ -104,13 +104,8 @@
     }
     
     self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = predicate;
-    
-    //self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(title CONTAINS[cd] %@) OR (buildingNumber CONTAINS[cd] %@) OR (campusRegion.title CONTAINS[cd] %@) OR (campusRegion.identifier BEGINSWITH[cd] %@)", searchController.searchBar.text, searchController.searchBar.text, searchController.searchBar.text, searchController.searchBar.text];
-    //self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"subtitle CONTAINS[cd] %@", searchController.searchBar.text];
-    //LIKE[cd]
+
     [self.fetchedResultsControllerDataSource reloadData];
-    
-    
 }
 
 

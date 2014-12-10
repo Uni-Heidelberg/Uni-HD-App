@@ -255,7 +255,7 @@
         } else {
             buildingAnnotationView.annotation = building;
         }
-        //buildingAnnotationView.shouldHideImage = building == self.selectedAnnotation;
+        buildingAnnotationView.shouldHideImage = YES;
         return buildingAnnotationView;
     }
     
