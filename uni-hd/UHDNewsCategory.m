@@ -7,6 +7,7 @@
 //
 
 #import "UHDNewsCategory.h"
+#import "UHDNewsSource.h"
 
 @implementation UHDNewsCategory
 
@@ -15,6 +16,14 @@
 - (NSMutableSet *)mutableChildren
 {
     return [self mutableSetValueForKey:@"children"];
+}
+
+- (int)subscribedCount {
+    int count = 0;
+    for (UHDNewsCategory *child in self.children) {
+        count += [child subscribedCount];
+    }
+    return count;
 }
 
 @end

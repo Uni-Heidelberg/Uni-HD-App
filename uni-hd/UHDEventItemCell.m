@@ -12,12 +12,12 @@
 @interface UHDEventItemCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *abstractLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *eventImageView;
 @property (weak, nonatomic) IBOutlet UILabel *sourceLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *eventIndicatorView;
+@property (weak, nonatomic) IBOutlet UILabel *shortDateAndTimeLabel;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageSpacingLayoutConstraint;
 @property (nonatomic) CGFloat imageSpacingConstraintInitialConstant;
@@ -41,10 +41,18 @@
 	self.sourceLabel.text = item.source.title;
     
     // Configure date and time
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    dateFormatter.dateStyle = NSDateFormatterFullStyle;
-    dateFormatter.timeStyle = NSDateFormatterShortStyle;
-    self.dateLabel.text = [dateFormatter stringFromDate:item.date];
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
+	[calendar setTimeZone:timeZone];
+	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+	[dateFormatter setCalendar:calendar];
+	/*
+	NSString *formatTemplate = [NSDateFormatter dateFormatFromTemplate:@"MMMM YYYY" options:0 locale:[NSLocale currentLocale]];
+	[dateFormatter setDateFormat:formatTemplate];
+	*/
+	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+	self.shortDateAndTimeLabel.text = [dateFormatter stringFromDate:item.date];
 	
 	// Configure indicator
 	if (item.read) {

@@ -134,7 +134,6 @@
     //Create Building Object
     
     UHDBuilding *buildingItem3 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
-    buildingItem3.title = @"INF 308";
     buildingItem3.buildingNumber = @"308";
     buildingItem3.location = [[CLLocation alloc] initWithLatitude:49.417028 longitude:8.670807];
     buildingItem3.image = [UIImage imageNamed:@"INF308"];
@@ -147,7 +146,6 @@
     //Create Building Object
     
     UHDBuilding *buildingItem4 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
-    buildingItem4.title = @"INF 288";
     buildingItem4.buildingNumber = @"288";
     buildingItem4.location = [[CLLocation alloc] initWithLatitude:49.417055 longitude:8.671665];
     buildingItem4.image = [UIImage imageNamed:@"INF288"];

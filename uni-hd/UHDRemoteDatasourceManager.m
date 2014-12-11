@@ -51,11 +51,4 @@
     }
 }
 
-- (void)generateAllSampleDataIfNeeded
-{
-    for (UHDRemoteDatasource *remoteDatasource in self.allRemoteDatasources) {
-        [remoteDatasource generateSampleDataIfNeeded];
-    }
-}
-
 @end

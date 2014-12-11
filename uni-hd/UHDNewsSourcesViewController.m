@@ -14,7 +14,6 @@
 
 // Table View Cells
 #import "UHDNewsSourceCell.h"
-#import "UHDNewsSourceCell+ConfigureForSource.h"
 
 
 @interface UHDNewsSourcesViewController ()
@@ -105,6 +104,12 @@
 	} else {
 		cell = [tableView dequeueReusableCellWithIdentifier:@"categoryCell" forIndexPath:indexPath];
 		cell.textLabel.text = item.title;
+        int subscribedCount = [item subscribedCount];
+        if (subscribedCount > 0) {
+            cell.detailTextLabel.text = [NSString stringWithFormat:NSLocalizedString(@"%i abonniert", nil), subscribedCount];
+        } else {
+            cell.detailTextLabel.text = nil;
+        }
 	}
 	
 	return cell;

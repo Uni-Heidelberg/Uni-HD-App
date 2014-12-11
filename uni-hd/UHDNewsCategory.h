@@ -16,4 +16,6 @@
 
 - (NSMutableSet *)mutableChildren;
 
+- (int)subscribedCount;
+
 @end

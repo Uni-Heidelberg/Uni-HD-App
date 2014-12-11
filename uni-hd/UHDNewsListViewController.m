@@ -58,8 +58,9 @@ typedef enum : NSUInteger {
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+    
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 200;
+    self.tableView.estimatedRowHeight = 120;
 }
 
 
@@ -68,8 +69,11 @@ typedef enum : NSUInteger {
     [super viewDidLoad];
 	
 	// set date format
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
+	[calendar setTimeZone:timeZone];
 	self.sectionDateFormatter = [[NSDateFormatter alloc] init];
-	[self.sectionDateFormatter setCalendar:[NSCalendar currentCalendar]];
+	[self.sectionDateFormatter setCalendar:calendar];
 	NSString *formatTemplate = [NSDateFormatter dateFormatFromTemplate:@"MMMM YYYY" options:0 locale:[NSLocale currentLocale]];
 	[self.sectionDateFormatter setDateFormat:formatTemplate];
 	
@@ -129,9 +133,6 @@ typedef enum : NSUInteger {
 		UHDNewsDetailViewController *newsDetailVC = segue.destinationViewController;
         
         UHDEventItem *item = self.fetchedResultsControllerDataSource.selectedItem;
-		
-		//item.read = YES;
-        //[item.managedObjectContext saveToPersistentStore:NULL];
         
         newsDetailVC.newsItem = item;
 	
@@ -140,9 +141,6 @@ typedef enum : NSUInteger {
 		UHDNewsDetailViewController *newsDetailVC = segue.destinationViewController;
         
         UHDTalkItem *item = self.fetchedResultsControllerDataSource.selectedItem;
-		
-		//item.read = YES;
-        //[item.managedObjectContext saveToPersistentStore:NULL];
         
         newsDetailVC.newsItem = item;
 	}
@@ -155,36 +153,34 @@ typedef enum : NSUInteger {
 		return;
 	}
 	
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
-	[calendar setTimeZone:timeZone];
-	
-    NSDate *today = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:[NSDate date] options:0];
-    
-    NSInteger daysFromNow;
-	NSInteger minDaysFromNow = NSIntegerMax;
+	NSInteger sectioningPeriod;
+	NSInteger nearestFutureValue = NSIntegerMax;
 	id<NSFetchedResultsSectionInfo> nearestFutureSection = nil;
 	
 	for (id<NSFetchedResultsSectionInfo> section in self.fetchedResultsControllerDataSource.fetchedResultsController.sections) {
-		NSDate *date = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:((UHDNewsItem *)section.objects[0]).date options:0];
-		daysFromNow  = [calendar components:NSCalendarUnitDay fromDate:today toDate:date options:0].day;
-		if ( (daysFromNow < minDaysFromNow) && (daysFromNow >= 0) ) {
-			minDaysFromNow = daysFromNow;
+		sectioningPeriod = [[section name] integerValue] % 100;
+		if ( (sectioningPeriod < NSIntegerMax) && (sectioningPeriod >= UHDSectioningPeriodToday)) {
+			nearestFutureValue = sectioningPeriod;
 			nearestFutureSection = section;
 		}
-
 	}
+
 	NSIndexPath *indexPath;
 	
 	if (nearestFutureSection != nil) {
-		indexPath = [self.fetchedResultsControllerDataSource.fetchedResultsController indexPathForObject:nearestFutureSection.objects[0]];
+		indexPath = [self.fetchedResultsControllerDataSource.fetchedResultsController indexPathForObject:[nearestFutureSection.objects firstObject]];
 	}
 	else {
 		indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
 	}
 	
+	//[self performSelectorOnMainThread:@selector(scrollToTodayCorrection:) withObject:indexPath waitUntilDone:YES];
+	
 	[self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+	
+	// TODO: scrolling to today only works if 'cell for row at index path' has been called for today's cells
 }
+
 
 
 #pragma mark - Data Source
@@ -215,9 +211,7 @@ typedef enum : NSUInteger {
 			}
 		}
 		
-		//[fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"reducedDate" ascending:NO], [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]]];
 		[fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]]];
-		
 		
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"sectionIdentifier" cacheName:nil];
         
@@ -232,7 +226,10 @@ typedef enum : NSUInteger {
 	
 	/*
 	NSArray *sections = _fetchedResultsControllerDataSource.fetchedResultsController.sections;
-	[self.logger log:[NSString stringWithFormat:@"number of sections: %lu", [sections count]] forLevel:VILogLevelDebug];
+	for (id<NSFetchedResultsSectionInfo> section in sections) {
+		[self.logger log:[NSString stringWithFormat:@"sectionID: %@", [section name]] forLevel:VILogLevelDebug];
+		[self.logger log:[NSString stringWithFormat:@"object: %@", [[[section objects] firstObject] title]] forLevel:VILogLevelDebug];
+	}
 	*/
 	
 	return _fetchedResultsControllerDataSource;
@@ -241,26 +238,27 @@ typedef enum : NSUInteger {
 
 - (void)updateFetchedResultsControllerForChangedDisplayMode {
 
-	NSFetchRequest *fetchRequest = self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest;
-	NSEntityDescription *entityDescription;
+    if (self.fetchedResultsControllerDataSource) {
+        NSFetchRequest *fetchRequest = self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest;
+        NSEntityDescription *entityDescription;
 
-	if (self.displayMode == UHDNewsListDisplayModeEvents) {
-		entityDescription = [NSEntityDescription entityForName:[UHDEventItem entityName] inManagedObjectContext:self.managedObjectContext];
-		[fetchRequest setIncludesSubentities:YES];
-	}
-	else {
-		entityDescription = [NSEntityDescription entityForName:[UHDNewsItem entityName] inManagedObjectContext:self.managedObjectContext];
-		if (self.displayMode == UHDNewsListDisplayModeAll) {
-			[fetchRequest setIncludesSubentities:YES];
-		}
-		else {
-			[fetchRequest setIncludesSubentities:NO];
-		}
-	}
-	[fetchRequest setEntity:entityDescription];
-	
-	[self.fetchedResultsControllerDataSource reloadData];
-
+        if (self.displayMode == UHDNewsListDisplayModeEvents) {
+            entityDescription = [NSEntityDescription entityForName:[UHDEventItem entityName] inManagedObjectContext:self.managedObjectContext];
+            [fetchRequest setIncludesSubentities:YES];
+        }
+        else {
+            entityDescription = [NSEntityDescription entityForName:[UHDNewsItem entityName] inManagedObjectContext:self.managedObjectContext];
+            if (self.displayMode == UHDNewsListDisplayModeAll) {
+                [fetchRequest setIncludesSubentities:YES];
+            }
+            else {
+                [fetchRequest setIncludesSubentities:NO];
+            }
+        }
+        [fetchRequest setEntity:entityDescription];
+        
+        [self.fetchedResultsControllerDataSource reloadData];
+    }
 }
 
 
@@ -271,10 +269,12 @@ typedef enum : NSUInteger {
 	return [self.fetchedResultsControllerDataSource numberOfSectionsInTableView:tableView];
 }
 
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 	return [self.fetchedResultsControllerDataSource tableView:tableView numberOfRowsInSection:section];
 }
+
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -301,147 +301,38 @@ typedef enum : NSUInteger {
 	
 	}
 	
-	/*
-	if (self.displayMode == UHDNewsListDisplayModeNews) {
-
-        static NSString *newsCellIdentifier = @"newsCell";
-
-        UHDNewsItem *item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
-	
-        cell = [tableView dequeueReusableCellWithIdentifier:newsCellIdentifier forIndexPath:indexPath];
-		[(UHDNewsItemCell *)cell configureForItem:item];
-	
-	}
-	else {
-	
-		UHDEventItem *item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
-		
-		if ([[item entityName] isEqualToString:[UHDEventItem entityName]]) {
-			cell = [tableView dequeueReusableCellWithIdentifier:@"eventCell" forIndexPath:indexPath];
-			[(UHDEventItemCell *)cell configureForItem:item];
-		}
-		else {
-			cell = [tableView dequeueReusableCellWithIdentifier:@"talkCell" forIndexPath:indexPath];
-			[(UHDTalkItemCell *)cell configureForItem:(UHDTalkItem *)item];
-		}
-	}
-	*/
-	
 	return cell;
 }
+
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
 	id <NSFetchedResultsSectionInfo> theSection = [[self.fetchedResultsControllerDataSource.fetchedResultsController sections] objectAtIndex:section];
 	
-	NSString *sectionName = [theSection name];
+	NSInteger sectionIdentifier = [[theSection name] integerValue];
+	NSInteger year = sectionIdentifier / (100 * 100);
+	NSInteger month = (sectionIdentifier / 100) - (year * 100);
+	NSInteger sectioningPeriod = sectionIdentifier % 100;
 	
-	if ([sectionName isEqualToString:@"today"]) {
-		return NSLocalizedString(@"Heute", nil);
-	}
-	if ([sectionName isEqualToString:@"tomorrow"]) {
-		return NSLocalizedString(@"Morgen", nil);
-	}
-	if ([sectionName isEqualToString:@"yesterday"]) {
-		return NSLocalizedString(@"Gestern", nil);
-	}
-	if ([sectionName isEqualToString:@"next7days"]) {
-		return NSLocalizedString(@"Nächste 7 Tage", nil);
-	}
-	if ([sectionName isEqualToString:@"last7days"]) {
-		return NSLocalizedString(@"Letzte 7 Tage", nil);
-	}
-	
-	NSInteger numericSection = [[theSection name] integerValue];
-	NSInteger year = numericSection / 1000;
-	NSInteger month = numericSection - (year * 1000);
-    
-    NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
-    dateComponents.year = year;
-    dateComponents.month = month;
-    NSDate *sectionDate = [[NSCalendar currentCalendar] dateFromComponents:dateComponents];
-
-	NSString *titleString = [self.sectionDateFormatter stringFromDate:sectionDate];
-
-	return titleString;
-}
-
-
-# pragma mark - Sectioning
-
-- (UHDNewsDatePeriod)datePeriodForDate: (NSDate *)date {
-
-    NSCalendar *calendar = [NSCalendar currentCalendar];
-	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
-	[calendar setTimeZone:timeZone];
-	
-    NSDate *reducedDate = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:date options:0];
-    NSDate *today = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:[NSDate date] options:0];
-    
-    NSInteger daysFromNow = [calendar components:NSCalendarUnitDay fromDate:today toDate:reducedDate options:0].day;
-    switch (daysFromNow) {
-        case 1: return UHDNewsDatePeriodTomorrow;
-        case 0: return UHDNewsDatePeriodToday;
-        case -1: return UHDNewsDatePeriodYesterday;
-        default:
-            if (ABS(daysFromNow) > 7) {
-                return UHDNewsDatePeriodLaterOrEarlier;
-            } else if (daysFromNow < -1) {
-                return UHDNewsDatePeriodLast7Days;
-            } else if (daysFromNow > 1) {
-                return UHDNewsDatePeriodNext7Days;
-            }
-            return UHDNewsDatePeriodLaterOrEarlier;
-    }
-}
-
-
-@end
-
-/*
-@implementation UHDNewsItem (Sectioning)
-
-- (NSDate *)reducedDate {
-	
-	NSCalendar *calendar = [NSCalendar currentCalendar];
-	//NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
-	//[calendar setTimeZone:timeZone];
-	
-	NSDate *reducedDate = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:self.date options:0];
-	NSDate *today = [calendar dateBySettingHour:0 minute:0 second:0 ofDate:[NSDate date] options:0];
-	
-	NSInteger daysFromNow = [calendar components:NSCalendarUnitDay fromDate:today toDate:reducedDate options:0].day;
-	
-
-	if (ABS(daysFromNow) <= 1) {
-	// corresponding to 'today', 'yesterday' or 'tomorrow'
-		return reducedDate;
-	}
-	
-	NSDateComponents *reducedDateComponents;
-	
-	if (ABS(daysFromNow) > 7) {
-	// corresponding to 'earlier' or 'later'
-	
-		reducedDateComponents = [calendar components:NSCalendarUnitYear | NSCalendarUnitMonth fromDate:reducedDate];
-		reducedDate = [calendar dateFromComponents:reducedDateComponents];
-	}
-	else {
-	// corresponding to 'next 7 days' or 'last 7 days'
-	
-		// add +/- 7 days to today
-		NSDateComponents *days = [[NSDateComponents alloc] init];
-		if (daysFromNow > 0) {
-			days.day = 7;
+	switch (sectioningPeriod) {
+		case UHDSectioningPeriodToday:
+			return NSLocalizedString(@"Heute", nil);
+		case UHDSectioningPeriodTomorrow:
+			return NSLocalizedString(@"Morgen", nil);
+		case UHDSectioningPeriodYesterday:
+			return NSLocalizedString(@"Gestern", nil);
+		case UHDSectioningPeriodNext7days:
+			return NSLocalizedString(@"Nächste 7 Tage", nil);
+		case UHDSectioningPeriodLast7days:
+			return NSLocalizedString(@"Letzte 7 Tage", nil);
+		default: {
+			NSDateComponents *dateComponents = [[NSDateComponents alloc] init];
+			dateComponents.year = year;
+			dateComponents.month = month;
+			NSDate *sectionDate = [[NSCalendar currentCalendar] dateFromComponents:dateComponents];
+			return [self.sectionDateFormatter stringFromDate:sectionDate];
 		}
-		else {
-			days.day = -7;
-		}
-		reducedDate = [calendar dateByAddingComponents:days toDate:today options:0];
 	}
-	
-	return reducedDate;
 }
 
 @end
-*/

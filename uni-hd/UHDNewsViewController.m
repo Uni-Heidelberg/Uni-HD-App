@@ -52,6 +52,8 @@
     self.sourcesNavigationBar.delegate = self;
     
     [self configureView];
+	
+	[(UHDNewsListViewController *)self.pageViewController.viewControllers[0] scrollToToday];
 }
 
 - (void)configureView
@@ -63,7 +65,7 @@
 
     // set currently selected source and update sourceButton
     NSArray *currentSources = ((UHDNewsListViewController *)self.pageViewController.viewControllers[0]).sources;
-    if ([currentSources count] > 1) {
+    if (currentSources.count != 1) {
         self.sourcesNavigationBar.selectedSource = nil;
     } else {
         self.sourcesNavigationBar.selectedSource = currentSources[0];
@@ -205,8 +207,8 @@
     UIPageViewControllerNavigationDirection navigationDirection = (selectedSourceIndex > currentSourceIndex) ? UIPageViewControllerNavigationDirectionForward : UIPageViewControllerNavigationDirectionReverse;
     
     [self.pageViewController setViewControllers:@[ selectedNewsListVC ] direction:navigationDirection animated:YES completion:nil];
-	
 	[self updateSourceButton];
+	[selectedNewsListVC scrollToToday];
 }
 
 
@@ -215,6 +217,7 @@
 - (void)pageViewController:(UIPageViewController *)pageViewController didFinishAnimating:(BOOL)finished previousViewControllers:(NSArray *)previousViewControllers transitionCompleted:(BOOL)completed
 {
     [self configureView];
+	//[((UHDNewsListViewController *)self.pageViewController.viewControllers[0]) scrollToToday];	// looks strange...
 }
 
 

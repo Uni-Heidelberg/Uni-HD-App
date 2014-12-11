@@ -31,7 +31,7 @@
 	self.collectionView.delegate = self;
     self.collectionView.scrollsToTop = NO;
 	
-	self.itemWidth = 60;
+	self.itemWidth = 56;
 }
 
 
@@ -151,7 +151,8 @@
     else {
         self.selectedSource = self.sources[indexPath.row - 1];
     }
-    
+	
+	[self scrollToSelectedSource];
     [self.delegate sourcesNavigationBar:self didSelectSource:self.selectedSource];
 }
 

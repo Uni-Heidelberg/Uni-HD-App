@@ -7,15 +7,10 @@
 //
 
 @import UIKit;
-@class UHDNewsSource;
-
+#import "UHDNewsSource.h"
 
 @interface UHDNewsSourceCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet UISwitch *subscribedSwitch;
-@property (strong, nonatomic) IBOutlet UIImageView *iconImageView;
-
-@property (strong, nonatomic) UHDNewsSource *source;
+- (void)configureForSource:(UHDNewsSource *)source;
 
 @end
