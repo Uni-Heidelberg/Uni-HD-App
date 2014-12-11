@@ -295,6 +295,80 @@
 }
 
 
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
+    
+    MKMapRect mapRect = [mapView visibleMapRect];
+    
+    MKMapPoint cornerPointNE = MKMapPointMake(MKMapRectGetMaxX(mapRect), mapRect.origin.y);
+    //CLLocationCoordinate2D upperLeft = MKCoordinateForMapPoint(cornerPointNE);
+    
+    MKMapPoint cornerPointSW = MKMapPointMake(mapRect.origin.x, MKMapRectGetMaxY(mapRect));
+    //CLLocationCoordinate2D lowerRight = MKCoordinateForMapPoint(cornerPointSW);
+    
+    //double_t a = abs((upperLeft.latitude - lowerRight.latitude)/2);
+    //double_t b = abs((upperLeft.longitude - lowerRight.longitude)/2);
+    
+    double_t a = abs((cornerPointNE.y - cornerPointSW.y)/2);
+    double_t b = abs((cornerPointNE.x - cornerPointSW.x)/2);
+    
+    //MKMapPoint centerPoint = MKMapPointMake(upperLeft.latitude - a, upperLeft.longitude + b);
+    
+    MKMapPoint centerPoint = MKMapPointMake(mapRect.origin.x + b, mapRect.origin.y + a);
+    
+    CLLocationCoordinate2D center = MKCoordinateForMapPoint(centerPoint);
+    
+    
+    if ((mapView.region.span.latitudeDelta > 0.0596 ) || (mapView.region.span.longitudeDelta > 0.071736) ) {
+        //CLLocationCoordinate2D centerCoord = CLLocationCoordinate2DMake(-41.162114, 172.836914);
+        CLLocationCoordinate2D centerCoord = CLLocationCoordinate2DMake(49.4085, 8.68685);
+        //49.409133, 8.650982
+        //49.438276, 8.681709
+        MKCoordinateSpan spanOfNZ = MKCoordinateSpanMake(0.0596, 0.071736);//(13.589921, 14.062500 )
+        
+        MKCoordinateRegion NZRegion = MKCoordinateRegionMake(centerCoord, spanOfNZ);
+        
+        [mapView setRegion: NZRegion animated: YES];
+        
+    }
+        
+    if (abs(center.latitude - 49.4085) > 0.0298 ) {
+        
+    //if (abs(mapView.region.center.latitude - 49.4085) > 0.0298 ) {
+    //if (abs(abs(mapView.centerCoordinate.latitude) - 49.4085) > (0.0596 / 2) ) {
+    //if (abs(abs(mapView.visibleMapRect.origin.y) - 49.4085) > (0.0596 / 2) ) {
+        
+        CLLocationCoordinate2D centerCoord = CLLocationCoordinate2DMake(49.4085, 8.68685);
+        
+        MKCoordinateSpan spanOfNZ = MKCoordinateSpanMake(0.0596, 0.071736);
+        
+        //MKCoordinateSpan spanOfNZ = mapView.region.span;
+        
+        MKCoordinateRegion NZRegion = MKCoordinateRegionMake(centerCoord, spanOfNZ);
+        
+        [mapView setRegion: NZRegion animated: YES];
+        
+    }
+    
+    if (abs(center.longitude - 8.68685) > 0.0359 ) {
+    //if (abs(abs(mapView.centerCoordinate.longitude) - 8.68685) > 0.0359 ) {
+    
+    //if (abs(abs(mapView.region.center.longitude) - 8.68685) > (0.071736 / 2) ) {
+        
+        CLLocationCoordinate2D centerCoord = CLLocationCoordinate2DMake(49.4085, 8.68685);
+        
+        MKCoordinateSpan  spanOfNZ = MKCoordinateSpanMake(0.0596, 0.071736);
+        
+        //MKCoordinateSpan spanOfNZ = mapView.region.span;
+        
+        MKCoordinateRegion NZRegion = MKCoordinateRegionMake(centerCoord, spanOfNZ);
+        
+        [mapView setRegion: NZRegion animated: YES];
+    }
+    
+
+}
+
+
 #pragma mark - Gesture Recognizer Delegate
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
