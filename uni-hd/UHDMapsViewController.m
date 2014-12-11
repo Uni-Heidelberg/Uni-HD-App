@@ -118,6 +118,7 @@
     }
     
     
+    
     // Add building overlays to verify their map rect
     /*NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
      [self.mapView removeOverlays:allBuildings];
@@ -292,6 +293,74 @@
         return renderer;
     }
     return nil;
+}
+
+
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
+    
+    
+    if ((mapView.region.span.latitudeDelta > 0.0596 ) || (mapView.region.span.longitudeDelta > 0.071736) ) {
+        
+        CLLocationCoordinate2D centerCoord = CLLocationCoordinate2DMake(49.4085, 8.68685);
+
+        MKCoordinateSpan spanOfNZ = MKCoordinateSpanMake(0.0596, 0.071736);
+        
+        MKCoordinateRegion NZRegion = MKCoordinateRegionMake(centerCoord, spanOfNZ);
+        
+        [mapView setRegion: NZRegion animated: YES];
+        
+    }
+        
+    
+    if (mapView.region.center.latitude > 49.44 ) {
+        
+        CLLocationCoordinate2D centerCoord = CLLocationCoordinate2DMake(49.44, mapView.region.center.longitude);
+        
+        MKCoordinateSpan spanOfNZ = mapView.region.span;
+        
+        MKCoordinateRegion NZRegion = MKCoordinateRegionMake(centerCoord, spanOfNZ);
+        
+        [mapView setRegion: NZRegion animated: YES];
+        
+    }
+    
+    if (mapView.region.center.latitude < 49.4085 ) {
+        
+        CLLocationCoordinate2D centerCoord = CLLocationCoordinate2DMake(49.4085, mapView.region.center.longitude);
+        
+        MKCoordinateSpan spanOfNZ = mapView.region.span;
+        
+        MKCoordinateRegion NZRegion = MKCoordinateRegionMake(centerCoord, spanOfNZ);
+        
+        [mapView setRegion: NZRegion animated: YES];
+        
+    }
+    
+    if (mapView.region.center.longitude > 8.735 ) {
+        
+        CLLocationCoordinate2D centerCoord = CLLocationCoordinate2DMake(mapView.region.center.latitude, 8.735);
+        
+        MKCoordinateSpan spanOfNZ = mapView.region.span;
+        
+        MKCoordinateRegion NZRegion = MKCoordinateRegionMake(centerCoord, spanOfNZ);
+        
+        [mapView setRegion: NZRegion animated: YES];
+    }
+    
+    if (mapView.region.center.longitude < 8.6387 ) {
+        
+        CLLocationCoordinate2D centerCoord = CLLocationCoordinate2DMake(mapView.region.center.latitude, 8.6387);
+        
+        MKCoordinateSpan spanOfNZ = mapView.region.span;
+        
+        MKCoordinateRegion NZRegion = MKCoordinateRegionMake(centerCoord, spanOfNZ);
+        
+        [mapView setRegion: NZRegion animated: YES];
+    }
+    
+    
+    
+
 }
 
 
