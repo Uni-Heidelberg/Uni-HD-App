@@ -84,8 +84,6 @@
 
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController
 {
-    self.logger.logLevel = VILogLevelVerbose;
-    
     NSString *searchText = [searchController.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     [self.logger log:@"Updating search results for search text" object:searchText forLevel:VILogLevelVerbose];
     NSArray *searchTerms = [searchText componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];

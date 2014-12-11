@@ -58,8 +58,8 @@
 	}
     
     // Configure Image
-    self.newsImageView.image = item.thumbImage;
-	if (item.thumbImage) {
+    self.newsImageView.image = item.image;
+	if (self.newsImageView.image) {
 		self.imageSpacingLayoutConstraint.constant = self.imageSpacingConstraintInitialConstant;
 	} else {
 		self.imageSpacingLayoutConstraint.constant = 0;

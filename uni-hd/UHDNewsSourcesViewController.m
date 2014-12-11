@@ -16,7 +16,7 @@
 #import "UHDNewsSourceCell.h"
 
 
-@interface UHDNewsSourcesViewController ()
+@interface UHDNewsSourcesViewController () <UHDNewsSourceCellDelegate>
 
 @property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 
@@ -45,6 +45,13 @@
 	if ([segue.identifier isEqualToString:@"showCategory"]) {
 		[segue.destinationViewController setCategory:[self.fetchedResultsControllerDataSource selectedItem]];
 	}
+}
+
+- (void)sourceCellSubscribedValueChanged:(UHDNewsSourceCell *)cell
+{
+    UHDNewsSource *source = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:[self.tableView indexPathForCell:cell]];
+    source.subscribed = cell.subscribedSwitch.on;
+    [source.managedObjectContext saveToPersistentStore:nil];
 }
 
 #pragma mark - Data Source
@@ -100,6 +107,7 @@
 	
 	if ([[item entityName] isEqualToString:[UHDNewsSource entityName]]) {
 		cell = [tableView dequeueReusableCellWithIdentifier:@"sourceCell" forIndexPath:indexPath];
+        ((UHDNewsSourceCell *)cell).delegate = self;
 		[(UHDNewsSourceCell *)cell configureForSource:(UHDNewsSource *)item];
 	} else {
 		cell = [tableView dequeueReusableCellWithIdentifier:@"categoryCell" forIndexPath:indexPath];

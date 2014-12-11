@@ -12,9 +12,8 @@
 
 @dynamic subscribed;
 @dynamic title;
-@dynamic thumbIconData;
+@dynamic relativeImageURL, imageData;
 @dynamic newsItems;
-@dynamic category;
 
 - (NSMutableSet *)mutableNewsItems
 {
@@ -27,26 +26,37 @@
 
 #pragma mark - Convenience accessors
 
-- (UIImage *)thumbIcon
-{
-    // TODO: cache in property, but figure out correct way to overwrite core data setter method first
-    return [UIImage imageWithData:self.thumbIconData];
+- (NSURL *)imageURL {
+    if (self.relativeImageURL) {
+        return [[NSURL URLWithString:@"http://appserver.physik.uni-heidelberg.de"] URLByAppendingPathComponent:self.relativeImageURL.path]; // TODO: use constant
+    } else {
+        return nil;
+    }
 }
 
-
-- (void)setThumbIcon:(UIImage *)thumbIcon
+- (UIImage *)image
 {
-    self.thumbIconData = UIImagePNGRepresentation(thumbIcon);
+    if (self.imageData) {
+        return [UIImage imageWithData:self.imageData];
+    } else if (self.imageURL) {
+        NSURLRequest *request = [NSURLRequest requestWithURL:self.imageURL cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
+        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+            if ([(NSHTTPURLResponse *)response statusCode]==200) {
+                self.imageData = data;
+            }
+        }];
+        return nil;
+    } else {
+        return nil;
+    }
 }
 
-
-- (UHDNewsCategory *) category
+- (UHDNewsCategory *)category
 {
 	return self.parent;
 }
 
-
-- (void) setCategory:(UHDNewsCategory *)category
+- (void)setCategory:(UHDNewsCategory *)category
 {
 	self.parent = category;
 }

@@ -62,8 +62,8 @@
 	}
     
     // Configure image
-    self.eventImageView.image = item.thumbImage;
-	if (item.thumbImage) {
+    self.eventImageView.image = item.image;
+	if (self.eventImageView.image) {
 		self.imageSpacingLayoutConstraint.constant = self.imageSpacingConstraintInitialConstant;
 	} else {
 		self.imageSpacingLayoutConstraint.constant = 0;

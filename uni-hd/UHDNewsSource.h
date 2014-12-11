@@ -12,13 +12,14 @@
 
 @property (nonatomic) BOOL subscribed;
 @property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) NSData *thumbIconData;
+@property (nonatomic, retain) NSURL *relativeImageURL;
+@property (nonatomic, retain) NSData *imageData;
 @property (nonatomic, retain) NSSet *newsItems;
-@property (nonatomic) UHDNewsCategory *category;
 
 - (NSMutableSet *)mutableNewsItems;
 
-- (UIImage *)thumbIcon;
-- (void)setThumbIcon:(UIImage *)thumbIcon;
+@property (nonatomic, readonly) NSURL *imageURL;
+@property (nonatomic, readonly) UIImage *image;
+@property (nonatomic) UHDNewsCategory *category;
 
 @end

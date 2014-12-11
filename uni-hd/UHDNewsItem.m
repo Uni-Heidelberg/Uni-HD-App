@@ -23,7 +23,7 @@
 @dynamic abstract;
 @dynamic read;
 @dynamic url;
-@dynamic thumbImageData;
+@dynamic imageData, relativeImageURL;
 @dynamic source;
 @dynamic sectionIdentifier;
 
@@ -32,16 +32,29 @@
 
 #pragma mark - Convenience accessors
 
-- (UIImage *)thumbImage
-{
-    // TODO: cache in property, but figure out correct way to overwrite core data setter method first
-    return [UIImage imageWithData:self.thumbImageData];
+- (NSURL *)imageURL {
+    if (self.relativeImageURL) {
+        return [[NSURL URLWithString:@"http://appserver.physik.uni-heidelberg.de"] URLByAppendingPathComponent:self.relativeImageURL.path]; // TODO: use constant
+    } else {
+        return nil;
+    }
 }
 
-
-- (void)setThumbImage:(UIImage *)thumbImage
+- (UIImage *)image
 {
-    self.thumbImageData = UIImageJPEGRepresentation(thumbImage, 1);
+    if (self.imageData) {
+        return [UIImage imageWithData:self.imageData];
+    } else if (self.imageURL) {
+        NSURLRequest *request = [NSURLRequest requestWithURL:self.imageURL cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
+        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+            if ([(NSHTTPURLResponse *)response statusCode]==200) {
+                self.imageData = data;
+            }
+        }];
+        return nil;
+    } else {
+        return nil;
+    }
 }
 
 
