@@ -39,6 +39,8 @@
 
 @property (weak, nonatomic) id<MKAnnotation> selectedAnnotation;
 
+@property (nonatomic) BOOL isAdjustingToValidMapRegion;
+
 - (IBAction)unwindToMap:(UIStoryboardSegue *)segue;
 
 @end
@@ -296,8 +298,11 @@
 }
 
 
-- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated{
+- (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
+{
+    if (self.isAdjustingToValidMapRegion) return;
     
+    self.isAdjustingToValidMapRegion = YES;
     
     if ((mapView.region.span.latitudeDelta > 0.0596 ) || (mapView.region.span.longitudeDelta > 0.071736) ) {
         
@@ -311,7 +316,6 @@
         
     }
         
-    
     if (mapView.region.center.latitude > 49.44 ) {
         
         CLLocationCoordinate2D centerCoord = CLLocationCoordinate2DMake(49.44, mapView.region.center.longitude);
@@ -358,8 +362,7 @@
         [mapView setRegion: NZRegion animated: YES];
     }
     
-    
-    
+    self.isAdjustingToValidMapRegion = NO;
 
 }
 
