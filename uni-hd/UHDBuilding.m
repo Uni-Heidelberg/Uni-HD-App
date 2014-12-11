@@ -15,7 +15,7 @@
 @dynamic category;
 @dynamic campusRegion, buildingNumber;
 @dynamic addressDictionary;
-@dynamic imageData;
+@dynamic imageData, relativeImageURL;
 @dynamic spanLatitude, spanLongitude;
 
 
@@ -25,8 +25,29 @@
     return [NSString stringWithFormat:@"%@ %@", self.campusRegion.identifier, self.buildingNumber];
 }
 
-- (UIImage *)image {
-    return [UIImage imageWithData:self.imageData];
+- (NSURL *)imageURL {
+    if (self.relativeImageURL) {
+        return [[NSURL URLWithString:@"http://appserver.physik.uni-heidelberg.de"] URLByAppendingPathComponent:self.relativeImageURL.path]; // TODO: use constant
+    } else {
+        return nil;
+    }
+}
+
+- (UIImage *)image
+{
+    if (self.imageData) {
+        return [UIImage imageWithData:self.imageData];
+    } else if (self.imageURL) {
+        NSURLRequest *request = [NSURLRequest requestWithURL:self.imageURL cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:60];
+        [NSURLConnection sendAsynchronousRequest:request queue:[NSOperationQueue currentQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+            if ([(NSHTTPURLResponse *)response statusCode]==200) {
+                self.imageData = data;
+            }
+        }];
+        return nil;
+    } else {
+        return nil;
+    }
 }
 
 - (void)setImage:(UIImage *)image {

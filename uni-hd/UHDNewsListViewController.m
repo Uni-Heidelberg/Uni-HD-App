@@ -226,10 +226,11 @@ typedef enum : NSUInteger {
 */
 
 
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+// did this help ?
+/*- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
 	UHDNewsItem *item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
-	if (item.thumbImage != nil) {
+	if (item.image != nil) {
 		return 200;
 	}
 	
@@ -252,7 +253,7 @@ typedef enum : NSUInteger {
 	}
 	
 	return 160;
-}
+}*/
 
 
 #pragma mark - Data Source

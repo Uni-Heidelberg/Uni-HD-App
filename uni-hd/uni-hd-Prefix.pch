@@ -17,7 +17,7 @@
 #import "VILogger.h"
 
 
-#define UHDRemoteBaseURL @"http://appserver.physik.uni-heidelberg.de/api/"
+#define UHDRemoteAPIBaseURL @"http://appserver.physik.uni-heidelberg.de/api/"
 #define UHDRemoteStaticContentBaseURL @"http://appserver.physik.uni-heidelberg.de/static/"
 
 #define UHDRemoteDatasourceKeyNews @"UHDRemoteDatasourceKeyNews"

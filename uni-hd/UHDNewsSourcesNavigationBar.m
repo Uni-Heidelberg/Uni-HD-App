@@ -98,9 +98,9 @@
             cell.sourceIconImageView.alpha = 0.3;
         }
         
-        if (source.thumbIcon != nil) {
+        if (source.image != nil) {
             cell.sourceIconImageView.backgroundColor = [UIColor groupTableViewBackgroundColor];
-            cell.sourceIconImageView.image = source.thumbIcon;
+            cell.sourceIconImageView.image = source.image;
         }
         else {
             cell.sourceIconImageView.backgroundColor = [UIColor whiteColor];

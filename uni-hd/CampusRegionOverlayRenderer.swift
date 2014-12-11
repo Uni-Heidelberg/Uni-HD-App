@@ -27,7 +27,7 @@ class CampusRegionOverlayRenderer: MKTileOverlayRenderer {
     
     init(campusRegion: UHDCampusRegion) {
 
-        let tileOverlay = CachedTileOverlay(URLTemplate: "http://appserver.physik.uni-heidelberg.de/static/map-tiles/\(campusRegion.identifier.lowercaseString)/{z}/{x}/{y}.png", cacheIdentifier: campusRegion.identifier) // TODO: use UHDRemoteStaticContentBaseURL
+        let tileOverlay = CachedTileOverlay(URLTemplate: "http://appserver.physik.uni-heidelberg.de/static/map-tiles/\(campusRegion.identifier)/{z}/{x}/{y}.png", cacheIdentifier: campusRegion.identifier) // TODO: use UHDRemoteStaticContentBaseURL
         tileOverlay.geometryFlipped = true
         tileOverlay.minimumZ = 15
         tileOverlay.maximumZ = 20

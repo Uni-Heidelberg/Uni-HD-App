@@ -41,7 +41,7 @@
     // UHDNewsSource
     
     RKEntityMapping *newsSourceMapping = [RKEntityMapping mappingForEntityForName:[UHDNewsSource entityName] inManagedObjectStore:objectManager.managedObjectStore];
-    [newsSourceMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId", @"name": @"title"}];
+    [newsSourceMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId", @"name": @"title", @"image.url": @"relativeImageURL"}];
     [newsSourceMapping addAttributeMappingsFromArray:@[ @"categoryId" ]];
     newsSourceMapping.identificationAttributes = @[ @"remoteObjectId" ];
     newsSourceMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", newsSourceMapping.entity];
@@ -122,7 +122,6 @@
     newsSource.title = @"[SAMPLE] Fakultät für Physik und Astronomie";
     newsSource.category = newsCategory;
     newsSource.subscribed = YES;
-    newsSource.thumbIcon = [UIImage imageNamed:@"physFakIcon"];
 
     // Create NewsArticles
     UHDNewsItem *newsItem = [UHDNewsItem insertNewObjectIntoContext:managedObjectContext];
@@ -130,7 +129,7 @@
     newsItem.abstract = @"But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness.";
     newsItem.date = [NSDate date];
     newsItem.url = [NSURL URLWithString:@"http://www.loremipsum.de/index_e.html"];
-    newsItem.thumbImage = [UIImage imageNamed:@"kip"];
+    //newsItem.thumbImage = [UIImage imageNamed:@"kip"];
     newsItem.source = newsSource;
     
     newsItem = [UHDNewsItem insertNewObjectIntoContext:managedObjectContext];
@@ -150,7 +149,6 @@
 	
 	newsSource = [UHDNewsSource insertNewObjectIntoContext:managedObjectContext];
 	newsSource.title = @"[SAMPLE] Physikalisches Kolloquium";
-	newsSource.thumbIcon = [UIImage imageNamed:@"physInstIcon.png"];
 	newsSource.category = collocs;
 	newsSource.subscribed = YES;
 	
@@ -159,7 +157,7 @@
 	talkItem.abstract = @"A exciting film about the LHC at CERN.";
     talkItem.date = [NSDate dateWithTimeIntervalSinceReferenceDate:409251600];
     talkItem.url = [NSURL URLWithString:@"http://www.physi.uni-heidelberg.de/Veranstaltungen/Ankuendigungen/Kaplan_20.12.2013.pdf"];
-    talkItem.thumbImage = [UIImage imageNamed:@"particleFever"];
+    //talkItem.thumbImage = [UIImage imageNamed:@"particleFever"];
     talkItem.source = newsSource;
 	talkItem.location = @"INF 308, Hörsaal 1";
 	
@@ -175,7 +173,6 @@
 	// Create further talk
 	newsSource = [UHDNewsSource insertNewObjectIntoContext:managedObjectContext];
 	newsSource.title = @"[SAMPLE] Heidelberg Joint Astronomical Colloquium";
-	newsSource.thumbIcon = [UIImage imageNamed:@"zahIcon"];
 	newsSource.category = collocs;
 	newsSource.subscribed = YES;
 	
@@ -184,7 +181,7 @@
 	//talkItem.abstract = @"This talk is about fundamental mechanisms in the dynamic of quantum many-body systems.";
     talkItem.date = [NSDate dateWithTimeIntervalSinceReferenceDate:426470417];
     talkItem.url = [NSURL URLWithString:@"http://www.ita.uni-heidelberg.de/~dullemond/hjac.shtml?lang=de"];
-    talkItem.thumbImage = [UIImage imageNamed:@"astroTalk"];
+    //talkItem.thumbImage = [UIImage imageNamed:@"astroTalk"];
     talkItem.source = newsSource;
 	talkItem.location = @"Haus der Astronomie on the Königstuhl";
 
@@ -205,7 +202,6 @@
     newsSource.title = @"[SAMPLE] Universität Heidelberg";
     newsSource.category = newsCategory;
     newsSource.subscribed = YES;
-    newsSource.thumbIcon = [UIImage imageNamed:@"uhdIcon"];
 	
 	    
     // Create further NewsArticles
@@ -215,13 +211,12 @@
     newsItem.date = [NSDate dateWithTimeIntervalSinceReferenceDate:(-2000*365.25*24*3600)];
     newsItem.url = [NSURL URLWithString:@"http://www.uni-heidelberg.de"];
     newsItem.source = newsSource;
-    newsItem.thumbImage = [UIImage imageNamed:@"heidelberg"];
+    //newsItem.thumbImage = [UIImage imageNamed:@"heidelberg"];
 	
 	
 	// Create Events
 	newsSource = [UHDNewsSource insertNewObjectIntoContext:managedObjectContext];
 	newsSource.title = @"[SAMPLE] Studentenwerk";
-	newsSource.thumbIcon = [UIImage imageNamed:@"studentenwerkIcon"];
 	newsSource.subscribed = YES;
 	newsSource.category = newsCategory;
 	
@@ -229,7 +224,7 @@
 	eventItem.title = @"[SAMPLE] Public Viewing WM-Finale 2014";
 	eventItem.date = [NSDate dateWithTimeIntervalSinceReferenceDate:426556822];
 	eventItem.url = [NSURL URLWithString:@"http://de.fifa.com/worldcup/matches/index.html"];
-	eventItem.thumbImage = [UIImage imageNamed:@"WM2014"];
+	//eventItem.thumbImage = [UIImage imageNamed:@"WM2014"];
 	eventItem.source = newsSource;
 	eventItem.location = @"Café Botanik im Neuenheimer Feld";
 	//eventItem.abstract = @"Ein wahrhaft packendes Spiel - am Ende kann man nur sagen: Super, Mario!";

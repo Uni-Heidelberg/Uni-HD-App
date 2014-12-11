@@ -17,12 +17,14 @@
 @property (nonatomic, retain) NSDictionary *addressDictionary;
 @property (nonatomic, retain) NSString *buildingNumber;
 @property (nonatomic, retain) NSData *imageData;
+@property (nonatomic, retain) NSURL *relativeImageURL;
 @property (nonatomic) double_t spanLatitude;
 @property (nonatomic) double_t spanLongitude;
 
 // Computed Properties
 @property (readonly) NSString *campusIdentifier; // calculated by combining the campus region's identifier and the building number
-@property (nonatomic) UIImage *image;
+@property (nonatomic) UIImage *image; // TODO: make readonly and transient as soon as sample data is not necessary anymore
+@property (nonatomic, readonly) NSURL *imageURL;
 @property (nonatomic) MKCoordinateRegion coordinateRegion;
 
 @end
