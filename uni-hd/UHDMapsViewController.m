@@ -307,15 +307,11 @@
     if (!self.isAdjustingToValidMapRegion) {
     
         MKCoordinateRegion restrictedRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(49.410029, 8.677434), 5000, 5000);
-    
         BOOL adjustRegion = NO;
-        if ((mapView.region.span.latitudeDelta > restrictedRegion.span.latitudeDelta * 4) || (mapView.region.span.longitudeDelta > restrictedRegion.span.longitudeDelta * 4) ) {
+        if ((mapView.region.span.latitudeDelta > restrictedRegion.span.latitudeDelta * 2) || (mapView.region.span.longitudeDelta > restrictedRegion.span.longitudeDelta * 2) ) {
             adjustRegion = YES;
         }
-        if (fabs(mapView.region.center.latitude - restrictedRegion.center.latitude) > restrictedRegion.span.latitudeDelta) {
-            adjustRegion = YES;
-        }
-        if (fabs(mapView.region.center.longitude - restrictedRegion.center.longitude) > restrictedRegion.span.longitudeDelta) {
+        if (!MKMapRectIntersectsRect(self.mapView.visibleMapRect, MKMapRectForCoordinateRegion(restrictedRegion))) {
             adjustRegion = YES;
         }
         if (adjustRegion) {
