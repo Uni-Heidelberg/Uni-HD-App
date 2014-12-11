@@ -23,6 +23,8 @@
 
 - (void)configureView;
 
+- (IBAction)refreshControlValueChanged:(id)sender;
+
 @end
 
 
@@ -122,6 +124,12 @@
     [self presentViewController:alertController animated:YES completion:nil];
 }
 
+- (IBAction)refreshControlValueChanged:(UIRefreshControl *)sender
+{
+    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyMensa] refreshWithCompletion:^(BOOL success, NSError *error) {
+        [sender endRefreshing];
+    }];
+}
 
 #pragma mark - Index Path to Model Conversion
 

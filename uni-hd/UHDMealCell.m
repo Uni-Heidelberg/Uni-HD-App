@@ -26,6 +26,11 @@
 
 - (void)configureForMeal:(UHDMeal *)meal
 {
+    UIFontDescriptor *fontDescriptor = [UIFontDescriptor preferredFontDescriptorWithTextStyle:UIFontTextStyleBody];
+    if (meal.isMain) {
+        fontDescriptor = [fontDescriptor fontDescriptorWithSymbolicTraits:UIFontDescriptorTraitBold];
+    }
+    self.titleLabel.font = [UIFont fontWithDescriptor:fontDescriptor size:0];
     self.titleLabel.text = meal.title;
     self.priceLabel.text = meal.localizedPriceDescription;
     self.extrasLabel.text = meal.localizedExtrasDescription;

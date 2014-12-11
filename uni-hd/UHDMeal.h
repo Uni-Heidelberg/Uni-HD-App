@@ -16,6 +16,7 @@
 @property (nonatomic, retain) NSNumber *priceGuest;
 @property (nonatomic) BOOL isFavourite;
 @property (nonatomic) BOOL isVegetarian;
+@property (nonatomic) BOOL isMain;
 
 @property (nonatomic, retain) NSSet *menus;
 - (NSMutableSet *)mutableMenus;

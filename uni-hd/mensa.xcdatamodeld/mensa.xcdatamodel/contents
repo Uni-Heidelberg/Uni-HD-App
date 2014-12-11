@@ -9,6 +9,7 @@
     </entity>
     <entity name="UHDMeal" representedClassName="UHDMeal" syncable="YES">
         <attribute name="isFavourite" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
+        <attribute name="isMain" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="isVegetarian" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <attribute name="priceBed" optional="YES" attributeType="Float" syncable="YES"/>
         <attribute name="priceGuest" optional="YES" attributeType="Float" syncable="YES"/>
@@ -35,7 +36,7 @@
     </entity>
     <elements>
         <element name="UHDDailyMenu" positionX="-54" positionY="-36" width="128" height="118"/>
-        <element name="UHDMeal" positionX="124" positionY="-36" width="128" height="163"/>
+        <element name="UHDMeal" positionX="124" positionY="-36" width="128" height="178"/>
         <element name="UHDMensa" positionX="-414" positionY="-36" width="128" height="148"/>
         <element name="UHDMensaSection" positionX="-236" positionY="-36" width="128" height="118"/>
     </elements>

@@ -41,7 +41,7 @@
 
 - (NSLayoutConstraint *)favouriteSymbolHiddenConstraint {
     if (!_favouriteSymbolHiddenConstraint) {
-        self.favouriteSymbolHiddenConstraint = [NSLayoutConstraint constraintWithItem:self.mensaLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.mensaLabel.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
+        self.favouriteSymbolHiddenConstraint = [NSLayoutConstraint constraintWithItem:self.distanceLabel attribute:NSLayoutAttributeLeading relatedBy:NSLayoutRelationEqual toItem:self.distanceLabel.superview attribute:NSLayoutAttributeLeading multiplier:1 constant:0];
     }
     return _favouriteSymbolHiddenConstraint;
 }

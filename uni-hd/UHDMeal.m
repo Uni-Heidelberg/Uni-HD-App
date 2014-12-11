@@ -15,8 +15,7 @@
 
 @dynamic title;
 @dynamic menus;
-@dynamic isFavourite;
-@dynamic isVegetarian;
+@dynamic isFavourite, isVegetarian, isMain;
 @dynamic priceStud, priceBed, priceGuest;
 
 - (NSMutableSet *)mutableMenus

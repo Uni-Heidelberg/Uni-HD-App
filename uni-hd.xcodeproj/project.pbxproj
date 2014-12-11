@@ -891,9 +891,9 @@
 			isa = PBXGroup;
 			children = (
 				87EBB04319D1E1E000F5E3AD /* Mensa View */,
+				87EBB04619D1E1F900F5E3AD /* Mensa List */,
 				87EBB04419D1E1E800F5E3AD /* Mensa Detail */,
 				87EBB04519D1E1F100F5E3AD /* Daily Menu */,
-				87EBB04619D1E1F900F5E3AD /* Mensa List */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
