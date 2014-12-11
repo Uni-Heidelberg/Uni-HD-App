@@ -18,6 +18,7 @@
 #import "UHDNewsItemCell.h"
 #import "UHDEventItemCell.h"
 #import "UHDTalkItemCell.h"
+#import "UHDTalkSpeaker.h"
 
 
 typedef enum : NSUInteger {
@@ -40,17 +41,10 @@ typedef enum : NSUInteger {
 
 - (IBAction)refreshControlValueChanged:(id)sender;
 
-@end
-
-
-/*
-// category on UHDNewsItem
-@interface UHDNewsItem (Sectioning)
-
-@property (nonatomic, readonly) NSDate *reducedDate;
+//@property (strong, nonatomic) NSMutableDictionary *tableViewRowHeightCache;
 
 @end
-*/
+
 
 
 @implementation UHDNewsListViewController
@@ -60,7 +54,14 @@ typedef enum : NSUInteger {
     [super awakeFromNib];
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 120;
+    self.tableView.estimatedRowHeight = 160;
+	
+}
+
+
+- (void)viewWillAppear:(BOOL)animated {
+	[super viewWillAppear:animated];
+	[self.tableView reloadData];
 }
 
 
@@ -166,21 +167,92 @@ typedef enum : NSUInteger {
 	}
 
 	NSIndexPath *indexPath;
+	NSUInteger sectionIndex;
 	
 	if (nearestFutureSection != nil) {
 		indexPath = [self.fetchedResultsControllerDataSource.fetchedResultsController indexPathForObject:[nearestFutureSection.objects firstObject]];
+		sectionIndex = [self.fetchedResultsControllerDataSource.fetchedResultsController.sections indexOfObject:nearestFutureSection];
 	}
 	else {
 		indexPath = [NSIndexPath indexPathForItem:0 inSection:0];
+		sectionIndex = 0;
 	}
-	
-	//[self performSelectorOnMainThread:@selector(scrollToTodayCorrection:) withObject:indexPath waitUntilDone:YES];
 	
 	[self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
 	
-	// TODO: scrolling to today only works if 'cell for row at index path' has been called for today's cells
+	/*
+	UHDNewsItemCell *cell;
+	NSIndexPath *tempIndexPath;
+	for (UHDNewsItem *item in self.fetchedResultsControllerDataSource.fetchedResultsController.fetchedObjects) {
+		tempIndexPath = [self.fetchedResultsControllerDataSource.fetchedResultsController indexPathForObject:item];
+		cell = (UHDNewsItemCell *) [self.tableView cellForRowAtIndexPath:tempIndexPath];
+	}
+	*/
+	
+	//[self.tableView reloadSections:[NSIndexSet indexSetWithIndex:sectionIndex] withRowAnimation:UITableViewRowAnimationAutomatic];
+	
+	/*
+	double delayInSeconds = 0.1;
+	dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, delayInSeconds * NSEC_PER_SEC);
+	dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+		[self.tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionTop animated:YES];
+	});
+	*/
+	
+	// TODO: scrolling to today only works properly if 'cell for row at index path' has been called for today's cells
 }
 
+
+/*
+-(NSMutableDictionary *)tableViewRowHeightCache {
+	
+	if (_tableViewRowHeightCache != nil) {
+		NSMutableDictionary * tableViewRowHeightCache = [[NSMutableDictionary alloc] init];
+		
+		UITableViewCell *cell;
+		NSIndexPath *indexPath;
+		for (UHDNewsItem *item in self.fetchedResultsControllerDataSource.fetchedResultsController.fetchedObjects) {
+		indexPath = [self.fetchedResultsControllerDataSource.fetchedResultsController indexPathForObject:item];
+		cell = [self.tableView cellForRowAtIndexPath:indexPath];
+		CGFloat height = cell.bounds.size.height;
+		[tableViewRowHeightCache setValue:[NSString stringWithFormat:@"%f", height] forKey:[NSString stringWithFormat:@"%lu-%lu", indexPath.section, indexPath.row]];
+		}
+		
+		_tableViewRowHeightCache = tableViewRowHeightCache;
+	}
+	
+	return _tableViewRowHeightCache;
+}
+*/
+
+
+- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+	UHDNewsItem *item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
+	if (item.thumbImage != nil) {
+		return 200;
+	}
+	
+	if ([[item entityName] isEqualToString:[UHDTalkItem entityName]]) {
+		if ([((UHDTalkItem *) item).speaker.name length] > 1) {
+			if ([item.abstract length] > 5) {
+				return 210;
+			}
+			else {
+				return 120;
+			}
+		}
+		else {
+			return 80;
+		}
+	}
+	
+	if ([item.abstract length] < 5) {
+		return 80;
+	}
+	
+	return 160;
+}
 
 
 #pragma mark - Data Source
@@ -300,6 +372,8 @@ typedef enum : NSUInteger {
 		[(UHDTalkItemCell *)cell configureForItem:(UHDTalkItem *)item];
 	
 	}
+	
+	[self.logger log:[NSString stringWithFormat:@"height of cell: %f", cell.bounds.size.height] forLevel:VILogLevelDebug];
 	
 	return cell;
 }

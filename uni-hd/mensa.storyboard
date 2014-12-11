@@ -570,7 +570,7 @@
                                         <constraint firstItem="1K1-Mr-2cf" firstAttribute="top" secondItem="kng-Cr-0va" secondAttribute="bottom" constant="8" id="KTp-gu-dTk"/>
                                         <constraint firstItem="1K1-Mr-2cf" firstAttribute="trailing" secondItem="kng-Cr-0va" secondAttribute="trailing" id="On3-Fa-RrQ"/>
                                         <constraint firstItem="1K1-Mr-2cf" firstAttribute="baseline" secondItem="F2M-GR-2kS" secondAttribute="baseline" id="P8B-c3-pqn"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="1K1-Mr-2cf" secondAttribute="bottom" priority="250" constant="3" id="dmq-By-qfE"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="1K1-Mr-2cf" secondAttribute="bottom" constant="3" id="dmq-By-qfE"/>
                                         <constraint firstAttribute="trailing" secondItem="kng-Cr-0va" secondAttribute="trailing" constant="15" id="jGY-lI-koc"/>
                                         <constraint firstItem="C1j-8v-05y" firstAttribute="leading" secondItem="kng-Cr-0va" secondAttribute="leading" id="k9O-sV-Zeu"/>
                                         <constraint firstItem="kng-Cr-0va" firstAttribute="leading" secondItem="dfL-jG-kOQ" secondAttribute="leading" constant="15" id="ogY-XW-FCb"/>
