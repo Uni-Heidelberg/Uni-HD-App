@@ -40,6 +40,7 @@
 @property (weak, nonatomic) id<MKAnnotation> selectedAnnotation;
 
 @property (nonatomic) BOOL isAdjustingToValidMapRegion;
+@property (nonatomic) MKCoordinateRegion lastValidMapRegion;
 
 - (IBAction)unwindToMap:(UIStoryboardSegue *)segue;
 
@@ -297,14 +298,34 @@
     return nil;
 }
 
+- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
+    self.lastValidMapRegion = mapView.region;
+}
 
 - (void)mapView:(MKMapView *)mapView regionDidChangeAnimated:(BOOL)animated
 {
-    if (self.isAdjustingToValidMapRegion) return;
+    if (!self.isAdjustingToValidMapRegion) {
     
-    self.isAdjustingToValidMapRegion = YES;
+        MKCoordinateRegion restrictedRegion = MKCoordinateRegionMakeWithDistance(CLLocationCoordinate2DMake(49.410029, 8.677434), 5000, 5000);
     
-    if ((mapView.region.span.latitudeDelta > 0.0596 ) || (mapView.region.span.longitudeDelta > 0.071736) ) {
+        BOOL adjustRegion = NO;
+        if ((mapView.region.span.latitudeDelta > restrictedRegion.span.latitudeDelta * 4) || (mapView.region.span.longitudeDelta > restrictedRegion.span.longitudeDelta * 4) ) {
+            adjustRegion = YES;
+        }
+        if (fabs(mapView.region.center.latitude - restrictedRegion.center.latitude) > restrictedRegion.span.latitudeDelta) {
+            adjustRegion = YES;
+        }
+        if (fabs(mapView.region.center.longitude - restrictedRegion.center.longitude) > restrictedRegion.span.longitudeDelta) {
+            adjustRegion = YES;
+        }
+        if (adjustRegion) {
+            self.isAdjustingToValidMapRegion = YES;
+            [mapView setRegion:self.lastValidMapRegion animated:YES];
+            self.isAdjustingToValidMapRegion = NO;
+        }
+    }
+    
+    /*if ((mapView.region.span.latitudeDelta > 0.0596 ) || (mapView.region.span.longitudeDelta > 0.071736) ) {
         
         CLLocationCoordinate2D centerCoord = CLLocationCoordinate2DMake(49.4085, 8.68685);
 
@@ -362,7 +383,7 @@
         [mapView setRegion: NZRegion animated: YES];
     }
     
-    self.isAdjustingToValidMapRegion = NO;
+    self.isAdjustingToValidMapRegion = NO;*/
 
 }
 
