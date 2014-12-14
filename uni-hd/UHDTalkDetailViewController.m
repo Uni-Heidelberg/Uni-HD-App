@@ -6,15 +6,18 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
+#import "UHDAppDelegate.h"
+
 #import <MessageUI/MessageUI.h>
 #import <EventKit/EventKit.h>
+#import <EventKitUI/EventKitUI.h>
 
 #import "UHDTalkDetailViewController.h"
 #import "UHDTalkDetailTitleAbstractCell.h"
 
 #import "UHDNewsSource.h"
 
-@interface UHDTalkDetailViewController () <MFMailComposeViewControllerDelegate>
+@interface UHDTalkDetailViewController () <EKEventEditViewDelegate, MFMailComposeViewControllerDelegate,  MKMapViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
 @property (weak, nonatomic) IBOutlet UILabel *navigationItemTitleLabel;
@@ -78,34 +81,93 @@
 
 
 - (IBAction)addToCalendarButtonPressed:(id)sender {
-
-	EKEventStore *eventStore = [[EKEventStore alloc] init];
 	
-    [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-        if (error == nil) {
-        }
-        else{
-        }
-    }];
+	EKEventStore *eventStore = [(UHDAppDelegate *)[[UIApplication sharedApplication] delegate] eventStore];
 
+	EKAuthorizationStatus authorizationStatus = [EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent];
+	BOOL needsToRequestAccessToEventStore = (authorizationStatus == EKAuthorizationStatusNotDetermined);
+
+	if (needsToRequestAccessToEventStore) {
+		[eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+			if (granted) {
+				// Access granted
+				[self.logger log:@"Access granted for entity type event" forLevel:VILogLevelInfo];
+			}
+			else {
+				// Denied
+				[self.logger log:@"Access denied for entity type event" forLevel:VILogLevelInfo];
+				UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedString(@"Der Zugriff auf den Kalender wurde verweigert. Die Veranstaltung kann nicht in den Kalender eingetragen werden. Sie können die Zugriffsrechte in den Einstellungen anpassen.", nil) preferredStyle:UIAlertControllerStyleAlert];
+				UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil];
+				[alertController addAction:okAction];
+				[self presentViewController:alertController animated:YES completion:nil];
+				return;
+			}
+			}];
+		}
+		else {
+			BOOL granted = (authorizationStatus == EKAuthorizationStatusAuthorized);
+			if (granted) {
+				// Access granted
+			}
+			else {
+				UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedString(@"Der Zugriff auf den Kalender wurde verweigert. Die Veranstaltung kann nicht in den Kalender eingetragen werden. Sie können die Zugriffsrechte in den Einstellungen anpassen.", nil) preferredStyle:UIAlertControllerStyleAlert];
+				UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil];
+				[alertController addAction:okAction];
+				[self presentViewController:alertController animated:YES completion:nil];
+				return;
+			}
+		}
+	
+	NSCalendar *calendar = [NSCalendar currentCalendar];
+	NSDateComponents *hour = [[NSDateComponents alloc] init];
+	hour.hour = 1;
+	NSDate *endDate = [calendar dateByAddingComponents:hour toDate:self.talkItem.date options:0];
+	
 	EKEvent *event = [EKEvent eventWithEventStore:eventStore];
 	
 	event.title = self.talkItem.title;
 	event.location = self.talkItem.location;
 	event.startDate = self.talkItem.date;
-	event.endDate = self.talkItem.date;
+	event.endDate = endDate;
 	event.allDay = false;
 	event.notes = self.talkItem.abstract;
-	event.calendar = [eventStore defaultCalendarForNewEvents];
+	event.URL = self.talkItem.url;
 	
-	[eventStore saveEvent:event span:EKSpanFutureEvents commit:YES error:nil];
-
-	// TODO: present succession message and make sure that items are not doubled...
-
+	NSPredicate *query = [eventStore predicateForEventsWithStartDate:self.talkItem.date endDate:endDate calendars:nil];
+	
+	NSArray *similarEvents = [eventStore eventsMatchingPredicate:query];
+	
+	if ([similarEvents count] > 0) {
+		UIAlertController *alertCtrl = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedString(@"Die Veranstaltung wurde bereits in den Kalender eingetragen. Trotzdem fortfahren?", nil) preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction *continueAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Fortfahren", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+			[self presentEventEditViewControllerForEvent:event];
+		}];
+		UIAlertAction *abortAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Abbrechen", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+			return;
+		}];
+		[alertCtrl addAction:abortAction];
+		[alertCtrl addAction:continueAction];
+		[self presentViewController:alertCtrl animated:YES completion:nil];
+	}
+	else {
+		[self presentEventEditViewControllerForEvent:event];
+	}
 }
 
 
-- (IBAction)speakerButtonPressed:(id)sender {
+- (void)presentEventEditViewControllerForEvent:(EKEvent *)event {
+	
+	EKEventEditViewController *eventEditVC = [[EKEventEditViewController alloc] init];
+	eventEditVC.eventStore = [(UHDAppDelegate *)[[UIApplication sharedApplication] delegate] eventStore];
+	eventEditVC.editViewDelegate = self;
+	eventEditVC.event = event;
+	
+	[self presentViewController:eventEditVC animated:YES completion:nil];
+	
+}
+
+
+- (IBAction)speakereButtonPressed:(id)sender {
 
 	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 	
@@ -114,7 +176,7 @@
 	}];
 	[alertController addAction:visitWebsite];
 	
-	//self.talkItem.speaker.email = @"Kevin.Geier91@Gmail.com";
+	//self.talkItem.speaker.email = @"ab@c.de";
 	
 	if ([self.talkItem.speaker.email length] > 0) {
 		UIAlertAction *email = [UIAlertAction actionWithTitle:NSLocalizedString(@"E-Mail schreiben", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
@@ -134,35 +196,73 @@
 }
 
 
+# pragma mark - Mail Compose View Controller Delegate
+
+
 - (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
     switch (result)
     {
         case MFMailComposeResultCancelled:
-            NSLog(@"Mail cancelled");
+			[self.logger log:@"Mail cancelled" forLevel:VILogLevelInfo];
             break;
         case MFMailComposeResultSaved:
-            NSLog(@"Mail saved");
+			[self.logger log:@"Mail saved" forLevel:VILogLevelInfo];
             break;
         case MFMailComposeResultSent:
-            NSLog(@"Mail sent");
+			[self.logger log:@"Mail sent" forLevel:VILogLevelInfo];
             break;
         case MFMailComposeResultFailed:
-            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+			[self.logger log:@"Mail sent" error:error];
             break;
         default:
             break;
     }
 	
 	// Close the Mail Interface
-    [self dismissViewControllerAnimated:YES completion:NULL];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
+# pragma mark - Map View Delegate
 
 
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
     [mapView setRegion:[mapView regionThatFits:region] animated:YES];
+}
+
+
+# pragma mark - Event Edit View Delegate
+
+
+- (void)eventEditViewController:(EKEventEditViewController *)controller didCompleteWithAction:(EKEventEditViewAction)action {
+
+	switch (action) {
+		case EKEventEditViewActionCanceled:
+			[self.logger log:@"Event editing cancelled" forLevel:VILogLevelInfo];
+			break;
+		case EKEventEditViewActionDeleted:
+			[self.logger log:@"Event deleted" forLevel:VILogLevelInfo];
+			break;
+		case EKEventEditViewActionSaved:
+			{
+				[self.logger log:@"Event saved" forLevel:VILogLevelInfo];
+				
+				[self dismissViewControllerAnimated:YES completion:^(void) {
+					UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedString(@"Die Veranstaltung wurde erfolgreich in den Kalender eingetragen.", nil) preferredStyle:UIAlertControllerStyleAlert];
+					UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil];
+					[alertController addAction:okAction];
+					[self presentViewController:alertController animated:YES completion:nil];
+				}];
+			}
+			return;
+		default:
+			break;
+	}
+	
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

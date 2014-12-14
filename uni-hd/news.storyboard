@@ -514,7 +514,7 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <action selector="speakerButtonPressed:" destination="e3t-qO-g8f" eventType="touchUpInside" id="u8x-Qw-hbn"/>
+                                                <action selector="speakereButtonPressed:" destination="e3t-qO-g8f" eventType="touchUpInside" id="1Ow-fI-BYv"/>
                                             </connections>
                                         </button>
                                     </subviews>

@@ -22,6 +22,7 @@
 		0ACE47B819619F07004F84F9 /* UHDTalkItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE47B719619F07004F84F9 /* UHDTalkItem.m */; };
 		0AD7F3721923F58E00F49551 /* UHDNewsItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7F3711923F58E00F49551 /* UHDNewsItemCell.m */; };
 		0AE2786C192A39CB00ED1641 /* UHDNewsSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE2786B192A39CB00ED1641 /* UHDNewsSource.m */; };
+		0AE477BD1A3D09D40071331E /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE477BC1A3D09D40071331E /* EventKitUI.framework */; };
 		0AF7D43B1A0C440400BD8423 /* UHDSourceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF7D43A1A0C440400BD8423 /* UHDSourceCollectionViewCell.m */; };
 		0B13624C19B4AF22000ECC3A /* UHDBuildingDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B13624B19B4AF22000ECC3A /* UHDBuildingDetailViewController.m */; };
 		0B176E711931114200D3C916 /* UHDNewsSourcesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B176E6D1931114200D3C916 /* UHDNewsSourcesViewController.m */; };
@@ -182,6 +183,7 @@
 		0AD7F3711923F58E00F49551 /* UHDNewsItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsItemCell.m; sourceTree = "<group>"; };
 		0AE2786A192A39CB00ED1641 /* UHDNewsSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsSource.h; sourceTree = "<group>"; };
 		0AE2786B192A39CB00ED1641 /* UHDNewsSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsSource.m; sourceTree = "<group>"; };
+		0AE477BC1A3D09D40071331E /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		0AF7D4391A0C440400BD8423 /* UHDSourceCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDSourceCollectionViewCell.h; sourceTree = "<group>"; };
 		0AF7D43A1A0C440400BD8423 /* UHDSourceCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDSourceCollectionViewCell.m; sourceTree = "<group>"; };
 		0B13624A19B4AF22000ECC3A /* UHDBuildingDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDBuildingDetailViewController.h; sourceTree = "<group>"; };
@@ -334,6 +336,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AE477BD1A3D09D40071331E /* EventKitUI.framework in Frameworks */,
 				0A6028821A3B4BF00032EDEB /* EventKit.framework in Frameworks */,
 				0A6028761A3B22220032EDEB /* MessageUI.framework in Frameworks */,
 				DC33313C19976456009AA35A /* CoreLocation.framework in Frameworks */,
@@ -727,6 +730,7 @@
 		87CBE08A1908810B0029D9AF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0AE477BC1A3D09D40071331E /* EventKitUI.framework */,
 				0A6028811A3B4BF00032EDEB /* EventKit.framework */,
 				0A6028751A3B22220032EDEB /* MessageUI.framework */,
 				DC33313B19976456009AA35A /* CoreLocation.framework */,

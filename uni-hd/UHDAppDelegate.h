@@ -8,10 +8,12 @@
 
 @import Foundation;
 @import UIKit;
+@import EventKit;
 
 
 @interface UHDAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (retain, nonatomic) EKEventStore *eventStore;
 
 @end

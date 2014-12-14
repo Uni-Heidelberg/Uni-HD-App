@@ -8,7 +8,7 @@
 
 #import "UHDTalkDetailSpaceTimeCell.h"
 
-@interface UHDTalkDetailSpaceTimeCell () <MKMapViewDelegate>
+@interface UHDTalkDetailSpaceTimeCell ()
 
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;

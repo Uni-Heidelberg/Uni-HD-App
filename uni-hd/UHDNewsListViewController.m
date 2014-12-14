@@ -375,7 +375,7 @@ typedef enum : NSUInteger {
 	
 	}
 	
-	[self.logger log:[NSString stringWithFormat:@"height of cell: %f", cell.bounds.size.height] forLevel:VILogLevelDebug];
+	//[self.logger log:[NSString stringWithFormat:@"height of cell: %f", cell.bounds.size.height] forLevel:VILogLevelDebug];
 	
 	return cell;
 }
