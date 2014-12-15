@@ -45,6 +45,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+
+	// initialize event store
+	self.eventStore = [[EKEventStore alloc] init];
     
     // configure logging
 #ifdef DEBUG

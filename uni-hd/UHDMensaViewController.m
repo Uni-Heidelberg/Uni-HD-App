@@ -41,6 +41,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	[self.navigationController.tabBarItem setSelectedImage:[UIImage imageNamed:@"mensaIconSelected"]];
 
     [self loadSelectedMensa];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsDidChange:) name:NSUserDefaultsDidChangeNotification object:[NSUserDefaults standardUserDefaults]];

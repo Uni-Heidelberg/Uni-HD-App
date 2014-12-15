@@ -22,7 +22,7 @@
     // Mensa
     
     RKEntityMapping *mensaMapping = [RKEntityMapping mappingForEntityForName:[UHDMensa entityName] inManagedObjectStore:objectManager.managedObjectStore];
-    [mensaMapping addAttributeMappingsFromDictionary:@{ @"id": @"remoteObjectId", @"image.url": @"relativeImageURL" }];
+    [mensaMapping addAttributeMappingsFromDictionary:@{ @"id": @"remoteObjectId", @"imageUrl": @"imageURL" }];
     RKAttributeMapping *locationMapping = [RKAttributeMapping attributeMappingFromKeyPath:@"location" toKeyPath:@"location"];
     locationMapping.valueTransformer = [RKCLLocationValueTransformer locationValueTransformerWithLatitudeKey:@"lat" longitudeKey:@"lng"];
     [mensaMapping addPropertyMapping:locationMapping];
@@ -60,7 +60,7 @@
     
     RKEntityMapping *mealMapping = [RKEntityMapping mappingForEntityForName:[UHDMeal entityName] inManagedObjectStore:objectManager.managedObjectStore];
     [mealMapping addAttributeMappingsFromDictionary:@{ @"id": @"remoteObjectId", @"vegetarian": @"isVegetarian", @"priceStud": @"priceStud", @"priceBed": @"priceBed", @"priceGuest": @"priceGuest" }];
-    [mealMapping addAttributeMappingsFromArray:@[ @"title" ]];
+    [mealMapping addAttributeMappingsFromArray:@[ @"title", @"isMain" ]];
     mealMapping.identificationAttributes = @[ @"remoteObjectId" ];
     mealMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", mealMapping.entity];
     //[objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:mealMapping method:RKRequestMethodAny pathPattern:@"meals" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
