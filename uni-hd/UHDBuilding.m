@@ -15,22 +15,15 @@
 @dynamic category;
 @dynamic campusRegion, buildingNumber;
 @dynamic addressDictionary;
-@dynamic imageData, relativeImageURL;
+@dynamic imageData, imageURL;
 @dynamic spanLatitude, spanLongitude;
+@dynamic address;
 
 
 #pragma mark - Computed Properties
 
 - (NSString *)campusIdentifier {
     return [NSString stringWithFormat:@"%@ %@", self.campusRegion.identifier, self.buildingNumber];
-}
-
-- (NSURL *)imageURL {
-    if (self.relativeImageURL) {
-        return [[NSURL URLWithString:@"http://appserver.physik.uni-heidelberg.de"] URLByAppendingPathComponent:self.relativeImageURL.path]; // TODO: use constant
-    } else {
-        return nil;
-    }
 }
 
 - (UIImage *)image

@@ -7,6 +7,7 @@
 //
 
 #import "UHDRemoteManagedLocation.h"
+#import "UHDAddress.h"
 
 @class UHDLocationCategory, UHDCampusRegion;
 
@@ -17,14 +18,14 @@
 @property (nonatomic, retain) NSDictionary *addressDictionary;
 @property (nonatomic, retain) NSString *buildingNumber;
 @property (nonatomic, retain) NSData *imageData;
-@property (nonatomic, retain) NSURL *relativeImageURL;
+@property (nonatomic, retain) NSURL *imageURL;
 @property (nonatomic) double_t spanLatitude;
 @property (nonatomic) double_t spanLongitude;
+@property (nonatomic, retain) UHDAddress *address;
 
 // Computed Properties
 @property (readonly) NSString *campusIdentifier; // calculated by combining the campus region's identifier and the building number
 @property (nonatomic) UIImage *image; // TODO: make readonly and transient as soon as sample data is not necessary anymore
-@property (nonatomic, readonly) NSURL *imageURL;
 @property (nonatomic) MKCoordinateRegion coordinateRegion;
 
 @end

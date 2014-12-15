@@ -10,7 +10,7 @@
         <scene sceneID="ak5-bm-byv">
             <objects>
                 <navigationController definesPresentationContext="YES" id="eca-DM-luB" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Campus" id="SA8-9L-bat"/>
+                    <tabBarItem key="tabBarItem" title="Campus" image="mapsIcon" id="SA8-9L-bat"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="mKo-J0-fAr">
                         <autoresizingMask key="autoresizingMask"/>
@@ -378,6 +378,9 @@
             <point key="canvasLocation" x="2101" y="-215"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="mapsIcon" width="40" height="31"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="LRc-SD-l8L"/>
     </inferredMetricsTieBreakers>

@@ -55,7 +55,7 @@
         <scene sceneID="6Hr-RH-IJ1">
             <objects>
                 <navigationController id="9xk-1Q-ShN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Konfiguration" image="preferences" id="Ir2-YF-nAU"/>
+                    <tabBarItem key="tabBarItem" title="Konfiguration" image="settingsIcon" id="Ir2-YF-nAU"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="sTx-6d-Y3d">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -71,6 +71,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="preferences" width="18" height="18"/>
+        <image name="settingsIcon" width="48" height="32"/>
     </resources>
 </document>

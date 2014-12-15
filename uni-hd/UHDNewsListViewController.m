@@ -13,6 +13,7 @@
 
 // View Controllers
 #import "UHDNewsDetailViewController.h"
+#import "UHDTalkDetailViewController.h"
 
 // Table View Cells
 #import "UHDNewsItemCell.h"
@@ -139,11 +140,11 @@ typedef enum : NSUInteger {
 	
 	}
 	else if ([segue.identifier isEqualToString:@"showTalkDetail"]) {
-		UHDNewsDetailViewController *newsDetailVC = segue.destinationViewController;
+		UHDTalkDetailViewController *talkDetailVC = segue.destinationViewController;
         
         UHDTalkItem *item = self.fetchedResultsControllerDataSource.selectedItem;
         
-        newsDetailVC.newsItem = item;
+        talkDetailVC.talkItem = item;
 	}
 }
 
@@ -374,7 +375,7 @@ typedef enum : NSUInteger {
 	
 	}
 	
-	[self.logger log:[NSString stringWithFormat:@"height of cell: %f", cell.bounds.size.height] forLevel:VILogLevelDebug];
+	//[self.logger log:[NSString stringWithFormat:@"height of cell: %f", cell.bounds.size.height] forLevel:VILogLevelDebug];
 	
 	return cell;
 }

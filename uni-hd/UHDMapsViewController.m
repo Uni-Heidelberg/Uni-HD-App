@@ -52,6 +52,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	[self.navigationController.tabBarItem setSelectedImage:[UIImage imageNamed:@"mapsIconSelected"]];
     
     // trigger location authorization
     // TODO: inform user first

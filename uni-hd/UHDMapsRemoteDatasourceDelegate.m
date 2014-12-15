@@ -113,6 +113,11 @@
     buildingItem1.category = category1;
     buildingItem1.campusRegion = inf;
     buildingItem1.image = [UIImage imageNamed:@"kip1"];
+    UHDAddress *address = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
+    address.street = @"Im Neuenheimer Feld 227";
+    address.postalCode = @"69120";
+    address.city = @"Heidelberg";
+    buildingItem1.address = address;
     
     
     

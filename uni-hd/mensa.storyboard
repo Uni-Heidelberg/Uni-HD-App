@@ -613,7 +613,7 @@
         <scene sceneID="QfR-FS-2QS">
             <objects>
                 <navigationController definesPresentationContext="YES" id="7iw-G4-EQc" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Mensa" id="d2f-M5-mqs"/>
+                    <tabBarItem key="tabBarItem" title="Mensa" image="mensaIcon" id="d2f-M5-mqs"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ukO-Qe-xJl">
                         <autoresizingMask key="autoresizingMask"/>
@@ -632,6 +632,7 @@
     </scenes>
     <resources>
         <image name="favouriteSymbol" width="23" height="23"/>
+        <image name="mensaIcon" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ZoX-P8-0Hs"/>
