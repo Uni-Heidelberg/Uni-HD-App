@@ -9,7 +9,7 @@
     <entity name="UHDBuilding" representedClassName="UHDBuilding" parentEntity="UHDRemoteManagedLocation" syncable="YES">
         <attribute name="buildingNumber" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageData" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
-        <attribute name="relativeImageURL" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="imageURL" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="spanLatitude" optional="YES" attributeType="Double" defaultValueString="0" syncable="YES"/>
         <attribute name="spanLongitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="address" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UHDAddress" inverseName="building" inverseEntity="UHDAddress" syncable="YES"/>
@@ -35,10 +35,10 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
+        <element name="UHDAddress" positionX="-128" positionY="324" width="128" height="103"/>
         <element name="UHDBuilding" positionX="-128" positionY="116" width="128" height="163"/>
         <element name="UHDCampusRegion" positionX="-306" positionY="117" width="128" height="133"/>
         <element name="UHDLocationCategory" positionX="45" positionY="119" width="128" height="88"/>
         <element name="UHDRemoteManagedLocation" positionX="-227" positionY="-45" width="128" height="88"/>
-        <element name="UHDAddress" positionX="-128" positionY="324" width="128" height="103"/>
     </elements>
 </model>

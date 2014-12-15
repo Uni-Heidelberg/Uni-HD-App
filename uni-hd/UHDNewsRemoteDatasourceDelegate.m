@@ -41,7 +41,7 @@
     // UHDNewsSource
     
     RKEntityMapping *newsSourceMapping = [RKEntityMapping mappingForEntityForName:[UHDNewsSource entityName] inManagedObjectStore:objectManager.managedObjectStore];
-    [newsSourceMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId", @"name": @"title", @"image.url": @"relativeImageURL"}];
+    [newsSourceMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId", @"name": @"title", @"imageUrl": @"imageURL"}];
     [newsSourceMapping addAttributeMappingsFromArray:@[ @"categoryId" ]];
     newsSourceMapping.identificationAttributes = @[ @"remoteObjectId" ];
     newsSourceMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", newsSourceMapping.entity];
@@ -59,7 +59,7 @@
     // UHDNewsItem
     
     RKEntityMapping *newsItemMapping = [RKEntityMapping mappingForEntityForName:[UHDNewsItem entityName] inManagedObjectStore:objectManager.managedObjectStore];
-    [newsItemMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId"}];
+    [newsItemMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId", @"imageUrl": @"imageURL" }];
     [newsItemMapping addAttributeMappingsFromArray:@[ @"title", @"date", @"abstract", @"url", @"sourceId" ]];
     newsItemMapping.identificationAttributes = @[ @"remoteObjectId" ];
     newsItemMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", newsItemMapping.entity];
@@ -71,7 +71,7 @@
     // UHDEventItem
     
     RKEntityMapping *eventItemMapping = [RKEntityMapping mappingForEntityForName:[UHDEventItem entityName] inManagedObjectStore:objectManager.managedObjectStore];
-    [eventItemMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId", @"building": @"location"}];
+    [eventItemMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId", @"building": @"location", @"imageUrl": @"imageURL" }];
     [eventItemMapping addAttributeMappingsFromArray:@[ @"title", @"date", @"abstract", @"url", @"sourceId" ]];
     eventItemMapping.identificationAttributes = @[ @"remoteObjectId" ];
     eventItemMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", eventItemMapping.entity];
@@ -88,7 +88,7 @@
     // UHDTalkItem
     
     RKEntityMapping *talkItemMapping = [RKEntityMapping mappingForEntityForName:[UHDTalkItem entityName] inManagedObjectStore:objectManager.managedObjectStore];
-    [talkItemMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId", @"building": @"location"}];
+    [talkItemMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId", @"building": @"location", @"imageUrl": @"imageURL" }];
     [talkItemMapping addAttributeMappingsFromArray:@[ @"title", @"date", @"abstract", @"url", @"sourceId" ]];
     [talkItemMapping addRelationshipMappingWithSourceKeyPath:@"speaker" mapping:speakerMapping];
     talkItemMapping.identificationAttributes = @[ @"remoteObjectId" ];

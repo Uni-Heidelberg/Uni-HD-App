@@ -23,7 +23,7 @@
 @dynamic abstract;
 @dynamic read;
 @dynamic url;
-@dynamic imageData, relativeImageURL;
+@dynamic imageData, imageURL;
 @dynamic source;
 @dynamic sectionIdentifier;
 
@@ -31,14 +31,6 @@
 
 
 #pragma mark - Convenience accessors
-
-- (NSURL *)imageURL {
-    if (self.relativeImageURL) {
-        return [[NSURL URLWithString:@"http://appserver.physik.uni-heidelberg.de"] URLByAppendingPathComponent:self.relativeImageURL.path]; // TODO: use constant
-    } else {
-        return nil;
-    }
-}
 
 - (UIImage *)image
 {

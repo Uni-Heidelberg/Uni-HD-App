@@ -30,12 +30,11 @@ typedef enum : NSUInteger {
 @property (nonatomic) BOOL read;
 @property (nonatomic, retain) NSURL *url;
 @property (nonatomic, retain) NSData *imageData;
-@property (nonatomic, retain) NSURL *relativeImageURL;
+@property (nonatomic, retain) NSURL *imageURL;
 @property (nonatomic, retain) UHDNewsSource *source;
 
 @property (nonatomic, readonly) NSString *sectionIdentifier;
 
 @property (nonatomic, readonly) UIImage *image;
-@property (nonatomic, readonly) NSURL *imageURL;
 
 @end

@@ -12,13 +12,12 @@
 
 @property (nonatomic) BOOL subscribed;
 @property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) NSURL *relativeImageURL;
+@property (nonatomic, retain) NSURL *imageURL;
 @property (nonatomic, retain) NSData *imageData;
 @property (nonatomic, retain) NSSet *newsItems;
 
 - (NSMutableSet *)mutableNewsItems;
 
-@property (nonatomic, readonly) NSURL *imageURL;
 @property (nonatomic, readonly) UIImage *image;
 @property (nonatomic) UHDNewsCategory *category;
 
