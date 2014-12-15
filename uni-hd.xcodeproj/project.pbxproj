@@ -18,6 +18,7 @@
 		0ABAE5F11A3A52E500E85E3E /* UHDTalkDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABAE5F01A3A52E500E85E3E /* UHDTalkDetailViewController.m */; };
 		0ABAE5F41A3A6F1500E85E3E /* UHDTalkDetailTitleAbstractCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABAE5F31A3A6F1500E85E3E /* UHDTalkDetailTitleAbstractCell.m */; };
 		0ABAE5FA1A3AE65A00E85E3E /* UHDTalkDetailSpaceTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABAE5F91A3AE65A00E85E3E /* UHDTalkDetailSpaceTimeCell.m */; };
+		0ACE17EA1A3F220B00732F58 /* TabBarIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ACE17E91A3F220B00732F58 /* TabBarIcons.xcassets */; };
 		0ACE47B519619BB9004F84F9 /* UHDEventItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE47B419619BB9004F84F9 /* UHDEventItem.m */; };
 		0ACE47B819619F07004F84F9 /* UHDTalkItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE47B719619F07004F84F9 /* UHDTalkItem.m */; };
 		0AD7F3721923F58E00F49551 /* UHDNewsItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7F3711923F58E00F49551 /* UHDNewsItemCell.m */; };
@@ -175,6 +176,7 @@
 		0ABAE5F31A3A6F1500E85E3E /* UHDTalkDetailTitleAbstractCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDTalkDetailTitleAbstractCell.m; sourceTree = "<group>"; };
 		0ABAE5F81A3AE65A00E85E3E /* UHDTalkDetailSpaceTimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkDetailSpaceTimeCell.h; sourceTree = "<group>"; };
 		0ABAE5F91A3AE65A00E85E3E /* UHDTalkDetailSpaceTimeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDTalkDetailSpaceTimeCell.m; sourceTree = "<group>"; };
+		0ACE17E91A3F220B00732F58 /* TabBarIcons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBarIcons.xcassets; sourceTree = "<group>"; };
 		0ACE47B319619BB9004F84F9 /* UHDEventItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDEventItem.h; sourceTree = "<group>"; };
 		0ACE47B419619BB9004F84F9 /* UHDEventItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDEventItem.m; sourceTree = "<group>"; };
 		0ACE47B619619F07004F84F9 /* UHDTalkItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkItem.h; sourceTree = "<group>"; };
@@ -758,6 +760,7 @@
 				87EE2557191924E90092DF7F /* Settings */,
 				87DBE7F51919C40100C16970 /* Global */,
 				87CBE0A91908810B0029D9AF /* Images.xcassets */,
+				0ACE17E91A3F220B00732F58 /* TabBarIcons.xcassets */,
 				87CBE0921908810B0029D9AF /* Supporting Files */,
 			);
 			path = "uni-hd";
@@ -1098,6 +1101,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0ACE17EA1A3F220B00732F58 /* TabBarIcons.xcassets in Resources */,
 				87CBE0AA1908810B0029D9AF /* Images.xcassets in Resources */,
 				87CBE0961908810B0029D9AF /* InfoPlist.strings in Resources */,
 				87DBE7F41919C3F700C16970 /* news.storyboard in Resources */,

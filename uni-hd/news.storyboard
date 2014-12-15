@@ -498,7 +498,7 @@
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Affiliation" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y8A-Dx-ouh" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
                                             <rect key="frame" x="16" y="73.5" width="568" height="17"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -702,7 +702,7 @@
         <scene sceneID="PLw-Zn-bh4">
             <objects>
                 <navigationController definesPresentationContext="YES" id="4EB-dw-R4U" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="News &amp; Events" id="B2H-Se-7gD"/>
+                    <tabBarItem key="tabBarItem" title="News &amp; Events" image="newsIcon" id="B2H-Se-7gD"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NdZ-lj-edW">
                         <autoresizingMask key="autoresizingMask"/>
@@ -862,6 +862,7 @@
     </scenes>
     <resources>
         <image name="event_symbol" width="16" height="16"/>
+        <image name="newsIcon" width="25" height="25"/>
         <image name="news_symbol" width="16" height="16"/>
         <image name="talk_icon" width="16" height="16"/>
     </resources>
