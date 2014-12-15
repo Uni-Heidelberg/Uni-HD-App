@@ -7,6 +7,7 @@
 //
 
 #import "UHDRemoteManagedLocation.h"
+#import "UHDAddress.h"
 
 @class UHDLocationCategory, UHDCampusRegion;
 
@@ -20,6 +21,7 @@
 @property (nonatomic, retain) NSURL *relativeImageURL;
 @property (nonatomic) double_t spanLatitude;
 @property (nonatomic) double_t spanLongitude;
+@property (nonatomic, retain) UHDAddress *address;
 
 // Computed Properties
 @property (readonly) NSString *campusIdentifier; // calculated by combining the campus region's identifier and the building number

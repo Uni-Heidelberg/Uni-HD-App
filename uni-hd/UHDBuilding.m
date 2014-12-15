@@ -17,6 +17,7 @@
 @dynamic addressDictionary;
 @dynamic imageData, relativeImageURL;
 @dynamic spanLatitude, spanLongitude;
+@dynamic address;
 
 
 #pragma mark - Computed Properties
