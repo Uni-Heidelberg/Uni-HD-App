@@ -17,6 +17,7 @@
 
 // View
 #import "UHDMensaCell.h"
+#import "UHDMensaSectionHeaderView.h"
 
 // Model
 #import "UHDMensa.h"
@@ -72,7 +73,7 @@
             [self.locationManager requestAlwaysAuthorization]; // "Always" needed for significant location change
         }
     }
-    
+    [self.tableView registerNib:[UINib nibWithNibName:@"UHDMensaSectionHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"TableHeader"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -85,11 +86,11 @@
     else {
         [self.tableView selectRowAtIndexPath: [self indexPathOfSelectedMensa] animated:animated scrollPosition:UITableViewScrollPositionNone];
     }
-
+    
 }
 -(NSIndexPath *)indexPathOfSelectedMensa{
     [self.logger log:@"Loading selected mensa from user defaults..." forLevel:VILogLevelDebug];
-
+    
     NSNumber *mensaId = [[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeySelectedMensaId];
     if (!mensaId) {
     }
@@ -161,6 +162,7 @@
     self.fetchedResultsController.fetchRequest.sortDescriptors = sortDescriptors;
     [self.fetchedResultsController performFetch:nil];
     [self.tableView reloadData];
+    [self.tableView selectRowAtIndexPath: [self indexPathOfSelectedMensa] animated:NO scrollPosition:UITableViewScrollPositionNone];
 }
 
 - (IBAction)refreshControlValueChanged:(UIRefreshControl *)sender
@@ -256,18 +258,6 @@
     }
 }
 
--(UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
-    NSArray *list = @[ @"Favoriten", @"Alle Mensen" ];
-    UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.frame.size.width, 18)];
-    view.backgroundColor = [UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0];
-    UILabel *sectionHeaderLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, view.bounds.size.width - 30, view.bounds.size.height)];
-    sectionHeaderLabel.text = list[section];
-    sectionHeaderLabel.font = [UIFont boldSystemFontOfSize:14];
-    sectionHeaderLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [view addSubview:sectionHeaderLabel];
-    return view;
-}
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
     if (section==0 && self.favouritesResultsController.fetchedObjects.count == 0){
@@ -293,6 +283,22 @@
     else{
         return 0.0;
     }
+}
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 20;
+}
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    UHDMensaSectionHeaderView *header=[tableView dequeueReusableHeaderFooterViewWithIdentifier:@"TableHeader"];
+    if (section == 0) {
+        header.sectionHeaderLabel.text=[NSString stringWithFormat:NSLocalizedString(@"Favoriten", nil)];
+    }
+    else {
+        header.sectionHeaderLabel.text=[NSString stringWithFormat:NSLocalizedString(@"Alle Mensen", nil)];
+        
+    }
+    return header;
 }
 
 
@@ -385,6 +391,6 @@
         mensa.currentDistance = -1;
     }
 }
-     
+
 
 @end
