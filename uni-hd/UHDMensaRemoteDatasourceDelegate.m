@@ -60,7 +60,7 @@
     
     RKEntityMapping *mealMapping = [RKEntityMapping mappingForEntityForName:[UHDMeal entityName] inManagedObjectStore:objectManager.managedObjectStore];
     [mealMapping addAttributeMappingsFromDictionary:@{ @"id": @"remoteObjectId", @"vegetarian": @"isVegetarian", @"priceStud": @"priceStud", @"priceBed": @"priceBed", @"priceGuest": @"priceGuest" }];
-    [mealMapping addAttributeMappingsFromArray:@[ @"title" ]];
+    [mealMapping addAttributeMappingsFromArray:@[ @"title", @"isMain" ]];
     mealMapping.identificationAttributes = @[ @"remoteObjectId" ];
     mealMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", mealMapping.entity];
     //[objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:mealMapping method:RKRequestMethodAny pathPattern:@"meals" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
