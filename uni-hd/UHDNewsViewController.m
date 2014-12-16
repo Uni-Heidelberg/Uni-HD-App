@@ -46,8 +46,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-	[self.navigationController.tabBarItem setSelectedImage:[UIImage imageNamed:@"newsIconSelected"]];
 
     // TODO: fix scroll view insets & extend under both bars
     
@@ -134,7 +132,8 @@
 				break;
 		}
 		*/
-		newsListVC.displayMode = UHDNewsListDisplayModeAll;
+		
+		newsListVC.displayMode = self.displayMode;
 	}
 }
 

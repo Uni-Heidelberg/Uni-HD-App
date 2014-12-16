@@ -96,7 +96,7 @@ typedef enum : NSUInteger {
 }
 
 
-- (void)setDisplayMode:(UHDNewsListDisplayMode)displayMode
+- (void)setDisplayMode:(UHDNewsEventsDisplayMode)displayMode
 {
 	_displayMode = displayMode;
 	
@@ -271,13 +271,13 @@ typedef enum : NSUInteger {
 		
 		NSFetchRequest *fetchRequest;
 		
-		if (self.displayMode == UHDNewsListDisplayModeEvents) {
+		if (self.displayMode == UHDNewsEventsDisplayModeEvents) {
 			fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDEventItem entityName]];
 			[fetchRequest setIncludesSubentities:YES];
 		}
 		else {
 			fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsItem entityName]];
-			if (self.displayMode == UHDNewsListDisplayModeAll) {
+			if (self.displayMode == UHDNewsEventsDisplayModeAll) {
 				[fetchRequest setIncludesSubentities:YES];
 			}
 			else {
@@ -316,13 +316,13 @@ typedef enum : NSUInteger {
         NSFetchRequest *fetchRequest = self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest;
         NSEntityDescription *entityDescription;
 
-        if (self.displayMode == UHDNewsListDisplayModeEvents) {
+        if (self.displayMode == UHDNewsEventsDisplayModeEvents) {
             entityDescription = [NSEntityDescription entityForName:[UHDEventItem entityName] inManagedObjectContext:self.managedObjectContext];
             [fetchRequest setIncludesSubentities:YES];
         }
         else {
             entityDescription = [NSEntityDescription entityForName:[UHDNewsItem entityName] inManagedObjectContext:self.managedObjectContext];
-            if (self.displayMode == UHDNewsListDisplayModeAll) {
+            if (self.displayMode == UHDNewsEventsDisplayModeAll) {
                 [fetchRequest setIncludesSubentities:YES];
             }
             else {
