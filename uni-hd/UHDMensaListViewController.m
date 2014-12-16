@@ -13,7 +13,6 @@
 
 // View Controller
 #import "UHDMensaViewController.h"
-#import "UHDMensaDetailViewController.h"
 
 // View
 #import "UHDMensaCell.h"
@@ -123,11 +122,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    if ([segue.identifier isEqualToString:@"showMensaDetail"]) {
-        UHDMensaDetailViewController *detailVC = segue.destinationViewController;
-        UITableViewCell *cell = [self cellForSubview:sender];
-        detailVC.mensa = [self mensaForIndexPath:[self.tableView indexPathForCell:cell]];
-    } else if ([segue.identifier isEqualToString:@"selectMensa"]) {
+    if ([segue.identifier isEqualToString:@"selectMensa"]) {
         [[NSUserDefaults standardUserDefaults] setObject:@([(UHDMensa *)[self mensaForIndexPath:self.tableView.indexPathForSelectedRow] remoteObjectId]) forKey:UHDUserDefaultsKeySelectedMensaId];
     }
 }
@@ -170,6 +165,13 @@
     }];
 }
 
+- (IBAction)detailButtonPressed:(id)sender
+{
+    UHDBuildingDetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"maps" bundle:nil] instantiateViewControllerWithIdentifier:@"buildingDetail"];
+    UITableViewCell *cell = [self cellForSubview:sender];
+    detailVC.building = [self mensaForIndexPath:[self.tableView indexPathForCell:cell]];
+    [self.navigationController pushViewController:detailVC animated:YES];
+}
 
 #pragma mark - Fetched Results Controller Setup
 

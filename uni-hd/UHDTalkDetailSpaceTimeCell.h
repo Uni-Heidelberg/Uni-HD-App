@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "UHDTalkItem.h"
 
-@interface UHDTalkDetailSpaceTimeCell : UITableViewCell
+@interface UHDTalkDetailSpaceTimeCell : UITableViewCell // super cool name :>
 
 - (void)configureForItem:(UHDTalkItem *)item;
 

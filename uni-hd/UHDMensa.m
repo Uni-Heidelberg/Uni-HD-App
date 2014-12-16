@@ -37,6 +37,12 @@
 - (NSString *)identifier {
     return self.title;
 }
+- (UHDAddress *)address {
+    return nil;
+}
+- (void)setAddress:(UHDAddress *)address {
+    return;
+}
 
 #pragma mark - Mutable To-Many Accessors
 

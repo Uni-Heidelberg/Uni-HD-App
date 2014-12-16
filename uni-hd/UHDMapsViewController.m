@@ -15,7 +15,6 @@
 
 // View Controllers
 #import "UHDMapsSearchResultsViewController.h"
-#import "UHDBuildingDetailViewController.h"
 
 
 //View

@@ -11,6 +11,7 @@
 #import "UHDLocationCategory.h"
 #import "UHDCampusRegion.h"
 #import "UHDBuilding.h"
+#import "UHDAddress.h"
 
 
 @implementation UHDMapsRemoteDatasourceDelegate
@@ -118,6 +119,9 @@
     address.postalCode = @"69120";
     address.city = @"Heidelberg";
     buildingItem1.address = address;
+    buildingItem1.url = [NSURL URLWithString:@"http://www.kip.uni-heidelberg.de"];
+    buildingItem1.telephone = @"06221549100";
+    buildingItem1.email = @"info@kip.uni-heidelberg.de";
     
     
     
