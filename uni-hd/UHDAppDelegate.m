@@ -30,6 +30,12 @@
 // tmp
 #import "UHDDailyMenu.h"
 #import "UHDMeal.h"
+#import "UHDMensa.h"
+#import "UHDBuilding.h"
+#import "UHDLocationCategory.h"
+#import "UHDCampusRegion.h"
+#import "UHDAddress.h"
+
 
 @interface UHDAppDelegate ()
 
@@ -69,6 +75,92 @@
     [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyMaps] generateSampleDataIfNeeded];
 
     [[UHDRemoteDatasourceManager defaultManager] refreshAllWithCompletion:nil];
+    
+    
+    // Stitch together generated maps sample data and mensa remote data
+    // TODO: remove when maps remote data becomes available!
+    
+    NSManagedObjectContext *managedObjectContext = self.persistentStack.managedObjectContext;
+    // get mensa category
+    NSFetchRequest *categoryFetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDLocationCategory entityName]];
+    categoryFetchRequest.predicate = [NSPredicate predicateWithFormat:@"title == %@", @"Mensen"];
+    UHDLocationCategory *mensenCategory = [[managedObjectContext executeFetchRequest:categoryFetchRequest error:nil] firstObject];
+    // get campus regions
+    NSFetchRequest *regionsFetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDCampusRegion entityName]];
+    NSArray *campusRegions = [managedObjectContext executeFetchRequest:regionsFetchRequest error:nil];
+    // get mensen
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
+    NSArray *mensen = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
+    for (UHDMensa *mensa in mensen) {
+        if (!mensa.category) {
+            mensa.category = mensenCategory;
+        }
+        if ([mensa.title isEqualToString:@"Triplex-Mensa"]) {
+            if (!mensa.campusRegion) {
+                for (UHDCampusRegion *campusRegion in campusRegions) {
+                    if ([campusRegion.identifier isEqualToString:@"ALT"]) {
+                        mensa.campusRegion = campusRegion;
+                        break;
+                    }
+                }
+            }
+            if (!mensa.address) {
+                UHDAddress *address = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
+                address.street = @"Grabengasse 14 (Universitätsplatz)";
+                address.city = @"Heidelberg";
+                address.postalCode = @"69117";
+                mensa.address = address;
+            }
+            if (!mensa.buildingNumber) {
+                mensa.buildingNumber = @"2100";
+            }
+        }
+        if ([mensa.title isEqualToString:@"Zentralmensa"]) {
+            if (!mensa.campusRegion) {
+                for (UHDCampusRegion *campusRegion in campusRegions) {
+                    if ([campusRegion.identifier isEqualToString:@"INF"]) {
+                        mensa.campusRegion = campusRegion;
+                        break;
+                    }
+                }
+            }
+            if (!mensa.address) {
+                UHDAddress *address = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
+                address.street = @"Im Neuenheimer Feld 304";
+                address.city = @"Heidelberg";
+                address.postalCode = @"69120";
+                mensa.address = address;
+            }
+            if (!mensa.buildingNumber) {
+                mensa.buildingNumber = @"304";
+            }
+        }
+        if ([mensa.title isEqualToString:@"zeughaus"]) {
+            if (!mensa.campusRegion) {
+                for (UHDCampusRegion *campusRegion in campusRegions) {
+                    if ([campusRegion.identifier isEqualToString:@"ALT"]) {
+                        mensa.campusRegion = campusRegion;
+                        break;
+                    }
+                }
+            }
+            if (!mensa.address) {
+                UHDAddress *address = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
+                address.street = @"Marstallhof 3";
+                address.city = @"Heidelberg";
+                address.postalCode = @"69117";
+                mensa.address = address;
+            }
+            if (!mensa.buildingNumber) {
+                mensa.buildingNumber = @"2010";
+            }
+        }
+        if (!mensa.url) {
+            mensa.url = [NSURL URLWithString:@"http://www.studentenwerk.uni-heidelberg.de/mensen"];
+        }
+    }
+    [managedObjectContext saveToPersistentStore:nil];
+    
 
     
     // configure default styles

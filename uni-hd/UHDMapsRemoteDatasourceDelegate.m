@@ -162,20 +162,7 @@
     buildingItem4.campusRegion = inf;
     
     
-    
-    
-    //FIFTH
-    //Create Building Object
-    
-    UHDBuilding *buildingItem5 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
-    buildingItem5.title = @"Marstall";
-    buildingItem5.buildingNumber = @"2010";
-    buildingItem5.location = [[CLLocation alloc] initWithLatitude:49.41280 longitude:8.70442];
-    buildingItem5.image = [UIImage imageNamed:@"marstallhof-01"];
-    buildingItem5.category = category3;
-    buildingItem5.campusRegion = altstadt;
-    
-    
+
     [managedObjectContext saveToPersistentStore:NULL];
 }
 
