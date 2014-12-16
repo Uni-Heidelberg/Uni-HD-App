@@ -556,7 +556,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aSj-W8-GjJ">
-                                            <rect key="frame" x="0.0" y="112" width="600" height="200"/>
+                                            <rect key="frame" x="0.0" y="134" width="600" height="200"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="200" id="PdJ-zQ-ecQ"/>
                                             </constraints>
@@ -585,22 +585,40 @@
                                                 <action selector="addToCalendarButtonPressed:" destination="e3t-qO-g8f" eventType="touchUpInside" id="rNt-aR-zLc"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eM5-R5-puc">
+                                            <rect key="frame" x="16" y="96" width="568" height="30"/>
+                                            <state key="normal" title="Auf Karte anzeigen">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="showOnMapButtonPressed:" destination="e3t-qO-g8f" eventType="touchUpInside" id="cYm-Ru-z0k"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="rwa-xF-Lwp" firstAttribute="top" secondItem="frL-r9-F0c" secondAttribute="bottom" constant="8" id="5ck-kO-igr"/>
                                         <constraint firstItem="3zc-UC-DiO" firstAttribute="leading" secondItem="rwa-xF-Lwp" secondAttribute="leading" id="GMO-Tg-nrp"/>
+                                        <constraint firstItem="eM5-R5-puc" firstAttribute="top" secondItem="3zc-UC-DiO" secondAttribute="bottom" id="KyC-K1-DSN"/>
                                         <constraint firstItem="frL-r9-F0c" firstAttribute="top" secondItem="qKN-93-EDz" secondAttribute="topMargin" constant="8" id="MXb-er-Kaj"/>
                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="aSj-W8-GjJ" secondAttribute="bottom" id="Mj6-ep-b0h"/>
+                                        <constraint firstItem="aSj-W8-GjJ" firstAttribute="top" secondItem="eM5-R5-puc" secondAttribute="bottom" constant="8" id="OxL-dF-Vxp"/>
                                         <constraint firstAttribute="trailing" secondItem="aSj-W8-GjJ" secondAttribute="trailing" id="Rky-Gu-pUw"/>
                                         <constraint firstItem="frL-r9-F0c" firstAttribute="leading" secondItem="rwa-xF-Lwp" secondAttribute="leading" id="Tba-n1-plW"/>
                                         <constraint firstItem="3zc-UC-DiO" firstAttribute="top" secondItem="rwa-xF-Lwp" secondAttribute="bottom" constant="8" id="em9-4Q-sLZ"/>
                                         <constraint firstItem="frL-r9-F0c" firstAttribute="leading" secondItem="qKN-93-EDz" secondAttribute="leadingMargin" constant="8" id="g3g-rA-YWW"/>
+                                        <constraint firstItem="eM5-R5-puc" firstAttribute="leading" secondItem="3zc-UC-DiO" secondAttribute="leading" id="hlW-Ml-QFZ"/>
                                         <constraint firstItem="3zc-UC-DiO" firstAttribute="trailing" secondItem="rwa-xF-Lwp" secondAttribute="trailing" id="hp2-qL-2kN"/>
+                                        <constraint firstItem="eM5-R5-puc" firstAttribute="trailing" secondItem="3zc-UC-DiO" secondAttribute="trailing" id="iZ7-DB-okA"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="frL-r9-F0c" secondAttribute="trailing" constant="8" id="jLO-Ze-bSg"/>
                                         <constraint firstItem="aSj-W8-GjJ" firstAttribute="top" secondItem="3zc-UC-DiO" secondAttribute="bottom" constant="16" id="mJC-Qm-mMX"/>
                                         <constraint firstItem="aSj-W8-GjJ" firstAttribute="leading" secondItem="qKN-93-EDz" secondAttribute="leading" id="mwe-X9-Y2b"/>
                                         <constraint firstItem="frL-r9-F0c" firstAttribute="trailing" secondItem="rwa-xF-Lwp" secondAttribute="trailing" id="pbj-TQ-RMh"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="mJC-Qm-mMX"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="addToCalendarButton" destination="3zc-UC-DiO" id="WeG-yC-g72"/>
@@ -862,7 +880,7 @@
     </scenes>
     <resources>
         <image name="event_symbol" width="16" height="16"/>
-        <image name="newsIcon" width="25" height="25"/>
+        <image name="newsIcon" width="28" height="25"/>
         <image name="news_symbol" width="16" height="16"/>
         <image name="talk_icon" width="16" height="16"/>
     </resources>

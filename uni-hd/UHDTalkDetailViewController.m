@@ -123,6 +123,8 @@
 	hour.hour = 1;
 	NSDate *endDate = [calendar dateByAddingComponents:hour toDate:self.talkItem.date options:0];
 	
+	// TODO: correct duration of the event
+	
 	EKEvent *event = [EKEvent eventWithEventStore:eventStore];
 	
 	event.title = self.talkItem.title;
@@ -133,20 +135,30 @@
 	event.notes = self.talkItem.abstract;
 	event.URL = self.talkItem.url;
 	
+	// TODO: find proper way of identifying events that have alreday been added using both the calendar and event identifiers
+	
 	NSPredicate *query = [eventStore predicateForEventsWithStartDate:self.talkItem.date endDate:endDate calendars:nil];
 	
 	NSArray *similarEvents = [eventStore eventsMatchingPredicate:query];
 	
-	if ([similarEvents count] > 0) {
-		UIAlertController *alertCtrl = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedString(@"Die Veranstaltung wurde bereits in den Kalender eingetragen. Trotzdem fortfahren?", nil) preferredStyle:UIAlertControllerStyleAlert];
-		UIAlertAction *continueAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Fortfahren", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-			[self presentEventEditViewControllerForEvent:event];
+	EKEvent *calendarEvent = nil;
+	
+	for (EKEvent *ev in similarEvents) {
+		if ([ev.title isEqualToString:self.talkItem.title]) {
+			calendarEvent = ev;
+		}
+	}
+	
+	if (calendarEvent != nil) {
+		UIAlertController *alertCtrl = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedString(@"Die Veranstaltung wurde bereits in den Kalender eingetragen. Kalendereintrag bearbeiten?", nil) preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction *editAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Bearbeiten", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+			[self presentEventEditViewControllerForEvent:calendarEvent];
 		}];
 		UIAlertAction *abortAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"Abbrechen", nil) style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
 			return;
 		}];
 		[alertCtrl addAction:abortAction];
-		[alertCtrl addAction:continueAction];
+		[alertCtrl addAction:editAction];
 		[self presentViewController:alertCtrl animated:YES completion:nil];
 	}
 	else {
@@ -169,10 +181,10 @@
 
 - (IBAction)speakereButtonPressed:(id)sender {
 
-	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:self.talkItem.speaker.name message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 	
 	UIAlertAction *visitWebsite = [UIAlertAction actionWithTitle:NSLocalizedString(@"Website anzeigen", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
-		[[UIApplication sharedApplication] openURL:self.talkItem.url];
+		[[UIApplication sharedApplication] openURL:self.talkItem.speaker.url];
 	}];
 	[alertController addAction:visitWebsite];
 	
@@ -192,6 +204,13 @@
 	[alertController addAction:abort];
 	
 	[self presentViewController:alertController animated:YES completion:nil];
+
+}
+
+
+- (IBAction)showOnMapButtonPressed:(id)sender {
+
+	// TODO: show location of the event in campus module
 
 }
 
