@@ -15,5 +15,6 @@
 @property (nonatomic, retain) NSString *city;
 
 @property (nonatomic, readonly) NSString *formattedDescription;
+@property (nonatomic, readonly) NSDictionary *addressDictionary;
 
 @end

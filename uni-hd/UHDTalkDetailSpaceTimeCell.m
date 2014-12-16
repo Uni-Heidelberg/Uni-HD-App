@@ -24,17 +24,12 @@
 -(void)configureForItem:(UHDTalkItem *)item {
 
 	// Configure date and time
-	NSCalendar *calendar = [NSCalendar currentCalendar];
-	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
-	[calendar setTimeZone:timeZone];
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setCalendar:calendar];
-	
 	[dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
 	[dateFormatter setDateStyle:NSDateFormatterFullStyle];
 	self.timeLabel.text = [dateFormatter stringFromDate:item.date];
 	
-	self.locationLabel.text = item.location;
+	self.locationLabel.text = item.formattedLocation;
 	
 	[self.addToCalendarButton setTitle:NSLocalizedString(@"Veranstaltung in den Kalender eintragen", nil) forState:UIControlStateNormal];
 

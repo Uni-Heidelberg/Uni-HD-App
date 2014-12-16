@@ -7,11 +7,12 @@
 //
 
 @import UIKit;
+#import "UHDRemoteManagedLocation.h"
 
 @interface UHDMapsViewController : UIViewController
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
-
+- (void)showLocation:(UHDRemoteManagedLocation *)location animated:(BOOL)animated;
 
 @end

@@ -13,3 +13,4 @@
 #import "UHDBuilding.h"
 #import "UHDLocationCategory.h"
 #import "UHDAddress.h"
+#import "UHDMapsViewController.h"

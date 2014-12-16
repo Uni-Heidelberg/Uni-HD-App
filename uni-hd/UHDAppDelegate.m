@@ -127,13 +127,53 @@
     if (!_persistentStack) {
         [self.logger log:@"Creating persistent stack ..." forLevel:VILogLevelVerbose];
         
-        NSManagedObjectModel *managedObjectModel = [NSManagedObjectModel mergedModelFromBundles:nil];
+        NSManagedObjectModel *mensaModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"mensa" withExtension:@"momd"]];
+        NSManagedObjectModel *newsModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"news" withExtension:@"momd"]];
+        NSManagedObjectModel *mapsModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"maps" withExtension:@"momd"]];
+        NSManagedObjectModel *managedObjectModel = [self modelByMergingModels:@[ mensaModel, newsModel, mapsModel ] withForeignEntityNameKey:@"UHDForeignEntityNameKey"];
 
         NSURL *persistentStoreURL = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject] URLByAppendingPathComponent:@"uni-hd.sqlite"];
         
         _persistentStack = [[UHDPersistentStack alloc] initWithManagedObjectModel:managedObjectModel persistentStoreURL:persistentStoreURL];
     }
     return _persistentStack;
+}
+
+- (NSManagedObjectModel *)modelByMergingModels:(NSArray *)models withForeignEntityNameKey:(NSString *)foreignEntityNameKey
+{
+    NSManagedObjectModel *mergedModel = [[NSManagedObjectModel alloc] init];
+    
+    // Merge entities of all models, ignoring placeholder entities marked by existence of the foreignEntityNameKey in their userInfo
+    NSMutableArray *mergedModelEntities = [[NSMutableArray alloc] init];
+    NSMutableDictionary *ignoredSubentities = [[NSMutableDictionary alloc] init];
+    for (NSManagedObjectModel *model in models) {
+        for (NSEntityDescription *entity in model.entities) {
+            if ([entity.userInfo objectForKey:foreignEntityNameKey]) {
+                // Ignore placeholder
+                // TODO: use this key to actually map differently-named entities
+                // remember subentities to re-establish later
+                ignoredSubentities[entity.name] = entity.subentities;
+            } else {
+                [mergedModelEntities addObject:[entity copy]];
+            }
+        }
+    }
+    [mergedModel setEntities:mergedModelEntities];
+    
+    // Merge subentities
+    NSDictionary *entitiesByName = [mergedModel entitiesByName];
+    for (NSEntityDescription *entity in mergedModel.entities) {
+        NSMutableArray *mergedSubentities = [[NSMutableArray alloc] init];
+        for (NSEntityDescription *ignoredSubentity in ignoredSubentities[entity.name]) {
+            [mergedSubentities addObject:entitiesByName[ignoredSubentity.name]];
+        }
+        for (NSEntityDescription *subentity in entity.subentities) {
+            [mergedSubentities addObject:entitiesByName[subentity.name]];
+        }
+        entity.subentities = mergedSubentities;
+    }
+    
+    return mergedModel;
 }
 
 

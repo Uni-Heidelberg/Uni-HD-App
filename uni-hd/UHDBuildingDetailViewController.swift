@@ -72,43 +72,73 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
-        if let detailSection = DetailSection(rawValue: indexPath.section) {
-            
-            switch detailSection {
+        if let building = self.building {
+            if let detailSection = DetailSection(rawValue: indexPath.section) {
                 
-            case .Location:
+                switch detailSection {
+                    
+                case .Location:
                 
-                if indexPath.row == 0 {
                     // selected address
                     let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
                     alertController.addAction(UIAlertAction(title: NSLocalizedString("Auf der Karte anzeigen", comment: ""), style: .Default, handler: { action in
-                        // TODO: implement
+
+                        self.showOnMap()
+                        
                         tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     }))
                     alertController.addAction(UIAlertAction(title: NSLocalizedString("Route hierhin", comment: ""), style: .Default, handler: { action in
-                        // TODO: implement
+                        
+                        self.getDirections()
+                        
                         tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     }))
                     alertController.addAction(UIAlertAction(title: NSLocalizedString("Abbrechen", comment: ""), style: .Cancel, handler: { action in
                         tableView.deselectRowAtIndexPath(indexPath, animated: true)
                     }))
                     self.presentViewController(alertController, animated: true, completion: nil)
+                    
+                case .Contact:
+                    let actions = self.contactProperties()[indexPath.row].actions
+                    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+                    for action in actions {
+                        alertController.addAction(action)
+                    }
+                    self.presentViewController(alertController, animated: true, completion: {
+                        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                    })
+                
+                default:
+                    tableView.deselectRowAtIndexPath(indexPath, animated: true)
                 }
                 
-            case .Contact:
-                let actions = self.contactProperties()[indexPath.row].actions
-                let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-                for action in actions {
-                    alertController.addAction(action)
-                }
-                self.presentViewController(alertController, animated: true, completion: {
-                    tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                })
-            
-            default:
-                tableView.deselectRowAtIndexPath(indexPath, animated: true)
             }
-            
+        }
+    }
+    
+    @IBAction func showOnMapButtonPressed(sender: AnyObject) {
+        self.showOnMap()
+    }
+    
+    func showOnMap() {
+        if let building = self.building {
+            self.tabBarController?.selectedIndex = 2; // TODO: make dynamic
+            if let mapsNavC = self.tabBarController?.selectedViewController? as? UINavigationController {
+                if let mapsVC = mapsNavC.viewControllers.first as? UHDMapsViewController {
+                    mapsNavC.popToViewController(mapsVC, animated: mapsNavC==self.navigationController)
+                    mapsVC.showLocation(building, animated: true)
+                }
+            }
+        }
+    }
+    
+    @IBAction func getDirectionsButtonPressed(sender: AnyObject) {
+        self.getDirections()
+    }
+    
+    func getDirections() {
+        if let building = self.building {
+            MKMapItem.openMapsWithItems([ MKMapItem.mapItemForCurrentLocation(), building.mapItem ], launchOptions: [ MKLaunchOptionsDirectionsModeKey : MKLaunchOptionsDirectionsModeWalking ])
         }
     }
     

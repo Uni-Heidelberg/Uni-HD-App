@@ -93,7 +93,7 @@
 		87F826CD190D41450008144F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87F826CC190D41450008144F /* CoreData.framework */; };
 		87F826D0190D422F0008144F /* news.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87F826CE190D422F0008144F /* news.xcdatamodeld */; };
 		87F826EA190D700E0008144F /* VILogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F826E9190D700E0008144F /* VILogger.m */; };
-		87FCA99319958EB100B3A55F /* Maps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87FCA99119958EB100B3A55F /* Maps.xcdatamodeld */; };
+		87FCA99319958EB100B3A55F /* maps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87FCA99119958EB100B3A55F /* maps.xcdatamodeld */; };
 		87FCA9961995901200B3A55F /* UHDRemoteManagedLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FCA9951995901200B3A55F /* UHDRemoteManagedLocation.m */; };
 		87FF70FB1923F33500FCF5F4 /* UHDNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FF70FA1923F33500FCF5F4 /* UHDNewsItem.m */; };
 		87FF70FE1924097E00FCF5F4 /* UHDPersistentStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FF70FD1924097E00FCF5F4 /* UHDPersistentStack.m */; };
@@ -295,7 +295,7 @@
 		87F826CF190D422F0008144F /* news.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = news.xcdatamodel; sourceTree = "<group>"; };
 		87F826E8190D700E0008144F /* VILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VILogger.h; sourceTree = "<group>"; };
 		87F826E9190D700E0008144F /* VILogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VILogger.m; sourceTree = "<group>"; };
-		87FCA99219958EB100B3A55F /* Maps.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Maps.xcdatamodel; sourceTree = "<group>"; };
+		87FCA99219958EB100B3A55F /* maps.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = maps.xcdatamodel; sourceTree = "<group>"; };
 		87FCA9941995901200B3A55F /* UHDRemoteManagedLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDRemoteManagedLocation.h; sourceTree = "<group>"; };
 		87FCA9951995901200B3A55F /* UHDRemoteManagedLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDRemoteManagedLocation.m; sourceTree = "<group>"; };
 		87FF70F91923F33500FCF5F4 /* UHDNewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsItem.h; sourceTree = "<group>"; };
@@ -416,7 +416,7 @@
 		0B84B30619939B8300813CC2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				87FCA99119958EB100B3A55F /* Maps.xcdatamodeld */,
+				87FCA99119958EB100B3A55F /* maps.xcdatamodeld */,
 				87FCA9941995901200B3A55F /* UHDRemoteManagedLocation.h */,
 				87FCA9951995901200B3A55F /* UHDRemoteManagedLocation.m */,
 				0BB49E1719ADC3F60025BD07 /* UHDCampusRegion.h */,
@@ -948,9 +948,9 @@
 		87FF70F81923EFE500FCF5F4 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
-				0ABAE5ED1A3A52C200E85E3E /* Talk Detail */,
 				875395FD1932B00400DFEF19 /* News List */,
 				875395FE1932B00F00DFEF19 /* News Detail */,
+				0ABAE5ED1A3A52C200E85E3E /* Talk Detail */,
 				875395FF1932B01700DFEF19 /* News Sources */,
 			);
 			name = "View Controller";
@@ -1258,7 +1258,7 @@
 				8733B3FA19FA13BD007263AC /* Hours.swift in Sources */,
 				87F826EA190D700E0008144F /* VILogger.m in Sources */,
 				DC4485BB1A3F7DBC006CA0EC /* UHDMensaSectionHeaderView.m in Sources */,
-				87FCA99319958EB100B3A55F /* Maps.xcdatamodeld in Sources */,
+				87FCA99319958EB100B3A55F /* maps.xcdatamodeld in Sources */,
 				DC602447193E23A500B06BF2 /* UHDMensaViewController.m in Sources */,
 				DC462EC1196964F60071ABBC /* UHDFavouritesStarView.m in Sources */,
 				87479AA61A3FA4810084FBDA /* UHDBuildingDetailLocationCell.swift in Sources */,
@@ -1539,13 +1539,13 @@
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
-		87FCA99119958EB100B3A55F /* Maps.xcdatamodeld */ = {
+		87FCA99119958EB100B3A55F /* maps.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				87FCA99219958EB100B3A55F /* Maps.xcdatamodel */,
+				87FCA99219958EB100B3A55F /* maps.xcdatamodel */,
 			);
-			currentVersion = 87FCA99219958EB100B3A55F /* Maps.xcdatamodel */;
-			path = Maps.xcdatamodeld;
+			currentVersion = 87FCA99219958EB100B3A55F /* maps.xcdatamodel */;
+			path = maps.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

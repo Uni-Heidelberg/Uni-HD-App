@@ -397,24 +397,48 @@
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="locationCell" rowHeight="230" id="QCo-le-ypI" customClass="UHDBuildingDetailLocationCell" customModule="uni_hd" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="locationCell" rowHeight="320" id="QCo-le-ypI" customClass="UHDBuildingDetailLocationCell" customModule="uni_hd" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="246" width="320" height="198"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QCo-le-ypI" id="R3a-XU-xd7">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="197"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pu9-Ck-Ah9">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="199.5"/>
+                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pu9-Ck-Ah9">
+                                            <rect key="frame" x="0.0" y="76" width="600" height="200"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="200" id="mN3-JJ-WPp"/>
                                             </constraints>
                                         </mapView>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hCW-GD-fys">
+                                            <rect key="frame" x="15" y="8" width="157" height="30"/>
+                                            <state key="normal" title="Auf der Karte anzeigen">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="showOnMapButtonPressed:" destination="gkq-iR-bWQ" eventType="touchUpInside" id="wHW-Np-CtI"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wXI-99-Ru4">
+                                            <rect key="frame" x="15" y="38" width="91" height="30"/>
+                                            <state key="normal" title="Route hierhin">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="getDirectionsButtonPressed:" destination="gkq-iR-bWQ" eventType="touchUpInside" id="xQi-xF-3qh"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="pu9-Ck-Ah9" firstAttribute="top" secondItem="R3a-XU-xd7" secondAttribute="top" id="D6g-T7-vKU"/>
+                                        <constraint firstItem="hCW-GD-fys" firstAttribute="top" secondItem="R3a-XU-xd7" secondAttribute="topMargin" id="3Zc-gL-qFs"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wXI-99-Ru4" secondAttribute="trailing" constant="15" id="BqE-xD-lrd"/>
                                         <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pu9-Ck-Ah9" secondAttribute="bottom" id="Ixh-rw-4LI"/>
                                         <constraint firstItem="pu9-Ck-Ah9" firstAttribute="leading" secondItem="R3a-XU-xd7" secondAttribute="leading" id="PbA-1e-7ot"/>
+                                        <constraint firstItem="hCW-GD-fys" firstAttribute="leading" secondItem="wXI-99-Ru4" secondAttribute="leading" id="Urw-bg-JDX"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hCW-GD-fys" secondAttribute="trailing" constant="15" id="VSR-Q3-6eq"/>
+                                        <constraint firstItem="wXI-99-Ru4" firstAttribute="top" secondItem="hCW-GD-fys" secondAttribute="bottom" id="iUl-6u-q0L"/>
+                                        <constraint firstItem="hCW-GD-fys" firstAttribute="leading" secondItem="R3a-XU-xd7" secondAttribute="leading" constant="15" id="mcZ-FI-f6G"/>
+                                        <constraint firstItem="pu9-Ck-Ah9" firstAttribute="top" secondItem="wXI-99-Ru4" secondAttribute="bottom" constant="8" id="sFh-9X-5KJ"/>
                                         <constraint firstAttribute="trailing" secondItem="pu9-Ck-Ah9" secondAttribute="trailing" id="tc7-Sf-CBE"/>
                                     </constraints>
                                 </tableViewCellContentView>

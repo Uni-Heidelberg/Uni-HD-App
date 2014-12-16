@@ -26,6 +26,8 @@
 @dynamic imageData, imageURL;
 @dynamic source;
 @dynamic sectionIdentifier;
+@dynamic buildingString, roomString;
+@dynamic location;
 
 @dynamic primitiveDate, primitiveSectionIdentifier;
 

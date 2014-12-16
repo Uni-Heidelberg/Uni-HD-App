@@ -121,8 +121,6 @@
         [self.mapView addOverlays:allCampusRegions level:MKOverlayLevelAboveLabels];
     }
     
-    
-    
     // Add building overlays to verify their map rect
     /*NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
      [self.mapView removeOverlays:allBuildings];
@@ -131,6 +129,13 @@
     /*NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
      [self.mapView removeAnnotations:allBuildings];
      [self.mapView addAnnotations:allBuildings];*/
+    
+    if (self.selectedAnnotation) {
+        [self.mapView addAnnotation:self.selectedAnnotation];
+        [self.mapView showAnnotations:@[ self.selectedAnnotation ] animated:NO];
+        [self.mapView selectAnnotation:self.selectedAnnotation animated:NO];
+    }
+    
 }
 
 - (NSFetchedResultsController *)campusRegionsFetchedResultsController{
@@ -176,11 +181,15 @@
 
 - (void)searchResultsViewController:(UHDMapsSearchResultsViewController *)viewController didSelectBuilding:(UHDBuilding *)building
 {
+    [self showLocation:building animated:YES];
+}
+
+- (void)showLocation:(UHDRemoteManagedLocation *)location animated:(BOOL)animated {
     [self.searchController setActive:NO];
     [self.mapView removeAnnotation:self.selectedAnnotation];
-    self.selectedAnnotation = building;
-    [self.mapView showAnnotations:@[ building ] animated:YES];
-    [self.mapView selectAnnotation:building animated:YES];
+    self.selectedAnnotation = location;
+    [self.mapView showAnnotations:@[ location ] animated:animated];
+    [self.mapView selectAnnotation:location animated:animated];
 }
 
 - (IBAction)unwindToMap:(UIStoryboardSegue *)segue {
@@ -218,23 +227,6 @@
     }
 }
 
-- (void)handleTapOnSearchBar:(UITapGestureRecognizer *)gestureRecognizer
-{
-    if (gestureRecognizer.state==UIGestureRecognizerStateEnded) {
-        
-        //[gestureRecognizer locationInView:self.mapsSearchBar];
-        
-        
-    }
-}
-
-#pragma mark - Search Controller Delegate
-
-/*- (void)presentSearchController:(UISearchController *)searchController
- {
- [self.searchResultsContainerView addSubview:self.searchResultsViewController.view];
- }*/
-
 
 #pragma mark - Notification responses
 
@@ -267,13 +259,13 @@
     return nil;
 }
 
-- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
+/*- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
 {
     // TODO: Only necessary because selection is strangely cleared right after tap occured
     if (self.selectedAnnotation && view.annotation == self.selectedAnnotation) {
         [mapView selectAnnotation:view.annotation animated:NO];
     }
-}
+}*/
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
 {

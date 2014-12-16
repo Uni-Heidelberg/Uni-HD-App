@@ -71,7 +71,7 @@
     // UHDEventItem
     
     RKEntityMapping *eventItemMapping = [RKEntityMapping mappingForEntityForName:[UHDEventItem entityName] inManagedObjectStore:objectManager.managedObjectStore];
-    [eventItemMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId", @"building": @"location", @"imageUrl": @"imageURL" }];
+    [eventItemMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId", @"imageUrl": @"imageURL", @"building": @"buildingString", @"room": @"roomString" }];
     [eventItemMapping addAttributeMappingsFromArray:@[ @"title", @"date", @"abstract", @"url", @"sourceId" ]];
     eventItemMapping.identificationAttributes = @[ @"remoteObjectId" ];
     eventItemMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", eventItemMapping.entity];
@@ -88,7 +88,7 @@
     // UHDTalkItem
     
     RKEntityMapping *talkItemMapping = [RKEntityMapping mappingForEntityForName:[UHDTalkItem entityName] inManagedObjectStore:objectManager.managedObjectStore];
-    [talkItemMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId", @"building": @"location", @"imageUrl": @"imageURL" }];
+    [talkItemMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId", @"imageUrl": @"imageURL", @"building": @"buildingString", @"room": @"roomString" }];
     [talkItemMapping addAttributeMappingsFromArray:@[ @"title", @"date", @"abstract", @"url", @"sourceId" ]];
     [talkItemMapping addRelationshipMappingWithSourceKeyPath:@"speaker" mapping:speakerMapping];
     talkItemMapping.identificationAttributes = @[ @"remoteObjectId" ];

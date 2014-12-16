@@ -9,12 +9,12 @@
 #import "UHDBuilding.h"
 
 #import "UHDCampusRegion.h"
+#import "UHDAddress.h"
 
 @implementation UHDBuilding
 
 @dynamic category;
 @dynamic campusRegion, buildingNumber;
-@dynamic addressDictionary;
 @dynamic imageData, imageURL;
 @dynamic spanLatitude, spanLongitude;
 @dynamic address;
@@ -60,6 +60,12 @@
     self.coordinate = coordinateRegion.center;
     self.spanLatitude = coordinateRegion.span.latitudeDelta;
     self.spanLongitude = coordinateRegion.span.longitudeDelta;
+}
+
+- (MKMapItem *)mapItem {
+    MKMapItem *mapItem = [[MKMapItem alloc] initWithPlacemark:[[MKPlacemark alloc] initWithCoordinate:self.coordinate addressDictionary:self.address.addressDictionary]];
+    mapItem.name = self.title ? self.title : self.campusIdentifier;
+    return mapItem;
 }
 
 #pragma mark - MKAnnotation Protocol

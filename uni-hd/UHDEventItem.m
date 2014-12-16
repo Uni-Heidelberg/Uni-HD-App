@@ -7,10 +7,20 @@
 //
 
 #import "UHDEventItem.h"
+#import "UHDRemoteManagedLocation.h"
 
 @implementation UHDEventItem
 
+@dynamic buildingString, roomString;
 @dynamic location;
+
+- (NSString *)formattedLocation {
+    if (self.location) {
+        return self.location.title;
+    } else {
+        return [NSString stringWithFormat:@"%@, %@", self.buildingString, self.roomString];
+    }
+}
 
 - (BOOL)read {
 

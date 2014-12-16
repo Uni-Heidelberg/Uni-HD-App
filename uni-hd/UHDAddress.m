@@ -7,6 +7,7 @@
 //
 
 #import "UHDAddress.h"
+#import <AddressBook/AddressBook.h>
 
 @implementation UHDAddress
 
@@ -14,6 +15,10 @@
 
 - (NSString *)formattedDescription {
     return [NSString stringWithFormat:@"%@,\n%@ %@", self.street, self.postalCode, self.city];
+}
+
+- (NSDictionary *)addressDictionary {
+    return @{ (NSString *)kABPersonAddressStreetKey: self.street, (NSString *)kABPersonAddressZIPKey: self.postalCode, (NSString *)kABPersonAddressCityKey: self.city };
 }
 
 @end

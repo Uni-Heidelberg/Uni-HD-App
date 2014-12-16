@@ -11,5 +11,5 @@ import UIKit
 class UHDBuildingDetailLocationCell: UITableViewCell {
 
     @IBOutlet var mapView: MKMapView!
-
+    
 }

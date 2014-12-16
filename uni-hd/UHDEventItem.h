@@ -7,9 +7,14 @@
 //
 
 #import "UHDNewsItem.h"
+@class UHDRemoteManagedLocation;
 
 @interface UHDEventItem : UHDNewsItem
 
-@property (nonatomic, retain) NSString *location;
+@property (nonatomic, retain) NSString *buildingString;
+@property (nonatomic, retain) NSString *roomString;
+@property (nonatomic, retain) UHDRemoteManagedLocation *location;
+
+@property (nonatomic, readonly) NSString *formattedLocation;
 
 @end

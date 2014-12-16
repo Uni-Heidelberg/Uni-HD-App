@@ -25,21 +25,30 @@
         <attribute name="spanLongitude" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <relationship name="buildings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDBuilding" inverseName="campusRegion" inverseEntity="UHDBuilding" syncable="YES"/>
     </entity>
+    <entity name="UHDEventItem" syncable="YES">
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDRemoteManagedLocation" inverseName="events" inverseEntity="UHDRemoteManagedLocation" syncable="YES"/>
+        <userInfo>
+            <entry key="UHDForeignEntityNameKey" value="news.UHDEventItem"/>
+        </userInfo>
+    </entity>
     <entity name="UHDLocationCategory" representedClassName="UHDLocationCategory" syncable="YES">
         <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="buildings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDBuilding" inverseName="category" inverseEntity="UHDBuilding" syncable="YES"/>
     </entity>
     <entity name="UHDRemoteManagedLocation" representedClassName="UHDRemoteManagedLocation" isAbstract="YES" syncable="YES">
+        <attribute name="currentDistance" optional="YES" attributeType="Double" defaultValueString="-1" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDEventItem" inverseName="location" inverseEntity="UHDEventItem" syncable="YES"/>
     </entity>
     <elements>
-        <element name="UHDAddress" positionX="-128" positionY="324" width="128" height="103"/>
+        <element name="UHDAddress" positionX="-128" positionY="365" width="128" height="103"/>
         <element name="UHDBuilding" positionX="-128" positionY="116" width="128" height="208"/>
         <element name="UHDCampusRegion" positionX="-306" positionY="117" width="128" height="103"/>
         <element name="UHDLocationCategory" positionX="45" positionY="119" width="128" height="88"/>
-        <element name="UHDRemoteManagedLocation" positionX="-227" positionY="-45" width="128" height="88"/>
+        <element name="UHDRemoteManagedLocation" positionX="-216" positionY="-45" width="128" height="118"/>
+        <element name="UHDEventItem" positionX="7" positionY="9" width="128" height="58"/>
     </elements>
 </model>

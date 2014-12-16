@@ -579,11 +579,11 @@
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eM5-R5-puc">
                                             <rect key="frame" x="15" y="96" width="570" height="30"/>
-                                            <state key="normal" title="Auf Karte anzeigen">
+                                            <state key="normal" title="Auf der Karte anzeigen">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <action selector="showOnMapButtonPressed:" destination="e3t-qO-g8f" eventType="touchUpInside" id="cYm-Ru-z0k"/>
+                                                <action selector="showOnMapButtonPressed:" destination="e3t-qO-g8f" eventType="touchUpInside" id="L8o-5S-Siq"/>
                                             </connections>
                                         </button>
                                     </subviews>

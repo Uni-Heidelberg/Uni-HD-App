@@ -20,7 +20,7 @@ MKMapRect MKMapRectForCoordinateRegion(MKCoordinateRegion region)
 @implementation UHDRemoteManagedLocation
 
 @dynamic title;
-@dynamic location;
+@dynamic location, currentDistance;
 
 
 #pragma mark - MKAnnotation Protocol

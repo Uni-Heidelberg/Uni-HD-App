@@ -14,6 +14,8 @@
 
 #import "UHDTalkDetailViewController.h"
 #import "UHDTalkDetailTitleAbstractCell.h"
+#import "UHDTalkDetailSpaceTimeCell.h"
+#import "UHDMapsViewController.h"
 
 #import "UHDNewsSource.h"
 
@@ -215,10 +217,15 @@
 
 }
 
-- (IBAction)showOnMapButtonPressed:(id)sender {
-
-	// TODO: show location of the event in maps module
-
+- (IBAction)showOnMapButtonPressed:(id)sender
+{
+    if (self.talkItem.location) {
+        self.tabBarController.selectedIndex = 2; // TODO: make dynamic
+        UINavigationController *mapsNavC = (UINavigationController *)self.tabBarController.selectedViewController;
+        UHDMapsViewController *mapsVC = [mapsNavC.viewControllers firstObject];
+        [mapsNavC popToViewController:mapsVC animated:mapsNavC==self.navigationController];
+        [mapsVC showLocation:self.talkItem.location animated:YES];
+    }
 }
 
 
@@ -244,25 +251,20 @@
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    
-    UHDTalkDetailTitleAbstractCell *cell;
-    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     switch (indexPath.section) {
-        case 0:
-            cell = [self.tableView dequeueReusableCellWithIdentifier:@"titleAbstract"];
-            break;
-        case 1:
-            cell = [self.tableView dequeueReusableCellWithIdentifier:@"spaceTime"];
-            break;
+        case 0: {
+            UHDTalkDetailTitleAbstractCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"titleAbstract"];
+            [cell configureForItem:self.talkItem];
+            return cell; }
+        case 1: {
+            UHDTalkDetailSpaceTimeCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"spaceTime"];
+            [cell configureForItem:self.talkItem];
+            return cell; }
         default:
-            cell = nil;
-            break;
+            return nil;
     }
-    
-    [cell configureForItem:self.talkItem];
-    
-    return cell;	
 }
 
 

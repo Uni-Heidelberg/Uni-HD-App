@@ -8,41 +8,13 @@
 
 #import "UHDMensa.h"
 #import "UHDMensaSection.h"
+#import "UHDBuilding.h"
 
 @implementation UHDMensa
 
 @dynamic isFavourite;
-@dynamic currentDistance;
 @dynamic sections;
 
-// TODO: implement attributes with relationships to maps module
-- (NSString *)buildingNumber {
-    return nil;
-}
-- (void)setBuildingNumber:(NSString *)buildingNumber {
-    return;
-}
-- (UHDCampusRegion *)campusRegion {
-    return nil;
-}
-- (void)setCampusRegion:(UHDCampusRegion *)campusRegion {
-    return;
-}
-- (UHDLocationCategory *)category {
-    return nil;
-}
-- (void)setCategory:(UHDLocationCategory *)category {
-    return;
-}
-- (NSString *)identifier {
-    return self.title;
-}
-- (UHDAddress *)address {
-    return nil;
-}
-- (void)setAddress:(UHDAddress *)address {
-    return;
-}
 
 #pragma mark - Mutable To-Many Accessors
 
@@ -52,7 +24,7 @@
 }
 
 
-#pragma mark - Computed Properties
+#pragma mark -. Computed Properties
 
 - (Hours *)hours {
     return [[Hours alloc] init];

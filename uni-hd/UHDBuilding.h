@@ -14,7 +14,6 @@
 
 @property (nonatomic, retain) UHDLocationCategory *category;
 @property (nonatomic, retain) UHDCampusRegion *campusRegion;
-@property (nonatomic, retain) NSDictionary *addressDictionary;
 @property (nonatomic, retain) NSString *buildingNumber;
 @property (nonatomic, retain) NSData *imageData;
 @property (nonatomic, retain) NSURL *imageURL;
@@ -29,5 +28,6 @@
 @property (readonly) NSString *campusIdentifier; // calculated by combining the campus region's identifier and the building number
 @property (nonatomic) UIImage *image; // TODO: make readonly and transient as soon as sample data is not necessary anymore
 @property (nonatomic) MKCoordinateRegion coordinateRegion;
+@property (nonatomic, readonly) MKMapItem *mapItem;
 
 @end
