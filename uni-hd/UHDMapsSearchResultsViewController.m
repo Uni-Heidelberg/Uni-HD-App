@@ -114,4 +114,13 @@
     [self.delegate searchResultsViewController:self didSelectBuilding:item];
 }
 
+- (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
+{
+    UHDBuilding *item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
+    UHDBuildingDetailViewController *detailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"buildingDetail"];
+    detailVC.building = item;
+    UIViewController *pv = self.parentViewController;
+    [((UIViewController *)((UISearchController *)self.parentViewController).delegate).navigationController pushViewController:detailVC animated:YES]; // TODO: this is super dirty, use segue instead
+}
+
 @end

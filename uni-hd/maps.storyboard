@@ -256,7 +256,6 @@
                                     <outlet property="buildingsImageView" destination="XXO-mb-wNn" id="YBw-jd-VUN"/>
                                     <outlet property="subtitleLabel" destination="NJ7-Km-F6p" id="Ws3-h8-dhB"/>
                                     <outlet property="titleLabel" destination="cXu-6Q-IaW" id="aI9-ki-Ua1"/>
-                                    <segue destination="gkq-iR-bWQ" kind="showDetail" identifier="showBuildingDetailFromSearchResults" trigger="accessoryAction" id="LRc-SD-l8L"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -473,7 +472,4 @@
         <image name="mapsIcon" width="32" height="25"/>
         <image name="raumplan_kip" width="1312" height="1108"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="LRc-SD-l8L"/>
-    </inferredMetricsTieBreakers>
 </document>
