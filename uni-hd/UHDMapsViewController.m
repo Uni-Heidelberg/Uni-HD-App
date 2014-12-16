@@ -291,6 +291,10 @@
     return nil;
 }
 
+
+// This is not smooth enough for presentation yet
+
+/*
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
     self.lastValidMapRegion = mapView.region;
 }
@@ -372,9 +376,9 @@
         [mapView setRegion: NZRegion animated: YES];
     }
     
-    self.isAdjustingToValidMapRegion = NO;*/
+    self.isAdjustingToValidMapRegion = NO;
 
-}
+}*/
 
 
 #pragma mark - Gesture Recognizer Delegate
