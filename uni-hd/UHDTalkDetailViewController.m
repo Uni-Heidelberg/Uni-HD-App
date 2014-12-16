@@ -57,6 +57,7 @@
 
 	// configure header view
 	if (self.talkItem.image == nil) {
+        // TODO: this is not reversible (e.g. constraints get removed as well)! It works, because currently a new view controller is created every time a talk is selected.
 		[self.tableView.tableHeaderView removeFromSuperview];
 		self.tableView.tableHeaderView = nil;
 	}

@@ -9,7 +9,6 @@
 #import "UHDMapsSearchResultsViewController.h"
 #import "VIFetchedResultsControllerDataSource.h"
 #import "UHDRemoteDatasourceManager.h"
-#import "UHDBuildingDetailViewController.h"
 
 // Model
 #import "UHDBuilding.h"

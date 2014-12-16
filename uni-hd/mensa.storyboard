@@ -43,7 +43,7 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <segue destination="PlF-L6-ulV" kind="show" identifier="showMensaDetail" id="ZoX-P8-0Hs"/>
+                                                <action selector="detailButtonPressed:" destination="otg-ia-fKW" eventType="touchUpInside" id="Pe0-aX-SEM"/>
                                             </connections>
                                         </button>
                                         <view contentMode="scaleToFill" horizontalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qLb-lB-7J7" customClass="CircularProgressView" customModule="uni_hd" customModuleProvider="target">
@@ -170,92 +170,6 @@
                 <exit id="cWY-ub-8Cl" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2658" y="-1452.5"/>
-        </scene>
-        <!--Mensa Detail View Controller-->
-        <scene sceneID="j0n-t2-fNc">
-            <objects>
-                <tableViewController id="PlF-L6-ulV" customClass="UHDMensaDetailViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="efD-jb-UXT">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                        <view key="tableHeaderView" contentMode="scaleToFill" id="cok-x7-Hxq">
-                            <rect key="frame" x="0.0" y="64" width="600" height="191"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lsa-eb-FSU">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="191"/>
-                                </imageView>
-                            </subviews>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        </view>
-                        <sections>
-                            <tableViewSection headerTitle="Öffnungszeiten" id="Hqp-P6-uc7">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="2ql-Fr-Lw2">
-                                        <rect key="frame" x="0.0" y="310" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2ql-Fr-Lw2" id="sNx-hf-OGj">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="RCO-Da-opz">
-                                        <rect key="frame" x="0.0" y="354" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="RCO-Da-opz" id="tK7-Ca-Igr">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="gm1-yO-Nhw">
-                                        <rect key="frame" x="0.0" y="398" width="320" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gm1-yO-Nhw" id="Ie1-Lc-ytW">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                            <tableViewSection headerTitle="Lage" id="dFN-KH-Tt8">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="198" id="6xg-bN-1dP">
-                                        <rect key="frame" x="0.0" y="490" width="320" height="198"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6xg-bN-1dP" id="kZI-Dt-t4b">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="197"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="STd-p6-kM7">
-                                                    <rect key="frame" x="0.0" y="0.0" width="600" height="197"/>
-                                                </mapView>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="STd-p6-kM7" firstAttribute="top" secondItem="kZI-Dt-t4b" secondAttribute="top" id="8Iv-Gw-msp"/>
-                                                <constraint firstItem="STd-p6-kM7" firstAttribute="leading" secondItem="kZI-Dt-t4b" secondAttribute="leading" id="8Xg-3p-V8b"/>
-                                                <constraint firstAttribute="bottom" secondItem="STd-p6-kM7" secondAttribute="bottom" id="DOU-oe-3Kh"/>
-                                                <constraint firstAttribute="trailing" secondItem="STd-p6-kM7" secondAttribute="trailing" id="rnw-04-6YZ"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="PlF-L6-ulV" id="E3T-9m-JUY"/>
-                            <outlet property="delegate" destination="PlF-L6-ulV" id="Wb0-F7-j2M"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="xtL-I1-051"/>
-                    <connections>
-                        <outlet property="headerImageView" destination="lsa-eb-FSU" id="vdL-qq-qH9"/>
-                        <outlet property="mapView" destination="STd-p6-kM7" id="bU1-YR-OkX"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aBU-Vz-J5c" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3586.875" y="-1441.9014084507041"/>
         </scene>
         <!--Mensa View Controller-->
         <scene sceneID="zPL-mK-3wf">
@@ -451,9 +365,6 @@
                                             <state key="normal">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
-                                            <connections>
-                                                <segue destination="PlF-L6-ulV" kind="show" identifier="showMensaDetail" id="ABh-eb-d6C"/>
-                                            </connections>
                                         </button>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Mensa Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ua6-YB-hC0">
                                             <rect key="frame" x="0.0" y="0.0" width="91" height="22"/>
@@ -634,7 +545,4 @@
         <image name="favouriteSymbol" width="23" height="23"/>
         <image name="mensaIcon" width="25" height="25"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="ZoX-P8-0Hs"/>
-    </inferredMetricsTieBreakers>
 </document>

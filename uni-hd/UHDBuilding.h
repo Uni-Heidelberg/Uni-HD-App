@@ -7,9 +7,8 @@
 //
 
 #import "UHDRemoteManagedLocation.h"
-#import "UHDAddress.h"
 
-@class UHDLocationCategory, UHDCampusRegion;
+@class UHDLocationCategory, UHDCampusRegion, UHDAddress;
 
 @interface UHDBuilding : UHDRemoteManagedLocation <MKOverlay>
 
@@ -22,6 +21,9 @@
 @property (nonatomic) double_t spanLatitude;
 @property (nonatomic) double_t spanLongitude;
 @property (nonatomic, retain) UHDAddress *address;
+@property (nonatomic, retain) NSString *telephone;
+@property (nonatomic, retain) NSString *email;
+@property (nonatomic, retain) NSURL *url;
 
 // Computed Properties
 @property (readonly) NSString *campusIdentifier; // calculated by combining the campus region's identifier and the building number

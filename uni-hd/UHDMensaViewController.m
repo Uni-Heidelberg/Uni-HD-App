@@ -11,7 +11,6 @@
 // View Controller
 #import "UHDMensaListViewController.h"
 #import "UHDDailyMenuViewController.h"
-#import "UHDMensaDetailViewController.h"
 
 // Model
 #import "UHDMensa.h"
@@ -127,10 +126,6 @@
         self.pageViewController = segue.destinationViewController;
         self.pageViewController.dataSource = self;
         self.pageViewController.delegate = self;
-    }
-    else if ([segue.identifier isEqualToString:[NSString stringWithFormat:@"showMensaDetail"]]) {
-        UHDMensaDetailViewController *detailVC = [segue destinationViewController];
-        detailVC.mensa = self.mensa;
     }
 }
 

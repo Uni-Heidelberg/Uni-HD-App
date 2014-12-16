@@ -18,12 +18,17 @@
 @dynamic imageData, imageURL;
 @dynamic spanLatitude, spanLongitude;
 @dynamic address;
+@dynamic telephone, email, url;
 
 
 #pragma mark - Computed Properties
 
 - (NSString *)campusIdentifier {
-    return [NSString stringWithFormat:@"%@ %@", self.campusRegion.identifier, self.buildingNumber];
+    if (self.campusRegion && self.buildingNumber) {
+        return [NSString stringWithFormat:@"%@ %@", self.campusRegion.identifier, self.buildingNumber];
+    } else {
+        return nil;
+    }
 }
 
 - (UIImage *)image
