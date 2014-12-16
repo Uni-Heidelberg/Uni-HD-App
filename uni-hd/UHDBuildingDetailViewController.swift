@@ -13,12 +13,24 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
 
     var building: UHDBuilding? {
         didSet {
+            if let prevBuilding = oldValue {
+                NSNotificationCenter.defaultCenter().removeObserver(self, name: NSManagedObjectContextObjectsDidChangeNotification, object: prevBuilding.managedObjectContext)
+            }
+            if let building = building {
+                NSNotificationCenter.defaultCenter().addObserver(self, selector: "managedObjectContextObjectsDidChange:", name: NSManagedObjectContextObjectsDidChangeNotification, object: building.managedObjectContext)
+            }
             self.configureView()
         }
     }
     
-    @IBOutlet private var headerImageView: UIImageView!
     
+    // MARK: Interface Elements
+    
+    @IBOutlet private var headerView: UIView!
+    @IBOutlet private weak var headerImageView: UIImageView!
+    
+    
+    // MARK: Lifecycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,19 +40,31 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
     }
     
     override func viewDidLoad() {
+        super.viewDidLoad()
         self.configureView()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.tableView.adjustFrameForParallaxedHeaderView(self.headerImageView)
     }
     
     func configureView()
     {
         self.headerImageView.image = self.building?.image
         if self.headerImageView.image == nil {
-            //self.tableView.tableHeaderView = nil // TODO: make reversible
+            self.tableView.tableHeaderView = nil
+        } else {
+            self.tableView.tableHeaderView = self.headerView
         }
         
         self.title = self.building?.title
         
         self.tableView.reloadData()
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     
@@ -220,15 +244,26 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
     }
     
     
-    // MARK: Parallax scrolling effect
+    // MARK: Managed Object Context Notifications
+    
+    func managedObjectContextObjectsDidChange(notification: NSNotification)
+    {
+        if let building = self.building {
+            if let userInfo = notification.userInfo {
+                if let updatedObjects = userInfo[NSUpdatedObjectsKey] as? NSSet {
+                    if updatedObjects.containsObject(building) {
+                        self.configureView()
+                    }
+                }
+            }
+        }
+    }
+    
+    // MARK: Scroll View Delegate
     
     override func scrollViewDidScroll(scrollView: UIScrollView) {
-        if let tableHeaderView = self.tableView.tableHeaderView {
-            let offset = scrollView.contentOffset.y + scrollView.contentInset.top
-            var imageFrame = self.headerImageView.frame
-            imageFrame.origin.y = offset
-            imageFrame.size.height = -offset + tableHeaderView.frame.size.height;
-            self.headerImageView.frame = imageFrame;
+        if (scrollView==self.tableView) {
+            self.tableView.adjustFrameForParallaxedHeaderView(self.headerImageView)
         }
     }
     

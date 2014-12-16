@@ -19,6 +19,7 @@
 
 @interface UHDTalkDetailViewController () <EKEventEditViewDelegate, MFMailComposeViewControllerDelegate,  MKMapViewDelegate>
 
+@property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
 @property (weak, nonatomic) IBOutlet UILabel *navigationItemTitleLabel;
 
@@ -27,59 +28,67 @@
 
 @implementation UHDTalkDetailViewController
 
+- (void)setTalkItem:(UHDTalkItem *)talkItem {
+    if (_talkItem) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextObjectsDidChangeNotification object:_talkItem.managedObjectContext];
+    }
+    _talkItem = talkItem;
+    if (talkItem) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(managedObjectContextObjectsDidChange:) name:NSManagedObjectContextObjectsDidChangeNotification object:talkItem.managedObjectContext];
+    }
+    [self configureView];
+}
+
+#pragma mark - Lifecycle
+
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 200;
+}
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	
-	self.tableView.rowHeight = UITableViewAutomaticDimension;
-	self.tableView.estimatedRowHeight = 200;
-	
+    
 	[self configureView];
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
+    
+    // TOOD: what is this for?
 	dispatch_async(dispatch_get_main_queue(), ^{
-    [self.tableView reloadData];
+        [self.tableView reloadData];
 	});
 }
 
-
-- (void)viewDidAppear:(BOOL)animated
-{
-    [super viewDidAppear:animated];
-    [self scrollViewDidScroll:self.tableView];
+- (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    [self.tableView adjustFrameForParallaxedHeaderView:self.headerImageView];
 }
 
-
-- (void)configureView {
-
+- (void)configureView
+{
 	// configure header view
-	if (self.talkItem.image == nil) {
-        // TODO: this is not reversible (e.g. constraints get removed as well)! It works, because currently a new view controller is created every time a talk is selected.
-		[self.tableView.tableHeaderView removeFromSuperview];
+    self.headerImageView.image = self.talkItem.image;
+	if (self.headerImageView.image == nil) {
 		self.tableView.tableHeaderView = nil;
-	}
-	else {
-		self.headerImageView.image	= self.talkItem.image;
-		//self.headerImageView.image = [UIImage imageNamed:@"talkSampleImage"];
-		UIView *headerView = self.tableView.tableHeaderView;
-		CGRect frame = headerView.frame;
-		frame.size.height = self.tableView.bounds.size.height / 3;
-		headerView.frame = frame;
-		self.tableView.tableHeaderView = headerView;
+	} else {
+		self.tableView.tableHeaderView = self.headerView;
 	}
 	
 	self.navigationItemTitleLabel.text = self.talkItem.source.title;
 	
 	[self.tableView reloadData];
-
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 # pragma mark - User interaction
-
 
 - (IBAction)addToCalendarButtonPressed:(id)sender {
 	
@@ -88,43 +97,43 @@
 	EKAuthorizationStatus authorizationStatus = [EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent];
 	BOOL needsToRequestAccessToEventStore = (authorizationStatus == EKAuthorizationStatusNotDetermined);
 
-	if (needsToRequestAccessToEventStore) {
-		[eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
-			if (granted) {
-				// Access granted
-				[self.logger log:@"Access granted for entity type event" forLevel:VILogLevelInfo];
-			}
-			else {
-				// Denied
-				[self.logger log:@"Access denied for entity type event" forLevel:VILogLevelInfo];
-				UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedString(@"Der Zugriff auf den Kalender wurde verweigert. Die Veranstaltung kann nicht in den Kalender eingetragen werden. Sie können die Zugriffsrechte in den Einstellungen anpassen.", nil) preferredStyle:UIAlertControllerStyleAlert];
-				UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil];
-				[alertController addAction:okAction];
-				[self presentViewController:alertController animated:YES completion:nil];
-				return;
-			}
-			}];
-		}
-		else {
-			BOOL granted = (authorizationStatus == EKAuthorizationStatusAuthorized);
-			if (granted) {
-				// Access granted
-			}
-			else {
-				UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedString(@"Der Zugriff auf den Kalender wurde verweigert. Die Veranstaltung kann nicht in den Kalender eingetragen werden. Sie können die Zugriffsrechte in den Einstellungen anpassen.", nil) preferredStyle:UIAlertControllerStyleAlert];
-				UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil];
-				[alertController addAction:okAction];
-				[self presentViewController:alertController animated:YES completion:nil];
-				return;
-			}
-		}
-	
-	NSCalendar *calendar = [NSCalendar currentCalendar];
-	NSDateComponents *hour = [[NSDateComponents alloc] init];
-	hour.hour = 1;
-	NSDate *endDate = [calendar dateByAddingComponents:hour toDate:self.talkItem.date options:0];
-	
-	// TODO: correct duration of the event
+    if (needsToRequestAccessToEventStore) {
+        [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
+            if (granted) {
+                // Access granted
+                [self.logger log:@"Access granted for entity type event" forLevel:VILogLevelInfo];
+            }
+            else {
+                // Denied
+                [self.logger log:@"Access denied for entity type event" forLevel:VILogLevelInfo];
+                UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedString(@"Der Zugriff auf den Kalender wurde verweigert. Die Veranstaltung kann nicht in den Kalender eingetragen werden. Sie können die Zugriffsrechte in den Einstellungen anpassen.", nil) preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil];
+                [alertController addAction:okAction];
+                [self presentViewController:alertController animated:YES completion:nil];
+                return;
+            }
+        }];
+    }
+    else {
+        BOOL granted = (authorizationStatus == EKAuthorizationStatusAuthorized);
+        if (granted) {
+            // Access granted
+        }
+        else {
+            UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedString(@"Der Zugriff auf den Kalender wurde verweigert. Die Veranstaltung kann nicht in den Kalender eingetragen werden. Sie können die Zugriffsrechte in den Einstellungen anpassen.", nil) preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil];
+            [alertController addAction:okAction];
+            [self presentViewController:alertController animated:YES completion:nil];
+            return;
+        }
+    }
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *hour = [[NSDateComponents alloc] init];
+    hour.hour = 1;
+    NSDate *endDate = [calendar dateByAddingComponents:hour toDate:self.talkItem.date options:0];
+    
+    // TODO: correct duration of the event
 	
 	EKEvent *event = [EKEvent eventWithEventStore:eventStore];
 	
@@ -167,7 +176,6 @@
 	}
 }
 
-
 - (void)presentEventEditViewControllerForEvent:(EKEvent *)event {
 	
 	EKEventEditViewController *eventEditVC = [[EKEventEditViewController alloc] init];
@@ -178,7 +186,6 @@
 	[self presentViewController:eventEditVC animated:YES completion:nil];
 	
 }
-
 
 - (IBAction)speakereButtonPressed:(id)sender {
 
@@ -208,16 +215,58 @@
 
 }
 
-
 - (IBAction)showOnMapButtonPressed:(id)sender {
 
-	// TODO: show location of the event in campus module
+	// TODO: show location of the event in maps module
 
 }
 
 
-# pragma mark - Mail Compose View Controller Delegate
+# pragma mark - Table View Datasource
 
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    switch (section) {
+        case 0:
+            return nil;
+        case 1:
+            return NSLocalizedString(@"Ort und Zeit der Veranstaltung", nil);
+        default:
+            return nil;
+    }
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UHDTalkDetailTitleAbstractCell *cell;
+    
+    switch (indexPath.section) {
+        case 0:
+            cell = [self.tableView dequeueReusableCellWithIdentifier:@"titleAbstract"];
+            break;
+        case 1:
+            cell = [self.tableView dequeueReusableCellWithIdentifier:@"spaceTime"];
+            break;
+        default:
+            cell = nil;
+            break;
+    }
+    
+    [cell configureForItem:self.talkItem];
+    
+    return cell;	
+}
+
+
+# pragma mark - Mail Compose View Controller Delegate
 
 - (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
 {
@@ -246,7 +295,6 @@
 
 # pragma mark - Map View Delegate
 
-
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
@@ -255,7 +303,6 @@
 
 
 # pragma mark - Event Edit View Delegate
-
 
 - (void)eventEditViewController:(EKEventEditViewController *)controller didCompleteWithAction:(EKEventEditViewAction)action {
 
@@ -286,60 +333,25 @@
 }
 
 
-# pragma mark - Table View Data Source
+# pragma mark - Scroll View Delegate
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 2;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return 1;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	switch (section) {
-		case 0:
-			return nil;
-		case 1:
-			return NSLocalizedString(@"Ort und Zeit der Veranstaltung", nil);
-		default:
-			return nil;
-	}
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    [self.tableView adjustFrameForParallaxedHeaderView:self.headerImageView];
 }
 
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	
-	UHDTalkDetailTitleAbstractCell *cell;
-	
-	switch (indexPath.section) {
-		case 0:
-			cell = [self.tableView dequeueReusableCellWithIdentifier:@"titleAbstract"];
-			break;
-		case 1:
-			cell = [self.tableView dequeueReusableCellWithIdentifier:@"spaceTime"];
-			break;
-		default:
-			cell = nil;
-			break;
-	}
-			
-	[cell configureForItem:self.talkItem];
-	
-	return cell;	
-}
+#pragma mark - Managed Object Context Notifications
 
-
-# pragma mark - Scrolling
-
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+- (void)managedObjectContextObjectsDidChange:(NSNotification *)notification
 {
-    CGFloat offset = scrollView.contentOffset.y + scrollView.contentInset.top;
-    CGRect imageFrame = self.headerImageView.frame;
-    imageFrame.origin.y = offset;
-    imageFrame.size.height = - offset + self.tableView.tableHeaderView.frame.size.height;
-    self.headerImageView.frame = imageFrame;
+    if (self.talkItem) {
+        NSSet *updatedObjects = notification.userInfo[NSUpdatedObjectsKey];
+        if ([updatedObjects containsObject:self.talkItem]) {
+            [self configureView];
+        }
+    }
 }
+
 
 
 @end

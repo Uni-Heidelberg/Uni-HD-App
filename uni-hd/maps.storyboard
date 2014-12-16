@@ -298,17 +298,11 @@
                             <rect key="frame" x="0.0" y="0.0" width="600" height="191"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hpB-C9-x0x">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hpB-C9-x0x">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="191"/>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="bottom" secondItem="hpB-C9-x0x" secondAttribute="bottom" placeholder="YES" id="CGk-r8-ijO"/>
-                                <constraint firstItem="hpB-C9-x0x" firstAttribute="leading" secondItem="NsZ-Ha-Uov" secondAttribute="leading" placeholder="YES" id="HcR-oz-LJF"/>
-                                <constraint firstItem="hpB-C9-x0x" firstAttribute="top" secondItem="NsZ-Ha-Uov" secondAttribute="top" placeholder="YES" id="qZm-mv-leD"/>
-                                <constraint firstAttribute="trailing" secondItem="hpB-C9-x0x" secondAttribute="trailing" placeholder="YES" id="wPS-jn-32n"/>
-                            </constraints>
                         </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="titleCell" rowHeight="80" id="pd1-ci-AeQ" customClass="UHDBuildingDetailTitleCell" customModule="uni_hd" customModuleProvider="target">
@@ -443,6 +437,7 @@
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="headerImageView" destination="hpB-C9-x0x" id="5RU-Wz-h1z"/>
+                        <outlet property="headerView" destination="NsZ-Ha-Uov" id="fIq-Yn-muo"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tpl-yd-jLw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -451,7 +446,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="mapsIcon" width="40" height="31"/>
+        <image name="mapsIcon" width="32" height="25"/>
         <image name="raumplan_kip" width="1312" height="1108"/>
     </resources>
     <inferredMetricsTieBreakers>

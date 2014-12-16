@@ -146,6 +146,11 @@
     [self configureViewAnimated:YES];
 }
 
+- (IBAction)mensaDetailButtonPressed:(id)sender {
+    UHDBuildingDetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"maps" bundle:nil] instantiateViewControllerWithIdentifier:@"buildingDetail"];
+    detailVC.building = self.mensa;
+    [self.navigationController pushViewController:detailVC animated:YES];
+}
 
 #pragma mark - Day Picker Delegate
 
