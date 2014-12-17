@@ -184,11 +184,12 @@
 	[self.sourceButton sizeToFit];
 }
 
-
+/*
 - (IBAction)todayButtonPressed:(id)sender {
 	
 	[self.pageViewController.viewControllers[0] scrollToToday];
 }
+*/
 
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

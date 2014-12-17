@@ -20,7 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *abstractLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *talkImageView;
 @property (weak, nonatomic) IBOutlet UILabel *sourceLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *talkIndicatorView;
+@property (weak, nonatomic) IBOutlet UIImageView *sourceIconImageView;
 @property (weak, nonatomic) IBOutlet UILabel *shortDateAndTimeLabel;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageSpacingLayoutConstraint;
@@ -61,15 +61,9 @@
 	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
 	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
 	self.shortDateAndTimeLabel.text = [dateFormatter stringFromDate:item.date];
-	
-	// Configure indicator
-	if (item.read) {
-        self.talkIndicatorView.tintColor = [UIColor lightGrayColor];
-	} else {
-        self.talkIndicatorView.tintColor = [UIColor brandColor];
-	}
     
     // Configure image
+	self.sourceIconImageView.image = item.source.image;
     self.talkImageView.image = item.image;
 	if (self.talkImageView.image) {
 		self.imageSpacingLayoutConstraint.constant = self.imageSpacingConstraintInitialConstant;

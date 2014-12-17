@@ -22,8 +22,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *newsImageView;
 @property (weak, nonatomic) IBOutlet UILabel *sourceLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *sourceIconImageView;
 
-@property (weak, nonatomic) IBOutlet UIImageView *readIndicatorImageView;
+@property (weak, nonatomic) IBOutlet UIView *readIndicatorView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageSpacingLayoutConstraint;
 @property (nonatomic) CGFloat imageSpacingConstraintInitialConstant;
@@ -51,13 +52,10 @@
     self.dateLabel.text = [dateFormatter stringFromDate:item.date];
     
     // Configure read indicator
-	if (item.read) {
-        self.readIndicatorImageView.tintColor = [UIColor lightGrayColor];
-	} else {
-        self.readIndicatorImageView.tintColor = [UIColor brandColor];
-	}
+	self.readIndicatorView.hidden = item.read;
     
     // Configure Image
+	self.sourceIconImageView.image = item.source.image;
     self.newsImageView.image = item.image;
 	if (self.newsImageView.image) {
 		self.imageSpacingLayoutConstraint.constant = self.imageSpacingConstraintInitialConstant;
