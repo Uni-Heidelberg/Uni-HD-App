@@ -829,7 +829,6 @@
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="4ZD-GO-ISo">
                                     <rect key="frame" x="0.0" y="6" width="195" height="32"/>
                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                    <state key="normal" title="Alle News und Veranstaltungen"/>
                                     <connections>
                                         <action selector="sourceButtonPressed:" destination="Fjz-Xo-mQY" eventType="touchUpInside" id="556-5L-HiG"/>
                                     </connections>

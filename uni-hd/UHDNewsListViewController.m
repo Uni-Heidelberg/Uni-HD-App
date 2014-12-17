@@ -227,7 +227,8 @@ typedef enum : NSUInteger {
 */
 
 
-// did this help ?
+// did this help ?	-> after many trials I imagined yes...
+
 /*- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
 	UHDNewsItem *item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
@@ -312,9 +313,10 @@ typedef enum : NSUInteger {
 
 - (void)updateFetchedResultsControllerForChangedDisplayMode {
 
-    if (self.fetchedResultsControllerDataSource) {
+    if (self.managedObjectContext) {
         NSFetchRequest *fetchRequest = self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest;
-        NSEntityDescription *entityDescription;
+		
+		NSEntityDescription *entityDescription;
 
         if (self.displayMode == UHDNewsEventsDisplayModeEvents) {
             entityDescription = [NSEntityDescription entityForName:[UHDEventItem entityName] inManagedObjectContext:self.managedObjectContext];
