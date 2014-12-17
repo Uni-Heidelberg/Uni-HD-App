@@ -197,7 +197,7 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
                     sections.append(.News(sources: sources, items: items ?? []))
                 }
             }
-            if building.campusIdentifier == "INF 227" {
+            if building.campusIdentifier != nil && building.campusIdentifier == "INF 227" {
                 sections.append(.FloorPlan)
             }
             return sections
