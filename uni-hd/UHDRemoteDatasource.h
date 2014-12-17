@@ -30,6 +30,7 @@
 - (NSArray *)remoteRefreshPathsForRemoteDatasource:(UHDRemoteDatasource *)remoteDatasource;
 
 @optional
+- (void)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource didRefreshRemotePath:(NSString *)remotePath managedObjectContext:(NSManagedObjectContext *)managedObjectContext error:(NSError *)error;
 - (BOOL)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource shouldGenerateSampleDataForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 - (void)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource generateSampleDataForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext;
 

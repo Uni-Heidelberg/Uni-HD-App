@@ -7,17 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UHDNewsViewController.h"
 
-typedef enum : NSUInteger {
-    UHDNewsListDisplayModeNews = 0,
-    UHDNewsListDisplayModeEvents,
-	UHDNewsListDisplayModeAll
-} UHDNewsListDisplayMode;
 
 @interface UHDNewsListViewController : UITableViewController
 
 @property (strong, nonatomic) NSArray *sources;
-@property (nonatomic) UHDNewsListDisplayMode displayMode;
+@property (nonatomic) UHDNewsEventsDisplayMode displayMode;
 
 - (void)scrollToToday;
 

@@ -14,12 +14,12 @@
 
 // Model
 #import "UHDNewsSource.h"
+#import "UHDNewsItem.h"
+#import	"UHDEventItem.h"
+#import "UHDTalkItem.h"
 
 // Sources Navigation Bar
 #import "UHDNewsSourcesNavigationBar.h"
-
-#define kDisplayModeSegmentIndexNews 0
-#define kDisplayModeSegmentIndexEvents 1
 
 
 @interface UHDNewsViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate, NSFetchedResultsControllerDelegate, UHDNewsSourcesNavigationBarDelegate>
@@ -46,8 +46,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-	[self.navigationController.tabBarItem setSelectedImage:[UIImage imageNamed:@"newsIconSelected"]];
 
     // TODO: fix scroll view insets & extend under both bars
     
@@ -58,28 +56,41 @@
 	[(UHDNewsListViewController *)self.pageViewController.viewControllers[0] scrollToToday];
 }
 
+
 - (void)configureView
 {
 	[self updateDisplayMode];
-	
-	// set currently subscribed sources to display in sources navigation bar
-	self.sourcesNavigationBar.sources = [self.fetchedResultsController fetchedObjects];
 
     // set currently selected source and update sourceButton
+	UHDNewsListViewController *allSourcesVC = self.newsListViewControllers[0];
+	if (((UHDNewsListViewController *) self.pageViewController.viewControllers[0]) == allSourcesVC) {
+		self.sourcesNavigationBar.selectedSource = nil;
+	}
+	else {
+		UHDNewsSource *currentSource = ((UHDNewsListViewController *)self.pageViewController.viewControllers[0]).sources[0];
+		self.sourcesNavigationBar.selectedSource = currentSource;
+	}
+	/*
     NSArray *currentSources = ((UHDNewsListViewController *)self.pageViewController.viewControllers[0]).sources;
     if (currentSources.count != 1) {
         self.sourcesNavigationBar.selectedSource = nil;
     } else {
         self.sourcesNavigationBar.selectedSource = currentSources[0];
     }
+	*/
 	
 	[self updateSourceButton];
-    
+	
+	// set currently subscribed sources to display in sources navigation bar
+	NSArray *sources = [self.fetchedResultsController fetchedObjects];
+	self.sourcesNavigationBar.sources = sources;
+	
     // make sure only active table view scrolls to top
     for (UHDNewsListViewController *vc in self.newsListViewControllers) {
         vc.tableView.scrollsToTop = [self.pageViewController.viewControllers containsObject:vc];
     }
 }
+
 
 #pragma mark - Fetched Results Controller
 
@@ -93,7 +104,22 @@
         }
         
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsSource entityName]];
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"subscribed == YES"];
+		
+		switch (self.displayMode) {
+			case UHDNewsEventsDisplayModeNews:
+				//fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(subscribed == YES) AND SUBQUERY(newsItems, $x, CAST($x, %@) != NULL).@count > 0", [UHDNewsItem entityName]];
+				fetchRequest.predicate = [NSPredicate predicateWithFormat:@"subscribed == YES"];
+				break;
+			case UHDNewsEventsDisplayModeEvents:
+				//fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(subscribed == YES) AND (SUBQUERY(newsItems, $x, $x.entity.name == %@ || $x.name == %@).@count != 0)", [UHDEventItem entityName], [UHDTalkItem entityName]];
+				fetchRequest.predicate = [NSPredicate predicateWithFormat:@"subscribed == YES"];
+				break;
+			default:
+				fetchRequest.predicate = [NSPredicate predicateWithFormat:@"subscribed == YES"];
+				break;
+		}
+		
+		
         fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES] ];
         
         self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
@@ -106,11 +132,6 @@
 
 #pragma mark - User Interaction
 
-/*
-- (IBAction)newsEventsSegmentedControlValueChanged:(id)sender {
-	[self updateDisplayMode];
-}
-*/
 
 - (IBAction)sourceButtonPressed:(id)sender {
 	
@@ -119,22 +140,18 @@
 }
 
 
+- (void)setDisplayMode:(UHDNewsEventsDisplayMode)displayMode {
+
+	_displayMode = displayMode;
+	[self updateDisplayMode];
+	
+}
+
+
 - (void)updateDisplayMode
 {
 	for (UHDNewsListViewController *newsListVC in self.newsListViewControllers) {
-		/*
-		switch (self.newsEventsSegmentedControl.selectedSegmentIndex) {
-			case kDisplayModeSegmentIndexNews:
-				newsListVC.displayMode = UHDNewsListDisplayModeNews;
-				break;
-			case kDisplayModeSegmentIndexEvents:
-				newsListVC.displayMode = UHDNewsListDisplayModeEvents;
-				break;
-			default:
-				break;
-		}
-		*/
-		newsListVC.displayMode = UHDNewsListDisplayModeAll;
+		newsListVC.displayMode = self.displayMode;
 	}
 }
 
@@ -144,7 +161,17 @@
 	UHDNewsSource *source = self.sourcesNavigationBar.selectedSource;
 	
 	if (source == nil) {
-		[self.sourceButton setTitle:NSLocalizedString(@"Alle News und Veranstaltungen", nil) forState:UIControlStateNormal];
+		switch (self.displayMode) {
+			case UHDNewsEventsDisplayModeNews:
+				[self.sourceButton setTitle:NSLocalizedString(@"Alle News", nil) forState:UIControlStateNormal];
+				break;
+			case UHDNewsEventsDisplayModeEvents:
+				[self.sourceButton setTitle:NSLocalizedString(@"Alle Veranstaltungen", nil) forState:UIControlStateNormal];
+				break;
+			default:
+				[self.sourceButton setTitle:NSLocalizedString(@"Alle News und Veranstaltungen", nil) forState:UIControlStateNormal];
+				break;
+		}
 	}
 	else {
 		[self.sourceButton setTitle:source.title forState:UIControlStateNormal];
@@ -163,6 +190,7 @@
 	[self.pageViewController.viewControllers[0] scrollToToday];
 }
 
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"showSources"]) {
@@ -176,10 +204,12 @@
     }
 }
 
+
 - (IBAction)unwindToNews:(UIStoryboardSegue *)segue
 {
     
 }
+
 
 #pragma mark - Sources Navigation Bar Delegate
 
@@ -240,12 +270,14 @@
     return _newsListViewControllers;
 }
 
+
 - (UHDNewsListViewController *)newsListViewControllerForSources:(NSArray *)sources
 {
     UHDNewsListViewController *newsListVC = (UHDNewsListViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"newsList"];
     newsListVC.sources = sources;
     return newsListVC;
 }
+
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
 {
@@ -259,6 +291,7 @@
     }
     return self.newsListViewControllers[nextIndex];
 }
+
 
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerBeforeViewController:(UIViewController *)viewController
 {

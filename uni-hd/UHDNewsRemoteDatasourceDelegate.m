@@ -106,6 +106,13 @@
     return @[ @"categories", @"sources", @"articles", @"events", @"talks?speaker=object" ];
 }
 
+- (void)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource didRefreshRemotePath:(NSString *)remotePath managedObjectContext:(NSManagedObjectContext *)managedObjectContext error:(NSError *)error
+{
+    if ([remotePath isEqualToString:@"events"]||[remotePath isEqualToString:@"articles"]||[remotePath isEqualToString:@"talks"]) {
+        // TODO: update sources properties to distinguish between news and events (or both)
+    }
+}
+
 - (BOOL)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource shouldGenerateSampleDataForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsItem entityName]];

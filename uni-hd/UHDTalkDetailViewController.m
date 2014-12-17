@@ -60,7 +60,7 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
     
-    // TOOD: what is this for?
+    // TODO: what is this for?
 	dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
 	});
