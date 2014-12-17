@@ -222,7 +222,7 @@
     buildingItem5.category = category1;
     buildingItem5.campusRegion = phw;
     UHDAddress *address5 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
-    address5.street = @"Philosphenweg 12";
+    address5.street = @"Philosophenweg 12";
     address5.postalCode = @"69120";
     address5.city = @"Heidelberg";
     buildingItem5.address = address5;
@@ -245,7 +245,7 @@
     buildingItem6.category = category1;
     buildingItem6.campusRegion = phw;
     UHDAddress *address6 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
-    address6.street = @"Philosphenweg 16";
+    address6.street = @"Philosophenweg 16";
     address6.postalCode = @"69120";
     address6.city = @"Heidelberg";
     buildingItem6.address = address6;
@@ -269,10 +269,10 @@
     buildingItem7.category = category1;
     buildingItem7.campusRegion = phw;
     UHDAddress *address7 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
-    address7.street = @"Philosphenweg 19";
+    address7.street = @"Philosophenweg 19";
     address7.postalCode = @"69120";
     address7.city = @"Heidelberg";
-    buildingItem7.address = address6;
+    buildingItem7.address = address7;
     buildingItem7.url = [NSURL URLWithString:@"http://www.thphys.uni-heidelberg.de"];
     buildingItem7.telephone = @"06221549431";
     buildingItem7.email = @"Sekretariat19@thphys.uni-heidelberg.de";

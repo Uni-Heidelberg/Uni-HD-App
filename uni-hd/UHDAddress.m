@@ -14,7 +14,7 @@
 @dynamic street, postalCode, city;
 
 - (NSString *)formattedDescription {
-    return [NSString stringWithFormat:@"%@,\n%@ %@", self.street, self.postalCode, self.city];
+    return [NSString stringWithFormat:@"%@\n%@ %@", self.street, self.postalCode, self.city];
 }
 
 - (NSDictionary *)addressDictionary {
