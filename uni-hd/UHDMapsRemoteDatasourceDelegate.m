@@ -102,7 +102,7 @@
     
     UHDCampusRegion *phw = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
     phw.title = @"Philosophenweg";
-    phw.identifier = @"phw";
+    phw.identifier = @"PHW";
     phw.location = [[CLLocation alloc] initWithLatitude:49.414807 longitude:8.696407];
     phw.spanLatitude = 0.002;
     phw.spanLongitude = 0.004;
@@ -198,6 +198,7 @@
     //Create Building Object
     
     UHDBuilding *buildingItem5 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
+    buildingItem5.buildingNumber = @"8010";
     buildingItem5.title = @"Physikalisches Institut";
     buildingItem5.location = [[CLLocation alloc] initWithLatitude:49.414781 longitude:8.695585];
     buildingItem5.image = [UIImage imageNamed:@"PI_PHW12"];
@@ -213,6 +214,7 @@
     //Create Building Object
     
     UHDBuilding *buildingItem6 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
+    buildingItem6.buildingNumber = @"8050";
     buildingItem6.title = @"Institut für Theoretische Physik";
     buildingItem6.location = [[CLLocation alloc] initWithLatitude:49.414811 longitude:8.696707];
     buildingItem6.image = [UIImage imageNamed:@"TI_PHW16"];
@@ -230,6 +232,7 @@
     //Create Building Object 7
     
     UHDBuilding *buildingItem7 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
+    buildingItem7.buildingNumber = @"8080";
     buildingItem7.title = @"Institut für Theoretische Physik";
     buildingItem7.location = [[CLLocation alloc] initWithLatitude:49.415058 longitude:8.698714];
     buildingItem7.image = [UIImage imageNamed:@"TI_PHW19"];
