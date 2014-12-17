@@ -142,6 +142,8 @@
     buildingItem2.title =@"Klaus-Tschira-Gebäude";
     //(Physikalisches Institut)
     buildingItem2.buildingNumber = @"226";
+    buildingItem2.spanLatitude = 0.000518;
+    buildingItem2.spanLongitude = 0.000848;
     buildingItem2.location = [[CLLocation alloc] initWithLatitude:49.416250 longitude:8.673171];
     buildingItem2.category = category1;
     buildingItem2.campusRegion = inf;
@@ -155,6 +157,9 @@
     buildingItem2.telephone = @"062215419600";
     buildingItem2.email = @"info@physi.uni-heidelberg.de";
     
+    //links 49.416267, 8.672747
+    //oben 49.416509, 8.673171
+    
 
 
     //THIRD
@@ -162,7 +167,9 @@
     
     UHDBuilding *buildingItem3 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
     buildingItem3.buildingNumber = @"308";
-    buildingItem3.location = [[CLLocation alloc] initWithLatitude:49.417028 longitude:8.670807];
+    buildingItem3.spanLatitude = 0.0006;
+    buildingItem3.spanLongitude = 0.001;
+    buildingItem3.location = [[CLLocation alloc] initWithLatitude:49.417515 longitude:8.670593];
     buildingItem3.image = [UIImage imageNamed:@"INF308"];
     buildingItem3.category = category1;
     buildingItem3.campusRegion = inf;
@@ -172,6 +179,9 @@
     address3.city = @"Heidelberg";
     buildingItem3.address = address3;
     
+    //oben 49.417816, 8.670585
+    //rechts 49.417468, 8.671014
+    
     
     
     
@@ -180,6 +190,8 @@
     
     UHDBuilding *buildingItem4 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
     buildingItem4.title = @"Mathematisches Institut";
+    buildingItem4.spanLatitude = 0.0006;
+    buildingItem4.spanLongitude = 0.0007;
     buildingItem4.buildingNumber = @"288";
     buildingItem4.location = [[CLLocation alloc] initWithLatitude:49.417055 longitude:8.671665];
     buildingItem4.image = [UIImage imageNamed:@"INF288"];
@@ -194,12 +206,17 @@
     buildingItem4.telephone = @"06221545758";
     buildingItem4.email = @"dekanat@mathi.uni-heidelberg.de";
     
+    //oben 49.417387, 8.671622
+    //rechts 49.417079, 8.672006
+    
     //FIFTH
     //Create Building Object
     
     UHDBuilding *buildingItem5 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
     buildingItem5.buildingNumber = @"8010";
     buildingItem5.title = @"Physikalisches Institut";
+    buildingItem5.spanLatitude = 0.0006;
+    buildingItem5.spanLongitude = 0.00075;
     buildingItem5.location = [[CLLocation alloc] initWithLatitude:49.414781 longitude:8.695585];
     buildingItem5.image = [UIImage imageNamed:@"PI_PHW12"];
     buildingItem5.category = category1;
@@ -210,12 +227,19 @@
     address5.city = @"Heidelberg";
     buildingItem5.address = address5;
     
+    //oben 49.415161, 8.695507
+    //unten 49.414549, 8.695512
+    //links 49.414764, 8.694992
+    //rechts 49.414769, 8.695764
+    
     //SIXTH
     //Create Building Object
     
     UHDBuilding *buildingItem6 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
     buildingItem6.buildingNumber = @"8050";
-    buildingItem6.title = @"Institut für Theoretische Physik";
+    buildingItem6.title = @"Institut für theoretische Physik";
+    buildingItem6.spanLatitude = 0.0002;
+    buildingItem6.spanLongitude = 0.0005;
     buildingItem6.location = [[CLLocation alloc] initWithLatitude:49.414811 longitude:8.696707];
     buildingItem6.image = [UIImage imageNamed:@"TI_PHW16"];
     buildingItem6.category = category1;
@@ -229,11 +253,17 @@
     buildingItem6.telephone = @"06221549444";
     buildingItem6.email = @"Sekretariat16@thphys.uni-heidelberg.de";
     
+    //links 49.414820, 8.696450
+    //rechts 49.414776, 8.696944
+    //oben 49.414968, 8.696712
+    
     //Create Building Object 7
     
     UHDBuilding *buildingItem7 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
     buildingItem7.buildingNumber = @"8080";
-    buildingItem7.title = @"Institut für Theoretische Physik";
+    buildingItem7.title = @"Institut für theoretische Physik";
+    buildingItem7.spanLatitude = 0.0002;
+    buildingItem7.spanLongitude = 0.0005;
     buildingItem7.location = [[CLLocation alloc] initWithLatitude:49.415058 longitude:8.698714];
     buildingItem7.image = [UIImage imageNamed:@"TI_PHW19"];
     buildingItem7.category = category1;
