@@ -25,7 +25,7 @@
 
 	// Configure date and time
 	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setTimeStyle:NSDateFormatterMediumStyle];
+	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
 	[dateFormatter setDateStyle:NSDateFormatterFullStyle];
 	self.timeLabel.text = [dateFormatter stringFromDate:item.date];
 	
