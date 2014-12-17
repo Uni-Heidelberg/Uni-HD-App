@@ -202,7 +202,7 @@
     buildingItem5.title = @"Physikalisches Institut";
     buildingItem5.location = [[CLLocation alloc] initWithLatitude:49.414781 longitude:8.695585];
     buildingItem5.image = [UIImage imageNamed:@"PI_PHW12"];
-    buildingItem5.category = category2;
+    buildingItem5.category = category1;
     buildingItem5.campusRegion = phw;
     UHDAddress *address5 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
     address5.street = @"Philosphenweg 12";
@@ -218,7 +218,7 @@
     buildingItem6.title = @"Institut für Theoretische Physik";
     buildingItem6.location = [[CLLocation alloc] initWithLatitude:49.414811 longitude:8.696707];
     buildingItem6.image = [UIImage imageNamed:@"TI_PHW16"];
-    buildingItem6.category = category2;
+    buildingItem6.category = category1;
     buildingItem6.campusRegion = phw;
     UHDAddress *address6 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
     address6.street = @"Philosphenweg 16";
@@ -236,7 +236,7 @@
     buildingItem7.title = @"Institut für Theoretische Physik";
     buildingItem7.location = [[CLLocation alloc] initWithLatitude:49.415058 longitude:8.698714];
     buildingItem7.image = [UIImage imageNamed:@"TI_PHW19"];
-    buildingItem7.category = category2;
+    buildingItem7.category = category1;
     buildingItem7.campusRegion = phw;
     UHDAddress *address7 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
     address7.street = @"Philosphenweg 19";
