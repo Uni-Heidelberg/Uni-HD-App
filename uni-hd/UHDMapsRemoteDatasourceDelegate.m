@@ -100,6 +100,13 @@
      bergheim.centerLongitude = 8.6867;
     */
     
+    UHDCampusRegion *phw = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
+    phw.title = @"Philosophenweg";
+    phw.identifier = @"phw";
+    phw.location = [[CLLocation alloc] initWithLatitude:49.414807 longitude:8.696407];
+    phw.spanLatitude = 0.002;
+    phw.spanLongitude = 0.004;
+    
     
     
     //FIRST
@@ -114,11 +121,11 @@
     buildingItem1.category = category1;
     buildingItem1.campusRegion = inf;
     buildingItem1.image = [UIImage imageNamed:@"kip1"];
-    UHDAddress *address = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
-    address.street = @"Im Neuenheimer Feld 227";
-    address.postalCode = @"69120";
-    address.city = @"Heidelberg";
-    buildingItem1.address = address;
+    UHDAddress *address1 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
+    address1.street = @"Im Neuenheimer Feld 227";
+    address1.postalCode = @"69120";
+    address1.city = @"Heidelberg";
+    buildingItem1.address = address1;
     buildingItem1.url = [NSURL URLWithString:@"http://www.kip.uni-heidelberg.de"];
     buildingItem1.telephone = @"06221549100";
     buildingItem1.email = @"info@kip.uni-heidelberg.de";
@@ -136,9 +143,17 @@
     buildingItem2.category = category1;
     buildingItem2.campusRegion = inf;
     buildingItem2.image = [UIImage imageNamed:@"kip"];
+    UHDAddress *address2 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
+    address2.street = @"Im Neuenheimer Feld 226";
+    address2.postalCode = @"69120";
+    address2.city = @"Heidelberg";
+    buildingItem2.address = address2;
+    buildingItem2.url = [NSURL URLWithString:@"http://www.physi.uni-heidelberg.de"];
+    buildingItem2.telephone = @"062215419600";
+    buildingItem2.email = @"info@physi.uni-heidelberg.de";
     
 
-    
+
     //THIRD
     //Create Building Object
     
@@ -148,6 +163,12 @@
     buildingItem3.image = [UIImage imageNamed:@"INF308"];
     buildingItem3.category = category1;
     buildingItem3.campusRegion = inf;
+    UHDAddress *address3 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
+    address3.street = @"Im Neuenheimer Feld 308";
+    address3.postalCode = @"69120";
+    address3.city = @"Heidelberg";
+    buildingItem3.address = address3;
+    
     
     
     
@@ -155,11 +176,70 @@
     //Create Building Object
     
     UHDBuilding *buildingItem4 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
+    buildingItem4.title = @"Mathematisches Institut";
     buildingItem4.buildingNumber = @"288";
     buildingItem4.location = [[CLLocation alloc] initWithLatitude:49.417055 longitude:8.671665];
     buildingItem4.image = [UIImage imageNamed:@"INF288"];
     buildingItem4.category = category2;
     buildingItem4.campusRegion = inf;
+    UHDAddress *address4 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
+    address4.street = @"Im Neuenheimer Feld 288";
+    address4.postalCode = @"69120";
+    address4.city = @"Heidelberg";
+    buildingItem4.address = address4;
+    buildingItem4.url = [NSURL URLWithString:@"https://www.mathinf.uni-heidelberg.de"];
+    buildingItem4.telephone = @"06221545758";
+    buildingItem4.email = @"dekanat@mathi.uni-heidelberg.de";
+    
+    //FIFTH
+    //Create Building Object
+    
+    UHDBuilding *buildingItem5 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
+    buildingItem5.title = @"Physikalisches Institut";
+    buildingItem5.location = [[CLLocation alloc] initWithLatitude:49.414781 longitude:8.695585];
+    buildingItem5.image = [UIImage imageNamed:@"PI_PHW12"];
+    buildingItem5.category = category2;
+    buildingItem5.campusRegion = phw;
+    UHDAddress *address5 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
+    address5.street = @"Philosphenweg 12";
+    address5.postalCode = @"69120";
+    address5.city = @"Heidelberg";
+    buildingItem5.address = address5;
+    
+    //SIXTH
+    //Create Building Object
+    
+    UHDBuilding *buildingItem6 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
+    buildingItem6.title = @"Institut für Theoretische Physik";
+    buildingItem6.location = [[CLLocation alloc] initWithLatitude:49.414811 longitude:8.696707];
+    buildingItem6.image = [UIImage imageNamed:@"TI_PHW16"];
+    buildingItem6.category = category2;
+    buildingItem6.campusRegion = phw;
+    UHDAddress *address6 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
+    address6.street = @"Philosphenweg 16";
+    address6.postalCode = @"69120";
+    address6.city = @"Heidelberg";
+    buildingItem6.address = address6;
+    buildingItem6.url = [NSURL URLWithString:@"http://www.thphys.uni-heidelberg.de"];
+    buildingItem6.telephone = @"06221549444";
+    buildingItem6.email = @"Sekretariat16@thphys.uni-heidelberg.de";
+    
+    //Create Building Object 7
+    
+    UHDBuilding *buildingItem7 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
+    buildingItem7.title = @"Institut für Theoretische Physik";
+    buildingItem7.location = [[CLLocation alloc] initWithLatitude:49.415058 longitude:8.698714];
+    buildingItem7.image = [UIImage imageNamed:@"TI_PHW19"];
+    buildingItem7.category = category2;
+    buildingItem7.campusRegion = phw;
+    UHDAddress *address7 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
+    address7.street = @"Philosphenweg 19";
+    address7.postalCode = @"69120";
+    address7.city = @"Heidelberg";
+    buildingItem7.address = address6;
+    buildingItem7.url = [NSURL URLWithString:@"http://www.thphys.uni-heidelberg.de"];
+    buildingItem7.telephone = @"06221549431";
+    buildingItem7.email = @"Sekretariat19@thphys.uni-heidelberg.de";
     
     
 
