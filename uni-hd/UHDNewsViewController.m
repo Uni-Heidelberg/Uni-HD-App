@@ -14,6 +14,9 @@
 
 // Model
 #import "UHDNewsSource.h"
+#import "UHDNewsItem.h"
+#import	"UHDEventItem.h"
+#import "UHDTalkItem.h"
 
 // Sources Navigation Bar
 #import "UHDNewsSourcesNavigationBar.h"
@@ -101,7 +104,22 @@
         }
         
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsSource entityName]];
-        fetchRequest.predicate = [NSPredicate predicateWithFormat:@"subscribed == YES"];
+		
+		switch (self.displayMode) {
+			case UHDNewsEventsDisplayModeNews:
+				//fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(subscribed == YES) AND SUBQUERY(newsItems, $x, CAST($x, %@) != NULL).@count > 0", [UHDNewsItem entityName]];
+				fetchRequest.predicate = [NSPredicate predicateWithFormat:@"subscribed == YES"];
+				break;
+			case UHDNewsEventsDisplayModeEvents:
+				//fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(subscribed == YES) AND (SUBQUERY(newsItems, $x, $x.entity.name == %@ || $x.name == %@).@count != 0)", [UHDEventItem entityName], [UHDTalkItem entityName]];
+				fetchRequest.predicate = [NSPredicate predicateWithFormat:@"subscribed == YES"];
+				break;
+			default:
+				fetchRequest.predicate = [NSPredicate predicateWithFormat:@"subscribed == YES"];
+				break;
+		}
+		
+		
         fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES] ];
         
         self.fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];

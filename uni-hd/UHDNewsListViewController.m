@@ -40,6 +40,10 @@ typedef enum : NSUInteger {
 
 @property (strong, nonatomic) NSDateFormatter *sectionDateFormatter;
 
+@property (strong, nonatomic) IBOutlet UIView *headerView;
+@property (weak, nonatomic) IBOutlet UILabel *headerViewLabel;
+
+
 - (IBAction)refreshControlValueChanged:(id)sender;
 
 //@property (strong, nonatomic) NSMutableDictionary *tableViewRowHeightCache;
@@ -53,6 +57,8 @@ typedef enum : NSUInteger {
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+	
+	[self configureView];
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 160;
@@ -81,6 +87,34 @@ typedef enum : NSUInteger {
 	
 	self.tableView.dataSource = self;
 	self.tableView.delegate = self;
+	
+	[self configureView];
+}
+
+
+- (void)configureView {
+	
+	// configure table header View
+	if ([self.fetchedResultsControllerDataSource.fetchedResultsController.fetchedObjects count] == 0)
+	{
+		switch (self.displayMode) {
+			case UHDNewsEventsDisplayModeNews:
+				self.headerViewLabel.text = NSLocalizedString(@"Es liegen keine News zum Anzeigen vor.", nil);
+				break;
+			case UHDNewsEventsDisplayModeEvents:
+				self.headerViewLabel.text = NSLocalizedString(@"Es liegen keine Veranstaltungen zum Anzeigen vor.", nil);
+				break;
+			default:
+				self.headerViewLabel.text = NSLocalizedString(@"Es liegen keine Daten zum Anzeigen vor.", nil);
+				break;
+		}
+		self.tableView.tableHeaderView = self.headerView;
+	}
+	else
+	{
+		self.tableView.tableHeaderView = nil;
+	}
+	
 }
 
 
@@ -101,6 +135,7 @@ typedef enum : NSUInteger {
 	_displayMode = displayMode;
 	
 	[self updateFetchedResultsControllerForChangedDisplayMode];
+	[self configureView];
 	
     [self.tableView reloadData];
 }

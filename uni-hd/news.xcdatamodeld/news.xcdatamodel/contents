@@ -29,6 +29,8 @@
         <attribute name="categoryId" optional="YES" transient="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="imageData" optional="YES" transient="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="isEventSource" optional="YES" attributeType="Boolean" syncable="YES"/>
+        <attribute name="isNewsSource" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="subscribed" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
         <relationship name="newsItems" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="UHDNewsItem" inverseName="source" inverseEntity="UHDNewsItem" syncable="YES"/>
     </entity>
@@ -54,9 +56,9 @@
         <element name="UHDEventItem" positionX="-65" positionY="27" width="128" height="88"/>
         <element name="UHDNewsCategory" positionX="-270" positionY="-207" width="128" height="103"/>
         <element name="UHDNewsItem" positionX="-63" positionY="-205" width="128" height="208"/>
-        <element name="UHDNewsSource" positionX="-270" positionY="-46" width="128" height="118"/>
+        <element name="UHDNewsSource" positionX="-270" positionY="-46" width="128" height="150"/>
+        <element name="UHDRemoteManagedLocation" positionX="108" positionY="29" width="128" height="73"/>
         <element name="UHDTalkItem" positionX="-65" positionY="158" width="128" height="58"/>
         <element name="UHDTalkSpeaker" positionX="108" positionY="162" width="128" height="133"/>
-        <element name="UHDRemoteManagedLocation" positionX="108" positionY="29" width="128" height="73"/>
     </elements>
 </model>

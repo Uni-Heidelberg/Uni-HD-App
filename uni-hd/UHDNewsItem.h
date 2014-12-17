@@ -41,4 +41,7 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, readonly) UIImage *image;
 
+@property (nonatomic) BOOL isNewsSource;
+@property (nonatomic) BOOL isEventSource;
+
 @end

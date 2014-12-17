@@ -37,6 +37,30 @@
                         <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <view key="tableHeaderView" contentMode="scaleToFill" id="YGx-il-ciQ">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keine Daten zum Anzeigen." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wk-Dg-Hf0" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
+                                    <rect key="frame" x="16" y="8" width="568" height="44"/>
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="trailingMargin" secondItem="0wk-Dg-Hf0" secondAttribute="trailing" constant="8" id="PMb-Xa-8IF"/>
+                                <constraint firstAttribute="bottom" secondItem="0wk-Dg-Hf0" secondAttribute="bottom" constant="8" id="hJB-gv-41A"/>
+                                <constraint firstItem="0wk-Dg-Hf0" firstAttribute="top" secondItem="YGx-il-ciQ" secondAttribute="top" constant="8" id="upX-6G-Eg4"/>
+                                <constraint firstItem="0wk-Dg-Hf0" firstAttribute="leading" secondItem="YGx-il-ciQ" secondAttribute="leadingMargin" constant="8" id="zlN-Fb-wPk"/>
+                            </constraints>
+                        </view>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="wTN-ef-SWP">
+                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </view>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="newsCell" id="wYs-Cr-7yq" customClass="UHDNewsItemCell">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -352,6 +376,10 @@
                             <action selector="refreshControlValueChanged:" destination="Evx-f7-pqT" eventType="valueChanged" id="RpQ-aS-zOo"/>
                         </connections>
                     </refreshControl>
+                    <connections>
+                        <outlet property="headerView" destination="YGx-il-ciQ" id="LhF-hi-vF3"/>
+                        <outlet property="headerViewLabel" destination="0wk-Dg-Hf0" id="gAK-Rr-Ls7"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JOu-P6-Auc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
