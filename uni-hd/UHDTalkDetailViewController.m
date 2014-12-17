@@ -296,12 +296,13 @@
 
 
 # pragma mark - Map View Delegate
-
+/*
 - (void)mapView:(MKMapView *)mapView didUpdateUserLocation:(MKUserLocation *)userLocation
 {
     MKCoordinateRegion region = MKCoordinateRegionMakeWithDistance(userLocation.coordinate, 800, 800);
     [mapView setRegion:[mapView regionThatFits:region] animated:YES];
 }
+*/
 
 
 # pragma mark - Event Edit View Delegate

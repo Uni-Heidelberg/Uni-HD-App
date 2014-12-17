@@ -9,6 +9,7 @@
 #import "UHDNewsSourcesNavigationBar.h"
 #import "UHDSourceCollectionViewCell.h"
 #import "UHDNewsSource.h"
+#import "UHDNewsViewController.h"
 
 
 @interface UHDNewsSourcesNavigationBar () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
@@ -82,6 +83,18 @@
         else {
             cell.sourceIconImageView.alpha = 0.3;
         }
+		
+		/*
+		switch (((UHDNewsViewController *)self.delegate).displayMode) {
+			case UHDNewsEventsDisplayModeNews:
+				cell.sourceIconImageView.image = [UIImage imageNamed:@"news_symbol"];
+				break;
+			case UHDNewsEventsDisplayModeEvents:
+				cell.sourceIconImageView.image = [UIImage imageNamed:@"talk_icon"];
+				break;
+			default:
+				break;
+		*/
         
         cell.sourceIconImageView.image = [UIImage imageNamed:@"all_news_icon"];
         cell.sourceIconImageView.tintColor = [UIColor brandColor];
