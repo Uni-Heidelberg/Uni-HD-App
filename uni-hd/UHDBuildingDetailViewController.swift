@@ -127,7 +127,7 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
     
     func showOnMap() {
         if let building = self.building {
-            self.tabBarController?.selectedIndex = 2; // TODO: make dynamic
+            self.tabBarController?.selectedIndex = 3; // TODO: make dynamic
             if let mapsNavC = self.tabBarController?.selectedViewController? as? UINavigationController {
                 if let mapsVC = mapsNavC.viewControllers.first as? UHDMapsViewController {
                     mapsNavC.popToViewController(mapsVC, animated: mapsNavC==self.navigationController)
