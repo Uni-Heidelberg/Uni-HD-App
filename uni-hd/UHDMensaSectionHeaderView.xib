@@ -10,29 +10,46 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NcP-aJ-g83">
-                    <rect key="frame" x="15" y="290" width="42" height="21"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DYs-fv-UgJ">
-                    <rect key="frame" x="482" y="286" width="103" height="30"/>
-                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                    <state key="normal" title="Alle auswählen">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gF9-0m-hwJ">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NcP-aJ-g83">
+                            <rect key="frame" x="15" y="290" width="41" height="20"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DYs-fv-UgJ">
+                            <rect key="frame" x="482" y="285" width="103" height="30"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <state key="normal" title="Alle auswählen">
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="mensenButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="2Fl-s9-NPv"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstItem="DYs-fv-UgJ" firstAttribute="baseline" secondItem="NcP-aJ-g83" secondAttribute="baseline" id="9ZS-5k-vHw"/>
+                        <constraint firstAttribute="centerY" secondItem="NcP-aJ-g83" secondAttribute="centerY" id="RWf-ky-TMi"/>
+                        <constraint firstItem="DYs-fv-UgJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="NcP-aJ-g83" secondAttribute="trailing" constant="8" symbolic="YES" id="YXk-wP-7r0"/>
+                        <constraint firstAttribute="trailing" secondItem="DYs-fv-UgJ" secondAttribute="trailing" constant="15" id="hiI-5N-0ha"/>
+                        <constraint firstItem="NcP-aJ-g83" firstAttribute="leading" secondItem="gF9-0m-hwJ" secondAttribute="leading" constant="15" id="kPb-OA-lhm"/>
+                    </constraints>
+                </view>
             </subviews>
             <constraints>
-                <constraint firstItem="DYs-fv-UgJ" firstAttribute="baseline" secondItem="NcP-aJ-g83" secondAttribute="baseline" id="0Bm-hM-xH5"/>
-                <constraint firstAttribute="trailing" secondItem="DYs-fv-UgJ" secondAttribute="trailing" constant="15" id="33O-yz-Xey"/>
-                <constraint firstItem="DYs-fv-UgJ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="NcP-aJ-g83" secondAttribute="trailing" constant="8" symbolic="YES" id="FSs-JC-RGn"/>
-                <constraint firstAttribute="centerY" secondItem="NcP-aJ-g83" secondAttribute="centerY" id="RLh-5c-e49"/>
-                <constraint firstItem="NcP-aJ-g83" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="15" id="Rkg-tf-wcg"/>
+                <constraint firstAttribute="bottom" secondItem="gF9-0m-hwJ" secondAttribute="bottom" id="Mjp-tH-Th1"/>
+                <constraint firstAttribute="trailing" secondItem="gF9-0m-hwJ" secondAttribute="trailing" id="Pdc-XD-vBE"/>
+                <constraint firstItem="gF9-0m-hwJ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="abw-9v-tEB"/>
+                <constraint firstItem="gF9-0m-hwJ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="atb-Qz-2F3"/>
             </constraints>
             <connections>
+                <outlet property="contentView" destination="gF9-0m-hwJ" id="nyh-9u-PzL"/>
+                <outlet property="mensenButton" destination="DYs-fv-UgJ" id="iUK-gP-laG"/>
                 <outlet property="sectionHeaderLabel" destination="NcP-aJ-g83" id="5WN-ra-Vap"/>
             </connections>
             <point key="canvasLocation" x="403" y="423"/>
