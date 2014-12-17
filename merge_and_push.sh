@@ -4,7 +4,7 @@ branches=("Mensa" "News" "Maps" "Settings")
 
 for branch in "${branches[@]}"; do
 	git checkout $branch
-	git pull --rebase
+	git pull
 done
 
 git checkout develop
