@@ -19,6 +19,7 @@
         <relationship name="associatedNewsSources" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDNewsSource" inverseName="associatedBuildings" inverseEntity="UHDNewsSource" syncable="YES"/>
         <relationship name="campusRegion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDCampusRegion" inverseName="buildings" inverseEntity="UHDCampusRegion" syncable="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDLocationCategory" inverseName="buildings" inverseEntity="UHDLocationCategory" syncable="YES"/>
+        <relationship name="keywords" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="UHDSearchKeyword" inverseName="building" inverseEntity="UHDSearchKeyword" syncable="YES"/>
     </entity>
     <entity name="UHDCampusRegion" representedClassName="UHDCampusRegion" parentEntity="UHDRemoteManagedLocation" syncable="YES">
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
@@ -51,13 +52,18 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDEventItem" inverseName="location" inverseEntity="UHDEventItem" syncable="YES"/>
     </entity>
+    <entity name="UHDSearchKeyword" syncable="YES">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="building" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDBuilding" inverseName="keywords" inverseEntity="UHDBuilding" syncable="YES"/>
+    </entity>
     <elements>
-        <element name="UHDAddress" positionX="-128" positionY="365" width="128" height="103"/>
-        <element name="UHDBuilding" positionX="-128" positionY="116" width="128" height="223"/>
+        <element name="UHDAddress" positionX="-128" positionY="383" width="128" height="103"/>
+        <element name="UHDBuilding" positionX="-128" positionY="116" width="128" height="238"/>
         <element name="UHDCampusRegion" positionX="-306" positionY="117" width="128" height="103"/>
         <element name="UHDEventItem" positionX="7" positionY="9" width="128" height="58"/>
         <element name="UHDLocationCategory" positionX="45" positionY="119" width="128" height="88"/>
-        <element name="UHDRemoteManagedLocation" positionX="-216" positionY="-45" width="128" height="118"/>
         <element name="UHDNewsSource" positionX="45" positionY="234" width="128" height="73"/>
+        <element name="UHDRemoteManagedLocation" positionX="-216" positionY="-45" width="128" height="118"/>
+        <element name="UHDSearchKeyword" positionX="43" positionY="324" width="128" height="73"/>
     </elements>
 </model>
