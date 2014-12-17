@@ -16,6 +16,9 @@
 @property (nonatomic, retain) NSData *imageData;
 @property (nonatomic, retain) NSSet *newsItems;
 
+@property (nonatomic) BOOL isNewsSource;
+@property (nonatomic) BOOL isEventSource;
+
 - (NSMutableSet *)mutableNewsItems;
 
 @property (nonatomic, readonly) UIImage *image;

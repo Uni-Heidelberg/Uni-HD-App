@@ -108,11 +108,11 @@
 		switch (self.displayMode) {
 			case UHDNewsEventsDisplayModeNews:
 				//fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(subscribed == YES) AND SUBQUERY(newsItems, $x, CAST($x, %@) != NULL).@count > 0", [UHDNewsItem entityName]];
-				fetchRequest.predicate = [NSPredicate predicateWithFormat:@"subscribed == YES"];
+				fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(subscribed == YES) AND (isNewsSource == YES)"];
 				break;
 			case UHDNewsEventsDisplayModeEvents:
 				//fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(subscribed == YES) AND (SUBQUERY(newsItems, $x, $x.entity.name == %@ || $x.name == %@).@count != 0)", [UHDEventItem entityName], [UHDTalkItem entityName]];
-				fetchRequest.predicate = [NSPredicate predicateWithFormat:@"subscribed == YES"];
+				fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(subscribed == YES) AND (isEventSource == YES)"];
 				break;
 			default:
 				fetchRequest.predicate = [NSPredicate predicateWithFormat:@"subscribed == YES"];

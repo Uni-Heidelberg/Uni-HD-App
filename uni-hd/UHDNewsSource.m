@@ -15,6 +15,8 @@
 @dynamic imageURL, imageData;
 @dynamic newsItems;
 
+@dynamic isNewsSource, isEventSource;
+
 - (NSMutableSet *)mutableNewsItems
 {
     return [self mutableSetValueForKey:@"newsItems"];

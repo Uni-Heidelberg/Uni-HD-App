@@ -31,8 +31,6 @@
 
 @dynamic primitiveDate, primitiveSectionIdentifier;
 
-@dynamic isNewsSource, isEventSource;
-
 
 #pragma mark - Convenience accessors
 
