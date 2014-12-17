@@ -86,15 +86,15 @@
     NSString *searchText = [searchController.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     [self.logger log:@"Updating search results for search text" object:searchText forLevel:VILogLevelVerbose];
     NSArray *searchTerms = [searchText componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    NSString *predicateFormat = @"(title CONTAINS[cd] %@) OR (buildingNumber CONTAINS[cd] %@) OR (campusRegion.title CONTAINS[cd] %@) OR (campusRegion.identifier CONTAINS[cd] %@)";
+    NSString *predicateFormat = @"(title CONTAINS[cd] %@) OR (buildingNumber CONTAINS[cd] %@) OR (campusRegion.title CONTAINS[cd] %@) OR (campusRegion.identifier CONTAINS[cd] %@) OR (ANY keywords.content CONTAINS[cd] %@)";
     NSPredicate *predicate;
     if ([searchTerms count] == 1) {
         NSString *term = [searchTerms firstObject];
-        predicate = [NSPredicate predicateWithFormat:predicateFormat, term, term, term, term];
+        predicate = [NSPredicate predicateWithFormat:predicateFormat, term, term, term, term, term];
     } else {
         NSMutableArray *subPredicates = [NSMutableArray array];
         for (NSString *term in searchTerms) {
-            NSPredicate *p = [NSPredicate predicateWithFormat:predicateFormat, term, term, term, term];
+            NSPredicate *p = [NSPredicate predicateWithFormat:predicateFormat, term, term, term, term, term];
             [subPredicates addObject:p];
         }
         predicate = [NSCompoundPredicate andPredicateWithSubpredicates:subPredicates];
