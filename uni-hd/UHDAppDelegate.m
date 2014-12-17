@@ -35,6 +35,7 @@
 #import "UHDLocationCategory.h"
 #import "UHDCampusRegion.h"
 #import "UHDAddress.h"
+#import "UHDEventItem.h"
 
 
 @interface UHDAppDelegate ()
@@ -77,7 +78,7 @@
     [[UHDRemoteDatasourceManager defaultManager] refreshAllWithCompletion:nil];
     
     
-    // Stitch together generated maps sample data and mensa remote data
+    // Stitch together generated maps sample data and remote data from server
     // TODO: remove when maps remote data becomes available!
     
     NSManagedObjectContext *managedObjectContext = self.persistentStack.managedObjectContext;
@@ -157,6 +158,19 @@
         }
         if (!mensa.url) {
             mensa.url = [NSURL URLWithString:@"http://www.studentenwerk.uni-heidelberg.de/mensen"];
+        }
+    }
+    // get kip building
+    NSFetchRequest *kipFetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDBuilding entityName]];
+    kipFetchRequest.predicate = [NSPredicate predicateWithFormat:@"buildingNumber == %@", @"227"];
+    UHDBuilding *kipBuilding = [[managedObjectContext executeFetchRequest:kipFetchRequest error:nil] firstObject];
+    // get all events in kip
+    NSFetchRequest *eventsInKIPFetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDEventItem entityName]];
+    eventsInKIPFetchRequest.predicate = [NSPredicate predicateWithFormat:@"buildingString LIKE[cd] %@", @"Kirchhoff-Institut für Physik"];
+    NSArray *eventsInKIP = [managedObjectContext executeFetchRequest:eventsInKIPFetchRequest error:nil];
+    for (UHDEventItem *eventInKIP in eventsInKIP) {
+        if (!eventInKIP.location) {
+            eventInKIP.location = kipBuilding;
         }
     }
     [managedObjectContext saveToPersistentStore:nil];
