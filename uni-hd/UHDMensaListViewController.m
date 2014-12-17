@@ -288,17 +288,23 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 20;
+    return 24;
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     UHDMensaSectionHeaderView *header=[tableView dequeueReusableHeaderFooterViewWithIdentifier:@"TableHeader"];
     if (section == 0) {
         header.sectionHeaderLabel.text=[NSString stringWithFormat:NSLocalizedString(@"Favoriten", nil)];
+        if (self.favouritesResultsController.fetchedObjects.count == 0) {
+           // header.mensenButton.enabled = NO; TODO: make dynamic
+        }
+        else {
+           // header.mensenButton.enabled = YES;
+        }
     }
     else {
         header.sectionHeaderLabel.text=[NSString stringWithFormat:NSLocalizedString(@"Alle Mensen", nil)];
-        
+        header.mensenButton.hidden = true;
     }
     return header;
 }

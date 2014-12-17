@@ -60,7 +60,7 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
     
-    // TOOD: what is this for?
+    // TODO: what is this for?
 	dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
 	});
@@ -220,7 +220,7 @@
 - (IBAction)showOnMapButtonPressed:(id)sender
 {
     if (self.talkItem.location) {
-        self.tabBarController.selectedIndex = 2; // TODO: make dynamic
+        self.tabBarController.selectedIndex = 3; // TODO: make dynamic
         UINavigationController *mapsNavC = (UINavigationController *)self.tabBarController.selectedViewController;
         UHDMapsViewController *mapsVC = [mapsNavC.viewControllers firstObject];
         [mapsNavC popToViewController:mapsVC animated:mapsNavC==self.navigationController];

@@ -209,6 +209,21 @@
     UINavigationController *newsNavC = [newsStoryboard instantiateInitialViewController];
     UHDNewsViewController *newsVC = (UHDNewsViewController *)newsNavC.topViewController;
     newsVC.managedObjectContext = self.persistentStack.managedObjectContext;
+	
+	[newsNavC.tabBarItem setTitle:NSLocalizedString(@"News", nil)];
+	[newsNavC.tabBarItem setImage:[UIImage imageNamed:@"newsIcon"]];
+	[newsNavC.tabBarItem setSelectedImage:[UIImage imageNamed:@"newsIconSelected"]];
+	newsVC.displayMode = UHDNewsEventsDisplayModeNews;
+	
+	// Events
+	UINavigationController *eventsNavC = [newsStoryboard instantiateInitialViewController];
+	UHDNewsViewController *eventsVC = (UHDNewsViewController *)eventsNavC.topViewController;
+	eventsVC.managedObjectContext = self.persistentStack.managedObjectContext;
+	
+	[eventsNavC.tabBarItem setTitle:NSLocalizedString(@"Veranstaltungen", nil)];
+	[eventsNavC.tabBarItem setImage:[UIImage imageNamed:@"eventsIcon"]];
+	[eventsNavC.tabBarItem setSelectedImage:[UIImage imageNamed:@"eventsIconSelected"]];
+	eventsVC.displayMode = UHDNewsEventsDisplayModeEvents;
     
     // Maps
     UIStoryboard *mapsStoryboard = [UIStoryboard storyboardWithName:@"maps" bundle:nil];
@@ -225,7 +240,7 @@
 
     // create and populate tab bar controller
     UITabBarController *tabBarController = [[UITabBarController alloc] init];
-    tabBarController.viewControllers = @[mensaNavC, newsNavC, mapsNavC, settingsNavC];
+    tabBarController.viewControllers = @[mensaNavC, newsNavC, eventsNavC, mapsNavC, settingsNavC];
     
     // create and populate window
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];

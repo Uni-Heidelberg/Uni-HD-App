@@ -60,9 +60,15 @@
         [self.objectManager getObjectsAtPath:remoteRefreshPath parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
             [self.logger log:@"Refresh successful" object:remoteRefreshPath forLevel:VILogLevelInfo];
             [self.logger log:@"Mapping result" object:mappingResult forLevel:VILogLevelVerbose];
+            if ([self.delegate respondsToSelector:@selector(remoteDatasource:didRefreshRemotePath:managedObjectContext:error:)]) {
+                [self.delegate remoteDatasource:self didRefreshRemotePath:remoteRefreshPath managedObjectContext:self.persistentStack.managedObjectContext error:nil];
+            }
             if (completion) completion(YES, nil);
         } failure:^(RKObjectRequestOperation *operation, NSError *error) {
             [self.logger log:@"Refresh failed" error:error];
+            if ([self.delegate respondsToSelector:@selector(remoteDatasource:didRefreshRemotePath:managedObjectContext:error:)]) {
+                [self.delegate remoteDatasource:self didRefreshRemotePath:remoteRefreshPath managedObjectContext:self.persistentStack.managedObjectContext error:error];
+            }
             if (completion) completion(NO, error);
         }];
     }

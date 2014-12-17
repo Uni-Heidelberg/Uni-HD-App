@@ -40,6 +40,10 @@ typedef enum : NSUInteger {
 
 @property (strong, nonatomic) NSDateFormatter *sectionDateFormatter;
 
+@property (strong, nonatomic) IBOutlet UIView *headerView;
+@property (weak, nonatomic) IBOutlet UILabel *headerViewLabel;
+
+
 - (IBAction)refreshControlValueChanged:(id)sender;
 
 //@property (strong, nonatomic) NSMutableDictionary *tableViewRowHeightCache;
@@ -53,6 +57,8 @@ typedef enum : NSUInteger {
 
 - (void)awakeFromNib {
     [super awakeFromNib];
+	
+	[self configureView];
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 160;
@@ -81,6 +87,34 @@ typedef enum : NSUInteger {
 	
 	self.tableView.dataSource = self;
 	self.tableView.delegate = self;
+	
+	[self configureView];
+}
+
+
+- (void)configureView {
+	
+	// configure table header View
+	if ([self.fetchedResultsControllerDataSource.fetchedResultsController.fetchedObjects count] == 0)
+	{
+		switch (self.displayMode) {
+			case UHDNewsEventsDisplayModeNews:
+				self.headerViewLabel.text = NSLocalizedString(@"Es liegen keine News zum Anzeigen vor.", nil);
+				break;
+			case UHDNewsEventsDisplayModeEvents:
+				self.headerViewLabel.text = NSLocalizedString(@"Es liegen keine Veranstaltungen zum Anzeigen vor.", nil);
+				break;
+			default:
+				self.headerViewLabel.text = NSLocalizedString(@"Es liegen keine Daten zum Anzeigen vor.", nil);
+				break;
+		}
+		self.tableView.tableHeaderView = self.headerView;
+	}
+	else
+	{
+		self.tableView.tableHeaderView = nil;
+	}
+	
 }
 
 
@@ -96,11 +130,12 @@ typedef enum : NSUInteger {
 }
 
 
-- (void)setDisplayMode:(UHDNewsListDisplayMode)displayMode
+- (void)setDisplayMode:(UHDNewsEventsDisplayMode)displayMode
 {
 	_displayMode = displayMode;
 	
 	[self updateFetchedResultsControllerForChangedDisplayMode];
+	[self configureView];
 	
     [self.tableView reloadData];
 }
@@ -227,7 +262,8 @@ typedef enum : NSUInteger {
 */
 
 
-// did this help ?
+// did this help ?	-> after many trials I imagined yes...
+
 /*- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
 	UHDNewsItem *item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
@@ -271,13 +307,13 @@ typedef enum : NSUInteger {
 		
 		NSFetchRequest *fetchRequest;
 		
-		if (self.displayMode == UHDNewsListDisplayModeEvents) {
+		if (self.displayMode == UHDNewsEventsDisplayModeEvents) {
 			fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDEventItem entityName]];
 			[fetchRequest setIncludesSubentities:YES];
 		}
 		else {
 			fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsItem entityName]];
-			if (self.displayMode == UHDNewsListDisplayModeAll) {
+			if (self.displayMode == UHDNewsEventsDisplayModeAll) {
 				[fetchRequest setIncludesSubentities:YES];
 			}
 			else {
@@ -312,17 +348,18 @@ typedef enum : NSUInteger {
 
 - (void)updateFetchedResultsControllerForChangedDisplayMode {
 
-    if (self.fetchedResultsControllerDataSource) {
+    if (self.managedObjectContext) {
         NSFetchRequest *fetchRequest = self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest;
-        NSEntityDescription *entityDescription;
+		
+		NSEntityDescription *entityDescription;
 
-        if (self.displayMode == UHDNewsListDisplayModeEvents) {
+        if (self.displayMode == UHDNewsEventsDisplayModeEvents) {
             entityDescription = [NSEntityDescription entityForName:[UHDEventItem entityName] inManagedObjectContext:self.managedObjectContext];
             [fetchRequest setIncludesSubentities:YES];
         }
         else {
             entityDescription = [NSEntityDescription entityForName:[UHDNewsItem entityName] inManagedObjectContext:self.managedObjectContext];
-            if (self.displayMode == UHDNewsListDisplayModeAll) {
+            if (self.displayMode == UHDNewsEventsDisplayModeAll) {
                 [fetchRequest setIncludesSubentities:YES];
             }
             else {

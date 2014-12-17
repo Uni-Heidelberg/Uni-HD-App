@@ -9,9 +9,16 @@
 @import Foundation;
 @import UIKit;
 
+typedef enum : NSUInteger {
+    UHDNewsEventsDisplayModeNews = 0,
+    UHDNewsEventsDisplayModeEvents,
+	UHDNewsEventsDisplayModeAll
+} UHDNewsEventsDisplayMode;
+
 
 @interface UHDNewsViewController : UIViewController
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+@property (nonatomic) UHDNewsEventsDisplayMode displayMode;
 
 @end
