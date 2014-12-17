@@ -32,6 +32,12 @@
 	self.locationLabel.text = item.formattedLocation;
 	
 	[self.addToCalendarButton setTitle:NSLocalizedString(@"Veranstaltung in den Kalender eintragen", nil) forState:UIControlStateNormal];
+	
+	[self.mapView removeAnnotations:self.mapView.annotations];
+	if (item.location != nil) {
+		[self.mapView addAnnotation:item.location];
+		[self.mapView showAnnotations:@[ item.location ] animated:NO];
+	}
 
 }
 
