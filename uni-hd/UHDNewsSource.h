@@ -15,8 +15,10 @@
 @property (nonatomic, retain) NSURL *imageURL;
 @property (nonatomic, retain) NSData *imageData;
 @property (nonatomic, retain) NSSet *newsItems;
+@property (nonatomic, retain) NSSet *associatedBuildings;
 
 - (NSMutableSet *)mutableNewsItems;
+- (NSMutableSet *)mutableAssociatedBuildings;
 
 @property (nonatomic, readonly) UIImage *image;
 @property (nonatomic) UHDNewsCategory *category;

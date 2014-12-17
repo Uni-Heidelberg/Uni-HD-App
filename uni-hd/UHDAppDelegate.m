@@ -36,6 +36,7 @@
 #import "UHDCampusRegion.h"
 #import "UHDAddress.h"
 #import "UHDEventItem.h"
+#import "UHDNewsSource.h"
 
 
 @interface UHDAppDelegate ()
@@ -172,6 +173,16 @@
         if (!eventInKIP.location) {
             eventInKIP.location = kipBuilding;
         }
+        if (![eventInKIP.source.associatedBuildings containsObject:kipBuilding]) {
+            [eventInKIP.source.mutableAssociatedBuildings addObject:kipBuilding];
+        }
+    }
+    // get kip news source
+    NSFetchRequest *kipNewsSourceFetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsSource entityName]];
+    kipNewsSourceFetchRequest.predicate = [NSPredicate predicateWithFormat:@"title LIKE[cd] %@", @"Kirchhoff Institut für Physik"];
+    UHDNewsSource *kipNewsSource = [[managedObjectContext executeFetchRequest:kipNewsSourceFetchRequest error:nil] firstObject];
+    if (kipNewsSource) {
+        [kipBuilding.mutableAssociatedNewsSources addObject:kipNewsSource];
     }
     [managedObjectContext saveToPersistentStore:nil];
     
@@ -258,7 +269,10 @@
                 // Ignore placeholder
                 // TODO: use this key to actually map differently-named entities
                 // remember subentities to re-establish later
-                ignoredSubentities[entity.name] = entity.subentities;
+                if (!ignoredSubentities[entity.name]) {
+                    ignoredSubentities[entity.name] = [[NSMutableArray alloc] init];
+                }
+                [(NSMutableArray *)ignoredSubentities[entity.name] addObjectsFromArray:entity.subentities];
             } else {
                 [mergedModelEntities addObject:[entity copy]];
             }

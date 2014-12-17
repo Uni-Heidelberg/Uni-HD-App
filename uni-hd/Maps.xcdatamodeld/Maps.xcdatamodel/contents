@@ -16,6 +16,7 @@
         <attribute name="telephone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="url" optional="YES" attributeType="Transformable" syncable="YES"/>
         <relationship name="address" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UHDAddress" inverseName="building" inverseEntity="UHDAddress" syncable="YES"/>
+        <relationship name="associatedNewsSources" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDNewsSource" inverseName="associatedBuildings" inverseEntity="UHDNewsSource" syncable="YES"/>
         <relationship name="campusRegion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDCampusRegion" inverseName="buildings" inverseEntity="UHDCampusRegion" syncable="YES"/>
         <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDLocationCategory" inverseName="buildings" inverseEntity="UHDLocationCategory" syncable="YES"/>
     </entity>
@@ -36,6 +37,13 @@
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="buildings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDBuilding" inverseName="category" inverseEntity="UHDBuilding" syncable="YES"/>
     </entity>
+    <entity name="UHDNewsSource" syncable="YES">
+        <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <relationship name="associatedBuildings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDBuilding" inverseName="associatedNewsSources" inverseEntity="UHDBuilding" syncable="YES"/>
+        <userInfo>
+            <entry key="UHDForeignEntityNameKey" value="news.UHDNewsSource"/>
+        </userInfo>
+    </entity>
     <entity name="UHDRemoteManagedLocation" representedClassName="UHDRemoteManagedLocation" isAbstract="YES" syncable="YES">
         <attribute name="currentDistance" optional="YES" attributeType="Double" defaultValueString="-1" syncable="YES"/>
         <attribute name="location" optional="YES" attributeType="Transformable" syncable="YES"/>
@@ -45,10 +53,11 @@
     </entity>
     <elements>
         <element name="UHDAddress" positionX="-128" positionY="365" width="128" height="103"/>
-        <element name="UHDBuilding" positionX="-128" positionY="116" width="128" height="208"/>
+        <element name="UHDBuilding" positionX="-128" positionY="116" width="128" height="223"/>
         <element name="UHDCampusRegion" positionX="-306" positionY="117" width="128" height="103"/>
+        <element name="UHDEventItem" positionX="7" positionY="9" width="128" height="58"/>
         <element name="UHDLocationCategory" positionX="45" positionY="119" width="128" height="88"/>
         <element name="UHDRemoteManagedLocation" positionX="-216" positionY="-45" width="128" height="118"/>
-        <element name="UHDEventItem" positionX="7" positionY="9" width="128" height="58"/>
+        <element name="UHDNewsSource" positionX="45" positionY="234" width="128" height="73"/>
     </elements>
 </model>

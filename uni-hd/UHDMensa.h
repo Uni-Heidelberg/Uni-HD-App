@@ -8,12 +8,10 @@
 
 #import <Foundation/Foundation.h>
 #import "UHDBuilding.h"
-@class Hours;
 
 @interface UHDMensa : UHDBuilding
 
 @property (nonatomic, assign) BOOL isFavourite;
-@property (readonly) Hours *hours; // TODO: not yet implemented properly
 @property (readonly) NSAttributedString *attributedStatusDescription;
 
 @property (nonatomic, retain) NSSet *sections;

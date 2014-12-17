@@ -19,7 +19,12 @@
 @dynamic spanLatitude, spanLongitude;
 @dynamic address;
 @dynamic telephone, email, url;
+@dynamic associatedNewsSources;
 
+
+- (NSMutableSet *)mutableAssociatedNewsSources {
+    return [self mutableSetValueForKey:@"associatedNewsSources"];
+}
 
 #pragma mark - Computed Properties
 
@@ -29,6 +34,10 @@
     } else {
         return nil;
     }
+}
+
+- (Hours *)hours {
+    return nil;
 }
 
 - (UIImage *)image

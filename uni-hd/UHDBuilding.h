@@ -9,6 +9,7 @@
 #import "UHDRemoteManagedLocation.h"
 
 @class UHDLocationCategory, UHDCampusRegion, UHDAddress;
+@class Hours;
 
 @interface UHDBuilding : UHDRemoteManagedLocation <MKOverlay>
 
@@ -23,6 +24,8 @@
 @property (nonatomic, retain) NSString *telephone;
 @property (nonatomic, retain) NSString *email;
 @property (nonatomic, retain) NSURL *url;
+@property (nonatomic, retain) NSSet *associatedNewsSources;
+@property (nonatomic, readonly) Hours *hours; // TODO: not yet implemented properly
 
 // Computed Properties
 @property (readonly) NSString *campusIdentifier; // calculated by combining the campus region's identifier and the building number
@@ -30,5 +33,8 @@
 @property (nonatomic) MKCoordinateRegion coordinateRegion;
 @property (nonatomic, readonly) MKMapItem *mapItem;
 @property (nonatomic, readonly) NSArray *upcomingEvents;
+
+// Mutable To-Many Accessors
+- (NSMutableSet *)mutableAssociatedNewsSources;
 
 @end

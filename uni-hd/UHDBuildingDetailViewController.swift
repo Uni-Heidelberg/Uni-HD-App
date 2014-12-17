@@ -147,11 +147,20 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
         }
     }
     
+    @IBAction func showMensaMenu(sender: UIButton) {
+        if let mensa = self.building as? UHDMensa {
+            NSUserDefaults.standardUserDefaults().setValue(NSNumber(short: mensa.remoteObjectId), forKey: "UHDUserDefaultsKeySelectedMensaId")
+            self.tabBarController?.selectedIndex = 0 // TODO: make dynamic
+            if let mensaNavC = self.tabBarController?.selectedViewController as? UINavigationController {
+                mensaNavC.popToRootViewControllerAnimated(self.navigationController==mensaNavC)
+            }
+        }
+    }
     
     // MARK: Sections and Properties
     
     enum DetailSection {
-        case Title, Location, Contact([DetailProperty]), Events([UHDEventItem]), FloorPlan
+        case Title, Location, Contact([DetailProperty]), Events([UHDEventItem]), News(sources: [UHDNewsSource], items: [UHDNewsItem]), FloorPlan
         
         var localizedTitle: String? {
             switch self {
@@ -160,6 +169,7 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
             case .Contact: return NSLocalizedString("Kontakt", comment: "")
             case .FloorPlan: return NSLocalizedString("Raumplan", comment: "")
             case .Events: return NSLocalizedString("Kommende Veranstaltungen", comment: "")
+            case .News: return NSLocalizedString("Aktuelle News", comment: "")
             }
         }
     }
@@ -174,6 +184,17 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
             if let upcomingEvents = building.upcomingEvents as? [UHDEventItem] {
                 if upcomingEvents.count > 0 {
                     sections.append(.Events(upcomingEvents))
+                }
+            }
+            if let associatedNewsSources = building.associatedNewsSources {
+                if associatedNewsSources.count > 0 {
+                    let sources = associatedNewsSources.sortedArrayUsingDescriptors([ NSSortDescriptor(key: "remoteObjectId", ascending: true) ]) as [UHDNewsSource]
+                    let fetchRequest = NSFetchRequest(entityName: "UHDNewsItem")
+                    fetchRequest.predicate = NSPredicate(format: "source IN %@", associatedNewsSources)
+                    fetchRequest.sortDescriptors = [ NSSortDescriptor(key: "date", ascending: false) ]
+                    fetchRequest.includesSubentities = false
+                    let items = building.managedObjectContext?.executeFetchRequest(fetchRequest, error: nil) as? [UHDNewsItem]
+                    sections.append(.News(sources: sources, items: items ?? []))
                 }
             }
             if building.campusIdentifier == "INF 227" {
@@ -230,7 +251,10 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch self.sections[section] {
-        case .Title, .FloorPlan:
+        case .Title:
+            if let mensa = self.building as? UHDMensa {
+                return 2
+            }
             return 1
         case .Contact(let contactProperties):
             return contactProperties.count
@@ -238,6 +262,10 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
             return 2
         case .Events(let events):
             return min(events.count, 3)
+        case .News(let sources, let items):
+            return min(items.count, 3)
+        case .FloorPlan:
+            return 1
         }
     }
     
@@ -248,17 +276,28 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
         switch self.sections[indexPath.section] {
             
         case .Title:
-            let cell = tableView.dequeueReusableCellWithIdentifier("titleCell", forIndexPath: indexPath) as UHDBuildingDetailTitleCell
-            cell.titleLabel.text = self.building?.title
-            var subtitleComponents = [String]()
-            if let campusIdentifier = building.campusIdentifier {
-                subtitleComponents.append(campusIdentifier)
+            switch indexPath.row {
+            case 1:
+                let cell = tableView.dequeueReusableCellWithIdentifier("mensaInfoCell", forIndexPath: indexPath) as UITableViewCell
+                if let mensa = self.building as? UHDMensa {
+                    if let statusLabel = cell.viewWithTag(1) as? UILabel {
+                        statusLabel.attributedText = mensa.attributedStatusDescription
+                    }
+                }
+                return cell
+            default:
+                let cell = tableView.dequeueReusableCellWithIdentifier("titleCell", forIndexPath: indexPath) as UHDBuildingDetailTitleCell
+                cell.titleLabel.text = self.building?.title
+                var subtitleComponents = [String]()
+                if let campusIdentifier = building.campusIdentifier {
+                    subtitleComponents.append(campusIdentifier)
+                }
+                if let categoryTitle = building.category?.title {
+                    subtitleComponents.append(categoryTitle)
+                }
+                cell.subtitleLabel.text = " | ".join(subtitleComponents)
+                return cell
             }
-            if let categoryTitle = building.category?.title {
-                subtitleComponents.append(categoryTitle)
-            }
-            cell.subtitleLabel.text = " | ".join(subtitleComponents)
-            return cell
     
         case .Contact(let contactProperties):
             let cell = tableView.dequeueReusableCellWithIdentifier("propertyCell", forIndexPath: indexPath) as UHDBuildingDetailPropertyCell
@@ -275,6 +314,12 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
             } else {
                 cell.configureForItem(nil)
             }
+            return cell
+            
+        case .News(sources: let sources, items: let items):
+            let cell = tableView.dequeueReusableCellWithIdentifier("newsCell", forIndexPath: indexPath) as UHDNewsItemCell
+            let item = items[indexPath.row]
+            cell.configureForItem(item)
             return cell
             
         case .Location:

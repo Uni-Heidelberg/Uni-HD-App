@@ -23,8 +23,7 @@
     return [self mutableSetValueForKey:@"sections"];
 }
 
-
-#pragma mark -. Computed Properties
+#pragma mark - Computed Properties
 
 - (Hours *)hours {
     return [[Hours alloc] init];

@@ -339,6 +339,40 @@
                                     <outlet property="titleLabel" destination="Q7T-Vx-DLw" id="DQG-4w-3a9"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="mensaInfoCell" rowHeight="99" id="KBX-5v-MQw" customClass="UHDBuildingDetailTitleCell" customModule="uni_hd" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="246" width="320" height="198"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KBX-5v-MQw" id="Zds-3R-rPY">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="197"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OV0-pl-bbU">
+                                            <rect key="frame" x="14" y="41.5" width="142" height="30"/>
+                                            <state key="normal" title="Speiseplan anzeigen">
+                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                            </state>
+                                            <connections>
+                                                <action selector="showMensaMenu:" destination="gkq-iR-bWQ" eventType="touchUpInside" id="HIQ-yh-NwT"/>
+                                            </connections>
+                                        </button>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mensa Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajg-EK-rWk" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
+                                            <rect key="frame" x="14" y="16" width="571" height="17"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="ajg-EK-rWk" secondAttribute="trailing" constant="15" id="2aZ-28-EcP"/>
+                                        <constraint firstItem="OV0-pl-bbU" firstAttribute="top" secondItem="ajg-EK-rWk" secondAttribute="bottom" constant="8" id="5JH-BI-mab"/>
+                                        <constraint firstItem="ajg-EK-rWk" firstAttribute="leading" secondItem="Zds-3R-rPY" secondAttribute="leading" constant="14" id="K2n-SA-WhT"/>
+                                        <constraint firstItem="ajg-EK-rWk" firstAttribute="top" secondItem="Zds-3R-rPY" secondAttribute="topMargin" constant="8" id="ODz-IP-5Wf"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="OV0-pl-bbU" secondAttribute="bottom" id="Qlk-LJ-4sH"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="OV0-pl-bbU" secondAttribute="trailing" constant="15" id="ctd-QX-oP5"/>
+                                        <constraint firstItem="ajg-EK-rWk" firstAttribute="leading" secondItem="OV0-pl-bbU" secondAttribute="leading" id="d63-Ad-Z6s"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="propertyCell" rowHeight="80" id="ZG8-PG-kfG" customClass="UHDBuildingDetailPropertyCell" customModule="uni_hd" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="246" width="320" height="198"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -372,6 +406,140 @@
                                 <connections>
                                     <outlet property="contentLabel" destination="3Ob-Tb-f1v" id="itN-fW-YHM"/>
                                     <outlet property="titleLabel" destination="ehU-A6-lCi" id="ul2-l6-pH4"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="sourceCell" id="ADe-8p-gi9" customClass="UHDNewsSourceCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="64"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ADe-8p-gi9" id="Sr8-Mx-3Eh">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="63"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalCompressionResistancePriority="500" misplaced="YES" text="News Source Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RMT-cU-VOh" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
+                                            <rect key="frame" x="61.5" y="17.5" width="463.5" height="19.5"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bqu-jZ-5be">
+                                            <rect key="frame" x="533" y="11.5" width="51" height="31"/>
+                                            <connections>
+                                                <action selector="subscribedSwitchValueChanged:" destination="ADe-8p-gi9" eventType="valueChanged" id="P5e-Fd-nja"/>
+                                            </connections>
+                                        </switch>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="500" verticalCompressionResistancePriority="500" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SmP-2r-xIU">
+                                            <rect key="frame" x="15" y="8" width="38.5" height="38.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="SmP-2r-xIU" secondAttribute="height" multiplier="1:1" id="43V-da-5Xz"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="bqu-jZ-5be" firstAttribute="leading" secondItem="RMT-cU-VOh" secondAttribute="trailing" constant="8" symbolic="YES" id="6p9-tK-ztt"/>
+                                        <constraint firstAttribute="centerY" secondItem="RMT-cU-VOh" secondAttribute="centerY" id="EcH-vl-AdV"/>
+                                        <constraint firstItem="RMT-cU-VOh" firstAttribute="centerY" secondItem="bqu-jZ-5be" secondAttribute="centerY" id="JQs-K4-mWn"/>
+                                        <constraint firstItem="SmP-2r-xIU" firstAttribute="top" secondItem="Sr8-Mx-3Eh" secondAttribute="topMargin" id="hC1-N5-PxR"/>
+                                        <constraint firstItem="SmP-2r-xIU" firstAttribute="leading" secondItem="Sr8-Mx-3Eh" secondAttribute="leading" constant="15" id="lR5-p2-DAI"/>
+                                        <constraint firstAttribute="centerY" secondItem="bqu-jZ-5be" secondAttribute="centerY" id="mK6-vg-qan"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="SmP-2r-xIU" secondAttribute="bottom" id="oS9-Hh-U0x"/>
+                                        <constraint firstItem="RMT-cU-VOh" firstAttribute="leading" secondItem="SmP-2r-xIU" secondAttribute="trailing" constant="8" id="rhh-ia-6Lz"/>
+                                        <constraint firstAttribute="trailing" secondItem="bqu-jZ-5be" secondAttribute="trailing" constant="18" id="rkp-o2-hfE"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="iconImageView" destination="SmP-2r-xIU" id="BBi-zi-buG"/>
+                                    <outlet property="subscribedSwitch" destination="bqu-jZ-5be" id="tZ6-7M-KEU"/>
+                                    <outlet property="titleLabel" destination="RMT-cU-VOh" id="U1c-QJ-ynd"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="newsCell" rowHeight="188" id="MeB-CB-myE" customClass="UHDNewsItemCell">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" tableViewCell="MeB-CB-myE" id="hKd-Zl-AIT">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Source" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tyz-C8-ta7" userLabel="Source Label" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
+                                            <rect key="frame" x="28" y="8" width="507.5" height="13.5"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pWm-r8-OLQ" userLabel="Title Label" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
+                                            <rect key="frame" x="28" y="29" width="539" height="19.5"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRd-Y7-6m1" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
+                                            <rect key="frame" x="543" y="8" width="24" height="13.5"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="qcl-ls-fOL">
+                                            <rect key="frame" x="28" y="56" width="80" height="80"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="JGY-rK-Twj"/>
+                                                <constraint firstAttribute="width" secondItem="qcl-ls-fOL" secondAttribute="height" multiplier="1:1" id="d5P-nM-EMb"/>
+                                                <constraint firstAttribute="width" priority="500" id="l1I-po-5rU"/>
+                                            </constraints>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="news_symbol" translatesAutoresizingMaskIntoConstraints="NO" id="f3f-Qe-dVZ">
+                                            <rect key="frame" x="6" y="31" width="16" height="16"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="16" id="gAZ-i7-daq"/>
+                                                <constraint firstAttribute="width" constant="15" id="lFD-bl-Yqx"/>
+                                                <constraint firstAttribute="width" secondItem="f3f-Qe-dVZ" secondAttribute="height" multiplier="1:1" id="yAr-Rn-OJ7"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="lFD-bl-Yqx"/>
+                                                </mask>
+                                            </variation>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xuk-zP-Sm2" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
+                                            <rect key="frame" x="116" y="56" width="451" height="62.5"/>
+                                            <string key="text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</string>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="pWm-r8-OLQ" firstAttribute="leading" secondItem="tyz-C8-ta7" secondAttribute="leading" id="28L-45-UHB"/>
+                                        <constraint firstItem="xuk-zP-Sm2" firstAttribute="leading" secondItem="qcl-ls-fOL" secondAttribute="trailing" constant="8" id="46s-Ny-MAd"/>
+                                        <constraint firstItem="xuk-zP-Sm2" firstAttribute="top" secondItem="pWm-r8-OLQ" secondAttribute="bottom" constant="8" id="5Hg-62-oom"/>
+                                        <constraint firstItem="tyz-C8-ta7" firstAttribute="top" secondItem="vRd-Y7-6m1" secondAttribute="top" id="75y-5e-mfz"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="xuk-zP-Sm2" secondAttribute="bottom" constant="8" id="9JB-ZN-YBg"/>
+                                        <constraint firstItem="pWm-r8-OLQ" firstAttribute="trailing" secondItem="xuk-zP-Sm2" secondAttribute="trailing" id="Cq4-lm-RaR"/>
+                                        <constraint firstItem="f3f-Qe-dVZ" firstAttribute="leading" secondItem="hKd-Zl-AIT" secondAttribute="leading" constant="6" id="DHx-uP-oSf"/>
+                                        <constraint firstAttribute="trailing" secondItem="vRd-Y7-6m1" secondAttribute="trailing" id="Elk-lV-w64"/>
+                                        <constraint firstItem="pWm-r8-OLQ" firstAttribute="top" secondItem="tyz-C8-ta7" secondAttribute="bottom" constant="8" symbolic="YES" id="JDV-2C-Nue"/>
+                                        <constraint firstItem="pWm-r8-OLQ" firstAttribute="top" secondItem="f3f-Qe-dVZ" secondAttribute="top" constant="-2" id="JXk-l6-f9k"/>
+                                        <constraint firstItem="qcl-ls-fOL" firstAttribute="top" secondItem="xuk-zP-Sm2" secondAttribute="top" id="KIc-MR-LoE"/>
+                                        <constraint firstItem="qcl-ls-fOL" firstAttribute="leading" secondItem="pWm-r8-OLQ" secondAttribute="leading" id="NiZ-13-zBu"/>
+                                        <constraint firstItem="vRd-Y7-6m1" firstAttribute="trailing" secondItem="pWm-r8-OLQ" secondAttribute="trailing" id="R4P-9v-cT4"/>
+                                        <constraint firstItem="pWm-r8-OLQ" firstAttribute="leading" secondItem="f3f-Qe-dVZ" secondAttribute="trailing" constant="6" id="hCj-nG-HdS"/>
+                                        <constraint firstItem="tyz-C8-ta7" firstAttribute="top" secondItem="hKd-Zl-AIT" secondAttribute="topMargin" id="kgk-Vd-hQp"/>
+                                        <constraint firstItem="vRd-Y7-6m1" firstAttribute="leading" secondItem="tyz-C8-ta7" secondAttribute="trailing" constant="8" symbolic="YES" id="q8h-2f-cxv"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="qcl-ls-fOL" secondAttribute="bottom" id="xl4-VE-fnY"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="abstractLabel" destination="xuk-zP-Sm2" id="SAJ-Kb-QMs"/>
+                                    <outlet property="dateLabel" destination="vRd-Y7-6m1" id="oZJ-WH-Lrx"/>
+                                    <outlet property="imageSpacingLayoutConstraint" destination="46s-Ny-MAd" id="zOF-5W-i7L"/>
+                                    <outlet property="newsImageView" destination="qcl-ls-fOL" id="l9y-mA-pyI"/>
+                                    <outlet property="readIndicatorImageView" destination="f3f-Qe-dVZ" id="TSj-20-s2P"/>
+                                    <outlet property="sourceLabel" destination="tyz-C8-ta7" id="zro-ja-PkD"/>
+                                    <outlet property="titleLabel" destination="pWm-r8-OLQ" id="X8G-zf-c1G"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="talkCell" rowHeight="237" id="6K4-kQ-hzH" customClass="UHDTalkItemCell">
@@ -583,6 +751,7 @@
     </scenes>
     <resources>
         <image name="mapsIcon" width="32" height="25"/>
+        <image name="news_symbol" width="16" height="16"/>
         <image name="raumplan_kip" width="1312" height="1108"/>
         <image name="talk_icon" width="16" height="16"/>
     </resources>

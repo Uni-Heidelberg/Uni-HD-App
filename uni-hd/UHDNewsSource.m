@@ -20,6 +20,10 @@
     return [self mutableSetValueForKey:@"newsItems"];
 }
 
+- (NSMutableSet *)mutableAssociatedBuildings {
+    return [self mutableSetValueForKey:@"associatedBuildings"];
+}
+
 - (int)subscribedCount {
     return (self.subscribed ? 1 : 0) + [super subscribedCount];
 }
