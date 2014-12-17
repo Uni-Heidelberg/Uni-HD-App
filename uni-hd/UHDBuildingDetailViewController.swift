@@ -114,6 +114,12 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
                         self.navigationController?.pushViewController(detailVC, animated: true)
                     }
                 }
+            
+            case .News(sources: let sources, items: let items):
+                if let detailVC = UIStoryboard(name: "news", bundle: nil).instantiateViewControllerWithIdentifier("newsDetail") as? UHDNewsDetailViewController {
+                    detailVC.newsItem = items[indexPath.row]
+                    self.navigationController?.pushViewController(detailVC, animated: true)
+                }
                 
         default:
             tableView.deselectRowAtIndexPath(indexPath, animated: true)

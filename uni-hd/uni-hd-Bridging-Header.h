@@ -22,3 +22,4 @@
 #import "UHDTalkDetailViewController.h"
 #import "UHDNewsSource.h"
 #import "UHDNewsItemCell.h"
+#import "UHDNewsDetailViewController.h"

@@ -693,7 +693,7 @@
         <!--News Detail View Controller-->
         <scene sceneID="7qp-AH-575">
             <objects>
-                <viewController id="cii-2s-9Xp" customClass="UHDNewsDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="newsDetail" id="cii-2s-9Xp" customClass="UHDNewsDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3UN-Xr-Ymi"/>
                         <viewControllerLayoutGuide type="bottom" id="KXv-hz-A9l"/>
