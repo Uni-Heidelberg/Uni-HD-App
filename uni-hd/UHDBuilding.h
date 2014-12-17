@@ -29,5 +29,6 @@
 @property (nonatomic) UIImage *image; // TODO: make readonly and transient as soon as sample data is not necessary anymore
 @property (nonatomic) MKCoordinateRegion coordinateRegion;
 @property (nonatomic, readonly) MKMapItem *mapItem;
+@property (nonatomic, readonly) NSArray *upcomingEvents;
 
 @end

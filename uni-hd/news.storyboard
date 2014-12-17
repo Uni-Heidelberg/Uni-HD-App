@@ -463,7 +463,7 @@
         <!--Talk Detail View Controller-->
         <scene sceneID="aQx-CY-juF">
             <objects>
-                <tableViewController id="e3t-qO-g8f" customClass="UHDTalkDetailViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="talkDetail" id="e3t-qO-g8f" customClass="UHDTalkDetailViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="80" sectionHeaderHeight="10" sectionFooterHeight="10" id="X1g-xK-Oxe">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

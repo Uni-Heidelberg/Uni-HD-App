@@ -68,9 +68,21 @@
     return mapItem;
 }
 
+- (NSArray *)upcomingEvents {
+    return [[self.events filteredSetUsingPredicate:[NSPredicate predicateWithFormat:@"date > %@", [NSDate date]]] sortedArrayUsingDescriptors:@[ [NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES] ]];
+}
+
 #pragma mark - MKAnnotation Protocol
 
 // mostly inherited from UHDRemoteManagedLocation
+
+- (NSString *)title {
+    if ([self primitiveValueForKey:@"title"]) {
+        return [self primitiveValueForKey:@"title"];
+    } else {
+        return self.campusIdentifier;
+    }
+}
 
 - (NSString *)subtitle {
     return self.campusIdentifier;

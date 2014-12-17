@@ -73,46 +73,51 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         if let building = self.building {
-            if let detailSection = DetailSection(rawValue: indexPath.section) {
+            
+            switch self.sections[indexPath.section] {
                 
-                switch detailSection {
-                    
-                case .Location:
-                
-                    // selected address
-                    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("Auf der Karte anzeigen", comment: ""), style: .Default, handler: { action in
+            case .Location:
+            
+                // selected address
+                let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("Auf der Karte anzeigen", comment: ""), style: .Default, handler: { action in
 
-                        self.showOnMap()
-                        
-                        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                    }))
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("Route hierhin", comment: ""), style: .Default, handler: { action in
-                        
-                        self.getDirections()
-                        
-                        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                    }))
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("Abbrechen", comment: ""), style: .Cancel, handler: { action in
-                        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                    }))
-                    self.presentViewController(alertController, animated: true, completion: nil)
+                    self.showOnMap()
                     
-                case .Contact:
-                    let actions = self.contactProperties()[indexPath.row].actions
-                    let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-                    for action in actions {
-                        alertController.addAction(action)
-                    }
-                    self.presentViewController(alertController, animated: true, completion: {
-                        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-                    })
-                
-                default:
                     tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                }))
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("Route hierhin", comment: ""), style: .Default, handler: { action in
+                    
+                    self.getDirections()
+                    
+                    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                }))
+                alertController.addAction(UIAlertAction(title: NSLocalizedString("Abbrechen", comment: ""), style: .Cancel, handler: { action in
+                    tableView.deselectRowAtIndexPath(indexPath, animated: true)
+                }))
+                self.presentViewController(alertController, animated: true, completion: nil)
+                
+            case .Contact:
+            let actions = self.contactProperties[indexPath.row].actions
+            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+            for action in actions {
+                alertController.addAction(action)
+            }
+            self.presentViewController(alertController, animated: true, completion: {
+                tableView.deselectRowAtIndexPath(indexPath, animated: true)
+            })
+                
+            case .Events(let events):
+                if let talk = events[indexPath.row] as? UHDTalkItem {
+                    if let detailVC = UIStoryboard(name: "news", bundle: nil).instantiateViewControllerWithIdentifier("talkDetail") as? UHDTalkDetailViewController {
+                        detailVC.talkItem = talk
+                        self.navigationController?.pushViewController(detailVC, animated: true)
+                    }
                 }
                 
-            }
+        default:
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        }
         }
     }
     
@@ -145,8 +150,8 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
     
     // MARK: Sections and Properties
     
-    enum DetailSection: Int {
-        case Title = 0, Location, Contact, FloorPlan
+    enum DetailSection {
+        case Title, Location, Contact([DetailProperty]), Events([UHDEventItem]), FloorPlan
         
         var localizedTitle: String? {
             switch self {
@@ -154,8 +159,29 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
             case .Location: return nil
             case .Contact: return NSLocalizedString("Kontakt", comment: "")
             case .FloorPlan: return NSLocalizedString("Raumplan", comment: "")
+            case .Events: return NSLocalizedString("Kommende Veranstaltungen", comment: "")
             }
         }
+    }
+    
+    var sections: [DetailSection] {
+        if let building = self.building {
+            var sections: [DetailSection] = [ .Title, .Location ]
+            let contactProperties = self.contactProperties
+            if contactProperties.count > 0 {
+                sections.append(.Contact(contactProperties))
+            }
+            if let upcomingEvents = building.upcomingEvents as? [UHDEventItem] {
+                if upcomingEvents.count > 0 {
+                    sections.append(.Events(upcomingEvents))
+                }
+            }
+            if building.campusIdentifier == "INF 227" {
+                sections.append(.FloorPlan)
+            }
+            return sections
+        }
+        return []
     }
     
     struct DetailProperty {
@@ -164,7 +190,7 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
         let actions: [UIAlertAction]
     }
     
-    func contactProperties() -> [DetailProperty] {
+    var contactProperties: [DetailProperty] {
         var properties = [DetailProperty]()
         if let building = self.building {
             if let telephone = building.telephone {
@@ -199,25 +225,19 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
     // MARK: Table View Datasource
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        if self.building == nil {
-            return 0
-        } else {
-            return 4
-        }
+        return self.sections.count
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let detailSection = DetailSection(rawValue: section) {
-            switch detailSection {
-            case .Title, .FloorPlan:
-                return 1
-            case .Contact:
-                return self.contactProperties().count
-            case .Location:
-                return 2
-            }
-        } else {
-            return 0
+        switch self.sections[section] {
+        case .Title, .FloorPlan:
+            return 1
+        case .Contact(let contactProperties):
+            return contactProperties.count
+        case .Location:
+            return 2
+        case .Events(let events):
+            return min(events.count, 3)
         }
     }
     
@@ -225,8 +245,7 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
     {
         let building = self.building!
         
-        let detailSection = DetailSection(rawValue: indexPath.section)!
-        switch detailSection {
+        switch self.sections[indexPath.section] {
             
         case .Title:
             let cell = tableView.dequeueReusableCellWithIdentifier("titleCell", forIndexPath: indexPath) as UHDBuildingDetailTitleCell
@@ -241,11 +260,21 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
             cell.subtitleLabel.text = " | ".join(subtitleComponents)
             return cell
     
-        case .Contact:
+        case .Contact(let contactProperties):
             let cell = tableView.dequeueReusableCellWithIdentifier("propertyCell", forIndexPath: indexPath) as UHDBuildingDetailPropertyCell
-            let property = self.contactProperties()[indexPath.row]
+            let property = contactProperties[indexPath.row]
             cell.titleLabel.setTitle(property.title, forState: .Normal)
             cell.contentLabel.text = property.content
+            return cell
+            
+        case .Events(let events):
+            let cell = tableView.dequeueReusableCellWithIdentifier("talkCell", forIndexPath: indexPath) as UHDTalkItemCell
+            let event = events[indexPath.row]
+            if let talk = event as? UHDTalkItem {
+                cell.configureForItem(talk)
+            } else {
+                cell.configureForItem(nil)
+            }
             return cell
             
         case .Location:
@@ -270,7 +299,7 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
     }
     
     override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return DetailSection(rawValue: section)?.localizedTitle
+        return self.sections[section].localizedTitle
     }
     
     

@@ -14,3 +14,9 @@
 #import "UHDLocationCategory.h"
 #import "UHDAddress.h"
 #import "UHDMapsViewController.h"
+
+// News
+#import "UHDTalkItem.h"
+#import "UHDTalkItemCell.h"
+#import "UHDNewsViewController.h"
+#import "UHDTalkDetailViewController.h"

@@ -21,6 +21,7 @@ MKMapRect MKMapRectForCoordinateRegion(MKCoordinateRegion region)
 
 @dynamic title;
 @dynamic location, currentDistance;
+@dynamic events;
 
 
 #pragma mark - MKAnnotation Protocol

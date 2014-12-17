@@ -15,6 +15,7 @@ MKMapRect MKMapRectForCoordinateRegion(MKCoordinateRegion region);
 
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) CLLocation *location;
+@property (nonatomic, retain) NSSet *events;
 @property (nonatomic) CLLocationDistance currentDistance;
 
 @end

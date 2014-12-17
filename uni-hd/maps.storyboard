@@ -374,6 +374,119 @@
                                     <outlet property="titleLabel" destination="ehU-A6-lCi" id="ul2-l6-pH4"/>
                                 </connections>
                             </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="talkCell" rowHeight="237" id="6K4-kQ-hzH" customClass="UHDTalkItemCell">
+                                <rect key="frame" x="0.0" y="406" width="320" height="204"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6K4-kQ-hzH" id="Po8-Zf-qaw">
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="203"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0wp-8u-BWr">
+                                            <rect key="frame" x="543" y="8" width="24" height="13.5"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TalkTitle" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ck0-7B-byQ" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
+                                            <rect key="frame" x="28" y="29" width="539" height="19.5"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Speaker" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p5C-Bn-aK4">
+                                            <rect key="frame" x="28" y="57" width="531" height="17"/>
+                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" verticalCompressionResistancePriority="500" text="Affiliation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1af-SQ-Oa5">
+                                            <rect key="frame" x="28" y="74" width="531" height="16.5"/>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5is-zw-b9K" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
+                                            <rect key="frame" x="116" y="98" width="443" height="62.5"/>
+                                            <string key="text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</string>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Source" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IBT-ou-ChZ" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
+                                            <rect key="frame" x="28" y="8" width="507" height="13.5"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="talk_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Xwg-gS-G41">
+                                            <rect key="frame" x="6" y="31" width="16" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="16" id="AJC-fU-2wc"/>
+                                                <constraint firstAttribute="width" secondItem="Xwg-gS-G41" secondAttribute="height" multiplier="1:1" id="BZO-Ae-YC8"/>
+                                                <constraint firstAttribute="width" secondItem="Xwg-gS-G41" secondAttribute="height" multiplier="1:1" id="lJM-hZ-Yw9"/>
+                                            </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="2"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="lJM-hZ-Yw9"/>
+                                                </mask>
+                                            </variation>
+                                        </imageView>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="BBC-D3-MxC">
+                                            <rect key="frame" x="28" y="98" width="80" height="80"/>
+                                            <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="BW6-4T-R0P"/>
+                                                <constraint firstAttribute="width" secondItem="BBC-D3-MxC" secondAttribute="height" multiplier="1:1" id="dMo-OI-akP"/>
+                                                <constraint firstAttribute="width" priority="500" id="iK6-KD-8I6"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="5is-zw-b9K" firstAttribute="top" secondItem="1af-SQ-Oa5" secondAttribute="bottom" constant="8" id="55J-Ez-FYv"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="5is-zw-b9K" secondAttribute="bottom" constant="8" id="5jj-e3-Hhp"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="5is-zw-b9K" secondAttribute="trailing" id="9Fc-cR-sta"/>
+                                        <constraint firstItem="Ck0-7B-byQ" firstAttribute="leading" secondItem="p5C-Bn-aK4" secondAttribute="leading" id="9rl-jV-U9u"/>
+                                        <constraint firstItem="0wp-8u-BWr" firstAttribute="leading" secondItem="IBT-ou-ChZ" secondAttribute="trailing" constant="8" id="CBy-lG-94A"/>
+                                        <constraint firstAttribute="trailing" secondItem="0wp-8u-BWr" secondAttribute="trailing" id="CHg-wA-Fqd"/>
+                                        <constraint firstItem="BBC-D3-MxC" firstAttribute="top" secondItem="1af-SQ-Oa5" secondAttribute="bottom" constant="8" id="CYz-lP-GHq"/>
+                                        <constraint firstItem="1af-SQ-Oa5" firstAttribute="trailing" secondItem="Po8-Zf-qaw" secondAttribute="trailingMargin" id="DAe-VV-kR7"/>
+                                        <constraint firstItem="Ck0-7B-byQ" firstAttribute="top" secondItem="IBT-ou-ChZ" secondAttribute="bottom" constant="8" id="FYJ-sx-VjG"/>
+                                        <constraint firstItem="1af-SQ-Oa5" firstAttribute="top" secondItem="p5C-Bn-aK4" secondAttribute="bottom" id="J2V-yI-otl"/>
+                                        <constraint firstItem="IBT-ou-ChZ" firstAttribute="leading" secondItem="BBC-D3-MxC" secondAttribute="leading" id="MYJ-OG-KQM"/>
+                                        <constraint firstAttribute="trailing" secondItem="Ck0-7B-byQ" secondAttribute="trailing" id="N4M-xM-lVJ"/>
+                                        <constraint firstItem="IBT-ou-ChZ" firstAttribute="leading" secondItem="Ck0-7B-byQ" secondAttribute="leading" id="PKT-a7-eWj"/>
+                                        <constraint firstItem="p5C-Bn-aK4" firstAttribute="leading" secondItem="1af-SQ-Oa5" secondAttribute="leading" id="Sfg-9q-Lg9"/>
+                                        <constraint firstItem="p5C-Bn-aK4" firstAttribute="top" secondItem="Ck0-7B-byQ" secondAttribute="bottom" constant="8" id="X1o-BZ-Kpa"/>
+                                        <constraint firstItem="Ck0-7B-byQ" firstAttribute="top" secondItem="Xwg-gS-G41" secondAttribute="top" constant="-2" id="YfS-Zh-PtC"/>
+                                        <constraint firstItem="0wp-8u-BWr" firstAttribute="top" secondItem="IBT-ou-ChZ" secondAttribute="top" id="eyA-yM-twr"/>
+                                        <constraint firstItem="Xwg-gS-G41" firstAttribute="leading" secondItem="Po8-Zf-qaw" secondAttribute="leading" constant="6" id="i58-Vk-vyU"/>
+                                        <constraint firstItem="BBC-D3-MxC" firstAttribute="top" secondItem="5is-zw-b9K" secondAttribute="top" id="iT6-Dv-M3o"/>
+                                        <constraint firstItem="p5C-Bn-aK4" firstAttribute="trailing" secondItem="Po8-Zf-qaw" secondAttribute="trailingMargin" id="j8L-gH-7L1"/>
+                                        <constraint firstItem="IBT-ou-ChZ" firstAttribute="top" secondItem="Po8-Zf-qaw" secondAttribute="topMargin" id="oq6-p1-5Kc"/>
+                                        <constraint firstItem="5is-zw-b9K" firstAttribute="leading" secondItem="BBC-D3-MxC" secondAttribute="trailing" constant="8" id="pXp-cu-lLL"/>
+                                        <constraint firstItem="Ck0-7B-byQ" firstAttribute="leading" secondItem="Xwg-gS-G41" secondAttribute="trailing" constant="6" id="r9g-KC-ofO"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="BBC-D3-MxC" secondAttribute="bottom" id="uqw-6p-jQH"/>
+                                        <constraint firstItem="Xwg-gS-G41" firstAttribute="top" relation="greaterThanOrEqual" secondItem="IBT-ou-ChZ" secondAttribute="bottom" constant="8" id="zq9-oh-95L"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <outlet property="abstractLabel" destination="5is-zw-b9K" id="yMT-Nw-mbC"/>
+                                    <outlet property="affiliationLabel" destination="1af-SQ-Oa5" id="YRh-ER-TV5"/>
+                                    <outlet property="imageSpacingLayoutConstraint" destination="pXp-cu-lLL" id="XBK-bG-XMu"/>
+                                    <outlet property="shortDateAndTimeLabel" destination="0wp-8u-BWr" id="xY9-S7-GEh"/>
+                                    <outlet property="sourceLabel" destination="IBT-ou-ChZ" id="Cdw-fv-DBS"/>
+                                    <outlet property="speakerLabel" destination="p5C-Bn-aK4" id="t4W-s6-elN"/>
+                                    <outlet property="talkImageView" destination="BBC-D3-MxC" id="6gC-bj-U7I"/>
+                                    <outlet property="talkIndicatorView" destination="Xwg-gS-G41" id="V8d-zv-jBN"/>
+                                    <outlet property="titleLabel" destination="Ck0-7B-byQ" id="J9H-4c-fvk"/>
+                                </connections>
+                            </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="floorPlanCell" rowHeight="230" id="PmG-4L-y97">
                                 <rect key="frame" x="0.0" y="246" width="320" height="198"/>
                                 <autoresizingMask key="autoresizingMask"/>
@@ -471,5 +584,6 @@
     <resources>
         <image name="mapsIcon" width="32" height="25"/>
         <image name="raumplan_kip" width="1312" height="1108"/>
+        <image name="talk_icon" width="16" height="16"/>
     </resources>
 </document>
