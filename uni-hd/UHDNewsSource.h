@@ -17,6 +17,9 @@
 @property (nonatomic, retain) NSSet *newsItems;
 @property (nonatomic, retain) NSSet *associatedBuildings;
 
+@property (nonatomic) BOOL isNewsSource;
+@property (nonatomic) BOOL isEventSource;
+
 - (NSMutableSet *)mutableNewsItems;
 - (NSMutableSet *)mutableAssociatedBuildings;
 

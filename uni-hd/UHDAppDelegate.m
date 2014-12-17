@@ -37,6 +37,7 @@
 #import "UHDAddress.h"
 #import "UHDEventItem.h"
 #import "UHDNewsSource.h"
+#import "UHDTalkItem.h"
 
 
 @interface UHDAppDelegate ()
@@ -185,7 +186,47 @@
         [kipBuilding.mutableAssociatedNewsSources addObject:kipNewsSource];
     }
     [managedObjectContext saveToPersistentStore:nil];
-    
+	
+	
+	
+	    //if ([remotePath isEqualToString:@"events"]||[remotePath isEqualToString:@"articles"]||[remotePath isEqualToString:@"talks"]) {
+        // TODO: update sources properties to distinguish between news and events (or both)
+		
+		NSFetchRequest *sourcesFetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsSource entityName]];
+		[sourcesFetchRequest setSortDescriptors:@[ [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES] ]];
+		
+		NSArray *sources = [managedObjectContext executeFetchRequest:sourcesFetchRequest error:nil];
+		
+		NSFetchRequest *entityFetchRequest = [[NSFetchRequest alloc] init];
+		
+		NSError *error;
+		
+		for (UHDNewsSource *source in sources) {
+		
+			NSFetchRequest *newsFetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsItem entityName]];
+			[newsFetchRequest setIncludesSubentities:NO];
+			[newsFetchRequest setPredicate:[NSPredicate predicateWithFormat:@"source == %@", source]];
+			
+			NSUInteger newsCount = [managedObjectContext countForFetchRequest:newsFetchRequest error:&error];
+			NSLog(@"%i news for %@", newsCount, source.title);
+			if (error == nil) {
+				source.isNewsSource = newsCount > 0;
+			}
+			
+			NSFetchRequest *eventsFetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDEventItem entityName]];
+			[eventsFetchRequest setPredicate:[NSPredicate predicateWithFormat:@"source == %@", source]];
+			[entityFetchRequest setIncludesSubentities:YES];
+			
+			NSUInteger eventCount = [managedObjectContext countForFetchRequest:eventsFetchRequest error:&error];
+			
+			NSLog(@"%i events for %@", eventCount, source.title);
+			if (error == nil) {
+				source.isEventSource = eventCount > 0;
+			}
+		}
+		[managedObjectContext saveToPersistentStore:nil];
+    //}
+
 
     
     // configure default styles

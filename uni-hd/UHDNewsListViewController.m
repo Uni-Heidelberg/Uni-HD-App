@@ -125,7 +125,19 @@ typedef enum : NSUInteger {
     if (!self.title&&self.sources.count > 0) {
         self.title = [sources[0] title];
     }
-	self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"source IN %@", self.sources];
+	
+	switch (self.displayMode) {
+		case UHDNewsEventsDisplayModeNews:
+			self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"source IN %@", self.sources];
+			break;
+		case UHDNewsEventsDisplayModeEvents:
+			self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"(source IN %@) AND (date >= %@)", self.sources, [NSDate date]];
+			break;
+		default:
+			self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = [NSPredicate predicateWithFormat:@"source IN %@", self.sources];
+			break;
+	}
+	
 	[self.fetchedResultsControllerDataSource reloadData];
 }
 
@@ -307,21 +319,23 @@ typedef enum : NSUInteger {
 		
 		NSFetchRequest *fetchRequest;
 		
-		if (self.displayMode == UHDNewsEventsDisplayModeEvents) {
-			fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDEventItem entityName]];
-			[fetchRequest setIncludesSubentities:YES];
-		}
-		else {
-			fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsItem entityName]];
-			if (self.displayMode == UHDNewsEventsDisplayModeAll) {
-				[fetchRequest setIncludesSubentities:YES];
-			}
-			else {
+		switch (self.displayMode) {
+			case UHDNewsEventsDisplayModeNews:
+				fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsItem entityName]];
 				[fetchRequest setIncludesSubentities:NO];
-			}
+				[fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]]];
+				break;
+			case UHDNewsEventsDisplayModeEvents:
+				fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDEventItem entityName]];
+				[fetchRequest setIncludesSubentities:YES];
+				[fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]]];
+				break;
+			default:
+				fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDNewsItem entityName]];
+				[fetchRequest setIncludesSubentities:YES];
+				[fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]]];
+				break;
 		}
-		
-		[fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]]];
 		
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"sectionIdentifier" cacheName:nil];
         
@@ -352,7 +366,29 @@ typedef enum : NSUInteger {
         NSFetchRequest *fetchRequest = self.fetchedResultsControllerDataSource.fetchedResultsController.fetchRequest;
 		
 		NSEntityDescription *entityDescription;
-
+		
+		switch (self.displayMode) {
+			case UHDNewsEventsDisplayModeNews:
+				entityDescription = [NSEntityDescription entityForName:[UHDNewsItem entityName] inManagedObjectContext:self.managedObjectContext];
+				[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"source IN %@", self.sources]];
+				[fetchRequest setIncludesSubentities:NO];
+				[fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]]];
+				break;
+			case UHDNewsEventsDisplayModeEvents:
+				entityDescription = [NSEntityDescription entityForName:[UHDEventItem entityName] inManagedObjectContext:self.managedObjectContext];
+				[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"(source IN %@) AND (date >= %@)", self.sources, [NSDate date]]];
+				[fetchRequest setIncludesSubentities:YES];
+				[fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:YES]]];
+				break;
+			default:
+				entityDescription = [NSEntityDescription entityForName:[UHDNewsItem entityName] inManagedObjectContext:self.managedObjectContext];
+				[fetchRequest setPredicate:[NSPredicate predicateWithFormat:@"source IN %@", self.sources]];
+				[fetchRequest setIncludesSubentities:YES];
+				[fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]]];
+				break;
+		}
+		
+/*
         if (self.displayMode == UHDNewsEventsDisplayModeEvents) {
             entityDescription = [NSEntityDescription entityForName:[UHDEventItem entityName] inManagedObjectContext:self.managedObjectContext];
             [fetchRequest setIncludesSubentities:YES];
@@ -366,6 +402,8 @@ typedef enum : NSUInteger {
                 [fetchRequest setIncludesSubentities:NO];
             }
         }
+*/
+		
         [fetchRequest setEntity:entityDescription];
         
         [self.fetchedResultsControllerDataSource reloadData];
