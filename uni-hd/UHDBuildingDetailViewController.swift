@@ -259,7 +259,7 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
         case .Contact(let contactProperties):
             return contactProperties.count
         case .Location:
-            return 2
+            return 3
         case .Events(let events):
             return min(events.count, 3)
         case .News(let sources, let items):
@@ -328,6 +328,11 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
                 let cell = tableView.dequeueReusableCellWithIdentifier("propertyCell", forIndexPath: indexPath) as UHDBuildingDetailPropertyCell
                 cell.titleLabel.setTitle("Adresse", forState: .Normal)
                 cell.contentLabel.text = building.address?.formattedDescription?
+                return cell
+            case 2:
+                let cell = tableView.dequeueReusableCellWithIdentifier("propertyCell", forIndexPath: indexPath) as UHDBuildingDetailPropertyCell
+                cell.titleLabel.setTitle("Nächste Haltestelle", forState: .Normal)
+                cell.contentLabel.text = "Bunsengymnasium"
                 return cell
             default:
                 let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as UHDBuildingDetailLocationCell
