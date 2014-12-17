@@ -26,6 +26,7 @@
 @property (nonatomic, retain) NSURL *url;
 @property (nonatomic, retain) NSSet *associatedNewsSources;
 @property (nonatomic, readonly) Hours *hours; // TODO: not yet implemented properly
+@property (nonatomic, retain) NSSet *keywords;
 
 // Computed Properties
 @property (readonly) NSString *campusIdentifier; // calculated by combining the campus region's identifier and the building number

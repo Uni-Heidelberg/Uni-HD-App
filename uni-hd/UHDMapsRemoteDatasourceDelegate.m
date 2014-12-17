@@ -122,6 +122,9 @@
     buildingItem1.url = [NSURL URLWithString:@"http://www.kip.uni-heidelberg.de"];
     buildingItem1.telephone = @"06221549100";
     buildingItem1.email = @"info@kip.uni-heidelberg.de";
+    NSManagedObject *kipKeyword = [NSEntityDescription insertNewObjectForEntityForName:@"UHDSearchKeyword" inManagedObjectContext:managedObjectContext];
+    [kipKeyword setValue:@"KIP" forKey:@"content"];
+    buildingItem1.keywords = [NSSet setWithObject:kipKeyword];
     
     
     

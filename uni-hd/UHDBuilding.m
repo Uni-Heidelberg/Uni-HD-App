@@ -20,6 +20,7 @@
 @dynamic address;
 @dynamic telephone, email, url;
 @dynamic associatedNewsSources;
+@dynamic keywords;
 
 
 - (NSMutableSet *)mutableAssociatedNewsSources {
