@@ -140,7 +140,7 @@
 	EKEvent *event = [EKEvent eventWithEventStore:eventStore];
 	
 	event.title = self.talkItem.title;
-	event.location = self.talkItem.location;
+	event.location = self.talkItem.formattedLocation;
 	event.startDate = self.talkItem.date;
 	event.endDate = endDate;
 	event.allDay = false;

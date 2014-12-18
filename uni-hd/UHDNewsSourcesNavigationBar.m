@@ -84,19 +84,20 @@
             cell.sourceIconImageView.alpha = 0.3;
         }
 		
-		/*
+		
 		switch (((UHDNewsViewController *)self.delegate).displayMode) {
 			case UHDNewsEventsDisplayModeNews:
-				cell.sourceIconImageView.image = [UIImage imageNamed:@"news_symbol"];
+				cell.sourceIconImageView.image = [UIImage imageNamed:@"allNewsIcon"];
 				break;
 			case UHDNewsEventsDisplayModeEvents:
-				cell.sourceIconImageView.image = [UIImage imageNamed:@"talk_icon"];
+				cell.sourceIconImageView.image = [UIImage imageNamed:@"allTalksIcon"];
 				break;
 			default:
 				break;
-		*/
+		}
+		
         
-        cell.sourceIconImageView.image = [UIImage imageNamed:@"all_news_icon"];
+        //cell.sourceIconImageView.image = [UIImage imageNamed:@"all_news_icon"];
         cell.sourceIconImageView.tintColor = [UIColor brandColor];
         
 	}

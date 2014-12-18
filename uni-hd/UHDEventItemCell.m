@@ -36,7 +36,7 @@
 {
     // Configure text
     self.titleLabel.text = item.title;
-    self.locationLabel.text = item.location;
+    self.locationLabel.text = item.formattedLocation;
     self.abstractLabel.text = item.abstract;
 	self.sourceLabel.text = item.source.title;
     
