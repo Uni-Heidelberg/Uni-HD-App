@@ -70,11 +70,11 @@
 		NSString *sectionNameKeyPath = nil;
 		if (!self.category) {
 			fetchRequest.predicate = [NSPredicate predicateWithFormat:@"parent.parent = nil && parent != nil"];
-			fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"parent.remoteObjectId" ascending:YES], [NSSortDescriptor sortDescriptorWithKey:@"remoteObjectId" ascending:YES] ];
+			fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"parent.title" ascending:YES], [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES] ];
 			sectionNameKeyPath = @"parent.title";
 		} else {
 			fetchRequest.predicate = [NSPredicate predicateWithFormat:@"parent = %@", self.category ];
-			fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"remoteObjectId" ascending:YES] ];
+			fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES] ];
 		}
         
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:sectionNameKeyPath cacheName:nil];
