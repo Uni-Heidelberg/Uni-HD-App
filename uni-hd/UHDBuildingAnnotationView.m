@@ -76,8 +76,11 @@
     // callout
     
     if (building.image) {
-        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 44)]; // TODO: dynamic size?
+        UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 44, 44)]; // TODO: dynamic size?
         imageView.image = building.image;
+        imageView.contentMode = UIViewContentModeScaleAspectFill;
+        imageView.layer.masksToBounds = YES;
+        imageView.layer.cornerRadius = 22;
         self.leftCalloutAccessoryView = imageView;
     } else {
         self.leftCalloutAccessoryView = nil;

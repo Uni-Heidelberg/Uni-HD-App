@@ -156,7 +156,12 @@
     buildingItem2.url = [NSURL URLWithString:@"http://www.physi.uni-heidelberg.de"];
     buildingItem2.telephone = @"062215419600";
     buildingItem2.email = @"info@physi.uni-heidelberg.de";
-    
+    NSManagedObject *piKeyword = [NSEntityDescription insertNewObjectForEntityForName:@"UHDSearchKeyword" inManagedObjectContext:managedObjectContext];
+    [piKeyword setValue:@"PI" forKey:@"content"];
+    NSManagedObject *piKeyword2 = [NSEntityDescription insertNewObjectForEntityForName:@"UHDSearchKeyword" inManagedObjectContext:managedObjectContext];
+    [piKeyword2 setValue:@"Physikalisches Institut" forKey:@"content"];
+    buildingItem2.keywords = [NSSet setWithObjects:piKeyword, piKeyword2, nil];
+
     //links 49.416267, 8.672747
     //oben 49.416509, 8.673171
     
@@ -237,7 +242,7 @@
     
     UHDBuilding *buildingItem6 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
     buildingItem6.buildingNumber = @"8050";
-    buildingItem6.title = @"Institut für theoretische Physik";
+    buildingItem6.title = @"Institut für Theoretische Physik";
     buildingItem6.spanLatitude = 0.0002;
     buildingItem6.spanLongitude = 0.0005;
     buildingItem6.location = [[CLLocation alloc] initWithLatitude:49.414811 longitude:8.696707];
@@ -261,7 +266,7 @@
     
     UHDBuilding *buildingItem7 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
     buildingItem7.buildingNumber = @"8080";
-    buildingItem7.title = @"Institut für theoretische Physik";
+    buildingItem7.title = @"Institut für Theoretische Physik";
     buildingItem7.spanLatitude = 0.0002;
     buildingItem7.spanLongitude = 0.0005;
     buildingItem7.location = [[CLLocation alloc] initWithLatitude:49.415058 longitude:8.698714];
