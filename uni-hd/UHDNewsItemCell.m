@@ -43,8 +43,8 @@
     
     // Configure text
     self.titleLabel.text = item.title;
-    self.abstractLabel.text = item.abstract;
     self.sourceLabel.text = item.source.title;
+	self.abstractLabel.text = item.abstract;
     
     // Configure date
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];

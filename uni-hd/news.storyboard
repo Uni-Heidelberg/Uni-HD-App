@@ -69,26 +69,26 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" tableViewCell="wYs-Cr-7yq" id="QUX-Fe-flL">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Source" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftv-or-tGk" userLabel="Source Label" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
-                                            <rect key="frame" x="49" y="8" width="474" height="13.5"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Source" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ftv-or-tGk" userLabel="Source Label" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
+                                            <rect key="frame" x="53" y="8" width="463.5" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDn-Vl-vbq" userLabel="Title Label" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
-                                            <rect key="frame" x="28" y="29.5" width="539" height="19.5"/>
+                                            <rect key="frame" x="28" y="33" width="539" height="19.5"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEN-9f-YgJ" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
-                                            <rect key="frame" x="543" y="8" width="24" height="13.5"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEN-9f-YgJ" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
+                                            <rect key="frame" x="536" y="8" width="30.5" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="fZS-qJ-MIY">
-                                            <rect key="frame" x="28" y="56.5" width="80" height="80"/>
+                                            <rect key="frame" x="28" y="60" width="80" height="80"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="fZS-qJ-MIY" secondAttribute="height" multiplier="1:1" id="SDL-EI-wCN"/>
                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="aCJ-Vi-zik"/>
@@ -96,25 +96,25 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="227-eV-5a5" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
-                                            <rect key="frame" x="116" y="56.5" width="451" height="62.5"/>
+                                            <rect key="frame" x="116" y="60" width="451" height="67"/>
                                             <string key="text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</string>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <view contentMode="scaleToFill" placeholderIntrinsicWidth="12" placeholderIntrinsicHeight="12" translatesAutoresizingMaskIntoConstraints="NO" id="Akj-MT-CRR" customClass="UHDReadIndicatorView">
-                                            <rect key="frame" x="8" y="33.5" width="12" height="12"/>
+                                            <rect key="frame" x="8" y="37" width="12" height="12"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         </view>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PT8-bh-ZOH">
-                                            <rect key="frame" x="28" y="7" width="16" height="16"/>
+                                            <rect key="frame" x="28" y="7" width="20" height="20"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="16" id="RBy-ya-Oty"/>
+                                                <constraint firstAttribute="height" constant="20" id="RBy-ya-Oty"/>
                                                 <constraint firstAttribute="width" secondItem="PT8-bh-ZOH" secondAttribute="height" multiplier="1:1" id="pNs-CO-c4d"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="8"/>
+                                                    <integer key="value" value="10"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                             </userDefinedRuntimeAttributes>
@@ -168,32 +168,32 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GOq-by-LJG" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
-                                            <rect key="frame" x="116" y="82" width="443" height="62.5"/>
+                                            <rect key="frame" x="116" y="85.5" width="443" height="67"/>
                                             <string key="text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</string>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Source" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5rF-tp-crz" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
-                                            <rect key="frame" x="49" y="8" width="474" height="13.5"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Source" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5rF-tp-crz" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
+                                            <rect key="frame" x="53" y="8" width="463.5" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EventTitle" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsU-hq-kFx" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
-                                            <rect key="frame" x="28" y="30" width="531" height="19.5"/>
+                                            <rect key="frame" x="28" y="33.5" width="531" height="19.5"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sbg-Gj-5Qm">
-                                            <rect key="frame" x="543" y="8" width="24" height="13.5"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sbg-Gj-5Qm">
+                                            <rect key="frame" x="536.5" y="8" width="30.5" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="gG2-Ns-N48">
-                                            <rect key="frame" x="28" y="82" width="80" height="80"/>
+                                            <rect key="frame" x="28" y="85.5" width="80" height="80"/>
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="Q5t-XP-XVw"/>
@@ -202,18 +202,18 @@
                                             </constraints>
                                         </imageView>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" verticalCompressionResistancePriority="500" text="Location" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nzm-Rc-bRf" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
-                                            <rect key="frame" x="28" y="57" width="531" height="17"/>
+                                            <rect key="frame" x="28" y="60.5" width="531" height="17"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kZq-LS-Rrw">
-                                            <rect key="frame" x="28" y="7" width="16" height="16"/>
+                                            <rect key="frame" x="28" y="7" width="20" height="20"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="16" id="vpM-3A-mQh"/>
+                                                <constraint firstAttribute="height" constant="20" id="vpM-3A-mQh"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="8"/>
+                                                    <integer key="value" value="10"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                             </userDefinedRuntimeAttributes>
@@ -264,50 +264,50 @@
                                     <rect key="frame" x="0.0" y="0.0" width="287" height="203"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Date" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLt-pe-oE3">
-                                            <rect key="frame" x="543" y="8" width="24" height="13.5"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLt-pe-oE3">
+                                            <rect key="frame" x="536" y="8" width="30.5" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TalkTitle" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FW5-3i-kR7" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
-                                            <rect key="frame" x="28" y="30" width="539" height="19.5"/>
+                                            <rect key="frame" x="28" y="33" width="539" height="19.5"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tdp-SX-OLx">
-                                            <rect key="frame" x="28" y="7" width="16" height="16"/>
+                                            <rect key="frame" x="28" y="7" width="20" height="20"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="16" id="MGl-yo-kGe"/>
+                                                <constraint firstAttribute="height" constant="20" id="MGl-yo-kGe"/>
                                             </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                                    <integer key="value" value="8"/>
+                                                    <integer key="value" value="10"/>
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="Speaker" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oVI-LM-euo">
-                                            <rect key="frame" x="28" y="58" width="531" height="17"/>
+                                            <rect key="frame" x="28" y="61" width="531" height="17"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" verticalCompressionResistancePriority="500" text="Affiliation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JTW-WY-Sea">
-                                            <rect key="frame" x="28" y="75" width="531" height="16.5"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                            <rect key="frame" x="28" y="78" width="531" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s2A-cm-5o1" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
-                                            <rect key="frame" x="116" y="99" width="443" height="62.5"/>
+                                            <rect key="frame" x="116" y="103" width="443" height="67"/>
                                             <string key="text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</string>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="56U-pb-CcK">
-                                            <rect key="frame" x="28" y="99" width="80" height="80"/>
+                                            <rect key="frame" x="28" y="103" width="80" height="80"/>
                                             <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="56U-pb-CcK" secondAttribute="height" multiplier="1:1" id="GBa-Bq-jR8"/>
@@ -315,9 +315,9 @@
                                                 <constraint firstAttribute="width" priority="500" id="unk-Kn-VVB"/>
                                             </constraints>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Source" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owQ-FL-T2W" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
-                                            <rect key="frame" x="49" y="8" width="474" height="13.5"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Source" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owQ-FL-T2W" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
+                                            <rect key="frame" x="53" y="8" width="463.5" height="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -331,20 +331,22 @@
                                         <constraint firstItem="s2A-cm-5o1" firstAttribute="top" secondItem="JTW-WY-Sea" secondAttribute="bottom" constant="8" id="9To-jN-Qvg"/>
                                         <constraint firstItem="FW5-3i-kR7" firstAttribute="leading" secondItem="oVI-LM-euo" secondAttribute="leading" id="B0J-Mt-ECn"/>
                                         <constraint firstItem="JTW-WY-Sea" firstAttribute="trailing" secondItem="oNF-Wu-ZgX" secondAttribute="trailingMargin" id="CJ1-vk-G2I"/>
+                                        <constraint firstItem="FW5-3i-kR7" firstAttribute="top" secondItem="owQ-FL-T2W" secondAttribute="bottom" constant="8" id="DC7-yo-3wJ"/>
                                         <constraint firstAttribute="trailing" secondItem="eLt-pe-oE3" secondAttribute="trailing" id="DHL-uK-YGI"/>
+                                        <constraint firstItem="eLt-pe-oE3" firstAttribute="leading" secondItem="oNF-Wu-ZgX" secondAttribute="leadingMargin" constant="528" id="Jwy-dG-K9v"/>
                                         <constraint firstItem="tdp-SX-OLx" firstAttribute="width" secondItem="tdp-SX-OLx" secondAttribute="height" multiplier="1:1" id="KDs-f4-YDC"/>
                                         <constraint firstItem="eLt-pe-oE3" firstAttribute="leading" secondItem="owQ-FL-T2W" secondAttribute="trailing" constant="20" id="MBo-GJ-TLe"/>
                                         <constraint firstItem="owQ-FL-T2W" firstAttribute="top" secondItem="tdp-SX-OLx" secondAttribute="top" id="NSe-YA-Rny"/>
                                         <constraint firstAttribute="trailingMargin" secondItem="s2A-cm-5o1" secondAttribute="trailing" id="QuS-XV-i0a"/>
                                         <constraint firstItem="56U-pb-CcK" firstAttribute="top" secondItem="s2A-cm-5o1" secondAttribute="top" id="Ubt-du-6gI"/>
-                                        <constraint firstItem="eLt-pe-oE3" firstAttribute="top" secondItem="owQ-FL-T2W" secondAttribute="top" id="Ujy-50-054"/>
                                         <constraint firstItem="owQ-FL-T2W" firstAttribute="leading" secondItem="tdp-SX-OLx" secondAttribute="trailing" constant="5" id="WQo-ll-cRQ"/>
-                                        <constraint firstItem="FW5-3i-kR7" firstAttribute="top" secondItem="owQ-FL-T2W" secondAttribute="bottom" constant="8" id="ZFx-Qp-mz7"/>
+                                        <constraint firstItem="eLt-pe-oE3" firstAttribute="top" secondItem="oNF-Wu-ZgX" secondAttribute="topMargin" id="Yw1-L9-Qu0"/>
                                         <constraint firstItem="oVI-LM-euo" firstAttribute="leading" secondItem="JTW-WY-Sea" secondAttribute="leading" id="ZfO-04-elw"/>
                                         <constraint firstItem="56U-pb-CcK" firstAttribute="leading" secondItem="FW5-3i-kR7" secondAttribute="leading" id="aS8-eI-4bk"/>
                                         <constraint firstItem="56U-pb-CcK" firstAttribute="top" secondItem="JTW-WY-Sea" secondAttribute="bottom" constant="8" id="d1A-LY-NWq"/>
                                         <constraint firstItem="s2A-cm-5o1" firstAttribute="leading" secondItem="56U-pb-CcK" secondAttribute="trailing" constant="8" id="eth-Np-4jy"/>
                                         <constraint firstItem="owQ-FL-T2W" firstAttribute="leading" secondItem="56U-pb-CcK" secondAttribute="leading" id="euZ-2Q-oV8"/>
+                                        <constraint firstItem="eLt-pe-oE3" firstAttribute="top" secondItem="owQ-FL-T2W" secondAttribute="top" id="i0a-tV-pMK"/>
                                         <constraint firstItem="owQ-FL-T2W" firstAttribute="centerY" secondItem="tdp-SX-OLx" secondAttribute="centerY" id="kmv-VH-mxs"/>
                                         <constraint firstAttribute="trailing" secondItem="FW5-3i-kR7" secondAttribute="trailing" id="mic-tz-j77"/>
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="56U-pb-CcK" secondAttribute="bottom" constant="8" id="n1h-TB-6XW"/>
@@ -354,9 +356,11 @@
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
+                                            <exclude reference="2i9-qp-R6J"/>
                                             <exclude reference="NSe-YA-Rny"/>
                                             <exclude reference="euZ-2Q-oV8"/>
                                             <exclude reference="tAr-9K-nhd"/>
+                                            <exclude reference="Jwy-dG-K9v"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -726,6 +730,25 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="XMQ-XG-Liz">
+                        <nil key="title"/>
+                        <view key="titleView" contentMode="scaleToFill" id="TPR-S5-PLq">
+                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3B-Lv-0CV" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
+                                    <rect key="frame" x="8" y="7" width="224" height="19.5"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="u3B-Lv-0CV" firstAttribute="leading" secondItem="TPR-S5-PLq" secondAttribute="leading" constant="8" id="7mI-eW-VCm"/>
+                                <constraint firstAttribute="trailing" secondItem="u3B-Lv-0CV" secondAttribute="trailing" constant="8" id="EA4-KQ-rOL"/>
+                                <constraint firstAttribute="centerY" secondItem="u3B-Lv-0CV" secondAttribute="centerY" id="fYJ-cH-s0X"/>
+                            </constraints>
+                        </view>
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="B8S-Pq-JSY">
                             <connections>
                                 <action selector="shareButtonPressed:" destination="cii-2s-9Xp" id="Hjh-5D-4hA"/>
@@ -734,6 +757,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="newsWebView" destination="9m0-ak-rJ9" id="1pO-fS-Wu9"/>
+                        <outlet property="titleLabel" destination="u3B-Lv-0CV" id="idH-Zv-LTk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UC2-ih-bD7" userLabel="First Responder" sceneMemberID="firstResponder"/>
