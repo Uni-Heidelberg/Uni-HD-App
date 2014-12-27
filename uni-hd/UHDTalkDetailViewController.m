@@ -61,6 +61,7 @@
 	[super viewWillAppear:animated];
     
     // TODO: what is this for?
+	// prevent visible layout corrections after initial appearence of the VC
 	dispatch_async(dispatch_get_main_queue(), ^{
         [self.tableView reloadData];
 	});
