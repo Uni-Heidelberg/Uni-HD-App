@@ -83,7 +83,15 @@
 	self.tableView.dataSource = self;
 	self.tableView.delegate = self;
 	
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeChanged) name:UIApplicationSignificantTimeChangeNotification object:nil];
+	
 	[self configureView];
+}
+
+
+- (void)timeChanged {
+
+	[self.fetchedResultsControllerDataSource reloadData];
 }
 
 

@@ -127,7 +127,13 @@
     [self setPrimitiveDate:newDate];
     [self didChangeValueForKey:@"date"];
 
-    [self setPrimitiveSectionIdentifier:nil];
+    [self resetSectionIdentifierCache];
+}
+
+
+- (void)resetSectionIdentifierCache {
+
+	[self setPrimitiveSectionIdentifier:nil];
 }
 
 

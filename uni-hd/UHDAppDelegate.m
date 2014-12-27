@@ -208,7 +208,7 @@
 			[newsFetchRequest setPredicate:[NSPredicate predicateWithFormat:@"source == %@", source]];
 			
 			NSUInteger newsCount = [managedObjectContext countForFetchRequest:newsFetchRequest error:&error];
-			NSLog(@"%i news for %@", newsCount, source.title);
+			//NSLog(@"%i news for %@", newsCount, source.title);
 			if (error == nil) {
 				source.isNewsSource = newsCount > 0;
 			}
@@ -219,7 +219,7 @@
 			
 			NSUInteger eventCount = [managedObjectContext countForFetchRequest:eventsFetchRequest error:&error];
 			
-			NSLog(@"%i events for %@", eventCount, source.title);
+			//NSLog(@"%i events for %@", eventCount, source.title);
 			if (error == nil) {
 				source.isEventSource = eventCount > 0;
 			}
@@ -291,6 +291,24 @@
 
     
     return YES;
+}
+
+
+-(void)applicationSignificantTimeChange:(UIApplication *)application {
+
+	// invalidate all cached section identifiers
+	
+	NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:[UHDNewsItem entityName]];
+	[fetchRequest setIncludesSubentities:YES];
+	
+	NSError *error;
+	
+	NSArray *newsItems = [self.persistentStack.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+	
+	for (UHDNewsItem *item in newsItems) {
+		[item resetSectionIdentifierCache];
+	}
+
 }
 
 

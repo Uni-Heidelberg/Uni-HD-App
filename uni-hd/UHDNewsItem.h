@@ -41,4 +41,6 @@ typedef enum : NSUInteger {
 
 @property (nonatomic, readonly) UIImage *image;
 
+- (void)resetSectionIdentifierCache;
+
 @end
