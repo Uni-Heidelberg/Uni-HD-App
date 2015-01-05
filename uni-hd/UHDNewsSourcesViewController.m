@@ -31,6 +31,17 @@
 	self.managedObjectContext = category.managedObjectContext;
 }
 
+- (void)setManagedObjectContext:(NSManagedObjectContext *)managedObjectContext {
+    if (_managedObjectContext) {
+        [[NSNotificationCenter defaultCenter] removeObserver:self name:NSManagedObjectContextDidSaveNotification object:_managedObjectContext];
+    }
+    _managedObjectContext = managedObjectContext;
+    if (_managedObjectContext) {
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(managedObjectContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:_managedObjectContext];
+    }
+}
+
+
 #pragma mark - User Interaction
 
 - (IBAction)refreshControlValueChanged:(UIRefreshControl *)sender
@@ -130,6 +141,19 @@
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section
 {
 	return [self.fetchedResultsControllerDataSource tableView:tableView titleForHeaderInSection:section];
+}
+
+
+#pragma mark - Change Notifications
+
+- (void)managedObjectContextDidSave:(NSNotification *)notification {
+    for (NSManagedObject *updatedObject in notification.userInfo[NSUpdatedObjectsKey]) {
+        if ([[updatedObject entityName] isEqualToString:[UHDNewsSource entityName]]&&![self.fetchedResultsControllerDataSource.fetchedResultsController.fetchedObjects containsObject:updatedObject]) {
+            [self.tableView reloadData];
+            break;
+            
+        }
+    }
 }
 
 
