@@ -3,17 +3,17 @@
     {
       "idiom" : "universal",
       "scale" : "1x",
-      "filename" : "HD_uniapp_ICON_news_inverse@1x.png"
+      "filename" : "hd_news_icon_inverse@1x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "2x",
-      "filename" : "HD_uniapp_ICON_news_inverse@2x.png"
+      "filename" : "hd_news_icon_inverse@2x.png"
     },
     {
       "idiom" : "universal",
       "scale" : "3x",
-      "filename" : "HD_uniapp_ICON_news_inverse@3x.png"
+      "filename" : "hd_news_icon_inverse@3x.png"
     }
   ],
   "info" : {

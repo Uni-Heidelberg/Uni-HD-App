@@ -78,9 +78,11 @@
 	if (indexPath.row == 0) {
     
         if (self.selectedSource == nil) {
+			cell.sourceIconImageView.backgroundColor = [UIColor whiteColor];
             cell.sourceIconImageView.alpha = 1;
         }
         else {
+			cell.sourceIconImageView.backgroundColor = [UIColor clearColor];
             cell.sourceIconImageView.alpha = 0.3;
         }
 		
@@ -96,8 +98,6 @@
 				break;
 		}
 		
-        
-        //cell.sourceIconImageView.image = [UIImage imageNamed:@"all_news_icon"];
         cell.sourceIconImageView.tintColor = [UIColor brandColor];
         
 	}
@@ -106,14 +106,15 @@
 		UHDNewsSource *source = [self.sources objectAtIndex:(indexPath.row - 1)];
         
         if (self.selectedSource == source) {
+			cell.sourceIconImageView.backgroundColor = [UIColor whiteColor];
             cell.sourceIconImageView.alpha = 1;
         }
         else {
+			cell.sourceIconImageView.backgroundColor = [UIColor clearColor];
             cell.sourceIconImageView.alpha = 0.3;
         }
         
         if (source.image != nil) {
-            cell.sourceIconImageView.backgroundColor = [UIColor groupTableViewBackgroundColor];
             cell.sourceIconImageView.image = source.image;
         }
         else {

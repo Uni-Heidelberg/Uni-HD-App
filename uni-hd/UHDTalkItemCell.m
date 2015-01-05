@@ -61,6 +61,16 @@
 	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
 	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
 	self.shortDateAndTimeLabel.text = [dateFormatter stringFromDate:item.date];
+	/*
+	// Show time in a new line
+	[dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+	[dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+	NSString *dateString = [dateFormatter stringFromDate:item.date];
+	[dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+	[dateFormatter setDateStyle:NSDateFormatterNoStyle];
+	NSString *timeString = [dateFormatter stringFromDate:item.date];
+	self.shortDateAndTimeLabel.text = [NSString stringWithFormat:@"%@\n%@", dateString, timeString];
+	*/
     
     // Configure image
 	self.sourceIconImageView.image = item.source.image;

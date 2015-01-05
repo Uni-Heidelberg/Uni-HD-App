@@ -22,15 +22,6 @@
 #import "UHDTalkSpeaker.h"
 
 
-typedef enum : NSUInteger {
-    UHDNewsDatePeriodLaterOrEarlier = 0,
-    UHDNewsDatePeriodNext7Days,
-    UHDNewsDatePeriodTomorrow,
-    UHDNewsDatePeriodToday,
-    UHDNewsDatePeriodYesterday,
-    UHDNewsDatePeriodLast7Days,
-} UHDNewsDatePeriod;
-
 
 @interface UHDNewsListViewController ()
 
@@ -68,7 +59,11 @@ typedef enum : NSUInteger {
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	[self.tableView reloadData];
+    
+    // prevent visible layout corrections after initial appearence of the VC
+	dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+	});
 }
 
 
@@ -88,8 +83,17 @@ typedef enum : NSUInteger {
 	self.tableView.dataSource = self;
 	self.tableView.delegate = self;
 	
+    // is this necessary? the fetched results controller should handle changes and update the table view when the "sectionIdentifier" property changes
+	//[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeChanged) name:UIApplicationSignificantTimeChangeNotification object:nil];
+	
 	[self configureView];
 }
+
+
+/*- (void)timeChanged {
+
+	[self.fetchedResultsControllerDataSource reloadData];
+}*/
 
 
 - (void)configureView {
@@ -121,10 +125,13 @@ typedef enum : NSUInteger {
 - (void)setSources:(NSArray *)sources
 {
     _sources = sources;
-    self.managedObjectContext = [(NSManagedObject *)[sources lastObject] managedObjectContext];
-    if (!self.title&&self.sources.count > 0) {
+    self.managedObjectContext = [(NSManagedObject *)[sources firstObject] managedObjectContext];
+	
+	/*
+    if (!self.title && self.sources.count > 0) {
         self.title = [sources[0] title];
     }
+	*/
 	
 	switch (self.displayMode) {
 		case UHDNewsEventsDisplayModeNews:
@@ -387,22 +394,6 @@ typedef enum : NSUInteger {
 				[fetchRequest setSortDescriptors:@[[NSSortDescriptor sortDescriptorWithKey:@"date" ascending:NO]]];
 				break;
 		}
-		
-/*
-        if (self.displayMode == UHDNewsEventsDisplayModeEvents) {
-            entityDescription = [NSEntityDescription entityForName:[UHDEventItem entityName] inManagedObjectContext:self.managedObjectContext];
-            [fetchRequest setIncludesSubentities:YES];
-        }
-        else {
-            entityDescription = [NSEntityDescription entityForName:[UHDNewsItem entityName] inManagedObjectContext:self.managedObjectContext];
-            if (self.displayMode == UHDNewsEventsDisplayModeAll) {
-                [fetchRequest setIncludesSubentities:YES];
-            }
-            else {
-                [fetchRequest setIncludesSubentities:NO];
-            }
-        }
-*/
 		
         [fetchRequest setEntity:entityDescription];
         
