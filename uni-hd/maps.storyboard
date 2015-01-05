@@ -47,7 +47,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <sections>
-                            <tableViewSection headerTitle="Appearance" id="MGE-61-CA2">
+                            <tableViewSection headerTitle="Anzeige" id="MGE-61-CA2">
                                 <cells>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Owj-Ep-8Ve">
                                         <autoresizingMask key="autoresizingMask"/>
@@ -55,11 +55,11 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VHA-jB-dHG">
-                                                    <rect key="frame" x="196" y="8" width="209" height="29"/>
+                                                    <rect key="frame" x="195" y="8" width="209" height="29"/>
                                                     <segments>
                                                         <segment title="Standard"/>
                                                         <segment title="Hybrid"/>
-                                                        <segment title="Satellite"/>
+                                                        <segment title="Satellit"/>
                                                     </segments>
                                                     <connections>
                                                         <action selector="mapTypeControlValueChanged:" destination="Ywf-aI-I7P" eventType="valueChanged" id="sRq-Vz-trf"/>
@@ -80,24 +80,24 @@
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JVV-Oi-Ofq" id="XIe-dD-Wf3">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Show Campus Overlay" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5f7-ik-Cbd">
-                                                    <rect key="frame" x="8" y="12" width="176" height="21"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zeige Campus Detailkarte" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5f7-ik-Cbd">
+                                                    <rect key="frame" x="15" y="11.5" width="198.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yoM-Ts-Fit">
-                                                    <rect key="frame" x="543" y="7" width="51" height="31"/>
+                                                    <rect key="frame" x="536" y="7" width="51" height="31"/>
                                                     <connections>
                                                         <action selector="showCampusOverlaySwitchValueChanged:" destination="Ywf-aI-I7P" eventType="valueChanged" id="wGV-F7-Kz5"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="yoM-Ts-Fit" secondAttribute="trailing" id="5Zn-87-b5j"/>
+                                                <constraint firstAttribute="trailing" secondItem="yoM-Ts-Fit" secondAttribute="trailing" constant="15" id="5Zn-87-b5j"/>
                                                 <constraint firstItem="yoM-Ts-Fit" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5f7-ik-Cbd" secondAttribute="trailing" id="93b-0n-WbF"/>
                                                 <constraint firstAttribute="centerY" secondItem="5f7-ik-Cbd" secondAttribute="centerY" id="Npg-FX-FUL"/>
-                                                <constraint firstItem="5f7-ik-Cbd" firstAttribute="leading" secondItem="XIe-dD-Wf3" secondAttribute="leadingMargin" id="PIL-Nb-nTZ"/>
+                                                <constraint firstItem="5f7-ik-Cbd" firstAttribute="leading" secondItem="XIe-dD-Wf3" secondAttribute="leading" constant="15" id="PIL-Nb-nTZ"/>
                                                 <constraint firstAttribute="centerY" secondItem="yoM-Ts-Fit" secondAttribute="centerY" id="bOW-S3-V40"/>
                                             </constraints>
                                         </tableViewCellContentView>

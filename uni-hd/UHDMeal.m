@@ -27,7 +27,29 @@
     NSNumberFormatter *currencyFormatter = [[NSNumberFormatter alloc] init];
     currencyFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
     currencyFormatter.currencyCode = @"EUR";
-    return [NSString stringWithFormat:@"S: %@ / B: %@ / G: %@", [currencyFormatter stringFromNumber:self.priceStud], [currencyFormatter stringFromNumber:self.priceBed], [currencyFormatter stringFromNumber:self.priceGuest]];
+    NSNumber *mensaPriceCategory = [[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyMensaPriceCategory];
+    NSNumber *price = nil;
+    if (mensaPriceCategory) {
+        switch (mensaPriceCategory.integerValue) {
+            case 0:
+                price = self.priceStud;
+                break;
+            case 1:
+                price = self.priceBed;
+                break;
+            case 2:
+                price = self.priceGuest;
+                break;
+            default:
+                price = nil;
+                break;
+        }
+    }
+    if (price) {
+        return [currencyFormatter stringFromNumber:price];
+    } else {
+        return [NSString stringWithFormat:@"S: %@ / B: %@ / G: %@", [currencyFormatter stringFromNumber:self.priceStud], [currencyFormatter stringFromNumber:self.priceBed], [currencyFormatter stringFromNumber:self.priceGuest]];
+    }
 }
 
 - (NSString *)localizedExtrasDescription {

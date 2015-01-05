@@ -9,7 +9,7 @@
         <!--Navigation Controller-->
         <scene sceneID="oOc-lR-ZQ9">
             <objects>
-                <navigationController definesPresentationContext="YES" id="Kp2-aO-tOg" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="sourcesNav" definesPresentationContext="YES" id="Kp2-aO-tOg" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ysD-Lj-uTA">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
@@ -485,7 +485,7 @@
                     <navigationItem key="navigationItem" title="Quellen" id="45r-ml-GWi">
                         <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="yzw-dJ-wnC">
                             <connections>
-                                <segue destination="Ycq-LD-503" kind="unwind" identifier="unwindToNews" unwindAction="unwindToNews:" id="Gob-uH-jeq"/>
+                                <action selector="doneButtonPressed:" destination="qn2-Bf-d7y" id="5od-3S-ohn"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -497,7 +497,6 @@
                     </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AUQ-Fz-Oqe" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="Ycq-LD-503" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="3391" y="-478"/>
         </scene>

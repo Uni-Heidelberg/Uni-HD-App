@@ -117,7 +117,7 @@
     // Add campus region overlays
     NSArray *allCampusRegions = self.campusRegionsFetchedResultsController.fetchedObjects;
     [self.mapView removeOverlays:allCampusRegions];
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyShowCampusOverlay] || [[[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyShowCampusOverlay] boolValue]) {
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyShowCampusOverlay] || [[NSUserDefaults standardUserDefaults] boolForKey:UHDUserDefaultsKeyShowCampusOverlay]) {
         [self.mapView addOverlays:allCampusRegions level:MKOverlayLevelAboveLabels];
     }
     

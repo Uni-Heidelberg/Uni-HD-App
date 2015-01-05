@@ -23,3 +23,6 @@
 #import "UHDNewsSource.h"
 #import "UHDNewsItemCell.h"
 #import "UHDNewsDetailViewController.h"
+#import "UHDNewsSourcesViewController.h"
+
+#import "NSManagedObject+VIInsertIntoContextCategory.h"

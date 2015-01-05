@@ -54,6 +54,10 @@
     [source.managedObjectContext saveToPersistentStore:nil];
 }
 
+- (IBAction)doneButtonPressed:(id)sender {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 #pragma mark - Data Source
 
 - (VIFetchedResultsControllerDataSource *)fetchedResultsControllerDataSource

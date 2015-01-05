@@ -33,8 +33,6 @@
 
 //@property (weak, nonatomic) IBOutlet UISegmentedControl *newsEventsSegmentedControl;
 
-- (IBAction)unwindToNews:(UIStoryboardSegue *)segue;
-
 //- (IBAction)newsEventsSegmentedControlValueChanged:(id)sender;
 - (IBAction)sourceButtonPressed:(id)sender;
 
@@ -203,12 +201,6 @@
         self.pageViewController.delegate = self;
         [self.pageViewController setViewControllers:@[ self.newsListViewControllers[0] ] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     }
-}
-
-
-- (IBAction)unwindToNews:(UIStoryboardSegue *)segue
-{
-    
 }
 
 

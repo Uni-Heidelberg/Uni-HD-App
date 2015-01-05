@@ -51,7 +51,8 @@
     self.tableView.estimatedRowHeight = 100;
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(managedObjectContextDidSave:) name:NSManagedObjectContextDidSaveNotification object:nil];
-    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsDidChange:) name:NSUserDefaultsDidChangeNotification object:[NSUserDefaults standardUserDefaults]];
+
     [self configureView];
 }
 
@@ -185,7 +186,11 @@
 }
 
 
-#pragma mark - Managed Object Context Save Notification
+#pragma mark - Change Notification
+
+- (void)userDefaultsDidChange:(NSNotification *)notification {
+    [self.tableView reloadData];
+}
 
 - (void)managedObjectContextDidSave:(NSNotification *)notification {
     // FIXME: some exceptions are thrown here...
