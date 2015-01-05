@@ -133,9 +133,9 @@
 
 #pragma mark - Index Path to Model Conversion
 
-- (NSOrderedSet *)mealsInSection:(NSInteger)section {
+- (NSArray *)mealsInSection:(NSInteger)section {
     UHDDailyMenu *dailyMenu = [self.fetchedResultsController.fetchedObjects objectAtIndex:section];
-    return dailyMenu.meals;
+    return [dailyMenu.meals sortedArrayUsingDescriptors:@[ [NSSortDescriptor sortDescriptorWithKey:@"isMain" ascending:NO], [NSSortDescriptor sortDescriptorWithKey:@"priceStud" ascending:NO] ]];
 }
 
 - (UHDMeal *)mealForIndexPath:(NSIndexPath *)indexPath {

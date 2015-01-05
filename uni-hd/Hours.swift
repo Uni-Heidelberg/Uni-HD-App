@@ -24,7 +24,7 @@ class Hours: NSObject {
     
     var attributedDescription: NSAttributedString {
         var attributedDescription = NSMutableAttributedString(string: "Geöffnet", attributes: [ NSForegroundColorAttributeName : self.color ])
-        attributedDescription.appendAttributedString(NSAttributedString(string: " bis 22.00h"))
+        attributedDescription.appendAttributedString(NSAttributedString(string: " bis 22.00h (vielleicht)"))
         return attributedDescription
     }
    
