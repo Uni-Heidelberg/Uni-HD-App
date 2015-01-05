@@ -83,16 +83,17 @@
 	self.tableView.dataSource = self;
 	self.tableView.delegate = self;
 	
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeChanged) name:UIApplicationSignificantTimeChangeNotification object:nil];
+    // is this necessary? the fetched results controller should handle changes and update the table view when the "sectionIdentifier" property changes
+	//[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeChanged) name:UIApplicationSignificantTimeChangeNotification object:nil];
 	
 	[self configureView];
 }
 
 
-- (void)timeChanged {
+/*- (void)timeChanged {
 
 	[self.fetchedResultsControllerDataSource reloadData];
-}
+}*/
 
 
 - (void)configureView {
