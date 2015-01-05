@@ -65,7 +65,7 @@
         self.tableView.tableHeaderView = self.emptyView;
     } else if (![self.mensa hasMenuForDate:self.date]) {
         if ([[NSCalendar currentCalendar] isDateInWeekend:self.date]) { // TODO: make this dynamic by checking mensa's hours when implemented
-            self.emptyViewLabel.text = NSLocalizedString(@"Feiertag!", nil);
+            self.emptyViewLabel.text = NSLocalizedString(@"Wochenende!", nil);
         } else {
             self.emptyViewLabel.text = NSLocalizedString(@"Kein Speiseplan verfügbar.", nil);
         }

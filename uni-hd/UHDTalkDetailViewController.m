@@ -221,11 +221,7 @@
 - (IBAction)showOnMapButtonPressed:(id)sender
 {
     if (self.talkItem.location) {
-        self.tabBarController.selectedIndex = 3; // TODO: make dynamic
-        UINavigationController *mapsNavC = (UINavigationController *)self.tabBarController.selectedViewController;
-        UHDMapsViewController *mapsVC = [mapsNavC.viewControllers firstObject];
-        [mapsNavC popToViewController:mapsVC animated:mapsNavC==self.navigationController];
-        [mapsVC showLocation:self.talkItem.location animated:YES];
+        [self showLocation:self.talkItem.location animated:YES];
     }
 }
 

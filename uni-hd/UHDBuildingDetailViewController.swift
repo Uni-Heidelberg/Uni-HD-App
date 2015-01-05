@@ -133,13 +133,7 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
     
     func showOnMap() {
         if let building = self.building {
-            self.tabBarController?.selectedIndex = 3; // TODO: make dynamic
-            if let mapsNavC = self.tabBarController?.selectedViewController? as? UINavigationController {
-                if let mapsVC = mapsNavC.viewControllers.first as? UHDMapsViewController {
-                    mapsNavC.popToViewController(mapsVC, animated: mapsNavC==self.navigationController)
-                    mapsVC.showLocation(building, animated: true)
-                }
-            }
+            self.showLocation(building, animated: true)
         }
     }
     
@@ -153,13 +147,9 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
         }
     }
     
-    @IBAction func showMensaMenu(sender: UIButton) {
+    @IBAction func showMensaMenuButtonPressed(sender: UIButton) {
         if let mensa = self.building as? UHDMensa {
-            NSUserDefaults.standardUserDefaults().setValue(NSNumber(short: mensa.remoteObjectId), forKey: "UHDUserDefaultsKeySelectedMensaId")
-            self.tabBarController?.selectedIndex = 0 // TODO: make dynamic
-            if let mensaNavC = self.tabBarController?.selectedViewController as? UINavigationController {
-                mensaNavC.popToRootViewControllerAnimated(self.navigationController==mensaNavC)
-            }
+            self.showMensaMenu(mensa, animated: true)
         }
     }
     
@@ -338,7 +328,7 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
             case 2:
                 let cell = tableView.dequeueReusableCellWithIdentifier("propertyCell", forIndexPath: indexPath) as UHDBuildingDetailPropertyCell
                 cell.titleLabel.setTitle("Nächste Haltestelle", forState: .Normal)
-                cell.contentLabel.text = "Bunsengymnasium"
+                cell.contentLabel.text = "z.B. Bunsengymnasium"
                 return cell
             default:
                 let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as UHDBuildingDetailLocationCell

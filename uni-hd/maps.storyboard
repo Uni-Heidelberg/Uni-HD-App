@@ -285,7 +285,7 @@
             </objects>
             <point key="canvasLocation" x="2101" y="546"/>
         </scene>
-        <!--Building Title-->
+        <!--Building-->
         <scene sceneID="cuv-ba-RxK">
             <objects>
                 <tableViewController storyboardIdentifier="buildingDetail" id="gkq-iR-bWQ" customClass="UHDBuildingDetailViewController" customModule="uni_hd" customModuleProvider="target" sceneMemberID="viewController">
@@ -352,7 +352,7 @@
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
                                             <connections>
-                                                <action selector="showMensaMenu:" destination="gkq-iR-bWQ" eventType="touchUpInside" id="HIQ-yh-NwT"/>
+                                                <action selector="showMensaMenuButtonPressed:" destination="gkq-iR-bWQ" eventType="touchUpInside" id="hyI-h1-yq1"/>
                                             </connections>
                                         </button>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mensa Status" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ajg-EK-rWk" customClass="VIMultilineLabel" customModule="uni_hd" customModuleProvider="target">
@@ -645,9 +645,9 @@
                                     </constraints>
                                     <variation key="default">
                                         <mask key="constraints">
+                                            <exclude reference="TJ8-k5-gJX"/>
                                             <exclude reference="Wib-jx-Afj"/>
                                             <exclude reference="sXr-fQ-ict"/>
-                                            <exclude reference="TJ8-k5-gJX"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -838,7 +838,7 @@
                             <outlet property="delegate" destination="gkq-iR-bWQ" id="3WB-cZ-vYx"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Building Title" id="ynp-BO-urc">
+                    <navigationItem key="navigationItem" title="Building" id="ynp-BO-urc">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="aby-E8-PkN"/>
                     </navigationItem>
                     <simulatedStatusBarMetrics key="simulatedStatusBarMetrics" statusBarStyle="lightContent"/>
@@ -855,7 +855,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="mapsIcon" width="32" height="25"/>
+        <image name="mapsIcon" width="31" height="25"/>
         <image name="raumplan_kip" width="1312" height="1108"/>
     </resources>
 </document>

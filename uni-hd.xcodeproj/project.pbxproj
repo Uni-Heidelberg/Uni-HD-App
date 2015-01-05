@@ -59,6 +59,7 @@
 		87600EA4192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87600EA3192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m */; };
 		8765FDE01A405DFD00632160 /* UITableView+ParallaxedHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765FDDF1A405DFD00632160 /* UITableView+ParallaxedHeader.swift */; };
 		876799131A28EB4400372BD3 /* CampusRegionOverlayRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876799121A28EB4400372BD3 /* CampusRegionOverlayRenderer.swift */; };
+		876B73BF1A5AD21200F69C3F /* UIViewController+TabSwitching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876B73BE1A5AD21200F69C3F /* UIViewController+TabSwitching.swift */; };
 		877AEE8819BD370300ED270D /* UHDBuildingAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 877AEE8719BD370300ED270D /* UHDBuildingAnnotationView.m */; };
 		87839F3A19D4D70B00E5E6C8 /* MensaDayPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87839F3819D4D70B00E5E6C8 /* MensaDayPickerCell.swift */; };
 		87839F3D19D52A3B00E5E6C8 /* MensaDayPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87839F3C19D52A3B00E5E6C8 /* MensaDayPicker.swift */; };
@@ -246,6 +247,7 @@
 		87600EA3192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMensaRemoteDatasourceDelegate.m; sourceTree = "<group>"; };
 		8765FDDF1A405DFD00632160 /* UITableView+ParallaxedHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+ParallaxedHeader.swift"; path = "VIOSFramework/Categories/UITableView+ParallaxedHeader.swift"; sourceTree = "<group>"; };
 		876799121A28EB4400372BD3 /* CampusRegionOverlayRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampusRegionOverlayRenderer.swift; sourceTree = "<group>"; };
+		876B73BE1A5AD21200F69C3F /* UIViewController+TabSwitching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+TabSwitching.swift"; sourceTree = "<group>"; };
 		877AEE8619BD370300ED270D /* UHDBuildingAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDBuildingAnnotationView.h; sourceTree = "<group>"; };
 		877AEE8719BD370300ED270D /* UHDBuildingAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDBuildingAnnotationView.m; sourceTree = "<group>"; };
 		87839F3819D4D70B00E5E6C8 /* MensaDayPickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MensaDayPickerCell.swift; sourceTree = "<group>"; };
@@ -799,6 +801,7 @@
 			children = (
 				87B276CC192E03E90057B505 /* View */,
 				87F826CB190D40B40008144F /* Model */,
+				876B73BE1A5AD21200F69C3F /* UIViewController+TabSwitching.swift */,
 			);
 			name = Global;
 			sourceTree = "<group>";
@@ -1277,6 +1280,7 @@
 				87B276CF192E04110057B505 /* UIColor+UHDColors.m in Sources */,
 				0A2000521920F18A0014C977 /* UHDNewsDetailViewController.m in Sources */,
 				87F826D0190D422F0008144F /* news.xcdatamodeld in Sources */,
+				876B73BF1A5AD21200F69C3F /* UIViewController+TabSwitching.swift in Sources */,
 				87CBE0981908810B0029D9AF /* main.m in Sources */,
 				87839F3D19D52A3B00E5E6C8 /* MensaDayPicker.swift in Sources */,
 				87EE2556191924E20092DF7F /* UHDNewsViewController.m in Sources */,

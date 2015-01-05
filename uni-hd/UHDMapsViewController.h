@@ -13,6 +13,4 @@
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 
-- (void)showLocation:(UHDRemoteManagedLocation *)location animated:(BOOL)animated;
-
 @end
