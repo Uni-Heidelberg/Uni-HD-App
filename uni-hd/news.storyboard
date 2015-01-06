@@ -912,6 +912,7 @@
                     <connections>
                         <outlet property="sourceButton" destination="4ZD-GO-ISo" id="ZOP-zt-5YY"/>
                         <outlet property="sourcesNavigationBar" destination="egv-gy-J1B" id="qrc-4N-fa0"/>
+                        <outlet property="titleView" destination="gor-kC-cDL" id="alX-sT-5oq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HnY-54-1Ur" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -15,6 +15,8 @@
 @property (strong, nonatomic) NSArray *sources;
 @property (nonatomic) UHDNewsEventsDisplayMode displayMode;
 
+@property (nonatomic) NSUInteger pageIndex;
+
 - (void)scrollToToday;
 
 @end

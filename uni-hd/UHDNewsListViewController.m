@@ -25,9 +25,9 @@
 
 @interface UHDNewsListViewController ()
 
-@property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
-
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
+@property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 
 @property (strong, nonatomic) NSDateFormatter *sectionDateFormatter;
 
@@ -146,6 +146,7 @@
 	}
 	
 	[self.fetchedResultsControllerDataSource reloadData];
+	[self configureView];
 }
 
 

@@ -25,6 +25,8 @@
 // width of collection view cells
 @property (nonatomic) CGFloat itemWidth;
 
+- (void)scrollToSelectedSource;
+
 @end
 
 

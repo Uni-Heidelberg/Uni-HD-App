@@ -16,13 +16,11 @@
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
-//@property (weak, nonatomic) IBOutlet UIButton *sourceButton;
-
-//- (IBAction)sourceButtonPressed:(id)sender;
-
 @end
 
+
 @implementation UHDNewsSourcesNavigationBar
+
 
 - (void)awakeFromNib
 {
@@ -58,7 +56,8 @@
     [self.logger log:[NSString stringWithFormat:@"Selected source: %@", selectedSource.title] forLevel:VILogLevelDebug];
 	
     [self.collectionView reloadData];
-    
+	
+	[self scrollToSelectedSource];
 }
 
 
