@@ -7,6 +7,7 @@
 //
 
 #import "UHDNewsViewController.h"
+#import "UHDAppDelegate.h"
 
 // View Controllers
 #import "UHDNewsSourcesViewController.h"
@@ -31,7 +32,8 @@ typedef enum : NSUInteger {
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) UIPageViewController *pageViewController;
-@property (strong, nonatomic) NSMutableArray *newsListViewControllers;
+
+//@property (strong, nonatomic) NSMutableArray *newsListViewControllers;
 
 @property (strong, nonatomic) NSMutableArray *newsListViewControllerCache;
 
@@ -49,6 +51,7 @@ typedef enum : NSUInteger {
 
 @implementation UHDNewsViewController
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -57,18 +60,20 @@ typedef enum : NSUInteger {
     
     self.sourcesNavigationBar.delegate = self;
 	
-	[self updateDisplayMode];
+	// configuration is done in "embedPageVC" segue
+	//[self configureViewForFetchedSources];
 	
-	[self configureViewForFetchedSources];
+	// Is this necessary?
+	// [self updateDisplayMode];
 	
 	[self updateSourceButton];
 	
-	[self configureView];
+	//[self configureView];
 	
 	//[(UHDNewsListViewController *)self.pageViewController.viewControllers[0] scrollToToday];
 }
 
-
+/*
 - (void)configureView
 {
     // make sure only active table view scrolls to top
@@ -76,7 +81,7 @@ typedef enum : NSUInteger {
         vc.tableView.scrollsToTop = [self.pageViewController.viewControllers containsObject:vc];
     }
 }
-
+*/
 
 - (void)configureViewForFetchedSources {
 
@@ -169,9 +174,20 @@ typedef enum : NSUInteger {
 
 - (void)updateDisplayMode
 {
-	for (UHDNewsListViewController *newsListVC in self.newsListViewControllers) {
+	/*
+	for (UHDNewsListViewController *newsListVC in self.newsListViewControlle) {
 		newsListVC.displayMode = self.displayMode;
 	}
+	*/
+	
+	UHDNewsListViewController *newsListVC;
+	for (int i = 0; i < [self.newsListViewControllerCache count]; i++) {
+		if (self.newsListViewControllerCache[i] != [NSNull null]) {
+			newsListVC = (UHDNewsListViewController *) self.newsListViewControllerCache[i];
+			newsListVC.displayMode = self.displayMode;
+		}
+	}
+	
 }
 
 
@@ -222,7 +238,13 @@ typedef enum : NSUInteger {
         self.pageViewController = segue.destinationViewController;
         self.pageViewController.dataSource = self;
         self.pageViewController.delegate = self;
-        [self.pageViewController setViewControllers:@[ self.newsListViewControllers[0] ] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+		
+        //[self.pageViewController setViewControllers:@[ self.newsListViewControllers[0] ] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
+		
+		// must be called prior to displaying the view (even before view did load)
+		[self configureViewForFetchedSources];
+		
+		[self.pageViewController setViewControllers:@[ [self viewControllerAtIndex:0] ] direction:UIPageViewControllerNavigationDirectionForward animated:YES completion:nil];
     }
 }
 
@@ -307,7 +329,7 @@ typedef enum : NSUInteger {
 
 
 #pragma mark - Page View Controller Datasource
-
+/*
 - (NSMutableArray *)newsListViewControllers
 {
     if (!_newsListViewControllers) {
@@ -331,6 +353,7 @@ typedef enum : NSUInteger {
     newsListVC.sources = sources;
     return newsListVC;
 }
+*/
 
 /*
 - (UIViewController *)pageViewController:(UIPageViewController *)pageViewController viewControllerAfterViewController:(UIViewController *)viewController
@@ -396,6 +419,10 @@ typedef enum : NSUInteger {
 
 - (NSMutableArray *)newsListViewControllerCache {
 
+	if (!self.sourcesNavigationBar || !self.sourcesNavigationBar.sources) {
+		return nil;
+	}
+
 	if (!_newsListViewControllerCache) {
 		NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:[UHDNewsSource entityName]];
 		NSUInteger sourcesCount = [self.managedObjectContext countForFetchRequest:fetchRequest error:nil];
@@ -418,7 +445,7 @@ typedef enum : NSUInteger {
 		self.newsListViewControllerCache = nil;
 	}
 */
-	if ([self.newsListViewControllerCache objectAtIndex:pageIndex] != [NSNull null]) {
+	if (self.newsListViewControllerCache && ([self.newsListViewControllerCache objectAtIndex:pageIndex] != [NSNull null])) {
 		return [self.newsListViewControllerCache objectAtIndex:pageIndex];
 	}
 
@@ -578,7 +605,7 @@ typedef enum : NSUInteger {
 			// start loop from i = 1 to exclude 'All Sources VC'
 			for (int i = 1; i < [self.newsListViewControllerCache count]; i++) {
 				if (self.newsListViewControllerCache[i] != [NSNull null]) {
-					newsListVC = self.newsListViewControllerCache[i];
+					newsListVC = (UHDNewsListViewController *) self.newsListViewControllerCache[i];
 					viewControllerSourceIndex = [self sourceIndexForPageIndex:newsListVC.pageIndex];
 					if (viewControllerSourceIndex >= newSourceIndex) {
 						newsListVC.pageIndex++;
@@ -629,7 +656,7 @@ typedef enum : NSUInteger {
 			UHDNewsListViewController *newsListVC;
 			for (int i = 1; i < [self.newsListViewControllerCache count]; i++) {
 				if (self.newsListViewControllerCache[i] != [NSNull null]) {
-					newsListVC = self.newsListViewControllerCache[i];
+					newsListVC = (UHDNewsListViewController *) self.newsListViewControllerCache[i];
 					viewControllerSourceIndex = [self sourceIndexForPageIndex:newsListVC.pageIndex];
 					if (viewControllerSourceIndex > sourceIndex) {
 						newsListVC.pageIndex--;
@@ -644,6 +671,11 @@ typedef enum : NSUInteger {
 			// exchange objects
 			[sources exchangeObjectAtIndex:sourceIndex withObjectAtIndex:newSourceIndex];
 			[self.newsListViewControllerCache exchangeObjectAtIndex:pageIndex withObjectAtIndex:newPageIndex];
+			
+			// make sure cache exists before accessing indices
+			if (!self.newsListViewControllerCache) {
+				break;
+			}
 			
 			// update page indices
 			if (self.newsListViewControllerCache[pageIndex] != [NSNull null]) {
@@ -667,7 +699,7 @@ typedef enum : NSUInteger {
 			}
 			
 			// update cache (also updates currently displayed source since it is always in cache)
-			if (self.newsListViewControllerCache[pageIndex] != [NSNull null]) {
+			if (!self.newsListViewControllerCache && (self.newsListViewControllerCache[pageIndex] != [NSNull null])) {
 				((UHDNewsListViewController *) self.newsListViewControllerCache[pageIndex]).sources = @[ anObject ];
 			}
 			
