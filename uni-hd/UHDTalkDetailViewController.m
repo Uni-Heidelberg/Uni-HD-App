@@ -56,7 +56,6 @@
 	[self configureView];
 }
 
-
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
     
@@ -67,8 +66,17 @@
 	});
 }
 
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+	
+	// prevent visible layout corrections after rotation
+	dispatch_async(dispatch_get_main_queue(), ^{
+        [self.tableView reloadData];
+	});
+}
+
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
+	
     [self.tableView adjustFrameForParallaxedHeaderView:self.headerImageView];
 }
 
