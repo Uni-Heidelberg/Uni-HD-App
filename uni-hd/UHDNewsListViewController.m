@@ -49,11 +49,6 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 	
-	[self configureView];
-    
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 160;
-	
 }
 
 
@@ -71,6 +66,12 @@
 {
     [super viewDidLoad];
 	
+	self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 160;
+	
+	self.tableView.dataSource = self;
+	self.tableView.delegate = self;
+	
 	// set date format
 	NSCalendar *calendar = [NSCalendar currentCalendar];
 	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
@@ -79,10 +80,7 @@
 	[self.sectionDateFormatter setCalendar:calendar];
 	NSString *formatTemplate = [NSDateFormatter dateFormatFromTemplate:@"MMMM YYYY" options:0 locale:[NSLocale currentLocale]];
 	[self.sectionDateFormatter setDateFormat:formatTemplate];
-	
-	self.tableView.dataSource = self;
-	self.tableView.delegate = self;
-	
+
     // is this necessary? the fetched results controller should handle changes and update the table view when the "sectionIdentifier" property changes
 	//[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeChanged) name:UIApplicationSignificantTimeChangeNotification object:nil];
 	
