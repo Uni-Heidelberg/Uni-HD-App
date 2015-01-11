@@ -31,6 +31,8 @@ class UHDSettingsViewController: UITableViewController {
     @IBOutlet weak var subscribedSourcesDetailLabel: UILabel!
     @IBOutlet weak var mensaPriceSegmentedControl: UISegmentedControl!
     @IBOutlet weak var showCampusOverlaySwitch: UISwitch!
+    @IBOutlet weak var emphasizeVegetarianSwitch: UISwitch!
+
     
     
     // MARK: Lifecycle
@@ -67,6 +69,13 @@ class UHDSettingsViewController: UITableViewController {
             self.subscribedSourcesDetailLabel.text = nil
         }
         
+        // Vegetarian Switch
+        if let emphasizeVegetarianMeals = (NSUserDefaults.standardUserDefaults().objectForKey("UHDUserDefaultsKeyVegetarian") as? NSNumber)?.boolValue {
+            self.emphasizeVegetarianSwitch.on = emphasizeVegetarianMeals
+        } else {
+            self.emphasizeVegetarianSwitch.on = false
+        }
+        
         // Show Campus Overlay
         if let showCampusOverlay = (NSUserDefaults.standardUserDefaults().objectForKey("UHDUserDefaultsKeyShowCampusOverlay") as? NSNumber)?.boolValue {
             self.showCampusOverlaySwitch.on = showCampusOverlay
@@ -93,6 +102,11 @@ class UHDSettingsViewController: UITableViewController {
     @IBAction func mensaPriceSegmentedControlValueChanged(sender: UISegmentedControl) {
         self.userDefaultsChangeTriggered = true
         NSUserDefaults.standardUserDefaults().setInteger(sender.selectedSegmentIndex, forKey: "UHDUserDefaultsKeyMensaPriceCategory")
+        self.userDefaultsChangeTriggered = false
+    }
+    @IBAction func vegetarianSwitchValueChanged(sender: UISwitch) {
+        self.userDefaultsChangeTriggered = true
+        NSUserDefaults.standardUserDefaults().setBool(sender.on, forKey: "UHDUserDefaultsKeyVegetarian")
         self.userDefaultsChangeTriggered = false
     }
     

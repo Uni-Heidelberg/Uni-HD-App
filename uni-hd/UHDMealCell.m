@@ -38,6 +38,13 @@
     self.favouriteSymbolView.hidden = !meal.isFavourite;
     [self.favouriteSymbolView.superview removeConstraint: meal.isFavourite ? self.favouriteSymbolHiddenConstraint : self.favouriteSymbolSpacingConstraint];
     [self.favouriteSymbolView.superview addConstraint: meal.isFavourite ? self.favouriteSymbolSpacingConstraint : self.favouriteSymbolHiddenConstraint];
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:UHDUserDefaultsKeyVegetarian] && !meal.isVegetarian) {
+        self.titleLabel.textColor = [UIColor darkGrayColor];
+    }
+    else {
+        self.titleLabel.textColor = [UIColor blackColor];
+    }
+    
 }
 
 - (NSLayoutConstraint *)favouriteSymbolHiddenConstraint {
