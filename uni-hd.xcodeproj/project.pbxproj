@@ -113,6 +113,7 @@
 		DC602447193E23A500B06BF2 /* UHDMensaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC602446193E23A500B06BF2 /* UHDMensaViewController.m */; };
 		DC83C93A192BDDA6004CC75B /* UHDMealCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC83C939192BDDA5004CC75B /* UHDMealCell.m */; };
 		DC87FDF8191AA00600019F32 /* mensa.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC87FDF7191AA00600019F32 /* mensa.storyboard */; };
+		DCBC0ADD1A62F8C0001743CD /* UHDSettingsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DCBC0ADC1A62F8C0001743CD /* UHDSettingsDetailViewController.swift */; };
 		DCD00AA01996605400DCCB24 /* UHDFavouriteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD00A9F1996605400DCCB24 /* UHDFavouriteCell.m */; };
 		DCD00AA71996996800DCCB24 /* UHDMensaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD00AA61996996800DCCB24 /* UHDMensaCell.m */; };
 /* End PBXBuildFile section */
@@ -330,6 +331,7 @@
 		DC87FDF7191AA00600019F32 /* mensa.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = mensa.storyboard; sourceTree = "<group>"; };
 		DC87FDF9191AA12D00019F32 /* UHDMensaListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMensaListViewController.h; sourceTree = "<group>"; };
 		DC87FDFA191AA12D00019F32 /* UHDMensaListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMensaListViewController.m; sourceTree = "<group>"; };
+		DCBC0ADC1A62F8C0001743CD /* UHDSettingsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UHDSettingsDetailViewController.swift; sourceTree = "<group>"; };
 		DCD00A9E1996605400DCCB24 /* UHDFavouriteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDFavouriteCell.h; sourceTree = "<group>"; };
 		DCD00A9F1996605400DCCB24 /* UHDFavouriteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDFavouriteCell.m; sourceTree = "<group>"; };
 		DCD00AA51996996700DCCB24 /* UHDMensaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMensaCell.h; sourceTree = "<group>"; };
@@ -486,6 +488,7 @@
 			isa = PBXGroup;
 			children = (
 				872673261A36053800ABC599 /* UHDSettingsViewController.swift */,
+				DCBC0ADC1A62F8C0001743CD /* UHDSettingsDetailViewController.swift */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -1248,6 +1251,7 @@
 				87902D831A25331200186CC5 /* CachedTileOverlay.swift in Sources */,
 				872750F21964A1D100FDBC4E /* UHDMensaListViewController.m in Sources */,
 				87E8527D19572BD4007503B8 /* UHDRemoteManagedObject.m in Sources */,
+				DCBC0ADD1A62F8C0001743CD /* UHDSettingsDetailViewController.swift in Sources */,
 				870D6BD71A3F7E2E00D49655 /* UHDAddress.m in Sources */,
 				8737FF0C193F9EB0007D61C4 /* VIFetchedResultsControllerDataSource.m in Sources */,
 				876799131A28EB4400372BD3 /* CampusRegionOverlayRenderer.swift in Sources */,

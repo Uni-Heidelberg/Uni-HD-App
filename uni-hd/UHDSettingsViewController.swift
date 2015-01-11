@@ -29,6 +29,8 @@ class UHDSettingsViewController: UITableViewController {
     
     @IBOutlet weak var sourcesCell: UITableViewCell!
     @IBOutlet weak var subscribedSourcesDetailLabel: UILabel!
+    @IBOutlet weak var favouritedMensasDetailLabel: UILabel!
+    @IBOutlet weak var favouritedMealsDetailLabel: UILabel!
     @IBOutlet weak var mensaPriceSegmentedControl: UISegmentedControl!
     @IBOutlet weak var showCampusOverlaySwitch: UISwitch!
     @IBOutlet weak var emphasizeVegetarianSwitch: UISwitch!
@@ -61,14 +63,31 @@ class UHDSettingsViewController: UITableViewController {
         }
         
         // Subscribed Sources
-        let fetchRequest = NSFetchRequest(entityName: UHDNewsSource.entityName())
-        fetchRequest.predicate = NSPredicate(format: "subscribed == YES")
-        if let subscribedSourcesCount = self.managedObjectContext?.countForFetchRequest(fetchRequest, error: nil) {
+        let fetchRequestSources = NSFetchRequest(entityName: UHDNewsSource.entityName())
+        fetchRequestSources.predicate = NSPredicate(format: "subscribed == YES")
+        if let subscribedSourcesCount = self.managedObjectContext?.countForFetchRequest(fetchRequestSources, error: nil) {
             self.subscribedSourcesDetailLabel.text = "\(subscribedSourcesCount) " + NSLocalizedString("abonniert", comment: "")
         } else {
             self.subscribedSourcesDetailLabel.text = nil
         }
         
+        // Favourite Mensas
+        let fetchRequestMensas = NSFetchRequest(entityName: UHDMensa.entityName())
+        fetchRequestMensas.predicate = NSPredicate(format: "isFavourite == YES")
+        if let favouritedMensasCount = self.managedObjectContext?.countForFetchRequest(fetchRequestMensas, error: nil) {
+            self.favouritedMensasDetailLabel.text = "\(favouritedMensasCount) " + NSLocalizedString("favorisiert", comment: "")
+        } else {
+            self.favouritedMensasDetailLabel.text = nil
+        }
+        
+        // Favourite Meals
+        let fetchRequestMeals = NSFetchRequest(entityName: UHDMeal.entityName())
+        fetchRequestMeals.predicate = NSPredicate(format: "isFavourite == YES")
+        if let favouritedMealsCount = self.managedObjectContext?.countForFetchRequest(fetchRequestMeals, error: nil) {
+            self.favouritedMealsDetailLabel.text = "\(favouritedMealsCount) " + NSLocalizedString("favorisiert", comment: "")
+        } else {
+            self.favouritedMealsDetailLabel.text = nil
+        }
         // Vegetarian Switch
         if let emphasizeVegetarianMeals = (NSUserDefaults.standardUserDefaults().objectForKey("UHDUserDefaultsKeyVegetarian") as? NSNumber)?.boolValue {
             self.emphasizeVegetarianSwitch.on = emphasizeVegetarianMeals

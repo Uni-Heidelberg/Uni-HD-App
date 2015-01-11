@@ -6,6 +6,7 @@
 
 // Mensa
 #import "UHDMensa.h"
+#import "UHDMeal.h"
 #import "UHDMensaListViewController.h"
 
 // Maps
