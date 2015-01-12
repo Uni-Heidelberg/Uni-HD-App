@@ -118,6 +118,13 @@ class UHDSettingsViewController: UITableViewController {
         }
     }
     
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "showSettingsDetailForMensa" {
+            let vc = segue.destinationViewController as UHDSettingsDetailViewController
+            vc.managedObjectContext = self.managedObjectContext
+        }
+    }
+    
     @IBAction func mensaPriceSegmentedControlValueChanged(sender: UISegmentedControl) {
         self.userDefaultsChangeTriggered = true
         NSUserDefaults.standardUserDefaults().setInteger(sender.selectedSegmentIndex, forKey: "UHDUserDefaultsKeyMensaPriceCategory")

@@ -27,3 +27,4 @@
 #import "UHDNewsSourcesViewController.h"
 
 #import "NSManagedObject+VIInsertIntoContextCategory.h"
+#import "VIFetchedResultsControllerDataSource.h"

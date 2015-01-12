@@ -75,7 +75,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="bdL-5P-un1" kind="show" id="RTw-Aq-9Sl"/>
+                                            <segue destination="bdL-5P-un1" kind="show" identifier="showSettingsDetailForMensa" id="RTw-Aq-9Sl"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" id="lky-5c-hGs">
