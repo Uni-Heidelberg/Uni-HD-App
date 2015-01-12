@@ -8,33 +8,33 @@
 
 import UIKit
 
-// MARK: UI Elements
-
-// @IBOutlet weak var tableView: UITableView!
-
 class UHDSettingsDetailViewController: UITableViewController{
     
-    var managedObjectContext: NSManagedObjectContext?
-    
-    var fetchedResultsControllerDatasource: VIFetchedResultsControllerDataSource {
-        if _fetchedResultsControllerDatasource != nil {
-            return _fetchedResultsControllerDatasource!
+    var managedObjectContext: NSManagedObjectContext? {
+        didSet {
+            self._fetchedResultsControllerDatasource = nil
         }
-        let fetchRequest = NSFetchRequest()
-        let entity = NSEntityDescription.entityForName("UHDMensa", inManagedObjectContext: self.managedObjectContext!)
-        fetchRequest.entity = entity
-        fetchRequest.predicate = NSPredicate(format: "isFavourite == YES")
-        let sortDescriptor = NSSortDescriptor(key: "title", ascending: true)
-        fetchRequest.sortDescriptors = [sortDescriptor]
-        let aFetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext!, sectionNameKeyPath: nil, cacheName: nil)
-        
-        let cellBlock: (UITableViewCell!, AnyObject!) -> Void = {cell, item in
-            cell.textLabel.text = (item as UHDMensa).title}
-        
-        let afetchedResultsControllerDataSource: VIFetchedResultsControllerDataSource = VIFetchedResultsControllerDataSource(fetchedResultsController:aFetchedResultsController, tableView:self.tableView, cellIdentifier:"Cell", configureCellBlock:cellBlock)
-        _fetchedResultsControllerDatasource = afetchedResultsControllerDataSource
-        
-        return _fetchedResultsControllerDatasource!
+    }
+    
+    var fetchedResultsControllerDatasource: VIFetchedResultsControllerDataSource? {
+        if self._fetchedResultsControllerDatasource == nil {
+            if let managedObjectContext = self.managedObjectContext {
+                let fetchRequest = NSFetchRequest(entityName: "UHDMensa")
+                fetchRequest.predicate = NSPredicate(format: "isFavourite == YES")
+                fetchRequest.sortDescriptors = [ NSSortDescriptor(key: "title", ascending: true) ]
+                let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
+                
+                self._fetchedResultsControllerDatasource = VIFetchedResultsControllerDataSource(fetchedResultsController:fetchedResultsController, tableView:self.tableView, cellIdentifier:"Cell", configureCellBlock: { cell, item in
+                    switch item {
+                    case let mensa as UHDMensa:
+                        cell.textLabel?.text = mensa.title
+                    default:
+                        break
+                    }
+                })
+            }
+        }
+        return self._fetchedResultsControllerDatasource!
     }
     var _fetchedResultsControllerDatasource:VIFetchedResultsControllerDataSource? = nil
     
@@ -43,19 +43,5 @@ class UHDSettingsDetailViewController: UITableViewController{
         self.tableView.dataSource = self.fetchedResultsControllerDatasource
         self.tableView.delegate = self;
     }
-    
-    // MARK: Table View Methods
-    //
-    //    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    //        return 3
-    //    }
-    //    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-    //        //ask for a reusable cell from the tableview, the tableview will create a new one if it doesn't have any
-    //        let cell = self.tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath) as UITableViewCell
-    //
-    //        // Configure the cell
-    //        cell.textLabel.text = "Favourisierte Mensa"
-    //        return cell
-    //    }
-    
+
 }

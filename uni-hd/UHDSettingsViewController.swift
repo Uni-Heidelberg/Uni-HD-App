@@ -88,6 +88,7 @@ class UHDSettingsViewController: UITableViewController {
         } else {
             self.favouritedMealsDetailLabel.text = nil
         }
+        
         // Vegetarian Switch
         if let emphasizeVegetarianMeals = (NSUserDefaults.standardUserDefaults().objectForKey("UHDUserDefaultsKeyVegetarian") as? NSNumber)?.boolValue {
             self.emphasizeVegetarianSwitch.on = emphasizeVegetarianMeals
@@ -119,9 +120,15 @@ class UHDSettingsViewController: UITableViewController {
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showSettingsDetailForMensa" {
-            let vc = segue.destinationViewController as UHDSettingsDetailViewController
-            vc.managedObjectContext = self.managedObjectContext
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "showSettingsDetailForMensa":
+                if let vc = segue.destinationViewController as? UHDSettingsDetailViewController {
+                    vc.managedObjectContext = self.managedObjectContext
+                }
+            default:
+                break
+            }
         }
     }
     
