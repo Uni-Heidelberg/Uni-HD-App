@@ -19,7 +19,7 @@
 @dynamic spanLatitude, spanLongitude;
 @dynamic address;
 @dynamic telephone, email, url;
-@dynamic associatedNewsSources;
+@dynamic associatedNewsSources, associatedNewsSourceIds;
 @dynamic keywords;
 
 

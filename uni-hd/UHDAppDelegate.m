@@ -73,7 +73,7 @@
     // setup remote datasources
     [self addRemoteDatasourceForKey:UHDRemoteDatasourceKeyNews baseURL:[[NSURL URLWithString:UHDRemoteAPIBaseURL] URLByAppendingPathComponent:@"news"] delegate:[[UHDNewsRemoteDatasourceDelegate alloc] init]];
     [self addRemoteDatasourceForKey:UHDRemoteDatasourceKeyMensa baseURL:[[NSURL URLWithString:UHDRemoteAPIBaseURL] URLByAppendingPathComponent:@"mensa"] delegate:[[UHDMensaRemoteDatasourceDelegate alloc] init]];
-    [self addRemoteDatasourceForKey:UHDRemoteDatasourceKeyMaps baseURL:[NSURL URLWithString:UHDRemoteAPIBaseURL] delegate:[[UHDMapsRemoteDatasourceDelegate alloc] init]];
+    [self addRemoteDatasourceForKey:UHDRemoteDatasourceKeyMaps baseURL:[[NSURL URLWithString:UHDRemoteAPIBaseURL] URLByAppendingPathComponent:@"map"] delegate:[[UHDMapsRemoteDatasourceDelegate alloc] init]];
     
     [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyMaps] generateSampleDataIfNeeded];
 

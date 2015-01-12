@@ -25,6 +25,7 @@
 @property (nonatomic, retain) NSString *email;
 @property (nonatomic, retain) NSURL *url;
 @property (nonatomic, retain) NSSet *associatedNewsSources;
+@property (nonatomic, retain) NSSet *associatedNewsSourceIds;
 @property (nonatomic, readonly) Hours *hours; // TODO: not yet implemented properly
 @property (nonatomic, retain) NSSet *keywords;
 

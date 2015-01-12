@@ -12,13 +12,85 @@
 #import "UHDCampusRegion.h"
 #import "UHDBuilding.h"
 #import "UHDAddress.h"
+#import <RKCLLocationValueTransformer/RKCLLocationValueTransformer.h>
 
 
 @implementation UHDMapsRemoteDatasourceDelegate
 
 - (void)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource setupObjectMappingForObjectManager:(RKObjectManager *)objectManager
 {
-    // TODO: setup object mapping
+    
+    // Address
+    
+    RKEntityMapping *addressMapping = [RKEntityMapping mappingForEntityForName:[UHDAddress entityName] inManagedObjectStore:objectManager.managedObjectStore];
+    [addressMapping addAttributeMappingsFromArray:@[ @"city", @"postalCode", @"street" ]];
+    
+    
+    // Keywords
+    
+    RKEntityMapping *keywordsMapping = [RKEntityMapping mappingForEntityForName:@"UHDSearchKeyword" inManagedObjectStore:objectManager.managedObjectStore];
+    [keywordsMapping addPropertyMapping:[RKAttributeMapping attributeMappingFromKeyPath:nil toKeyPath:@"content"]];
+    
+    
+    // Building
+    
+    RKEntityMapping *buildingMapping = [RKEntityMapping mappingForEntityForName:[UHDBuilding entityName] inManagedObjectStore:objectManager.managedObjectStore];
+    [buildingMapping addAttributeMappingsFromArray:@[ @"title", @"buildingNumber", @"email", @"telephone", @"spanLatitude", @"spanLongitude", @"url", @"campusRegionId", @"categoryId", @"associatedNewsSourceIds" ]];
+    [buildingMapping addAttributeMappingsFromDictionary:@{ @"id": @"remoteObjectId", @"imageUrl": @"imageURL" }];
+    RKAttributeMapping *locationMapping = [RKAttributeMapping attributeMappingFromKeyPath:@"location" toKeyPath:@"location"];
+    locationMapping.valueTransformer = [RKCLLocationValueTransformer locationValueTransformerWithLatitudeKey:@"lat" longitudeKey:@"lng"];
+    [buildingMapping addPropertyMapping:locationMapping];
+    [buildingMapping addRelationshipMappingWithSourceKeyPath:@"address" mapping:addressMapping];
+    [buildingMapping addRelationshipMappingWithSourceKeyPath:@"keywords" mapping:keywordsMapping];
+    buildingMapping.identificationAttributes = @[ @"remoteObjectId" ];
+    buildingMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", buildingMapping.entity];
+    RKConnectionDescription *buildingCampusRegionConnection = [[RKConnectionDescription alloc] initWithRelationship:[buildingMapping.entity relationshipsByName][@"campusRegion"] attributes:@{ @"campusRegionId": @"remoteObjectId" }];
+    [buildingMapping addConnection:buildingCampusRegionConnection];
+    RKConnectionDescription *buildingCategoryConnection = [[RKConnectionDescription alloc] initWithRelationship:[buildingMapping.entity relationshipsByName][@"category"] attributes:@{ @"categoryId": @"remoteObjectId" }];
+    [buildingMapping addConnection:buildingCategoryConnection];
+    RKConnectionDescription *buildingAssociatedNewsSourcesConnection = [[RKConnectionDescription alloc] initWithRelationship:[buildingMapping.entity relationshipsByName][@"associatedNewsSources"] attributes:@{ @"associatedNewsSourceIds": @"remoteObjectId" }];
+    [buildingMapping addConnection:buildingAssociatedNewsSourcesConnection];
+    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:buildingMapping method:RKRequestMethodAny pathPattern:@"buildings" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+    // Stubs
+    RKEntityMapping *buildingStubMapping = [RKEntityMapping mappingForEntityForName:[UHDBuilding entityName] inManagedObjectStore:objectManager.managedObjectStore];
+    [buildingStubMapping addPropertyMapping:[RKAttributeMapping attributeMappingFromKeyPath:nil toKeyPath:@"remoteObjectId"]];
+    buildingStubMapping.identificationAttributes = @[ @"remoteObjectId" ];
+    buildingStubMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", buildingStubMapping.entity];
+    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:buildingStubMapping method:RKRequestMethodAny pathPattern:nil keyPath:@"buildingId" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+    
+    
+    // Category
+    
+    RKEntityMapping *categoryMapping = [RKEntityMapping mappingForEntityForName:[UHDLocationCategory entityName] inManagedObjectStore:objectManager.managedObjectStore];
+    [categoryMapping addAttributeMappingsFromArray:@[ @"title" ]];
+    [categoryMapping addAttributeMappingsFromDictionary:@{ @"id": @"remoteObjectId" }];
+    categoryMapping.identificationAttributes = @[ @"remoteObjectId" ];
+    categoryMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", categoryMapping.entity];
+    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:categoryMapping method:RKRequestMethodAny pathPattern:@"categories" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+    // Stubs
+    RKEntityMapping *categoryStubMapping = [RKEntityMapping mappingForEntityForName:[UHDLocationCategory entityName] inManagedObjectStore:objectManager.managedObjectStore];
+    [categoryStubMapping addPropertyMapping:[RKAttributeMapping attributeMappingFromKeyPath:nil toKeyPath:@"remoteObjectId"]];
+    categoryStubMapping.identificationAttributes = @[ @"remoteObjectId" ];
+    categoryStubMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", categoryStubMapping.entity];
+    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:categoryStubMapping method:RKRequestMethodAny pathPattern:nil keyPath:@"categoryId" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+    
+    
+    // Campus Region
+    
+    RKEntityMapping *campusRegionMapping = [RKEntityMapping mappingForEntityForName:[UHDCampusRegion entityName] inManagedObjectStore:objectManager.managedObjectStore];
+    [campusRegionMapping addAttributeMappingsFromArray:@[ @"title", @"identifier", @"spanLatitude", @"spanLongitude", ]];
+    [campusRegionMapping addAttributeMappingsFromDictionary:@{ @"id": @"remoteObjectId" }];
+    [campusRegionMapping addPropertyMapping:locationMapping];
+    campusRegionMapping.identificationAttributes = @[ @"remoteObjectId" ];
+    campusRegionMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", campusRegionMapping.entity];
+    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:campusRegionMapping method:RKRequestMethodAny pathPattern:@"campus-regions" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+    // Stubs
+    RKEntityMapping *campusRegionStubMapping = [RKEntityMapping mappingForEntityForName:[UHDCampusRegion entityName] inManagedObjectStore:objectManager.managedObjectStore];
+    [campusRegionStubMapping addPropertyMapping:[RKAttributeMapping attributeMappingFromKeyPath:nil toKeyPath:@"remoteObjectId"]];
+    campusRegionStubMapping.identificationAttributes = @[ @"remoteObjectId" ];
+    campusRegionStubMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", campusRegionStubMapping.entity];
+    [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:campusRegionStubMapping method:RKRequestMethodAny pathPattern:nil keyPath:@"campusRegionId" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
+    
 }
 
 - (NSArray *)remoteRefreshPathsForRemoteDatasource:(UHDRemoteDatasource *)remoteDatasource
