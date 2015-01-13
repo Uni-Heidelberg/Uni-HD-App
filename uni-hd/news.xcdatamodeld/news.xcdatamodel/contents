@@ -9,6 +9,7 @@
     </entity>
     <entity name="UHDEventItem" representedClassName="UHDEventItem" parentEntity="UHDNewsItem" syncable="YES">
         <attribute name="buildingString" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="locationId" optional="YES" transient="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="roomString" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDRemoteManagedLocation" inverseName="events" inverseEntity="UHDRemoteManagedLocation" syncable="YES"/>
     </entity>
@@ -61,13 +62,13 @@
         <relationship name="talk" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDTalkItem" inverseName="speaker" inverseEntity="UHDTalkItem" syncable="YES"/>
     </entity>
     <elements>
-        <element name="UHDEventItem" positionX="-65" positionY="27" width="128" height="88"/>
+        <element name="UHDBuilding" positionX="-461" positionY="2" width="128" height="73"/>
+        <element name="UHDEventItem" positionX="-65" positionY="27" width="128" height="103"/>
         <element name="UHDNewsCategory" positionX="-270" positionY="-207" width="128" height="103"/>
         <element name="UHDNewsItem" positionX="-63" positionY="-205" width="128" height="208"/>
         <element name="UHDNewsSource" positionX="-270" positionY="-46" width="128" height="133"/>
         <element name="UHDRemoteManagedLocation" positionX="108" positionY="29" width="128" height="73"/>
         <element name="UHDTalkItem" positionX="-65" positionY="158" width="128" height="58"/>
         <element name="UHDTalkSpeaker" positionX="108" positionY="162" width="128" height="133"/>
-        <element name="UHDBuilding" positionX="-461" positionY="2" width="128" height="73"/>
     </elements>
 </model>

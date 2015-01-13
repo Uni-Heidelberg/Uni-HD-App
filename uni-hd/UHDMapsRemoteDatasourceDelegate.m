@@ -80,7 +80,7 @@
     RKEntityMapping *campusRegionMapping = [RKEntityMapping mappingForEntityForName:[UHDCampusRegion entityName] inManagedObjectStore:objectManager.managedObjectStore];
     [campusRegionMapping addAttributeMappingsFromArray:@[ @"title", @"identifier", @"spanLatitude", @"spanLongitude", ]];
     [campusRegionMapping addAttributeMappingsFromDictionary:@{ @"id": @"remoteObjectId" }];
-    [campusRegionMapping addPropertyMapping:locationMapping];
+    [campusRegionMapping addPropertyMapping:[locationMapping copy]];
     campusRegionMapping.identificationAttributes = @[ @"remoteObjectId" ];
     campusRegionMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", campusRegionMapping.entity];
     [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:campusRegionMapping method:RKRequestMethodAny pathPattern:@"campus-regions" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];

@@ -72,12 +72,14 @@
     
     RKEntityMapping *eventItemMapping = [RKEntityMapping mappingForEntityForName:[UHDEventItem entityName] inManagedObjectStore:objectManager.managedObjectStore];
     [eventItemMapping addAttributeMappingsFromDictionary:@{@"id": @"remoteObjectId", @"imageUrl": @"imageURL", @"building": @"buildingString", @"room": @"roomString" }];
-    [eventItemMapping addAttributeMappingsFromArray:@[ @"title", @"date", @"abstract", @"url", @"sourceId" ]];
+    [eventItemMapping addAttributeMappingsFromArray:@[ @"title", @"date", @"abstract", @"url", @"sourceId", @"locationId" ]];
     eventItemMapping.identificationAttributes = @[ @"remoteObjectId" ];
     eventItemMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", eventItemMapping.entity];
     RKConnectionDescription *eventItemSourceConnection = [[RKConnectionDescription alloc] initWithRelationship:[eventItemMapping.entity relationshipsByName][@"source"] attributes:@{ @"sourceId": @"remoteObjectId" }];
     eventItemSourceConnection.includesSubentities = NO;
     [eventItemMapping addConnection:eventItemSourceConnection];
+    RKConnectionDescription *eventLocationConnection = [[RKConnectionDescription alloc] initWithRelationship:[eventItemMapping.entity relationshipsByName][@"location"] attributes:@{ @"locationId": @"remoteObjectId" }];
+    [eventItemMapping addConnection:eventLocationConnection];
     [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:eventItemMapping method:RKRequestMethodGET pathPattern:@"events" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
 
     // UHDTalkSpeaker
