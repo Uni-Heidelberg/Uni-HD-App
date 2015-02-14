@@ -56,23 +56,23 @@
 	[self configureView];
 }
 
+/*
 - (void)viewWillAppear:(BOOL)animated {
+
 	[super viewWillAppear:animated];
-    
-    // TODO: what is this for?
-	// prevent visible layout corrections after initial appearence of the VC
-	dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-	});
+	
+	// force immediate layout of subviews
+	[self.tableView layoutIfNeeded];
 }
+*/
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
 	
-	// prevent visible layout corrections after rotation
-	dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-	});
+	// trigger height recalculation of table view
+	[self.tableView beginUpdates];
+	[self.tableView endUpdates];
 }
+
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
@@ -258,18 +258,26 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	UITableViewCell* cell;
+
     switch (indexPath.section) {
         case 0: {
-            UHDTalkDetailTitleAbstractCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"titleAbstract"];
-            [cell configureForItem:self.talkItem];
-            return cell; }
+            cell = [self.tableView dequeueReusableCellWithIdentifier:@"titleAbstract"];
+            [(UHDTalkDetailTitleAbstractCell *)cell configureForItem:self.talkItem];
+			break;
+		}
         case 1: {
-            UHDTalkDetailSpaceTimeCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"spaceTime"];
-            [cell configureForItem:self.talkItem];
-            return cell; }
+            cell = [self.tableView dequeueReusableCellWithIdentifier:@"spaceTime"];
+            [(UHDTalkDetailSpaceTimeCell *)cell configureForItem:self.talkItem];
+			break;
+		}
         default:
             return nil;
     }
+	
+	cell.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+	
+	return cell;
 }
 
 

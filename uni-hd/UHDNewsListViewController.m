@@ -54,11 +54,21 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-    
+	
+	// layout already accomplished after creation of NewsListVC in 'viewControllerAtIndex' method of NewsVC
+	
+	/*
+	// force immediate layout of subviews
+	[self.tableView layoutIfNeeded];
+	*/
+	
+	/*
     // prevent visible layout corrections after initial appearence of the VC
 	dispatch_async(dispatch_get_main_queue(), ^{
+		//[self.tableView layoutIfNeeded];
         [self.tableView reloadData];
 	});
+	*/
 }
 
 
@@ -82,16 +92,17 @@
 	[self.sectionDateFormatter setDateFormat:formatTemplate];
 
     // is this necessary? the fetched results controller should handle changes and update the table view when the "sectionIdentifier" property changes
-	//[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeChanged) name:UIApplicationSignificantTimeChangeNotification object:nil];
+	// yes, it should, but obviously it doesn't...
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViewForSignificantTimeChange) name:UIApplicationSignificantTimeChangeNotification object:nil];
 	
 	[self configureView];
 }
 
 
-/*- (void)timeChanged {
+- (void)updateViewForSignificantTimeChange {
 
 	[self.fetchedResultsControllerDataSource reloadData];
-}*/
+}
 
 
 - (void)configureView {
@@ -198,6 +209,9 @@
         UHDTalkItem *item = self.fetchedResultsControllerDataSource.selectedItem;
         
         talkDetailVC.talkItem = item;
+		
+		// layout table view before displaying to prevent visible layout corrections after initial appearence of the VC
+		[talkDetailVC.tableView layoutIfNeeded];
 	}
 }
 
@@ -439,6 +453,8 @@
 		[(UHDTalkItemCell *)cell configureForItem:(UHDTalkItem *)item];
 	
 	}
+	
+	cell.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 	
 	//[self.logger log:[NSString stringWithFormat:@"height of cell: %f", cell.bounds.size.height] forLevel:VILogLevelDebug];
 	

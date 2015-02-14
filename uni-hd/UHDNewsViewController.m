@@ -469,6 +469,9 @@ typedef enum : NSUInteger {
 	newsListVC.displayMode = self.displayMode;
     newsListVC.pageIndex = pageIndex;
 	
+	// layout table view before displaying to prevent visible layout corrections after initial appearence of the VC
+	[newsListVC.tableView layoutIfNeeded];
+	
 	// cache view controller
 	[self.newsListViewControllerCache replaceObjectAtIndex:pageIndex withObject:newsListVC];
     
