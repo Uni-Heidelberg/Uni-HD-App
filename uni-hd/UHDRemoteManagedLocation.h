@@ -7,7 +7,7 @@
 //
 
 #import "UHDRemoteManagedObject.h"
-
+@import MapKit;
 
 MKMapRect MKMapRectForCoordinateRegion(MKCoordinateRegion region);
 

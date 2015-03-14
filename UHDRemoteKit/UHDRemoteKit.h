@@ -16,4 +16,6 @@ FOUNDATION_EXPORT const unsigned char UHDRemoteKitVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <UHDRemoteKit/PublicHeader.h>
 
-
+#import <UHDRemoteKit/UHDRemoteDatasourceManager.h>
+#import <UHDRemoteKit/UHDRemoteDatasource.h>
+#import <UHDRemoteKit/UHDRemoteManagedObject.h>

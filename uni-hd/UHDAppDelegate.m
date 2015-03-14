@@ -12,8 +12,7 @@
 @import UHDPersistenceKit;
 
 // Remote Datasources
-#import "UHDRemoteDatasourceManager.h"
-#import "UHDRemoteDatasource.h"
+@import UHDRemoteKit;
 #import "UHDNewsRemoteDatasourceDelegate.h"
 #import "UHDMensaRemoteDatasourceDelegate.h"
 #import "UHDMapsRemoteDatasourceDelegate.h"

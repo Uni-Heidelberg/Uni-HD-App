@@ -7,4 +7,4 @@ pod 'RKCLLocationValueTransformer', :git => 'https://github.com/Uni-Heidelberg/R
 
 pod 'RMSwipeTableViewCell'
 
-link_with ['uni-hd', 'UHDPersistenceKit']
+link_with 'uni-hd', 'UHDPersistenceKit', 'UHDRemoteKit'

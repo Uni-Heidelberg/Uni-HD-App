@@ -12,6 +12,7 @@
 #import "UHDCampusRegion.h"
 #import "UHDBuilding.h"
 #import "UHDAddress.h"
+#import "NSManagedObject+VIInsertIntoContextCategory.h"
 
 
 @implementation UHDMapsRemoteDatasourceDelegate

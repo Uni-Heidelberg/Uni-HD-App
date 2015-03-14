@@ -13,6 +13,7 @@
 #import "UHDTalkSpeaker.h"
 #import "UHDNewsSource.h"
 #import "UHDNewsCategory.h"
+#import "NSManagedObject+VIInsertIntoContextCategory.h"
 
 @implementation UHDNewsRemoteDatasourceDelegate
 

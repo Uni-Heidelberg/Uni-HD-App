@@ -33,9 +33,6 @@
 		0B84B31E1993A59C00813CC2 /* UHDBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B84B31D1993A59C00813CC2 /* UHDBuilding.m */; };
 		0BAB274C19A7296600CAB517 /* UHDLocationCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB274B19A7296600CAB517 /* UHDLocationCategory.m */; };
 		0BB49E1919ADC3F60025BD07 /* UHDCampusRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB49E1819ADC3F60025BD07 /* UHDCampusRegion.m */; };
-		0BEC8EB11993B40A00EAB8F6 /* UHDMapsRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BEC8EB01993B40A00EAB8F6 /* UHDMapsRemoteDatasourceDelegate.m */; };
-		8701CE4C190C00A600A18F82 /* UHDRemoteDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8701CE4B190C00A600A18F82 /* UHDRemoteDatasource.m */; };
-		8701CE50190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8701CE4F190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.m */; };
 		870591DB19C0DDFA003E2906 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 870591DA19C0DDFA003E2906 /* UIImage+ImageEffects.m */; };
 		870591DF19C10922003E2906 /* VIImageOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 870591DE19C10922003E2906 /* VIImageOverlayRenderer.m */; };
 		870D6BD71A3F7E2E00D49655 /* UHDAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 870D6BD61A3F7E2E00D49655 /* UHDAddress.m */; };
@@ -54,7 +51,6 @@
 		875396021932B03C00DFEF19 /* UHDNewsSourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 875396011932B03C00DFEF19 /* UHDNewsSourceCell.m */; };
 		8755970E1A3492CB004AF87B /* VIMultilineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8755970D1A3492CB004AF87B /* VIMultilineLabel.swift */; };
 		875F43B71A1BD250006C4112 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 875F43B61A1BD250006C4112 /* LaunchScreen.storyboard */; };
-		87600EA4192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87600EA3192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m */; };
 		8765FDE01A405DFD00632160 /* UITableView+ParallaxedHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765FDDF1A405DFD00632160 /* UITableView+ParallaxedHeader.swift */; };
 		876799131A28EB4400372BD3 /* CampusRegionOverlayRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876799121A28EB4400372BD3 /* CampusRegionOverlayRenderer.swift */; };
 		876B73BF1A5AD21200F69C3F /* UIViewController+TabSwitching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876B73BE1A5AD21200F69C3F /* UIViewController+TabSwitching.swift */; };
@@ -65,10 +61,21 @@
 		8771EC961AB4A08F00026207 /* UHDRemoteKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8771EC951AB4A08F00026207 /* UHDRemoteKitTests.swift */; };
 		8771EC991AB4A08F00026207 /* UHDRemoteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8771EC821AB4A08F00026207 /* UHDRemoteKit.framework */; };
 		8771EC9A1AB4A08F00026207 /* UHDRemoteKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8771EC821AB4A08F00026207 /* UHDRemoteKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8771ECA11AB4A14500026207 /* UHDRemoteDatasourceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 87B974E3192D57330080AA40 /* UHDRemoteDatasourceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8771ECA21AB4A1C200026207 /* UHDRemoteDatasourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B974E4192D57330080AA40 /* UHDRemoteDatasourceManager.m */; };
+		8771ECA31AB4A1C600026207 /* UHDRemoteDatasource.h in Headers */ = {isa = PBXBuildFile; fileRef = 8701CE4A190C00A600A18F82 /* UHDRemoteDatasource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8771ECA71AB4A1D600026207 /* UHDRemoteManagedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 87E8527B19572BD4007503B8 /* UHDRemoteManagedObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8771ECA91AB4A1E500026207 /* UHDRemoteDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8701CE4B190C00A600A18F82 /* UHDRemoteDatasource.m */; };
+		8771ECAD1AB4A1E500026207 /* UHDRemoteManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E8527C19572BD4007503B8 /* UHDRemoteManagedObject.m */; };
 		877AEE8819BD370300ED270D /* UHDBuildingAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 877AEE8719BD370300ED270D /* UHDBuildingAnnotationView.m */; };
 		87839F3A19D4D70B00E5E6C8 /* MensaDayPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87839F3819D4D70B00E5E6C8 /* MensaDayPickerCell.swift */; };
 		87839F3D19D52A3B00E5E6C8 /* MensaDayPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87839F3C19D52A3B00E5E6C8 /* MensaDayPicker.swift */; };
 		87902D831A25331200186CC5 /* CachedTileOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87902D821A25331200186CC5 /* CachedTileOverlay.swift */; };
+		8798B4781AB4A365001E6C87 /* VIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B974E7192D5A360080AA40 /* VIManager.m */; };
+		8798B4791AB4A399001E6C87 /* NSManagedObject+VIInsertIntoContextCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A8633719196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m */; };
+		8798B47B1AB4A435001E6C87 /* UHDNewsRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8701CE4F190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.m */; };
+		8798B47C1AB4A435001E6C87 /* UHDMensaRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87600EA3192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m */; };
+		8798B47D1AB4A435001E6C87 /* UHDMapsRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BEC8EB01993B40A00EAB8F6 /* UHDMapsRemoteDatasourceDelegate.m */; };
 		8799A5D91AB48B6900117267 /* UHDPersistenceKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8799A5D81AB48B6900117267 /* UHDPersistenceKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8799A5DF1AB48B6900117267 /* UHDPersistenceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8799A5D41AB48B6900117267 /* UHDPersistenceKit.framework */; };
 		8799A5E81AB48B6900117267 /* UHDPersistenceKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8799A5E71AB48B6900117267 /* UHDPersistenceKitTests.swift */; };
@@ -83,8 +90,6 @@
 		8799DAAA192ABDE9009B3CAB /* VILogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F826E9190D700E0008144F /* VILogger.m */; };
 		87A8633819196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A8633719196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m */; };
 		87B276CF192E04110057B505 /* UIColor+UHDColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B276CE192E04110057B505 /* UIColor+UHDColors.m */; };
-		87B974E5192D57330080AA40 /* UHDRemoteDatasourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B974E4192D57330080AA40 /* UHDRemoteDatasourceManager.m */; };
-		87B974E8192D5A360080AA40 /* VIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B974E7192D5A360080AA40 /* VIManager.m */; };
 		87CBE08C1908810B0029D9AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08B1908810B0029D9AF /* Foundation.framework */; };
 		87CBE08E1908810B0029D9AF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08D1908810B0029D9AF /* CoreGraphics.framework */; };
 		87CBE0901908810B0029D9AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08F1908810B0029D9AF /* UIKit.framework */; };
@@ -98,7 +103,6 @@
 		87E85274195727E4007503B8 /* maps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87E85273195727E4007503B8 /* maps.storyboard */; };
 		87E85276195728A7007503B8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E85275195728A7007503B8 /* MapKit.framework */; };
 		87E8527A1957297A007503B8 /* UHDMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E852791957297A007503B8 /* UHDMapsViewController.m */; };
-		87E8527D19572BD4007503B8 /* UHDRemoteManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E8527C19572BD4007503B8 /* UHDRemoteManagedObject.m */; };
 		87EE2556191924E20092DF7F /* UHDNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE2555191924E20092DF7F /* UHDNewsViewController.m */; };
 		87F2BA4E1954789600034813 /* UHDNewsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F2BA4D1954789600034813 /* UHDNewsListViewController.m */; };
 		87F826CD190D41450008144F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87F826CC190D41450008144F /* CoreData.framework */; };
@@ -107,6 +111,7 @@
 		87FCA99319958EB100B3A55F /* maps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87FCA99119958EB100B3A55F /* maps.xcdatamodeld */; };
 		87FCA9961995901200B3A55F /* UHDRemoteManagedLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FCA9951995901200B3A55F /* UHDRemoteManagedLocation.m */; };
 		87FF70FB1923F33500FCF5F4 /* UHDNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FF70FA1923F33500FCF5F4 /* UHDNewsItem.m */; };
+		91DFADE58FD5ED08263534BE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70156A1F78F7E9B762543BE5 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		94F484921936620B0063BF9F /* UHDTriangleStatusImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F484911936620B0063BF9F /* UHDTriangleStatusImageView.m */; };
 		A8430D07BAF9CCADBCEF2CD2 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70156A1F78F7E9B762543BE5 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		AB8B9502E40C13406867FC6F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70156A1F78F7E9B762543BE5 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -273,8 +278,8 @@
 		2200AC222FDAAA1032DCAAD1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		3FCFBC5934DD37BB61FA6AC5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		70156A1F78F7E9B762543BE5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		8701CE4A190C00A600A18F82 /* UHDRemoteDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDRemoteDatasource.h; sourceTree = "<group>"; };
-		8701CE4B190C00A600A18F82 /* UHDRemoteDatasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDRemoteDatasource.m; sourceTree = "<group>"; };
+		8701CE4A190C00A600A18F82 /* UHDRemoteDatasource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UHDRemoteDatasource.h; path = "../uni-hd/UHDRemoteDatasource.h"; sourceTree = "<group>"; };
+		8701CE4B190C00A600A18F82 /* UHDRemoteDatasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UHDRemoteDatasource.m; path = "../uni-hd/UHDRemoteDatasource.m"; sourceTree = "<group>"; };
 		8701CE4E190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsRemoteDatasourceDelegate.h; sourceTree = "<group>"; };
 		8701CE4F190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsRemoteDatasourceDelegate.m; sourceTree = "<group>"; };
 		870591D919C0DDFA003E2906 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "VIOSFramework/Categories/UIImage+ImageEffects/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
@@ -330,8 +335,8 @@
 		87A8633719196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+VIInsertIntoContextCategory.m"; path = "VIOSFramework/Categories/NSManagedObject+VIInsertIntoContextCategory/NSManagedObject+VIInsertIntoContextCategory.m"; sourceTree = "<group>"; };
 		87B276CD192E04110057B505 /* UIColor+UHDColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+UHDColors.h"; sourceTree = "<group>"; };
 		87B276CE192E04110057B505 /* UIColor+UHDColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+UHDColors.m"; sourceTree = "<group>"; };
-		87B974E3192D57330080AA40 /* UHDRemoteDatasourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDRemoteDatasourceManager.h; sourceTree = "<group>"; };
-		87B974E4192D57330080AA40 /* UHDRemoteDatasourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDRemoteDatasourceManager.m; sourceTree = "<group>"; };
+		87B974E3192D57330080AA40 /* UHDRemoteDatasourceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UHDRemoteDatasourceManager.h; path = "../uni-hd/UHDRemoteDatasourceManager.h"; sourceTree = "<group>"; };
+		87B974E4192D57330080AA40 /* UHDRemoteDatasourceManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UHDRemoteDatasourceManager.m; path = "../uni-hd/UHDRemoteDatasourceManager.m"; sourceTree = "<group>"; };
 		87B974E6192D5A360080AA40 /* VIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIManager.h; path = VIOSFramework/Managers/VIManager.h; sourceTree = "<group>"; };
 		87B974E7192D5A360080AA40 /* VIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIManager.m; path = VIOSFramework/Managers/VIManager.m; sourceTree = "<group>"; };
 		87CB17A51A2CC2A200499AED /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -356,8 +361,8 @@
 		87E85275195728A7007503B8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		87E852781957297A007503B8 /* UHDMapsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMapsViewController.h; sourceTree = "<group>"; };
 		87E852791957297A007503B8 /* UHDMapsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMapsViewController.m; sourceTree = "<group>"; };
-		87E8527B19572BD4007503B8 /* UHDRemoteManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDRemoteManagedObject.h; sourceTree = "<group>"; };
-		87E8527C19572BD4007503B8 /* UHDRemoteManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDRemoteManagedObject.m; sourceTree = "<group>"; };
+		87E8527B19572BD4007503B8 /* UHDRemoteManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UHDRemoteManagedObject.h; path = "../uni-hd/UHDRemoteManagedObject.h"; sourceTree = "<group>"; };
+		87E8527C19572BD4007503B8 /* UHDRemoteManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UHDRemoteManagedObject.m; path = "../uni-hd/UHDRemoteManagedObject.m"; sourceTree = "<group>"; };
 		87EE2554191924E20092DF7F /* UHDNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsViewController.h; sourceTree = "<group>"; };
 		87EE2555191924E20092DF7F /* UHDNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsViewController.m; sourceTree = "<group>"; };
 		87F2BA4C1954789600034813 /* UHDNewsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsListViewController.h; sourceTree = "<group>"; };
@@ -410,6 +415,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				91DFADE58FD5ED08263534BE /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -741,6 +747,12 @@
 			isa = PBXGroup;
 			children = (
 				8771EC861AB4A08F00026207 /* UHDRemoteKit.h */,
+				87B974E3192D57330080AA40 /* UHDRemoteDatasourceManager.h */,
+				87B974E4192D57330080AA40 /* UHDRemoteDatasourceManager.m */,
+				8701CE4A190C00A600A18F82 /* UHDRemoteDatasource.h */,
+				8701CE4B190C00A600A18F82 /* UHDRemoteDatasource.m */,
+				87E8527B19572BD4007503B8 /* UHDRemoteManagedObject.h */,
+				87E8527C19572BD4007503B8 /* UHDRemoteManagedObject.m */,
 				8771EC841AB4A08F00026207 /* Supporting Files */,
 			);
 			path = UHDRemoteKit;
@@ -876,18 +888,12 @@
 		87B974EA192D68C30080AA40 /* Remote Datasources */ = {
 			isa = PBXGroup;
 			children = (
-				87B974E3192D57330080AA40 /* UHDRemoteDatasourceManager.h */,
-				87B974E4192D57330080AA40 /* UHDRemoteDatasourceManager.m */,
-				8701CE4A190C00A600A18F82 /* UHDRemoteDatasource.h */,
-				8701CE4B190C00A600A18F82 /* UHDRemoteDatasource.m */,
 				8701CE4E190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.h */,
 				8701CE4F190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.m */,
 				87600EA2192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.h */,
 				87600EA3192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m */,
 				0BEC8EAF1993B40A00EAB8F6 /* UHDMapsRemoteDatasourceDelegate.h */,
 				0BEC8EB01993B40A00EAB8F6 /* UHDMapsRemoteDatasourceDelegate.m */,
-				87E8527B19572BD4007503B8 /* UHDRemoteManagedObject.h */,
-				87E8527C19572BD4007503B8 /* UHDRemoteManagedObject.m */,
 			);
 			name = "Remote Datasources";
 			sourceTree = "<group>";
@@ -1175,7 +1181,10 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8771ECA71AB4A1D600026207 /* UHDRemoteManagedObject.h in Headers */,
+				8771ECA31AB4A1C600026207 /* UHDRemoteDatasource.h in Headers */,
 				8771EC871AB4A08F00026207 /* UHDRemoteKit.h in Headers */,
+				8771ECA11AB4A14500026207 /* UHDRemoteDatasourceManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1195,10 +1204,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8771EC9B1AB4A09000026207 /* Build configuration list for PBXNativeTarget "UHDRemoteKit" */;
 			buildPhases = (
+				E899A67B09619AF689F4E5BF /* Check Pods Manifest.lock */,
 				8771EC7D1AB4A08F00026207 /* Sources */,
 				8771EC7E1AB4A08F00026207 /* Frameworks */,
 				8771EC7F1AB4A08F00026207 /* Headers */,
 				8771EC801AB4A08F00026207 /* Resources */,
+				94BD46243AF05F911C405235 /* Embed Pods Frameworks */,
+				3DD16153FA25CDF8720F38EA /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1480,6 +1492,21 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
+		3DD16153FA25CDF8720F38EA /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		41B63B46B90D4A2C87CA4844 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1540,6 +1567,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		94BD46243AF05F911C405235 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		99DE2BB49BA4484A90E3B371 /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1585,6 +1627,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		E899A67B09619AF689F4E5BF /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1592,6 +1649,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8798B4791AB4A399001E6C87 /* NSManagedObject+VIInsertIntoContextCategory.m in Sources */,
+				8771ECAD1AB4A1E500026207 /* UHDRemoteManagedObject.m in Sources */,
+				8771ECA91AB4A1E500026207 /* UHDRemoteDatasource.m in Sources */,
+				8771ECA21AB4A1C200026207 /* UHDRemoteDatasourceManager.m in Sources */,
+				8798B4781AB4A365001E6C87 /* VIManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1644,7 +1706,6 @@
 				94F484921936620B0063BF9F /* UHDTriangleStatusImageView.m in Sources */,
 				0A0CEC0D19E44F55009C9F5B /* UHDReadIndicatorView.m in Sources */,
 				0B84B31E1993A59C00813CC2 /* UHDBuilding.m in Sources */,
-				87B974E8192D5A360080AA40 /* VIManager.m in Sources */,
 				87839F3A19D4D70B00E5E6C8 /* MensaDayPickerCell.swift in Sources */,
 				0A7FAD00196B17B000E2CC9D /* UHDTalkItemCell.m in Sources */,
 				87CBE09C1908810B0029D9AF /* UHDAppDelegate.m in Sources */,
@@ -1662,27 +1723,26 @@
 				DC5394A919F284D4004F6828 /* FavouriteMensenView.swift in Sources */,
 				0A7FACFA196B13DB00E2CC9D /* UHDEventItemCell.m in Sources */,
 				0A586D8E19646A6600DF86EE /* UHDTalkSpeaker.m in Sources */,
+				8798B47C1AB4A435001E6C87 /* UHDMensaRemoteDatasourceDelegate.m in Sources */,
 				8733B3F619FA110D007263AC /* CircularProgressView+ConfigureForMensa.swift in Sources */,
 				870591DB19C0DDFA003E2906 /* UIImage+ImageEffects.m in Sources */,
 				0BB49E1919ADC3F60025BD07 /* UHDCampusRegion.m in Sources */,
+				8798B47D1AB4A435001E6C87 /* UHDMapsRemoteDatasourceDelegate.m in Sources */,
 				0B48B1D019C75FF7009C7977 /* UHDConfigureMapViewController.m in Sources */,
 				8733B3F219F9FFD6007263AC /* CircularProgressView.swift in Sources */,
-				87B974E5192D57330080AA40 /* UHDRemoteDatasourceManager.m in Sources */,
 				8755970E1A3492CB004AF87B /* VIMultilineLabel.swift in Sources */,
+				8798B47B1AB4A435001E6C87 /* UHDNewsRemoteDatasourceDelegate.m in Sources */,
 				DC21B6DA1923D27600BAD26D /* UHDMensaSection.m in Sources */,
 				0AD7F3721923F58E00F49551 /* UHDNewsItemCell.m in Sources */,
 				0ABAE5F41A3A6F1500E85E3E /* UHDTalkDetailTitleAbstractCell.m in Sources */,
 				87902D831A25331200186CC5 /* CachedTileOverlay.swift in Sources */,
 				872750F21964A1D100FDBC4E /* UHDMensaListViewController.m in Sources */,
-				87E8527D19572BD4007503B8 /* UHDRemoteManagedObject.m in Sources */,
 				870D6BD71A3F7E2E00D49655 /* UHDAddress.m in Sources */,
 				876799131A28EB4400372BD3 /* CampusRegionOverlayRenderer.swift in Sources */,
 				87F2BA4E1954789600034813 /* UHDNewsListViewController.m in Sources */,
 				875396021932B03C00DFEF19 /* UHDNewsSourceCell.m in Sources */,
-				8701CE50190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.m in Sources */,
 				0B176E7A1931117700D3C916 /* UHDNewsCategory.m in Sources */,
 				87FF70FB1923F33500FCF5F4 /* UHDNewsItem.m in Sources */,
-				0BEC8EB11993B40A00EAB8F6 /* UHDMapsRemoteDatasourceDelegate.m in Sources */,
 				8733B3FA19FA13BD007263AC /* Hours.swift in Sources */,
 				87F826EA190D700E0008144F /* VILogger.m in Sources */,
 				DC4485BB1A3F7DBC006CA0EC /* UHDMensaSectionHeaderView.m in Sources */,
@@ -1693,11 +1753,9 @@
 				DCD00AA01996605400DCCB24 /* UHDFavouriteCell.m in Sources */,
 				0B176E711931114200D3C916 /* UHDNewsSourcesViewController.m in Sources */,
 				0AF7D43B1A0C440400BD8423 /* UHDSourceCollectionViewCell.m in Sources */,
-				87600EA4192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m in Sources */,
 				0ACE47B519619BB9004F84F9 /* UHDEventItem.m in Sources */,
 				87479AA81A3FA4D70084FBDA /* UHDBuildingDetailViewController.swift in Sources */,
 				0B35587B199BC923008053EE /* UHDBuildingCell.m in Sources */,
-				8701CE4C190C00A600A18F82 /* UHDRemoteDatasource.m in Sources */,
 				87E8527A1957297A007503B8 /* UHDMapsViewController.m in Sources */,
 				0BAB274C19A7296600CAB517 /* UHDLocationCategory.m in Sources */,
 				0A5EFF321A0ECB3700A6C999 /* UHDNewsSourcesNavigationBar.m in Sources */,
@@ -1782,6 +1840,7 @@
 /* Begin XCBuildConfiguration section */
 		8771EC9C1AB4A09000026207 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2200AC222FDAAA1032DCAAD1 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1811,6 +1870,7 @@
 		};
 		8771EC9D1AB4A09000026207 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3FCFBC5934DD37BB61FA6AC5 /* Pods.release.xcconfig */;
 			buildSettings = {
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -1879,7 +1939,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2200AC222FDAAA1032DCAAD1 /* Pods.debug.xcconfig */;
 			buildSettings = {
-				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1910,7 +1970,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3FCFBC5934DD37BB61FA6AC5 /* Pods.release.xcconfig */;
 			buildSettings = {
-				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2020,7 +2080,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -2060,7 +2120,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -2151,6 +2211,7 @@
 				8771EC9D1AB4A09000026207 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8771EC9E1AB4A09000026207 /* Build configuration list for PBXNativeTarget "UHDRemoteKitTests" */ = {
 			isa = XCConfigurationList;
@@ -2159,6 +2220,7 @@
 				8771ECA01AB4A09000026207 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		8799A5F21AB48B6900117267 /* Build configuration list for PBXNativeTarget "UHDPersistenceKit" */ = {
 			isa = XCConfigurationList;
