@@ -58,8 +58,13 @@
 		8765FDE01A405DFD00632160 /* UITableView+ParallaxedHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765FDDF1A405DFD00632160 /* UITableView+ParallaxedHeader.swift */; };
 		876799131A28EB4400372BD3 /* CampusRegionOverlayRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876799121A28EB4400372BD3 /* CampusRegionOverlayRenderer.swift */; };
 		876B73BF1A5AD21200F69C3F /* UIViewController+TabSwitching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876B73BE1A5AD21200F69C3F /* UIViewController+TabSwitching.swift */; };
-		8771EC751AB4972700026207 /* UHDPersistentStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FF70FD1924097E00FCF5F4 /* UHDPersistentStack.m */; };
-		8771EC761AB4972900026207 /* UHDPersistentStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FF70FD1924097E00FCF5F4 /* UHDPersistentStack.m */; };
+		8771EC7A1AB49A0400026207 /* UHDPersistentStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FF70FD1924097E00FCF5F4 /* UHDPersistentStack.m */; };
+		8771EC7C1AB49A1300026207 /* UHDPersistentStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 87FF70FC1924097E00FCF5F4 /* UHDPersistentStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8771EC871AB4A08F00026207 /* UHDRemoteKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8771EC861AB4A08F00026207 /* UHDRemoteKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8771EC8D1AB4A08F00026207 /* UHDRemoteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8771EC821AB4A08F00026207 /* UHDRemoteKit.framework */; };
+		8771EC961AB4A08F00026207 /* UHDRemoteKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8771EC951AB4A08F00026207 /* UHDRemoteKitTests.swift */; };
+		8771EC991AB4A08F00026207 /* UHDRemoteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8771EC821AB4A08F00026207 /* UHDRemoteKit.framework */; };
+		8771EC9A1AB4A08F00026207 /* UHDRemoteKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8771EC821AB4A08F00026207 /* UHDRemoteKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		877AEE8819BD370300ED270D /* UHDBuildingAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 877AEE8719BD370300ED270D /* UHDBuildingAnnotationView.m */; };
 		87839F3A19D4D70B00E5E6C8 /* MensaDayPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87839F3819D4D70B00E5E6C8 /* MensaDayPickerCell.swift */; };
 		87839F3D19D52A3B00E5E6C8 /* MensaDayPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87839F3C19D52A3B00E5E6C8 /* MensaDayPicker.swift */; };
@@ -147,6 +152,27 @@
 			remoteGlobalIDString = 87539B1E19DB23F00084658D;
 			remoteInfo = VILogKit;
 		};
+		8771EC8E1AB4A08F00026207 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87CBE0801908810B0029D9AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8771EC811AB4A08F00026207;
+			remoteInfo = UHDRemoteKit;
+		};
+		8771EC901AB4A08F00026207 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87CBE0801908810B0029D9AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 87CBE0871908810B0029D9AF;
+			remoteInfo = "uni-hd";
+		};
+		8771EC971AB4A08F00026207 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87CBE0801908810B0029D9AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8771EC811AB4A08F00026207;
+			remoteInfo = UHDRemoteKit;
+		};
 		8799A5E01AB48B6900117267 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 87CBE0801908810B0029D9AF /* Project object */;
@@ -185,6 +211,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				87475EC219E32B300028A9BF /* VILogKit.framework in Embed Frameworks */,
+				8771EC9A1AB4A08F00026207 /* UHDRemoteKit.framework in Embed Frameworks */,
 				8799A5EC1AB48B6900117267 /* UHDPersistenceKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -276,6 +303,12 @@
 		8765FDDF1A405DFD00632160 /* UITableView+ParallaxedHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+ParallaxedHeader.swift"; path = "VIOSFramework/Categories/UITableView+ParallaxedHeader.swift"; sourceTree = "<group>"; };
 		876799121A28EB4400372BD3 /* CampusRegionOverlayRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampusRegionOverlayRenderer.swift; sourceTree = "<group>"; };
 		876B73BE1A5AD21200F69C3F /* UIViewController+TabSwitching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+TabSwitching.swift"; sourceTree = "<group>"; };
+		8771EC821AB4A08F00026207 /* UHDRemoteKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UHDRemoteKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8771EC851AB4A08F00026207 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8771EC861AB4A08F00026207 /* UHDRemoteKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UHDRemoteKit.h; sourceTree = "<group>"; };
+		8771EC8C1AB4A08F00026207 /* UHDRemoteKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UHDRemoteKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8771EC941AB4A08F00026207 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8771EC951AB4A08F00026207 /* UHDRemoteKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UHDRemoteKitTests.swift; sourceTree = "<group>"; };
 		877AEE8619BD370300ED270D /* UHDBuildingAnnotationView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDBuildingAnnotationView.h; sourceTree = "<group>"; };
 		877AEE8719BD370300ED270D /* UHDBuildingAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDBuildingAnnotationView.m; sourceTree = "<group>"; };
 		87839F3819D4D70B00E5E6C8 /* MensaDayPickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MensaDayPickerCell.swift; sourceTree = "<group>"; };
@@ -338,8 +371,8 @@
 		87FCA9951995901200B3A55F /* UHDRemoteManagedLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDRemoteManagedLocation.m; sourceTree = "<group>"; };
 		87FF70F91923F33500FCF5F4 /* UHDNewsItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsItem.h; sourceTree = "<group>"; };
 		87FF70FA1923F33500FCF5F4 /* UHDNewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsItem.m; sourceTree = "<group>"; };
-		87FF70FC1924097E00FCF5F4 /* UHDPersistentStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDPersistentStack.h; sourceTree = "<group>"; };
-		87FF70FD1924097E00FCF5F4 /* UHDPersistentStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDPersistentStack.m; sourceTree = "<group>"; };
+		87FF70FC1924097E00FCF5F4 /* UHDPersistentStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UHDPersistentStack.h; path = "../uni-hd/UHDPersistentStack.h"; sourceTree = "<group>"; };
+		87FF70FD1924097E00FCF5F4 /* UHDPersistentStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UHDPersistentStack.m; path = "../uni-hd/UHDPersistentStack.m"; sourceTree = "<group>"; };
 		94F484901936620B0063BF9F /* UHDTriangleStatusImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTriangleStatusImageView.h; sourceTree = "<group>"; };
 		94F484911936620B0063BF9F /* UHDTriangleStatusImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDTriangleStatusImageView.m; sourceTree = "<group>"; };
 		DC21B6D51923D27500BAD26D /* UHDDailyMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDDailyMenu.h; sourceTree = "<group>"; };
@@ -373,6 +406,21 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		8771EC7E1AB4A08F00026207 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8771EC891AB4A08F00026207 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8771EC8D1AB4A08F00026207 /* UHDRemoteKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8799A5D01AB48B6900117267 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -410,6 +458,7 @@
 				0A6028821A3B4BF00032EDEB /* EventKit.framework in Frameworks */,
 				0A6028761A3B22220032EDEB /* MessageUI.framework in Frameworks */,
 				DC33313C19976456009AA35A /* CoreLocation.framework in Frameworks */,
+				8771EC991AB4A08F00026207 /* UHDRemoteKit.framework in Frameworks */,
 				87E85276195728A7007503B8 /* MapKit.framework in Frameworks */,
 				8799A5EB1AB48B6900117267 /* UHDPersistenceKit.framework in Frameworks */,
 				87F826CD190D41450008144F /* CoreData.framework in Frameworks */,
@@ -688,13 +737,38 @@
 			name = Colors;
 			sourceTree = "<group>";
 		};
-		8771EC791AB4996C00026207 /* Data Persistence */ = {
+		8771EC831AB4A08F00026207 /* UHDRemoteKit */ = {
 			isa = PBXGroup;
 			children = (
-				87FF70FC1924097E00FCF5F4 /* UHDPersistentStack.h */,
-				87FF70FD1924097E00FCF5F4 /* UHDPersistentStack.m */,
+				8771EC861AB4A08F00026207 /* UHDRemoteKit.h */,
+				8771EC841AB4A08F00026207 /* Supporting Files */,
 			);
-			name = "Data Persistence";
+			path = UHDRemoteKit;
+			sourceTree = "<group>";
+		};
+		8771EC841AB4A08F00026207 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8771EC851AB4A08F00026207 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		8771EC921AB4A08F00026207 /* UHDRemoteKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				8771EC951AB4A08F00026207 /* UHDRemoteKitTests.swift */,
+				8771EC931AB4A08F00026207 /* Supporting Files */,
+			);
+			path = UHDRemoteKitTests;
+			sourceTree = "<group>";
+		};
+		8771EC931AB4A08F00026207 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				8771EC941AB4A08F00026207 /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		87902D841A25332100186CC5 /* CachedTileOverlay */ = {
@@ -709,6 +783,8 @@
 			isa = PBXGroup;
 			children = (
 				8799A5D81AB48B6900117267 /* UHDPersistenceKit.h */,
+				87FF70FC1924097E00FCF5F4 /* UHDPersistentStack.h */,
+				87FF70FD1924097E00FCF5F4 /* UHDPersistentStack.m */,
 				8799A5D61AB48B6900117267 /* Supporting Files */,
 			);
 			path = UHDPersistenceKit;
@@ -823,6 +899,8 @@
 				8799DA99192AB4D9009B3CAB /* uni-hd-tests */,
 				8799A5D51AB48B6900117267 /* UHDPersistenceKit */,
 				8799A5E41AB48B6900117267 /* UHDPersistenceKitTests */,
+				8771EC831AB4A08F00026207 /* UHDRemoteKit */,
+				8771EC921AB4A08F00026207 /* UHDRemoteKitTests */,
 				87CBE08A1908810B0029D9AF /* Frameworks */,
 				87CBE0891908810B0029D9AF /* Products */,
 				0B92851A18BB90357BD92164 /* Pods */,
@@ -836,6 +914,8 @@
 				8799DA95192AB4D9009B3CAB /* uni-hd-tests.xctest */,
 				8799A5D41AB48B6900117267 /* UHDPersistenceKit.framework */,
 				8799A5DE1AB48B6900117267 /* UHDPersistenceKitTests.xctest */,
+				8771EC821AB4A08F00026207 /* UHDRemoteKit.framework */,
+				8771EC8C1AB4A08F00026207 /* UHDRemoteKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -991,7 +1071,6 @@
 		87F826CB190D40B40008144F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				8771EC791AB4996C00026207 /* Data Persistence */,
 				87B974EA192D68C30080AA40 /* Remote Datasources */,
 			);
 			name = Model;
@@ -1092,10 +1171,19 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		8771EC7F1AB4A08F00026207 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8771EC871AB4A08F00026207 /* UHDRemoteKit.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8799A5D11AB48B6900117267 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8771EC7C1AB49A1300026207 /* UHDPersistentStack.h in Headers */,
 				8799A5D91AB48B6900117267 /* UHDPersistenceKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1103,6 +1191,43 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		8771EC811AB4A08F00026207 /* UHDRemoteKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8771EC9B1AB4A09000026207 /* Build configuration list for PBXNativeTarget "UHDRemoteKit" */;
+			buildPhases = (
+				8771EC7D1AB4A08F00026207 /* Sources */,
+				8771EC7E1AB4A08F00026207 /* Frameworks */,
+				8771EC7F1AB4A08F00026207 /* Headers */,
+				8771EC801AB4A08F00026207 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = UHDRemoteKit;
+			productName = UHDRemoteKit;
+			productReference = 8771EC821AB4A08F00026207 /* UHDRemoteKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		8771EC8B1AB4A08F00026207 /* UHDRemoteKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8771EC9E1AB4A09000026207 /* Build configuration list for PBXNativeTarget "UHDRemoteKitTests" */;
+			buildPhases = (
+				8771EC881AB4A08F00026207 /* Sources */,
+				8771EC891AB4A08F00026207 /* Frameworks */,
+				8771EC8A1AB4A08F00026207 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8771EC8F1AB4A08F00026207 /* PBXTargetDependency */,
+				8771EC911AB4A08F00026207 /* PBXTargetDependency */,
+			);
+			name = UHDRemoteKitTests;
+			productName = UHDRemoteKitTests;
+			productReference = 8771EC8C1AB4A08F00026207 /* UHDRemoteKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		8799A5D31AB48B6900117267 /* UHDPersistenceKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8799A5F21AB48B6900117267 /* Build configuration list for PBXNativeTarget "UHDPersistenceKit" */;
@@ -1181,6 +1306,7 @@
 			dependencies = (
 				87475EC419E32B300028A9BF /* PBXTargetDependency */,
 				8799A5EA1AB48B6900117267 /* PBXTargetDependency */,
+				8771EC981AB4A08F00026207 /* PBXTargetDependency */,
 			);
 			name = "uni-hd";
 			productName = "uni-hd";
@@ -1197,6 +1323,14 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Universit&#228;t Heidelberg";
 				TargetAttributes = {
+					8771EC811AB4A08F00026207 = {
+						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = SZEDS83NVF;
+					};
+					8771EC8B1AB4A08F00026207 = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = 87CBE0871908810B0029D9AF;
+					};
 					8799A5D31AB48B6900117267 = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = SZEDS83NVF;
@@ -1237,6 +1371,8 @@
 				8799DA94192AB4D9009B3CAB /* uni-hd-tests */,
 				8799A5D31AB48B6900117267 /* UHDPersistenceKit */,
 				8799A5DD1AB48B6900117267 /* UHDPersistenceKitTests */,
+				8771EC811AB4A08F00026207 /* UHDRemoteKit */,
+				8771EC8B1AB4A08F00026207 /* UHDRemoteKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1259,6 +1395,20 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		8771EC801AB4A08F00026207 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8771EC8A1AB4A08F00026207 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8799A5D21AB48B6900117267 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1438,10 +1588,26 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		8771EC7D1AB4A08F00026207 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8771EC881AB4A08F00026207 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8771EC961AB4A08F00026207 /* UHDRemoteKitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8799A5CF1AB48B6900117267 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8771EC7A1AB49A0400026207 /* UHDPersistentStack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1460,7 +1626,6 @@
 				8799DAAA192ABDE9009B3CAB /* VILogger.m in Sources */,
 				8799DAA8192AB4F8009B3CAB /* UHDDatabaseTests.m in Sources */,
 				8799DAA0192AB4D9009B3CAB /* UHDRemoteTests.m in Sources */,
-				8771EC761AB4972900026207 /* UHDPersistentStack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1499,7 +1664,6 @@
 				0A586D8E19646A6600DF86EE /* UHDTalkSpeaker.m in Sources */,
 				8733B3F619FA110D007263AC /* CircularProgressView+ConfigureForMensa.swift in Sources */,
 				870591DB19C0DDFA003E2906 /* UIImage+ImageEffects.m in Sources */,
-				8771EC751AB4972700026207 /* UHDPersistentStack.m in Sources */,
 				0BB49E1919ADC3F60025BD07 /* UHDCampusRegion.m in Sources */,
 				0B48B1D019C75FF7009C7977 /* UHDConfigureMapViewController.m in Sources */,
 				8733B3F219F9FFD6007263AC /* CircularProgressView.swift in Sources */,
@@ -1557,6 +1721,21 @@
 			name = VILogKit;
 			targetProxy = 87475EC319E32B300028A9BF /* PBXContainerItemProxy */;
 		};
+		8771EC8F1AB4A08F00026207 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8771EC811AB4A08F00026207 /* UHDRemoteKit */;
+			targetProxy = 8771EC8E1AB4A08F00026207 /* PBXContainerItemProxy */;
+		};
+		8771EC911AB4A08F00026207 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 87CBE0871908810B0029D9AF /* uni-hd */;
+			targetProxy = 8771EC901AB4A08F00026207 /* PBXContainerItemProxy */;
+		};
+		8771EC981AB4A08F00026207 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8771EC811AB4A08F00026207 /* UHDRemoteKit */;
+			targetProxy = 8771EC971AB4A08F00026207 /* PBXContainerItemProxy */;
+		};
 		8799A5E11AB48B6900117267 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 8799A5D31AB48B6900117267 /* UHDPersistenceKit */;
@@ -1601,10 +1780,106 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		8771EC9C1AB4A09000026207 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = UHDRemoteKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		8771EC9D1AB4A09000026207 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = UHDRemoteKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8771EC9F1AB4A09000026207 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = UHDRemoteKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/uni-hd.app/uni-hd";
+			};
+			name = Debug;
+		};
+		8771ECA01AB4A09000026207 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = UHDRemoteKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/uni-hd.app/uni-hd";
+			};
+			name = Release;
+		};
 		8799A5ED1AB48B6900117267 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2200AC222FDAAA1032DCAAD1 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1635,6 +1910,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3FCFBC5934DD37BB61FA6AC5 /* Pods.release.xcconfig */;
 			buildSettings = {
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1744,6 +2020,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1783,6 +2060,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -1866,6 +2144,22 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		8771EC9B1AB4A09000026207 /* Build configuration list for PBXNativeTarget "UHDRemoteKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8771EC9C1AB4A09000026207 /* Debug */,
+				8771EC9D1AB4A09000026207 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		8771EC9E1AB4A09000026207 /* Build configuration list for PBXNativeTarget "UHDRemoteKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8771EC9F1AB4A09000026207 /* Debug */,
+				8771ECA01AB4A09000026207 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		8799A5F21AB48B6900117267 /* Build configuration list for PBXNativeTarget "UHDPersistenceKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

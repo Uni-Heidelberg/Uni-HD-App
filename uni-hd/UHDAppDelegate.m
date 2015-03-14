@@ -9,7 +9,7 @@
 #import "UHDAppDelegate.h"
 
 // Persistent Stack
-#import "UHDPersistentStack.h"
+@import UHDPersistenceKit;
 
 // Remote Datasources
 #import "UHDRemoteDatasourceManager.h"
