@@ -1,0 +1,6 @@
+framework module RKCLLocationValueTransformer {
+  umbrella header "Pods-RKCLLocationValueTransformer-umbrella.h"
+
+  export *
+  module * { export * }
+}
