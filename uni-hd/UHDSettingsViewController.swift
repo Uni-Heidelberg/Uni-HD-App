@@ -8,9 +8,9 @@
 
 import UIKit
 
-class UHDSettingsViewController: UITableViewController {
+public class UHDSettingsViewController: UITableViewController {
 
-    var managedObjectContext: NSManagedObjectContext? {
+    public var managedObjectContext: NSManagedObjectContext? {
         didSet {
             if let oldValue = oldValue {
                 NSNotificationCenter.defaultCenter().removeObserver(self, name: NSManagedObjectContextDidSaveNotification, object: oldValue)
@@ -22,7 +22,7 @@ class UHDSettingsViewController: UITableViewController {
         }
     }
     
-    var userDefaultsChangeTriggered = false
+    private var userDefaultsChangeTriggered = false
     
     
     // MARK: UI Elements
@@ -35,18 +35,18 @@ class UHDSettingsViewController: UITableViewController {
     
     // MARK: Lifecycle
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.configureView()
     }
     
     // TODO: remove this, should not be necessary .. but call from managedObjectContextDidSave does not yield the correct countForFetchRequest
-    override func viewWillAppear(animated: Bool) {
+    override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.configureView()
     }
     
-    func configureView() {
+    private func configureView() {
         if !self.isViewLoaded() {
             return
         }
@@ -79,7 +79,7 @@ class UHDSettingsViewController: UITableViewController {
     
     // MARK: User Interaction
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath == tableView.indexPathForCell(sourcesCell) {
             if let sourcesNavC = UIStoryboard(name: "news", bundle: nil).instantiateViewControllerWithIdentifier("sourcesNav") as? UINavigationController {
                 if let sourcesVC = sourcesNavC.viewControllers[0] as? UHDNewsSourcesViewController {

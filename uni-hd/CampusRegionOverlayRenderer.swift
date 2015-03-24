@@ -20,12 +20,12 @@ func zoomLevelForZoomScale(scale: MKZoomScale) -> Int {
     return zoomLevel;
 }
 
-class CampusRegionOverlayRenderer: MKTileOverlayRenderer {
+public class CampusRegionOverlayRenderer: MKTileOverlayRenderer {
     
-    let tileOverlay: MKTileOverlay
-    let minimumZoomLevel: Int = 18
+    public let tileOverlay: MKTileOverlay
+    private let minimumZoomLevel: Int = 18
     
-    init(campusRegion: UHDCampusRegion) {
+    public init(campusRegion: UHDCampusRegion) {
 
         let tileOverlay = CachedTileOverlay(URLTemplate: "http://appserver.physik.uni-heidelberg.de/static/map-tiles/\(campusRegion.identifier)/{z}/{x}/{y}.png", cacheIdentifier: campusRegion.identifier) // TODO: use UHDRemoteStaticContentBaseURL
         tileOverlay.geometryFlipped = true
@@ -36,7 +36,7 @@ class CampusRegionOverlayRenderer: MKTileOverlayRenderer {
         super.init(overlay: tileOverlay)
     }
     
-    override func drawMapRect(mapRect: MKMapRect, zoomScale: MKZoomScale, inContext context: CGContext!) {
+    override public func drawMapRect(mapRect: MKMapRect, zoomScale: MKZoomScale, inContext context: CGContext!) {
         let zoomLevel = zoomLevelForZoomScale(zoomScale)
         if zoomLevel < minimumZoomLevel {
             CGContextSetAlpha(context, 0.2) // TODO: implement smooth fading

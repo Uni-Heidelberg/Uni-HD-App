@@ -7,7 +7,8 @@
 //
 
 #import "UHDMensaCell.h"
-
+#import <UHDKit/UHDKit-Swift.h>
+#import "UIColor+UHDColors.h"
 
 @interface UHDMensaCell()
 

@@ -3,38 +3,3 @@
 //
 //  The contents of this file are implicitly included at the beginning of every source file.
 //
-
-@import UIKit;
-@import Foundation;
-
-@import CoreData;
-#import <RestKit/RestKit.h>
-#import "NSManagedObject+VIInsertIntoContextCategory.h"
-
-@import MapKit;
-
-
-#import "VILogger.h"
-
-
-#define UHDRemoteAPIBaseURL @"http://appserver.physik.uni-heidelberg.de/api/"
-#define UHDRemoteStaticContentBaseURL @"http://appserver.physik.uni-heidelberg.de/static/"
-
-#define UHDRemoteDatasourceKeyNews @"UHDRemoteDatasourceKeyNews"
-#define UHDRemoteDatasourceKeyMensa @"UHDRemoteDatasourceKeyMensa"
-#define UHDRemoteDatasourceKeyMaps @"UHDRemoteDatasourceKeyMaps"
-
-#define UHDUserDefaultsKeySelectedMensaId @"UHDUserDefaultsKeySelectedMensaId"
-#define UHDUserDefaultsKeyMensaPriceCategory @"UHDUserDefaultsKeyMensaPriceCategory"
-#define UHDUserDefaultsKeyMapType @"UHDUserDefaultsKeyMapType"
-#define UHDUserDefaultsKeyShowCampusOverlay @"UHDUserDefaultsKeyShowCampusOverlay"
-
-
-#import "UHDRemoteDatasourceManager.h"
-
-
-#import "UIColor+UHDColors.h"
-
-
-// Swift classes
-#import "uni_hd-Swift.h"

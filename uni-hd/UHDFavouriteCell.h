@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import "RMSwipeTableViewCell.h"
+@import RMSwipeTableViewCell;
 
 @interface UHDFavouriteCell : RMSwipeTableViewCell
 

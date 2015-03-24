@@ -7,53 +7,129 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A0CEC0D19E44F55009C9F5B /* UHDReadIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0CEC0C19E44F55009C9F5B /* UHDReadIndicatorView.m */; };
-		0A2000521920F18A0014C977 /* UHDNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2000511920F18A0014C977 /* UHDNewsDetailViewController.m */; };
-		0A586D8E19646A6600DF86EE /* UHDTalkSpeaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A586D8D19646A6600DF86EE /* UHDTalkSpeaker.m */; };
-		0A5EFF321A0ECB3700A6C999 /* UHDNewsSourcesNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5EFF311A0ECB3700A6C999 /* UHDNewsSourcesNavigationBar.m */; };
 		0A6028761A3B22220032EDEB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A6028751A3B22220032EDEB /* MessageUI.framework */; };
 		0A6028821A3B4BF00032EDEB /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A6028811A3B4BF00032EDEB /* EventKit.framework */; };
-		0A7FACFA196B13DB00E2CC9D /* UHDEventItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7FACF9196B13DB00E2CC9D /* UHDEventItemCell.m */; };
-		0A7FAD00196B17B000E2CC9D /* UHDTalkItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7FACFF196B17B000E2CC9D /* UHDTalkItemCell.m */; };
-		0ABAE5F11A3A52E500E85E3E /* UHDTalkDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABAE5F01A3A52E500E85E3E /* UHDTalkDetailViewController.m */; };
-		0ABAE5F41A3A6F1500E85E3E /* UHDTalkDetailTitleAbstractCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABAE5F31A3A6F1500E85E3E /* UHDTalkDetailTitleAbstractCell.m */; };
-		0ABAE5FA1A3AE65A00E85E3E /* UHDTalkDetailSpaceTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABAE5F91A3AE65A00E85E3E /* UHDTalkDetailSpaceTimeCell.m */; };
-		0ACE17EA1A3F220B00732F58 /* TabBarIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ACE17E91A3F220B00732F58 /* TabBarIcons.xcassets */; };
-		0ACE47B519619BB9004F84F9 /* UHDEventItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE47B419619BB9004F84F9 /* UHDEventItem.m */; };
-		0ACE47B819619F07004F84F9 /* UHDTalkItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE47B719619F07004F84F9 /* UHDTalkItem.m */; };
-		0AD7F3721923F58E00F49551 /* UHDNewsItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7F3711923F58E00F49551 /* UHDNewsItemCell.m */; };
-		0AE2786C192A39CB00ED1641 /* UHDNewsSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE2786B192A39CB00ED1641 /* UHDNewsSource.m */; };
 		0AE477BD1A3D09D40071331E /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE477BC1A3D09D40071331E /* EventKitUI.framework */; };
-		0AF7D43B1A0C440400BD8423 /* UHDSourceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF7D43A1A0C440400BD8423 /* UHDSourceCollectionViewCell.m */; };
-		0B176E711931114200D3C916 /* UHDNewsSourcesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B176E6D1931114200D3C916 /* UHDNewsSourcesViewController.m */; };
-		0B176E7A1931117700D3C916 /* UHDNewsCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B176E791931117700D3C916 /* UHDNewsCategory.m */; };
-		0B355878199BC434008053EE /* UHDMapsSearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B355877199BC434008053EE /* UHDMapsSearchResultsViewController.m */; };
-		0B35587B199BC923008053EE /* UHDBuildingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B35587A199BC923008053EE /* UHDBuildingCell.m */; };
-		0B48B1D019C75FF7009C7977 /* UHDConfigureMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B48B1CF19C75FF7009C7977 /* UHDConfigureMapViewController.m */; };
-		0B84B31E1993A59C00813CC2 /* UHDBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B84B31D1993A59C00813CC2 /* UHDBuilding.m */; };
-		0BAB274C19A7296600CAB517 /* UHDLocationCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB274B19A7296600CAB517 /* UHDLocationCategory.m */; };
-		0BB49E1919ADC3F60025BD07 /* UHDCampusRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB49E1819ADC3F60025BD07 /* UHDCampusRegion.m */; };
-		870591DB19C0DDFA003E2906 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 870591DA19C0DDFA003E2906 /* UIImage+ImageEffects.m */; };
-		870591DF19C10922003E2906 /* VIImageOverlayRenderer.m in Sources */ = {isa = PBXBuildFile; fileRef = 870591DE19C10922003E2906 /* VIImageOverlayRenderer.m */; };
-		870D6BD71A3F7E2E00D49655 /* UHDAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 870D6BD61A3F7E2E00D49655 /* UHDAddress.m */; };
-		872673271A36053800ABC599 /* UHDSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872673261A36053800ABC599 /* UHDSettingsViewController.swift */; };
-		8726732A1A36055B00ABC599 /* settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872673291A36055B00ABC599 /* settings.storyboard */; };
-		872750F21964A1D100FDBC4E /* UHDMensaListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC87FDFA191AA12D00019F32 /* UHDMensaListViewController.m */; };
-		8733B3F219F9FFD6007263AC /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8733B3F119F9FFD6007263AC /* CircularProgressView.swift */; };
-		8733B3F619FA110D007263AC /* CircularProgressView+ConfigureForMensa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8733B3F519FA110D007263AC /* CircularProgressView+ConfigureForMensa.swift */; };
-		8733B3FA19FA13BD007263AC /* Hours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8733B3F919FA13BD007263AC /* Hours.swift */; };
+		5CFAACCD576B0E1B476CA696 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70156A1F78F7E9B762543BE5 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		87475EC119E32B300028A9BF /* VILogKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87475EBE19E32B240028A9BF /* VILogKit.framework */; };
 		87475EC219E32B300028A9BF /* VILogKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87475EBE19E32B240028A9BF /* VILogKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		87479AA11A3FA39D0084FBDA /* UHDBuildingDetailTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87479AA01A3FA39D0084FBDA /* UHDBuildingDetailTitleCell.swift */; };
-		87479AA41A3FA4220084FBDA /* UHDBuildingDetailPropertyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87479AA31A3FA4220084FBDA /* UHDBuildingDetailPropertyCell.swift */; };
-		87479AA61A3FA4810084FBDA /* UHDBuildingDetailLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87479AA51A3FA4810084FBDA /* UHDBuildingDetailLocationCell.swift */; };
-		87479AA81A3FA4D70084FBDA /* UHDBuildingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87479AA71A3FA4D70084FBDA /* UHDBuildingDetailViewController.swift */; };
-		875396021932B03C00DFEF19 /* UHDNewsSourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 875396011932B03C00DFEF19 /* UHDNewsSourceCell.m */; };
-		8755970E1A3492CB004AF87B /* VIMultilineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8755970D1A3492CB004AF87B /* VIMultilineLabel.swift */; };
 		875F43B71A1BD250006C4112 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 875F43B61A1BD250006C4112 /* LaunchScreen.storyboard */; };
-		8765FDE01A405DFD00632160 /* UITableView+ParallaxedHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765FDDF1A405DFD00632160 /* UITableView+ParallaxedHeader.swift */; };
-		876799131A28EB4400372BD3 /* CampusRegionOverlayRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876799121A28EB4400372BD3 /* CampusRegionOverlayRenderer.swift */; };
-		876B73BF1A5AD21200F69C3F /* UIViewController+TabSwitching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876B73BE1A5AD21200F69C3F /* UIViewController+TabSwitching.swift */; };
+		876C69151AB4C79600EE093B /* UHDKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 876C69141AB4C79600EE093B /* UHDKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C691B1AB4C79700EE093B /* UHDKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 876C69101AB4C79600EE093B /* UHDKit.framework */; };
+		876C69241AB4C79700EE093B /* UHDKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876C69231AB4C79700EE093B /* UHDKitTests.swift */; };
+		876C69271AB4C79700EE093B /* UHDKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 876C69101AB4C79600EE093B /* UHDKit.framework */; };
+		876C69281AB4C79700EE093B /* UHDKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 876C69101AB4C79600EE093B /* UHDKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		876C69311AB4C8BB00EE093B /* UHDPersistenceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8799A5D41AB48B6900117267 /* UHDPersistenceKit.framework */; };
+		876C69341AB4CA7700EE093B /* UHDMensaViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = DC602445193E23A500B06BF2 /* UHDMensaViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69351AB4CA7700EE093B /* UHDMensaListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = DC87FDF9191AA12D00019F32 /* UHDMensaListViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69361AB4CA7700EE093B /* UHDDailyMenuViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = DC21B6E11923FDC300BAD26D /* UHDDailyMenuViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69371AB4CA7700EE093B /* UHDFavouriteCell.h in Headers */ = {isa = PBXBuildFile; fileRef = DCD00A9E1996605400DCCB24 /* UHDFavouriteCell.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		876C69381AB4CA7700EE093B /* UHDFavouritesStarView.h in Headers */ = {isa = PBXBuildFile; fileRef = DC462EBF196964F50071ABBC /* UHDFavouritesStarView.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		876C69391AB4CA7700EE093B /* UHDMealCell.h in Headers */ = {isa = PBXBuildFile; fileRef = DC83C938192BDDA5004CC75B /* UHDMealCell.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		876C693A1AB4CA7700EE093B /* UHDMensaCell.h in Headers */ = {isa = PBXBuildFile; fileRef = DCD00AA51996996700DCCB24 /* UHDMensaCell.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		876C693B1AB4CA7700EE093B /* UHDMensaSectionHeaderView.h in Headers */ = {isa = PBXBuildFile; fileRef = DC4485B91A3F7DBB006CA0EC /* UHDMensaSectionHeaderView.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		876C693C1AB4CA7700EE093B /* UHDMensa.h in Headers */ = {isa = PBXBuildFile; fileRef = DC21B6DE1923D27600BAD26D /* UHDMensa.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C693D1AB4CA7700EE093B /* UHDMensaSection.h in Headers */ = {isa = PBXBuildFile; fileRef = DC21B6D81923D27600BAD26D /* UHDMensaSection.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C693E1AB4CA7700EE093B /* UHDDailyMenu.h in Headers */ = {isa = PBXBuildFile; fileRef = DC21B6D51923D27500BAD26D /* UHDDailyMenu.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C693F1AB4CA7700EE093B /* UHDMeal.h in Headers */ = {isa = PBXBuildFile; fileRef = DC21B6DB1923D27600BAD26D /* UHDMeal.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69401AB4CA7700EE093B /* UHDMensaRemoteDatasourceDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 87600EA2192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69411AB4CAB800EE093B /* UHDMensaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC602446193E23A500B06BF2 /* UHDMensaViewController.m */; };
+		876C69421AB4CAB800EE093B /* UHDMensaListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC87FDFA191AA12D00019F32 /* UHDMensaListViewController.m */; };
+		876C69431AB4CAB800EE093B /* UHDDailyMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6E21923FDC300BAD26D /* UHDDailyMenuViewController.m */; };
+		876C69441AB4CAB800EE093B /* mensa.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC87FDF7191AA00600019F32 /* mensa.storyboard */; };
+		876C69451AB4CAB800EE093B /* UHDFavouriteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD00A9F1996605400DCCB24 /* UHDFavouriteCell.m */; };
+		876C69461AB4CAB800EE093B /* UHDFavouritesStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC462EC0196964F60071ABBC /* UHDFavouritesStarView.m */; };
+		876C69471AB4CAB800EE093B /* UHDMealCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC83C939192BDDA5004CC75B /* UHDMealCell.m */; };
+		876C69481AB4CAB800EE093B /* UHDMensaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD00AA61996996800DCCB24 /* UHDMensaCell.m */; };
+		876C69491AB4CAB800EE093B /* UHDMensaSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC4485B71A3F7590006CA0EC /* UHDMensaSectionHeaderView.xib */; };
+		876C694A1AB4CAB800EE093B /* UHDMensaSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4485BA1A3F7DBC006CA0EC /* UHDMensaSectionHeaderView.m */; };
+		876C694B1AB4CAB800EE093B /* FavouriteMensenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5394A819F284D4004F6828 /* FavouriteMensenView.swift */; };
+		876C694C1AB4CAB800EE093B /* MensaDayPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87839F3C19D52A3B00E5E6C8 /* MensaDayPicker.swift */; };
+		876C694D1AB4CAB800EE093B /* MensaDayPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87839F3819D4D70B00E5E6C8 /* MensaDayPickerCell.swift */; };
+		876C694E1AB4CAB800EE093B /* CircularProgressView+ConfigureForMensa.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8733B3F519FA110D007263AC /* CircularProgressView+ConfigureForMensa.swift */; };
+		876C694F1AB4CAB800EE093B /* UHDMensa.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6DF1923D27600BAD26D /* UHDMensa.m */; };
+		876C69501AB4CAB800EE093B /* UHDMensaSection.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6D91923D27600BAD26D /* UHDMensaSection.m */; };
+		876C69511AB4CAB800EE093B /* UHDDailyMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6D61923D27500BAD26D /* UHDDailyMenu.m */; };
+		876C69521AB4CAB800EE093B /* UHDMeal.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6DC1923D27600BAD26D /* UHDMeal.m */; };
+		876C69531AB4CAB800EE093B /* Hours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8733B3F919FA13BD007263AC /* Hours.swift */; };
+		876C69541AB4CAB800EE093B /* UHDMensaRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87600EA3192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m */; };
+		876C69551AB4CAC100EE093B /* mensa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87DC1FA3191AB5C600395559 /* mensa.xcdatamodeld */; };
+		876C69561AB4CACD00EE093B /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87CBE0A91908810B0029D9AF /* Images.xcassets */; };
+		876C69571AB4CAFA00EE093B /* UHDNewsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 87EE2554191924E20092DF7F /* UHDNewsViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69581AB4CAFA00EE093B /* UHDNewsListViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 87F2BA4C1954789600034813 /* UHDNewsListViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69591AB4CAFA00EE093B /* UHDNewsDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A2000501920F18A0014C977 /* UHDNewsDetailViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C695A1AB4CAFA00EE093B /* UHDTalkDetailViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ABAE5EF1A3A52E500E85E3E /* UHDTalkDetailViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C695B1AB4CAFA00EE093B /* UHDNewsSourcesViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B176E6C1931114200D3C916 /* UHDNewsSourcesViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C695C1AB4CAFA00EE093B /* UHDNewsSourcesNavigationBar.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A5EFF301A0ECB3700A6C999 /* UHDNewsSourcesNavigationBar.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C695D1AB4CAFA00EE093B /* UHDSourceCollectionViewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AF7D4391A0C440400BD8423 /* UHDSourceCollectionViewCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C695E1AB4CAFA00EE093B /* UHDNewsSourceCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 875396001932B03C00DFEF19 /* UHDNewsSourceCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C695F1AB4CAFA00EE093B /* UHDNewsItemCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AD7F3701923F58E00F49551 /* UHDNewsItemCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69601AB4CAFA00EE093B /* UHDEventItemCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A7FACF8196B13DB00E2CC9D /* UHDEventItemCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69611AB4CAFA00EE093B /* UHDTalkItemCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A7FACFE196B17B000E2CC9D /* UHDTalkItemCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69621AB4CAFA00EE093B /* UHDReadIndicatorView.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A0CEC0B19E44F55009C9F5B /* UHDReadIndicatorView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69631AB4CAFA00EE093B /* UHDTalkDetailTitleAbstractCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ABAE5F21A3A6F1500E85E3E /* UHDTalkDetailTitleAbstractCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69641AB4CAFA00EE093B /* UHDTalkDetailSpaceTimeCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ABAE5F81A3AE65A00E85E3E /* UHDTalkDetailSpaceTimeCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69651AB4CAFA00EE093B /* UHDTalkSpeaker.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A586D8C19646A6600DF86EE /* UHDTalkSpeaker.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69661AB4CAFA00EE093B /* UHDTalkItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ACE47B619619F07004F84F9 /* UHDTalkItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69671AB4CAFA00EE093B /* UHDEventItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 0ACE47B319619BB9004F84F9 /* UHDEventItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69681AB4CAFA00EE093B /* UHDNewsItem.h in Headers */ = {isa = PBXBuildFile; fileRef = 87FF70F91923F33500FCF5F4 /* UHDNewsItem.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69691AB4CAFA00EE093B /* UHDNewsSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 0AE2786A192A39CB00ED1641 /* UHDNewsSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C696A1AB4CAFA00EE093B /* UHDNewsCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B176E781931117700D3C916 /* UHDNewsCategory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C696B1AB4CAFA00EE093B /* UHDNewsRemoteDatasourceDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 8701CE4E190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C696C1AB4CB1C00EE093B /* UHDNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE2555191924E20092DF7F /* UHDNewsViewController.m */; };
+		876C696D1AB4CB1C00EE093B /* UHDNewsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F2BA4D1954789600034813 /* UHDNewsListViewController.m */; };
+		876C696E1AB4CB1C00EE093B /* UHDNewsDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A2000511920F18A0014C977 /* UHDNewsDetailViewController.m */; };
+		876C696F1AB4CB1C00EE093B /* UHDTalkDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABAE5F01A3A52E500E85E3E /* UHDTalkDetailViewController.m */; };
+		876C69701AB4CB1C00EE093B /* UHDNewsSourcesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B176E6D1931114200D3C916 /* UHDNewsSourcesViewController.m */; };
+		876C69711AB4CB1C00EE093B /* news.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87DBE7F31919C3F700C16970 /* news.storyboard */; };
+		876C69721AB4CB1C00EE093B /* UHDNewsSourcesNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5EFF311A0ECB3700A6C999 /* UHDNewsSourcesNavigationBar.m */; };
+		876C69731AB4CB1C00EE093B /* UHDSourceCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF7D43A1A0C440400BD8423 /* UHDSourceCollectionViewCell.m */; };
+		876C69741AB4CB1C00EE093B /* UHDNewsSourceCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 875396011932B03C00DFEF19 /* UHDNewsSourceCell.m */; };
+		876C69751AB4CB1C00EE093B /* UHDNewsItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AD7F3711923F58E00F49551 /* UHDNewsItemCell.m */; };
+		876C69761AB4CB1C00EE093B /* UHDEventItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7FACF9196B13DB00E2CC9D /* UHDEventItemCell.m */; };
+		876C69771AB4CB1C00EE093B /* UHDTalkItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A7FACFF196B17B000E2CC9D /* UHDTalkItemCell.m */; };
+		876C69781AB4CB1C00EE093B /* UHDReadIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0CEC0C19E44F55009C9F5B /* UHDReadIndicatorView.m */; };
+		876C69791AB4CB1C00EE093B /* UHDTalkDetailTitleAbstractCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABAE5F31A3A6F1500E85E3E /* UHDTalkDetailTitleAbstractCell.m */; };
+		876C697A1AB4CB1C00EE093B /* UHDTalkDetailSpaceTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ABAE5F91A3AE65A00E85E3E /* UHDTalkDetailSpaceTimeCell.m */; };
+		876C697B1AB4CB1C00EE093B /* UHDTalkSpeaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A586D8D19646A6600DF86EE /* UHDTalkSpeaker.m */; };
+		876C697C1AB4CB1C00EE093B /* UHDTalkItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE47B719619F07004F84F9 /* UHDTalkItem.m */; };
+		876C697D1AB4CB1C00EE093B /* UHDEventItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ACE47B419619BB9004F84F9 /* UHDEventItem.m */; };
+		876C697E1AB4CB1C00EE093B /* UHDNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FF70FA1923F33500FCF5F4 /* UHDNewsItem.m */; };
+		876C697F1AB4CB1C00EE093B /* UHDNewsSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AE2786B192A39CB00ED1641 /* UHDNewsSource.m */; };
+		876C69801AB4CB1C00EE093B /* UHDNewsCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B176E791931117700D3C916 /* UHDNewsCategory.m */; };
+		876C69811AB4CB1C00EE093B /* UHDNewsRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8701CE4F190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.m */; };
+		876C69821AB4CB2300EE093B /* news.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87F826CE190D422F0008144F /* news.xcdatamodeld */; };
+		876C69831AB4CB4800EE093B /* UHDMapsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 87E852781957297A007503B8 /* UHDMapsViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69841AB4CB4800EE093B /* UHDMapsSearchResultsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B355876199BC434008053EE /* UHDMapsSearchResultsViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69851AB4CB4800EE093B /* UHDConfigureMapViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B48B1CE19C75FF7009C7977 /* UHDConfigureMapViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69861AB4CB4800EE093B /* UHDBuildingCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B355879199BC923008053EE /* UHDBuildingCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69871AB4CB4800EE093B /* UHDBuildingAnnotationView.h in Headers */ = {isa = PBXBuildFile; fileRef = 877AEE8619BD370300ED270D /* UHDBuildingAnnotationView.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69881AB4CB4800EE093B /* UHDRemoteManagedLocation.h in Headers */ = {isa = PBXBuildFile; fileRef = 87FCA9941995901200B3A55F /* UHDRemoteManagedLocation.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69891AB4CB4800EE093B /* UHDCampusRegion.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BB49E1719ADC3F60025BD07 /* UHDCampusRegion.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C698A1AB4CB4800EE093B /* UHDBuilding.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B84B31C1993A59C00813CC2 /* UHDBuilding.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C698B1AB4CB4800EE093B /* UHDLocationCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BAB274A19A7296600CAB517 /* UHDLocationCategory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C698C1AB4CB4800EE093B /* UHDAddress.h in Headers */ = {isa = PBXBuildFile; fileRef = 870D6BD51A3F7E2E00D49655 /* UHDAddress.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C698D1AB4CB4800EE093B /* UHDMapsRemoteDatasourceDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BEC8EAF1993B40A00EAB8F6 /* UHDMapsRemoteDatasourceDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C698E1AB4CB6300EE093B /* UHDMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E852791957297A007503B8 /* UHDMapsViewController.m */; };
+		876C698F1AB4CB6300EE093B /* UHDMapsSearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B355877199BC434008053EE /* UHDMapsSearchResultsViewController.m */; };
+		876C69901AB4CB6300EE093B /* UHDConfigureMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B48B1CF19C75FF7009C7977 /* UHDConfigureMapViewController.m */; };
+		876C69911AB4CB6300EE093B /* UHDBuildingDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87479AA71A3FA4D70084FBDA /* UHDBuildingDetailViewController.swift */; };
+		876C69921AB4CB6300EE093B /* maps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87E85273195727E4007503B8 /* maps.storyboard */; };
+		876C69931AB4CB6300EE093B /* UHDBuildingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B35587A199BC923008053EE /* UHDBuildingCell.m */; };
+		876C69941AB4CB6300EE093B /* UHDBuildingDetailTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87479AA01A3FA39D0084FBDA /* UHDBuildingDetailTitleCell.swift */; };
+		876C69951AB4CB6300EE093B /* UHDBuildingDetailPropertyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87479AA31A3FA4220084FBDA /* UHDBuildingDetailPropertyCell.swift */; };
+		876C69961AB4CB6300EE093B /* UHDBuildingDetailLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87479AA51A3FA4810084FBDA /* UHDBuildingDetailLocationCell.swift */; };
+		876C69971AB4CB6300EE093B /* UHDBuildingAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 877AEE8719BD370300ED270D /* UHDBuildingAnnotationView.m */; };
+		876C69981AB4CB6300EE093B /* CampusRegionOverlayRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876799121A28EB4400372BD3 /* CampusRegionOverlayRenderer.swift */; };
+		876C69991AB4CB6300EE093B /* UHDRemoteManagedLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FCA9951995901200B3A55F /* UHDRemoteManagedLocation.m */; };
+		876C699A1AB4CB6300EE093B /* UHDCampusRegion.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BB49E1819ADC3F60025BD07 /* UHDCampusRegion.m */; };
+		876C699B1AB4CB6300EE093B /* UHDBuilding.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B84B31D1993A59C00813CC2 /* UHDBuilding.m */; };
+		876C699C1AB4CB6300EE093B /* UHDLocationCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BAB274B19A7296600CAB517 /* UHDLocationCategory.m */; };
+		876C699D1AB4CB6300EE093B /* UHDAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 870D6BD61A3F7E2E00D49655 /* UHDAddress.m */; };
+		876C699E1AB4CB6300EE093B /* UHDMapsRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BEC8EB01993B40A00EAB8F6 /* UHDMapsRemoteDatasourceDelegate.m */; };
+		876C699F1AB4CB6900EE093B /* maps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87FCA99119958EB100B3A55F /* maps.xcdatamodeld */; };
+		876C69A01AB4CB7700EE093B /* UIColor+UHDColors.h in Headers */ = {isa = PBXBuildFile; fileRef = 87B276CD192E04110057B505 /* UIColor+UHDColors.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		876C69A11AB4CB7B00EE093B /* UIColor+UHDColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B276CE192E04110057B505 /* UIColor+UHDColors.m */; };
 		8771EC7A1AB49A0400026207 /* UHDPersistentStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FF70FD1924097E00FCF5F4 /* UHDPersistentStack.m */; };
 		8771EC7C1AB49A1300026207 /* UHDPersistentStack.h in Headers */ = {isa = PBXBuildFile; fileRef = 87FF70FC1924097E00FCF5F4 /* UHDPersistentStack.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8771EC871AB4A08F00026207 /* UHDRemoteKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8771EC861AB4A08F00026207 /* UHDRemoteKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -64,18 +140,8 @@
 		8771ECA11AB4A14500026207 /* UHDRemoteDatasourceManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 87B974E3192D57330080AA40 /* UHDRemoteDatasourceManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8771ECA21AB4A1C200026207 /* UHDRemoteDatasourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B974E4192D57330080AA40 /* UHDRemoteDatasourceManager.m */; };
 		8771ECA31AB4A1C600026207 /* UHDRemoteDatasource.h in Headers */ = {isa = PBXBuildFile; fileRef = 8701CE4A190C00A600A18F82 /* UHDRemoteDatasource.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		8771ECA71AB4A1D600026207 /* UHDRemoteManagedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 87E8527B19572BD4007503B8 /* UHDRemoteManagedObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8771ECA91AB4A1E500026207 /* UHDRemoteDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8701CE4B190C00A600A18F82 /* UHDRemoteDatasource.m */; };
-		8771ECAD1AB4A1E500026207 /* UHDRemoteManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E8527C19572BD4007503B8 /* UHDRemoteManagedObject.m */; };
-		877AEE8819BD370300ED270D /* UHDBuildingAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 877AEE8719BD370300ED270D /* UHDBuildingAnnotationView.m */; };
-		87839F3A19D4D70B00E5E6C8 /* MensaDayPickerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87839F3819D4D70B00E5E6C8 /* MensaDayPickerCell.swift */; };
-		87839F3D19D52A3B00E5E6C8 /* MensaDayPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87839F3C19D52A3B00E5E6C8 /* MensaDayPicker.swift */; };
-		87902D831A25331200186CC5 /* CachedTileOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87902D821A25331200186CC5 /* CachedTileOverlay.swift */; };
 		8798B4781AB4A365001E6C87 /* VIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B974E7192D5A360080AA40 /* VIManager.m */; };
-		8798B4791AB4A399001E6C87 /* NSManagedObject+VIInsertIntoContextCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A8633719196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m */; };
-		8798B47B1AB4A435001E6C87 /* UHDNewsRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8701CE4F190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.m */; };
-		8798B47C1AB4A435001E6C87 /* UHDMensaRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87600EA3192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m */; };
-		8798B47D1AB4A435001E6C87 /* UHDMapsRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BEC8EB01993B40A00EAB8F6 /* UHDMapsRemoteDatasourceDelegate.m */; };
 		8799A5D91AB48B6900117267 /* UHDPersistenceKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 8799A5D81AB48B6900117267 /* UHDPersistenceKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8799A5DF1AB48B6900117267 /* UHDPersistenceKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8799A5D41AB48B6900117267 /* UHDPersistenceKit.framework */; };
 		8799A5E81AB48B6900117267 /* UHDPersistenceKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8799A5E71AB48B6900117267 /* UHDPersistenceKitTests.swift */; };
@@ -87,51 +153,46 @@
 		8799DA9E192AB4D9009B3CAB /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 8799DA9C192AB4D9009B3CAB /* InfoPlist.strings */; };
 		8799DAA0192AB4D9009B3CAB /* UHDRemoteTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8799DA9F192AB4D9009B3CAB /* UHDRemoteTests.m */; };
 		8799DAA8192AB4F8009B3CAB /* UHDDatabaseTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 8799DAA7192AB4F8009B3CAB /* UHDDatabaseTests.m */; };
-		8799DAAA192ABDE9009B3CAB /* VILogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F826E9190D700E0008144F /* VILogger.m */; };
-		87A8633819196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A8633719196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m */; };
-		87B276CF192E04110057B505 /* UIColor+UHDColors.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B276CE192E04110057B505 /* UIColor+UHDColors.m */; };
+		87A49B9F1AC1BDC1004FA9A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A49B9E1AC1BDC1004FA9A4 /* Constants.swift */; };
+		87A49BA21AC1BE44004FA9A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A49BA11AC1BE44004FA9A4 /* Constants.swift */; };
+		87A49BAA1AC1CF96004FA9A4 /* VILogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 87A49BA61AC1CF96004FA9A4 /* VILogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		87A49BAE1AC1CF96004FA9A4 /* VILogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A49BA71AC1CF96004FA9A4 /* VILogger.m */; };
+		87A49BAF1AC1D353004FA9A4 /* UIViewController+TabSwitching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876B73BE1A5AD21200F69C3F /* UIViewController+TabSwitching.swift */; };
+		87A49BB21AC1D804004FA9A4 /* AppImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87A49BB11AC1D804004FA9A4 /* AppImages.xcassets */; };
+		87A49BB31AC1D9FD004FA9A4 /* TabBarIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ACE17E91A3F220B00732F58 /* TabBarIcons.xcassets */; };
+		87A49BB41AC1DB44004FA9A4 /* UHDSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872673261A36053800ABC599 /* UHDSettingsViewController.swift */; };
+		87A49BB51AC1DB49004FA9A4 /* settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872673291A36055B00ABC599 /* settings.storyboard */; };
+		87A49BB61AC1DBA9004FA9A4 /* NSManagedObject+VIInsertIntoContextCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = 87A8633619196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		87A49BB81AC1DDA7004FA9A4 /* VIFetchedResultsControllerDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 87E23FF61AB2435600A3C39F /* VIFetchedResultsControllerDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		87A49BBC1AC1DF5D004FA9A4 /* UIImage+ImageEffects.h in Headers */ = {isa = PBXBuildFile; fileRef = 87A49BBA1AC1DF5D004FA9A4 /* UIImage+ImageEffects.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		87A49BBD1AC1DF5D004FA9A4 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A49BBB1AC1DF5D004FA9A4 /* UIImage+ImageEffects.m */; };
+		87A71D861AB4CE83004C0FD3 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8733B3F119F9FFD6007263AC /* CircularProgressView.swift */; };
+		87A71D881AB4CEB7004C0FD3 /* NSManagedObject+VIInsertIntoContextCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A8633719196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m */; };
+		87A71D891AB4CECD004C0FD3 /* UITableView+ParallaxedHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8765FDDF1A405DFD00632160 /* UITableView+ParallaxedHeader.swift */; };
+		87A71D8E1AB4CEF7004C0FD3 /* VIManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 87B974E6192D5A360080AA40 /* VIManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		87A71D901AB4CF17004C0FD3 /* VIFetchedResultsControllerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E23FF71AB2435600A3C39F /* VIFetchedResultsControllerDataSource.m */; };
+		87A71D911AB4CF27004C0FD3 /* CachedTileOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87902D821A25331200186CC5 /* CachedTileOverlay.swift */; };
+		87A71D921AB4CF2D004C0FD3 /* VIMultilineLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8755970D1A3492CB004AF87B /* VIMultilineLabel.swift */; };
+		87A71D951AB4D05B004C0FD3 /* UHDRemoteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8771EC821AB4A08F00026207 /* UHDRemoteKit.framework */; };
+		87A71D981AB4D07D004C0FD3 /* UHDRemoteManagedObject.h in Headers */ = {isa = PBXBuildFile; fileRef = 87E8527B19572BD4007503B8 /* UHDRemoteManagedObject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		87A71D991AB4D082004C0FD3 /* UHDRemoteManagedObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E8527C19572BD4007503B8 /* UHDRemoteManagedObject.m */; };
+		87A71D9C1AB4D29F004C0FD3 /* VILogKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87475EBE19E32B240028A9BF /* VILogKit.framework */; };
+		87A71D9F1AB4D2B6004C0FD3 /* VILogKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87475EBE19E32B240028A9BF /* VILogKit.framework */; };
+		87A71DA41AB4D2C9004C0FD3 /* VILogKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87475EBE19E32B240028A9BF /* VILogKit.framework */; };
 		87CBE08C1908810B0029D9AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08B1908810B0029D9AF /* Foundation.framework */; };
 		87CBE08E1908810B0029D9AF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08D1908810B0029D9AF /* CoreGraphics.framework */; };
 		87CBE0901908810B0029D9AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08F1908810B0029D9AF /* UIKit.framework */; };
 		87CBE0961908810B0029D9AF /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 87CBE0941908810B0029D9AF /* InfoPlist.strings */; };
 		87CBE0981908810B0029D9AF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CBE0971908810B0029D9AF /* main.m */; };
 		87CBE09C1908810B0029D9AF /* UHDAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 87CBE09B1908810B0029D9AF /* UHDAppDelegate.m */; };
-		87CBE0AA1908810B0029D9AF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87CBE0A91908810B0029D9AF /* Images.xcassets */; };
-		87DBE7F41919C3F700C16970 /* news.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87DBE7F31919C3F700C16970 /* news.storyboard */; };
-		87DC1FA5191AB5C600395559 /* mensa.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87DC1FA3191AB5C600395559 /* mensa.xcdatamodeld */; };
-		87E23FF81AB2435600A3C39F /* VIFetchedResultsControllerDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E23FF71AB2435600A3C39F /* VIFetchedResultsControllerDataSource.m */; };
-		87E85274195727E4007503B8 /* maps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87E85273195727E4007503B8 /* maps.storyboard */; };
 		87E85276195728A7007503B8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E85275195728A7007503B8 /* MapKit.framework */; };
-		87E8527A1957297A007503B8 /* UHDMapsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87E852791957297A007503B8 /* UHDMapsViewController.m */; };
-		87EE2556191924E20092DF7F /* UHDNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87EE2555191924E20092DF7F /* UHDNewsViewController.m */; };
-		87F2BA4E1954789600034813 /* UHDNewsListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F2BA4D1954789600034813 /* UHDNewsListViewController.m */; };
 		87F826CD190D41450008144F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87F826CC190D41450008144F /* CoreData.framework */; };
-		87F826D0190D422F0008144F /* news.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87F826CE190D422F0008144F /* news.xcdatamodeld */; };
-		87F826EA190D700E0008144F /* VILogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 87F826E9190D700E0008144F /* VILogger.m */; };
-		87FCA99319958EB100B3A55F /* maps.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87FCA99119958EB100B3A55F /* maps.xcdatamodeld */; };
-		87FCA9961995901200B3A55F /* UHDRemoteManagedLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FCA9951995901200B3A55F /* UHDRemoteManagedLocation.m */; };
-		87FF70FB1923F33500FCF5F4 /* UHDNewsItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 87FF70FA1923F33500FCF5F4 /* UHDNewsItem.m */; };
 		91DFADE58FD5ED08263534BE /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70156A1F78F7E9B762543BE5 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		94F484921936620B0063BF9F /* UHDTriangleStatusImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 94F484911936620B0063BF9F /* UHDTriangleStatusImageView.m */; };
 		A8430D07BAF9CCADBCEF2CD2 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70156A1F78F7E9B762543BE5 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		AB8B9502E40C13406867FC6F /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70156A1F78F7E9B762543BE5 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		C8A2747198674D11925252D8 /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 		D40B8AD7B3BBFD4C70A41AD8 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70156A1F78F7E9B762543BE5 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		DC21B6D71923D27500BAD26D /* UHDDailyMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6D61923D27500BAD26D /* UHDDailyMenu.m */; };
-		DC21B6DA1923D27600BAD26D /* UHDMensaSection.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6D91923D27600BAD26D /* UHDMensaSection.m */; };
-		DC21B6DD1923D27600BAD26D /* UHDMeal.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6DC1923D27600BAD26D /* UHDMeal.m */; };
-		DC21B6E01923D27600BAD26D /* UHDMensa.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6DF1923D27600BAD26D /* UHDMensa.m */; };
-		DC21B6E31923FDC300BAD26D /* UHDDailyMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC21B6E21923FDC300BAD26D /* UHDDailyMenuViewController.m */; };
 		DC33313C19976456009AA35A /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC33313B19976456009AA35A /* CoreLocation.framework */; };
-		DC4485B81A3F7590006CA0EC /* UHDMensaSectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DC4485B71A3F7590006CA0EC /* UHDMensaSectionHeaderView.xib */; };
-		DC4485BB1A3F7DBC006CA0EC /* UHDMensaSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC4485BA1A3F7DBC006CA0EC /* UHDMensaSectionHeaderView.m */; };
-		DC462EC1196964F60071ABBC /* UHDFavouritesStarView.m in Sources */ = {isa = PBXBuildFile; fileRef = DC462EC0196964F60071ABBC /* UHDFavouritesStarView.m */; };
-		DC5394A919F284D4004F6828 /* FavouriteMensenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DC5394A819F284D4004F6828 /* FavouriteMensenView.swift */; };
-		DC602447193E23A500B06BF2 /* UHDMensaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = DC602446193E23A500B06BF2 /* UHDMensaViewController.m */; };
-		DC83C93A192BDDA6004CC75B /* UHDMealCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DC83C939192BDDA5004CC75B /* UHDMealCell.m */; };
-		DC87FDF8191AA00600019F32 /* mensa.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DC87FDF7191AA00600019F32 /* mensa.storyboard */; };
-		DCD00AA01996605400DCCB24 /* UHDFavouriteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD00A9F1996605400DCCB24 /* UHDFavouriteCell.m */; };
-		DCD00AA71996996800DCCB24 /* UHDMensaCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DCD00AA61996996800DCCB24 /* UHDMensaCell.m */; };
 		ED25D3E54C56C6F8E718EBBF /* (null) in Frameworks */ = {isa = PBXBuildFile; };
 /* End PBXBuildFile section */
 
@@ -156,6 +217,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = 87539B1E19DB23F00084658D;
 			remoteInfo = VILogKit;
+		};
+		876C691C1AB4C79700EE093B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87CBE0801908810B0029D9AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 876C690F1AB4C79600EE093B;
+			remoteInfo = UHDKit;
+		};
+		876C691E1AB4C79700EE093B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87CBE0801908810B0029D9AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 87CBE0871908810B0029D9AF;
+			remoteInfo = "uni-hd";
+		};
+		876C69251AB4C79700EE093B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87CBE0801908810B0029D9AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 876C690F1AB4C79600EE093B;
+			remoteInfo = UHDKit;
+		};
+		876C69321AB4C8C200EE093B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87CBE0801908810B0029D9AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8799A5D31AB48B6900117267;
+			remoteInfo = UHDPersistenceKit;
 		};
 		8771EC8E1AB4A08F00026207 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -206,6 +295,34 @@
 			remoteGlobalIDString = 87CBE0871908810B0029D9AF;
 			remoteInfo = "uni-hd";
 		};
+		87A71D961AB4D063004C0FD3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87CBE0801908810B0029D9AF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8771EC811AB4A08F00026207;
+			remoteInfo = UHDRemoteKit;
+		};
+		87A71D9D1AB4D2A6004C0FD3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87475EB819E32B230028A9BF /* VILogKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 87539B1E19DB23F00084658D;
+			remoteInfo = VILogKit;
+		};
+		87A71DA01AB4D2BB004C0FD3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87475EB819E32B230028A9BF /* VILogKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 87539B1E19DB23F00084658D;
+			remoteInfo = VILogKit;
+		};
+		87A71DA21AB4D2C0004C0FD3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 87475EB819E32B230028A9BF /* VILogKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 87539B1E19DB23F00084658D;
+			remoteInfo = VILogKit;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -216,6 +333,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				87475EC219E32B300028A9BF /* VILogKit.framework in Embed Frameworks */,
+				876C69281AB4C79700EE093B /* UHDKit.framework in Embed Frameworks */,
 				8771EC9A1AB4A08F00026207 /* UHDRemoteKit.framework in Embed Frameworks */,
 				8799A5EC1AB48B6900117267 /* UHDPersistenceKit.framework in Embed Frameworks */,
 			);
@@ -232,7 +350,7 @@
 		0A586D8C19646A6600DF86EE /* UHDTalkSpeaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkSpeaker.h; sourceTree = "<group>"; };
 		0A586D8D19646A6600DF86EE /* UHDTalkSpeaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDTalkSpeaker.m; sourceTree = "<group>"; };
 		0A5EFF301A0ECB3700A6C999 /* UHDNewsSourcesNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsSourcesNavigationBar.h; sourceTree = "<group>"; };
-		0A5EFF311A0ECB3700A6C999 /* UHDNewsSourcesNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsSourcesNavigationBar.m; sourceTree = "<group>"; };
+		0A5EFF311A0ECB3700A6C999 /* UHDNewsSourcesNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UHDNewsSourcesNavigationBar.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0A6028751A3B22220032EDEB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		0A6028811A3B4BF00032EDEB /* EventKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKit.framework; path = System/Library/Frameworks/EventKit.framework; sourceTree = SDKROOT; };
 		0A7FACF8196B13DB00E2CC9D /* UHDEventItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDEventItemCell.h; sourceTree = "<group>"; };
@@ -240,29 +358,29 @@
 		0A7FACFE196B17B000E2CC9D /* UHDTalkItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkItemCell.h; sourceTree = "<group>"; };
 		0A7FACFF196B17B000E2CC9D /* UHDTalkItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDTalkItemCell.m; sourceTree = "<group>"; };
 		0ABAE5EF1A3A52E500E85E3E /* UHDTalkDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkDetailViewController.h; sourceTree = "<group>"; };
-		0ABAE5F01A3A52E500E85E3E /* UHDTalkDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDTalkDetailViewController.m; sourceTree = "<group>"; };
+		0ABAE5F01A3A52E500E85E3E /* UHDTalkDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UHDTalkDetailViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0ABAE5F21A3A6F1500E85E3E /* UHDTalkDetailTitleAbstractCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkDetailTitleAbstractCell.h; sourceTree = "<group>"; };
 		0ABAE5F31A3A6F1500E85E3E /* UHDTalkDetailTitleAbstractCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDTalkDetailTitleAbstractCell.m; sourceTree = "<group>"; };
 		0ABAE5F81A3AE65A00E85E3E /* UHDTalkDetailSpaceTimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkDetailSpaceTimeCell.h; sourceTree = "<group>"; };
 		0ABAE5F91A3AE65A00E85E3E /* UHDTalkDetailSpaceTimeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDTalkDetailSpaceTimeCell.m; sourceTree = "<group>"; };
-		0ACE17E91A3F220B00732F58 /* TabBarIcons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = TabBarIcons.xcassets; sourceTree = "<group>"; };
+		0ACE17E91A3F220B00732F58 /* TabBarIcons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = TabBarIcons.xcassets; path = "../uni-hd/TabBarIcons.xcassets"; sourceTree = "<group>"; };
 		0ACE47B319619BB9004F84F9 /* UHDEventItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDEventItem.h; sourceTree = "<group>"; };
 		0ACE47B419619BB9004F84F9 /* UHDEventItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDEventItem.m; sourceTree = "<group>"; };
 		0ACE47B619619F07004F84F9 /* UHDTalkItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkItem.h; sourceTree = "<group>"; };
 		0ACE47B719619F07004F84F9 /* UHDTalkItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDTalkItem.m; sourceTree = "<group>"; };
 		0AD7F3701923F58E00F49551 /* UHDNewsItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsItemCell.h; sourceTree = "<group>"; };
-		0AD7F3711923F58E00F49551 /* UHDNewsItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsItemCell.m; sourceTree = "<group>"; };
+		0AD7F3711923F58E00F49551 /* UHDNewsItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UHDNewsItemCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0AE2786A192A39CB00ED1641 /* UHDNewsSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsSource.h; sourceTree = "<group>"; };
 		0AE2786B192A39CB00ED1641 /* UHDNewsSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsSource.m; sourceTree = "<group>"; };
 		0AE477BC1A3D09D40071331E /* EventKitUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = EventKitUI.framework; path = System/Library/Frameworks/EventKitUI.framework; sourceTree = SDKROOT; };
 		0AF7D4391A0C440400BD8423 /* UHDSourceCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDSourceCollectionViewCell.h; sourceTree = "<group>"; };
-		0AF7D43A1A0C440400BD8423 /* UHDSourceCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDSourceCollectionViewCell.m; sourceTree = "<group>"; };
+		0AF7D43A1A0C440400BD8423 /* UHDSourceCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UHDSourceCollectionViewCell.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0B176E6C1931114200D3C916 /* UHDNewsSourcesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsSourcesViewController.h; sourceTree = "<group>"; };
-		0B176E6D1931114200D3C916 /* UHDNewsSourcesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsSourcesViewController.m; sourceTree = "<group>"; };
+		0B176E6D1931114200D3C916 /* UHDNewsSourcesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UHDNewsSourcesViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0B176E781931117700D3C916 /* UHDNewsCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsCategory.h; sourceTree = "<group>"; };
 		0B176E791931117700D3C916 /* UHDNewsCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsCategory.m; sourceTree = "<group>"; };
 		0B355876199BC434008053EE /* UHDMapsSearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMapsSearchResultsViewController.h; sourceTree = "<group>"; };
-		0B355877199BC434008053EE /* UHDMapsSearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMapsSearchResultsViewController.m; sourceTree = "<group>"; };
+		0B355877199BC434008053EE /* UHDMapsSearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UHDMapsSearchResultsViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0B355879199BC923008053EE /* UHDBuildingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDBuildingCell.h; sourceTree = "<group>"; };
 		0B35587A199BC923008053EE /* UHDBuildingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDBuildingCell.m; sourceTree = "<group>"; };
 		0B48B1CE19C75FF7009C7977 /* UHDConfigureMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDConfigureMapViewController.h; sourceTree = "<group>"; };
@@ -274,7 +392,7 @@
 		0BB49E1719ADC3F60025BD07 /* UHDCampusRegion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDCampusRegion.h; sourceTree = "<group>"; };
 		0BB49E1819ADC3F60025BD07 /* UHDCampusRegion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDCampusRegion.m; sourceTree = "<group>"; };
 		0BEC8EAF1993B40A00EAB8F6 /* UHDMapsRemoteDatasourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMapsRemoteDatasourceDelegate.h; sourceTree = "<group>"; };
-		0BEC8EB01993B40A00EAB8F6 /* UHDMapsRemoteDatasourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMapsRemoteDatasourceDelegate.m; sourceTree = "<group>"; };
+		0BEC8EB01993B40A00EAB8F6 /* UHDMapsRemoteDatasourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UHDMapsRemoteDatasourceDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		2200AC222FDAAA1032DCAAD1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		3FCFBC5934DD37BB61FA6AC5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		70156A1F78F7E9B762543BE5 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -282,10 +400,6 @@
 		8701CE4B190C00A600A18F82 /* UHDRemoteDatasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UHDRemoteDatasource.m; path = "../uni-hd/UHDRemoteDatasource.m"; sourceTree = "<group>"; };
 		8701CE4E190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsRemoteDatasourceDelegate.h; sourceTree = "<group>"; };
 		8701CE4F190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsRemoteDatasourceDelegate.m; sourceTree = "<group>"; };
-		870591D919C0DDFA003E2906 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIImage+ImageEffects.h"; path = "VIOSFramework/Categories/UIImage+ImageEffects/UIImage+ImageEffects.h"; sourceTree = "<group>"; };
-		870591DA19C0DDFA003E2906 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ImageEffects.m"; path = "VIOSFramework/Categories/UIImage+ImageEffects/UIImage+ImageEffects.m"; sourceTree = "<group>"; };
-		870591DD19C10922003E2906 /* VIImageOverlayRenderer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VIImageOverlayRenderer.h; sourceTree = "<group>"; };
-		870591DE19C10922003E2906 /* VIImageOverlayRenderer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VIImageOverlayRenderer.m; sourceTree = "<group>"; };
 		870D6BD51A3F7E2E00D49655 /* UHDAddress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDAddress.h; sourceTree = "<group>"; };
 		870D6BD61A3F7E2E00D49655 /* UHDAddress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDAddress.m; sourceTree = "<group>"; };
 		8720978719D232D100269AA6 /* uni-hd-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uni-hd-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -308,6 +422,12 @@
 		8765FDDF1A405DFD00632160 /* UITableView+ParallaxedHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UITableView+ParallaxedHeader.swift"; path = "VIOSFramework/Categories/UITableView+ParallaxedHeader.swift"; sourceTree = "<group>"; };
 		876799121A28EB4400372BD3 /* CampusRegionOverlayRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CampusRegionOverlayRenderer.swift; sourceTree = "<group>"; };
 		876B73BE1A5AD21200F69C3F /* UIViewController+TabSwitching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+TabSwitching.swift"; sourceTree = "<group>"; };
+		876C69101AB4C79600EE093B /* UHDKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UHDKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		876C69131AB4C79600EE093B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		876C69141AB4C79600EE093B /* UHDKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UHDKit.h; sourceTree = "<group>"; };
+		876C691A1AB4C79700EE093B /* UHDKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UHDKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		876C69221AB4C79700EE093B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		876C69231AB4C79700EE093B /* UHDKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UHDKitTests.swift; sourceTree = "<group>"; };
 		8771EC821AB4A08F00026207 /* UHDRemoteKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UHDRemoteKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8771EC851AB4A08F00026207 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8771EC861AB4A08F00026207 /* UHDRemoteKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UHDRemoteKit.h; sourceTree = "<group>"; };
@@ -331,6 +451,13 @@
 		8799DA9F192AB4D9009B3CAB /* UHDRemoteTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UHDRemoteTests.m; sourceTree = "<group>"; };
 		8799DAA1192AB4D9009B3CAB /* uni-hd-tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uni-hd-tests-Prefix.pch"; sourceTree = "<group>"; };
 		8799DAA7192AB4F8009B3CAB /* UHDDatabaseTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDDatabaseTests.m; sourceTree = "<group>"; };
+		87A49B9E1AC1BDC1004FA9A4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		87A49BA11AC1BE44004FA9A4 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		87A49BA61AC1CF96004FA9A4 /* VILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VILogger.h; sourceTree = "<group>"; };
+		87A49BA71AC1CF96004FA9A4 /* VILogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VILogger.m; sourceTree = "<group>"; };
+		87A49BB11AC1D804004FA9A4 /* AppImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppImages.xcassets; sourceTree = "<group>"; };
+		87A49BBA1AC1DF5D004FA9A4 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		87A49BBB1AC1DF5D004FA9A4 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		87A8633619196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSManagedObject+VIInsertIntoContextCategory.h"; path = "VIOSFramework/Categories/NSManagedObject+VIInsertIntoContextCategory/NSManagedObject+VIInsertIntoContextCategory.h"; sourceTree = "<group>"; };
 		87A8633719196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSManagedObject+VIInsertIntoContextCategory.m"; path = "VIOSFramework/Categories/NSManagedObject+VIInsertIntoContextCategory/NSManagedObject+VIInsertIntoContextCategory.m"; sourceTree = "<group>"; };
 		87B276CD192E04110057B505 /* UIColor+UHDColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+UHDColors.h"; sourceTree = "<group>"; };
@@ -350,8 +477,8 @@
 		87CBE0971908810B0029D9AF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		87CBE0991908810B0029D9AF /* uni-hd-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "uni-hd-Prefix.pch"; sourceTree = "<group>"; };
 		87CBE09A1908810B0029D9AF /* UHDAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = UHDAppDelegate.h; sourceTree = "<group>"; };
-		87CBE09B1908810B0029D9AF /* UHDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UHDAppDelegate.m; sourceTree = "<group>"; };
-		87CBE0A91908810B0029D9AF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		87CBE09B1908810B0029D9AF /* UHDAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UHDAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
+		87CBE0A91908810B0029D9AF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = "../uni-hd/Images.xcassets"; sourceTree = "<group>"; };
 		87CBE0B01908810B0029D9AF /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		87DBE7F31919C3F700C16970 /* news.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = news.storyboard; sourceTree = "<group>"; };
 		87DC1FA4191AB5C600395559 /* mensa.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = mensa.xcdatamodel; sourceTree = "<group>"; };
@@ -364,13 +491,11 @@
 		87E8527B19572BD4007503B8 /* UHDRemoteManagedObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UHDRemoteManagedObject.h; path = "../uni-hd/UHDRemoteManagedObject.h"; sourceTree = "<group>"; };
 		87E8527C19572BD4007503B8 /* UHDRemoteManagedObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UHDRemoteManagedObject.m; path = "../uni-hd/UHDRemoteManagedObject.m"; sourceTree = "<group>"; };
 		87EE2554191924E20092DF7F /* UHDNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsViewController.h; sourceTree = "<group>"; };
-		87EE2555191924E20092DF7F /* UHDNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsViewController.m; sourceTree = "<group>"; };
+		87EE2555191924E20092DF7F /* UHDNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UHDNewsViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		87F2BA4C1954789600034813 /* UHDNewsListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsListViewController.h; sourceTree = "<group>"; };
-		87F2BA4D1954789600034813 /* UHDNewsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsListViewController.m; sourceTree = "<group>"; };
+		87F2BA4D1954789600034813 /* UHDNewsListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UHDNewsListViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		87F826CC190D41450008144F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		87F826CF190D422F0008144F /* news.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = news.xcdatamodel; sourceTree = "<group>"; };
-		87F826E8190D700E0008144F /* VILogger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VILogger.h; sourceTree = "<group>"; };
-		87F826E9190D700E0008144F /* VILogger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VILogger.m; sourceTree = "<group>"; };
 		87FCA99219958EB100B3A55F /* maps.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = maps.xcdatamodel; sourceTree = "<group>"; };
 		87FCA9941995901200B3A55F /* UHDRemoteManagedLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDRemoteManagedLocation.h; sourceTree = "<group>"; };
 		87FCA9951995901200B3A55F /* UHDRemoteManagedLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDRemoteManagedLocation.m; sourceTree = "<group>"; };
@@ -378,8 +503,6 @@
 		87FF70FA1923F33500FCF5F4 /* UHDNewsItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsItem.m; sourceTree = "<group>"; };
 		87FF70FC1924097E00FCF5F4 /* UHDPersistentStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UHDPersistentStack.h; path = "../uni-hd/UHDPersistentStack.h"; sourceTree = "<group>"; };
 		87FF70FD1924097E00FCF5F4 /* UHDPersistentStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UHDPersistentStack.m; path = "../uni-hd/UHDPersistentStack.m"; sourceTree = "<group>"; };
-		94F484901936620B0063BF9F /* UHDTriangleStatusImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTriangleStatusImageView.h; sourceTree = "<group>"; };
-		94F484911936620B0063BF9F /* UHDTriangleStatusImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDTriangleStatusImageView.m; sourceTree = "<group>"; };
 		DC21B6D51923D27500BAD26D /* UHDDailyMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDDailyMenu.h; sourceTree = "<group>"; };
 		DC21B6D61923D27500BAD26D /* UHDDailyMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDDailyMenu.m; sourceTree = "<group>"; };
 		DC21B6D81923D27600BAD26D /* UHDMensaSection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMensaSection.h; sourceTree = "<group>"; };
@@ -389,7 +512,7 @@
 		DC21B6DE1923D27600BAD26D /* UHDMensa.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMensa.h; sourceTree = "<group>"; };
 		DC21B6DF1923D27600BAD26D /* UHDMensa.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMensa.m; sourceTree = "<group>"; };
 		DC21B6E11923FDC300BAD26D /* UHDDailyMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDDailyMenuViewController.h; sourceTree = "<group>"; };
-		DC21B6E21923FDC300BAD26D /* UHDDailyMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDDailyMenuViewController.m; sourceTree = "<group>"; };
+		DC21B6E21923FDC300BAD26D /* UHDDailyMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UHDDailyMenuViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DC33313B19976456009AA35A /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		DC4485B71A3F7590006CA0EC /* UHDMensaSectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UHDMensaSectionHeaderView.xib; sourceTree = "<group>"; };
 		DC4485B91A3F7DBB006CA0EC /* UHDMensaSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMensaSectionHeaderView.h; sourceTree = "<group>"; };
@@ -398,12 +521,12 @@
 		DC462EC0196964F60071ABBC /* UHDFavouritesStarView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDFavouritesStarView.m; sourceTree = "<group>"; };
 		DC5394A819F284D4004F6828 /* FavouriteMensenView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavouriteMensenView.swift; sourceTree = "<group>"; };
 		DC602445193E23A500B06BF2 /* UHDMensaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMensaViewController.h; sourceTree = "<group>"; };
-		DC602446193E23A500B06BF2 /* UHDMensaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMensaViewController.m; sourceTree = "<group>"; };
+		DC602446193E23A500B06BF2 /* UHDMensaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UHDMensaViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DC83C938192BDDA5004CC75B /* UHDMealCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMealCell.h; sourceTree = "<group>"; };
 		DC83C939192BDDA5004CC75B /* UHDMealCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMealCell.m; sourceTree = "<group>"; };
 		DC87FDF7191AA00600019F32 /* mensa.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = mensa.storyboard; sourceTree = "<group>"; };
 		DC87FDF9191AA12D00019F32 /* UHDMensaListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMensaListViewController.h; sourceTree = "<group>"; };
-		DC87FDFA191AA12D00019F32 /* UHDMensaListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDMensaListViewController.m; sourceTree = "<group>"; };
+		DC87FDFA191AA12D00019F32 /* UHDMensaListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UHDMensaListViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		DCD00A9E1996605400DCCB24 /* UHDFavouriteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDFavouriteCell.h; sourceTree = "<group>"; };
 		DCD00A9F1996605400DCCB24 /* UHDFavouriteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDFavouriteCell.m; sourceTree = "<group>"; };
 		DCD00AA51996996700DCCB24 /* UHDMensaCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMensaCell.h; sourceTree = "<group>"; };
@@ -411,10 +534,30 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		876C690C1AB4C79600EE093B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87A71D9C1AB4D29F004C0FD3 /* VILogKit.framework in Frameworks */,
+				87A71D951AB4D05B004C0FD3 /* UHDRemoteKit.framework in Frameworks */,
+				5CFAACCD576B0E1B476CA696 /* Pods.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		876C69171AB4C79700EE093B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				876C691B1AB4C79700EE093B /* UHDKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8771EC7E1AB4A08F00026207 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87A71D9F1AB4D2B6004C0FD3 /* VILogKit.framework in Frameworks */,
+				876C69311AB4C8BB00EE093B /* UHDPersistenceKit.framework in Frameworks */,
 				91DFADE58FD5ED08263534BE /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -431,6 +574,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87A71DA41AB4D2C9004C0FD3 /* VILogKit.framework in Frameworks */,
 				ED25D3E54C56C6F8E718EBBF /* (null) in Frameworks */,
 				D40B8AD7B3BBFD4C70A41AD8 /* Pods.framework in Frameworks */,
 			);
@@ -471,6 +615,7 @@
 				87CBE08E1908810B0029D9AF /* CoreGraphics.framework in Frameworks */,
 				87CBE0901908810B0029D9AF /* UIKit.framework in Frameworks */,
 				87CBE08C1908810B0029D9AF /* Foundation.framework in Frameworks */,
+				876C69271AB4C79700EE093B /* UHDKit.framework in Frameworks */,
 				87475EC119E32B300028A9BF /* VILogKit.framework in Frameworks */,
 				A8430D07BAF9CCADBCEF2CD2 /* Pods.framework in Frameworks */,
 			);
@@ -539,6 +684,8 @@
 				0BAB274B19A7296600CAB517 /* UHDLocationCategory.m */,
 				870D6BD51A3F7E2E00D49655 /* UHDAddress.h */,
 				870D6BD61A3F7E2E00D49655 /* UHDAddress.m */,
+				0BEC8EAF1993B40A00EAB8F6 /* UHDMapsRemoteDatasourceDelegate.h */,
+				0BEC8EB01993B40A00EAB8F6 /* UHDMapsRemoteDatasourceDelegate.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -550,16 +697,6 @@
 				3FCFBC5934DD37BB61FA6AC5 /* Pods.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		870591DC19C10922003E2906 /* VIImageOverlayRenderer */ = {
-			isa = PBXGroup;
-			children = (
-				870591DD19C10922003E2906 /* VIImageOverlayRenderer.h */,
-				870591DE19C10922003E2906 /* VIImageOverlayRenderer.m */,
-			);
-			name = VIImageOverlayRenderer;
-			path = VIOSFramework/Views/VIImageOverlayRenderer;
 			sourceTree = "<group>";
 		};
 		871BE3AA19E4F295005A600A /* Table View Cells */ = {
@@ -743,10 +880,64 @@
 			name = Colors;
 			sourceTree = "<group>";
 		};
+		876C69111AB4C79600EE093B /* UHDKit */ = {
+			isa = PBXGroup;
+			children = (
+				876C69141AB4C79600EE093B /* UHDKit.h */,
+				87A49BA11AC1BE44004FA9A4 /* Constants.swift */,
+				87CBE0A91908810B0029D9AF /* Images.xcassets */,
+				0ACE17E91A3F220B00732F58 /* TabBarIcons.xcassets */,
+				8799DA8E192AB1E8009B3CAB /* Mensa */,
+				8799DA8D192AB1DB009B3CAB /* News */,
+				87E85272195727D4007503B8 /* Maps */,
+				87EE2557191924E90092DF7F /* Settings */,
+				87DBE7F51919C40100C16970 /* Global */,
+				876C69121AB4C79600EE093B /* Supporting Files */,
+			);
+			path = UHDKit;
+			sourceTree = "<group>";
+		};
+		876C69121AB4C79600EE093B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				876C69131AB4C79600EE093B /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		876C69201AB4C79700EE093B /* UHDKitTests */ = {
+			isa = PBXGroup;
+			children = (
+				876C69231AB4C79700EE093B /* UHDKitTests.swift */,
+				876C69211AB4C79700EE093B /* Supporting Files */,
+			);
+			path = UHDKitTests;
+			sourceTree = "<group>";
+		};
+		876C69211AB4C79700EE093B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				876C69221AB4C79700EE093B /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		876C69301AB4C7C700EE093B /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				8799DA99192AB4D9009B3CAB /* uni-hd-tests */,
+				8799A5E41AB48B6900117267 /* UHDPersistenceKitTests */,
+				8771EC921AB4A08F00026207 /* UHDRemoteKitTests */,
+				876C69201AB4C79700EE093B /* UHDKitTests */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
 		8771EC831AB4A08F00026207 /* UHDRemoteKit */ = {
 			isa = PBXGroup;
 			children = (
 				8771EC861AB4A08F00026207 /* UHDRemoteKit.h */,
+				87A49B9E1AC1BDC1004FA9A4 /* Constants.swift */,
 				87B974E3192D57330080AA40 /* UHDRemoteDatasourceManager.h */,
 				87B974E4192D57330080AA40 /* UHDRemoteDatasourceManager.m */,
 				8701CE4A190C00A600A18F82 /* UHDRemoteDatasource.h */,
@@ -835,6 +1026,7 @@
 				DC21B6A41923CDA800BAD26D /* Model */,
 			);
 			name = News;
+			path = "../uni-hd";
 			sourceTree = "<group>";
 		};
 		8799DA8E192AB1E8009B3CAB /* Mensa */ = {
@@ -845,6 +1037,7 @@
 				DC21B6A31923CC8700BAD26D /* Model */,
 			);
 			name = Mensa;
+			path = "../uni-hd";
 			sourceTree = "<group>";
 		};
 		8799DA99192AB4D9009B3CAB /* uni-hd-tests */ = {
@@ -867,13 +1060,24 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		87B276CC192E03E90057B505 /* View */ = {
+		87A49BA51AC1CF96004FA9A4 /* VILogger */ = {
 			isa = PBXGroup;
 			children = (
-				875F43B61A1BD250006C4112 /* LaunchScreen.storyboard */,
-				875C08DF1A38BC9200F08EBE /* Colors */,
+				87A49BA61AC1CF96004FA9A4 /* VILogger.h */,
+				87A49BA71AC1CF96004FA9A4 /* VILogger.m */,
 			);
-			name = View;
+			name = VILogger;
+			path = VIOSFramework/VILogger;
+			sourceTree = "<group>";
+		};
+		87A49BB91AC1DF5D004FA9A4 /* UIImage+ImageEffects */ = {
+			isa = PBXGroup;
+			children = (
+				87A49BBA1AC1DF5D004FA9A4 /* UIImage+ImageEffects.h */,
+				87A49BBB1AC1DF5D004FA9A4 /* UIImage+ImageEffects.m */,
+			);
+			name = "UIImage+ImageEffects";
+			path = "VIOSFramework/Categories/UIImage+ImageEffects";
 			sourceTree = "<group>";
 		};
 		87B974E9192D5A3F0080AA40 /* VIManager */ = {
@@ -885,28 +1089,14 @@
 			name = VIManager;
 			sourceTree = "<group>";
 		};
-		87B974EA192D68C30080AA40 /* Remote Datasources */ = {
-			isa = PBXGroup;
-			children = (
-				8701CE4E190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.h */,
-				8701CE4F190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.m */,
-				87600EA2192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.h */,
-				87600EA3192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m */,
-				0BEC8EAF1993B40A00EAB8F6 /* UHDMapsRemoteDatasourceDelegate.h */,
-				0BEC8EB01993B40A00EAB8F6 /* UHDMapsRemoteDatasourceDelegate.m */,
-			);
-			name = "Remote Datasources";
-			sourceTree = "<group>";
-		};
 		87CBE07F1908810B0029D9AF = {
 			isa = PBXGroup;
 			children = (
 				87CBE0911908810B0029D9AF /* uni-hd */,
-				8799DA99192AB4D9009B3CAB /* uni-hd-tests */,
-				8799A5D51AB48B6900117267 /* UHDPersistenceKit */,
-				8799A5E41AB48B6900117267 /* UHDPersistenceKitTests */,
+				876C69111AB4C79600EE093B /* UHDKit */,
 				8771EC831AB4A08F00026207 /* UHDRemoteKit */,
-				8771EC921AB4A08F00026207 /* UHDRemoteKitTests */,
+				8799A5D51AB48B6900117267 /* UHDPersistenceKit */,
+				876C69301AB4C7C700EE093B /* Tests */,
 				87CBE08A1908810B0029D9AF /* Frameworks */,
 				87CBE0891908810B0029D9AF /* Products */,
 				0B92851A18BB90357BD92164 /* Pods */,
@@ -922,6 +1112,8 @@
 				8799A5DE1AB48B6900117267 /* UHDPersistenceKitTests.xctest */,
 				8771EC821AB4A08F00026207 /* UHDRemoteKit.framework */,
 				8771EC8C1AB4A08F00026207 /* UHDRemoteKitTests.xctest */,
+				876C69101AB4C79600EE093B /* UHDKit.framework */,
+				876C691A1AB4C79700EE093B /* UHDKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -951,13 +1143,8 @@
 			children = (
 				87CBE09A1908810B0029D9AF /* UHDAppDelegate.h */,
 				87CBE09B1908810B0029D9AF /* UHDAppDelegate.m */,
-				8799DA8E192AB1E8009B3CAB /* Mensa */,
-				8799DA8D192AB1DB009B3CAB /* News */,
-				87E85272195727D4007503B8 /* Maps */,
-				87EE2557191924E90092DF7F /* Settings */,
-				87DBE7F51919C40100C16970 /* Global */,
-				87CBE0A91908810B0029D9AF /* Images.xcassets */,
-				0ACE17E91A3F220B00732F58 /* TabBarIcons.xcassets */,
+				87A49BB11AC1D804004FA9A4 /* AppImages.xcassets */,
+				875F43B61A1BD250006C4112 /* LaunchScreen.storyboard */,
 				87CBE0921908810B0029D9AF /* Supporting Files */,
 			);
 			path = "uni-hd";
@@ -978,11 +1165,11 @@
 		87DBE7F51919C40100C16970 /* Global */ = {
 			isa = PBXGroup;
 			children = (
-				87B276CC192E03E90057B505 /* View */,
-				87F826CB190D40B40008144F /* Model */,
+				875C08DF1A38BC9200F08EBE /* Colors */,
 				876B73BE1A5AD21200F69C3F /* UIViewController+TabSwitching.swift */,
 			);
 			name = Global;
+			path = "../uni-hd";
 			sourceTree = "<group>";
 		};
 		87E85272195727D4007503B8 /* Maps */ = {
@@ -993,6 +1180,7 @@
 				0B84B30619939B8300813CC2 /* Model */,
 			);
 			name = Maps;
+			path = "../uni-hd";
 			sourceTree = "<group>";
 		};
 		87E852771957295B007503B8 /* View Controller */ = {
@@ -1040,8 +1228,6 @@
 				DCD00A9F1996605400DCCB24 /* UHDFavouriteCell.m */,
 				DC462EBF196964F50071ABBC /* UHDFavouritesStarView.h */,
 				DC462EC0196964F60071ABBC /* UHDFavouritesStarView.m */,
-				94F484901936620B0063BF9F /* UHDTriangleStatusImageView.h */,
-				94F484911936620B0063BF9F /* UHDTriangleStatusImageView.m */,
 				DC83C938192BDDA5004CC75B /* UHDMealCell.h */,
 				DC83C939192BDDA5004CC75B /* UHDMealCell.m */,
 				DCD00AA51996996700DCCB24 /* UHDMensaCell.h */,
@@ -1060,13 +1246,12 @@
 				872673281A36054B00ABC599 /* View */,
 			);
 			name = Settings;
+			path = "../uni-hd";
 			sourceTree = "<group>";
 		};
 		87EE255F1919439B0092DF7F /* Categories */ = {
 			isa = PBXGroup;
 			children = (
-				870591D919C0DDFA003E2906 /* UIImage+ImageEffects.h */,
-				870591DA19C0DDFA003E2906 /* UIImage+ImageEffects.m */,
 				87A8633619196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.h */,
 				87A8633719196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m */,
 				8765FDDF1A405DFD00632160 /* UITableView+ParallaxedHeader.swift */,
@@ -1074,34 +1259,16 @@
 			name = Categories;
 			sourceTree = "<group>";
 		};
-		87F826CB190D40B40008144F /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				87B974EA192D68C30080AA40 /* Remote Datasources */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
-		87F826E7190D700E0008144F /* VILogger */ = {
-			isa = PBXGroup;
-			children = (
-				87F826E8190D700E0008144F /* VILogger.h */,
-				87F826E9190D700E0008144F /* VILogger.m */,
-			);
-			name = VILogger;
-			path = VIOSFramework/VILogger;
-			sourceTree = "<group>";
-		};
 		87F826EC190D70220008144F /* VIOSFramework */ = {
 			isa = PBXGroup;
 			children = (
+				87A49BA51AC1CF96004FA9A4 /* VILogger */,
 				8733B3F019F9FFD6007263AC /* CircularProgressView */,
 				87B974E9192D5A3F0080AA40 /* VIManager */,
 				87EE255F1919439B0092DF7F /* Categories */,
-				87F826E7190D700E0008144F /* VILogger */,
 				8737FF0D193F9EB5007D61C4 /* VIFetchedResultsControllerDataSource */,
-				870591DC19C10922003E2906 /* VIImageOverlayRenderer */,
 				87902D841A25332100186CC5 /* CachedTileOverlay */,
+				87A49BB91AC1DF5D004FA9A4 /* UIImage+ImageEffects */,
 				8755970D1A3492CB004AF87B /* VIMultilineLabel.swift */,
 			);
 			name = VIOSFramework;
@@ -1150,6 +1317,8 @@
 				DC21B6DB1923D27600BAD26D /* UHDMeal.h */,
 				DC21B6DC1923D27600BAD26D /* UHDMeal.m */,
 				8733B3F919FA13BD007263AC /* Hours.swift */,
+				87600EA2192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.h */,
+				87600EA3192139EB00F18C8D /* UHDMensaRemoteDatasourceDelegate.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1170,6 +1339,8 @@
 				0AE2786B192A39CB00ED1641 /* UHDNewsSource.m */,
 				0B176E781931117700D3C916 /* UHDNewsCategory.h */,
 				0B176E791931117700D3C916 /* UHDNewsCategory.m */,
+				8701CE4E190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.h */,
+				8701CE4F190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -1177,14 +1348,73 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
+		876C690D1AB4C79600EE093B /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				876C693D1AB4CA7700EE093B /* UHDMensaSection.h in Headers */,
+				876C69401AB4CA7700EE093B /* UHDMensaRemoteDatasourceDelegate.h in Headers */,
+				876C69691AB4CAFA00EE093B /* UHDNewsSource.h in Headers */,
+				876C698D1AB4CB4800EE093B /* UHDMapsRemoteDatasourceDelegate.h in Headers */,
+				876C698B1AB4CB4800EE093B /* UHDLocationCategory.h in Headers */,
+				876C69371AB4CA7700EE093B /* UHDFavouriteCell.h in Headers */,
+				876C69631AB4CAFA00EE093B /* UHDTalkDetailTitleAbstractCell.h in Headers */,
+				876C696A1AB4CAFA00EE093B /* UHDNewsCategory.h in Headers */,
+				876C69831AB4CB4800EE093B /* UHDMapsViewController.h in Headers */,
+				876C693A1AB4CA7700EE093B /* UHDMensaCell.h in Headers */,
+				876C69A01AB4CB7700EE093B /* UIColor+UHDColors.h in Headers */,
+				876C695E1AB4CAFA00EE093B /* UHDNewsSourceCell.h in Headers */,
+				876C69571AB4CAFA00EE093B /* UHDNewsViewController.h in Headers */,
+				876C698A1AB4CB4800EE093B /* UHDBuilding.h in Headers */,
+				876C69881AB4CB4800EE093B /* UHDRemoteManagedLocation.h in Headers */,
+				87A49BAA1AC1CF96004FA9A4 /* VILogger.h in Headers */,
+				876C69611AB4CAFA00EE093B /* UHDTalkItemCell.h in Headers */,
+				876C69381AB4CA7700EE093B /* UHDFavouritesStarView.h in Headers */,
+				876C69861AB4CB4800EE093B /* UHDBuildingCell.h in Headers */,
+				876C69591AB4CAFA00EE093B /* UHDNewsDetailViewController.h in Headers */,
+				876C69841AB4CB4800EE093B /* UHDMapsSearchResultsViewController.h in Headers */,
+				876C69341AB4CA7700EE093B /* UHDMensaViewController.h in Headers */,
+				876C695A1AB4CAFA00EE093B /* UHDTalkDetailViewController.h in Headers */,
+				876C695B1AB4CAFA00EE093B /* UHDNewsSourcesViewController.h in Headers */,
+				876C69641AB4CAFA00EE093B /* UHDTalkDetailSpaceTimeCell.h in Headers */,
+				876C693E1AB4CA7700EE093B /* UHDDailyMenu.h in Headers */,
+				876C69351AB4CA7700EE093B /* UHDMensaListViewController.h in Headers */,
+				876C69681AB4CAFA00EE093B /* UHDNewsItem.h in Headers */,
+				876C69871AB4CB4800EE093B /* UHDBuildingAnnotationView.h in Headers */,
+				876C69361AB4CA7700EE093B /* UHDDailyMenuViewController.h in Headers */,
+				876C695F1AB4CAFA00EE093B /* UHDNewsItemCell.h in Headers */,
+				87A49BBC1AC1DF5D004FA9A4 /* UIImage+ImageEffects.h in Headers */,
+				876C69581AB4CAFA00EE093B /* UHDNewsListViewController.h in Headers */,
+				876C69151AB4C79600EE093B /* UHDKit.h in Headers */,
+				876C69391AB4CA7700EE093B /* UHDMealCell.h in Headers */,
+				876C69621AB4CAFA00EE093B /* UHDReadIndicatorView.h in Headers */,
+				876C69671AB4CAFA00EE093B /* UHDEventItem.h in Headers */,
+				876C69601AB4CAFA00EE093B /* UHDEventItemCell.h in Headers */,
+				876C698C1AB4CB4800EE093B /* UHDAddress.h in Headers */,
+				876C69661AB4CAFA00EE093B /* UHDTalkItem.h in Headers */,
+				876C696B1AB4CAFA00EE093B /* UHDNewsRemoteDatasourceDelegate.h in Headers */,
+				876C693B1AB4CA7700EE093B /* UHDMensaSectionHeaderView.h in Headers */,
+				87A49BB61AC1DBA9004FA9A4 /* NSManagedObject+VIInsertIntoContextCategory.h in Headers */,
+				876C69651AB4CAFA00EE093B /* UHDTalkSpeaker.h in Headers */,
+				876C693F1AB4CA7700EE093B /* UHDMeal.h in Headers */,
+				876C695D1AB4CAFA00EE093B /* UHDSourceCollectionViewCell.h in Headers */,
+				876C695C1AB4CAFA00EE093B /* UHDNewsSourcesNavigationBar.h in Headers */,
+				876C693C1AB4CA7700EE093B /* UHDMensa.h in Headers */,
+				87A49BB81AC1DDA7004FA9A4 /* VIFetchedResultsControllerDataSource.h in Headers */,
+				876C69851AB4CB4800EE093B /* UHDConfigureMapViewController.h in Headers */,
+				876C69891AB4CB4800EE093B /* UHDCampusRegion.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8771EC7F1AB4A08F00026207 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8771ECA71AB4A1D600026207 /* UHDRemoteManagedObject.h in Headers */,
 				8771ECA31AB4A1C600026207 /* UHDRemoteDatasource.h in Headers */,
+				87A71D981AB4D07D004C0FD3 /* UHDRemoteManagedObject.h in Headers */,
 				8771EC871AB4A08F00026207 /* UHDRemoteKit.h in Headers */,
 				8771ECA11AB4A14500026207 /* UHDRemoteDatasourceManager.h in Headers */,
+				87A71D8E1AB4CEF7004C0FD3 /* VIManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1200,6 +1430,48 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		876C690F1AB4C79600EE093B /* UHDKit */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 876C692E1AB4C79700EE093B /* Build configuration list for PBXNativeTarget "UHDKit" */;
+			buildPhases = (
+				D012EE721FD5DC928AECBCDC /* Check Pods Manifest.lock */,
+				876C690B1AB4C79600EE093B /* Sources */,
+				876C690C1AB4C79600EE093B /* Frameworks */,
+				876C690D1AB4C79600EE093B /* Headers */,
+				876C690E1AB4C79600EE093B /* Resources */,
+				81FB15A6C12D3D19B1EC520D /* Embed Pods Frameworks */,
+				5E74788E87CE2C9888CAFCC0 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				87A71D9E1AB4D2A6004C0FD3 /* PBXTargetDependency */,
+				87A71D971AB4D063004C0FD3 /* PBXTargetDependency */,
+			);
+			name = UHDKit;
+			productName = UHDKit;
+			productReference = 876C69101AB4C79600EE093B /* UHDKit.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		876C69191AB4C79700EE093B /* UHDKitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 876C692F1AB4C79700EE093B /* Build configuration list for PBXNativeTarget "UHDKitTests" */;
+			buildPhases = (
+				876C69161AB4C79700EE093B /* Sources */,
+				876C69171AB4C79700EE093B /* Frameworks */,
+				876C69181AB4C79700EE093B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				876C691D1AB4C79700EE093B /* PBXTargetDependency */,
+				876C691F1AB4C79700EE093B /* PBXTargetDependency */,
+			);
+			name = UHDKitTests;
+			productName = UHDKitTests;
+			productReference = 876C691A1AB4C79700EE093B /* UHDKitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		8771EC811AB4A08F00026207 /* UHDRemoteKit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8771EC9B1AB4A09000026207 /* Build configuration list for PBXNativeTarget "UHDRemoteKit" */;
@@ -1215,6 +1487,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				87A71DA11AB4D2BB004C0FD3 /* PBXTargetDependency */,
+				876C69331AB4C8C200EE093B /* PBXTargetDependency */,
 			);
 			name = UHDRemoteKit;
 			productName = UHDRemoteKit;
@@ -1255,6 +1529,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				87A71DA31AB4D2C0004C0FD3 /* PBXTargetDependency */,
 			);
 			name = UHDPersistenceKit;
 			productName = UHDPersistenceKit;
@@ -1319,6 +1594,7 @@
 				87475EC419E32B300028A9BF /* PBXTargetDependency */,
 				8799A5EA1AB48B6900117267 /* PBXTargetDependency */,
 				8771EC981AB4A08F00026207 /* PBXTargetDependency */,
+				876C69261AB4C79700EE093B /* PBXTargetDependency */,
 			);
 			name = "uni-hd";
 			productName = "uni-hd";
@@ -1335,6 +1611,14 @@
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "Universit&#228;t Heidelberg";
 				TargetAttributes = {
+					876C690F1AB4C79600EE093B = {
+						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = SZEDS83NVF;
+					};
+					876C69191AB4C79700EE093B = {
+						CreatedOnToolsVersion = 6.2;
+						TestTargetID = 87CBE0871908810B0029D9AF;
+					};
 					8771EC811AB4A08F00026207 = {
 						CreatedOnToolsVersion = 6.2;
 						DevelopmentTeam = SZEDS83NVF;
@@ -1385,6 +1669,8 @@
 				8799A5DD1AB48B6900117267 /* UHDPersistenceKitTests */,
 				8771EC811AB4A08F00026207 /* UHDRemoteKit */,
 				8771EC8B1AB4A08F00026207 /* UHDRemoteKitTests */,
+				876C690F1AB4C79600EE093B /* UHDKit */,
+				876C69191AB4C79700EE093B /* UHDKitTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1407,6 +1693,27 @@
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
+		876C690E1AB4C79600EE093B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				876C69561AB4CACD00EE093B /* Images.xcassets in Resources */,
+				876C69921AB4CB6300EE093B /* maps.storyboard in Resources */,
+				876C69491AB4CAB800EE093B /* UHDMensaSectionHeaderView.xib in Resources */,
+				876C69441AB4CAB800EE093B /* mensa.storyboard in Resources */,
+				87A49BB51AC1DB49004FA9A4 /* settings.storyboard in Resources */,
+				87A49BB31AC1D9FD004FA9A4 /* TabBarIcons.xcassets in Resources */,
+				876C69711AB4CB1C00EE093B /* news.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		876C69181AB4C79700EE093B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8771EC801AB4A08F00026207 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1447,15 +1754,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DC4485B81A3F7590006CA0EC /* UHDMensaSectionHeaderView.xib in Resources */,
-				0ACE17EA1A3F220B00732F58 /* TabBarIcons.xcassets in Resources */,
-				87CBE0AA1908810B0029D9AF /* Images.xcassets in Resources */,
 				87CBE0961908810B0029D9AF /* InfoPlist.strings in Resources */,
-				87DBE7F41919C3F700C16970 /* news.storyboard in Resources */,
 				875F43B71A1BD250006C4112 /* LaunchScreen.storyboard in Resources */,
-				DC87FDF8191AA00600019F32 /* mensa.storyboard in Resources */,
-				8726732A1A36055B00ABC599 /* settings.storyboard in Resources */,
-				87E85274195727E4007503B8 /* maps.storyboard in Resources */,
+				87A49BB21AC1D804004FA9A4 /* AppImages.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1537,7 +1838,37 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		5E74788E87CE2C9888CAFCC0 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		603782C7541311854C8A3F9C /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		81FB15A6C12D3D19B1EC520D /* Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1627,6 +1958,21 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		D012EE721FD5DC928AECBCDC /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
 		E899A67B09619AF689F4E5BF /* Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1645,15 +1991,100 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		876C690B1AB4C79600EE093B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87A49BAE1AC1CF96004FA9A4 /* VILogger.m in Sources */,
+				876C694E1AB4CAB800EE093B /* CircularProgressView+ConfigureForMensa.swift in Sources */,
+				876C697E1AB4CB1C00EE093B /* UHDNewsItem.m in Sources */,
+				876C694F1AB4CAB800EE093B /* UHDMensa.m in Sources */,
+				876C69911AB4CB6300EE093B /* UHDBuildingDetailViewController.swift in Sources */,
+				876C69791AB4CB1C00EE093B /* UHDTalkDetailTitleAbstractCell.m in Sources */,
+				876C69701AB4CB1C00EE093B /* UHDNewsSourcesViewController.m in Sources */,
+				876C699D1AB4CB6300EE093B /* UHDAddress.m in Sources */,
+				876C69471AB4CAB800EE093B /* UHDMealCell.m in Sources */,
+				876C69461AB4CAB800EE093B /* UHDFavouritesStarView.m in Sources */,
+				87A49BA21AC1BE44004FA9A4 /* Constants.swift in Sources */,
+				876C69521AB4CAB800EE093B /* UHDMeal.m in Sources */,
+				876C69771AB4CB1C00EE093B /* UHDTalkItemCell.m in Sources */,
+				876C69961AB4CB6300EE093B /* UHDBuildingDetailLocationCell.swift in Sources */,
+				876C69781AB4CB1C00EE093B /* UHDReadIndicatorView.m in Sources */,
+				876C69801AB4CB1C00EE093B /* UHDNewsCategory.m in Sources */,
+				87A49BBD1AC1DF5D004FA9A4 /* UIImage+ImageEffects.m in Sources */,
+				876C69431AB4CAB800EE093B /* UHDDailyMenuViewController.m in Sources */,
+				876C69951AB4CB6300EE093B /* UHDBuildingDetailPropertyCell.swift in Sources */,
+				876C699B1AB4CB6300EE093B /* UHDBuilding.m in Sources */,
+				87A71D901AB4CF17004C0FD3 /* VIFetchedResultsControllerDataSource.m in Sources */,
+				876C69551AB4CAC100EE093B /* mensa.xcdatamodeld in Sources */,
+				876C69721AB4CB1C00EE093B /* UHDNewsSourcesNavigationBar.m in Sources */,
+				876C69411AB4CAB800EE093B /* UHDMensaViewController.m in Sources */,
+				876C69941AB4CB6300EE093B /* UHDBuildingDetailTitleCell.swift in Sources */,
+				876C696E1AB4CB1C00EE093B /* UHDNewsDetailViewController.m in Sources */,
+				876C69501AB4CAB800EE093B /* UHDMensaSection.m in Sources */,
+				876C694D1AB4CAB800EE093B /* MensaDayPickerCell.swift in Sources */,
+				876C694A1AB4CAB800EE093B /* UHDMensaSectionHeaderView.m in Sources */,
+				876C69541AB4CAB800EE093B /* UHDMensaRemoteDatasourceDelegate.m in Sources */,
+				87A71D861AB4CE83004C0FD3 /* CircularProgressView.swift in Sources */,
+				87A71D891AB4CECD004C0FD3 /* UITableView+ParallaxedHeader.swift in Sources */,
+				876C696D1AB4CB1C00EE093B /* UHDNewsListViewController.m in Sources */,
+				876C69A11AB4CB7B00EE093B /* UIColor+UHDColors.m in Sources */,
+				876C698F1AB4CB6300EE093B /* UHDMapsSearchResultsViewController.m in Sources */,
+				876C69931AB4CB6300EE093B /* UHDBuildingCell.m in Sources */,
+				876C69981AB4CB6300EE093B /* CampusRegionOverlayRenderer.swift in Sources */,
+				876C699C1AB4CB6300EE093B /* UHDLocationCategory.m in Sources */,
+				876C69971AB4CB6300EE093B /* UHDBuildingAnnotationView.m in Sources */,
+				876C697A1AB4CB1C00EE093B /* UHDTalkDetailSpaceTimeCell.m in Sources */,
+				876C699E1AB4CB6300EE093B /* UHDMapsRemoteDatasourceDelegate.m in Sources */,
+				876C69821AB4CB2300EE093B /* news.xcdatamodeld in Sources */,
+				876C69421AB4CAB800EE093B /* UHDMensaListViewController.m in Sources */,
+				87A49BB41AC1DB44004FA9A4 /* UHDSettingsViewController.swift in Sources */,
+				876C69751AB4CB1C00EE093B /* UHDNewsItemCell.m in Sources */,
+				876C69731AB4CB1C00EE093B /* UHDSourceCollectionViewCell.m in Sources */,
+				876C69481AB4CAB800EE093B /* UHDMensaCell.m in Sources */,
+				87A49BAF1AC1D353004FA9A4 /* UIViewController+TabSwitching.swift in Sources */,
+				876C698E1AB4CB6300EE093B /* UHDMapsViewController.m in Sources */,
+				876C699F1AB4CB6900EE093B /* maps.xcdatamodeld in Sources */,
+				876C69991AB4CB6300EE093B /* UHDRemoteManagedLocation.m in Sources */,
+				876C694C1AB4CAB800EE093B /* MensaDayPicker.swift in Sources */,
+				876C69901AB4CB6300EE093B /* UHDConfigureMapViewController.m in Sources */,
+				87A71D881AB4CEB7004C0FD3 /* NSManagedObject+VIInsertIntoContextCategory.m in Sources */,
+				876C69741AB4CB1C00EE093B /* UHDNewsSourceCell.m in Sources */,
+				876C69811AB4CB1C00EE093B /* UHDNewsRemoteDatasourceDelegate.m in Sources */,
+				876C697F1AB4CB1C00EE093B /* UHDNewsSource.m in Sources */,
+				876C69511AB4CAB800EE093B /* UHDDailyMenu.m in Sources */,
+				876C694B1AB4CAB800EE093B /* FavouriteMensenView.swift in Sources */,
+				876C697C1AB4CB1C00EE093B /* UHDTalkItem.m in Sources */,
+				876C69531AB4CAB800EE093B /* Hours.swift in Sources */,
+				876C69761AB4CB1C00EE093B /* UHDEventItemCell.m in Sources */,
+				87A71D921AB4CF2D004C0FD3 /* VIMultilineLabel.swift in Sources */,
+				876C69451AB4CAB800EE093B /* UHDFavouriteCell.m in Sources */,
+				876C697B1AB4CB1C00EE093B /* UHDTalkSpeaker.m in Sources */,
+				876C696C1AB4CB1C00EE093B /* UHDNewsViewController.m in Sources */,
+				87A71D911AB4CF27004C0FD3 /* CachedTileOverlay.swift in Sources */,
+				876C696F1AB4CB1C00EE093B /* UHDTalkDetailViewController.m in Sources */,
+				876C697D1AB4CB1C00EE093B /* UHDEventItem.m in Sources */,
+				876C699A1AB4CB6300EE093B /* UHDCampusRegion.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		876C69161AB4C79700EE093B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				876C69241AB4C79700EE093B /* UHDKitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		8771EC7D1AB4A08F00026207 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8798B4791AB4A399001E6C87 /* NSManagedObject+VIInsertIntoContextCategory.m in Sources */,
-				8771ECAD1AB4A1E500026207 /* UHDRemoteManagedObject.m in Sources */,
 				8771ECA91AB4A1E500026207 /* UHDRemoteDatasource.m in Sources */,
+				87A71D991AB4D082004C0FD3 /* UHDRemoteManagedObject.m in Sources */,
 				8771ECA21AB4A1C200026207 /* UHDRemoteDatasourceManager.m in Sources */,
 				8798B4781AB4A365001E6C87 /* VIManager.m in Sources */,
+				87A49B9F1AC1BDC1004FA9A4 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1685,7 +2116,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8799DAAA192ABDE9009B3CAB /* VILogger.m in Sources */,
 				8799DAA8192AB4F8009B3CAB /* UHDDatabaseTests.m in Sources */,
 				8799DAA0192AB4D9009B3CAB /* UHDRemoteTests.m in Sources */,
 			);
@@ -1695,79 +2125,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8765FDE01A405DFD00632160 /* UITableView+ParallaxedHeader.swift in Sources */,
-				0ABAE5FA1A3AE65A00E85E3E /* UHDTalkDetailSpaceTimeCell.m in Sources */,
-				87479AA41A3FA4220084FBDA /* UHDBuildingDetailPropertyCell.swift in Sources */,
-				872673271A36053800ABC599 /* UHDSettingsViewController.swift in Sources */,
-				87E23FF81AB2435600A3C39F /* VIFetchedResultsControllerDataSource.m in Sources */,
-				87479AA11A3FA39D0084FBDA /* UHDBuildingDetailTitleCell.swift in Sources */,
-				DC21B6E01923D27600BAD26D /* UHDMensa.m in Sources */,
-				877AEE8819BD370300ED270D /* UHDBuildingAnnotationView.m in Sources */,
-				94F484921936620B0063BF9F /* UHDTriangleStatusImageView.m in Sources */,
-				0A0CEC0D19E44F55009C9F5B /* UHDReadIndicatorView.m in Sources */,
-				0B84B31E1993A59C00813CC2 /* UHDBuilding.m in Sources */,
-				87839F3A19D4D70B00E5E6C8 /* MensaDayPickerCell.swift in Sources */,
-				0A7FAD00196B17B000E2CC9D /* UHDTalkItemCell.m in Sources */,
 				87CBE09C1908810B0029D9AF /* UHDAppDelegate.m in Sources */,
-				DCD00AA71996996800DCCB24 /* UHDMensaCell.m in Sources */,
-				87A8633819196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.m in Sources */,
-				870591DF19C10922003E2906 /* VIImageOverlayRenderer.m in Sources */,
-				87DC1FA5191AB5C600395559 /* mensa.xcdatamodeld in Sources */,
-				0B355878199BC434008053EE /* UHDMapsSearchResultsViewController.m in Sources */,
-				87FCA9961995901200B3A55F /* UHDRemoteManagedLocation.m in Sources */,
-				0ACE47B819619F07004F84F9 /* UHDTalkItem.m in Sources */,
-				DC21B6D71923D27500BAD26D /* UHDDailyMenu.m in Sources */,
-				DC21B6DD1923D27600BAD26D /* UHDMeal.m in Sources */,
-				0ABAE5F11A3A52E500E85E3E /* UHDTalkDetailViewController.m in Sources */,
-				DC83C93A192BDDA6004CC75B /* UHDMealCell.m in Sources */,
-				DC5394A919F284D4004F6828 /* FavouriteMensenView.swift in Sources */,
-				0A7FACFA196B13DB00E2CC9D /* UHDEventItemCell.m in Sources */,
-				0A586D8E19646A6600DF86EE /* UHDTalkSpeaker.m in Sources */,
-				8798B47C1AB4A435001E6C87 /* UHDMensaRemoteDatasourceDelegate.m in Sources */,
-				8733B3F619FA110D007263AC /* CircularProgressView+ConfigureForMensa.swift in Sources */,
-				870591DB19C0DDFA003E2906 /* UIImage+ImageEffects.m in Sources */,
-				0BB49E1919ADC3F60025BD07 /* UHDCampusRegion.m in Sources */,
-				8798B47D1AB4A435001E6C87 /* UHDMapsRemoteDatasourceDelegate.m in Sources */,
-				0B48B1D019C75FF7009C7977 /* UHDConfigureMapViewController.m in Sources */,
-				8733B3F219F9FFD6007263AC /* CircularProgressView.swift in Sources */,
-				8755970E1A3492CB004AF87B /* VIMultilineLabel.swift in Sources */,
-				8798B47B1AB4A435001E6C87 /* UHDNewsRemoteDatasourceDelegate.m in Sources */,
-				DC21B6DA1923D27600BAD26D /* UHDMensaSection.m in Sources */,
-				0AD7F3721923F58E00F49551 /* UHDNewsItemCell.m in Sources */,
-				0ABAE5F41A3A6F1500E85E3E /* UHDTalkDetailTitleAbstractCell.m in Sources */,
-				87902D831A25331200186CC5 /* CachedTileOverlay.swift in Sources */,
-				872750F21964A1D100FDBC4E /* UHDMensaListViewController.m in Sources */,
-				870D6BD71A3F7E2E00D49655 /* UHDAddress.m in Sources */,
-				876799131A28EB4400372BD3 /* CampusRegionOverlayRenderer.swift in Sources */,
-				87F2BA4E1954789600034813 /* UHDNewsListViewController.m in Sources */,
-				875396021932B03C00DFEF19 /* UHDNewsSourceCell.m in Sources */,
-				0B176E7A1931117700D3C916 /* UHDNewsCategory.m in Sources */,
-				87FF70FB1923F33500FCF5F4 /* UHDNewsItem.m in Sources */,
-				8733B3FA19FA13BD007263AC /* Hours.swift in Sources */,
-				87F826EA190D700E0008144F /* VILogger.m in Sources */,
-				DC4485BB1A3F7DBC006CA0EC /* UHDMensaSectionHeaderView.m in Sources */,
-				87FCA99319958EB100B3A55F /* maps.xcdatamodeld in Sources */,
-				DC602447193E23A500B06BF2 /* UHDMensaViewController.m in Sources */,
-				DC462EC1196964F60071ABBC /* UHDFavouritesStarView.m in Sources */,
-				87479AA61A3FA4810084FBDA /* UHDBuildingDetailLocationCell.swift in Sources */,
-				DCD00AA01996605400DCCB24 /* UHDFavouriteCell.m in Sources */,
-				0B176E711931114200D3C916 /* UHDNewsSourcesViewController.m in Sources */,
-				0AF7D43B1A0C440400BD8423 /* UHDSourceCollectionViewCell.m in Sources */,
-				0ACE47B519619BB9004F84F9 /* UHDEventItem.m in Sources */,
-				87479AA81A3FA4D70084FBDA /* UHDBuildingDetailViewController.swift in Sources */,
-				0B35587B199BC923008053EE /* UHDBuildingCell.m in Sources */,
-				87E8527A1957297A007503B8 /* UHDMapsViewController.m in Sources */,
-				0BAB274C19A7296600CAB517 /* UHDLocationCategory.m in Sources */,
-				0A5EFF321A0ECB3700A6C999 /* UHDNewsSourcesNavigationBar.m in Sources */,
-				0AE2786C192A39CB00ED1641 /* UHDNewsSource.m in Sources */,
-				87B276CF192E04110057B505 /* UIColor+UHDColors.m in Sources */,
-				0A2000521920F18A0014C977 /* UHDNewsDetailViewController.m in Sources */,
-				87F826D0190D422F0008144F /* news.xcdatamodeld in Sources */,
-				876B73BF1A5AD21200F69C3F /* UIViewController+TabSwitching.swift in Sources */,
 				87CBE0981908810B0029D9AF /* main.m in Sources */,
-				87839F3D19D52A3B00E5E6C8 /* MensaDayPicker.swift in Sources */,
-				87EE2556191924E20092DF7F /* UHDNewsViewController.m in Sources */,
-				DC21B6E31923FDC300BAD26D /* UHDDailyMenuViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1778,6 +2137,26 @@
 			isa = PBXTargetDependency;
 			name = VILogKit;
 			targetProxy = 87475EC319E32B300028A9BF /* PBXContainerItemProxy */;
+		};
+		876C691D1AB4C79700EE093B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 876C690F1AB4C79600EE093B /* UHDKit */;
+			targetProxy = 876C691C1AB4C79700EE093B /* PBXContainerItemProxy */;
+		};
+		876C691F1AB4C79700EE093B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 87CBE0871908810B0029D9AF /* uni-hd */;
+			targetProxy = 876C691E1AB4C79700EE093B /* PBXContainerItemProxy */;
+		};
+		876C69261AB4C79700EE093B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 876C690F1AB4C79600EE093B /* UHDKit */;
+			targetProxy = 876C69251AB4C79700EE093B /* PBXContainerItemProxy */;
+		};
+		876C69331AB4C8C200EE093B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8799A5D31AB48B6900117267 /* UHDPersistenceKit */;
+			targetProxy = 876C69321AB4C8C200EE093B /* PBXContainerItemProxy */;
 		};
 		8771EC8F1AB4A08F00026207 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1814,6 +2193,26 @@
 			target = 87CBE0871908810B0029D9AF /* uni-hd */;
 			targetProxy = 8799DAA2192AB4D9009B3CAB /* PBXContainerItemProxy */;
 		};
+		87A71D971AB4D063004C0FD3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8771EC811AB4A08F00026207 /* UHDRemoteKit */;
+			targetProxy = 87A71D961AB4D063004C0FD3 /* PBXContainerItemProxy */;
+		};
+		87A71D9E1AB4D2A6004C0FD3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = VILogKit;
+			targetProxy = 87A71D9D1AB4D2A6004C0FD3 /* PBXContainerItemProxy */;
+		};
+		87A71DA11AB4D2BB004C0FD3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = VILogKit;
+			targetProxy = 87A71DA01AB4D2BB004C0FD3 /* PBXContainerItemProxy */;
+		};
+		87A71DA31AB4D2C0004C0FD3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = VILogKit;
+			targetProxy = 87A71DA21AB4D2C0004C0FD3 /* PBXContainerItemProxy */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1838,10 +2237,108 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		876C69291AB4C79700EE093B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2200AC222FDAAA1032DCAAD1 /* Pods.debug.xcconfig */;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = UHDKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		876C692A1AB4C79700EE093B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3FCFBC5934DD37BB61FA6AC5 /* Pods.release.xcconfig */;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = UHDKit/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		876C692B1AB4C79700EE093B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = UHDKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/uni-hd.app/uni-hd";
+			};
+			name = Debug;
+		};
+		876C692C1AB4C79700EE093B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = UHDKitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/uni-hd.app/uni-hd";
+			};
+			name = Release;
+		};
 		8771EC9C1AB4A09000026207 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2200AC222FDAAA1032DCAAD1 /* Pods.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1872,6 +2369,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3FCFBC5934DD37BB61FA6AC5 /* Pods.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -2204,6 +2702,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		876C692E1AB4C79700EE093B /* Build configuration list for PBXNativeTarget "UHDKit" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				876C69291AB4C79700EE093B /* Debug */,
+				876C692A1AB4C79700EE093B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		876C692F1AB4C79700EE093B /* Build configuration list for PBXNativeTarget "UHDKitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				876C692B1AB4C79700EE093B /* Debug */,
+				876C692C1AB4C79700EE093B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		8771EC9B1AB4A09000026207 /* Build configuration list for PBXNativeTarget "UHDRemoteKit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

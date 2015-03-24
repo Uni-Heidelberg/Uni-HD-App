@@ -7,7 +7,6 @@
 //
 
 #import "UHDPersistentStack.h"
-@import RestKit;
 
 
 @interface UHDPersistentStack ()

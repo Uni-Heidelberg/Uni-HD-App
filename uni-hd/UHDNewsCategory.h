@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import "UHDRemoteManagedObject.h"
+@import UHDRemoteKit;
 
 @interface UHDNewsCategory : UHDRemoteManagedObject
 

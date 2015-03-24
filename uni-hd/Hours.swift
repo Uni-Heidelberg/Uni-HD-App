@@ -8,21 +8,21 @@
 
 import UIKit
 
-class Hours: NSObject {
+public class Hours: NSObject {
     
-    var isOpen: Bool {
+    public var isOpen: Bool {
         return true
     }
     
-    var progress: CGFloat {
+    public var progress: CGFloat {
         return 0.7
     }
     
-    var color: UIColor {
+    public var color: UIColor {
         return UIColor(red: 76/255, green: 171/255, blue: 4/255, alpha: 1)
     }
     
-    var attributedDescription: NSAttributedString {
+    public var attributedDescription: NSAttributedString {
         var attributedDescription = NSMutableAttributedString(string: "z.B. ")
         attributedDescription.appendAttributedString(NSMutableAttributedString(string: "Geöffnet", attributes: [ NSForegroundColorAttributeName : self.color ]))
         attributedDescription.appendAttributedString(NSAttributedString(string: " bis 22.00h"))

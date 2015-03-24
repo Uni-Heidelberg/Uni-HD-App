@@ -6,8 +6,7 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import "UHDRemoteManagedObject.h"
-
+@import UHDRemoteKit;
 @class UHDMeal, UHDMensaSection;
 
 @interface UHDDailyMenu : UHDRemoteManagedObject

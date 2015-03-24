@@ -7,6 +7,8 @@
 //
 
 #import "UHDMensaViewController.h"
+#import <UHDKit/UHDKit-Swift.h>
+#import "NSManagedObject+VIInsertIntoContextCategory.h"
 
 // View Controller
 #import "UHDMensaListViewController.h"
@@ -61,11 +63,11 @@
 
 - (void)loadSelectedMensa
 {
-    [self.logger log:@"Loading selected mensa from user defaults..." forLevel:VILogLevelDebug];
+    // FIXME: [self.logger log:@"Loading selected mensa from user defaults..." forLevel:VILogLevelDebug];
     
-    NSNumber *mensaId = [[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeySelectedMensaId];
+    NSNumber *mensaId = [[NSUserDefaults standardUserDefaults] objectForKey:[UHDConstants userDefaultsKeySelectedMensaId]];
     if (!mensaId) {
-        [self.logger log:@"No mensa selected" forLevel:VILogLevelDebug];
+        // FIXME: [self.logger log:@"No mensa selected" forLevel:VILogLevelDebug];
         return;
     }
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
@@ -73,9 +75,9 @@
     NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:NULL];
     if (result.count > 0) {
         self.mensa = result.firstObject;
-        [self.logger log:@"Found selected Mensa." object:self.mensa.title forLevel:VILogLevelDebug];
+        // FIXME: [self.logger log:@"Found selected Mensa." object:self.mensa.title forLevel:VILogLevelDebug];
     } else {
-        [self.logger log:@"Selected invalid mensa." forLevel:VILogLevelError];
+        // FIXME: [self.logger log:@"Selected invalid mensa." forLevel:VILogLevelError];
     }
     
 }
@@ -147,7 +149,7 @@
 }
 
 - (IBAction)mensaDetailButtonPressed:(id)sender {
-    UHDBuildingDetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"maps" bundle:nil] instantiateViewControllerWithIdentifier:@"buildingDetail"];
+    UHDBuildingDetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"maps" bundle:[NSBundle bundleForClass:[self class]]] instantiateViewControllerWithIdentifier:@"buildingDetail"];
     detailVC.building = self.mensa;
     [self.navigationController pushViewController:detailVC animated:YES];
 }

@@ -14,11 +14,11 @@
 @dynamic title;
 @dynamic imageURL, imageData;
 @dynamic newsItems;
+@dynamic associatedBuildings;
 
 @dynamic isNewsSource, isEventSource;
 
-- (NSMutableSet *)mutableNewsItems
-{
+- (NSMutableSet *)mutableNewsItems {
     return [self mutableSetValueForKey:@"newsItems"];
 }
 

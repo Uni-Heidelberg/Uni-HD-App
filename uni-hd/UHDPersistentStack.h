@@ -10,7 +10,6 @@
 @import CoreData;
 @import RestKit;
 
-
 @interface UHDPersistentStack : NSObject
 
 - (id)initWithManagedObjectModel:(NSManagedObjectModel *)managedObjectModel persistentStoreURL:(NSURL *)persistentStoreURL;

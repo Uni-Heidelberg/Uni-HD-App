@@ -6,8 +6,7 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import "UHDRemoteManagedObject.h"
-
+@import Foundation;
 
 typedef enum : NSUInteger {
     UHDSectioningPeriodEarlier = 0,
@@ -20,6 +19,7 @@ typedef enum : NSUInteger {
 } UHDSectioningPeriod;
 
 
+@import UHDRemoteKit;
 @class UHDNewsSource;
 @class UHDRemoteManagedLocation;
 

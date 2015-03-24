@@ -7,36 +7,9 @@
 //
 
 #import "UHDAppDelegate.h"
-
-// Persistent Stack
 @import UHDPersistenceKit;
-
-// Remote Datasources
 @import UHDRemoteKit;
-#import "UHDNewsRemoteDatasourceDelegate.h"
-#import "UHDMensaRemoteDatasourceDelegate.h"
-#import "UHDMapsRemoteDatasourceDelegate.h"
-
-// View Controllers
-#import "UHDNewsViewController.h"
-#import "UHDMensaViewController.h"
-#import "UHDMapsViewController.h"
-
-// Logging Config
-#import "VIFetchedResultsControllerDataSource.h"
-
-
-// tmp
-#import "UHDDailyMenu.h"
-#import "UHDMeal.h"
-#import "UHDMensa.h"
-#import "UHDBuilding.h"
-#import "UHDLocationCategory.h"
-#import "UHDCampusRegion.h"
-#import "UHDAddress.h"
-#import "UHDEventItem.h"
-#import "UHDNewsSource.h"
-#import "UHDTalkItem.h"
+@import UHDKit;
 
 
 @interface UHDAppDelegate ()
@@ -70,11 +43,11 @@
     
 
     // setup remote datasources
-    [self addRemoteDatasourceForKey:UHDRemoteDatasourceKeyNews baseURL:[[NSURL URLWithString:UHDRemoteAPIBaseURL] URLByAppendingPathComponent:@"news"] delegate:[[UHDNewsRemoteDatasourceDelegate alloc] init]];
-    [self addRemoteDatasourceForKey:UHDRemoteDatasourceKeyMensa baseURL:[[NSURL URLWithString:UHDRemoteAPIBaseURL] URLByAppendingPathComponent:@"mensa"] delegate:[[UHDMensaRemoteDatasourceDelegate alloc] init]];
-    [self addRemoteDatasourceForKey:UHDRemoteDatasourceKeyMaps baseURL:[NSURL URLWithString:UHDRemoteAPIBaseURL] delegate:[[UHDMapsRemoteDatasourceDelegate alloc] init]];
+    [self addRemoteDatasourceForKey:[UHDConstants remoteDatasourceKeyNews] baseURL:[[UHDRemoteConstants serverAPIBaseURL] URLByAppendingPathComponent:@"news"] delegate:[[UHDNewsRemoteDatasourceDelegate alloc] init]];
+    [self addRemoteDatasourceForKey:[UHDConstants remoteDatasourceKeyMensa] baseURL:[[UHDRemoteConstants serverAPIBaseURL] URLByAppendingPathComponent:@"mensa"] delegate:[[UHDMensaRemoteDatasourceDelegate alloc] init]];
+    [self addRemoteDatasourceForKey:[UHDConstants remoteDatasourceKeyMaps] baseURL:[UHDRemoteConstants serverAPIBaseURL] delegate:[[UHDMapsRemoteDatasourceDelegate alloc] init]];
     
-    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyMaps] generateSampleDataIfNeeded];
+    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:[UHDConstants remoteDatasourceKeyMaps]] generateSampleDataIfNeeded];
 
     [[UHDRemoteDatasourceManager defaultManager] refreshAllWithCompletion:nil];
     
@@ -238,14 +211,16 @@
     
     // setup initial view controllers
     
+    NSBundle *storyboardsBundle = [NSBundle bundleForClass:[UHDMensaViewController class]];
+    
     // Mensa
-    UIStoryboard *mensaStoryboard = [UIStoryboard storyboardWithName:@"mensa" bundle:nil];
+    UIStoryboard *mensaStoryboard = [UIStoryboard storyboardWithName:@"mensa" bundle:storyboardsBundle];
     UINavigationController *mensaNavC = [mensaStoryboard instantiateInitialViewController];
     UHDMensaViewController *mainMensaVC = (UHDMensaViewController *)mensaNavC.topViewController;
     mainMensaVC.managedObjectContext = self.persistentStack.managedObjectContext;
     
     // News
-    UIStoryboard *newsStoryboard = [UIStoryboard storyboardWithName:@"news" bundle:nil];
+    UIStoryboard *newsStoryboard = [UIStoryboard storyboardWithName:@"news" bundle:storyboardsBundle];
     UINavigationController *newsNavC = [newsStoryboard instantiateInitialViewController];
     UHDNewsViewController *newsVC = (UHDNewsViewController *)newsNavC.topViewController;
     newsVC.managedObjectContext = self.persistentStack.managedObjectContext;
@@ -266,13 +241,13 @@
 	eventsVC.displayMode = UHDNewsEventsDisplayModeEvents;
     
     // Maps
-    UIStoryboard *mapsStoryboard = [UIStoryboard storyboardWithName:@"maps" bundle:nil];
+    UIStoryboard *mapsStoryboard = [UIStoryboard storyboardWithName:@"maps" bundle:storyboardsBundle];
     UINavigationController *mapsNavC = [mapsStoryboard instantiateInitialViewController];
     UHDMapsViewController *mapsVC = (UHDMapsViewController *)mapsNavC.topViewController;
     mapsVC.managedObjectContext = self.persistentStack.managedObjectContext;
     
     // Settings
-    UIStoryboard *settingsStoryboard = [UIStoryboard storyboardWithName:@"settings" bundle:nil];
+    UIStoryboard *settingsStoryboard = [UIStoryboard storyboardWithName:@"settings" bundle:storyboardsBundle];
     UINavigationController *settingsNavC = [settingsStoryboard instantiateInitialViewController];
     UHDSettingsViewController *settingsVC = (UHDSettingsViewController *)settingsNavC.topViewController;
     settingsVC.managedObjectContext = self.persistentStack.managedObjectContext;
@@ -317,9 +292,10 @@
     if (!_persistentStack) {
         [self.logger log:@"Creating persistent stack ..." forLevel:VILogLevelVerbose];
         
-        NSManagedObjectModel *mensaModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"mensa" withExtension:@"momd"]];
-        NSManagedObjectModel *newsModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"news" withExtension:@"momd"]];
-        NSManagedObjectModel *mapsModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[[NSBundle mainBundle] URLForResource:@"maps" withExtension:@"momd"]];
+        NSBundle *modelsBundle = [NSBundle bundleForClass:[UHDMensa class]];
+        NSManagedObjectModel *mensaModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[modelsBundle URLForResource:@"mensa" withExtension:@"momd"]];
+        NSManagedObjectModel *newsModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[modelsBundle URLForResource:@"news" withExtension:@"momd"]];
+        NSManagedObjectModel *mapsModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[modelsBundle URLForResource:@"maps" withExtension:@"momd"]];
         NSManagedObjectModel *managedObjectModel = [self modelByMergingModels:@[ mensaModel, newsModel, mapsModel ] withForeignEntityNameKey:@"UHDForeignEntityNameKey"];
 
         NSURL *persistentStoreURL = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject] URLByAppendingPathComponent:@"uni-hd.sqlite"];
