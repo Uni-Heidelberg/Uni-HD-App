@@ -7,6 +7,7 @@
 //
 
 #import "UHDConfigureMapViewController.h"
+#import <UHDKit/UHDKit-Swift.h>
 
 
 @interface UHDConfigureMapViewController ()
@@ -33,8 +34,8 @@
 - (void)configureView
 {
     NSUInteger selectedSegmentIndex = 0;
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyMapType]) {
-        switch ([(NSNumber *)[[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyMapType] unsignedIntegerValue]) {
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:[UHDConstants userDefaultsKeyMapType]]) {
+        switch ([(NSNumber *)[[NSUserDefaults standardUserDefaults] objectForKey:[UHDConstants userDefaultsKeyMapType]] unsignedIntegerValue]) {
             case MKMapTypeStandard:
                 selectedSegmentIndex = 0;
                 break;
@@ -53,8 +54,8 @@
     }
     self.mapTypeControl.selectedSegmentIndex = selectedSegmentIndex;
     
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyShowCampusOverlay]) {
-        self.showCampusOverlaySwitch.on = [(NSNumber *)[[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyShowCampusOverlay] boolValue];
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:[UHDConstants userDefaultsKeyShowCampusOverlay]]) {
+        self.showCampusOverlaySwitch.on = [(NSNumber *)[[NSUserDefaults standardUserDefaults] objectForKey:[UHDConstants userDefaultsKeyShowCampusOverlay]] boolValue];
     } else {
         self.showCampusOverlaySwitch.on = YES;
     }
@@ -79,12 +80,12 @@
         default:
             break;
     }
-    [[NSUserDefaults standardUserDefaults] setObject:@( selectedMapType ) forKey:UHDUserDefaultsKeyMapType];
+    [[NSUserDefaults standardUserDefaults] setObject:@( selectedMapType ) forKey:[UHDConstants userDefaultsKeyMapType]];
 }
 
 - (IBAction)showCampusOverlaySwitchValueChanged:(id)sender
 {
-    [[NSUserDefaults standardUserDefaults] setObject:@( self.showCampusOverlaySwitch.isOn ) forKey:UHDUserDefaultsKeyShowCampusOverlay];
+    [[NSUserDefaults standardUserDefaults] setObject:@( self.showCampusOverlaySwitch.isOn ) forKey:[UHDConstants userDefaultsKeyShowCampusOverlay]];
 }
 
 @end

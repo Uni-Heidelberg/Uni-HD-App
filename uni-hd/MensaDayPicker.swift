@@ -9,28 +9,25 @@
 import UIKit
 import VILogKit
 
-@objc
-protocol MensaDayPickerDelegate {
+@objc public protocol MensaDayPickerDelegate {
     
     optional func dayPicker(dayPicker: MensaDayPicker, canSelectDate date: NSDate) -> Bool
     optional func dayPicker(dayPicker: MensaDayPicker, didSelectDate date: NSDate?)
     
 }
 
-@objc
-
-class MensaDayPicker: UIView {
+public class MensaDayPicker: UIView {
     
 
-    var itemWidth: CGFloat = 50 {
+    public var itemWidth: CGFloat = 50 {
         didSet {
             adjustItemSize()
         }
     }
     
-    @IBOutlet var delegate: MensaDayPickerDelegate?
+    @IBOutlet public var delegate: MensaDayPickerDelegate?
     
-    private(set) var selectedDate: NSDate? {
+    public private(set) var selectedDate: NSDate? {
         didSet(previousDate) {
             // remove time components
             if let selectedDate = selectedDate {
@@ -63,7 +60,7 @@ class MensaDayPicker: UIView {
     
     // MARK: Public Interface
     
-    func selectDate(date: NSDate, animated: Bool, scrollPosition: UICollectionViewScrollPosition)
+    public func selectDate(date: NSDate, animated: Bool, scrollPosition: UICollectionViewScrollPosition)
     {
         selectedDate = date
         
@@ -75,7 +72,7 @@ class MensaDayPicker: UIView {
         }
     }
     
-    func scrollToDate(date: NSDate, atScrollPosition scrollPosition: UICollectionViewScrollPosition, animated: Bool)
+    public func scrollToDate(date: NSDate, atScrollPosition scrollPosition: UICollectionViewScrollPosition, animated: Bool)
     {
         let index = indexForDate(date)
         if indexPathForIndex(index) == nil && scrollPosition != .None {
@@ -84,7 +81,7 @@ class MensaDayPicker: UIView {
         collectionView.scrollToItemAtIndexPath(indexPathForIndex(index)!, atScrollPosition: scrollPosition, animated: animated)
     }
     
-    func reloadData()
+    public func reloadData()
     {
         self.collectionView.reloadData()
         if let date = selectedDate {
@@ -105,7 +102,7 @@ class MensaDayPicker: UIView {
 
     // MARK: View Management
     
-    override func awakeFromNib()
+    override public func awakeFromNib()
     {
         super.awakeFromNib()
         adjustItemSize()
@@ -113,7 +110,7 @@ class MensaDayPicker: UIView {
         //collectionView.scrollToItemAtIndexPath(indexPathForDate(startDate)!, atScrollPosition: .Left, animated: false);
     }
     
-    override func layoutSubviews() {
+    override public func layoutSubviews() {
         super.layoutSubviews()
         adjustItemSize()
     }
@@ -170,13 +167,13 @@ class MensaDayPicker: UIView {
 
 extension MensaDayPicker: UICollectionViewDataSource {
     
-    func collectionView(collectionView: UICollectionView,
+    public func collectionView(collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int
     {
         return collectionViewLength
     }
     
-    func collectionView(collectionView: UICollectionView,
+    public func collectionView(collectionView: UICollectionView,
         cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("mensaDayPickerCell", forIndexPath: indexPath) as MensaDayPickerCell
@@ -196,7 +193,7 @@ extension MensaDayPicker: UICollectionViewDelegate {
     
     // MARK: Infinite Scrolling
 
-    func scrollViewDidScroll(scrollView: UIScrollView)
+    public func scrollViewDidScroll(scrollView: UIScrollView)
     {
         if scrollView != collectionView {
             return
@@ -225,7 +222,7 @@ extension MensaDayPicker: UICollectionViewDelegate {
 
     // MARK: Snapping to item bounds
 
-    func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>)
+    public func scrollViewWillEndDragging(scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>)
     {
         if scrollView != collectionView {
             return
@@ -245,7 +242,7 @@ extension MensaDayPicker: UICollectionViewDelegate {
     
     // MARK: Date Selection
         
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+    public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
     {
         selectedDate = dateForIndexPath(indexPath)
         delegate?.dayPicker?(self, didSelectDate: selectedDate)

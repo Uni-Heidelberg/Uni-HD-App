@@ -8,14 +8,6 @@
 
 
 #import "UHDCampusRegion.h"
-#import "UHDRemoteDatasourceManager.h"
-#import "UHDMapsRemoteDatasourceDelegate.h"
-
-
-@interface UHDCampusRegion ()
-
-@end
-
 
 @implementation UHDCampusRegion
 

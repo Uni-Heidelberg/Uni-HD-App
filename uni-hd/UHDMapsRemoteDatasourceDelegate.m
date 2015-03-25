@@ -12,6 +12,7 @@
 #import "UHDCampusRegion.h"
 #import "UHDBuilding.h"
 #import "UHDAddress.h"
+#import "NSManagedObject+VIInsertIntoContextCategory.h"
 
 
 @implementation UHDMapsRemoteDatasourceDelegate
@@ -297,7 +298,7 @@
     // TODO: remove this option?
     if (!overlayImage) {
         overlayImage = [UIImage imageNamed:[overlayImageURL lastPathComponent]];
-        if (overlayImage) [self.logger log:@"Using in-project overlay image file." object:overlayImageURL forLevel:VILogLevelDebug];
+        if (overlayImage) // FIXME: [self.logger log:@"Using in-project overlay image file." object:overlayImageURL forLevel:VILogLevelDebug];
     }
 
     // use cached file
@@ -305,26 +306,26 @@
     if (!overlayImage) {
         if ([[NSFileManager defaultManager] fileExistsAtPath:cachedFile]) {
             overlayImage = [UIImage imageWithContentsOfFile:cachedFile];
-            [self.logger log:@"Cached overlay image file found." object:overlayImageURL forLevel:VILogLevelDebug];
+            // FIXME: [self.logger log:@"Cached overlay image file found." object:overlayImageURL forLevel:VILogLevelDebug];
         }
     }
     
     // download and cache
     // TODO: ignore multiple requests
     if (!overlayImage) {
-        [self.logger log:@"Downloading overlay image..." object:overlayImageURL forLevel:VILogLevelDebug];
+        // FIXME: [self.logger log:@"Downloading overlay image..." object:overlayImageURL forLevel:VILogLevelDebug];
         NSData *imageData = [NSData dataWithContentsOfURL:overlayImageURL];
         if (imageData) {
             [imageData writeToFile:cachedFile atomically:YES];
             overlayImage = [UIImage imageWithData:imageData];
-            [self.logger log:@"Done downloading overlay image and written to cache file." object:overlayImageURL forLevel:VILogLevelDebug];
+            // FIXME: [self.logger log:@"Done downloading overlay image and written to cache file." object:overlayImageURL forLevel:VILogLevelDebug];
         } else {
-            [self.logger log:@"Could not download overlay image file." object:overlayImageURL forLevel:VILogLevelWarning];
+            // FIXME: [self.logger log:@"Could not download overlay image file." object:overlayImageURL forLevel:VILogLevelWarning];
         }
     }
     
     if (!overlayImage) {
-        [self.logger log:@"Unable to retrieve overlay image." object:overlayImageURL forLevel:VILogLevelError];
+        // FIXME: [self.logger log:@"Unable to retrieve overlay image." object:overlayImageURL forLevel:VILogLevelError];
     }
     
     return overlayImage;

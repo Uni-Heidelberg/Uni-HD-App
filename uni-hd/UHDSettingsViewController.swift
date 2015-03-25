@@ -8,9 +8,9 @@
 
 import UIKit
 
-class UHDSettingsViewController: UITableViewController {
+public class UHDSettingsViewController: UITableViewController {
 
-    var managedObjectContext: NSManagedObjectContext? {
+    public var managedObjectContext: NSManagedObjectContext? {
         didSet {
             if let oldValue = oldValue {
                 NSNotificationCenter.defaultCenter().removeObserver(self, name: NSManagedObjectContextDidSaveNotification, object: oldValue)
@@ -22,31 +22,35 @@ class UHDSettingsViewController: UITableViewController {
         }
     }
     
-    var userDefaultsChangeTriggered = false
+    private var userDefaultsChangeTriggered = false
     
     
     // MARK: UI Elements
     
     @IBOutlet weak var sourcesCell: UITableViewCell!
     @IBOutlet weak var subscribedSourcesDetailLabel: UILabel!
+    @IBOutlet weak var favouritedMensasDetailLabel: UILabel!
+    @IBOutlet weak var favouritedMealsDetailLabel: UILabel!
     @IBOutlet weak var mensaPriceSegmentedControl: UISegmentedControl!
     @IBOutlet weak var showCampusOverlaySwitch: UISwitch!
+    @IBOutlet weak var emphasizeVegetarianSwitch: UISwitch!
+
     
     
     // MARK: Lifecycle
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.configureView()
     }
     
     // TODO: remove this, should not be necessary .. but call from managedObjectContextDidSave does not yield the correct countForFetchRequest
-    override func viewWillAppear(animated: Bool) {
+    override public func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.configureView()
     }
     
-    func configureView() {
+    private func configureView() {
         if !self.isViewLoaded() {
             return
         }
@@ -59,12 +63,37 @@ class UHDSettingsViewController: UITableViewController {
         }
         
         // Subscribed Sources
-        let fetchRequest = NSFetchRequest(entityName: UHDNewsSource.entityName())
-        fetchRequest.predicate = NSPredicate(format: "subscribed == YES")
-        if let subscribedSourcesCount = self.managedObjectContext?.countForFetchRequest(fetchRequest, error: nil) {
+        let fetchRequestSources = NSFetchRequest(entityName: UHDNewsSource.entityName())
+        fetchRequestSources.predicate = NSPredicate(format: "subscribed == YES")
+        if let subscribedSourcesCount = self.managedObjectContext?.countForFetchRequest(fetchRequestSources, error: nil) {
             self.subscribedSourcesDetailLabel.text = "\(subscribedSourcesCount) " + NSLocalizedString("abonniert", comment: "")
         } else {
             self.subscribedSourcesDetailLabel.text = nil
+        }
+        
+        // Favourite Mensas
+        let fetchRequestMensas = NSFetchRequest(entityName: UHDMensa.entityName())
+        fetchRequestMensas.predicate = NSPredicate(format: "isFavourite == YES")
+        if let favouritedMensasCount = self.managedObjectContext?.countForFetchRequest(fetchRequestMensas, error: nil) {
+            self.favouritedMensasDetailLabel.text = "\(favouritedMensasCount) " + NSLocalizedString("favorisiert", comment: "")
+        } else {
+            self.favouritedMensasDetailLabel.text = nil
+        }
+        
+        // Favourite Meals
+        let fetchRequestMeals = NSFetchRequest(entityName: UHDMeal.entityName())
+        fetchRequestMeals.predicate = NSPredicate(format: "isFavourite == YES")
+        if let favouritedMealsCount = self.managedObjectContext?.countForFetchRequest(fetchRequestMeals, error: nil) {
+            self.favouritedMealsDetailLabel.text = "\(favouritedMealsCount) " + NSLocalizedString("favorisiert", comment: "")
+        } else {
+            self.favouritedMealsDetailLabel.text = nil
+        }
+        
+        // Vegetarian Switch
+        if let emphasizeVegetarianMeals = (NSUserDefaults.standardUserDefaults().objectForKey("UHDUserDefaultsKeyVegetarian") as? NSNumber)?.boolValue {
+            self.emphasizeVegetarianSwitch.on = emphasizeVegetarianMeals
+        } else {
+            self.emphasizeVegetarianSwitch.on = false
         }
         
         // Show Campus Overlay
@@ -79,7 +108,7 @@ class UHDSettingsViewController: UITableViewController {
     
     // MARK: User Interaction
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath == tableView.indexPathForCell(sourcesCell) {
             if let sourcesNavC = UIStoryboard(name: "news", bundle: nil).instantiateViewControllerWithIdentifier("sourcesNav") as? UINavigationController {
                 if let sourcesVC = sourcesNavC.viewControllers[0] as? UHDNewsSourcesViewController {
@@ -90,9 +119,27 @@ class UHDSettingsViewController: UITableViewController {
         }
     }
     
+    override public func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let identifier = segue.identifier {
+            switch identifier {
+            case "showSettingsDetailForMensa":
+                if let vc = segue.destinationViewController as? UHDSettingsDetailViewController {
+                    vc.managedObjectContext = self.managedObjectContext
+                }
+            default:
+                break
+            }
+        }
+    }
+    
     @IBAction func mensaPriceSegmentedControlValueChanged(sender: UISegmentedControl) {
         self.userDefaultsChangeTriggered = true
         NSUserDefaults.standardUserDefaults().setInteger(sender.selectedSegmentIndex, forKey: "UHDUserDefaultsKeyMensaPriceCategory")
+        self.userDefaultsChangeTriggered = false
+    }
+    @IBAction func vegetarianSwitchValueChanged(sender: UISwitch) {
+        self.userDefaultsChangeTriggered = true
+        NSUserDefaults.standardUserDefaults().setBool(sender.on, forKey: "UHDUserDefaultsKeyVegetarian")
         self.userDefaultsChangeTriggered = false
     }
     

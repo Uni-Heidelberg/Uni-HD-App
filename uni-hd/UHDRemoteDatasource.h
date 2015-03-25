@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import <RestKit/RestKit.h>
-@class UHDPersistentStack;
+@import RestKit;
+@import UHDPersistenceKit;
 @protocol UHDRemoteDatasourceDelegate;
 
 

@@ -8,6 +8,7 @@
 
 #import "UHDNewsViewController.h"
 #import "UHDAppDelegate.h"
+#import "NSManagedObject+VIInsertIntoContextCategory.h"
 
 // View Controllers
 #import "UHDNewsSourcesViewController.h"
@@ -123,7 +124,7 @@ typedef enum : NSUInteger {
     if (!_fetchedResultsController)
     {
         if (!self.managedObjectContext) {
-            [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
+            // FIXME: [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
             return nil;
         }
         
@@ -253,7 +254,7 @@ typedef enum : NSUInteger {
 /*
 - (void)sourcesNavigationBar:(UHDNewsSourcesNavigationBar *)navigationBar didSelectSource:(UHDNewsSource *)source
 {
-    [self.logger log:[NSString stringWithFormat:@"Switch Page View Controller to Source: %@", source.title] forLevel:VILogLevelDebug];
+    // FIXME: [self.logger log:[NSString stringWithFormat:@"Switch Page View Controller to Source: %@", source.title] forLevel:VILogLevelDebug];
 	
     NSUInteger currentSourceIndex = [self.newsListViewControllers indexOfObject:self.pageViewController.viewControllers[0]];
     NSUInteger selectedSourceIndex = 0;
@@ -285,7 +286,7 @@ typedef enum : NSUInteger {
 
 - (void)sourcesNavigationBar:(UHDNewsSourcesNavigationBar *)navigationBar didSelectSource:(UHDNewsSource *)source
 {
-    [self.logger log:[NSString stringWithFormat:@"Switch Page View Controller to Source: %@", source.title] forLevel:VILogLevelDebug];
+    // FIXME: [self.logger log:[NSString stringWithFormat:@"Switch Page View Controller to Source: %@", source.title] forLevel:VILogLevelDebug];
 	
 	NSUInteger selectedSourceIndex, selectedPageIndex;
 	if (source == nil) {

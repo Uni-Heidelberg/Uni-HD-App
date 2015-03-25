@@ -6,13 +6,15 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
+#import "UHDTalkDetailViewController.h"
 #import "UHDAppDelegate.h"
 
 #import <MessageUI/MessageUI.h>
 #import <EventKit/EventKit.h>
 #import <EventKitUI/EventKitUI.h>
 
-#import "UHDTalkDetailViewController.h"
+#import <UHDKit/UHDKit-Swift.h>
+
 #import "UHDTalkDetailTitleAbstractCell.h"
 #import "UHDTalkDetailSpaceTimeCell.h"
 #import "UHDMapsViewController.h"
@@ -103,6 +105,7 @@
 
 - (IBAction)addToCalendarButtonPressed:(id)sender {
 	
+    // TODO: never reach up to the app delegate to get information! pass data down.
 	EKEventStore *eventStore = [(UHDAppDelegate *)[[UIApplication sharedApplication] delegate] eventStore];
 
 	EKAuthorizationStatus authorizationStatus = [EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent];
@@ -112,11 +115,11 @@
         [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
             if (granted) {
                 // Access granted
-                [self.logger log:@"Access granted for entity type event" forLevel:VILogLevelInfo];
+                // FIXME: [self.logger log:@"Access granted for entity type event" forLevel:VILogLevelInfo];
             }
             else {
                 // Denied
-                [self.logger log:@"Access denied for entity type event" forLevel:VILogLevelInfo];
+                // FIXME: [self.logger log:@"Access denied for entity type event" forLevel:VILogLevelInfo];
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedString(@"Der Zugriff auf den Kalender wurde verweigert. Die Veranstaltung kann nicht in den Kalender eingetragen werden. Sie können die Zugriffsrechte in den Einstellungen anpassen.", nil) preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil];
                 [alertController addAction:okAction];
@@ -288,16 +291,16 @@
     switch (result)
     {
         case MFMailComposeResultCancelled:
-			[self.logger log:@"Mail cancelled" forLevel:VILogLevelInfo];
+			// FIXME: [self.logger log:@"Mail cancelled" forLevel:VILogLevelInfo];
             break;
         case MFMailComposeResultSaved:
-			[self.logger log:@"Mail saved" forLevel:VILogLevelInfo];
+			// FIXME: [self.logger log:@"Mail saved" forLevel:VILogLevelInfo];
             break;
         case MFMailComposeResultSent:
-			[self.logger log:@"Mail sent" forLevel:VILogLevelInfo];
+			// FIXME: [self.logger log:@"Mail sent" forLevel:VILogLevelInfo];
             break;
         case MFMailComposeResultFailed:
-			[self.logger log:@"Mail sent" error:error];
+			// FIXME: [self.logger log:@"Mail sent" error:error];
             break;
         default:
             break;
@@ -324,14 +327,14 @@
 
 	switch (action) {
 		case EKEventEditViewActionCanceled:
-			[self.logger log:@"Event editing cancelled" forLevel:VILogLevelInfo];
+			// FIXME: [self.logger log:@"Event editing cancelled" forLevel:VILogLevelInfo];
 			break;
 		case EKEventEditViewActionDeleted:
-			[self.logger log:@"Event deleted" forLevel:VILogLevelInfo];
+			// FIXME: [self.logger log:@"Event deleted" forLevel:VILogLevelInfo];
 			break;
 		case EKEventEditViewActionSaved:
 			{
-				[self.logger log:@"Event saved" forLevel:VILogLevelInfo];
+				// FIXME: [self.logger log:@"Event saved" forLevel:VILogLevelInfo];
 				
 				[self dismissViewControllerAnimated:YES completion:^(void) {
 					UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedString(@"Die Veranstaltung wurde erfolgreich in den Kalender eingetragen.", nil) preferredStyle:UIAlertControllerStyleAlert];

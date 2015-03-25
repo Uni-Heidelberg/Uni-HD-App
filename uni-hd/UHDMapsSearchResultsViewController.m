@@ -8,7 +8,9 @@
 
 #import "UHDMapsSearchResultsViewController.h"
 #import "VIFetchedResultsControllerDataSource.h"
-#import "UHDRemoteDatasourceManager.h"
+@import UHDRemoteKit;
+#import "NSManagedObject+VIInsertIntoContextCategory.h"
+#import <UHDKit/UHDKit-Swift.h>
 
 // Model
 #import "UHDBuilding.h"
@@ -51,7 +53,7 @@
     if (!_fetchedResultsControllerDataSource) {
         
         if (!self.managedObjectContext) {
-            [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
+            // FIXME: [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
             return nil;
         }
         
@@ -84,7 +86,7 @@
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController
 {
     NSString *searchText = [searchController.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    [self.logger log:@"Updating search results for search text" object:searchText forLevel:VILogLevelVerbose];
+    // FIXME: [self.logger log:@"Updating search results for search text" object:searchText forLevel:VILogLevelVerbose];
     NSArray *searchTerms = [searchText componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     NSString *predicateFormat = @"(title CONTAINS[cd] %@) OR (buildingNumber CONTAINS[cd] %@) OR (campusRegion.title CONTAINS[cd] %@) OR (campusRegion.identifier CONTAINS[cd] %@) OR (ANY keywords.content CONTAINS[cd] %@)";
     NSPredicate *predicate;
@@ -119,7 +121,6 @@
     UHDBuilding *item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
     UHDBuildingDetailViewController *detailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"buildingDetail"];
     detailVC.building = item;
-    UIViewController *pv = self.parentViewController;
     [((UIViewController *)((UISearchController *)self.parentViewController).delegate).navigationController pushViewController:detailVC animated:YES]; // TODO: this is super dirty, use segue instead
 }
 

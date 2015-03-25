@@ -11,7 +11,8 @@
 #import "UHDDailyMenu.h"
 #import "UHDMeal.h"
 #import "UHDMensaSection.h"
-#import <RKCLLocationValueTransformer/RKCLLocationValueTransformer.h>
+@import RKCLLocationValueTransformer;
+#import "NSManagedObject+VIInsertIntoContextCategory.h"
 
 
 @implementation UHDMensaRemoteDatasourceDelegate

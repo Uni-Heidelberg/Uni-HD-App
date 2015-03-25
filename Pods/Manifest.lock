@@ -2,51 +2,59 @@ PODS:
   - AFNetworking (1.3.4)
   - ISO8601DateFormatterValueTransformer (0.6.0):
     - RKValueTransformers (~> 1.1.0)
-  - RestKit (0.23.1):
-    - RestKit/Core
-  - RestKit/Core (0.23.1):
+  - RestKit (0.24.0):
+    - RestKit/Core (= 0.24.0)
+  - RestKit/Core (0.24.0):
     - RestKit/CoreData
     - RestKit/Network
     - RestKit/ObjectMapping
-  - RestKit/CoreData (0.23.1):
+  - RestKit/CoreData (0.24.0):
     - RestKit/ObjectMapping
-  - RestKit/Network (0.23.1):
+  - RestKit/Network (0.24.0):
     - AFNetworking (~> 1.3.0)
     - RestKit/ObjectMapping
     - RestKit/Support
     - SOCKit
-  - RestKit/ObjectMapping (0.23.1):
+  - RestKit/ObjectMapping (0.24.0):
     - ISO8601DateFormatterValueTransformer (~> 0.6.0)
     - RestKit/Support
     - RKValueTransformers (~> 1.1.0)
-  - RestKit/Search (0.23.1):
-    - RestKit/CoreData
-  - RestKit/Support (0.23.1):
-    - TransitionKit (= 2.1.0)
-  - RestKit/Testing (0.23.1):
-    - RestKit/Network
+  - RestKit/Support (0.24.0):
+    - TransitionKit (~> 2.1.0)
   - RKCLLocationValueTransformer (1.1.0):
     - RKValueTransformers (~> 1.1.0)
   - RKValueTransformers (1.1.0)
   - RMSwipeTableViewCell (0.6)
   - SOCKit (1.1)
-  - TransitionKit (2.1.0)
+  - TransitionKit (2.1.1)
 
 DEPENDENCIES:
-  - RestKit
-  - RestKit/Search
-  - RestKit/Testing
-  - RKCLLocationValueTransformer
+  - RestKit (from `https://github.com/Uni-Heidelberg/RestKit.git`)
+  - RKCLLocationValueTransformer (from `https://github.com/Uni-Heidelberg/RKCLLocationValueTransformer.git`)
   - RMSwipeTableViewCell
+
+EXTERNAL SOURCES:
+  RestKit:
+    :git: https://github.com/Uni-Heidelberg/RestKit.git
+  RKCLLocationValueTransformer:
+    :git: https://github.com/Uni-Heidelberg/RKCLLocationValueTransformer.git
+
+CHECKOUT OPTIONS:
+  RestKit:
+    :commit: efbf366bce56d772992247275fe5e00c48111af1
+    :git: https://github.com/Uni-Heidelberg/RestKit.git
+  RKCLLocationValueTransformer:
+    :commit: d3da9d07820fe3ee23ea4d72a30ffc8a3e6c8b64
+    :git: https://github.com/Uni-Heidelberg/RKCLLocationValueTransformer.git
 
 SPEC CHECKSUMS:
   AFNetworking: 80c4e0652b08eb34e25b9c0ff3c82556fe5967b4
   ISO8601DateFormatterValueTransformer: a705384ea6531255258e25b6480ba1180db703a0
-  RestKit: 0b5f1bbc43b81beba158262a1adae48ac062eb1e
-  RKCLLocationValueTransformer: 4803de0b5bdd81a1ebedb93a8a1d715f92ceb3f4
+  RestKit: 2de92bacf59485ce361c60fd6c1547d93ece5631
+  RKCLLocationValueTransformer: 2cf0ea0fb7cd4bc70c56834fb92abc717c66f982
   RKValueTransformers: b705e7b4651b9206b94600408462b74554bba969
   RMSwipeTableViewCell: 150021ada2d86b21db04556f08351462bd58919b
   SOCKit: d8d0dd3688ae1026c12367570da8fa8e1a6980fb
-  TransitionKit: 6a6f3ddda38ae758778aa889dcb930e4f8d64edc
+  TransitionKit: 9ce324caba25cb0a4c9f3334302d89685595455c
 
-COCOAPODS: 0.34.4
+COCOAPODS: 0.36.0

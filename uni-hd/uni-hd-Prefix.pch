@@ -26,6 +26,7 @@
 
 #define UHDUserDefaultsKeySelectedMensaId @"UHDUserDefaultsKeySelectedMensaId"
 #define UHDUserDefaultsKeyMensaPriceCategory @"UHDUserDefaultsKeyMensaPriceCategory"
+#define UHDUserDefaultsKeyVegetarian @"UHDUserDefaultsKeyVegetarian"
 #define UHDUserDefaultsKeyMapType @"UHDUserDefaultsKeyMapType"
 #define UHDUserDefaultsKeyShowCampusOverlay @"UHDUserDefaultsKeyShowCampusOverlay"
 

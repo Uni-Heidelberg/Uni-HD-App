@@ -9,6 +9,7 @@
 #import "UHDMeal.h"
 #import "UHDDailyMenu.h"
 #import "UHDMensaSection.h"
+#import <UHDKit/UHDKit-Swift.h>
 
 
 @implementation UHDMeal
@@ -27,7 +28,7 @@
     NSNumberFormatter *currencyFormatter = [[NSNumberFormatter alloc] init];
     currencyFormatter.numberStyle = NSNumberFormatterCurrencyStyle;
     currencyFormatter.currencyCode = @"EUR";
-    NSNumber *mensaPriceCategory = [[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyMensaPriceCategory];
+    NSNumber *mensaPriceCategory = [[NSUserDefaults standardUserDefaults] objectForKey:[UHDConstants userDefaultsKeyMensaPriceCategory]];
     NSNumber *price = nil;
     if (mensaPriceCategory) {
         switch (mensaPriceCategory.integerValue) {

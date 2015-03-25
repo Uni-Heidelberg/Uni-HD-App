@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+@import UIKit;
 #import "UHDMensa.h"
 
 @interface UHDDailyMenuViewController : UITableViewController
