@@ -547,5 +547,6 @@
     <resources>
         <image name="favouriteSymbol" width="23" height="23"/>
         <image name="mensaIcon" width="25" height="25"/>
+        <image name="mensaIconSelected" width="25" height="25"/>
     </resources>
 </document>

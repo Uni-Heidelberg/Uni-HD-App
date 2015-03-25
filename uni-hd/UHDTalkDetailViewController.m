@@ -105,6 +105,7 @@
 
 - (IBAction)addToCalendarButtonPressed:(id)sender {
 	
+    // TODO: never reach up to the app delegate to get information! pass data down.
 	EKEventStore *eventStore = [(UHDAppDelegate *)[[UIApplication sharedApplication] delegate] eventStore];
 
 	EKAuthorizationStatus authorizationStatus = [EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent];

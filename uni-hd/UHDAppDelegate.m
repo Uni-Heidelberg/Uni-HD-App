@@ -27,7 +27,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
 
-	// initialize event store
+    // initialize event store
 	self.eventStore = [[EKEventStore alloc] init];
     
     // configure logging
@@ -216,32 +216,31 @@
     // Mensa
     UIStoryboard *mensaStoryboard = [UIStoryboard storyboardWithName:@"mensa" bundle:storyboardsBundle];
     UINavigationController *mensaNavC = [mensaStoryboard instantiateInitialViewController];
+    // TODO: move selectedImage settings to storyboard when issue is resolved: can't find selectedImage in framework bundle
+    [mensaNavC.tabBarItem setSelectedImage:[UIImage imageNamed:@"mensaIconSelected" inBundle:storyboardsBundle compatibleWithTraitCollection:nil]];
     UHDMensaViewController *mainMensaVC = (UHDMensaViewController *)mensaNavC.topViewController;
     mainMensaVC.managedObjectContext = self.persistentStack.managedObjectContext;
     
     // News
     UIStoryboard *newsStoryboard = [UIStoryboard storyboardWithName:@"news" bundle:storyboardsBundle];
     UINavigationController *newsNavC = [newsStoryboard instantiateInitialViewController];
+    [newsNavC.tabBarItem setSelectedImage:[UIImage imageNamed:@"newsIconSelected" inBundle:storyboardsBundle compatibleWithTraitCollection:nil]];
     UHDNewsViewController *newsVC = (UHDNewsViewController *)newsNavC.topViewController;
     newsVC.managedObjectContext = self.persistentStack.managedObjectContext;
-	
-	[newsNavC.tabBarItem setTitle:NSLocalizedString(@"News", nil)];
-	[newsNavC.tabBarItem setImage:[UIImage imageNamed:@"newsIcon"]];
-	[newsNavC.tabBarItem setSelectedImage:[UIImage imageNamed:@"newsIconSelected"]];
 	newsVC.displayMode = UHDNewsEventsDisplayModeNews;
 	
 	// Events
 	UINavigationController *eventsNavC = [newsStoryboard instantiateInitialViewController];
+    [eventsNavC.tabBarItem setTitle:NSLocalizedString(@"Veranstaltungen", nil)];
+    [eventsNavC.tabBarItem setImage:[UIImage imageNamed:@"eventsIcon" inBundle:storyboardsBundle compatibleWithTraitCollection:nil]];
+    [eventsNavC.tabBarItem setSelectedImage:[UIImage imageNamed:@"eventsIconSelected" inBundle:storyboardsBundle compatibleWithTraitCollection:nil]];
 	UHDNewsViewController *eventsVC = (UHDNewsViewController *)eventsNavC.topViewController;
 	eventsVC.managedObjectContext = self.persistentStack.managedObjectContext;
-	
-	[eventsNavC.tabBarItem setTitle:NSLocalizedString(@"Veranstaltungen", nil)];
-	[eventsNavC.tabBarItem setImage:[UIImage imageNamed:@"eventsIcon"]];
-	[eventsNavC.tabBarItem setSelectedImage:[UIImage imageNamed:@"eventsIconSelected"]];
-	eventsVC.displayMode = UHDNewsEventsDisplayModeEvents;
+    eventsVC.displayMode = UHDNewsEventsDisplayModeEvents;
     
     // Maps
     UIStoryboard *mapsStoryboard = [UIStoryboard storyboardWithName:@"maps" bundle:storyboardsBundle];
+    [eventsNavC.tabBarItem setSelectedImage:[UIImage imageNamed:@"mapsIconSelected" inBundle:storyboardsBundle compatibleWithTraitCollection:nil]];
     UINavigationController *mapsNavC = [mapsStoryboard instantiateInitialViewController];
     UHDMapsViewController *mapsVC = (UHDMapsViewController *)mapsNavC.topViewController;
     mapsVC.managedObjectContext = self.persistentStack.managedObjectContext;

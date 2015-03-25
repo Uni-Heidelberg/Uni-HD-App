@@ -21,8 +21,13 @@ FOUNDATION_EXPORT const unsigned char UHDKitVersionString[];
 
 // View Controllers
 #import <UHDKit/UHDMensaViewController.h>
+#import <UHDKit/UHDDailyMenuViewController.h>
+#import <UHDKit/UHDMensaListViewController.h>
 // Model
 #import <UHDKit/UHDMensa.h>
+#import <UHDKit/UHDDailyMenu.h>
+#import <UHDKit/UHDMeal.h>
+#import <UHDKit/UHDMensaSection.h>
 
 
 // News
@@ -32,9 +37,17 @@ FOUNDATION_EXPORT const unsigned char UHDKitVersionString[];
 #import <UHDKit/UHDNewsDetailViewController.h>
 #import <UHDKit/UHDNewsSourcesViewController.h>
 #import <UHDKit/UHDTalkDetailViewController.h>
+#import <UHDKit/UHDNewsListViewController.h>
 // View
 #import <UHDKit/UHDNewsItemCell.h>
 #import <UHDKit/UHDTalkItemCell.h>
+#import <UHDKit/UHDEventItemCell.h>
+#import <UHDKit/UHDNewsSourceCell.h>
+#import <UHDKit/UHDNewsSourcesNavigationBar.h>
+#import <UHDKit/UHDReadIndicatorView.h>
+#import <UHDKit/UHDSourceCollectionViewCell.h>
+#import <UHDKit/UHDTalkDetailSpaceTimeCell.h>
+#import <UHDKit/UHDTalkDetailTitleAbstractCell.h>
 // Model
 #import <UHDKit/UHDNewsSource.h>
 #import <UHDKit/UHDNewsItem.h>
@@ -46,6 +59,11 @@ FOUNDATION_EXPORT const unsigned char UHDKitVersionString[];
 
 // View Controllers
 #import <UHDKit/UHDMapsViewController.h>
+#import <UHDKit/UHDConfigureMapViewController.h>
+#import <UHDKit/UHDMapsSearchResultsViewController.h>
+// View
+#import <UHDKit/UHDBuildingAnnotationView.h>
+#import <UHDKit/UHDBuildingCell.h>
 // Model
 #import <UHDKit/UHDRemoteManagedLocation.h>
 #import <UHDKit/UHDCampusRegion.h>

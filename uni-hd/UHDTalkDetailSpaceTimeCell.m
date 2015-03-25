@@ -8,6 +8,7 @@
 
 #import "UHDTalkDetailSpaceTimeCell.h"
 @import MapKit;
+#import "UHDRemoteManagedLocation.h"
 
 @interface UHDTalkDetailSpaceTimeCell ()
 
