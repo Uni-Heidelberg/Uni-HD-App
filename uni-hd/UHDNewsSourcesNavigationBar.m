@@ -10,19 +10,18 @@
 #import "UHDSourceCollectionViewCell.h"
 #import "UHDNewsSource.h"
 #import "UHDNewsViewController.h"
+#import "UIColor+UHDColors.h"
 
 
 @interface UHDNewsSourcesNavigationBar () <UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 
-//@property (weak, nonatomic) IBOutlet UIButton *sourceButton;
-
-//- (IBAction)sourceButtonPressed:(id)sender;
-
 @end
 
+
 @implementation UHDNewsSourcesNavigationBar
+
 
 - (void)awakeFromNib
 {
@@ -55,10 +54,11 @@
     
     _selectedSource = selectedSource;
     
-    [self.logger log:[NSString stringWithFormat:@"Selected source: %@", selectedSource.title] forLevel:VILogLevelDebug];
+    // FIXME: [self.logger log:[NSString stringWithFormat:@"Selected source: %@", selectedSource.title] forLevel:VILogLevelDebug];
 	
     [self.collectionView reloadData];
-    
+	
+	[self scrollToSelectedSource];
 }
 
 
@@ -89,10 +89,10 @@
 		
 		switch (((UHDNewsViewController *)self.delegate).displayMode) {
 			case UHDNewsEventsDisplayModeNews:
-				cell.sourceIconImageView.image = [UIImage imageNamed:@"allNewsIcon"];
+				cell.sourceIconImageView.image = [UIImage imageNamed:@"allNewsIcon" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
 				break;
 			case UHDNewsEventsDisplayModeEvents:
-				cell.sourceIconImageView.image = [UIImage imageNamed:@"allTalksIcon"];
+                cell.sourceIconImageView.image = [UIImage imageNamed:@"allTalksIcon" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
 				break;
 			default:
 				break;

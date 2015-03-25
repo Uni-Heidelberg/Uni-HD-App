@@ -9,7 +9,9 @@
 #import "UHDNewsListViewController.h"
 
 #import "VIFetchedResultsControllerDataSource.h"
-#import "UHDRemoteDatasourceManager.h"
+@import UHDRemoteKit;
+#import <UHDKit/UHDKit-Swift.h>
+#import "NSManagedObject+VIInsertIntoContextCategory.h"
 
 // View Controllers
 #import "UHDNewsDetailViewController.h"
@@ -25,9 +27,9 @@
 
 @interface UHDNewsListViewController ()
 
-@property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
-
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
+@property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 
 @property (strong, nonatomic) NSDateFormatter *sectionDateFormatter;
 
@@ -49,11 +51,6 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 	
-	[self configureView];
-    
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 160;
-	
 }
 
 
@@ -71,6 +68,12 @@
 {
     [super viewDidLoad];
 	
+	self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 160;
+	
+	self.tableView.dataSource = self;
+	self.tableView.delegate = self;
+	
 	// set date format
 	NSCalendar *calendar = [NSCalendar currentCalendar];
 	NSTimeZone *timeZone = [NSTimeZone systemTimeZone];
@@ -79,10 +82,7 @@
 	[self.sectionDateFormatter setCalendar:calendar];
 	NSString *formatTemplate = [NSDateFormatter dateFormatFromTemplate:@"MMMM YYYY" options:0 locale:[NSLocale currentLocale]];
 	[self.sectionDateFormatter setDateFormat:formatTemplate];
-	
-	self.tableView.dataSource = self;
-	self.tableView.delegate = self;
-	
+
     // is this necessary? the fetched results controller should handle changes and update the table view when the "sectionIdentifier" property changes
 	//[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeChanged) name:UIApplicationSignificantTimeChangeNotification object:nil];
 	
@@ -146,6 +146,7 @@
 	}
 	
 	[self.fetchedResultsControllerDataSource reloadData];
+	[self configureView];
 }
 
 
@@ -164,7 +165,7 @@
 
 - (IBAction)refreshControlValueChanged:(UIRefreshControl *)sender
 {
-    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyNews] refreshWithCompletion:^(BOOL success, NSError *error) {
+    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:[UHDConstants remoteDatasourceKeyNews]] refreshWithCompletion:^(BOOL success, NSError *error) {
         [sender endRefreshing];
     }];
 	// TODO: Refreshing throws an exception
@@ -320,7 +321,7 @@
 	if (!_fetchedResultsControllerDataSource)
     {
         if (!self.managedObjectContext) {
-            [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
+            // FIXME: [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
             return nil;
         }
 		
@@ -351,15 +352,15 @@
 		fetchedResultsControllerDataSource.fetchedResultsController = fetchedResultsController;
 		_fetchedResultsControllerDataSource = fetchedResultsControllerDataSource;
 		
-		//[self.logger log:[NSString stringWithFormat:@"number of fetched objects: %lu", [fetchedResultsController.fetchedObjects count]] forLevel:VILogLevelDebug];
+		//// FIXME: [self.logger log:[NSString stringWithFormat:@"number of fetched objects: %lu", [fetchedResultsController.fetchedObjects count]] forLevel:VILogLevelDebug];
 		
 	}
 	
 	/*
 	NSArray *sections = _fetchedResultsControllerDataSource.fetchedResultsController.sections;
 	for (id<NSFetchedResultsSectionInfo> section in sections) {
-		[self.logger log:[NSString stringWithFormat:@"sectionID: %@", [section name]] forLevel:VILogLevelDebug];
-		[self.logger log:[NSString stringWithFormat:@"object: %@", [[[section objects] firstObject] title]] forLevel:VILogLevelDebug];
+		// FIXME: [self.logger log:[NSString stringWithFormat:@"sectionID: %@", [section name]] forLevel:VILogLevelDebug];
+		// FIXME: [self.logger log:[NSString stringWithFormat:@"object: %@", [[[section objects] firstObject] title]] forLevel:VILogLevelDebug];
 	}
 	*/
 	
@@ -441,7 +442,7 @@
 	
 	}
 	
-	//[self.logger log:[NSString stringWithFormat:@"height of cell: %f", cell.bounds.size.height] forLevel:VILogLevelDebug];
+	//// FIXME: [self.logger log:[NSString stringWithFormat:@"height of cell: %f", cell.bounds.size.height] forLevel:VILogLevelDebug];
 	
 	return cell;
 }

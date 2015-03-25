@@ -10,7 +10,7 @@ import Foundation
 
 extension CircularProgressView {
     
-    func configureForHoursOfMensa(mensa: UHDMensa)
+    public func configureForHoursOfMensa(mensa: UHDMensa)
     {
         self.image = mensa.image
         self.progress = mensa.hours.progress

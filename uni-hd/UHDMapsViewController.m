@@ -7,7 +7,9 @@
 //
 
 #import "UHDMapsViewController.h"
-#import "UHDRemoteDatasourceManager.h"
+@import UHDRemoteKit;
+#import "NSManagedObject+VIInsertIntoContextCategory.h"
+#import <UHDKit/UHDKit-Swift.h>
 
 // Model
 #import "UHDBuilding.h"
@@ -18,7 +20,6 @@
 
 
 //View
-#import "VIImageOverlayRenderer.h"
 #import "UHDBuildingAnnotationView.h"
 
 
@@ -51,9 +52,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	
-	[self.navigationController.tabBarItem setSelectedImage:[UIImage imageNamed:@"mapsIconSelected"]];
-    
+	    
     // trigger location authorization
     // TODO: inform user first
     CLLocationManager *locationManager = [[CLLocationManager alloc] init];
@@ -108,8 +107,8 @@
 - (void)configureView
 {
     // Configure map view
-    if ([[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyMapType]) {
-        self.mapView.mapType = [[[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyMapType] unsignedIntegerValue];
+    if ([[NSUserDefaults standardUserDefaults] objectForKey:[UHDConstants userDefaultsKeyMapType]]) {
+        self.mapView.mapType = [[[NSUserDefaults standardUserDefaults] objectForKey:[UHDConstants userDefaultsKeyMapType]] unsignedIntegerValue];
     } else {
         self.mapView.mapType = MKMapTypeStandard;
     }
@@ -117,7 +116,7 @@
     // Add campus region overlays
     NSArray *allCampusRegions = self.campusRegionsFetchedResultsController.fetchedObjects;
     [self.mapView removeOverlays:allCampusRegions];
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeyShowCampusOverlay] || [[NSUserDefaults standardUserDefaults] boolForKey:UHDUserDefaultsKeyShowCampusOverlay]) {
+    if (![[NSUserDefaults standardUserDefaults] objectForKey:[UHDConstants userDefaultsKeyShowCampusOverlay]] || [[NSUserDefaults standardUserDefaults] boolForKey:[UHDConstants userDefaultsKeyShowCampusOverlay]]) {
         [self.mapView addOverlays:allCampusRegions level:MKOverlayLevelAboveLabels];
     }
     
@@ -292,7 +291,7 @@
 }
 
 
-// This is not smooth enough for presentation yet
+// TODO: This is not smooth enough for presentation yet
 
 /*
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
@@ -318,7 +317,7 @@
         }
     }
     
-    /*if ((mapView.region.span.latitudeDelta > 0.0596 ) || (mapView.region.span.longitudeDelta > 0.071736) ) {
+    if ((mapView.region.span.latitudeDelta > 0.0596 ) || (mapView.region.span.longitudeDelta > 0.071736) ) {
         
         CLLocationCoordinate2D centerCoord = CLLocationCoordinate2DMake(49.4085, 8.68685);
 

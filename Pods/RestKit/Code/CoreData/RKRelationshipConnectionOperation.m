@@ -49,7 +49,7 @@ static NSDictionary *RKConnectionAttributeValuesWithObject(RKConnectionDescripti
     NSCAssert([connection isForeignKeyConnection], @"Only valid for a foreign key connection");
     NSMutableDictionary *destinationEntityAttributeValues = [NSMutableDictionary dictionaryWithCapacity:[connection.attributes count]];
     for (NSString *sourceAttribute in connection.attributes) {
-        NSString *destinationAttribute = [connection.attributes objectForKey:sourceAttribute];
+        NSString *destinationAttribute = (connection.attributes)[sourceAttribute];
         id sourceValue = [managedObject valueForKey:sourceAttribute];
         [destinationEntityAttributeValues setValue:sourceValue ?: [NSNull null] forKey:destinationAttribute];
     }
@@ -71,7 +71,7 @@ static NSDictionary *RKConnectionAttributeValuesWithObject(RKConnectionDescripti
 
 @implementation RKRelationshipConnectionOperation
 
-- (id)initWithManagedObject:(NSManagedObject *)managedObject
+- (instancetype)initWithManagedObject:(NSManagedObject *)managedObject
                 connections:(NSArray *)connections
          managedObjectCache:(id<RKManagedObjectCaching>)managedObjectCache
 {
@@ -182,7 +182,11 @@ static NSDictionary *RKConnectionAttributeValuesWithObject(RKConnectionDescripti
 - (void)main
 {
     for (RKConnectionDescription *connection in self.connections) {
-        if (self.isCancelled || [self.managedObject isDeleted]) return;
+        __block BOOL isDeleted;
+        [self.managedObject.managedObjectContext performBlockAndWait:^{
+            isDeleted=[self.managedObject isDeleted];
+        }];
+        if (self.isCancelled || isDeleted) return;
         NSString *relationshipName = connection.relationship.name;
         RKLogTrace(@"Connecting relationship '%@' with mapping: %@", relationshipName, connection);
         

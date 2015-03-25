@@ -9,9 +9,9 @@
 import UIKit
 import MessageUI
 
-class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewControllerDelegate {
+public class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewControllerDelegate {
 
-    var building: UHDBuilding? {
+    public var building: UHDBuilding? {
         didSet {
             if let prevBuilding = oldValue {
                 NSNotificationCenter.defaultCenter().removeObserver(self, name: NSManagedObjectContextObjectsDidChangeNotification, object: prevBuilding.managedObjectContext)
@@ -32,19 +32,19 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
     
     // MARK: Lifecycle
     
-    override func awakeFromNib() {
+    override public func awakeFromNib() {
         super.awakeFromNib()
         
         self.tableView.estimatedRowHeight = 80
         self.tableView.rowHeight = UITableViewAutomaticDimension
     }
     
-    override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
         self.configureView()
     }
     
-    override func viewDidLayoutSubviews() {
+    override public func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         self.tableView.adjustFrameForParallaxedHeaderView(self.headerImageView)
     }
@@ -70,7 +70,7 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
     
     // MARK: User Interaction
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
+    override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath)
     {
         if let building = self.building {
             
@@ -241,11 +241,11 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
     
     // MARK: Table View Datasource
     
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return self.sections.count
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch self.sections[section] {
         case .Title:
             if let mensa = self.building as? UHDMensa {
@@ -265,7 +265,7 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
         }
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
+    override public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell
     {
         let building = self.building!
         
@@ -344,7 +344,7 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
         }
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    override public func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return self.sections[section].localizedTitle
     }
     
@@ -366,7 +366,7 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
     
     // MARK: Scroll View Delegate
     
-    override func scrollViewDidScroll(scrollView: UIScrollView) {
+    override public func scrollViewDidScroll(scrollView: UIScrollView) {
         if (scrollView==self.tableView) {
             self.tableView.adjustFrameForParallaxedHeaderView(self.headerImageView)
         }
@@ -375,7 +375,7 @@ class UHDBuildingDetailViewController: UITableViewController, MFMailComposeViewC
     
     // MARK: Mail Compose View Controller Delegate
     
-    func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
+    public func mailComposeController(controller: MFMailComposeViewController!, didFinishWithResult result: MFMailComposeResult, error: NSError!) {
         controller.dismissViewControllerAnimated(true, completion: nil)
     }
     

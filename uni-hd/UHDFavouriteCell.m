@@ -8,6 +8,7 @@
 
 #import "UHDFavouriteCell.h"
 #import "UHDFavouritesStarView.h"
+#import "UIColor+UHDColors.h"
 
 #define kUHDFavouriteCellStarSize 44
 #define kUHDFavouriteCellStarOffset 10

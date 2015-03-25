@@ -9,6 +9,7 @@
 #import "UHDMensa.h"
 #import "UHDMensaSection.h"
 #import "UHDBuilding.h"
+#import <UHDKit/UHDKit-Swift.h>
 
 @implementation UHDMensa
 

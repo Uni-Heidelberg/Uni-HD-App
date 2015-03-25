@@ -12,8 +12,8 @@
 #import "VIFetchedResultsControllerDataSource.h"
 #import "UHDDailyMenu.h"
 #import "UHDMensaSection.h"
-
-
+#import "NSManagedObject+VIInsertIntoContextCategory.h"
+#import <UHDKit/UHDKit-Swift.h>
 
 @interface UHDDailyMenuViewController () <RMSwipeTableViewCellDelegate, NSFetchedResultsControllerDelegate>
 
@@ -80,12 +80,12 @@
     if (!_fetchedResultsController)
     {
         if (!self.mensa.managedObjectContext) {
-            [self.logger log:@"Unable to create fetched results controller without a managed object context." forLevel:VILogLevelWarning];
+            // FIXME: [self.logger log:@"Unable to create fetched results controller without a managed object context." forLevel:VILogLevelWarning];
             return nil;
         }
         
         if (!(self.mensa && self.date)) {
-            [self.logger log:@"Mensa and date need to be set to create fetched results controller." forLevel:VILogLevelWarning];
+            // FIXME: [self.logger log:@"Mensa and date need to be set to create fetched results controller." forLevel:VILogLevelWarning];
             return nil;
         }
         
@@ -127,7 +127,7 @@
 
 - (IBAction)refreshControlValueChanged:(UIRefreshControl *)sender
 {
-    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyMensa] refreshWithCompletion:^(BOOL success, NSError *error) {
+    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:[UHDConstants remoteDatasourceKeyMensa]] refreshWithCompletion:^(BOOL success, NSError *error) {
         [sender endRefreshing];
     }];
 }
@@ -209,16 +209,16 @@
 /*#pragma mark - Swipe Table View Cell Delegate
 
 -(void)swipeTableViewCellDidStartSwiping:(RMSwipeTableViewCell *)swipeTableViewCell {
-    [self.logger log:@"swipeTableViewCellDidStartSwiping: %@" object:swipeTableViewCell forLevel:VILogLevelVerbose];
+    // FIXME: [self.logger log:@"swipeTableViewCellDidStartSwiping: %@" object:swipeTableViewCell forLevel:VILogLevelVerbose];
 }
 
 -(void)swipeTableViewCell:(UHDMealCell *)swipeTableViewCell didSwipeToPoint:(CGPoint)point velocity:(CGPoint)velocity {
-    [self.logger log:[NSString stringWithFormat:@"swipeTableViewCell: %@ didSwipeToPoint: %@ velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
+    // FIXME: [self.logger log:[NSString stringWithFormat:@"swipeTableViewCell: %@ didSwipeToPoint: %@ velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
 }
 
 -(void)swipeTableViewCellWillResetState:(RMSwipeTableViewCell *)swipeTableViewCell fromPoint:(CGPoint)point animation:(RMSwipeTableViewCellAnimationType)animation velocity:(CGPoint)velocity
 {
-    [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellWillResetState: %@ fromPoint: %@ animation: %u, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
+    // FIXME: [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellWillResetState: %@ fromPoint: %@ animation: %u, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
     
     if ([(UHDFavouriteCell *)swipeTableViewCell shouldTriggerForPoint:point]) {
         UHDMeal *meal = [self mealForIndexPath:[self.tableView indexPathForCell:swipeTableViewCell]];
@@ -228,7 +228,7 @@
 }
 
 -(void)swipeTableViewCellDidResetState:(RMSwipeTableViewCell *)swipeTableViewCell fromPoint:(CGPoint)point animation:(RMSwipeTableViewCellAnimationType)animation velocity:(CGPoint)velocity {
-    [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellDidResetState: %@ fromPoint: %@ animation: %u, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
+    // FIXME: [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellDidResetState: %@ fromPoint: %@ animation: %u, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
 }*/
 
 

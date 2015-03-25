@@ -13,6 +13,7 @@
 #import "UHDTalkSpeaker.h"
 #import "UHDNewsSource.h"
 #import "UHDNewsCategory.h"
+#import "NSManagedObject+VIInsertIntoContextCategory.h"
 
 @implementation UHDNewsRemoteDatasourceDelegate
 
@@ -163,7 +164,7 @@
     talkItem.url = [NSURL URLWithString:@"http://www.physi.uni-heidelberg.de/Veranstaltungen/Ankuendigungen/Kaplan_20.12.2013.pdf"];
     //talkItem.thumbImage = [UIImage imageNamed:@"particleFever"];
     talkItem.source = newsSource;
-	talkItem.location = @"INF 308, Hörsaal 1";
+	//talkItem.location = @"INF 308, Hörsaal 1";
 	
 	// Create Speaker
 	UHDTalkSpeaker *talkSpeaker = [UHDTalkSpeaker insertNewObjectIntoContext:managedObjectContext];
@@ -187,7 +188,7 @@
     talkItem.url = [NSURL URLWithString:@"http://www.ita.uni-heidelberg.de/~dullemond/hjac.shtml?lang=de"];
     //talkItem.thumbImage = [UIImage imageNamed:@"astroTalk"];
     talkItem.source = newsSource;
-	talkItem.location = @"Haus der Astronomie on the Königstuhl";
+	//talkItem.location = @"Haus der Astronomie on the Königstuhl";
 
 	// Create Speaker
 	talkSpeaker = [UHDTalkSpeaker insertNewObjectIntoContext:managedObjectContext];
@@ -230,7 +231,7 @@
 	eventItem.url = [NSURL URLWithString:@"http://de.fifa.com/worldcup/matches/index.html"];
 	//eventItem.thumbImage = [UIImage imageNamed:@"WM2014"];
 	eventItem.source = newsSource;
-	eventItem.location = @"Café Botanik im Neuenheimer Feld";
+	//eventItem.location = @"Café Botanik im Neuenheimer Feld";
 	//eventItem.abstract = @"Ein wahrhaft packendes Spiel - am Ende kann man nur sagen: Super, Mario!";
 	
 	eventItem = [UHDEventItem insertNewObjectIntoContext:managedObjectContext];
@@ -241,7 +242,7 @@
 	eventItem.date = [calendar dateByAddingComponents:oneDay toDate:[NSDate date] options:0];
 	eventItem.url = [NSURL URLWithString:@"https://www.facebook.com/studierendenwerk.heidelberg"];
 	eventItem.source = newsSource;
-	eventItem.location = @"Marstallcafé";
+	//eventItem.location = @"Marstallcafé";
 	eventItem.abstract = @"Morgen läuft der neueste Film von und mit Matthias Schweighöfer. ICI-Clubmitgleider zahlen im Oktober keinen Eintritt. Clubausweise gibt es für 2 Euro ab 18.30 Uhr im Marstallcafé.";
     
     // Save to store

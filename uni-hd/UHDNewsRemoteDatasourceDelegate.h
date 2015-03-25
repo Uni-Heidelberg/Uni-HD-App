@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import "UHDRemoteDatasource.h"
+@import UHDRemoteKit;
 
 @interface UHDNewsRemoteDatasourceDelegate : NSObject <UHDRemoteDatasourceDelegate>
 

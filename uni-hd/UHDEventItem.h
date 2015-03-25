@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
+@import Foundation;
 #import "UHDNewsItem.h"
 @class UHDRemoteManagedLocation;
 

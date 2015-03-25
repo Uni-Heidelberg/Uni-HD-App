@@ -8,6 +8,7 @@
 
 #import "UHDMensaListViewController.h"
 
+#import "NSManagedObject+VIInsertIntoContextCategory.h"
 // Table View Datasource
 #import "VIFetchedResultsControllerDataSource.h"
 
@@ -22,7 +23,7 @@
 #import "UHDMensa.h"
 
 // Swift
-#import "uni_hd-Swift.h"
+#import <UHDKit/UHDKit-Swift.h>
 
 @interface UHDMensaListViewController () <RMSwipeTableViewCellDelegate, CLLocationManagerDelegate, NSFetchedResultsControllerDelegate>
 
@@ -72,7 +73,7 @@
             [self.locationManager requestAlwaysAuthorization]; // "Always" needed for significant location change
         }
     }
-    [self.tableView registerNib:[UINib nibWithNibName:@"UHDMensaSectionHeaderView" bundle:nil] forHeaderFooterViewReuseIdentifier:@"TableHeader"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"UHDMensaSectionHeaderView" bundle:[NSBundle bundleForClass:[self class]]] forHeaderFooterViewReuseIdentifier:@"TableHeader"];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -80,7 +81,7 @@
     [super viewWillAppear:animated];
     [self.locationManager startMonitoringSignificantLocationChanges];  // TODO: reconsider accuracy
     if ([self indexPathOfSelectedMensa]==nil) {
-        [self.logger log:@"No Mensa selected" forLevel:VILogLevelDebug];
+        // FIXME: [self.logger log:@"No Mensa selected" forLevel:VILogLevelDebug];
     }
     else {
         [self.tableView selectRowAtIndexPath: [self indexPathOfSelectedMensa] animated:animated scrollPosition:UITableViewScrollPositionNone];
@@ -88,9 +89,9 @@
     
 }
 -(NSIndexPath *)indexPathOfSelectedMensa{
-    [self.logger log:@"Loading selected mensa from user defaults..." forLevel:VILogLevelDebug];
+    // FIXME: [self.logger log:@"Loading selected mensa from user defaults..." forLevel:VILogLevelDebug];
     
-    NSNumber *mensaId = [[NSUserDefaults standardUserDefaults] objectForKey:UHDUserDefaultsKeySelectedMensaId];
+    NSNumber *mensaId = [[NSUserDefaults standardUserDefaults] objectForKey:[UHDConstants userDefaultsKeySelectedMensaId]];
     if (!mensaId) {
     }
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
@@ -98,10 +99,10 @@
     NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:NULL];
     if (result.count > 0) {
         UHDMensa* selectedMensa = result.firstObject;
-        [self.logger log:@"Found selected Mensa." object:selectedMensa.title forLevel:VILogLevelDebug];
+        // FIXME: [self.logger log:@"Found selected Mensa." object:selectedMensa.title forLevel:VILogLevelDebug];
         return [self indexPathForMensa:selectedMensa];
     } else {
-        [self.logger log:@"Selected invalid mensa." forLevel:VILogLevelError];
+        // FIXME: [self.logger log:@"Selected invalid mensa." forLevel:VILogLevelError];
         return nil;
     }
 }
@@ -124,7 +125,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"selectMensa"]) {
-        [[NSUserDefaults standardUserDefaults] setObject:@([(UHDMensa *)[self mensaForIndexPath:self.tableView.indexPathForSelectedRow] remoteObjectId]) forKey:UHDUserDefaultsKeySelectedMensaId];
+        [[NSUserDefaults standardUserDefaults] setObject:@([(UHDMensa *)[self mensaForIndexPath:self.tableView.indexPathForSelectedRow] remoteObjectId]) forKey:[UHDConstants userDefaultsKeySelectedMensaId]];
     }
 }
 
@@ -162,14 +163,14 @@
 
 - (IBAction)refreshControlValueChanged:(UIRefreshControl *)sender
 {
-    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyMensa] refreshWithCompletion:^(BOOL success, NSError *error) {
+    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:[UHDConstants remoteDatasourceKeyMensa]] refreshWithCompletion:^(BOOL success, NSError *error) {
         [sender endRefreshing];
     }];
 }
 
 - (IBAction)detailButtonPressed:(id)sender
 {
-    UHDBuildingDetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"maps" bundle:nil] instantiateViewControllerWithIdentifier:@"buildingDetail"];
+    UHDBuildingDetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"maps" bundle:[NSBundle bundleForClass:[self class]]] instantiateViewControllerWithIdentifier:@"buildingDetail"];
     UITableViewCell *cell = [self cellForSubview:sender];
     detailVC.building = [self mensaForIndexPath:[self.tableView indexPathForCell:cell]];
     [self.navigationController pushViewController:detailVC animated:YES];
@@ -251,7 +252,7 @@
 - (NSIndexPath *)indexPathForMensa:(UHDMensa *)mensa
 {
     if (mensa == 0) {
-        [self.logger log:@"No Mensa selected." forLevel:VILogLevelDebug];
+        // FIXME: [self.logger log:@"No Mensa selected." forLevel:VILogLevelDebug];
         return nil;
     } else {
         NSIndexPath *oldIndexPath = [self.fetchedResultsController indexPathForObject:mensa];
@@ -292,7 +293,7 @@
 }
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UHDMensaSectionHeaderView *header=[tableView dequeueReusableHeaderFooterViewWithIdentifier:@"TableHeader"];
+    UHDMensaSectionHeaderView *header = [tableView dequeueReusableHeaderFooterViewWithIdentifier:@"TableHeader"];
     if (section == 0) {
         header.sectionHeaderLabel.text=[NSString stringWithFormat:NSLocalizedString(@"Favoriten", nil)];
         if (self.favouritesResultsController.fetchedObjects.count == 0) {
@@ -314,13 +315,13 @@
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController*)controller
 {
-    [self.logger log:@"Begin updates" forLevel:VILogLevelVerbose];
+    // FIXME: [self.logger log:@"Begin updates" forLevel:VILogLevelVerbose];
     [self.tableView beginUpdates];
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController*)controller
 {
-    [self.logger log:@"End updates" forLevel:VILogLevelVerbose];
+    // FIXME: [self.logger log:@"End updates" forLevel:VILogLevelVerbose];
     [self.tableView endUpdates];
 }
 
@@ -334,20 +335,20 @@
     switch (type) {
         case NSFetchedResultsChangeInsert:
             [self.tableView insertRowsAtIndexPaths:@[ newIndexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.logger log:@"Inserted row at index path" object:newIndexPath forLevel:VILogLevelVerbose];
+            // FIXME: [self.logger log:@"Inserted row at index path" object:newIndexPath forLevel:VILogLevelVerbose];
             break;
         case NSFetchedResultsChangeMove:
             [self.tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
             [self.tableView insertRowsAtIndexPaths:@[ newIndexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.logger log:@"Moved row at index path" object:indexPath forLevel:VILogLevelVerbose];
+            // FIXME: [self.logger log:@"Moved row at index path" object:indexPath forLevel:VILogLevelVerbose];
             break;
         case NSFetchedResultsChangeDelete:
             [self.tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.logger log:@"Deleted row at index path" object:indexPath forLevel:VILogLevelVerbose];
+            // FIXME: [self.logger log:@"Deleted row at index path" object:indexPath forLevel:VILogLevelVerbose];
             break;
         case NSFetchedResultsChangeUpdate:
             [self.tableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
-            [self.logger log:@"Updated row at index path" object:indexPath forLevel:VILogLevelVerbose];
+            // FIXME: [self.logger log:@"Updated row at index path" object:indexPath forLevel:VILogLevelVerbose];
             break;
         default:
             break;
@@ -358,16 +359,16 @@
 #pragma mark - Swipe Table View Cell Delegate
 
 -(void)swipeTableViewCellDidStartSwiping:(RMSwipeTableViewCell *)swipeTableViewCell {
-    [self.logger log:@"swipeTableViewCellDidStartSwiping: %@" object:swipeTableViewCell forLevel:VILogLevelVerbose];
+    // FIXME: [self.logger log:@"swipeTableViewCellDidStartSwiping: %@" object:swipeTableViewCell forLevel:VILogLevelVerbose];
 }
 
 -(void)swipeTableViewCell:(UHDMensaCell *)swipeTableViewCell didSwipeToPoint:(CGPoint)point velocity:(CGPoint)velocity {
-    [self.logger log:[NSString stringWithFormat:@"swipeTableViewCell: %@ didSwipeToPoint: %@ velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
+    // FIXME: [self.logger log:[NSString stringWithFormat:@"swipeTableViewCell: %@ didSwipeToPoint: %@ velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
 }
 
 -(void)swipeTableViewCellWillResetState:(RMSwipeTableViewCell *)swipeTableViewCell fromPoint:(CGPoint)point animation:(RMSwipeTableViewCellAnimationType)animation velocity:(CGPoint)velocity
 {
-    [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellWillResetState: %@ fromPoint: %@ animation: %u, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
+    // FIXME: [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellWillResetState: %@ fromPoint: %@ animation: %u, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
     
     if ([(UHDFavouriteCell *)swipeTableViewCell shouldTriggerForPoint:point]) {
         UHDMensa *mensa = [self mensaForIndexPath:[self.tableView indexPathForCell:swipeTableViewCell]];
@@ -377,7 +378,7 @@
 }
 
 -(void)swipeTableViewCellDidResetState:(RMSwipeTableViewCell *)swipeTableViewCell fromPoint:(CGPoint)point animation:(RMSwipeTableViewCellAnimationType)animation velocity:(CGPoint)velocity {
-    [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellDidResetState: %@ fromPoint: %@ animation: %u, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
+    // FIXME: [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellDidResetState: %@ fromPoint: %@ animation: %u, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
 }
 
 
@@ -385,7 +386,7 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    [self.logger log:@"Received location update." object:locations forLevel:VILogLevelDebug];
+    // FIXME: [self.logger log:@"Received location update." object:locations forLevel:VILogLevelDebug];
     for (UHDMensa *mensa in self.fetchedResultsController.fetchedObjects) {
         mensa.currentDistance = [mensa.location distanceFromLocation:locations.lastObject];
     }
@@ -394,7 +395,7 @@
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error
 {
-    [self.logger log:@"Failed to receive location update." forLevel:VILogLevelDebug];
+    // FIXME: [self.logger log:@"Failed to receive location update." forLevel:VILogLevelDebug];
     for (UHDMensa *mensa in self.fetchedResultsController.fetchedObjects) {
         mensa.currentDistance = -1;
     }
