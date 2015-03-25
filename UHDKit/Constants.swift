@@ -16,6 +16,7 @@ import Foundation
         public static let MensaPriceCategory = "UHDUserDefaultsKeyMensaPriceCategory"
         public static let MapType = "UHDUserDefaultsKeyMapType"
         public static let ShowCampusOverlay = "UHDUserDefaultsKeyShowCampusOverlay"
+        public static let Vegetarian = "UHDUserDefaultsKeyVegetarian"
     }
     public class func userDefaultsKeySelectedMensaId() -> String {
         return UserDefaultsKey.SelectedMensaId
@@ -28,6 +29,9 @@ import Foundation
     }
     public class func userDefaultsKeyShowCampusOverlay() -> String {
         return UserDefaultsKey.ShowCampusOverlay
+    }
+    public class func userDefaultsKeyVegetarian() -> String {
+        return UserDefaultsKey.Vegetarian
     }
     
     public struct RemoteDatasourceKey {

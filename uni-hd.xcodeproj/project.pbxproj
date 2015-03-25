@@ -11,6 +11,7 @@
 		0A6028821A3B4BF00032EDEB /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A6028811A3B4BF00032EDEB /* EventKit.framework */; };
 		0AE477BD1A3D09D40071331E /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE477BC1A3D09D40071331E /* EventKitUI.framework */; };
 		5CFAACCD576B0E1B476CA696 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70156A1F78F7E9B762543BE5 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8744482C1AC2FBED00D9CC87 /* UHDSettingsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8744482B1AC2FBED00D9CC87 /* UHDSettingsDetailViewController.swift */; };
 		87475EC119E32B300028A9BF /* VILogKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87475EBE19E32B240028A9BF /* VILogKit.framework */; };
 		87475EC219E32B300028A9BF /* VILogKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87475EBE19E32B240028A9BF /* VILogKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		875F43B71A1BD250006C4112 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 875F43B61A1BD250006C4112 /* LaunchScreen.storyboard */; };
@@ -163,7 +164,7 @@
 		87A49BB41AC1DB44004FA9A4 /* UHDSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872673261A36053800ABC599 /* UHDSettingsViewController.swift */; };
 		87A49BB51AC1DB49004FA9A4 /* settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 872673291A36055B00ABC599 /* settings.storyboard */; };
 		87A49BB61AC1DBA9004FA9A4 /* NSManagedObject+VIInsertIntoContextCategory.h in Headers */ = {isa = PBXBuildFile; fileRef = 87A8633619196D10008C106D /* NSManagedObject+VIInsertIntoContextCategory.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		87A49BB81AC1DDA7004FA9A4 /* VIFetchedResultsControllerDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 87E23FF61AB2435600A3C39F /* VIFetchedResultsControllerDataSource.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		87A49BB81AC1DDA7004FA9A4 /* VIFetchedResultsControllerDataSource.h in Headers */ = {isa = PBXBuildFile; fileRef = 87E23FF61AB2435600A3C39F /* VIFetchedResultsControllerDataSource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		87A49BBC1AC1DF5D004FA9A4 /* UIImage+ImageEffects.h in Headers */ = {isa = PBXBuildFile; fileRef = 87A49BBA1AC1DF5D004FA9A4 /* UIImage+ImageEffects.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		87A49BBD1AC1DF5D004FA9A4 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A49BBB1AC1DF5D004FA9A4 /* UIImage+ImageEffects.m */; settings = {COMPILER_FLAGS = "-w"; }; };
 		87A71D861AB4CE83004C0FD3 /* CircularProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8733B3F119F9FFD6007263AC /* CircularProgressView.swift */; };
@@ -407,6 +408,7 @@
 		8733B3F119F9FFD6007263AC /* CircularProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CircularProgressView.swift; sourceTree = "<group>"; };
 		8733B3F519FA110D007263AC /* CircularProgressView+ConfigureForMensa.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CircularProgressView+ConfigureForMensa.swift"; sourceTree = "<group>"; };
 		8733B3F919FA13BD007263AC /* Hours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Hours.swift; sourceTree = "<group>"; };
+		8744482B1AC2FBED00D9CC87 /* UHDSettingsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UHDSettingsDetailViewController.swift; sourceTree = "<group>"; };
 		87475EB819E32B230028A9BF /* VILogKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VILogKit.xcodeproj; path = VILogKit/VILogKit.xcodeproj; sourceTree = "<group>"; };
 		87479AA01A3FA39D0084FBDA /* UHDBuildingDetailTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UHDBuildingDetailTitleCell.swift; sourceTree = "<group>"; };
 		87479AA31A3FA4220084FBDA /* UHDBuildingDetailPropertyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UHDBuildingDetailPropertyCell.swift; sourceTree = "<group>"; };
@@ -573,7 +575,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				87A71DA41AB4D2C9004C0FD3 /* VILogKit.framework in Frameworks */,
-				ED25D3E54C56C6F8E718EBBF /* (null) in Frameworks */,
 				D40B8AD7B3BBFD4C70A41AD8 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -722,7 +723,7 @@
 			isa = PBXGroup;
 			children = (
 				872673261A36053800ABC599 /* UHDSettingsViewController.swift */,
-				DCBC0ADC1A62F8C0001743CD /* UHDSettingsDetailViewController.swift */,
+				8744482B1AC2FBED00D9CC87 /* UHDSettingsDetailViewController.swift */,
 			);
 			name = "View Controller";
 			sourceTree = "<group>";
@@ -2010,6 +2011,7 @@
 				876C69781AB4CB1C00EE093B /* UHDReadIndicatorView.m in Sources */,
 				876C69801AB4CB1C00EE093B /* UHDNewsCategory.m in Sources */,
 				87A49BBD1AC1DF5D004FA9A4 /* UIImage+ImageEffects.m in Sources */,
+				8744482C1AC2FBED00D9CC87 /* UHDSettingsDetailViewController.swift in Sources */,
 				876C69431AB4CAB800EE093B /* UHDDailyMenuViewController.m in Sources */,
 				876C69951AB4CB6300EE093B /* UHDBuildingDetailPropertyCell.swift in Sources */,
 				876C699B1AB4CB6300EE093B /* UHDBuilding.m in Sources */,

@@ -7,6 +7,7 @@
 //
 
 #import "UHDMealCell.h"
+#import <UHDKit/UHDKit-Swift.h>
 
 
 @interface UHDMealCell ()
@@ -38,7 +39,7 @@
     self.favouriteSymbolView.hidden = !meal.isFavourite;
     [self.favouriteSymbolView.superview removeConstraint: meal.isFavourite ? self.favouriteSymbolHiddenConstraint : self.favouriteSymbolSpacingConstraint];
     [self.favouriteSymbolView.superview addConstraint: meal.isFavourite ? self.favouriteSymbolSpacingConstraint : self.favouriteSymbolHiddenConstraint];
-    if ([[NSUserDefaults standardUserDefaults] boolForKey:UHDUserDefaultsKeyVegetarian] && !meal.isVegetarian) {
+    if ([[NSUserDefaults standardUserDefaults] boolForKey:[UHDConstants userDefaultsKeyVegetarian]] && !meal.isVegetarian) {
         self.titleLabel.textColor = [UIColor lightGrayColor];
     }
     else {
