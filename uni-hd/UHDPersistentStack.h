@@ -8,8 +8,7 @@
 
 @import Foundation;
 @import CoreData;
-#import <RestKit/RestKit.h>
-
+@import RestKit;
 
 @interface UHDPersistentStack : NSObject
 

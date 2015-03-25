@@ -19,7 +19,7 @@
 //
 
 #import <CoreLocation/CoreLocation.h>
-#import "RKValueTransformers.h"
+@import RKValueTransformers;
 
 /**
  The `RKCLLocationValueTransformer` class provides transformation between `NSDictionary` and `CLLocation` representations of a geographic coordinate.

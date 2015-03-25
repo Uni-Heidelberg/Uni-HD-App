@@ -8,12 +8,15 @@
 
 #import "UHDNewsSourcesViewController.h"
 #import "VIFetchedResultsControllerDataSource.h"
+#import "NSManagedObject+VIInsertIntoContextCategory.h"
 
 // Model
 #import "UHDNewsSource.h"
 
 // Table View Cells
 #import "UHDNewsSourceCell.h"
+
+#import <UHDKit/UHDKit-Swift.h>
 
 
 @interface UHDNewsSourcesViewController () <UHDNewsSourceCellDelegate>
@@ -46,7 +49,7 @@
 
 - (IBAction)refreshControlValueChanged:(UIRefreshControl *)sender
 {
-    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyNews] refreshWithCompletion:^(BOOL success, NSError *error) {
+    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:[UHDConstants remoteDatasourceKeyNews]] refreshWithCompletion:^(BOOL success, NSError *error) {
         [sender endRefreshing];
     }];
 }
@@ -76,7 +79,7 @@
     if (!_fetchedResultsControllerDataSource)
     {
         if (!self.managedObjectContext) {
-            [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
+            // FIXME: [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
             return nil;
         }
 

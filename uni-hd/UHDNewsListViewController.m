@@ -9,7 +9,9 @@
 #import "UHDNewsListViewController.h"
 
 #import "VIFetchedResultsControllerDataSource.h"
-#import "UHDRemoteDatasourceManager.h"
+@import UHDRemoteKit;
+#import <UHDKit/UHDKit-Swift.h>
+#import "NSManagedObject+VIInsertIntoContextCategory.h"
 
 // View Controllers
 #import "UHDNewsDetailViewController.h"
@@ -25,9 +27,9 @@
 
 @interface UHDNewsListViewController ()
 
-@property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
-
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
+
+@property (strong, nonatomic) VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource;
 
 @property (strong, nonatomic) NSDateFormatter *sectionDateFormatter;
 
@@ -49,27 +51,38 @@
 - (void)awakeFromNib {
     [super awakeFromNib];
 	
-	[self configureView];
-    
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 160;
-	
 }
 
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-    
+	
+	// layout already accomplished after creation of NewsListVC in 'viewControllerAtIndex' method of NewsVC
+	
+	/*
+	// force immediate layout of subviews
+	[self.tableView layoutIfNeeded];
+	*/
+	
+	/*
     // prevent visible layout corrections after initial appearence of the VC
 	dispatch_async(dispatch_get_main_queue(), ^{
+		//[self.tableView layoutIfNeeded];
         [self.tableView reloadData];
 	});
+	*/
 }
 
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+	
+	self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight = 160;
+	
+	self.tableView.dataSource = self;
+	self.tableView.delegate = self;
 	
 	// set date format
 	NSCalendar *calendar = [NSCalendar currentCalendar];
@@ -79,21 +92,19 @@
 	[self.sectionDateFormatter setCalendar:calendar];
 	NSString *formatTemplate = [NSDateFormatter dateFormatFromTemplate:@"MMMM YYYY" options:0 locale:[NSLocale currentLocale]];
 	[self.sectionDateFormatter setDateFormat:formatTemplate];
-	
-	self.tableView.dataSource = self;
-	self.tableView.delegate = self;
-	
+
     // is this necessary? the fetched results controller should handle changes and update the table view when the "sectionIdentifier" property changes
-	//[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(timeChanged) name:UIApplicationSignificantTimeChangeNotification object:nil];
+	// yes, it should, but obviously it doesn't...
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViewForSignificantTimeChange) name:UIApplicationSignificantTimeChangeNotification object:nil];
 	
 	[self configureView];
 }
 
 
-/*- (void)timeChanged {
+- (void)updateViewForSignificantTimeChange {
 
 	[self.fetchedResultsControllerDataSource reloadData];
-}*/
+}
 
 
 - (void)configureView {
@@ -146,6 +157,7 @@
 	}
 	
 	[self.fetchedResultsControllerDataSource reloadData];
+	[self configureView];
 }
 
 
@@ -164,7 +176,7 @@
 
 - (IBAction)refreshControlValueChanged:(UIRefreshControl *)sender
 {
-    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:UHDRemoteDatasourceKeyNews] refreshWithCompletion:^(BOOL success, NSError *error) {
+    [[[UHDRemoteDatasourceManager defaultManager] remoteDatasourceForKey:[UHDConstants remoteDatasourceKeyNews]] refreshWithCompletion:^(BOOL success, NSError *error) {
         [sender endRefreshing];
     }];
 	// TODO: Refreshing throws an exception
@@ -199,6 +211,9 @@
         UHDTalkItem *item = self.fetchedResultsControllerDataSource.selectedItem;
         
         talkDetailVC.talkItem = item;
+		
+		// layout table view before displaying to prevent visible layout corrections after initial appearence of the VC
+		[talkDetailVC.tableView layoutIfNeeded];
 	}
 }
 
@@ -320,7 +335,7 @@
 	if (!_fetchedResultsControllerDataSource)
     {
         if (!self.managedObjectContext) {
-            [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
+            // FIXME: [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
             return nil;
         }
 		
@@ -351,15 +366,15 @@
 		fetchedResultsControllerDataSource.fetchedResultsController = fetchedResultsController;
 		_fetchedResultsControllerDataSource = fetchedResultsControllerDataSource;
 		
-		//[self.logger log:[NSString stringWithFormat:@"number of fetched objects: %lu", [fetchedResultsController.fetchedObjects count]] forLevel:VILogLevelDebug];
+		//// FIXME: [self.logger log:[NSString stringWithFormat:@"number of fetched objects: %lu", [fetchedResultsController.fetchedObjects count]] forLevel:VILogLevelDebug];
 		
 	}
 	
 	/*
 	NSArray *sections = _fetchedResultsControllerDataSource.fetchedResultsController.sections;
 	for (id<NSFetchedResultsSectionInfo> section in sections) {
-		[self.logger log:[NSString stringWithFormat:@"sectionID: %@", [section name]] forLevel:VILogLevelDebug];
-		[self.logger log:[NSString stringWithFormat:@"object: %@", [[[section objects] firstObject] title]] forLevel:VILogLevelDebug];
+		// FIXME: [self.logger log:[NSString stringWithFormat:@"sectionID: %@", [section name]] forLevel:VILogLevelDebug];
+		// FIXME: [self.logger log:[NSString stringWithFormat:@"object: %@", [[[section objects] firstObject] title]] forLevel:VILogLevelDebug];
 	}
 	*/
 	
@@ -440,6 +455,8 @@
 		[(UHDTalkItemCell *)cell configureForItem:(UHDTalkItem *)item];
 	
 	}
+	
+	cell.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 	
 	//[self.logger log:[NSString stringWithFormat:@"height of cell: %f", cell.bounds.size.height] forLevel:VILogLevelDebug];
 	

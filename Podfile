@@ -1,12 +1,11 @@
 source 'https://github.com/CocoaPods/Specs.git'
-
 platform :ios, '8.0'
+use_frameworks!
+inhibit_all_warnings!
 
-pod 'RestKit'
-pod 'RestKit/Testing'
-pod 'RestKit/Search'
-pod 'RKCLLocationValueTransformer'
+pod 'RestKit', :git => 'https://github.com/Uni-Heidelberg/RestKit.git'
+pod 'RKCLLocationValueTransformer', :git => 'https://github.com/Uni-Heidelberg/RKCLLocationValueTransformer.git'
 
 pod 'RMSwipeTableViewCell'
 
-link_with ['uni-hd', 'uni-hd-tests']
+link_with 'uni-hd', 'UHDPersistenceKit', 'UHDRemoteKit', 'UHDKit'

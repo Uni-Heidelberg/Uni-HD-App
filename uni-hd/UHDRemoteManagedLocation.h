@@ -6,14 +6,14 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import "UHDRemoteManagedObject.h"
-
+@import UHDRemoteKit;
+@import MapKit;
 
 MKMapRect MKMapRectForCoordinateRegion(MKCoordinateRegion region);
 
 @interface UHDRemoteManagedLocation : UHDRemoteManagedObject <MKAnnotation>
 
-@property (nonatomic, retain) NSString *title;
+@property (nonatomic, copy) NSString *title;
 @property (nonatomic, retain) CLLocation *location;
 @property (nonatomic, retain) NSSet *events;
 @property (nonatomic) CLLocationDistance currentDistance;

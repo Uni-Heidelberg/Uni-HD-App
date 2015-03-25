@@ -131,9 +131,17 @@
 }
 
 
+- (void)setSectionIdentifier:(NSString *)sectionIdentifier {
+	
+	[self willChangeValueForKey:@"sectionIdentifier"];
+	[self setPrimitiveSectionIdentifier:nil];
+	[self didChangeValueForKey:@"sectionIdentifier"];
+}
+
+
 - (void)resetSectionIdentifierCache {
 
-	[self setPrimitiveSectionIdentifier:nil];
+	[self setSectionIdentifier:nil];
 }
 
 

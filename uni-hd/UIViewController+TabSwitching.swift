@@ -8,9 +8,11 @@
 
 import UIKit
 
+// TODO: find a better way to do this, should be handled by AppDelegate
+
 extension UIViewController {
     
-    func showLocation(location: UHDRemoteManagedLocation, animated: Bool) {
+    public func showLocation(location: UHDRemoteManagedLocation, animated: Bool) {
         self.showTabBarItemAtIndex(3, animated: animated) { (tabBarController, previousSelectedIndex) in
             if let mapsNavC = tabBarController.selectedViewController? as? UINavigationController {
                 if let mapsVC = mapsNavC.viewControllers.first as? UHDMapsViewController {
@@ -21,7 +23,7 @@ extension UIViewController {
         }
     }
     
-    func showMensaMenu(mensa: UHDMensa, animated: Bool) {
+    public func showMensaMenu(mensa: UHDMensa, animated: Bool) {
         NSUserDefaults.standardUserDefaults().setValue(NSNumber(short: mensa.remoteObjectId), forKey: "UHDUserDefaultsKeySelectedMensaId")
         self.showTabBarItemAtIndex(0, animated: true) { (tabBarController, previousSelectedIndex) in
             if let mensaNavC = tabBarController.selectedViewController as? UINavigationController {
@@ -30,7 +32,7 @@ extension UIViewController {
         }
     }
     
-    func showTabBarItemAtIndex(index: Int, animated: Bool, completion: (tabBarController: UITabBarController, previousSelectedIndex: Int) -> ()) {
+    public func showTabBarItemAtIndex(index: Int, animated: Bool, completion: (tabBarController: UITabBarController, previousSelectedIndex: Int) -> ()) {
         if let presentingViewController = self.presentingViewController {
             // dismiss when presented modally
             presentingViewController.dismissViewControllerAnimated(animated, completion: nil)

@@ -7,7 +7,6 @@
 //
 
 #import "UHDRemoteManagedLocation.h"
-#import "VIImageOverlayRenderer.h"
 
 @interface UHDCampusRegion : UHDRemoteManagedLocation <MKOverlay>
 

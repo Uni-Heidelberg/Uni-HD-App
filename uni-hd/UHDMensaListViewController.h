@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-@import Foundation;
 @import UIKit;
 
 @interface UHDMensaListViewController : UITableViewController

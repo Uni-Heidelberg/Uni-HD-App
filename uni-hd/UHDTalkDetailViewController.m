@@ -6,13 +6,15 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
+#import "UHDTalkDetailViewController.h"
 #import "UHDAppDelegate.h"
 
 #import <MessageUI/MessageUI.h>
 #import <EventKit/EventKit.h>
 #import <EventKitUI/EventKitUI.h>
 
-#import "UHDTalkDetailViewController.h"
+#import <UHDKit/UHDKit-Swift.h>
+
 #import "UHDTalkDetailTitleAbstractCell.h"
 #import "UHDTalkDetailSpaceTimeCell.h"
 #import "UHDMapsViewController.h"
@@ -56,19 +58,27 @@
 	[self configureView];
 }
 
-
+/*
 - (void)viewWillAppear:(BOOL)animated {
+
 	[super viewWillAppear:animated];
-    
-    // TODO: what is this for?
-	// prevent visible layout corrections after initial appearence of the VC
-	dispatch_async(dispatch_get_main_queue(), ^{
-        [self.tableView reloadData];
-	});
+	
+	// force immediate layout of subviews
+	[self.tableView layoutIfNeeded];
 }
+*/
+
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+	
+	// trigger height recalculation of table view
+	[self.tableView beginUpdates];
+	[self.tableView endUpdates];
+}
+
 
 - (void)viewDidLayoutSubviews {
     [super viewDidLayoutSubviews];
+	
     [self.tableView adjustFrameForParallaxedHeaderView:self.headerImageView];
 }
 
@@ -95,6 +105,7 @@
 
 - (IBAction)addToCalendarButtonPressed:(id)sender {
 	
+    // TODO: never reach up to the app delegate to get information! pass data down.
 	EKEventStore *eventStore = [(UHDAppDelegate *)[[UIApplication sharedApplication] delegate] eventStore];
 
 	EKAuthorizationStatus authorizationStatus = [EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent];
@@ -104,11 +115,11 @@
         [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
             if (granted) {
                 // Access granted
-                [self.logger log:@"Access granted for entity type event" forLevel:VILogLevelInfo];
+                // FIXME: [self.logger log:@"Access granted for entity type event" forLevel:VILogLevelInfo];
             }
             else {
                 // Denied
-                [self.logger log:@"Access denied for entity type event" forLevel:VILogLevelInfo];
+                // FIXME: [self.logger log:@"Access denied for entity type event" forLevel:VILogLevelInfo];
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedString(@"Der Zugriff auf den Kalender wurde verweigert. Die Veranstaltung kann nicht in den Kalender eingetragen werden. Sie können die Zugriffsrechte in den Einstellungen anpassen.", nil) preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil];
                 [alertController addAction:okAction];
@@ -250,18 +261,26 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+	UITableViewCell* cell;
+
     switch (indexPath.section) {
         case 0: {
-            UHDTalkDetailTitleAbstractCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"titleAbstract"];
-            [cell configureForItem:self.talkItem];
-            return cell; }
+            cell = [self.tableView dequeueReusableCellWithIdentifier:@"titleAbstract"];
+            [(UHDTalkDetailTitleAbstractCell *)cell configureForItem:self.talkItem];
+			break;
+		}
         case 1: {
-            UHDTalkDetailSpaceTimeCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"spaceTime"];
-            [cell configureForItem:self.talkItem];
-            return cell; }
+            cell = [self.tableView dequeueReusableCellWithIdentifier:@"spaceTime"];
+            [(UHDTalkDetailSpaceTimeCell *)cell configureForItem:self.talkItem];
+			break;
+		}
         default:
             return nil;
     }
+	
+	cell.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+	
+	return cell;
 }
 
 
@@ -272,16 +291,16 @@
     switch (result)
     {
         case MFMailComposeResultCancelled:
-			[self.logger log:@"Mail cancelled" forLevel:VILogLevelInfo];
+			// FIXME: [self.logger log:@"Mail cancelled" forLevel:VILogLevelInfo];
             break;
         case MFMailComposeResultSaved:
-			[self.logger log:@"Mail saved" forLevel:VILogLevelInfo];
+			// FIXME: [self.logger log:@"Mail saved" forLevel:VILogLevelInfo];
             break;
         case MFMailComposeResultSent:
-			[self.logger log:@"Mail sent" forLevel:VILogLevelInfo];
+			// FIXME: [self.logger log:@"Mail sent" forLevel:VILogLevelInfo];
             break;
         case MFMailComposeResultFailed:
-			[self.logger log:@"Mail sent" error:error];
+			// FIXME: [self.logger log:@"Mail sent" error:error];
             break;
         default:
             break;
@@ -308,14 +327,14 @@
 
 	switch (action) {
 		case EKEventEditViewActionCanceled:
-			[self.logger log:@"Event editing cancelled" forLevel:VILogLevelInfo];
+			// FIXME: [self.logger log:@"Event editing cancelled" forLevel:VILogLevelInfo];
 			break;
 		case EKEventEditViewActionDeleted:
-			[self.logger log:@"Event deleted" forLevel:VILogLevelInfo];
+			// FIXME: [self.logger log:@"Event deleted" forLevel:VILogLevelInfo];
 			break;
 		case EKEventEditViewActionSaved:
 			{
-				[self.logger log:@"Event saved" forLevel:VILogLevelInfo];
+				// FIXME: [self.logger log:@"Event saved" forLevel:VILogLevelInfo];
 				
 				[self dismissViewControllerAnimated:YES completion:^(void) {
 					UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedString(@"Die Veranstaltung wurde erfolgreich in den Kalender eingetragen.", nil) preferredStyle:UIAlertControllerStyleAlert];

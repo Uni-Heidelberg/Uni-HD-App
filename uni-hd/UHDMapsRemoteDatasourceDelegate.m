@@ -13,6 +13,7 @@
 #import "UHDBuilding.h"
 #import "UHDAddress.h"
 #import <RKCLLocationValueTransformer/RKCLLocationValueTransformer.h>
+#import "NSManagedObject+VIInsertIntoContextCategory.h"
 
 
 @implementation UHDMapsRemoteDatasourceDelegate
@@ -107,6 +108,8 @@
 
 - (void)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource generateSampleDataForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
+    NSBundle *imagesBundle = [NSBundle bundleForClass:[self class]];
+    
     // Create categories
     
     UHDLocationCategory *category1 = [UHDLocationCategory insertNewObjectIntoContext:managedObjectContext];
@@ -192,7 +195,7 @@
     buildingItem1.spanLongitude = 0.0009;
     buildingItem1.category = category1;
     buildingItem1.campusRegion = inf;
-    buildingItem1.image = [UIImage imageNamed:@"kip1"];
+    buildingItem1.image = [UIImage imageNamed:@"kip1" inBundle:imagesBundle compatibleWithTraitCollection:nil];
     UHDAddress *address1 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
     address1.street = @"Im Neuenheimer Feld 227";
     address1.postalCode = @"69120";
@@ -219,7 +222,7 @@
     buildingItem2.location = [[CLLocation alloc] initWithLatitude:49.416250 longitude:8.673171];
     buildingItem2.category = category1;
     buildingItem2.campusRegion = inf;
-    buildingItem2.image = [UIImage imageNamed:@"kip"];
+    buildingItem2.image = [UIImage imageNamed:@"kip" inBundle:imagesBundle compatibleWithTraitCollection:nil];
     UHDAddress *address2 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
     address2.street = @"Im Neuenheimer Feld 226";
     address2.postalCode = @"69120";
@@ -247,7 +250,7 @@
     buildingItem3.spanLatitude = 0.0006;
     buildingItem3.spanLongitude = 0.001;
     buildingItem3.location = [[CLLocation alloc] initWithLatitude:49.417515 longitude:8.670593];
-    buildingItem3.image = [UIImage imageNamed:@"INF308"];
+    buildingItem3.image = [UIImage imageNamed:@"INF308" inBundle:imagesBundle compatibleWithTraitCollection:nil];
     buildingItem3.category = category1;
     buildingItem3.campusRegion = inf;
     UHDAddress *address3 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
@@ -271,7 +274,7 @@
     buildingItem4.spanLongitude = 0.0007;
     buildingItem4.buildingNumber = @"288";
     buildingItem4.location = [[CLLocation alloc] initWithLatitude:49.417055 longitude:8.671665];
-    buildingItem4.image = [UIImage imageNamed:@"INF288"];
+    buildingItem4.image = [UIImage imageNamed:@"INF288" inBundle:imagesBundle compatibleWithTraitCollection:nil];
     buildingItem4.category = category2;
     buildingItem4.campusRegion = inf;
     UHDAddress *address4 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
@@ -295,7 +298,7 @@
     buildingItem5.spanLatitude = 0.0006;
     buildingItem5.spanLongitude = 0.00075;
     buildingItem5.location = [[CLLocation alloc] initWithLatitude:49.414781 longitude:8.695585];
-    buildingItem5.image = [UIImage imageNamed:@"PI_PHW12"];
+    buildingItem5.image = [UIImage imageNamed:@"PI_PHW12" inBundle:imagesBundle compatibleWithTraitCollection:nil];
     buildingItem5.category = category1;
     buildingItem5.campusRegion = phw;
     UHDAddress *address5 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
@@ -318,7 +321,7 @@
     buildingItem6.spanLatitude = 0.0002;
     buildingItem6.spanLongitude = 0.0005;
     buildingItem6.location = [[CLLocation alloc] initWithLatitude:49.414811 longitude:8.696707];
-    buildingItem6.image = [UIImage imageNamed:@"TI_PHW16"];
+    buildingItem6.image = [UIImage imageNamed:@"TI_PHW16" inBundle:imagesBundle compatibleWithTraitCollection:nil];
     buildingItem6.category = category1;
     buildingItem6.campusRegion = phw;
     UHDAddress *address6 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
@@ -342,7 +345,7 @@
     buildingItem7.spanLatitude = 0.0002;
     buildingItem7.spanLongitude = 0.0005;
     buildingItem7.location = [[CLLocation alloc] initWithLatitude:49.415058 longitude:8.698714];
-    buildingItem7.image = [UIImage imageNamed:@"TI_PHW19"];
+    buildingItem7.image = [UIImage imageNamed:@"TI_PHW19" inBundle:imagesBundle compatibleWithTraitCollection:nil];
     buildingItem7.category = category1;
     buildingItem7.campusRegion = phw;
     UHDAddress *address7 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
@@ -369,7 +372,7 @@
     // TODO: remove this option?
     if (!overlayImage) {
         overlayImage = [UIImage imageNamed:[overlayImageURL lastPathComponent]];
-        if (overlayImage) [self.logger log:@"Using in-project overlay image file." object:overlayImageURL forLevel:VILogLevelDebug];
+        if (overlayImage) // FIXME: [self.logger log:@"Using in-project overlay image file." object:overlayImageURL forLevel:VILogLevelDebug];
     }
 
     // use cached file
@@ -377,26 +380,26 @@
     if (!overlayImage) {
         if ([[NSFileManager defaultManager] fileExistsAtPath:cachedFile]) {
             overlayImage = [UIImage imageWithContentsOfFile:cachedFile];
-            [self.logger log:@"Cached overlay image file found." object:overlayImageURL forLevel:VILogLevelDebug];
+            // FIXME: [self.logger log:@"Cached overlay image file found." object:overlayImageURL forLevel:VILogLevelDebug];
         }
     }
     
     // download and cache
     // TODO: ignore multiple requests
     if (!overlayImage) {
-        [self.logger log:@"Downloading overlay image..." object:overlayImageURL forLevel:VILogLevelDebug];
+        // FIXME: [self.logger log:@"Downloading overlay image..." object:overlayImageURL forLevel:VILogLevelDebug];
         NSData *imageData = [NSData dataWithContentsOfURL:overlayImageURL];
         if (imageData) {
             [imageData writeToFile:cachedFile atomically:YES];
             overlayImage = [UIImage imageWithData:imageData];
-            [self.logger log:@"Done downloading overlay image and written to cache file." object:overlayImageURL forLevel:VILogLevelDebug];
+            // FIXME: [self.logger log:@"Done downloading overlay image and written to cache file." object:overlayImageURL forLevel:VILogLevelDebug];
         } else {
-            [self.logger log:@"Could not download overlay image file." object:overlayImageURL forLevel:VILogLevelWarning];
+            // FIXME: [self.logger log:@"Could not download overlay image file." object:overlayImageURL forLevel:VILogLevelWarning];
         }
     }
     
     if (!overlayImage) {
-        [self.logger log:@"Unable to retrieve overlay image." object:overlayImageURL forLevel:VILogLevelError];
+        // FIXME: [self.logger log:@"Unable to retrieve overlay image." object:overlayImageURL forLevel:VILogLevelError];
     }
     
     return overlayImage;
