@@ -72,7 +72,7 @@ public class UHDSettingsViewController: UITableViewController {
         }
         
         // Favourite Mensas
-        let fetchRequestMensas = NSFetchRequest(entityName: UHDMensa.entityName())
+        let fetchRequestMensas = NSFetchRequest(entityName: Mensa.entityName())
         fetchRequestMensas.predicate = NSPredicate(format: "isFavourite == YES")
         if let favouritedMensasCount = self.managedObjectContext?.countForFetchRequest(fetchRequestMensas, error: nil) {
             self.favouritedMensasDetailLabel.text = "\(favouritedMensasCount) " + NSLocalizedString("favorisiert", comment: "")

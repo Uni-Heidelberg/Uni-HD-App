@@ -11,10 +11,6 @@
 #import "NSManagedObject+VIInsertIntoContextCategory.h"
 #import <UHDKit/UHDKit-Swift.h>
 
-// Model
-#import "UHDBuilding.h"
-#import "UHDCampusRegion.h"
-
 // View Controllers
 #import "UHDMapsSearchResultsViewController.h"
 
@@ -28,14 +24,10 @@
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (strong, nonatomic) CLLocationManager *locationManager;
 
+@property (strong, nonatomic) UISearchController *searchController;
 @property (strong, nonatomic) UHDMapsSearchResultsViewController *searchResultsViewController;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
-@property (strong, nonatomic) NSFetchedResultsController *campusRegionsFetchedResultsController;
-//@property (strong, nonatomic) IBOutlet UISearchBar *mapsSearchBar;
-//@property (strong, nonatomic) UITapGestureRecognizer *tapSearchBar;
-
-@property (strong, nonatomic) UISearchController *searchController;
 
 @property (weak, nonatomic) id<MKAnnotation> selectedAnnotation;
 
@@ -85,6 +77,11 @@
     // Register Notifications
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(userDefaultsDidChange:) name:NSUserDefaultsDidChangeNotification object:[NSUserDefaults standardUserDefaults]];
     
+    // Use OpenStreetMaps
+    MKTileOverlay *osmTileOverlay = [[MKTileOverlay alloc] initWithURLTemplate:@"http://tile.openstreetmap.org/{z}/{x}/{y}.png"];
+    osmTileOverlay.canReplaceMapContent = YES;
+    [self.mapView addOverlay:osmTileOverlay];
+    
     // Add Tap Gesture Recognizer
     UITapGestureRecognizer *mapViewTapGestureRecognizer = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTapOnMapView:)];
     mapViewTapGestureRecognizer.delegate = self;
@@ -113,13 +110,6 @@
         self.mapView.mapType = MKMapTypeStandard;
     }
     
-    // Add campus region overlays
-    NSArray *allCampusRegions = self.campusRegionsFetchedResultsController.fetchedObjects;
-    [self.mapView removeOverlays:allCampusRegions];
-    if (![[NSUserDefaults standardUserDefaults] objectForKey:[UHDConstants userDefaultsKeyShowCampusOverlay]] || [[NSUserDefaults standardUserDefaults] boolForKey:[UHDConstants userDefaultsKeyShowCampusOverlay]]) {
-        [self.mapView addOverlays:allCampusRegions level:MKOverlayLevelAboveLabels];
-    }
-    
     // Add building overlays to verify their map rect
     /*NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
      [self.mapView removeOverlays:allBuildings];
@@ -137,26 +127,11 @@
     
 }
 
-- (NSFetchedResultsController *)campusRegionsFetchedResultsController{
-    
-    if(!_campusRegionsFetchedResultsController){
-        
-        NSFetchRequest *theRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDCampusRegion entityName]];
-        theRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"remoteObjectId" ascending:YES]];
-        NSFetchedResultsController *campusRegionsFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:theRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
-        campusRegionsFetchedResultsController.delegate = self;
-        [campusRegionsFetchedResultsController performFetch:NULL];
-        self.campusRegionsFetchedResultsController = campusRegionsFetchedResultsController;
-        
-    }
-    return _campusRegionsFetchedResultsController;
-}
-
 - (NSFetchedResultsController *)fetchedResultsController {
     if (!_fetchedResultsController) {
         
-        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDBuilding entityName]];
-        fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[Building entityName]];
+        fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"managedTitle" ascending:YES] ];
         NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         fetchedResultsController.delegate = self;
         [fetchedResultsController performFetch:NULL];
@@ -172,18 +147,18 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"showBuildingDetail"]) {
-        [(UHDBuildingDetailViewController *)segue.destinationViewController setBuilding:(UHDBuilding *)[(MKAnnotationView *)sender annotation]];
+        ((InstitutionDetailViewController *)segue.destinationViewController).institution = [(MKAnnotationView *)sender annotation];
     } else if ([segue.identifier isEqualToString:@"showMapConfiguration"]) {
         
     }
 }
 
-- (void)searchResultsViewController:(UHDMapsSearchResultsViewController *)viewController didSelectBuilding:(UHDBuilding *)building
+- (void)searchResultsViewController:(UHDMapsSearchResultsViewController *)viewController didSelectInstitution:(Institution *)institution
 {
-    [self showLocation:building animated:YES];
+    [self showLocation:institution.location animated:YES];
 }
 
-- (void)showLocation:(UHDRemoteManagedLocation *)location animated:(BOOL)animated {
+- (void)showLocation:(Location *)location animated:(BOOL)animated {
     [self.searchController setActive:NO];
     [self.mapView removeAnnotation:self.selectedAnnotation];
     self.selectedAnnotation = location;
@@ -212,7 +187,7 @@
         [self.mapView removeAnnotation:selectedAnnotation];
         
         CLLocationCoordinate2D coordinate = [self.mapView convertPoint:[gestureRecognizer locationInView:self.mapView] toCoordinateFromView:self.mapView];
-        for (UHDBuilding *building in self.fetchedResultsController.fetchedObjects) {
+        for (Building *building in self.fetchedResultsController.fetchedObjects) {
             if (MKMapRectContainsPoint([building boundingMapRect], MKMapPointForCoordinate(coordinate))) {
                 // Tapped on building
                 // Continue for already annotated buildings
@@ -239,7 +214,7 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation
 {
-    UHDBuilding *building = (UHDBuilding *)annotation;
+    Building *building = (Building *)annotation;
     NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
     
     if ([allBuildings containsObject:building]) {
@@ -268,12 +243,9 @@
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay
 {
-    NSArray *allCampusRegions = self.campusRegionsFetchedResultsController.fetchedObjects;
     NSArray *allBuildings = self.fetchedResultsController.fetchedObjects;
-    if ([allCampusRegions containsObject:overlay]) {
-        
-        return [[CampusRegionOverlayRenderer alloc] initWithCampusRegion:(UHDCampusRegion *)overlay];
-        
+    if ([overlay isKindOfClass:[MKTileOverlay class]]) {
+        return [[MKTileOverlayRenderer alloc] initWithTileOverlay:overlay];
     } else if ([allBuildings containsObject:overlay]) {
         // Show the building's map rect for testing purposes
         MKMapRect boundingMapRect = [overlay boundingMapRect];
@@ -398,38 +370,20 @@
 
 - (void)controller:(NSFetchedResultsController *)controller didChangeObject:(id)anObject atIndexPath:(NSIndexPath *)indexPath forChangeType:(NSFetchedResultsChangeType)type newIndexPath:(NSIndexPath *)newIndexPath
 {
-    if (controller == self.campusRegionsFetchedResultsController) {
-        switch (type) {
-            case NSFetchedResultsChangeDelete:
-                [self.mapView removeOverlay:anObject];
-                break;
-            case NSFetchedResultsChangeInsert:
-                [self.mapView addOverlay:anObject];
-                break;
-            case NSFetchedResultsChangeUpdate:
-                [self.mapView removeOverlay:anObject];
-                [self.mapView addOverlay:anObject];
-                break;
-            case NSFetchedResultsChangeMove:
-            default:
-                break;
-        }
-    } else if (controller == self.fetchedResultsController) {
-        switch (type) {
-            case NSFetchedResultsChangeDelete:
-                [self.mapView removeAnnotation:anObject];
-                break;
-            case NSFetchedResultsChangeInsert:
-                [self.mapView addAnnotation:anObject];
-                break;
-            case NSFetchedResultsChangeUpdate:
-                [self.mapView removeAnnotation:anObject];
-                [self.mapView addAnnotation:anObject];
-                break;
-            case NSFetchedResultsChangeMove:
-            default:
-                break;
-        }
+    switch (type) {
+        case NSFetchedResultsChangeDelete:
+            [self.mapView removeAnnotation:anObject];
+            break;
+        case NSFetchedResultsChangeInsert:
+            [self.mapView addAnnotation:anObject];
+            break;
+        case NSFetchedResultsChangeUpdate:
+            [self.mapView removeAnnotation:anObject];
+            [self.mapView addAnnotation:anObject];
+            break;
+        case NSFetchedResultsChangeMove:
+        default:
+            break;
     }
 }
 

@@ -24,7 +24,6 @@ FOUNDATION_EXPORT const unsigned char UHDKitVersionString[];
 #import <UHDKit/UHDDailyMenuViewController.h>
 #import <UHDKit/UHDMensaListViewController.h>
 // Model
-#import <UHDKit/UHDMensa.h>
 #import <UHDKit/UHDDailyMenu.h>
 #import <UHDKit/UHDMeal.h>
 #import <UHDKit/UHDMensaSection.h>
@@ -64,12 +63,6 @@ FOUNDATION_EXPORT const unsigned char UHDKitVersionString[];
 // View
 #import <UHDKit/UHDBuildingAnnotationView.h>
 #import <UHDKit/UHDBuildingCell.h>
-// Model
-#import <UHDKit/UHDRemoteManagedLocation.h>
-#import <UHDKit/UHDCampusRegion.h>
-#import <UHDKit/UHDBuilding.h>
-#import <UHDKit/UHDLocationCategory.h>
-#import <UHDKit/UHDAddress.h>
 
 
 // Remote Datasource Delegates

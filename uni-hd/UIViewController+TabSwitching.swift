@@ -12,7 +12,7 @@ import UIKit
 
 extension UIViewController {
     
-    public func showLocation(location: UHDRemoteManagedLocation, animated: Bool) {
+    public func showLocation(location: Location, animated: Bool) {
         self.showTabBarItemAtIndex(3, animated: animated) { (tabBarController, previousSelectedIndex) in
             if let mapsNavC = tabBarController.selectedViewController? as? UINavigationController {
                 if let mapsVC = mapsNavC.viewControllers.first as? UHDMapsViewController {
@@ -23,7 +23,7 @@ extension UIViewController {
         }
     }
     
-    public func showMensaMenu(mensa: UHDMensa, animated: Bool) {
+    public func showMensaMenu(mensa: Mensa, animated: Bool) {
         NSUserDefaults.standardUserDefaults().setValue(NSNumber(short: mensa.remoteObjectId), forKey: "UHDUserDefaultsKeySelectedMensaId")
         self.showTabBarItemAtIndex(0, animated: true) { (tabBarController, previousSelectedIndex) in
             if let mensaNavC = tabBarController.selectedViewController as? UINavigationController {

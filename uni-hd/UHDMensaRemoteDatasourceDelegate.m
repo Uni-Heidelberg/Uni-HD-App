@@ -7,13 +7,12 @@
 //
 
 #import "UHDMensaRemoteDatasourceDelegate.h"
-#import "UHDMensa.h"
 #import "UHDDailyMenu.h"
 #import "UHDMeal.h"
 #import "UHDMensaSection.h"
 @import RKCLLocationValueTransformer;
 #import "NSManagedObject+VIInsertIntoContextCategory.h"
-
+#import <UHDKit/UHDKit-Swift.h>
 
 @implementation UHDMensaRemoteDatasourceDelegate
 
@@ -22,17 +21,17 @@
     
     // Mensa
     
-    RKEntityMapping *mensaMapping = [RKEntityMapping mappingForEntityForName:[UHDMensa entityName] inManagedObjectStore:objectManager.managedObjectStore];
-    [mensaMapping addAttributeMappingsFromDictionary:@{ @"id": @"remoteObjectId", @"imageUrl": @"imageURL" }];
-    RKAttributeMapping *locationMapping = [RKAttributeMapping attributeMappingFromKeyPath:@"location" toKeyPath:@"location"];
+    RKEntityMapping *mensaMapping = [RKEntityMapping mappingForEntityForName:[Mensa entityName] inManagedObjectStore:objectManager.managedObjectStore];
+    [mensaMapping addAttributeMappingsFromDictionary:@{ @"id": @"remoteObjectId" }];
+    /*RKAttributeMapping *locationMapping = [RKAttributeMapping attributeMappingFromKeyPath:@"location" toKeyPath:@"location"];
     locationMapping.valueTransformer = [RKCLLocationValueTransformer locationValueTransformerWithLatitudeKey:@"lat" longitudeKey:@"lng"];
-    [mensaMapping addPropertyMapping:locationMapping];
+    [mensaMapping addPropertyMapping:locationMapping];*/
     [mensaMapping addAttributeMappingsFromArray:@[ @"title" ]];
     mensaMapping.identificationAttributes = @[ @"remoteObjectId" ];
     mensaMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", mensaMapping.entity];
     [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:mensaMapping method:RKRequestMethodAny pathPattern:@"canteens" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
     // Stubs
-    RKEntityMapping *mensaStubMapping = [RKEntityMapping mappingForEntityForName:[UHDMensa entityName] inManagedObjectStore:objectManager.managedObjectStore];
+    RKEntityMapping *mensaStubMapping = [RKEntityMapping mappingForEntityForName:[Mensa entityName] inManagedObjectStore:objectManager.managedObjectStore];
     [mensaStubMapping addPropertyMapping:[RKAttributeMapping attributeMappingFromKeyPath:nil toKeyPath:@"remoteObjectId"]];
     mensaStubMapping.identificationAttributes = @[ @"remoteObjectId" ];
     mensaStubMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", mensaStubMapping.entity];
@@ -87,7 +86,7 @@
 
 - (BOOL)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource shouldGenerateSampleDataForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[Mensa entityName]];
     NSArray *allItems = [managedObjectContext executeFetchRequest:fetchRequest error:NULL];
     return allItems.count == 0;
 }
@@ -97,7 +96,7 @@
 /*    //FIRST
     //Create Mensa Object
     
-    UHDMensa *mensaItem = [UHDMensa insertNewObjectIntoContext:managedObjectContext];
+    Mensa *mensaItem = [Mensa insertNewObjectIntoContext:managedObjectContext];
     mensaItem.title = @"[SAMPLE] Marstall";
     mensaItem.image = [UIImage imageNamed:@"marstallhof-01"];
     mensaItem.location = [[CLLocation alloc] initWithLatitude:49.41297656 longitude:8.70445222];
@@ -150,7 +149,7 @@
     //SECOND
     //Create Mensa Object
     
-    UHDMensa *mensaItem2 = [UHDMensa insertNewObjectIntoContext:managedObjectContext];
+    Mensa *mensaItem2 = [Mensa insertNewObjectIntoContext:managedObjectContext];
     mensaItem2.title = @"[SAMPLE] Zentralmensa";
     mensaItem2.image = [UIImage imageNamed:@"zentralmensa-01"];
     mensaItem2.location = [[CLLocation alloc] initWithLatitude:49.41555917 longitude:8.67088169];
@@ -182,7 +181,7 @@
     //THIRD
     //Create Mensa Object
     
-    UHDMensa *mensaItem3 = [UHDMensa insertNewObjectIntoContext:managedObjectContext];
+    Mensa *mensaItem3 = [Mensa insertNewObjectIntoContext:managedObjectContext];
     mensaItem3.title = @"[SAMPLE] Triplex-Mensa";
     mensaItem3.image = [UIImage imageNamed:@"triplexmensa-01"];
     mensaItem3.location = [[CLLocation alloc] initWithLatitude:49.4107952 longitude:8.70567262];

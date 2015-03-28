@@ -14,13 +14,10 @@
 #import "UHDMensaListViewController.h"
 #import "UHDDailyMenuViewController.h"
 
-// Model
-#import "UHDMensa.h"
-
 
 @interface UHDMensaViewController () <UIPageViewControllerDataSource, UIPageViewControllerDelegate, MensaDayPickerDelegate>
 
-@property (strong, nonatomic) UHDMensa *mensa;
+@property (strong, nonatomic) Mensa *mensa;
 
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet MensaDayPicker *dayPicker;
@@ -68,7 +65,7 @@
         // FIXME: [self.logger log:@"No mensa selected" forLevel:VILogLevelDebug];
         return;
     }
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[Mensa entityName]];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"remoteObjectId == %@", mensaId];
     NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:NULL];
     if (result.count > 0) {
@@ -80,7 +77,7 @@
     
 }
 
-- (void)setMensa:(UHDMensa *)mensa
+- (void)setMensa:(Mensa *)mensa
 {
     if (mensa == _mensa) return;
     _mensa = mensa;
@@ -147,8 +144,8 @@
 }
 
 - (IBAction)mensaDetailButtonPressed:(id)sender {
-    UHDBuildingDetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"maps" bundle:[NSBundle bundleForClass:[self class]]] instantiateViewControllerWithIdentifier:@"buildingDetail"];
-    detailVC.building = self.mensa;
+    InstitutionDetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"maps" bundle:[NSBundle bundleForClass:[self class]]] instantiateViewControllerWithIdentifier:@"institutionDetail"];
+    detailVC.institution = self.mensa;
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 

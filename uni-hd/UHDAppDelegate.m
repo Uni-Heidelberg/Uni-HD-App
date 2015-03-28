@@ -57,16 +57,16 @@
     
     NSManagedObjectContext *managedObjectContext = self.persistentStack.managedObjectContext;
     // get mensa category
-    NSFetchRequest *categoryFetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDLocationCategory entityName]];
+    /*NSFetchRequest *categoryFetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDLocationCategory entityName]];
     categoryFetchRequest.predicate = [NSPredicate predicateWithFormat:@"title == %@", @"Mensen"];
-    UHDLocationCategory *mensenCategory = [[managedObjectContext executeFetchRequest:categoryFetchRequest error:nil] firstObject];
+    Institution *stw = [[managedObjectContext executeFetchRequest:stwFetchRequest error:nil] firstObject];
     // get campus regions
-    NSFetchRequest *regionsFetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDCampusRegion entityName]];
+    NSFetchRequest *regionsFetchRequest = [NSFetchRequest fetchRequestWithEntityName:[CampusRegion entityName]];
     NSArray *campusRegions = [managedObjectContext executeFetchRequest:regionsFetchRequest error:nil];
     // get mensen
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[Mensa entityName]];
     NSArray *mensen = [managedObjectContext executeFetchRequest:fetchRequest error:nil];
-    for (UHDMensa *mensa in mensen) {
+    for (Mensa *mensa in mensen) {
         if (!mensa.category) {
             mensa.category = mensenCategory;
         }
@@ -133,11 +133,11 @@
         if (!mensa.url) {
             mensa.url = [NSURL URLWithString:@"http://www.studentenwerk.uni-heidelberg.de/mensen"];
         }
-    }
+    }*/
     // get kip building
-    NSFetchRequest *kipFetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDBuilding entityName]];
-    kipFetchRequest.predicate = [NSPredicate predicateWithFormat:@"buildingNumber == %@", @"227"];
-    UHDBuilding *kipBuilding = [[managedObjectContext executeFetchRequest:kipFetchRequest error:nil] firstObject];
+    /*NSFetchRequest *kipFetchRequest = [NSFetchRequest fetchRequestWithEntityName:[Building entityName]];
+    kipFetchRequest.predicate = [NSPredicate predicateWithFormat:@"number == %@", @"227"];
+    Building *kipBuilding = [[managedObjectContext executeFetchRequest:kipFetchRequest error:nil] firstObject];
     // get all events in kip
     NSFetchRequest *eventsInKIPFetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDEventItem entityName]];
     eventsInKIPFetchRequest.predicate = [NSPredicate predicateWithFormat:@"buildingString LIKE[cd] %@", @"Kirchhoff-Institut für Physik"];
@@ -157,7 +157,7 @@
     if (kipNewsSource) {
         [kipBuilding.mutableAssociatedNewsSources addObject:kipNewsSource];
     }
-    [managedObjectContext saveToPersistentStore:nil];
+    [managedObjectContext saveToPersistentStore:nil];*/
 	
 	
 	
@@ -291,11 +291,12 @@
     if (!_persistentStack) {
         [self.logger log:@"Creating persistent stack ..." forLevel:VILogLevelVerbose];
         
-        NSBundle *modelsBundle = [NSBundle bundleForClass:[UHDMensa class]];
+        NSBundle *modelsBundle = [NSBundle bundleForClass:[Mensa class]];
         NSManagedObjectModel *mensaModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[modelsBundle URLForResource:@"mensa" withExtension:@"momd"]];
         NSManagedObjectModel *newsModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[modelsBundle URLForResource:@"news" withExtension:@"momd"]];
         NSManagedObjectModel *mapsModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[modelsBundle URLForResource:@"maps" withExtension:@"momd"]];
-        NSManagedObjectModel *managedObjectModel = [self modelByMergingModels:@[ mensaModel, newsModel, mapsModel ] withForeignEntityNameKey:@"UHDForeignEntityNameKey"];
+        NSManagedObjectModel *institutionsModel = [[NSManagedObjectModel alloc] initWithContentsOfURL:[modelsBundle URLForResource:@"institutions" withExtension:@"momd"]];
+        NSManagedObjectModel *managedObjectModel = [self modelByMergingModels:@[ mensaModel, newsModel, mapsModel, institutionsModel ] withForeignEntityNameKey:@"UHDForeignEntityNameKey"];
 
         NSURL *persistentStoreURL = [[[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject] URLByAppendingPathComponent:@"uni-hd.sqlite"];
         

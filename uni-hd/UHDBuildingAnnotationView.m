@@ -8,10 +8,11 @@
 
 #import "UHDBuildingAnnotationView.h"
 #import "UIImage+ImageEffects.h"
+#import <UHDKit/UHDKit-Swift.h>
 
 @implementation UHDBuildingAnnotationView
 
-- (id)initWithAnnotation:(UHDBuilding *)annotation reuseIdentifier:(NSString *)reuseIdentifier {
+- (id)initWithAnnotation:(Building *)annotation reuseIdentifier:(NSString *)reuseIdentifier {
     if (self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier]) {
         
         UIButton *detailButton = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
@@ -21,7 +22,7 @@
     return self;
 }
 
-- (void)setAnnotation:(UHDBuilding *)annotation {
+- (void)setAnnotation:(Building *)annotation {
     [super setAnnotation:annotation];
     [self configureView];
 }
@@ -35,7 +36,7 @@
 
 - (void)configureView
 {
-    UHDBuilding *building = self.annotation;
+    Building *building = self.annotation;
     
     // image
     if (!self.shouldHideImage && building) {

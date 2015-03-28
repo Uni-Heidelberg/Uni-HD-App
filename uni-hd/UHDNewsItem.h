@@ -21,7 +21,6 @@ typedef enum : NSUInteger {
 
 @import UHDRemoteKit;
 @class UHDNewsSource;
-@class UHDRemoteManagedLocation;
 
 @interface UHDNewsItem : UHDRemoteManagedObject
 
@@ -34,7 +33,6 @@ typedef enum : NSUInteger {
 @property (nonatomic, retain) NSURL *imageURL;
 @property (nonatomic, retain) NSString *buildingString;
 @property (nonatomic, retain) NSString *roomString;
-@property (nonatomic, retain) UHDRemoteManagedLocation *location;
 @property (nonatomic, retain) UHDNewsSource *source;
 
 @property (nonatomic, readonly) NSString *sectionIdentifier;

@@ -26,7 +26,7 @@ class UHDSettingsDetailViewController: UITableViewController{
                 
                 self._fetchedResultsControllerDatasource = VIFetchedResultsControllerDataSource(fetchedResultsController:fetchedResultsController, tableView:self.tableView, cellIdentifier:"Cell", configureCellBlock: { cell, item in
                     switch item {
-                    case let mensa as UHDMensa:
+                    case let mensa as Mensa:
                         cell.textLabel?.text = mensa.title
                     default:
                         break

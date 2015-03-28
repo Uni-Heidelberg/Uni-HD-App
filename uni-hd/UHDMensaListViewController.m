@@ -7,8 +7,9 @@
 //
 
 #import "UHDMensaListViewController.h"
-
 #import "NSManagedObject+VIInsertIntoContextCategory.h"
+#import "VILogger.h"
+
 // Table View Datasource
 #import "VIFetchedResultsControllerDataSource.h"
 
@@ -18,9 +19,6 @@
 // View
 #import "UHDMensaCell.h"
 #import "UHDMensaSectionHeaderView.h"
-
-// Model
-#import "UHDMensa.h"
 
 // Swift
 #import <UHDKit/UHDKit-Swift.h>
@@ -81,7 +79,7 @@
     [super viewWillAppear:animated];
     [self.locationManager startMonitoringSignificantLocationChanges];  // TODO: reconsider accuracy
     if ([self indexPathOfSelectedMensa]==nil) {
-        // FIXME: [self.logger log:@"No Mensa selected" forLevel:VILogLevelDebug];
+        [self.logger log:@"No Mensa selected" forLevel:VILogLevelDebug];
     }
     else {
         [self.tableView selectRowAtIndexPath: [self indexPathOfSelectedMensa] animated:animated scrollPosition:UITableViewScrollPositionNone];
@@ -89,20 +87,20 @@
     
 }
 -(NSIndexPath *)indexPathOfSelectedMensa{
-    // FIXME: [self.logger log:@"Loading selected mensa from user defaults..." forLevel:VILogLevelDebug];
+    [self.logger log:@"Loading selected mensa from user defaults..." forLevel:VILogLevelDebug];
     
     NSNumber *mensaId = [[NSUserDefaults standardUserDefaults] objectForKey:[UHDConstants userDefaultsKeySelectedMensaId]];
     if (!mensaId) {
     }
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[Mensa entityName]];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"remoteObjectId == %@", mensaId];
     NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:NULL];
     if (result.count > 0) {
-        UHDMensa* selectedMensa = result.firstObject;
-        // FIXME: [self.logger log:@"Found selected Mensa." object:selectedMensa.title forLevel:VILogLevelDebug];
+        Mensa *selectedMensa = result.firstObject;
+        [self.logger log:@"Found selected Mensa." object:selectedMensa.title forLevel:VILogLevelDebug];
         return [self indexPathForMensa:selectedMensa];
     } else {
-        // FIXME: [self.logger log:@"Selected invalid mensa." forLevel:VILogLevelError];
+        [self.logger log:@"Selected invalid mensa." forLevel:VILogLevelError];
         return nil;
     }
 }
@@ -125,7 +123,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"selectMensa"]) {
-        [[NSUserDefaults standardUserDefaults] setObject:@([(UHDMensa *)[self mensaForIndexPath:self.tableView.indexPathForSelectedRow] remoteObjectId]) forKey:[UHDConstants userDefaultsKeySelectedMensaId]];
+        [[NSUserDefaults standardUserDefaults] setObject:@([(Mensa *)[self mensaForIndexPath:self.tableView.indexPathForSelectedRow] remoteObjectId]) forKey:[UHDConstants userDefaultsKeySelectedMensaId]];
     }
 }
 
@@ -150,7 +148,7 @@
             sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES] ];
             break;
         case 1:
-            sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"currentDistance" ascending:YES], [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES] ];
+            sortDescriptors = @[ /*[NSSortDescriptor sortDescriptorWithKey:@"managedCurrentDistance" ascending:YES],*/ [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES] ]; // TODO: implement distance again
             break;
         default:
             break;
@@ -170,9 +168,9 @@
 
 - (IBAction)detailButtonPressed:(id)sender
 {
-    UHDBuildingDetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"maps" bundle:[NSBundle bundleForClass:[self class]]] instantiateViewControllerWithIdentifier:@"buildingDetail"];
+    InstitutionDetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"maps" bundle:[NSBundle bundleForClass:[self class]]] instantiateViewControllerWithIdentifier:@"institutionDetail"];
     UITableViewCell *cell = [self cellForSubview:sender];
-    detailVC.building = [self mensaForIndexPath:[self.tableView indexPathForCell:cell]];
+    detailVC.institution = [self mensaForIndexPath:[self.tableView indexPathForCell:cell]];
     [self.navigationController pushViewController:detailVC animated:YES];
 }
 
@@ -181,7 +179,7 @@
 - (NSFetchedResultsController *)fetchedResultsController {
     if (!_fetchedResultsController && self.managedObjectContext) {
         
-        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[Mensa entityName]];
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES]];
         
         _fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
@@ -194,7 +192,7 @@
 - (NSFetchedResultsController *)favouritesResultsController {
     if (!_favouritesResultsController && self.managedObjectContext) {
         
-        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDMensa entityName]];
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[Mensa entityName]];
         fetchRequest.sortDescriptors = @[[NSSortDescriptor sortDescriptorWithKey:@"remoteObjectId" ascending:YES]];
         fetchRequest.predicate = [NSPredicate predicateWithFormat:@"isFavourite == 1"];
         //TODO: sortdescriptor im model
@@ -234,13 +232,13 @@
     else if (indexPath.section==1){
         object = [self.fetchedResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
     }
-    [(UHDMensaCell *)cell configureForMensa:(UHDMensa *)object];
+    [(UHDMensaCell *)cell configureForMensa:(Mensa *)object];
     [(UHDMensaCell *)cell setDelegate:self];
     return cell;
     
 }
 
-- (UHDMensa*)mensaForIndexPath:(NSIndexPath*)indexPath
+- (Mensa *)mensaForIndexPath:(NSIndexPath*)indexPath
 {
     if (indexPath.section==0){
         return [self.favouritesResultsController objectAtIndexPath:[NSIndexPath indexPathForRow:indexPath.row inSection:0]];
@@ -249,10 +247,10 @@
     }
     return nil;
 }
-- (NSIndexPath *)indexPathForMensa:(UHDMensa *)mensa
+- (NSIndexPath *)indexPathForMensa:(Mensa *)mensa
 {
     if (mensa == 0) {
-        // FIXME: [self.logger log:@"No Mensa selected." forLevel:VILogLevelDebug];
+        [self.logger log:@"No Mensa selected." forLevel:VILogLevelDebug];
         return nil;
     } else {
         NSIndexPath *oldIndexPath = [self.fetchedResultsController indexPathForObject:mensa];
@@ -315,13 +313,13 @@
 
 - (void)controllerWillChangeContent:(NSFetchedResultsController*)controller
 {
-    // FIXME: [self.logger log:@"Begin updates" forLevel:VILogLevelVerbose];
+    [self.logger log:@"Begin updates" forLevel:VILogLevelVerbose];
     [self.tableView beginUpdates];
 }
 
 - (void)controllerDidChangeContent:(NSFetchedResultsController*)controller
 {
-    // FIXME: [self.logger log:@"End updates" forLevel:VILogLevelVerbose];
+    [self.logger log:@"End updates" forLevel:VILogLevelVerbose];
     [self.tableView endUpdates];
 }
 
@@ -335,20 +333,20 @@
     switch (type) {
         case NSFetchedResultsChangeInsert:
             [self.tableView insertRowsAtIndexPaths:@[ newIndexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
-            // FIXME: [self.logger log:@"Inserted row at index path" object:newIndexPath forLevel:VILogLevelVerbose];
+            [self.logger log:@"Inserted row at index path" object:newIndexPath forLevel:VILogLevelVerbose];
             break;
         case NSFetchedResultsChangeMove:
             [self.tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
             [self.tableView insertRowsAtIndexPaths:@[ newIndexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
-            // FIXME: [self.logger log:@"Moved row at index path" object:indexPath forLevel:VILogLevelVerbose];
+            [self.logger log:@"Moved row at index path" object:indexPath forLevel:VILogLevelVerbose];
             break;
         case NSFetchedResultsChangeDelete:
             [self.tableView deleteRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
-            // FIXME: [self.logger log:@"Deleted row at index path" object:indexPath forLevel:VILogLevelVerbose];
+            [self.logger log:@"Deleted row at index path" object:indexPath forLevel:VILogLevelVerbose];
             break;
         case NSFetchedResultsChangeUpdate:
             [self.tableView reloadRowsAtIndexPaths:@[ indexPath ] withRowAnimation:UITableViewRowAnimationAutomatic];
-            // FIXME: [self.logger log:@"Updated row at index path" object:indexPath forLevel:VILogLevelVerbose];
+            [self.logger log:@"Updated row at index path" object:indexPath forLevel:VILogLevelVerbose];
             break;
         default:
             break;
@@ -359,26 +357,26 @@
 #pragma mark - Swipe Table View Cell Delegate
 
 -(void)swipeTableViewCellDidStartSwiping:(RMSwipeTableViewCell *)swipeTableViewCell {
-    // FIXME: [self.logger log:@"swipeTableViewCellDidStartSwiping: %@" object:swipeTableViewCell forLevel:VILogLevelVerbose];
+    [self.logger log:@"swipeTableViewCellDidStartSwiping: %@" object:swipeTableViewCell forLevel:VILogLevelVerbose];
 }
 
 -(void)swipeTableViewCell:(UHDMensaCell *)swipeTableViewCell didSwipeToPoint:(CGPoint)point velocity:(CGPoint)velocity {
-    // FIXME: [self.logger log:[NSString stringWithFormat:@"swipeTableViewCell: %@ didSwipeToPoint: %@ velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
+    [self.logger log:[NSString stringWithFormat:@"swipeTableViewCell: %@ didSwipeToPoint: %@ velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
 }
 
 -(void)swipeTableViewCellWillResetState:(RMSwipeTableViewCell *)swipeTableViewCell fromPoint:(CGPoint)point animation:(RMSwipeTableViewCellAnimationType)animation velocity:(CGPoint)velocity
 {
-    // FIXME: [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellWillResetState: %@ fromPoint: %@ animation: %u, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
+    [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellWillResetState: %@ fromPoint: %@ animation: %lu, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
     
     if ([(UHDFavouriteCell *)swipeTableViewCell shouldTriggerForPoint:point]) {
-        UHDMensa *mensa = [self mensaForIndexPath:[self.tableView indexPathForCell:swipeTableViewCell]];
+        Mensa *mensa = [self mensaForIndexPath:[self.tableView indexPathForCell:swipeTableViewCell]];
         mensa.isFavourite = !mensa.isFavourite;
         [mensa.managedObjectContext saveToPersistentStore:nil];
     }
 }
 
 -(void)swipeTableViewCellDidResetState:(RMSwipeTableViewCell *)swipeTableViewCell fromPoint:(CGPoint)point animation:(RMSwipeTableViewCellAnimationType)animation velocity:(CGPoint)velocity {
-    // FIXME: [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellDidResetState: %@ fromPoint: %@ animation: %u, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
+    [self.logger log:[NSString stringWithFormat:@"swipeTableViewCellDidResetState: %@ fromPoint: %@ animation: %lu, velocity: %@", swipeTableViewCell, NSStringFromCGPoint(point), animation, NSStringFromCGPoint(velocity)] forLevel:VILogLevelVerbose];
 }
 
 
@@ -386,18 +384,18 @@
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
 {
-    // FIXME: [self.logger log:@"Received location update." object:locations forLevel:VILogLevelDebug];
-    for (UHDMensa *mensa in self.fetchedResultsController.fetchedObjects) {
-        mensa.currentDistance = [mensa.location distanceFromLocation:locations.lastObject];
+    [self.logger log:@"Received location update." object:locations forLevel:VILogLevelDebug];
+    for (Mensa *mensa in self.fetchedResultsController.fetchedObjects) {
+        mensa.location.managedCurrentDistance = [NSNumber numberWithDouble:[mensa.location.location distanceFromLocation:locations.lastObject]];
     }
 }
 
 - (void)locationManager:(CLLocationManager *)manager
        didFailWithError:(NSError *)error
 {
-    // FIXME: [self.logger log:@"Failed to receive location update." forLevel:VILogLevelDebug];
-    for (UHDMensa *mensa in self.fetchedResultsController.fetchedObjects) {
-        mensa.currentDistance = -1;
+    [self.logger log:@"Failed to receive location update." forLevel:VILogLevelDebug];
+    for (Mensa *mensa in self.fetchedResultsController.fetchedObjects) {
+        mensa.location.managedCurrentDistance = @(-1);
     }
 }
 

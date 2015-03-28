@@ -446,13 +446,13 @@
 	else if ([item.entityName isEqualToString:[UHDEventItem entityName]]) {
 		
 		cell = [tableView dequeueReusableCellWithIdentifier:@"eventCell" forIndexPath:indexPath];
-		[(UHDEventItemCell *)cell configureForItem:(UHDEventItem *)item];
+		[(UHDEventItemCell *)cell configureForEvent:(UHDEventItem *)item];
 		
 	}
 	else if ([item.entityName isEqualToString:[UHDTalkItem entityName]]) {
 	
 		cell = [tableView dequeueReusableCellWithIdentifier:@"talkCell" forIndexPath:indexPath];
-		[(UHDTalkItemCell *)cell configureForItem:(UHDTalkItem *)item];
+		[(UHDTalkItemCell *)cell configureForTalk:(UHDTalkItem *)item];
 	
 	}
 	

@@ -7,6 +7,8 @@
 //
 
 #import "UHDNewsItem.h"
+#import <UHDKit/UHDKit-Swift.h>
+
 
 @interface UHDNewsItem ()
 
@@ -27,7 +29,6 @@
 @dynamic source;
 @dynamic sectionIdentifier;
 @dynamic buildingString, roomString;
-@dynamic location;
 
 @dynamic primitiveDate, primitiveSectionIdentifier;
 

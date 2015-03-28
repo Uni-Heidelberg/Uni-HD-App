@@ -7,7 +7,7 @@
 //
 
 #import "UHDEventItem.h"
-#import "UHDRemoteManagedLocation.h"
+#import <UHDKit/UHDKit-Swift.h>
 
 @implementation UHDEventItem
 

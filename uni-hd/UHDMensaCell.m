@@ -29,10 +29,10 @@
     self.favouriteSymbolView.tintColor = [UIColor favouriteColor];
 }
 
--(void)configureForMensa:(UHDMensa *)mensa
+-(void)configureForMensa:(Mensa *)mensa
 {
     self.mensaLabel.text = mensa.title;
-    [self.hoursProgressView configureForHoursOfMensa:mensa];
+    [self.hoursProgressView configureForHoursOfInstitution:mensa];
     self.distanceLabel.attributedText = mensa.attributedStatusDescription;
     self.isFavourite = mensa.isFavourite;
     self.favouriteSymbolView.hidden = !mensa.isFavourite;

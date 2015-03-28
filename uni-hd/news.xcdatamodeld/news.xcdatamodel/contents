@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6254" systemVersion="14B25" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
-    <entity name="UHDBuilding" syncable="YES">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14D113c" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="Institution" syncable="YES">
         <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
-        <relationship name="associatedNewsSources" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDNewsSource" inverseName="associatedBuildings" inverseEntity="UHDNewsSource" syncable="YES"/>
+        <relationship name="newsSources" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDNewsSource" inverseName="institution" inverseEntity="UHDNewsSource" syncable="YES"/>
         <userInfo>
-            <entry key="UHDForeignEntityNameKey" value="maps.UHDBuilding"/>
+            <entry key="UHDForeignEntityNameKey" value="institutions.Institution"/>
+        </userInfo>
+    </entity>
+    <entity name="Location" syncable="YES">
+        <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" syncable="YES"/>
+        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDEventItem" inverseName="location" inverseEntity="UHDEventItem" syncable="YES"/>
+        <userInfo>
+            <entry key="UHDForeignEntityNameKey" value="maps.Location"/>
         </userInfo>
     </entity>
     <entity name="UHDEventItem" representedClassName="UHDEventItem" parentEntity="UHDNewsItem" syncable="YES">
         <attribute name="buildingString" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="locationId" optional="YES" transient="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="roomString" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDRemoteManagedLocation" inverseName="events" inverseEntity="UHDRemoteManagedLocation" syncable="YES"/>
+        <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="events" inverseEntity="Location" syncable="YES"/>
     </entity>
     <entity name="UHDNewsCategory" representedClassName="UHDNewsCategory" syncable="YES">
         <attribute name="parentId" optional="YES" transient="YES" attributeType="Integer 16" syncable="YES"/>
@@ -40,15 +47,8 @@
         <attribute name="isEventSource" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="isNewsSource" optional="YES" attributeType="Boolean" defaultValueString="YES" syncable="YES"/>
         <attribute name="subscribed" optional="YES" attributeType="Boolean" defaultValueString="NO" syncable="YES"/>
-        <relationship name="associatedBuildings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDBuilding" inverseName="associatedNewsSources" inverseEntity="UHDBuilding" syncable="YES"/>
+        <relationship name="institution" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Institution" inverseName="newsSources" inverseEntity="Institution" syncable="YES"/>
         <relationship name="newsItems" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="UHDNewsItem" inverseName="source" inverseEntity="UHDNewsItem" syncable="YES"/>
-    </entity>
-    <entity name="UHDRemoteManagedLocation" syncable="YES">
-        <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" syncable="YES"/>
-        <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDEventItem" inverseName="location" inverseEntity="UHDEventItem" syncable="YES"/>
-        <userInfo>
-            <entry key="UHDForeignEntityNameKey" value="maps.UHDRemoteManagedLocation"/>
-        </userInfo>
     </entity>
     <entity name="UHDTalkItem" representedClassName="UHDTalkItem" parentEntity="UHDEventItem" syncable="YES">
         <relationship name="speaker" optional="YES" maxCount="1" deletionRule="Cascade" destinationEntity="UHDTalkSpeaker" inverseName="talk" inverseEntity="UHDTalkSpeaker" syncable="YES"/>
@@ -62,12 +62,12 @@
         <relationship name="talk" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="UHDTalkItem" inverseName="speaker" inverseEntity="UHDTalkItem" syncable="YES"/>
     </entity>
     <elements>
-        <element name="UHDBuilding" positionX="-461" positionY="2" width="128" height="73"/>
+        <element name="Institution" positionX="-461" positionY="2" width="128" height="73"/>
         <element name="UHDEventItem" positionX="-65" positionY="27" width="128" height="103"/>
         <element name="UHDNewsCategory" positionX="-270" positionY="-207" width="128" height="103"/>
         <element name="UHDNewsItem" positionX="-63" positionY="-205" width="128" height="208"/>
-        <element name="UHDNewsSource" positionX="-270" positionY="-46" width="128" height="133"/>
-        <element name="UHDRemoteManagedLocation" positionX="108" positionY="29" width="128" height="73"/>
+        <element name="UHDNewsSource" positionX="-270" positionY="-46" width="128" height="163"/>
+        <element name="Location" positionX="108" positionY="29" width="128" height="73"/>
         <element name="UHDTalkItem" positionX="-65" positionY="158" width="128" height="58"/>
         <element name="UHDTalkSpeaker" positionX="108" positionY="162" width="128" height="133"/>
     </elements>

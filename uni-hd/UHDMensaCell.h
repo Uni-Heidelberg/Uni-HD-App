@@ -7,10 +7,10 @@
 //
 
 #import "UHDFavouriteCell.h"
-#import "UHDMensa.h"
+@class Mensa;
 
 @interface UHDMensaCell : UHDFavouriteCell 
 
-- (void)configureForMensa:(UHDMensa *)mensa;
+- (void)configureForMensa:(Mensa *)mensa;
 
 @end

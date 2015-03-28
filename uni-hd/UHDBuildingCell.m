@@ -7,22 +7,19 @@
 //
 
 #import "UHDBuildingCell.h"
-#import "UHDBuilding.h"
-#import "UHDCampusRegion.h"
-
+#import <UHDKit/UHDKit-Swift.h>
 
 
 @implementation UHDBuildingCell
 
-- (void)configureForBuilding:(UHDBuilding *)item {
+- (void)configureForInstitution:(Institution *)item {
     
     // Configure text
     self.titleLabel.text = item.title;
-    self.subtitleLabel.text = item.campusIdentifier;
-    self.campusRegionLabel.text = item.campusRegion.title;
+    self.subtitleLabel.text = item.location.campusIdentifier;
     
     // Configure Image
-    self.buildingsImageView.image = item.image;
+    self.buildingsImageView.image = item.location.image;
     
 }
 

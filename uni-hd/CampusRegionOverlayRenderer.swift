@@ -25,9 +25,8 @@ public class CampusRegionOverlayRenderer: MKTileOverlayRenderer {
     public let tileOverlay: MKTileOverlay
     private let minimumZoomLevel: Int = 18
     
-    public init(campusRegion: UHDCampusRegion) {
-
-        let tileOverlay = CachedTileOverlay(URLTemplate: "http://appserver.physik.uni-heidelberg.de/static/map-tiles/\(campusRegion.identifier)/{z}/{x}/{y}.png", cacheIdentifier: campusRegion.identifier) // TODO: use UHDRemoteStaticContentBaseURL
+    public init(campusRegion: CampusRegion) {
+        let tileOverlay = CachedTileOverlay(URLTemplate: UHDRemoteConstants.Server.StaticContentBaseURL.absoluteString! + "map-tiles/\(campusRegion.identifier)/{z}/{x}/{y}.png", cacheIdentifier: campusRegion.identifier ?? "Default")
         tileOverlay.geometryFlipped = true
         tileOverlay.minimumZ = 15
         tileOverlay.maximumZ = 20

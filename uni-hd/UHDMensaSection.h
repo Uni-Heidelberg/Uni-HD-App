@@ -7,13 +7,13 @@
 //
 
 @import UHDRemoteKit;
-@class UHDDailyMenu, UHDMensa;
+@class UHDDailyMenu, Mensa;
 
 @interface UHDMensaSection : UHDRemoteManagedObject
 
 @property (nonatomic, retain) NSString *title;
 
-@property (nonatomic, retain) UHDMensa *mensa;
+@property (nonatomic, retain) Mensa *mensa;
 @property (nonatomic, retain) NSSet *menus;
 - (NSMutableSet *)mutableMenus;
 

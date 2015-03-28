@@ -32,7 +32,7 @@
 	self.imageSpacingConstraintInitialConstant = self.imageSpacingLayoutConstraint.constant;
 }
 
--(void)configureForItem:(UHDEventItem *)item
+-(void)configureForEvent:(UHDEventItem *)item
 {
     // Configure text
     self.titleLabel.text = item.title;

@@ -8,19 +8,15 @@
 
 #import "UHDMapsRemoteDatasourceDelegate.h"
 
-#import "UHDLocationCategory.h"
-#import "UHDCampusRegion.h"
-#import "UHDBuilding.h"
-#import "UHDAddress.h"
 #import <RKCLLocationValueTransformer/RKCLLocationValueTransformer.h>
 #import "NSManagedObject+VIInsertIntoContextCategory.h"
-
+#import <UHDKit/UHDKit-Swift.h>
 
 @implementation UHDMapsRemoteDatasourceDelegate
 
 - (void)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource setupObjectMappingForObjectManager:(RKObjectManager *)objectManager
 {
-    
+   /*
     // Address
     
     RKEntityMapping *addressMapping = [RKEntityMapping mappingForEntityForName:[UHDAddress entityName] inManagedObjectStore:objectManager.managedObjectStore];
@@ -35,7 +31,7 @@
     
     // Building
     
-    RKEntityMapping *buildingMapping = [RKEntityMapping mappingForEntityForName:[UHDBuilding entityName] inManagedObjectStore:objectManager.managedObjectStore];
+    RKEntityMapping *buildingMapping = [RKEntityMapping mappingForEntityForName:[Building entityName] inManagedObjectStore:objectManager.managedObjectStore];
     [buildingMapping addAttributeMappingsFromArray:@[ @"title", @"buildingNumber", @"email", @"telephone", @"spanLatitude", @"spanLongitude", @"url", @"campusRegionId", @"categoryId", @"associatedNewsSourceIds" ]];
     [buildingMapping addAttributeMappingsFromDictionary:@{ @"id": @"remoteObjectId", @"imageUrl": @"imageURL" }];
     RKAttributeMapping *locationMapping = [RKAttributeMapping attributeMappingFromKeyPath:@"location" toKeyPath:@"location"];
@@ -53,7 +49,7 @@
     [buildingMapping addConnection:buildingAssociatedNewsSourcesConnection];
     [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:buildingMapping method:RKRequestMethodAny pathPattern:@"buildings" keyPath:nil statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
     // Stubs
-    RKEntityMapping *buildingStubMapping = [RKEntityMapping mappingForEntityForName:[UHDBuilding entityName] inManagedObjectStore:objectManager.managedObjectStore];
+    RKEntityMapping *buildingStubMapping = [RKEntityMapping mappingForEntityForName:[Building entityName] inManagedObjectStore:objectManager.managedObjectStore];
     [buildingStubMapping addPropertyMapping:[RKAttributeMapping attributeMappingFromKeyPath:nil toKeyPath:@"remoteObjectId"]];
     buildingStubMapping.identificationAttributes = @[ @"remoteObjectId" ];
     buildingStubMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", buildingStubMapping.entity];
@@ -91,7 +87,7 @@
     campusRegionStubMapping.identificationAttributes = @[ @"remoteObjectId" ];
     campusRegionStubMapping.identificationPredicate = [NSPredicate predicateWithFormat:@"entity == %@", campusRegionStubMapping.entity];
     [objectManager addResponseDescriptor:[RKResponseDescriptor responseDescriptorWithMapping:campusRegionStubMapping method:RKRequestMethodAny pathPattern:nil keyPath:@"campusRegionId" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful)]];
-    
+    */
 }
 
 - (NSArray *)remoteRefreshPathsForRemoteDatasource:(UHDRemoteDatasource *)remoteDatasource
@@ -101,7 +97,7 @@
 
 - (BOOL)remoteDatasource:(UHDRemoteDatasource *)remoteDatasource shouldGenerateSampleDataForManagedObjectContext:(NSManagedObjectContext *)managedObjectContext
 {
-    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDBuilding entityName]];
+    NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[Building entityName]];
     NSArray *allItems = [managedObjectContext executeFetchRequest:fetchRequest error:NULL];
     return allItems.count == 0;
 }
@@ -110,28 +106,27 @@
 {
     NSBundle *imagesBundle = [NSBundle bundleForClass:[self class]];
     
-    // Create categories
     
-    UHDLocationCategory *category1 = [UHDLocationCategory insertNewObjectIntoContext:managedObjectContext];
-    category1.title = @"Fakultät für Physik und Astronomie";
+    // Institutions
     
-    UHDLocationCategory *category2 = [UHDLocationCategory insertNewObjectIntoContext:managedObjectContext];
-    category2.title = @"Fakultät für Mathematik und Informatik";
+    Institution *fakPhys = [Institution insertNewObjectIntoContext:managedObjectContext];
+    fakPhys.title = @"Fakultät für Physik und Astronomie";
     
-    UHDLocationCategory *category3 =[UHDLocationCategory insertNewObjectIntoContext:managedObjectContext];
-    category3.title = @"Mensen";
-    
-    // Create campus regions
+    Institution *kip = [Institution insertNewObjectIntoContext:managedObjectContext];
+    kip.title = @"Kirchhoff-Institut für Physik";
+    kip.parent = fakPhys;
     
     
-    UHDCampusRegion *inf = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
+    // Campus regions
+    
+    CampusRegion *inf = [CampusRegion insertNewObjectIntoContext:managedObjectContext];
     inf.title = @"Im Neuenheimer Feld";
     inf.identifier = @"INF";
-    inf.location = [[CLLocation alloc] initWithLatitude:49.41763 longitude:8.666255];
+    //inf.location = [[CLLocation alloc] initWithLatitude:49.41763 longitude:8.666255];
     // Höhe
-    inf.spanLatitude = 0.01416;
+    //inf.spanLatitude = 0.01416;
     // Breite
-    inf.spanLongitude = 0.0222;
+    //inf.spanLongitude = 0.0222;
     /*
      Top Left: 49.424232, 8.655333
      Bottom Right: 49.410792, 8.676694
@@ -139,24 +134,24 @@
      */
     //inf.overlayImageURL = [NSURL URLWithString:@"https://dl.dropboxusercontent.com/s/40xqkz48pww7x9o/inf.png"];
     
-    UHDCampusRegion *altstadt = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
+    /*UHDCampusRegion *altstadt = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
     altstadt.title = @"Altstadt";
     altstadt.identifier = @"ALT";
     altstadt.location = [[CLLocation alloc] initWithLatitude:49.4114 longitude:8.707346];
     altstadt.spanLatitude = 0.008758;
-    altstadt.spanLongitude = 0.029726;
+    altstadt.spanLongitude = 0.029726;*/
     /*
      Punkt linke Seite: 49.409210, 8.692483
      Punkt oben: 49.415861, 8.712368
      */
     //altstadt.overlayImageURL = [NSURL URLWithString:@"https://dl.dropboxusercontent.com/s/ppavffrpx5uceis/alt.png"];
     
-    UHDCampusRegion *bergheim = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
+    /*UHDCampusRegion *bergheim = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
     bergheim.title = @"Bergheim";
     bergheim.identifier = @"BERG";
     bergheim.location = [[CLLocation alloc] initWithLatitude:49.4085 longitude:8.68685];
     bergheim.spanLatitude = 0.00315;
-    bergheim.spanLongitude = 0.01095;
+    bergheim.spanLongitude = 0.01095;*/
     //bergheim.overlayAngle = -0.268;
     //bergheim.overlayImageURL = [NSURL URLWithString:@"https://dl.dropboxusercontent.com/s/rycj0hzqntbx28j/berg.png"];
     
@@ -175,189 +170,156 @@
      bergheim.centerLongitude = 8.6867;
     */
     
-    UHDCampusRegion *phw = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
+    /*CampusRegion *phw = [CampusRegion insertNewObjectIntoContext:managedObjectContext];
     phw.title = @"Philosophenweg";
     phw.identifier = @"PHW";
     phw.location = [[CLLocation alloc] initWithLatitude:49.414807 longitude:8.696407];
-    phw.spanLatitude = 0.002;
-    phw.spanLongitude = 0.004;
+    //phw.spanLatitude = 0.002;
+    //phw.spanLongitude = 0.004;*/
     
     
+    // Buildings
     
-    //FIRST
-    //Create Building Object
-    
-    UHDBuilding *buildingItem1 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
-    buildingItem1.title = @"Kirchhoff-Institut für Physik";
-    buildingItem1.buildingNumber = @"227";
-    buildingItem1.location = [[CLLocation alloc] initWithLatitude:49.416260 longitude:8.672190];
-    buildingItem1.spanLatitude = 0.0005;
-    buildingItem1.spanLongitude = 0.0009;
-    buildingItem1.category = category1;
-    buildingItem1.campusRegion = inf;
-    buildingItem1.image = [UIImage imageNamed:@"kip1" inBundle:imagesBundle compatibleWithTraitCollection:nil];
-    UHDAddress *address1 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
-    address1.street = @"Im Neuenheimer Feld 227";
-    address1.postalCode = @"69120";
-    address1.city = @"Heidelberg";
-    buildingItem1.address = address1;
-    buildingItem1.url = [NSURL URLWithString:@"http://www.kip.uni-heidelberg.de"];
-    buildingItem1.telephone = @"06221549100";
-    buildingItem1.email = @"info@kip.uni-heidelberg.de";
+    Building *inf227 = [Building insertNewObjectIntoContext:managedObjectContext];
+    inf227.number = @"227";
+    //inf227.location = [[CLLocation alloc] initWithLatitude:49.416260 longitude:8.672190];
+    //inf227.spanLatitude = 0.0005;
+    //inf227.spanLongitude = 0.0009;
+    inf227.campusRegion = inf;
+    inf227.image = [UIImage imageNamed:@"kip1" inBundle:imagesBundle compatibleWithTraitCollection:nil];
+    /*UHDAddress *inf227Address = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
+    inf227Address.street = @"Im Neuenheimer Feld 227";
+    inf227Address.postalCode = @"69120";
+    inf227Address.city = @"Heidelberg";
+    inf227.address = inf227Address;
+    inf227.url = [NSURL URLWithString:@"http://www.kip.uni-heidelberg.de"];
+    inf227.telephone = @"06221549100";
+    inf227.email = @"info@kip.uni-heidelberg.de";
     NSManagedObject *kipKeyword = [NSEntityDescription insertNewObjectForEntityForName:@"UHDSearchKeyword" inManagedObjectContext:managedObjectContext];
     [kipKeyword setValue:@"KIP" forKey:@"content"];
-    buildingItem1.keywords = [NSSet setWithObject:kipKeyword];
-    
-    
-    
-    
-    //SECOND
-    //Create Building Object
-    UHDBuilding *buildingItem2 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
-    buildingItem2.title =@"Klaus-Tschira-Gebäude";
+    inf227.keywords = [NSSet setWithObject:kipKeyword];*/
+
+    kip.location = inf227;
+
+    /*Building *inf226 = [Building insertNewObjectIntoContext:managedObjectContext];
+    inf226.title =@"Klaus-Tschira-Gebäude";
     //(Physikalisches Institut)
-    buildingItem2.buildingNumber = @"226";
-    buildingItem2.spanLatitude = 0.000518;
-    buildingItem2.spanLongitude = 0.000848;
-    buildingItem2.location = [[CLLocation alloc] initWithLatitude:49.416250 longitude:8.673171];
-    buildingItem2.category = category1;
-    buildingItem2.campusRegion = inf;
-    buildingItem2.image = [UIImage imageNamed:@"kip" inBundle:imagesBundle compatibleWithTraitCollection:nil];
-    UHDAddress *address2 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
-    address2.street = @"Im Neuenheimer Feld 226";
-    address2.postalCode = @"69120";
-    address2.city = @"Heidelberg";
-    buildingItem2.address = address2;
-    buildingItem2.url = [NSURL URLWithString:@"http://www.physi.uni-heidelberg.de"];
-    buildingItem2.telephone = @"062215419600";
-    buildingItem2.email = @"info@physi.uni-heidelberg.de";
+    inf226.buildingNumber = @"226";
+    inf226.spanLatitude = 0.000518;
+    inf226.spanLongitude = 0.000848;
+    inf226.location = [[CLLocation alloc] initWithLatitude:49.416250 longitude:8.673171];
+    inf226.category = fakPhys;
+    inf226.campusRegion = inf;
+    inf226.image = [UIImage imageNamed:@"kip" inBundle:imagesBundle compatibleWithTraitCollection:nil];
+    UHDAddress *inf226Address = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
+    inf226Address.street = @"Im Neuenheimer Feld 226";
+    inf226Address.postalCode = @"69120";
+    inf226Address.city = @"Heidelberg";
+    inf226.address = inf226Address;
+    inf226.url = [NSURL URLWithString:@"http://www.physi.uni-heidelberg.de"];
+    inf226.telephone = @"062215419600";
+    inf226.email = @"info@physi.uni-heidelberg.de";
     NSManagedObject *piKeyword = [NSEntityDescription insertNewObjectForEntityForName:@"UHDSearchKeyword" inManagedObjectContext:managedObjectContext];
     [piKeyword setValue:@"PI" forKey:@"content"];
     NSManagedObject *piKeyword2 = [NSEntityDescription insertNewObjectForEntityForName:@"UHDSearchKeyword" inManagedObjectContext:managedObjectContext];
     [piKeyword2 setValue:@"Physikalisches Institut" forKey:@"content"];
-    buildingItem2.keywords = [NSSet setWithObjects:piKeyword, piKeyword2, nil];
-
+    inf226.keywords = [NSSet setWithObjects:piKeyword, piKeyword2, nil];
     //links 49.416267, 8.672747
     //oben 49.416509, 8.673171
     
-
-
-    //THIRD
-    //Create Building Object
-    
-    UHDBuilding *buildingItem3 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
-    buildingItem3.buildingNumber = @"308";
-    buildingItem3.spanLatitude = 0.0006;
-    buildingItem3.spanLongitude = 0.001;
-    buildingItem3.location = [[CLLocation alloc] initWithLatitude:49.417515 longitude:8.670593];
-    buildingItem3.image = [UIImage imageNamed:@"INF308" inBundle:imagesBundle compatibleWithTraitCollection:nil];
-    buildingItem3.category = category1;
-    buildingItem3.campusRegion = inf;
-    UHDAddress *address3 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
-    address3.street = @"Im Neuenheimer Feld 308";
-    address3.postalCode = @"69120";
-    address3.city = @"Heidelberg";
-    buildingItem3.address = address3;
-    
+    Building *inf308 = [Building insertNewObjectIntoContext:managedObjectContext];
+    inf308.buildingNumber = @"308";
+    inf308.spanLatitude = 0.0006;
+    inf308.spanLongitude = 0.001;
+    inf308.location = [[CLLocation alloc] initWithLatitude:49.417515 longitude:8.670593];
+    inf308.image = [UIImage imageNamed:@"INF308" inBundle:imagesBundle compatibleWithTraitCollection:nil];
+    inf308.category = fakPhys;
+    inf308.campusRegion = inf;
+    UHDAddress *inf308Address = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
+    inf308Address.street = @"Im Neuenheimer Feld 308";
+    inf308Address.postalCode = @"69120";
+    inf308Address.city = @"Heidelberg";
+    inf308.address = inf308Address;
     //oben 49.417816, 8.670585
     //rechts 49.417468, 8.671014
     
-    
-    
-    
-    //FOURTH
-    //Create Building Object
-    
-    UHDBuilding *buildingItem4 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
-    buildingItem4.title = @"Mathematisches Institut";
-    buildingItem4.spanLatitude = 0.0006;
-    buildingItem4.spanLongitude = 0.0007;
-    buildingItem4.buildingNumber = @"288";
-    buildingItem4.location = [[CLLocation alloc] initWithLatitude:49.417055 longitude:8.671665];
-    buildingItem4.image = [UIImage imageNamed:@"INF288" inBundle:imagesBundle compatibleWithTraitCollection:nil];
-    buildingItem4.category = category2;
-    buildingItem4.campusRegion = inf;
-    UHDAddress *address4 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
-    address4.street = @"Im Neuenheimer Feld 288";
-    address4.postalCode = @"69120";
-    address4.city = @"Heidelberg";
-    buildingItem4.address = address4;
-    buildingItem4.url = [NSURL URLWithString:@"https://www.mathinf.uni-heidelberg.de"];
-    buildingItem4.telephone = @"06221545758";
-    buildingItem4.email = @"dekanat@mathi.uni-heidelberg.de";
-    
+    Building *inf228 = [Building insertNewObjectIntoContext:managedObjectContext];
+    inf228.title = @"Mathematisches Institut";
+    inf228.spanLatitude = 0.0006;
+    inf228.spanLongitude = 0.0007;
+    inf228.buildingNumber = @"288";
+    inf228.location = [[CLLocation alloc] initWithLatitude:49.417055 longitude:8.671665];
+    inf228.image = [UIImage imageNamed:@"INF288" inBundle:imagesBundle compatibleWithTraitCollection:nil];
+    inf228.category = fakMath;
+    inf228.campusRegion = inf;
+    UHDAddress *inf228Address = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
+    inf228Address.street = @"Im Neuenheimer Feld 288";
+    inf228Address.postalCode = @"69120";
+    inf228Address.city = @"Heidelberg";
+    inf228.address = inf228Address;
+    inf228.url = [NSURL URLWithString:@"https://www.mathinf.uni-heidelberg.de"];
+    inf228.telephone = @"06221545758";
+    inf228.email = @"dekanat@mathi.uni-heidelberg.de";
     //oben 49.417387, 8.671622
     //rechts 49.417079, 8.672006
     
-    //FIFTH
-    //Create Building Object
-    
-    UHDBuilding *buildingItem5 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
-    buildingItem5.buildingNumber = @"8010";
-    buildingItem5.title = @"Physikalisches Institut";
-    buildingItem5.spanLatitude = 0.0006;
-    buildingItem5.spanLongitude = 0.00075;
-    buildingItem5.location = [[CLLocation alloc] initWithLatitude:49.414781 longitude:8.695585];
-    buildingItem5.image = [UIImage imageNamed:@"PI_PHW12" inBundle:imagesBundle compatibleWithTraitCollection:nil];
-    buildingItem5.category = category1;
-    buildingItem5.campusRegion = phw;
-    UHDAddress *address5 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
-    address5.street = @"Philosophenweg 12";
-    address5.postalCode = @"69120";
-    address5.city = @"Heidelberg";
-    buildingItem5.address = address5;
-    
+    Building *phw12 = [Building insertNewObjectIntoContext:managedObjectContext];
+    phw12.buildingNumber = @"8010";
+    phw12.title = @"Physikalisches Institut";
+    phw12.spanLatitude = 0.0006;
+    phw12.spanLongitude = 0.00075;
+    phw12.location = [[CLLocation alloc] initWithLatitude:49.414781 longitude:8.695585];
+    phw12.image = [UIImage imageNamed:@"PI_PHW12" inBundle:imagesBundle compatibleWithTraitCollection:nil];
+    phw12.category = fakPhys;
+    phw12.campusRegion = phw;
+    UHDAddress *phw12Address = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
+    phw12Address.street = @"Philosophenweg 12";
+    phw12Address.postalCode = @"69120";
+    phw12Address.city = @"Heidelberg";
+    phw12.address = phw12Address;
     //oben 49.415161, 8.695507
     //unten 49.414549, 8.695512
     //links 49.414764, 8.694992
     //rechts 49.414769, 8.695764
-    
-    //SIXTH
-    //Create Building Object
-    
-    UHDBuilding *buildingItem6 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
-    buildingItem6.buildingNumber = @"8050";
-    buildingItem6.title = @"Institut für Theoretische Physik";
-    buildingItem6.spanLatitude = 0.0002;
-    buildingItem6.spanLongitude = 0.0005;
-    buildingItem6.location = [[CLLocation alloc] initWithLatitude:49.414811 longitude:8.696707];
-    buildingItem6.image = [UIImage imageNamed:@"TI_PHW16" inBundle:imagesBundle compatibleWithTraitCollection:nil];
-    buildingItem6.category = category1;
-    buildingItem6.campusRegion = phw;
-    UHDAddress *address6 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
-    address6.street = @"Philosophenweg 16";
-    address6.postalCode = @"69120";
-    address6.city = @"Heidelberg";
-    buildingItem6.address = address6;
-    buildingItem6.url = [NSURL URLWithString:@"http://www.thphys.uni-heidelberg.de"];
-    buildingItem6.telephone = @"06221549444";
-    buildingItem6.email = @"Sekretariat16@thphys.uni-heidelberg.de";
-    
+
+    Building *phw16 = [Building insertNewObjectIntoContext:managedObjectContext];
+    phw16.buildingNumber = @"8050";
+    phw16.title = @"Institut für Theoretische Physik";
+    phw16.spanLatitude = 0.0002;
+    phw16.spanLongitude = 0.0005;
+    phw16.location = [[CLLocation alloc] initWithLatitude:49.414811 longitude:8.696707];
+    phw16.image = [UIImage imageNamed:@"TI_PHW16" inBundle:imagesBundle compatibleWithTraitCollection:nil];
+    phw16.category = fakPhys;
+    phw16.campusRegion = phw;
+    UHDAddress *phw16Address = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
+    phw16Address.street = @"Philosophenweg 16";
+    phw16Address.postalCode = @"69120";
+    phw16Address.city = @"Heidelberg";
+    phw16.address = phw16Address;
+    phw16.url = [NSURL URLWithString:@"http://www.thphys.uni-heidelberg.de"];
+    phw16.telephone = @"06221549444";
+    phw16.email = @"Sekretariat16@thphys.uni-heidelberg.de";
     //links 49.414820, 8.696450
     //rechts 49.414776, 8.696944
     //oben 49.414968, 8.696712
     
-    //Create Building Object 7
-    
-    UHDBuilding *buildingItem7 = [UHDBuilding insertNewObjectIntoContext:managedObjectContext];
-    buildingItem7.buildingNumber = @"8080";
-    buildingItem7.title = @"Institut für Theoretische Physik";
-    buildingItem7.spanLatitude = 0.0002;
-    buildingItem7.spanLongitude = 0.0005;
-    buildingItem7.location = [[CLLocation alloc] initWithLatitude:49.415058 longitude:8.698714];
-    buildingItem7.image = [UIImage imageNamed:@"TI_PHW19" inBundle:imagesBundle compatibleWithTraitCollection:nil];
-    buildingItem7.category = category1;
-    buildingItem7.campusRegion = phw;
-    UHDAddress *address7 = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
-    address7.street = @"Philosophenweg 19";
-    address7.postalCode = @"69120";
-    address7.city = @"Heidelberg";
-    buildingItem7.address = address7;
-    buildingItem7.url = [NSURL URLWithString:@"http://www.thphys.uni-heidelberg.de"];
-    buildingItem7.telephone = @"06221549431";
-    buildingItem7.email = @"Sekretariat19@thphys.uni-heidelberg.de";
-    
-    
+    Building *phw19 = [Building insertNewObjectIntoContext:managedObjectContext];
+    phw19.buildingNumber = @"8080";
+    phw19.title = @"Institut für Theoretische Physik";
+    phw19.spanLatitude = 0.0002;
+    phw19.spanLongitude = 0.0005;
+    phw19.location = [[CLLocation alloc] initWithLatitude:49.415058 longitude:8.698714];
+    phw19.image = [UIImage imageNamed:@"TI_PHW19" inBundle:imagesBundle compatibleWithTraitCollection:nil];
+    phw19.category = fakPhys;
+    phw19.campusRegion = phw;
+    UHDAddress *phw19Address = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
+    phw19Address.street = @"Philosophenweg 19";
+    phw19Address.postalCode = @"69120";
+    phw19Address.city = @"Heidelberg";
+    phw19.address = phw19Address;
+    phw19.url = [NSURL URLWithString:@"http://www.thphys.uni-heidelberg.de"];
+    phw19.telephone = @"06221549431";
+    phw19.email = @"Sekretariat19@thphys.uni-heidelberg.de";*/
 
     [managedObjectContext saveToPersistentStore:NULL];
 }

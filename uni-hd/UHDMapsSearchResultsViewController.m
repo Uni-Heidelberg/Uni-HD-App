@@ -8,15 +8,10 @@
 
 #import "UHDMapsSearchResultsViewController.h"
 #import "VIFetchedResultsControllerDataSource.h"
+#import "VILogger.h"
 @import UHDRemoteKit;
 #import "NSManagedObject+VIInsertIntoContextCategory.h"
 #import <UHDKit/UHDKit-Swift.h>
-
-// Model
-#import "UHDBuilding.h"
-#import "UHDRemoteManagedLocation.h"
-#import "UHDLocationCategory.h"
-#import "UHDCampusRegion.h"
 
 // Table View Cells
 #import "UHDBuildingCell.h"
@@ -53,17 +48,17 @@
     if (!_fetchedResultsControllerDataSource) {
         
         if (!self.managedObjectContext) {
-            // FIXME: [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
+            [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
             return nil;
         }
         
-        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[UHDBuilding entityName]];
-        fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"category.title" ascending:YES], [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES] ];
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[Institution entityName]];
+        fetchRequest.sortDescriptors = @[ [NSSortDescriptor sortDescriptorWithKey:@"title" ascending:YES] ];
         
-        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:@"category.title" cacheName:nil];
+        NSFetchedResultsController *fetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:self.managedObjectContext sectionNameKeyPath:nil cacheName:nil];
         
         VIFetchedResultsControllerDataSource *fetchedResultsControllerDataSource = [[VIFetchedResultsControllerDataSource alloc] initWithFetchedResultsController:fetchedResultsController tableView:self.tableView cellIdentifier:@"buildingCell" configureCellBlock:^(UITableViewCell *cell, id item) {
-            [(UHDBuildingCell *)cell configureForBuilding:(UHDBuilding *)item];
+            [(UHDBuildingCell *)cell configureForInstitution:(Institution *)item];
         }];
         _fetchedResultsControllerDataSource = fetchedResultsControllerDataSource;
     }
@@ -75,7 +70,7 @@
 {
     if ([segue.identifier isEqualToString:@"showBuildingDetailFromSearchResults"]) {
         //((UHDBuildingDetailViewController *)segue.destinationViewController).building = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:self.tableView.indexPathForSelectedRow];
-        [(UHDBuildingDetailViewController *)segue.destinationViewController setBuilding:(UHDBuilding *)[self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:self.tableView.indexPathForSelectedRow]];
+        ((InstitutionDetailViewController *)segue.destinationViewController).institution = (Institution *)[self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:self.tableView.indexPathForSelectedRow];
     }
 }
 
@@ -86,17 +81,18 @@
 -(void)updateSearchResultsForSearchController:(UISearchController *)searchController
 {
     NSString *searchText = [searchController.searchBar.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    // FIXME: [self.logger log:@"Updating search results for search text" object:searchText forLevel:VILogLevelVerbose];
+    [self.logger log:@"Updating search results for search text" object:searchText forLevel:VILogLevelVerbose];
     NSArray *searchTerms = [searchText componentsSeparatedByCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    NSString *predicateFormat = @"(title CONTAINS[cd] %@) OR (buildingNumber CONTAINS[cd] %@) OR (campusRegion.title CONTAINS[cd] %@) OR (campusRegion.identifier CONTAINS[cd] %@) OR (ANY keywords.content CONTAINS[cd] %@)";
+    //NSString *predicateFormat = @"(title CONTAINS[cd] %@) OR (buildingNumber CONTAINS[cd] %@) OR (campusRegion.title CONTAINS[cd] %@) OR (campusRegion.identifier CONTAINS[cd] %@) OR (ANY keywords.content CONTAINS[cd] %@)";
+    NSString *predicateFormat = @"title CONTAINS[cd] %@";
     NSPredicate *predicate;
     if ([searchTerms count] == 1) {
         NSString *term = [searchTerms firstObject];
-        predicate = [NSPredicate predicateWithFormat:predicateFormat, term, term, term, term, term];
+        predicate = [NSPredicate predicateWithFormat:predicateFormat, term];
     } else {
         NSMutableArray *subPredicates = [NSMutableArray array];
         for (NSString *term in searchTerms) {
-            NSPredicate *p = [NSPredicate predicateWithFormat:predicateFormat, term, term, term, term, term];
+            NSPredicate *p = [NSPredicate predicateWithFormat:predicateFormat, term];
             [subPredicates addObject:p];
         }
         predicate = [NSCompoundPredicate andPredicateWithSubpredicates:subPredicates];
@@ -112,15 +108,15 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UHDBuilding *item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
-    [self.delegate searchResultsViewController:self didSelectBuilding:item];
+    Institution *item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
+    [self.delegate searchResultsViewController:self didSelectInstitution:item];
 }
 
 - (void)tableView:(UITableView *)tableView accessoryButtonTappedForRowWithIndexPath:(NSIndexPath *)indexPath
 {
-    UHDBuilding *item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
-    UHDBuildingDetailViewController *detailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"buildingDetail"];
-    detailVC.building = item;
+    Institution *item = [self.fetchedResultsControllerDataSource.fetchedResultsController objectAtIndexPath:indexPath];
+    InstitutionDetailViewController *detailVC = [self.storyboard instantiateViewControllerWithIdentifier:@"institutionDetail"];
+    detailVC.institution = item;
     [((UIViewController *)((UISearchController *)self.parentViewController).delegate).navigationController pushViewController:detailVC animated:YES]; // TODO: this is super dirty, use segue instead
 }
 

@@ -7,7 +7,6 @@
 //
 
 @import UIKit;
-#import "UHDRemoteManagedLocation.h"
 
 @interface UHDMapsViewController : UIViewController
 

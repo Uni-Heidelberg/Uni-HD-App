@@ -25,7 +25,7 @@ import UIKit
         if _fetchedResultsController == nil {
             if let managedObjectContext = self.managedObjectContext {
             
-                let fetchRequest = NSFetchRequest(entityName: "UHDMensa")
+                let fetchRequest = NSFetchRequest(entityName: Mensa.entityName())
                 fetchRequest.predicate = NSPredicate(format: "isFavourite = true", argumentArray: nil)
                 fetchRequest.sortDescriptors = [ NSSortDescriptor(key: "remoteObjectId", ascending: true) ]
                 
@@ -56,9 +56,9 @@ import UIKit
     
     private func configureView()
     {
-        let favouriteMensen = fetchedResultsController?.fetchedObjects as? [UHDMensa] ?? [UHDMensa]()
+        let favouriteMensen = fetchedResultsController?.fetchedObjects as? [Mensa] ?? [Mensa]()
         for (i, imageView) in enumerate(imageViews) {
-            self.imageViews[i].image = i < favouriteMensen.count ? favouriteMensen[i].image : nil
+            self.imageViews[i].image = i < favouriteMensen.count ? favouriteMensen[i].location?.image : nil
         }
     }
 

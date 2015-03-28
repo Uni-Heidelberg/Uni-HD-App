@@ -11,6 +11,6 @@
 
 @interface UHDTalkItemCell : UITableViewCell
 
-- (void)configureForItem:(UHDTalkItem *)item;
+- (void)configureForTalk:(UHDTalkItem *)item;
 
 @end

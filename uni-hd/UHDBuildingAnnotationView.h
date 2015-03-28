@@ -7,13 +7,13 @@
 //
 
 #import <MapKit/MapKit.h>
-#import "UHDBuilding.h"
+@class Building;
 
 @interface UHDBuildingAnnotationView : MKAnnotationView
 
-@property (strong, nonatomic) UHDBuilding *annotation;
+@property (strong, nonatomic) Building *annotation;
 @property (nonatomic) BOOL shouldHideImage;
 
-- (id)initWithAnnotation:(UHDBuilding *)annotation reuseIdentifier:(NSString *)reuseIdentifier;
+- (id)initWithAnnotation:(Building *)annotation reuseIdentifier:(NSString *)reuseIdentifier;
 
 @end

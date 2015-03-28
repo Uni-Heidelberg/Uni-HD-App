@@ -12,4 +12,9 @@ class UHDBuildingDetailLocationCell: UITableViewCell {
 
     @IBOutlet var mapView: MKMapView!
     
+    func configureForLocation(location: Location) {
+        mapView.removeAnnotations(mapView.annotations)
+        mapView.addAnnotation(location)
+        mapView.showAnnotations([ location ], animated: false)
+    }
 }

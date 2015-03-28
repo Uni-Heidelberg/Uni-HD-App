@@ -10,11 +10,13 @@ import Foundation
 
 extension CircularProgressView {
     
-    public func configureForHoursOfMensa(mensa: UHDMensa)
+    public func configureForHoursOfInstitution(institution: Institution)
     {
-        self.image = mensa.image
-        self.progress = mensa.hours.progress
-        self.progressTintColor = mensa.hours.color
+        self.image = institution.location?.image
+        if let hours = institution.hours {
+            self.progress = hours.progress
+            self.progressTintColor = hours.color
+        }
     }
     
 }

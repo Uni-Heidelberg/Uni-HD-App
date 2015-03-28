@@ -7,11 +7,11 @@
 //
 
 @import UIKit;
-#import "UHDMensa.h"
+@class Mensa;
 
 @interface UHDDailyMenuViewController : UITableViewController
 
-@property (strong, nonatomic) UHDMensa *mensa;
+@property (strong, nonatomic) Mensa *mensa;
 @property (strong, nonatomic) NSDate *date;
 
 @end

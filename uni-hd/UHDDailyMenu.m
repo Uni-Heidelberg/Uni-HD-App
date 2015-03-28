@@ -8,8 +8,6 @@
 
 #import "UHDDailyMenu.h"
 #import "UHDMeal.h"
-#import "UHDMensa.h"
-
 
 @implementation UHDDailyMenu
 

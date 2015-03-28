@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UHDBuilding.h"
+@class Institution;
 
 @interface UHDBuildingCell : UITableViewCell
 
@@ -16,6 +16,6 @@
 @property (weak, nonatomic) IBOutlet UIImageView *buildingsImageView;
 @property (weak, nonatomic) IBOutlet UILabel *campusRegionLabel;
 
-- (void)configureForBuilding:(UHDBuilding *)item;
+- (void)configureForInstitution:(Institution *)item;
 
 @end

@@ -8,7 +8,7 @@
 
 @import Foundation;
 @import UIKit;
-#import "UHDBuilding.h"
+@class Institution;
 
 @protocol UHDMapsSearchResultsViewControllerDelegate;
 
@@ -21,6 +21,6 @@
 
 @protocol UHDMapsSearchResultsViewControllerDelegate
 
-- (void)searchResultsViewController:(UHDMapsSearchResultsViewController *)viewController didSelectBuilding:(UHDBuilding *)building;
+- (void)searchResultsViewController:(UHDMapsSearchResultsViewController *)viewController didSelectInstitution:(Institution *)institution;
 
 @end

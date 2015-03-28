@@ -7,7 +7,6 @@
 //
 
 #import "UHDDailyMenuViewController.h"
-#import "UHDMensa.h"
 #import "UHDMealCell.h"
 #import "VIFetchedResultsControllerDataSource.h"
 #import "UHDDailyMenu.h"
@@ -30,7 +29,7 @@
 
 @implementation UHDDailyMenuViewController
 
-- (void)setMensa:(UHDMensa *)mensa
+- (void)setMensa:(Mensa *)mensa
 {
     if (_mensa == mensa) return;
     _mensa = mensa;
