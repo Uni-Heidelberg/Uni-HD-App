@@ -7,7 +7,6 @@
 //
 
 #import "UHDNewsViewController.h"
-#import "UHDAppDelegate.h"
 #import "NSManagedObject+VIInsertIntoContextCategory.h"
 
 // View Controllers

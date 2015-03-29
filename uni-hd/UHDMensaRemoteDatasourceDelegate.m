@@ -22,7 +22,7 @@
     // Mensa
     
     RKEntityMapping *mensaMapping = [RKEntityMapping mappingForEntityForName:[Mensa entityName] inManagedObjectStore:objectManager.managedObjectStore];
-    [mensaMapping addAttributeMappingsFromDictionary:@{ @"id": @"remoteObjectId" }];
+    [mensaMapping addAttributeMappingsFromDictionary:@{ @"id": @"remoteObjectId", @"imageUrl": @"imageURL" }];
     /*RKAttributeMapping *locationMapping = [RKAttributeMapping attributeMappingFromKeyPath:@"location" toKeyPath:@"location"];
     locationMapping.valueTransformer = [RKCLLocationValueTransformer locationValueTransformerWithLatitudeKey:@"lat" longitudeKey:@"lng"];
     [mensaMapping addPropertyMapping:locationMapping];*/

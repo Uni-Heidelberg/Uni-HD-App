@@ -8,9 +8,10 @@
 
 import UIKit
 
-class UHDBuildingDetailTitleCell: UITableViewCell {
+class InstitutionDetailTitleCell: UITableViewCell {
 
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var subtitleLabel: UILabel!
+    @IBOutlet var statusLabel: UILabel!
     
 }

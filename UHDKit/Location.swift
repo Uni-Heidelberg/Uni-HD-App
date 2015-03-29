@@ -27,7 +27,7 @@ public class Location: UHDRemoteManagedObject {
     @NSManaged private var managedTitle: String? // FIXME: this seems to be a bug in Xcode
     public var title: String? {
         get {
-            return self.managedTitle
+            return self.managedTitle ?? self.campusIdentifier
         }
         set {
             self.managedTitle = newValue
@@ -35,7 +35,7 @@ public class Location: UHDRemoteManagedObject {
     }
     @NSManaged public var institutions: NSSet
     @NSManaged public var managedCurrentDistance: NSNumber? // TODO: make private when not accessed by objc anymore
-    @NSManaged public var imageData: NSData?
+    @NSManaged private var imageData: NSData? // TODO: make transient when no sample data need to be provided anymore
     @NSManaged public var imageURL: NSURL?
 
     public var location: CLLocation = CLLocation(latitude: 0, longitude: 0) // TODO: store properly in database
@@ -49,6 +49,16 @@ public class Location: UHDRemoteManagedObject {
     /// A string composed by hierarchical positional components like building- and room numbers. To be overriden in subclasses.
     public var campusIdentifier: String? {
         return nil // TODO: implement?
+    }
+    
+    public var institution: Institution? {
+        get {
+            if institutions.count == 1 {
+                return institutions.anyObject() as? Institution
+            } else {
+                return nil
+            }
+        }
     }
 
     public var currentDistance: CLLocationDistance? {
@@ -103,3 +113,5 @@ extension Location: MKAnnotation {
         }))
     }
 }
+
+

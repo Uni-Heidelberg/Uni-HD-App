@@ -15,7 +15,7 @@ extension UIViewController {
     public func showLocation(location: Location, animated: Bool) {
         self.showTabBarItemAtIndex(3, animated: animated) { (tabBarController, previousSelectedIndex) in
             if let mapsNavC = tabBarController.selectedViewController? as? UINavigationController {
-                if let mapsVC = mapsNavC.viewControllers.first as? UHDMapsViewController {
+                if let mapsVC = mapsNavC.viewControllers.first as? CampusViewController {
                     mapsNavC.popToViewController(mapsVC, animated: animated&&tabBarController.selectedIndex==previousSelectedIndex)
                     mapsVC.showLocation(location, animated: animated)
                 }

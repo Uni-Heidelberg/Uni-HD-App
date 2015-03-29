@@ -14,7 +14,7 @@
 
 - (id)initWithManagedObjectModel:(NSManagedObjectModel *)managedObjectModel persistentStoreURL:(NSURL *)persistentStoreURL;
 
-- (NSManagedObjectContext *)managedObjectContext;
-- (RKManagedObjectStore *)managedObjectStore;
+@property (readonly) NSManagedObjectContext *managedObjectContext;
+@property (readonly) RKManagedObjectStore *managedObjectStore;
 
 @end

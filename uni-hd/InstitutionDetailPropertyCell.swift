@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UHDBuildingDetailPropertyCell: UITableViewCell {
+class InstitutionDetailPropertyCell: UITableViewCell {
 
     @IBOutlet var titleLabel: UIButton!
     @IBOutlet var contentLabel: UILabel!

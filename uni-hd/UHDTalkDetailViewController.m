@@ -7,7 +7,6 @@
 //
 
 #import "UHDTalkDetailViewController.h"
-#import "UHDAppDelegate.h"
 
 #import <MessageUI/MessageUI.h>
 #import <EventKit/EventKit.h>
@@ -17,7 +16,6 @@
 
 #import "UHDTalkDetailTitleAbstractCell.h"
 #import "UHDTalkDetailSpaceTimeCell.h"
-#import "UHDMapsViewController.h"
 
 #import "UHDNewsSource.h"
 
@@ -25,7 +23,7 @@
 
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
-@property (weak, nonatomic) IBOutlet UILabel *navigationItemTitleLabel;
+@property (strong, nonatomic) EKEventStore *eventStore;
 
 @end
 
@@ -92,7 +90,7 @@
 		self.tableView.tableHeaderView = self.headerView;
 	}
 	
-	self.navigationItemTitleLabel.text = self.talkItem.source.title;
+	self.title = self.talkItem.source.title;
 	
 	[self.tableView reloadData];
 }
@@ -106,8 +104,8 @@
 - (IBAction)addToCalendarButtonPressed:(id)sender {
 	
     // TODO: never reach up to the app delegate to get information! pass data down.
-	EKEventStore *eventStore = [(UHDAppDelegate *)[[UIApplication sharedApplication] delegate] eventStore];
-
+    EKEventStore *eventStore = self.eventStore;
+    
 	EKAuthorizationStatus authorizationStatus = [EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent];
 	BOOL needsToRequestAccessToEventStore = (authorizationStatus == EKAuthorizationStatusNotDetermined);
 
@@ -193,7 +191,7 @@
 - (void)presentEventEditViewControllerForEvent:(EKEvent *)event {
 	
 	EKEventEditViewController *eventEditVC = [[EKEventEditViewController alloc] init];
-	eventEditVC.eventStore = [(UHDAppDelegate *)[[UIApplication sharedApplication] delegate] eventStore];
+    eventEditVC.eventStore = self.eventStore;
 	eventEditVC.editViewDelegate = self;
 	eventEditVC.event = event;
 	
@@ -234,6 +232,13 @@
     if (self.talkItem.location) {
         [self showLocation:self.talkItem.location animated:YES];
     }
+}
+
+- (EKEventStore *)eventStore {
+    if (!_eventStore) {
+        self.eventStore = [[EKEventStore alloc] init];
+    }
+    return _eventStore;
 }
 
 

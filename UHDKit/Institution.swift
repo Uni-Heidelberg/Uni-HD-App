@@ -18,21 +18,33 @@ public class Institution: UHDRemoteManagedObject {
     
     @NSManaged public var osmId: String?
     @NSManaged public var title: String?
+    @NSManaged private var imageData: NSData? // TODO: reconsider having an image for an institution - it's a spatial property, so only associate to Location?
+    @NSManaged public var imageURL: NSURL?
     @NSManaged public var parent: Institution?
     @NSManaged public var children: NSSet
     @NSManaged public var locations: NSSet
     @NSManaged public var newsSources: NSSet
     
     public var contactProperties: [ContactProperty] = [] // TODO: implement
-    public var hours: Hours? // TODO: implement
+    public var hours: Hours? { // TODO: implement
+        return nil
+    }
 
     public var mutableLocations: NSMutableSet {
         return self.mutableSetValueForKey("locations")
     }
     
+    public var mutableNewsSources: NSMutableSet {
+        return self.mutableSetValueForKey("newsSources")
+    }
+    
     public var location: Location? {
         get {
-            return locations.anyObject() as? Location
+            if locations.count == 1 {
+                return locations.anyObject() as? Location
+            } else {
+                return nil
+            }
         }
         set {
             if let newValue = newValue {
@@ -43,10 +55,33 @@ public class Institution: UHDRemoteManagedObject {
         }
     }
     
+    public var image: UIImage? {
+        get {
+            if let imageData = self.imageData {
+                return UIImage(data: imageData)
+            } else if let imageURL = self.imageURL {
+                let request = NSURLRequest(URL: imageURL, cachePolicy: NSURLRequestCachePolicy.ReturnCacheDataElseLoad, timeoutInterval: 60)
+                NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.currentQueue(), completionHandler: { response, data, connectionError in
+                    if let httpResponse = response as? NSHTTPURLResponse {
+                        if httpResponse.statusCode == 200 {
+                            self.imageData = data
+                        }
+                    }
+                })
+                return nil
+            } else {
+                return location?.image
+            }
+        }
+        set {
+            self.imageData = UIImageJPEGRepresentation(image, 1) // TODO: remove when sample data is unnecessary
+        }
+    }
+    
     public var affiliationDescription: String? {
         if let title = self.title {
             if let parentDescription = self.parent?.affiliationDescription {
-                return title ?? "Untitled" + " < " + parentDescription
+                return title + " < " + parentDescription
             } else {
                 return title
             }
@@ -72,6 +107,18 @@ public class Institution: UHDRemoteManagedObject {
         return self.managedObjectContext?.executeFetchRequest(fetchRequest, error: nil) as? [UHDNewsItem] ?? []
     }
     
+    public var attributedStatusDescription: NSAttributedString {
+        let attributedStatusDescription = NSMutableAttributedString()
+        if let hours = self.hours {
+            attributedStatusDescription.appendAttributedString(hours.attributedDescription)
+        }
+        if let currentDistance = self.location?.currentDistance {
+            let distanceFormatter = MKDistanceFormatter()
+            attributedStatusDescription.appendAttributedString(NSAttributedString(string: ", \(distanceFormatter.stringFromDistance(currentDistance)) entfernt")) // TODO: localize
+        }
+        return attributedStatusDescription
+    }
+
 }
 
 public struct ContactProperty {

@@ -19,16 +19,8 @@ public class Mensa: Institution {
     @NSManaged public var isFavourite: Bool
     @NSManaged public var sections: NSSet
     
-    public var attributedStatusDescription: NSAttributedString {
-        let attributedStatusDescription = NSMutableAttributedString()
-        if let hours = self.hours {
-            attributedStatusDescription.appendAttributedString(hours.attributedDescription)
-        }
-        if let currentDistance = self.location?.currentDistance {
-            let distanceFormatter = MKDistanceFormatter()
-            attributedStatusDescription.appendAttributedString(NSAttributedString(string: ", \(distanceFormatter.stringFromDistance(currentDistance)) entfernt")) // TODO: localize
-        }
-        return attributedStatusDescription
+    override public var hours: Hours? {
+        return Hours()
     }
     
     public func hasMenuForDate(date: NSDate) -> Bool {

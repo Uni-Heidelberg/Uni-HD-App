@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D105g" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4EB-dw-R4U">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14D113c" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4EB-dw-R4U">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -500,7 +500,7 @@
             </objects>
             <point key="canvasLocation" x="3391" y="-478"/>
         </scene>
-        <!--Talk Detail View Controller-->
+        <!--Talk Detail-->
         <scene sceneID="aQx-CY-juF">
             <objects>
                 <tableViewController storyboardIdentifier="talkDetail" id="e3t-qO-g8f" customClass="UHDTalkDetailViewController" sceneMemberID="viewController">
@@ -660,49 +660,19 @@
                             <outlet property="delegate" destination="e3t-qO-g8f" id="rsU-ds-hjS"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="5x4-K3-Vtd">
-                        <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="WR4-0Q-wft">
-                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Quelle" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ka-hY-c4m" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="7" width="240" height="19.5"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstAttribute="centerY" secondItem="4Ka-hY-c4m" secondAttribute="centerY" id="3Xk-25-nuY"/>
-                                <constraint firstAttribute="bottom" secondItem="4Ka-hY-c4m" secondAttribute="bottom" id="9Tl-Qq-hih"/>
-                                <constraint firstItem="4Ka-hY-c4m" firstAttribute="leading" secondItem="WR4-0Q-wft" secondAttribute="leading" id="Mdt-lQ-m8l"/>
-                                <constraint firstItem="4Ka-hY-c4m" firstAttribute="top" secondItem="WR4-0Q-wft" secondAttribute="top" id="eKe-bQ-Bit"/>
-                                <constraint firstAttribute="trailing" secondItem="4Ka-hY-c4m" secondAttribute="trailing" id="h2V-9Q-O25"/>
-                                <constraint firstAttribute="centerX" secondItem="4Ka-hY-c4m" secondAttribute="centerX" id="sov-yn-d53"/>
-                            </constraints>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="9Tl-Qq-hih"/>
-                                    <exclude reference="eKe-bQ-Bit"/>
-                                    <exclude reference="sov-yn-d53"/>
-                                </mask>
-                            </variation>
-                        </view>
+                    <navigationItem key="navigationItem" title="Talk Detail" id="5x4-K3-Vtd">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="vSW-yO-tXQ"/>
                     </navigationItem>
                     <connections>
                         <outlet property="headerImageView" destination="25L-aR-W5l" id="UYj-Zr-788"/>
                         <outlet property="headerView" destination="lyD-Ow-t5L" id="bQX-3O-XhV"/>
-                        <outlet property="navigationItemTitleLabel" destination="4Ka-hY-c4m" id="kHR-Js-vgZ"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wwo-11-xH6" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4312" y="-390"/>
         </scene>
-        <!--News Detail View Controller-->
+        <!--News Detail-->
         <scene sceneID="7qp-AH-575">
             <objects>
                 <viewController storyboardIdentifier="newsDetail" id="cii-2s-9Xp" customClass="UHDNewsDetailViewController" sceneMemberID="viewController">
@@ -728,26 +698,7 @@
                             <constraint firstItem="9m0-ak-rJ9" firstAttribute="leading" secondItem="1II-DM-Olg" secondAttribute="leading" id="rgK-vb-q0y"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="XMQ-XG-Liz">
-                        <nil key="title"/>
-                        <view key="titleView" contentMode="scaleToFill" id="TPR-S5-PLq">
-                            <rect key="frame" x="180" y="5.5" width="240" height="33"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titel" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3B-Lv-0CV" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
-                                    <rect key="frame" x="8" y="7" width="224" height="19.5"/>
-                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
-                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            <constraints>
-                                <constraint firstItem="u3B-Lv-0CV" firstAttribute="leading" secondItem="TPR-S5-PLq" secondAttribute="leading" constant="8" id="7mI-eW-VCm"/>
-                                <constraint firstAttribute="trailing" secondItem="u3B-Lv-0CV" secondAttribute="trailing" constant="8" id="EA4-KQ-rOL"/>
-                                <constraint firstAttribute="centerY" secondItem="u3B-Lv-0CV" secondAttribute="centerY" id="fYJ-cH-s0X"/>
-                            </constraints>
-                        </view>
+                    <navigationItem key="navigationItem" title="News Detail" id="XMQ-XG-Liz">
                         <barButtonItem key="rightBarButtonItem" systemItem="action" id="B8S-Pq-JSY">
                             <connections>
                                 <action selector="shareButtonPressed:" destination="cii-2s-9Xp" id="Hjh-5D-4hA"/>
@@ -756,7 +707,6 @@
                     </navigationItem>
                     <connections>
                         <outlet property="newsWebView" destination="9m0-ak-rJ9" id="1pO-fS-Wu9"/>
-                        <outlet property="titleLabel" destination="u3B-Lv-0CV" id="idH-Zv-LTk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UC2-ih-bD7" userLabel="First Responder" sceneMemberID="firstResponder"/>

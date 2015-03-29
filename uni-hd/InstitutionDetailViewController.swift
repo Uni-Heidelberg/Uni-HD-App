@@ -50,7 +50,7 @@ public class InstitutionDetailViewController: UITableViewController, MFMailCompo
     
     func configureView()
     {
-        self.headerImageView.image = self.institution?.location?.image
+        self.headerImageView.image = self.institution?.image
         if self.headerImageView.image == nil {
             self.tableView.tableHeaderView = nil
         } else {
@@ -74,6 +74,11 @@ public class InstitutionDetailViewController: UITableViewController, MFMailCompo
         if let institution = self.institution {
             
             switch self.sections[indexPath.section] {
+                
+            case .Title:
+                if indexPath.row == 1 {
+                    self.showMensaMenuButtonPressed(self)
+                }
                 
             case .Locations(let locations):
                 let location = locations[indexPath.row]
@@ -166,7 +171,7 @@ public class InstitutionDetailViewController: UITableViewController, MFMailCompo
         }
     }
     
-    @IBAction func showMensaMenuButtonPressed(sender: UIButton) {
+    @IBAction func showMensaMenuButtonPressed(sender: AnyObject) {
         if let mensa = self.institution as? Mensa {
             self.showMensaMenu(mensa, animated: true)
         }
@@ -250,14 +255,15 @@ public class InstitutionDetailViewController: UITableViewController, MFMailCompo
                 }
                 return cell
             default:
-                let cell = tableView.dequeueReusableCellWithIdentifier("titleCell", forIndexPath: indexPath) as UHDBuildingDetailTitleCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("titleCell", forIndexPath: indexPath) as InstitutionDetailTitleCell
                 cell.titleLabel.text = institution.title
-                cell.subtitleLabel.text = institution.affiliationDescription
+                cell.subtitleLabel.text = institution.parent?.affiliationDescription
+                cell.statusLabel.attributedText = institution.attributedStatusDescription
                 return cell
             }
     
         case .Contact(let contactProperties):
-            let cell = tableView.dequeueReusableCellWithIdentifier("propertyCell", forIndexPath: indexPath) as UHDBuildingDetailPropertyCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("propertyCell", forIndexPath: indexPath) as InstitutionDetailPropertyCell
             cell.configureForContactProperty(contactProperties[indexPath.row])
             return cell
             
@@ -279,7 +285,7 @@ public class InstitutionDetailViewController: UITableViewController, MFMailCompo
             return cell
             
         case .Locations(let locations):
-            let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as UHDBuildingDetailLocationCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as InstitutionDetailLocationCell
             cell.configureForLocation(locations[indexPath.row])
             return cell
         }

@@ -115,7 +115,11 @@
     Institution *kip = [Institution insertNewObjectIntoContext:managedObjectContext];
     kip.title = @"Kirchhoff-Institut für Physik";
     kip.parent = fakPhys;
+    kip.osmId = @"19328";
     
+    Institution *stw = [Institution insertNewObjectIntoContext:managedObjectContext];
+    stw.title = @"Studentenwerk";
+
     
     // Campus regions
     
@@ -226,24 +230,24 @@
     inf226.keywords = [NSSet setWithObjects:piKeyword, piKeyword2, nil];
     //links 49.416267, 8.672747
     //oben 49.416509, 8.673171
+    */
     
     Building *inf308 = [Building insertNewObjectIntoContext:managedObjectContext];
-    inf308.buildingNumber = @"308";
-    inf308.spanLatitude = 0.0006;
-    inf308.spanLongitude = 0.001;
-    inf308.location = [[CLLocation alloc] initWithLatitude:49.417515 longitude:8.670593];
+    inf308.number = @"308";
+    //inf308.spanLatitude = 0.0006;
+    //inf308.spanLongitude = 0.001;
+    //inf308.location = [[CLLocation alloc] initWithLatitude:49.417515 longitude:8.670593];
     inf308.image = [UIImage imageNamed:@"INF308" inBundle:imagesBundle compatibleWithTraitCollection:nil];
-    inf308.category = fakPhys;
     inf308.campusRegion = inf;
-    UHDAddress *inf308Address = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
+    /*UHDAddress *inf308Address = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
     inf308Address.street = @"Im Neuenheimer Feld 308";
     inf308Address.postalCode = @"69120";
     inf308Address.city = @"Heidelberg";
     inf308.address = inf308Address;
     //oben 49.417816, 8.670585
     //rechts 49.417468, 8.671014
-    
-    Building *inf228 = [Building insertNewObjectIntoContext:managedObjectContext];
+    */
+    /*Building *inf228 = [Building insertNewObjectIntoContext:managedObjectContext];
     inf228.title = @"Mathematisches Institut";
     inf228.spanLatitude = 0.0006;
     inf228.spanLongitude = 0.0007;

@@ -11,6 +11,7 @@
 @interface UHDNewsSource : UHDNewsCategory
 
 @property (nonatomic) BOOL subscribed;
+
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSURL *imageURL;
 @property (nonatomic, retain) NSData *imageData;

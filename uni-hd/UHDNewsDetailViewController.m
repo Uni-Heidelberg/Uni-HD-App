@@ -13,7 +13,6 @@
 @interface UHDNewsDetailViewController ()
 
 @property (weak, nonatomic) IBOutlet UIWebView *newsWebView;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 - (IBAction)shareButtonPressed:(id)sender;
 
@@ -25,7 +24,7 @@
 {
     [super viewWillAppear:animated];
     
-    self.titleLabel.text = self.newsItem.title;
+    self.title = self.newsItem.title;
     
     // Show URL in WebView
     NSURLRequest *requestObj = [NSURLRequest requestWithURL:self.newsItem.url];

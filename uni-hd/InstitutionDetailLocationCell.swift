@@ -8,13 +8,14 @@
 
 import UIKit
 
-class UHDBuildingDetailLocationCell: UITableViewCell {
+class InstitutionDetailLocationCell: UITableViewCell {
 
-    @IBOutlet var mapView: MKMapView!
+    @IBOutlet var campusMapView: CampusMapView!
     
     func configureForLocation(location: Location) {
-        mapView.removeAnnotations(mapView.annotations)
+/*        mapView.removeAnnotations(mapView.annotations)
         mapView.addAnnotation(location)
-        mapView.showAnnotations([ location ], animated: false)
+        mapView.showAnnotations([ location ], animated: false)*/
+        campusMapView.showLocation(location, animated: false)
     }
 }
