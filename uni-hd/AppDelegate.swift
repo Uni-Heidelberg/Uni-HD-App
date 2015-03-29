@@ -116,14 +116,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Add data to institutions
         for institution in institutions {
             if institution is Mensa {
-                institution.parent = institutions.filter({ $0.title == "Studentenwerk" }).first
+                if institution.parent == nil {
+                    institution.parent = institutions.filter({ $0.title == "Studentenwerk" }).first
+                }
+                if institution.url == nil {
+                    institution.url = NSURL(string: "http://www.studentenwerk.uni-heidelberg.de/mensen")
+                }
             }
             if let title = institution.title {
                 var associatedBuildingCampusIdentifier: String?
                 var associatedNewsSourceTitle: String?
                 switch title {
                 case "Zentralmensa":
-                    associatedBuildingCampusIdentifier = "INF 308"
+                    associatedBuildingCampusIdentifier = "INF 304"
+                    if institution.address == nil {
+                        institution.address = Institution.Address(street: "Im Neuenheimer Feld 304", postalCode: "69120", city: "Heidelberg")
+                    }
+                case "Triplex-Mensa":
+                    associatedBuildingCampusIdentifier = "ALT 2100"
+                    if institution.address == nil {
+                        institution.address = Institution.Address(street: "Grabengasse 14", postalCode: "69117", city: "Heidelberg")
+                    }
+                case "zeughaus":
+                    associatedBuildingCampusIdentifier = "ALT 2010"
+                    if institution.address == nil {
+                        institution.address = Institution.Address(street: "Marstallhof 3", postalCode: "69117", city: "Heidelberg")
+                    }
                 case "Kirchhoff-Institut für Physik":
                     associatedNewsSourceTitle = title
                 default:
@@ -144,24 +162,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
             }
         }
-
-        /*Triplex: UHDAddress *address = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
-        address.street = @"Grabengasse 14 (Universitätsplatz)";
-        address.city = @"Heidelberg";
-        address.postalCode = @"69117";
-        mensa.buildingNumber = @"2100";
-        */
-        /*Zentralmensa: UHDAddress *address = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
-        address.street = @"Im Neuenheimer Feld 304";
-        address.city = @"Heidelberg";
-        address.postalCode = @"69120";
-        mensa.buildingNumber = @"304";*/
-        /*zeughaus: UHDAddress *address = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
-        address.street = @"Marstallhof 3";
-        address.city = @"Heidelberg";
-        address.postalCode = @"69117";
-        mensa.buildingNumber = @"2010";*/
-        //mensa.url = [NSURL URLWithString:@"http://www.studentenwerk.uni-heidelberg.de/mensen"];
 
         // Associate locations to events
         let eventsInKIPFetchRequest = NSFetchRequest(entityName: UHDEventItem.entityName())

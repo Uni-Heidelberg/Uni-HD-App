@@ -115,7 +115,10 @@
     Institution *kip = [Institution insertNewObjectIntoContext:managedObjectContext];
     kip.title = @"Kirchhoff-Institut für Physik";
     kip.parent = fakPhys;
-    kip.osmId = @"19328";
+    kip.phone = @"06221549100";
+    kip.email = @"info@kip.uni-heidelberg.de";
+    kip.url = [NSURL URLWithString:@"http://www.kip.uni-heidelberg.de"];
+    
     
     Institution *stw = [Institution insertNewObjectIntoContext:managedObjectContext];
     stw.title = @"Studentenwerk";
@@ -138,10 +141,10 @@
      */
     //inf.overlayImageURL = [NSURL URLWithString:@"https://dl.dropboxusercontent.com/s/40xqkz48pww7x9o/inf.png"];
     
-    /*UHDCampusRegion *altstadt = [UHDCampusRegion insertNewObjectIntoContext:managedObjectContext];
+    CampusRegion *altstadt = [CampusRegion insertNewObjectIntoContext:managedObjectContext];
     altstadt.title = @"Altstadt";
     altstadt.identifier = @"ALT";
-    altstadt.location = [[CLLocation alloc] initWithLatitude:49.4114 longitude:8.707346];
+    /*altstadt.location = [[CLLocation alloc] initWithLatitude:49.4114 longitude:8.707346];
     altstadt.spanLatitude = 0.008758;
     altstadt.spanLongitude = 0.029726;*/
     /*
@@ -174,10 +177,10 @@
      bergheim.centerLongitude = 8.6867;
     */
     
-    /*CampusRegion *phw = [CampusRegion insertNewObjectIntoContext:managedObjectContext];
+    CampusRegion *phw = [CampusRegion insertNewObjectIntoContext:managedObjectContext];
     phw.title = @"Philosophenweg";
     phw.identifier = @"PHW";
-    phw.location = [[CLLocation alloc] initWithLatitude:49.414807 longitude:8.696407];
+    //phw.location = [[CLLocation alloc] initWithLatitude:49.414807 longitude:8.696407];
     //phw.spanLatitude = 0.002;
     //phw.spanLongitude = 0.004;*/
     
@@ -186,20 +189,13 @@
     
     Building *inf227 = [Building insertNewObjectIntoContext:managedObjectContext];
     inf227.number = @"227";
+    inf227.osmId = @"19328";
     //inf227.location = [[CLLocation alloc] initWithLatitude:49.416260 longitude:8.672190];
     //inf227.spanLatitude = 0.0005;
     //inf227.spanLongitude = 0.0009;
     inf227.campusRegion = inf;
     inf227.image = [UIImage imageNamed:@"kip1" inBundle:imagesBundle compatibleWithTraitCollection:nil];
-    /*UHDAddress *inf227Address = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
-    inf227Address.street = @"Im Neuenheimer Feld 227";
-    inf227Address.postalCode = @"69120";
-    inf227Address.city = @"Heidelberg";
-    inf227.address = inf227Address;
-    inf227.url = [NSURL URLWithString:@"http://www.kip.uni-heidelberg.de"];
-    inf227.telephone = @"06221549100";
-    inf227.email = @"info@kip.uni-heidelberg.de";
-    NSManagedObject *kipKeyword = [NSEntityDescription insertNewObjectForEntityForName:@"UHDSearchKeyword" inManagedObjectContext:managedObjectContext];
+    /*NSManagedObject *kipKeyword = [NSEntityDescription insertNewObjectForEntityForName:@"UHDSearchKeyword" inManagedObjectContext:managedObjectContext];
     [kipKeyword setValue:@"KIP" forKey:@"content"];
     inf227.keywords = [NSSet setWithObject:kipKeyword];*/
 
@@ -247,6 +243,16 @@
     //oben 49.417816, 8.670585
     //rechts 49.417468, 8.671014
     */
+    
+    Building *inf304 = [Building insertNewObjectIntoContext:managedObjectContext];
+    inf304.number = @"304";
+    inf304.campusRegion = inf;
+    Building *alt2010 = [Building insertNewObjectIntoContext:managedObjectContext];
+    alt2010.number = @"2010";
+    alt2010.campusRegion = altstadt;
+    Building *alt2100 = [Building insertNewObjectIntoContext:managedObjectContext];
+    alt2100.number = @"2100";
+    alt2100.campusRegion = altstadt;
     /*Building *inf228 = [Building insertNewObjectIntoContext:managedObjectContext];
     inf228.title = @"Mathematisches Institut";
     inf228.spanLatitude = 0.0006;
@@ -266,6 +272,7 @@
     inf228.email = @"dekanat@mathi.uni-heidelberg.de";
     //oben 49.417387, 8.671622
     //rechts 49.417079, 8.672006
+     
     
     Building *phw12 = [Building insertNewObjectIntoContext:managedObjectContext];
     phw12.buildingNumber = @"8010";
@@ -306,17 +313,15 @@
     //links 49.414820, 8.696450
     //rechts 49.414776, 8.696944
     //oben 49.414968, 8.696712
-    
+    */
     Building *phw19 = [Building insertNewObjectIntoContext:managedObjectContext];
-    phw19.buildingNumber = @"8080";
-    phw19.title = @"Institut für Theoretische Physik";
-    phw19.spanLatitude = 0.0002;
+    phw19.number = @"8080";
+    /*phw19.spanLatitude = 0.0002;
     phw19.spanLongitude = 0.0005;
-    phw19.location = [[CLLocation alloc] initWithLatitude:49.415058 longitude:8.698714];
+    phw19.location = [[CLLocation alloc] initWithLatitude:49.415058 longitude:8.698714];*/
     phw19.image = [UIImage imageNamed:@"TI_PHW19" inBundle:imagesBundle compatibleWithTraitCollection:nil];
-    phw19.category = fakPhys;
     phw19.campusRegion = phw;
-    UHDAddress *phw19Address = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
+/*    UHDAddress *phw19Address = [UHDAddress insertNewObjectIntoContext:managedObjectContext];
     phw19Address.street = @"Philosophenweg 19";
     phw19Address.postalCode = @"69120";
     phw19Address.city = @"Heidelberg";

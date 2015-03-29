@@ -37,6 +37,7 @@ public class Location: UHDRemoteManagedObject {
     @NSManaged public var managedCurrentDistance: NSNumber? // TODO: make private when not accessed by objc anymore
     @NSManaged private var imageData: NSData? // TODO: make transient when no sample data need to be provided anymore
     @NSManaged public var imageURL: NSURL?
+    @NSManaged public var osmId: String?
 
     public var location: CLLocation = CLLocation(latitude: 0, longitude: 0) // TODO: store properly in database
     public var coordinate: CLLocationCoordinate2D {
@@ -93,7 +94,7 @@ public class Location: UHDRemoteManagedObject {
             }
         }
         set {
-            self.imageData = UIImageJPEGRepresentation(image, 1) // TODO: remove when sample data is unnecessary
+            self.imageData = UIImageJPEGRepresentation(newValue, 1) // TODO: remove when sample data is unnecessary
         }
     }
     

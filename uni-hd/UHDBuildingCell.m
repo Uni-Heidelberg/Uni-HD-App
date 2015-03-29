@@ -19,7 +19,7 @@
     self.subtitleLabel.text = item.location.campusIdentifier;
     
     // Configure Image
-    self.buildingsImageView.image = item.location.image;
+    self.buildingsImageView.image = item.image;
     
 }
 

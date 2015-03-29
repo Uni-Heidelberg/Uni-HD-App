@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="6751" systemVersion="14D113c" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="Institution" representedClassName="UHDKit.Institution" syncable="YES">
+        <attribute name="address" optional="YES" attributeType="Transformable" syncable="YES"/>
+        <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageData" optional="YES" transient="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="osmId" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="url" optional="YES" attributeType="Transformable" syncable="YES"/>
         <relationship name="children" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Institution" inverseName="parent" inverseEntity="Institution" syncable="YES"/>
         <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Location" inverseName="institutions" inverseEntity="Location" syncable="YES"/>
         <relationship name="newsSources" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDNewsSource" inverseName="institution" inverseEntity="UHDNewsSource" syncable="YES"/>
@@ -24,7 +28,7 @@
         </userInfo>
     </entity>
     <elements>
-        <element name="Institution" positionX="-243" positionY="60" width="128" height="178"/>
+        <element name="Institution" positionX="-243" positionY="60" width="128" height="238"/>
         <element name="Location" positionX="-63" positionY="126" width="128" height="58"/>
         <element name="UHDNewsSource" positionX="-425" positionY="138" width="128" height="58"/>
     </elements>

@@ -123,7 +123,8 @@ public class InstitutionDetailViewController: UITableViewController, MFMailCompo
                         }))
                     alertController.addAction(UIAlertAction(title: NSLocalizedString("Abbrechen", comment: ""), style: .Cancel, handler: nil))
                 case .Post(let address):
-                    break
+                    // TODO: display something here?
+                    alertController.addAction(UIAlertAction(title: NSLocalizedString("Abbrechen", comment: ""), style: .Cancel, handler: nil))
                 }
                 self.presentViewController(alertController, animated: true, completion: {
                     tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -180,7 +181,7 @@ public class InstitutionDetailViewController: UITableViewController, MFMailCompo
     // MARK: Sections and Properties
     
     private enum Section {
-        case Title, Locations([Location]), Contact([ContactProperty]), Events([UHDEventItem]), News([UHDNewsItem])
+        case Title, Locations([Location]), Contact([Institution.ContactProperty]), Events([UHDEventItem]), News([UHDNewsItem])
         
         var localizedTitle: String? {
             switch self {

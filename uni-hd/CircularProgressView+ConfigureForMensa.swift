@@ -12,7 +12,7 @@ extension CircularProgressView {
     
     public func configureForHoursOfInstitution(institution: Institution)
     {
-        self.image = institution.location?.image
+        self.image = institution.image
         if let hours = institution.hours {
             self.progress = hours.progress
             self.progressTintColor = hours.color

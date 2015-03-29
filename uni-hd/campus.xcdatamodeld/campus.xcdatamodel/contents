@@ -20,6 +20,7 @@
         <attribute name="imageURL" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="managedCurrentDistance" optional="YES" attributeType="Double" syncable="YES"/>
         <attribute name="managedTitle" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="osmId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="events" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDEventItem" inverseName="location" inverseEntity="UHDEventItem" syncable="YES"/>
         <relationship name="institutions" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Institution" inverseName="locations" inverseEntity="Institution" syncable="YES"/>
@@ -34,7 +35,7 @@
         <element name="Building" positionX="-128" positionY="116" width="128" height="88"/>
         <element name="CampusRegion" positionX="-324" positionY="117" width="128" height="73"/>
         <element name="Institution" positionX="115" positionY="-63" width="128" height="58"/>
-        <element name="Location" positionX="-216" positionY="-54" width="128" height="148"/>
+        <element name="Location" positionX="-216" positionY="-63" width="128" height="163"/>
         <element name="UHDEventItem" positionX="117" positionY="32" width="128" height="58"/>
     </elements>
 </model>

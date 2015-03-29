@@ -210,9 +210,9 @@
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Ng-DE-Gxm">
-                                            <rect key="frame" x="87" y="22.5" width="458" height="36"/>
+                                            <rect key="frame" x="87" y="22" width="458" height="36"/>
                                             <subviews>
-                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Identifier" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJ7-Km-F6p">
+                                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Identifier" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJ7-Km-F6p">
                                                     <rect key="frame" x="0.0" y="0.0" width="458" height="19.5"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
@@ -220,7 +220,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cXu-6Q-IaW" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="22.5" width="458" height="13.5"/>
+                                                    <rect key="frame" x="0.0" y="22" width="458" height="13.5"/>
                                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" style="UICTFontTextStyleCaption1"/>
                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
@@ -252,8 +252,8 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="buildingsImageView" destination="XXO-mb-wNn" id="YBw-jd-VUN"/>
-                                    <outlet property="subtitleLabel" destination="NJ7-Km-F6p" id="Ws3-h8-dhB"/>
-                                    <outlet property="titleLabel" destination="cXu-6Q-IaW" id="aI9-ki-Ua1"/>
+                                    <outlet property="subtitleLabel" destination="cXu-6Q-IaW" id="myh-if-0mM"/>
+                                    <outlet property="titleLabel" destination="NJ7-Km-F6p" id="wzr-Mu-XNk"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

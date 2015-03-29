@@ -25,7 +25,28 @@ public class Institution: UHDRemoteManagedObject {
     @NSManaged public var locations: NSSet
     @NSManaged public var newsSources: NSSet
     
-    public var contactProperties: [ContactProperty] = [] // TODO: implement
+    // TODO: store as ContactProperty set?
+    @NSManaged public var email: String?
+    @NSManaged public var phone: String?
+    @NSManaged public var url: NSURL?
+    @NSManaged public var address: Address?
+    public var contactProperties: [ContactProperty] {
+        var contactProperties = [ContactProperty]()
+        if let email = self.email {
+            contactProperties.append(ContactProperty(description: nil, content: .Email(email)))
+        }
+        if let phone = self.phone {
+            contactProperties.append(ContactProperty(description: nil, content: .Phone(phone)))
+        }
+        if let url = self.url {
+            contactProperties.append(ContactProperty(description: nil, content: .Website(url)))
+        }
+        if let address = self.address {
+            contactProperties.append(ContactProperty(description: nil, content: .Post(address)))
+        }
+        return contactProperties
+    }
+    
     public var hours: Hours? { // TODO: implement
         return nil
     }
@@ -74,7 +95,7 @@ public class Institution: UHDRemoteManagedObject {
             }
         }
         set {
-            self.imageData = UIImageJPEGRepresentation(image, 1) // TODO: remove when sample data is unnecessary
+            self.imageData = UIImageJPEGRepresentation(newValue, 1) // TODO: remove when sample data is unnecessary
         }
     }
     
@@ -119,54 +140,72 @@ public class Institution: UHDRemoteManagedObject {
         return attributedStatusDescription
     }
 
-}
-
-public struct ContactProperty {
-    
-    let description: String?
-    let content: Content
-    
-    public enum Content: Printable {
-        case Email(String), Phone(String), Website(NSURL), Post(Address)
+    public struct ContactProperty {
         
-        public var description: String {
-            switch self {
-            case .Email:
-                return NSLocalizedString("Email", comment: "")
-            case .Phone:
-                return NSLocalizedString("Telefon", comment: "")
-            case .Website:
-                return NSLocalizedString("Webseite", comment: "")
-            case .Post:
-                return NSLocalizedString("Anschrift", comment: "")
-            }
-        }
+        let description: String?
+        let content: Content
         
-        public struct Address: Printable {
-            
-            let street: String?
-            let postalCode: String?
-            let city: String?
+        public enum Content: Printable {
+            case Email(String), Phone(String), Website(NSURL), Post(Address)
             
             public var description: String {
-                var description = ""
-                if let street = self.street {
-                    description += street + "\n"
+                switch self {
+                case .Email:
+                    return NSLocalizedString("Email", comment: "")
+                case .Phone:
+                    return NSLocalizedString("Telefon", comment: "")
+                case .Website:
+                    return NSLocalizedString("Webseite", comment: "")
+                case .Post:
+                    return NSLocalizedString("Anschrift", comment: "")
                 }
-                if let postalCode = self.postalCode {
-                    description += postalCode
-                    if city != nil {
-                        description += " "
-                    }
-                }
-                if let city = self.city {
-                    description += city
-                }
-                return description
             }
             
         }
-
     }
+    
+    public class Address: NSObject, NSCoding { // TODO: possible to make this a struct despite @NSManaged requirement?
+        
+        public let street: String?
+        public let postalCode: String?
+        public let city: String?
+        
+        public init(street: String?, postalCode: String?, city: String?) {
+            self.street = street
+            self.postalCode = postalCode
+            self.city = city
+        }
+        
+        public var localizedDescription: String {
+            var description = ""
+            if let street = self.street {
+                description += street + "\n"
+            }
+            if let postalCode = self.postalCode {
+                description += postalCode
+                if city != nil {
+                    description += " "
+                }
+            }
+            if let city = self.city {
+                description += city
+            }
+            return description
+        }
+        
+        public func encodeWithCoder(aCoder: NSCoder) {
+            aCoder.encodeObject(self.street, forKey: "street")
+            aCoder.encodeObject(self.postalCode, forKey: "postalCode")
+            aCoder.encodeObject(self.city, forKey: "city")
+        }
+
+        required public init(coder aDecoder: NSCoder) {
+            self.street = aDecoder.decodeObjectForKey("street") as? String
+            self.postalCode = aDecoder.decodeObjectForKey("postalCode") as? String
+            self.city = aDecoder.decodeObjectForKey("city") as? String
+        }
+        
+    }
+
 }
 
