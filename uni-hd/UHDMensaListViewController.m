@@ -168,7 +168,7 @@
 
 - (IBAction)detailButtonPressed:(id)sender
 {
-    InstitutionDetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"maps" bundle:[NSBundle bundleForClass:[self class]]] instantiateViewControllerWithIdentifier:@"institutionDetail"];
+    InstitutionDetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"campus" bundle:[NSBundle bundleForClass:[self class]]] instantiateViewControllerWithIdentifier:@"institutionDetail"];
     UITableViewCell *cell = [self cellForSubview:sender];
     detailVC.institution = [self mensaForIndexPath:[self.tableView indexPathForCell:cell]];
     [self.navigationController pushViewController:detailVC animated:YES];

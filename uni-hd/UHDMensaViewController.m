@@ -144,7 +144,7 @@
 }
 
 - (IBAction)mensaDetailButtonPressed:(id)sender {
-    InstitutionDetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"maps" bundle:[NSBundle bundleForClass:[self class]]] instantiateViewControllerWithIdentifier:@"institutionDetail"];
+    InstitutionDetailViewController *detailVC = [[UIStoryboard storyboardWithName:@"campus" bundle:[NSBundle bundleForClass:[self class]]] instantiateViewControllerWithIdentifier:@"institutionDetail"];
     detailVC.institution = self.mensa;
     [self.navigationController pushViewController:detailVC animated:YES];
 }
