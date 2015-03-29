@@ -386,7 +386,7 @@
 {
     [self.logger log:@"Received location update." object:locations forLevel:VILogLevelDebug];
     for (Mensa *mensa in self.fetchedResultsController.fetchedObjects) {
-        mensa.location.managedCurrentDistance = [NSNumber numberWithDouble:[mensa.location.location distanceFromLocation:locations.lastObject]];
+        mensa.location.managedCurrentDistance = [NSNumber numberWithDouble:[[[CLLocation alloc] initWithLatitude:mensa.location.coordinate.latitude longitude:mensa.location.coordinate.longitude] distanceFromLocation:locations.lastObject]];
     }
 }
 

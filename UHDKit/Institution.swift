@@ -16,7 +16,6 @@ public class Institution: UHDRemoteManagedObject {
         return "Institution"
     }
     
-    @NSManaged public var osmId: String?
     @NSManaged public var title: String?
     @NSManaged private var imageData: NSData? // TODO: reconsider having an image for an institution - it's a spatial property, so only associate to Location?
     @NSManaged public var imageURL: NSURL?

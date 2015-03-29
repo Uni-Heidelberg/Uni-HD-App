@@ -226,8 +226,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mensaModel = NSManagedObjectModel(contentsOfURL: modelsBundle.URLForResource("mensa", withExtension: "momd")!)!
         let newsModel = NSManagedObjectModel(contentsOfURL: modelsBundle.URLForResource("news", withExtension: "momd")!)!
         let campusModel = NSManagedObjectModel(contentsOfURL: modelsBundle.URLForResource("campus", withExtension: "momd")!)!
-        let institutionsModel = NSManagedObjectModel(contentsOfURL: modelsBundle.URLForResource("institutions", withExtension: "momd")!)!
-        let managedObjectModel = self.modelByMergingModels([ mensaModel, newsModel, campusModel, institutionsModel ], foreignEntityNameKey: "UHDForeignEntityNameKey")
+        let managedObjectModel = self.modelByMergingModels([ mensaModel, newsModel, campusModel ], foreignEntityNameKey: "UHDForeignEntityNameKey")
         
         let persistentStoreURL = (NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last as NSURL).URLByAppendingPathComponent("uni-hd.sqlite")
         

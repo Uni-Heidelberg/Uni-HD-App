@@ -7,7 +7,7 @@
 //
 
 #import "UHDMapsRemoteDatasourceDelegate.h"
-
+@import MapKit;
 #import <RKCLLocationValueTransformer/RKCLLocationValueTransformer.h>
 #import "NSManagedObject+VIInsertIntoContextCategory.h"
 #import <UHDKit/UHDKit-Swift.h>
@@ -189,10 +189,11 @@
     
     Building *inf227 = [Building insertNewObjectIntoContext:managedObjectContext];
     inf227.number = @"227";
-    inf227.osmId = @"19328";
-    //inf227.location = [[CLLocation alloc] initWithLatitude:49.416260 longitude:8.672190];
-    //inf227.spanLatitude = 0.0005;
-    //inf227.spanLongitude = 0.0009;
+    inf227.nodes = [[NSOrderedSet alloc] initWithObjects:
+                    [Node insertNewObjectWithCoordinate:CLLocationCoordinate2DMake(49.4165764, 8.6716101) intoManagedObjectContext:managedObjectContext],
+                    [Node insertNewObjectWithCoordinate:CLLocationCoordinate2DMake(49.4165759, 8.6725096) intoManagedObjectContext:managedObjectContext],
+                    [Node insertNewObjectWithCoordinate:CLLocationCoordinate2DMake(49.4160892, 8.672509) intoManagedObjectContext:managedObjectContext],
+                    [Node insertNewObjectWithCoordinate:CLLocationCoordinate2DMake(49.4160897, 8.6716095) intoManagedObjectContext:managedObjectContext], nil];
     inf227.campusRegion = inf;
     inf227.image = [UIImage imageNamed:@"kip1" inBundle:imagesBundle compatibleWithTraitCollection:nil];
     /*NSManagedObject *kipKeyword = [NSEntityDescription insertNewObjectForEntityForName:@"UHDSearchKeyword" inManagedObjectContext:managedObjectContext];

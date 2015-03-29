@@ -4,7 +4,7 @@
         <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <relationship name="newsSources" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="UHDNewsSource" inverseName="institution" inverseEntity="UHDNewsSource" syncable="YES"/>
         <userInfo>
-            <entry key="UHDForeignEntityNameKey" value="institutions.Institution"/>
+            <entry key="UHDForeignEntityNameKey" value="campus.Institution"/>
         </userInfo>
     </entity>
     <entity name="Location" syncable="YES">
@@ -63,11 +63,11 @@
     </entity>
     <elements>
         <element name="Institution" positionX="-461" positionY="2" width="128" height="73"/>
+        <element name="Location" positionX="108" positionY="29" width="128" height="73"/>
         <element name="UHDEventItem" positionX="-65" positionY="27" width="128" height="103"/>
         <element name="UHDNewsCategory" positionX="-270" positionY="-207" width="128" height="103"/>
         <element name="UHDNewsItem" positionX="-63" positionY="-205" width="128" height="208"/>
         <element name="UHDNewsSource" positionX="-270" positionY="-46" width="128" height="163"/>
-        <element name="Location" positionX="108" positionY="29" width="128" height="73"/>
         <element name="UHDTalkItem" positionX="-65" positionY="158" width="128" height="58"/>
         <element name="UHDTalkSpeaker" positionX="108" positionY="162" width="128" height="133"/>
     </elements>

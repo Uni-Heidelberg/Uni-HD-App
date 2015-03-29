@@ -8,7 +8,7 @@
 
 import UIKit
 import MapKit
-
+import SpriteKit
 
 func MKMapRectForCoordinateRegion(region: MKCoordinateRegion) -> MKMapRect
 {
@@ -37,14 +37,15 @@ public class Location: UHDRemoteManagedObject {
     @NSManaged public var managedCurrentDistance: NSNumber? // TODO: make private when not accessed by objc anymore
     @NSManaged private var imageData: NSData? // TODO: make transient when no sample data need to be provided anymore
     @NSManaged public var imageURL: NSURL?
-    @NSManaged public var osmId: String?
-
-    public var location: CLLocation = CLLocation(latitude: 0, longitude: 0) // TODO: store properly in database
-    public var coordinate: CLLocationCoordinate2D {
-        return location.coordinate
+    @NSManaged public var nodes: NSOrderedSet
+    
+    public var outline: MKPolygon {
+        var outlineCoordinates = (nodes.array as [Node]).map { $0.coordinate }
+        return MKPolygon(coordinates: &outlineCoordinates, count: outlineCoordinates.count)
     }
-    public var boundingMapRect: MKMapRect {
-        return MKMapRectForCoordinateRegion(MKCoordinateRegion(center: coordinate, span: MKCoordinateSpan(latitudeDelta: 0.001, longitudeDelta: 0.001)))
+
+    public var coordinate: CLLocationCoordinate2D {
+        return outline.coordinate
     }
     
     /// A string composed by hierarchical positional components like building- and room numbers. To be overriden in subclasses.
@@ -114,5 +115,3 @@ extension Location: MKAnnotation {
         }))
     }
 }
-
-
