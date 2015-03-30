@@ -106,14 +106,10 @@ public class CampusMapView: UIView {
 
             let coordinate = mapView.convertPoint(gestureRecognizer.locationInView(mapView), toCoordinateFromView: mapView)
 
-            //if (MKMapRectContainsPoint([building boundingMapRect], MKMapPointForCoordinate(coordinate))) {
-            // Tapped on building
-            // Continue for already annotated buildings
-            //if ([self.mapView.annotations containsObject:building]) continue;
-            // Present (empty) annotation with callout
-            //self.selectedLocation = building;
-            //[self.mapView addAnnotation:building];
-            //[self.mapView selectAnnotation:building animated:YES];
+            if let tappedLocation = locationsOverlay.locationForCoordinate(coordinate) {
+                self.showLocation(tappedLocation, animated: true)
+            }
+
         }
     }
     
