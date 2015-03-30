@@ -92,18 +92,8 @@
 	[self.sectionDateFormatter setCalendar:calendar];
 	NSString *formatTemplate = [NSDateFormatter dateFormatFromTemplate:@"MMMM YYYY" options:0 locale:[NSLocale currentLocale]];
 	[self.sectionDateFormatter setDateFormat:formatTemplate];
-
-    // is this necessary? the fetched results controller should handle changes and update the table view when the "sectionIdentifier" property changes
-	// yes, it should, but obviously it doesn't...
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViewForSignificantTimeChange) name:UIApplicationSignificantTimeChangeNotification object:nil];
 	
 	[self configureView];
-}
-
-
-- (void)updateViewForSignificantTimeChange {
-
-	[self.fetchedResultsControllerDataSource reloadData];
 }
 
 
