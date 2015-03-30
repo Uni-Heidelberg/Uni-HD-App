@@ -56,12 +56,8 @@ FOUNDATION_EXPORT const unsigned char UHDKitVersionString[];
 
 // Maps
 
-// View Controllers
-#import <UHDKit/UHDConfigureMapViewController.h>
-#import <UHDKit/UHDMapsSearchResultsViewController.h>
 // View
 #import <UHDKit/UHDBuildingAnnotationView.h>
-#import <UHDKit/UHDBuildingCell.h>
 
 
 // Remote Datasource Delegates
@@ -73,7 +69,6 @@ FOUNDATION_EXPORT const unsigned char UHDKitVersionString[];
 
 // Global
 
-#import <UHDKit/VILogger.h>
 #import <UHDKit/UIColor+UHDColors.h>
 #import <UHDKit/NSManagedObject+VIInsertIntoContextCategory.h>
 #import <UHDKit/VIFetchedResultsControllerDataSource.h>

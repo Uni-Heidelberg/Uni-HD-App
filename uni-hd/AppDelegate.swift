@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import EventKit // TODO: remove as soon as eventStore property is gone
 import VILogKit
 import UHDPersistenceKit
 import UHDRemoteKit
@@ -24,7 +23,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {
         
         // Configure logging
+        // Swift logger
         VILogKit.logLevel = .Debug
+        // Objective-C logger
+        VILogger.defaultLogger().logLevel = VILogLevelDebug
+        // RESTKit logger
+        // Configured by settings environment variables
+        // Edit scheme (Cmd + <) and add configurations to Run > Arguments, e.g.:
+        // RKLogLevel.* = Debug
+        RKLogConfigureFromEnvironment()
         
         // enable automatic network indicator display
         AFNetworkActivityIndicatorManager.sharedManager().enabled = true
@@ -38,8 +45,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UHDRemoteDatasourceManager.defaultManager().remoteDatasourceForKey(UHDConstants.RemoteDatasourceKey.Maps).generateSampleDataIfNeeded()
         
         // Refresh
-        UHDRemoteDatasourceManager.defaultManager().refreshAllWithCompletion { success, error in
-            self.processSampleData() // TODO: remove eventually
+        let timeIntervalSinceRefresh = UHDRemoteDatasourceManager.defaultManager().timeIntervalSinceRefresh
+        if timeIntervalSinceRefresh < 0 || UHDRemoteDatasourceManager.defaultManager().timeIntervalSinceRefresh > 86400 { // TODO: improve
+            UHDRemoteDatasourceManager.defaultManager().refreshAllWithCompletion { success, error in
+                self.processSampleData() // TODO: remove eventually
+            }
+        } else {
+            self.logger.log("Time since last complete refresh: \(timeIntervalSinceRefresh)s, not refreshing again.", forLevel: .Info)
         }
         
         // Configure default styles
@@ -47,7 +59,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().barTintColor = UIColor.brandColor()
         UINavigationBar.appearance().tintColor = UIColor.whiteColor()
         UINavigationBar.appearance().titleTextAttributes = [ NSForegroundColorAttributeName : UIColor.whiteColor() ]
-//        UILabel.appearanceWhenContainedIn(UINavigationBar.self, nil].textColor = [UIColor whiteColor];
         
         // Setup initial view controllers
         
@@ -210,11 +221,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Significant Time Change
     
     func applicationSignificantTimeChange(application: UIApplication) {
-        // invalidate all cached section identifiers
         
+        // Refresh remote data
+        UHDRemoteDatasourceManager.defaultManager().refreshAllWithCompletion(nil)
+
+        // invalidate all cached section identifiers
         let fetchRequest = NSFetchRequest(entityName: UHDNewsItem.entityName())
         fetchRequest.includesSubentities = true
-
         if let newsItems = self.persistentStack.managedObjectContext.executeFetchRequest(fetchRequest, error: nil) {
             for item in newsItems {
                 item.resetSectionIdentifierCache()

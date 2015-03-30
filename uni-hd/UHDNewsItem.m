@@ -128,21 +128,7 @@
     [self setPrimitiveDate:newDate];
     [self didChangeValueForKey:@"date"];
 
-    [self resetSectionIdentifierCache];
-}
-
-
-- (void)setSectionIdentifier:(NSString *)sectionIdentifier {
-	
-	[self willChangeValueForKey:@"sectionIdentifier"];
-	[self setPrimitiveSectionIdentifier:nil];
-	[self didChangeValueForKey:@"sectionIdentifier"];
-}
-
-
-- (void)resetSectionIdentifierCache {
-
-	[self setSectionIdentifier:nil];
+    [self setPrimitiveSectionIdentifier:nil];
 }
 
 
@@ -150,6 +136,13 @@
 {
     // If the value of date changes, the section identifier may change as well.
     return [NSSet setWithObject:@"date"];
+}
+
+
+- (void)resetSectionIdentifierCache {
+
+	self.primitiveSectionIdentifier = nil;
+	self.sectionIdentifier = nil;	// trigger update notification
 }
 
 @end

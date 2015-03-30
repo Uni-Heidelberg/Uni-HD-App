@@ -89,11 +89,6 @@ public class CampusMapView: UIView {
         locationsOverlay.locations = self.datasource?.locationsForOverlayInCampusMapView(self) ?? []
         mapView.removeOverlay(locationsOverlay)
         mapView.addOverlay(locationsOverlay)
-        for location in locationsOverlay.locations {
-            if let outline = location.outline {
-                //mapView.addOverlay(outline)
-            }
-        }
     }
     
     
@@ -132,16 +127,10 @@ extension CampusMapView: MKMapViewDelegate {
             return MKTileOverlayRenderer(overlay: overlay)
         } else if overlay === self.locationsOverlay {
             return LocationsOverlayRenderer(overlay: overlay)
-        } else if overlay is MKPolygon {
-            let polygonRenderer = MKPolygonRenderer(overlay: overlay)
-            polygonRenderer.fillColor = UIColor.greenColor()
-            polygonRenderer.strokeColor = UIColor.redColor()
-            polygonRenderer.lineWidth = 5.0
-            return polygonRenderer
         }
         return nil
     }
-
+    
     public func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView? {
         if let building = annotation as? Building {
             let buildingAnnotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("buildingAnnotation") as? UHDBuildingAnnotationView ?? UHDBuildingAnnotationView(annotation: building, reuseIdentifier: "buildingAnnotation")
@@ -158,14 +147,6 @@ extension CampusMapView: MKMapViewDelegate {
             delegate?.campusMapView(self, didSelectLocation: location)
         }
     }
-    
-    /*- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
-    {
-    // TODO: Only necessary because selection is strangely cleared right after tap occured
-    if (self.selectedAnnotation && view.annotation == self.selectedAnnotation) {
-    [mapView selectAnnotation:view.annotation animated:NO];
-    }
-    }*/
     
 }
 

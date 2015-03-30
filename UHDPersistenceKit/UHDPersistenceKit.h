@@ -17,3 +17,4 @@ FOUNDATION_EXPORT const unsigned char UHDPersistenceKitVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <UHDPersistenceKit/PublicHeader.h>
 
 #import <UHDPersistenceKit/UHDPersistentStack.h>
+#import <UHDPersistenceKit/VILogger.h>

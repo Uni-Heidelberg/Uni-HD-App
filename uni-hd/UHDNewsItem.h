@@ -35,7 +35,7 @@ typedef enum : NSUInteger {
 @property (nonatomic, retain) NSString *roomString;
 @property (nonatomic, retain) UHDNewsSource *source;
 
-@property (nonatomic, readonly) NSString *sectionIdentifier;
+@property (nonatomic, retain) NSString *sectionIdentifier;
 
 @property (nonatomic, readonly) UIImage *image;
 

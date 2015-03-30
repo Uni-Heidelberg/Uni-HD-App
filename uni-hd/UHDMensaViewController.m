@@ -58,11 +58,11 @@
 
 - (void)loadSelectedMensa
 {
-    // FIXME: [self.logger log:@"Loading selected mensa from user defaults..." forLevel:VILogLevelDebug];
+    [self.logger log:@"Loading selected mensa from user defaults..." forLevel:VILogLevelDebug];
     
     NSNumber *mensaId = [[NSUserDefaults standardUserDefaults] objectForKey:[UHDConstants userDefaultsKeySelectedMensaId]];
     if (!mensaId) {
-        // FIXME: [self.logger log:@"No mensa selected" forLevel:VILogLevelDebug];
+        [self.logger log:@"No mensa selected" forLevel:VILogLevelDebug];
         return;
     }
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[Mensa entityName]];
@@ -70,9 +70,9 @@
     NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:NULL];
     if (result.count > 0) {
         self.mensa = result.firstObject;
-        // FIXME: [self.logger log:@"Found selected Mensa." object:self.mensa.title forLevel:VILogLevelDebug];
+        [self.logger log:@"Found selected Mensa." object:self.mensa.title forLevel:VILogLevelDebug];
     } else {
-        // FIXME: [self.logger log:@"Selected invalid mensa." forLevel:VILogLevelError];
+        [self.logger log:@"Selected invalid mensa." forLevel:VILogLevelWarning];
     }
     
 }

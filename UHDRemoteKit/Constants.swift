@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc public class UHDRemoteConstants {
+@objc public class UHDRemoteConstants { // TODO: rename and make struct when unnecessary to access from objc
 
     public struct Server {
         public static let APIBaseURL = NSURL(string: "http://appserver.physik.uni-heidelberg.de/api/")!

@@ -54,7 +54,7 @@
     
     _selectedSource = selectedSource;
     
-    // FIXME: [self.logger log:[NSString stringWithFormat:@"Selected source: %@", selectedSource.title] forLevel:VILogLevelDebug];
+    [self.logger log:[NSString stringWithFormat:@"Selected source: %@", selectedSource.title] forLevel:VILogLevelDebug];
 	
     [self.collectionView reloadData];
 	

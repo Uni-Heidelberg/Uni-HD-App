@@ -92,18 +92,8 @@
 	[self.sectionDateFormatter setCalendar:calendar];
 	NSString *formatTemplate = [NSDateFormatter dateFormatFromTemplate:@"MMMM YYYY" options:0 locale:[NSLocale currentLocale]];
 	[self.sectionDateFormatter setDateFormat:formatTemplate];
-
-    // is this necessary? the fetched results controller should handle changes and update the table view when the "sectionIdentifier" property changes
-	// yes, it should, but obviously it doesn't...
-	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateViewForSignificantTimeChange) name:UIApplicationSignificantTimeChangeNotification object:nil];
 	
 	[self configureView];
-}
-
-
-- (void)updateViewForSignificantTimeChange {
-
-	[self.fetchedResultsControllerDataSource reloadData];
 }
 
 
@@ -129,6 +119,9 @@
 	{
 		self.tableView.tableHeaderView = nil;
 	}
+	
+	// force table view layout to prevent visible layout corrections after initial appearance of the VC
+	[self.tableView layoutIfNeeded];
 	
 }
 
@@ -211,9 +204,6 @@
         UHDTalkItem *item = self.fetchedResultsControllerDataSource.selectedItem;
         
         talkDetailVC.talkItem = item;
-		
-		// layout table view before displaying to prevent visible layout corrections after initial appearence of the VC
-		[talkDetailVC.tableView layoutIfNeeded];
 	}
 }
 
@@ -335,7 +325,7 @@
 	if (!_fetchedResultsControllerDataSource)
     {
         if (!self.managedObjectContext) {
-            // FIXME: [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
+            [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
             return nil;
         }
 		
@@ -366,15 +356,15 @@
 		fetchedResultsControllerDataSource.fetchedResultsController = fetchedResultsController;
 		_fetchedResultsControllerDataSource = fetchedResultsControllerDataSource;
 		
-		//// FIXME: [self.logger log:[NSString stringWithFormat:@"number of fetched objects: %lu", [fetchedResultsController.fetchedObjects count]] forLevel:VILogLevelDebug];
+		//[self.logger log:[NSString stringWithFormat:@"number of fetched objects: %lu", [fetchedResultsController.fetchedObjects count]] forLevel:VILogLevelDebug];
 		
 	}
 	
 	/*
 	NSArray *sections = _fetchedResultsControllerDataSource.fetchedResultsController.sections;
 	for (id<NSFetchedResultsSectionInfo> section in sections) {
-		// FIXME: [self.logger log:[NSString stringWithFormat:@"sectionID: %@", [section name]] forLevel:VILogLevelDebug];
-		// FIXME: [self.logger log:[NSString stringWithFormat:@"object: %@", [[[section objects] firstObject] title]] forLevel:VILogLevelDebug];
+		[self.logger log:[NSString stringWithFormat:@"sectionID: %@", [section name]] forLevel:VILogLevelDebug];
+		[self.logger log:[NSString stringWithFormat:@"object: %@", [[[section objects] firstObject] title]] forLevel:VILogLevelDebug];
 	}
 	*/
 	
