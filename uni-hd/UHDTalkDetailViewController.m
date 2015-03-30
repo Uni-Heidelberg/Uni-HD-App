@@ -93,6 +93,9 @@
 	self.title = self.talkItem.source.title;
 	
 	[self.tableView reloadData];
+	
+	// force table view layout to prevent visible layout corrections after initial appearance of the VC
+	[self.tableView layoutIfNeeded];
 }
 
 - (void)dealloc {

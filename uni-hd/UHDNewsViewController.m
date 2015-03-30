@@ -465,12 +465,9 @@ typedef enum : NSUInteger {
 		sources = @[ [subscribedSources objectAtIndex:(sourceIndex)] ];
 	}
     UHDNewsListViewController *newsListVC = [self.storyboard instantiateViewControllerWithIdentifier:@"newsList"];
-	newsListVC.sources = sources;
-	newsListVC.displayMode = self.displayMode;
     newsListVC.pageIndex = pageIndex;
-	
-	// layout table view before displaying to prevent visible layout corrections after initial appearence of the VC
-	[newsListVC.tableView layoutIfNeeded];
+	newsListVC.displayMode = self.displayMode;
+	newsListVC.sources = sources;
 	
 	// cache view controller
 	[self.newsListViewControllerCache replaceObjectAtIndex:pageIndex withObject:newsListVC];

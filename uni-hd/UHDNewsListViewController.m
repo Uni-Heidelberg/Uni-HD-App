@@ -120,6 +120,9 @@
 		self.tableView.tableHeaderView = nil;
 	}
 	
+	// force table view layout to prevent visible layout corrections after initial appearance of the VC
+	[self.tableView layoutIfNeeded];
+	
 }
 
 
@@ -201,9 +204,6 @@
         UHDTalkItem *item = self.fetchedResultsControllerDataSource.selectedItem;
         
         talkDetailVC.talkItem = item;
-		
-		// layout table view before displaying to prevent visible layout corrections after initial appearence of the VC
-		[talkDetailVC.tableView layoutIfNeeded];
 	}
 }
 
