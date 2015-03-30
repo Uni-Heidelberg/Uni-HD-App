@@ -19,7 +19,7 @@ public class CampusSearchResultsViewController: UITableViewController {
         fetchRequest.sortDescriptors = [ NSSortDescriptor(key: "title", ascending: true) ]
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         let dataSource = VIFetchedResultsControllerDataSource(fetchedResultsController: fetchedResultsController, tableView: self.tableView, cellIdentifier: "institutionCell", configureCellBlock: { cell, item in
-            if let cell = cell as? UHDBuildingCell {
+            if let cell = cell as? InstitutionCell {
                 cell.configureForInstitution(item as Institution)
             }
         })
