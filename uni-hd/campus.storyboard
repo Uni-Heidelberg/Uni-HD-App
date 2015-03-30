@@ -23,110 +23,6 @@
             </objects>
             <point key="canvasLocation" x="451" y="101"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="CBJ-Rc-g9F">
-            <objects>
-                <navigationController definesPresentationContext="YES" id="mK7-43-8Nz" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="DK5-9a-tDd">
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="Ywf-aI-I7P" kind="relationship" relationship="rootViewController" id="aed-TJ-lmW"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="3yH-q9-csQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1117.5" y="-1054.2253521126761"/>
-        </scene>
-        <!--Map Configuration-->
-        <scene sceneID="s9B-gs-n32">
-            <objects>
-                <tableViewController id="Ywf-aI-I7P" customClass="UHDConfigureMapViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="kBR-vQ-UDK">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
-                        <sections>
-                            <tableViewSection headerTitle="Anzeige" id="MGE-61-CA2">
-                                <cells>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Owj-Ep-8Ve">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Owj-Ep-8Ve" id="sCq-AV-UBu">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="VHA-jB-dHG">
-                                                    <rect key="frame" x="195" y="8" width="209" height="29"/>
-                                                    <segments>
-                                                        <segment title="Standard"/>
-                                                        <segment title="Hybrid"/>
-                                                        <segment title="Satellit"/>
-                                                    </segments>
-                                                    <connections>
-                                                        <action selector="mapTypeControlValueChanged:" destination="Ywf-aI-I7P" eventType="valueChanged" id="sRq-Vz-trf"/>
-                                                    </connections>
-                                                </segmentedControl>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" relation="greaterThanOrEqual" secondItem="VHA-jB-dHG" secondAttribute="trailing" id="BPk-Lp-1Hu"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="VHA-jB-dHG" secondAttribute="bottom" id="JUq-jM-RWO"/>
-                                                <constraint firstItem="VHA-jB-dHG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="sCq-AV-UBu" secondAttribute="leadingMargin" id="nx0-pz-HP9"/>
-                                                <constraint firstItem="VHA-jB-dHG" firstAttribute="top" secondItem="sCq-AV-UBu" secondAttribute="topMargin" id="om5-tf-qYd"/>
-                                                <constraint firstAttribute="centerX" secondItem="VHA-jB-dHG" secondAttribute="centerX" id="pyR-H7-wN9"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="JVV-Oi-Ofq">
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JVV-Oi-Ofq" id="XIe-dD-Wf3">
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zeige Campus Detailkarte" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5f7-ik-Cbd">
-                                                    <rect key="frame" x="15" y="11.5" width="198.5" height="20.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yoM-Ts-Fit">
-                                                    <rect key="frame" x="536" y="7" width="51" height="31"/>
-                                                    <connections>
-                                                        <action selector="showCampusOverlaySwitchValueChanged:" destination="Ywf-aI-I7P" eventType="valueChanged" id="wGV-F7-Kz5"/>
-                                                    </connections>
-                                                </switch>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="yoM-Ts-Fit" secondAttribute="trailing" constant="15" id="5Zn-87-b5j"/>
-                                                <constraint firstItem="yoM-Ts-Fit" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="5f7-ik-Cbd" secondAttribute="trailing" id="93b-0n-WbF"/>
-                                                <constraint firstAttribute="centerY" secondItem="5f7-ik-Cbd" secondAttribute="centerY" id="Npg-FX-FUL"/>
-                                                <constraint firstItem="5f7-ik-Cbd" firstAttribute="leading" secondItem="XIe-dD-Wf3" secondAttribute="leading" constant="15" id="PIL-Nb-nTZ"/>
-                                                <constraint firstAttribute="centerY" secondItem="yoM-Ts-Fit" secondAttribute="centerY" id="bOW-S3-V40"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </cells>
-                            </tableViewSection>
-                        </sections>
-                        <connections>
-                            <outlet property="dataSource" destination="Ywf-aI-I7P" id="3ph-oO-sFL"/>
-                            <outlet property="delegate" destination="Ywf-aI-I7P" id="M1O-Nl-1d0"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Map Configuration" id="3Nt-7G-XNd">
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="Qi6-Tz-MjB">
-                            <connections>
-                                <segue destination="8YN-hH-zML" kind="unwind" unwindAction="unwindToMap:" id="NGq-So-cvl"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="mapTypeControl" destination="VHA-jB-dHG" id="RHa-jq-j5l"/>
-                        <outlet property="showCampusOverlaySwitch" destination="yoM-Ts-Fit" id="M3i-3o-TlX"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="K3S-Zf-VmD" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <exit id="8YN-hH-zML" userLabel="Exit" sceneMemberID="exit"/>
-            </objects>
-            <point key="canvasLocation" x="2315.625" y="-1054.2253521126761"/>
-        </scene>
         <!--Campus View Controller-->
         <scene sceneID="TgM-vV-o9g">
             <objects>
@@ -155,20 +51,6 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="ueJ-uc-S7n">
                         <nil key="title"/>
-                        <barButtonItem key="rightBarButtonItem" id="1i1-if-DDD">
-                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="infoDark" showsTouchWhenHighlighted="YES" lineBreakMode="middleTruncation" id="OlN-xa-DVq" userLabel="Configuration Button">
-                                <rect key="frame" x="278" y="413" width="22" height="22"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="mK7-43-8Nz" kind="popoverPresentation" identifier="showMapConfiguration" popoverAnchorView="OlN-xa-DVq" id="ANM-JA-QeA">
-                                        <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                    </segue>
-                                </connections>
-                            </button>
-                        </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
@@ -180,17 +62,17 @@
             </objects>
             <point key="canvasLocation" x="1273" y="101"/>
         </scene>
-        <!--UHDMapsSearchTableViewController-->
+        <!--Search-->
         <scene sceneID="P4O-8U-gp8">
             <objects>
-                <tableViewController storyboardIdentifier="searchResults" title="UHDMapsSearchTableViewController" id="ZZj-nU-e7L" customClass="UHDMapsSearchResultsViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="searchResults" title="Search" id="ZZj-nU-e7L" customClass="CampusSearchResultsViewController" customModule="UHDKit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="hEK-gx-KSa">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="buildingCell" id="Fe7-eF-7Mf" customClass="UHDBuildingCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="institutionCell" id="Fe7-eF-7Mf" customClass="InstitutionCell" customModule="UHDKit" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="66" width="320" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fe7-eF-7Mf" id="DLo-vk-OIq">
@@ -251,7 +133,7 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <outlet property="buildingsImageView" destination="XXO-mb-wNn" id="YBw-jd-VUN"/>
+                                    <outlet property="institutionImageView" destination="XXO-mb-wNn" id="QBl-0K-K0x"/>
                                     <outlet property="subtitleLabel" destination="cXu-6Q-IaW" id="myh-if-0mM"/>
                                     <outlet property="titleLabel" destination="NJ7-Km-F6p" id="wzr-Mu-XNk"/>
                                 </connections>
@@ -267,19 +149,8 @@
                         <nil key="title"/>
                     </navigationItem>
                     <nil key="simulatedTopBarMetrics"/>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="RXx-IX-5mQ" id="S8h-th-6k2"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2hz-Py-ODY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController searchResultsTitle="" id="RXx-IX-5mQ">
-                    <connections>
-                        <outlet property="delegate" destination="ZZj-nU-e7L" id="H3R-NL-Lp3"/>
-                        <outlet property="searchContentsController" destination="ZZj-nU-e7L" id="Rwr-L6-Fkv"/>
-                        <outlet property="searchResultsDataSource" destination="ZZj-nU-e7L" id="q3Z-zk-ZxR"/>
-                        <outlet property="searchResultsDelegate" destination="ZZj-nU-e7L" id="sjh-Iv-waO"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="2101" y="546"/>
         </scene>

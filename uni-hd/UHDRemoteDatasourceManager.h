@@ -12,6 +12,8 @@
 
 @interface UHDRemoteDatasourceManager : VIManager
 
+@property (readonly) NSTimeInterval timeIntervalSinceRefresh;
+
 - (void)addRemoteDatasource:(UHDRemoteDatasource *)remoteDatasource forKey:(NSString *)key;
 - (UHDRemoteDatasource *)remoteDatasourceForKey:(NSString *)key;
 - (NSArray *)allRemoteDatasources;

@@ -18,7 +18,7 @@
 	self.sourceIconImageView.layer.cornerRadius = self.sourceIconImageView.bounds.size.height / 2;
 	self.sourceIconImageView.layer.masksToBounds = YES;
 	
-	//// FIXME: [self.logger log:[NSString stringWithFormat:@"Sources cell image height: %f", self.sourceIconImageView.bounds.size.height] forLevel:VILogLevelDebug];
+	//[self.logger log:[NSString stringWithFormat:@"Sources cell image height: %f", self.sourceIconImageView.bounds.size.height] forLevel:VILogLevelDebug];
     
     // configure circular Source Selection Indicator View
     //self.sourceSelectionIndicatorView.layer.cornerRadius = self.sourceSelectionIndicatorView.bounds.size.height / 2;

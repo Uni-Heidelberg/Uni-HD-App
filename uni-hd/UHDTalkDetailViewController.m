@@ -116,11 +116,11 @@
         [eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError *error) {
             if (granted) {
                 // Access granted
-                // FIXME: [self.logger log:@"Access granted for entity type event" forLevel:VILogLevelInfo];
+                [self.logger log:@"Access granted for entity type event" forLevel:VILogLevelInfo];
             }
             else {
                 // Denied
-                // FIXME: [self.logger log:@"Access denied for entity type event" forLevel:VILogLevelInfo];
+                [self.logger log:@"Access denied for entity type event" forLevel:VILogLevelInfo];
                 UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedString(@"Der Zugriff auf den Kalender wurde verweigert. Die Veranstaltung kann nicht in den Kalender eingetragen werden. Sie können die Zugriffsrechte in den Einstellungen anpassen.", nil) preferredStyle:UIAlertControllerStyleAlert];
                 UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleDefault handler:nil];
                 [alertController addAction:okAction];
@@ -299,16 +299,16 @@
     switch (result)
     {
         case MFMailComposeResultCancelled:
-			// FIXME: [self.logger log:@"Mail cancelled" forLevel:VILogLevelInfo];
+			[self.logger log:@"Mail cancelled" forLevel:VILogLevelInfo];
             break;
         case MFMailComposeResultSaved:
-			// FIXME: [self.logger log:@"Mail saved" forLevel:VILogLevelInfo];
+			[self.logger log:@"Mail saved" forLevel:VILogLevelInfo];
             break;
         case MFMailComposeResultSent:
-			// FIXME: [self.logger log:@"Mail sent" forLevel:VILogLevelInfo];
+			[self.logger log:@"Mail sent" forLevel:VILogLevelInfo];
             break;
         case MFMailComposeResultFailed:
-			// FIXME: [self.logger log:@"Mail sent" error:error];
+			[self.logger log:@"Mail sent" error:error];
             break;
         default:
             break;
@@ -335,14 +335,14 @@
 
 	switch (action) {
 		case EKEventEditViewActionCanceled:
-			// FIXME: [self.logger log:@"Event editing cancelled" forLevel:VILogLevelInfo];
+			[self.logger log:@"Event editing cancelled" forLevel:VILogLevelInfo];
 			break;
 		case EKEventEditViewActionDeleted:
-			// FIXME: [self.logger log:@"Event deleted" forLevel:VILogLevelInfo];
+			[self.logger log:@"Event deleted" forLevel:VILogLevelInfo];
 			break;
 		case EKEventEditViewActionSaved:
 			{
-				// FIXME: [self.logger log:@"Event saved" forLevel:VILogLevelInfo];
+				[self.logger log:@"Event saved" forLevel:VILogLevelInfo];
 				
 				[self dismissViewControllerAnimated:YES completion:^(void) {
 					UIAlertController *alertController = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedString(@"Die Veranstaltung wurde erfolgreich in den Kalender eingetragen.", nil) preferredStyle:UIAlertControllerStyleAlert];

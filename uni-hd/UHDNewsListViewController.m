@@ -325,7 +325,7 @@
 	if (!_fetchedResultsControllerDataSource)
     {
         if (!self.managedObjectContext) {
-            // FIXME: [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
+            [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
             return nil;
         }
 		
@@ -356,15 +356,15 @@
 		fetchedResultsControllerDataSource.fetchedResultsController = fetchedResultsController;
 		_fetchedResultsControllerDataSource = fetchedResultsControllerDataSource;
 		
-		//// FIXME: [self.logger log:[NSString stringWithFormat:@"number of fetched objects: %lu", [fetchedResultsController.fetchedObjects count]] forLevel:VILogLevelDebug];
+		//[self.logger log:[NSString stringWithFormat:@"number of fetched objects: %lu", [fetchedResultsController.fetchedObjects count]] forLevel:VILogLevelDebug];
 		
 	}
 	
 	/*
 	NSArray *sections = _fetchedResultsControllerDataSource.fetchedResultsController.sections;
 	for (id<NSFetchedResultsSectionInfo> section in sections) {
-		// FIXME: [self.logger log:[NSString stringWithFormat:@"sectionID: %@", [section name]] forLevel:VILogLevelDebug];
-		// FIXME: [self.logger log:[NSString stringWithFormat:@"object: %@", [[[section objects] firstObject] title]] forLevel:VILogLevelDebug];
+		[self.logger log:[NSString stringWithFormat:@"sectionID: %@", [section name]] forLevel:VILogLevelDebug];
+		[self.logger log:[NSString stringWithFormat:@"object: %@", [[[section objects] firstObject] title]] forLevel:VILogLevelDebug];
 	}
 	*/
 	

@@ -32,10 +32,10 @@ public class CampusViewController: UIViewController {
     
     // MARK: Search Controller
     
-    private lazy var searchResultsViewController: UHDMapsSearchResultsViewController? = {
-        let searchResultsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("searchResults") as? UHDMapsSearchResultsViewController
+    private lazy var searchResultsViewController: CampusSearchResultsViewController? = {
+        let searchResultsViewController = self.storyboard?.instantiateViewControllerWithIdentifier("searchResults") as? CampusSearchResultsViewController
         searchResultsViewController?.delegate = self
-        searchResultsViewController?.managedObjectContext = self.managedObjectContext
+        searchResultsViewController?.managedObjectContext = self.managedObjectContext // FIXME: moc might not be available yet
         return searchResultsViewController
     }()
     
@@ -51,11 +51,10 @@ public class CampusViewController: UIViewController {
     
     // MARK: Lifecycle
     
-    public override func viewDidLoad() {
+    override public func viewDidLoad() {
         super.viewDidLoad()
 
         // trigger location authorization
-        // TODO: inform user first
         if CLLocationManager.authorizationStatus() == CLAuthorizationStatus.NotDetermined {
             locationManager.requestWhenInUseAuthorization()
         }
@@ -129,9 +128,9 @@ extension CampusViewController: CampusMapViewDelegate {
 
 // MARK: Campus Search View Controller Delegate
 
-extension CampusViewController: UHDMapsSearchResultsViewControllerDelegate {
+extension CampusViewController: CampusSearchResultsViewControllerDelegate {
     
-    public func searchResultsViewController(viewController: UHDMapsSearchResultsViewController!, didSelectInstitution institution: Institution!) {
+    public func searchResultsViewController(viewController: CampusSearchResultsViewController, didSelectInstitution institution: Institution) {
         if let location = institution.location {
             self.showLocation(location, animated: true)
         }

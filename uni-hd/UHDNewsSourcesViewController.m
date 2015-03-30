@@ -79,7 +79,7 @@
     if (!_fetchedResultsControllerDataSource)
     {
         if (!self.managedObjectContext) {
-            // FIXME: [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
+            [self.logger log:@"Unable to create fetched results controller without a managed object context" forLevel:VILogLevelWarning];
             return nil;
         }
 
