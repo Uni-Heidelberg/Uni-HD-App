@@ -15,7 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *timeLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UIButton *addToCalendarButton;
-@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (weak, nonatomic) IBOutlet CampusMapView *campusMapView;
 
 @end
 
@@ -35,11 +35,9 @@
 	
 	[self.addToCalendarButton setTitle:NSLocalizedString(@"Veranstaltung in den Kalender eintragen", nil) forState:UIControlStateNormal];
 	
-	[self.mapView removeAnnotations:self.mapView.annotations];
 	if (item.location != nil) {
-		[self.mapView addAnnotation:item.location];
-		[self.mapView showAnnotations:@[ item.location ] animated:NO];
-	}
+        [self.campusMapView showLocation:item.location animated:NO];
+    }
 
 }
 

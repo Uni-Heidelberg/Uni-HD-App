@@ -171,8 +171,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if event.location == nil {
                     event.location = buildings.filter({ $0.campusIdentifier == "INF 227" }).first
                 }
+                if event.source.institution == nil {
+                    event.source.institution = institutions.filter({ $0.title == "Kirchhoff-Institut für Physik" }).first
+                }
             }
         }
+        
+        // Associate news sources to institutions
+        sources.filter({ $0.title != nil && $0.title == "Kirchhoff Institut für Physik" }).first?.institution = institutions.filter({ $0.title == "Kirchhoff-Institut für Physik" }).first
         
         // Distinguish between news and events sources
         

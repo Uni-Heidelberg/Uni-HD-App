@@ -7,6 +7,7 @@
 //
 
 #import "UHDNewsSource.h"
+#import <UHDKit/UHDKit-Swift.h>
 
 @implementation UHDNewsSource
 
@@ -14,16 +15,12 @@
 @dynamic title;
 @dynamic imageURL, imageData;
 @dynamic newsItems;
-@dynamic associatedBuildings;
+@dynamic institution;
 
 @dynamic isNewsSource, isEventSource;
 
 - (NSMutableSet *)mutableNewsItems {
     return [self mutableSetValueForKey:@"newsItems"];
-}
-
-- (NSMutableSet *)mutableAssociatedBuildings {
-    return [self mutableSetValueForKey:@"associatedBuildings"];
 }
 
 - (int)subscribedCount {

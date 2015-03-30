@@ -39,13 +39,17 @@ public class Location: UHDRemoteManagedObject {
     @NSManaged public var imageURL: NSURL?
     @NSManaged public var nodes: NSOrderedSet
     
-    public var outline: MKPolygon {
-        var outlineCoordinates = (nodes.array as [Node]).map { $0.coordinate }
-        return MKPolygon(coordinates: &outlineCoordinates, count: outlineCoordinates.count)
+    public var outline: MKPolygon? {
+        if nodes.count > 0 {
+            var outlineCoordinates = (nodes.array as [Node]).map { $0.coordinate }
+            return MKPolygon(coordinates: &outlineCoordinates, count: outlineCoordinates.count)
+        } else {
+            return nil
+        }
     }
 
     public var coordinate: CLLocationCoordinate2D {
-        return outline.coordinate
+        return outline?.coordinate ?? CLLocationCoordinate2D(latitude: 0, longitude: 0)
     }
     
     /// A string composed by hierarchical positional components like building- and room numbers. To be overriden in subclasses.

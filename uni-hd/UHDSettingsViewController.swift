@@ -110,7 +110,7 @@ public class UHDSettingsViewController: UITableViewController {
     
     override public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath == tableView.indexPathForCell(sourcesCell) {
-            if let sourcesNavC = UIStoryboard(name: "news", bundle: nil).instantiateViewControllerWithIdentifier("sourcesNav") as? UINavigationController {
+            if let sourcesNavC = UIStoryboard(name: "news", bundle: NSBundle(forClass: UHDNewsSourcesViewController.self)).instantiateViewControllerWithIdentifier("sourcesNav") as? UINavigationController {
                 if let sourcesVC = sourcesNavC.viewControllers[0] as? UHDNewsSourcesViewController {
                     sourcesVC.managedObjectContext = self.managedObjectContext
                     self.presentViewController(sourcesNavC, animated: true, completion: nil)

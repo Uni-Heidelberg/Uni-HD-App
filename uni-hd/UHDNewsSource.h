@@ -7,6 +7,7 @@
 //
 
 #import "UHDNewsCategory.h"
+@class Institution;
 
 @interface UHDNewsSource : UHDNewsCategory
 
@@ -16,7 +17,7 @@
 @property (nonatomic, retain) NSURL *imageURL;
 @property (nonatomic, retain) NSData *imageData;
 @property (nonatomic, retain) NSSet *newsItems;
-@property (nonatomic, retain) NSSet *associatedBuildings;
+@property (nonatomic, retain) Institution *institution;
 
 @property (nonatomic) BOOL isNewsSource;
 @property (nonatomic) BOOL isEventSource;

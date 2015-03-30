@@ -10,7 +10,12 @@ import UIKit
 
 public class CampusMapView: UIView {
     
-    public var mapView = MKMapView()
+    public lazy var mapView: MKMapView = {
+        let mapView = MKMapView()
+        mapView.delegate = self
+        mapView.showsUserLocation = true
+        return mapView
+    }()
     
     public var datasource: CampusMapViewDatasource?
     public var delegate: CampusMapViewDelegate?
@@ -20,6 +25,8 @@ public class CampusMapView: UIView {
         osmTileOverlay.canReplaceMapContent = true
         return osmTileOverlay
     }()
+    
+    private lazy var locationsOverlay: LocationsOverlay = LocationsOverlay()
     
     public private(set) var selectedLocation: Location?
     
@@ -35,10 +42,12 @@ public class CampusMapView: UIView {
         super.awakeFromNib()
         
         self.addSubview(mapView)
-        mapView.delegate = self
         
         // Use OpenStreetMaps
         mapView.addOverlay(osmTileOverlay, level: .AboveLabels)
+        
+        // Add locations overlay
+        mapView.addOverlay(locationsOverlay)
 
         // Show appropriate region
         // TODO: limit scrolling to max region
@@ -54,6 +63,9 @@ public class CampusMapView: UIView {
         mapViewDoubleTapGestureRecognizer.delegate = self
         mapView.addGestureRecognizer(mapViewDoubleTapGestureRecognizer)
         mapViewTapGestureRecognizer.requireGestureRecognizerToFail(mapViewDoubleTapGestureRecognizer)
+        
+        // Reload locations overlay
+        reloadLocationsOverlay()
 
     }
     
@@ -63,8 +75,8 @@ public class CampusMapView: UIView {
     public func showLocation(location: Location, animated: Bool) {
         mapView.removeAnnotations(mapView.annotations)
         mapView.addAnnotation(location)
-        mapView.showAnnotations([ location ], animated: animated)
         mapView.selectAnnotation(location, animated: animated)
+        mapView.showAnnotations([ location ], animated: animated)
         self.selectedLocation = location
     }
     
@@ -72,6 +84,18 @@ public class CampusMapView: UIView {
         mapView.removeAnnotation(selectedLocation)
         self.selectedLocation = nil
     }
+    
+    public func reloadLocationsOverlay() {
+        locationsOverlay.locations = self.datasource?.locationsForOverlayInCampusMapView(self) ?? []
+        mapView.removeOverlay(locationsOverlay)
+        mapView.addOverlay(locationsOverlay)
+        for location in locationsOverlay.locations {
+            if let outline = location.outline {
+                //mapView.addOverlay(outline)
+            }
+        }
+    }
+    
     
     // MARK: User Interaction
     
@@ -110,19 +134,15 @@ extension CampusMapView: MKMapViewDelegate {
     public func mapView(mapView: MKMapView!, rendererForOverlay overlay: MKOverlay!) -> MKOverlayRenderer! {
         if overlay === self.osmTileOverlay {
             return MKTileOverlayRenderer(overlay: overlay)
+        } else if overlay === self.locationsOverlay {
+            return LocationsOverlayRenderer(overlay: overlay)
+        } else if overlay is MKPolygon {
+            let polygonRenderer = MKPolygonRenderer(overlay: overlay)
+            polygonRenderer.fillColor = UIColor.greenColor()
+            polygonRenderer.strokeColor = UIColor.redColor()
+            polygonRenderer.lineWidth = 5.0
+            return polygonRenderer
         }
-        /*
-MKMapRect boundingMapRect = [overlay boundingMapRect];
-MKMapPoint polygonPoints[4] = {
-boundingMapRect.origin,
-MKMapPointMake(boundingMapRect.origin.x + boundingMapRect.size.width, boundingMapRect.origin.y),
-MKMapPointMake(boundingMapRect.origin.x + boundingMapRect.size.width, boundingMapRect.origin.y + boundingMapRect.size.height),
-MKMapPointMake(boundingMapRect.origin.x, boundingMapRect.origin.y + boundingMapRect.size.height)
-};
-MKPolygonRenderer *renderer = [[MKPolygonRenderer alloc] initWithPolygon:[MKPolygon polygonWithPoints:polygonPoints count:4]];
-renderer.fillColor = [UIColor blackColor];
-return renderer;
-*/
         return nil
     }
 
@@ -173,6 +193,8 @@ extension CampusMapView: UIGestureRecognizerDelegate {
 // MARK: Datasource and Delegate
 
 @objc public protocol CampusMapViewDatasource {
+    
+    func locationsForOverlayInCampusMapView(campusMapView: CampusMapView) -> [Location]
     
 }
 

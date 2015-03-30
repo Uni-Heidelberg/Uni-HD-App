@@ -82,6 +82,8 @@ public class CampusViewController: UIViewController {
         if let location = self.selectedLocation {
             campusMapView.showLocation(location, animated: animated)
         }
+
+        campusMapView.reloadLocationsOverlay()
     }
 
     
@@ -110,6 +112,11 @@ public class CampusViewController: UIViewController {
 // MARK: Campus Map View Datasource and Delegate
 
 extension CampusViewController: CampusMapViewDatasource {
+    
+    public func locationsForOverlayInCampusMapView(campusMapView: CampusMapView) -> [Location] {
+        let fetchRequest = NSFetchRequest(entityName: Location.entityName())
+        return managedObjectContext?.executeFetchRequest(fetchRequest, error: nil) as? [Location] ?? []
+    }
     
 }
 

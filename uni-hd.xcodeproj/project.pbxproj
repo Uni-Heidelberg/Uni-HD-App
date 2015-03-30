@@ -11,6 +11,8 @@
 		0A6028821A3B4BF00032EDEB /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A6028811A3B4BF00032EDEB /* EventKit.framework */; };
 		0AE477BD1A3D09D40071331E /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE477BC1A3D09D40071331E /* EventKitUI.framework */; };
 		5CFAACCD576B0E1B476CA696 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70156A1F78F7E9B762543BE5 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		8705F62D1AC8A3B600980891 /* LocationsOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8705F62C1AC8A3B600980891 /* LocationsOverlay.swift */; };
+		8705F6301AC8A67500980891 /* LocationsOverlayRenderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8705F62F1AC8A67500980891 /* LocationsOverlayRenderer.swift */; };
 		871A08241AC84AC70026E2BD /* CampusMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871A08231AC84AC70026E2BD /* CampusMapView.swift */; };
 		871A08281AC865BA0026E2BD /* CampusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871A08271AC865BA0026E2BD /* CampusViewController.swift */; };
 		8731AB8B1AC70DA2008A1844 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8731AB8A1AC70DA2008A1844 /* Location.swift */; };
@@ -386,6 +388,8 @@
 		8701CE4B190C00A600A18F82 /* UHDRemoteDatasource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UHDRemoteDatasource.m; path = "../uni-hd/UHDRemoteDatasource.m"; sourceTree = "<group>"; };
 		8701CE4E190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsRemoteDatasourceDelegate.h; sourceTree = "<group>"; };
 		8701CE4F190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsRemoteDatasourceDelegate.m; sourceTree = "<group>"; };
+		8705F62C1AC8A3B600980891 /* LocationsOverlay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationsOverlay.swift; path = UHDKit/LocationsOverlay.swift; sourceTree = SOURCE_ROOT; };
+		8705F62F1AC8A67500980891 /* LocationsOverlayRenderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationsOverlayRenderer.swift; path = UHDKit/LocationsOverlayRenderer.swift; sourceTree = SOURCE_ROOT; };
 		871A08231AC84AC70026E2BD /* CampusMapView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CampusMapView.swift; path = UHDKit/CampusMapView.swift; sourceTree = SOURCE_ROOT; };
 		871A08271AC865BA0026E2BD /* CampusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CampusViewController.swift; path = UHDKit/CampusViewController.swift; sourceTree = SOURCE_ROOT; };
 		872673261A36053800ABC599 /* UHDSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UHDSettingsViewController.swift; sourceTree = "<group>"; };
@@ -842,6 +846,8 @@
 			isa = PBXGroup;
 			children = (
 				871A08231AC84AC70026E2BD /* CampusMapView.swift */,
+				8705F62C1AC8A3B600980891 /* LocationsOverlay.swift */,
+				8705F62F1AC8A67500980891 /* LocationsOverlayRenderer.swift */,
 				877AEE8619BD370300ED270D /* UHDBuildingAnnotationView.h */,
 				877AEE8719BD370300ED270D /* UHDBuildingAnnotationView.m */,
 			);
@@ -1998,6 +2004,7 @@
 				876C69821AB4CB2300EE093B /* news.xcdatamodeld in Sources */,
 				876C69421AB4CAB800EE093B /* UHDMensaListViewController.m in Sources */,
 				87A49BB41AC1DB44004FA9A4 /* UHDSettingsViewController.swift in Sources */,
+				8705F6301AC8A67500980891 /* LocationsOverlayRenderer.swift in Sources */,
 				876C69751AB4CB1C00EE093B /* UHDNewsItemCell.m in Sources */,
 				876C69731AB4CB1C00EE093B /* UHDSourceCollectionViewCell.m in Sources */,
 				876C69481AB4CAB800EE093B /* UHDMensaCell.m in Sources */,
@@ -2013,6 +2020,7 @@
 				876C69511AB4CAB800EE093B /* UHDDailyMenu.m in Sources */,
 				876C694B1AB4CAB800EE093B /* FavouriteMensenView.swift in Sources */,
 				876C697C1AB4CB1C00EE093B /* UHDTalkItem.m in Sources */,
+				8705F62D1AC8A3B600980891 /* LocationsOverlay.swift in Sources */,
 				876C69531AB4CAB800EE093B /* Hours.swift in Sources */,
 				876C69761AB4CB1C00EE093B /* UHDEventItemCell.m in Sources */,
 				87A71D921AB4CF2D004C0FD3 /* VIMultilineLabel.swift in Sources */,

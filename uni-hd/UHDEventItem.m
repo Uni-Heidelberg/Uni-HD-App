@@ -16,7 +16,7 @@
 
 - (NSString *)formattedLocation {
     if (self.location) {
-        return self.location.title;
+        return [NSString stringWithFormat:@"%@, %@", self.location.title, self.roomString];
     } else {
         return [NSString stringWithFormat:@"%@, %@", self.buildingString, self.roomString];
     }

@@ -587,15 +587,6 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f4G-y1-dh3" id="qKN-93-EDz">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <mapView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" mapType="standard" zoomEnabled="NO" scrollEnabled="NO" rotateEnabled="NO" pitchEnabled="NO" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aSj-W8-GjJ">
-                                            <rect key="frame" x="0.0" y="134" width="600" height="200"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="200" id="PdJ-zQ-ecQ"/>
-                                            </constraints>
-                                            <connections>
-                                                <outlet property="delegate" destination="e3t-qO-g8f" id="3U4-Ho-XN6"/>
-                                            </connections>
-                                        </mapView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zeit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frL-r9-F0c">
                                             <rect key="frame" x="15" y="16" width="570" height="17"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
@@ -626,21 +617,28 @@
                                                 <action selector="showOnMapButtonPressed:" destination="e3t-qO-g8f" eventType="touchUpInside" id="L8o-5S-Siq"/>
                                             </connections>
                                         </button>
+                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f7c-Tu-jBf" customClass="CampusMapView" customModule="UHDKit" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="134" width="600" height="150"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="150" id="3aN-ay-8pi"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstItem="f7c-Tu-jBf" firstAttribute="top" secondItem="eM5-R5-puc" secondAttribute="bottom" constant="8" symbolic="YES" id="1c0-x7-PW8"/>
                                         <constraint firstItem="rwa-xF-Lwp" firstAttribute="top" secondItem="frL-r9-F0c" secondAttribute="bottom" constant="8" id="5ck-kO-igr"/>
+                                        <constraint firstItem="f7c-Tu-jBf" firstAttribute="leading" secondItem="qKN-93-EDz" secondAttribute="leading" id="EU3-6c-Leb"/>
                                         <constraint firstItem="3zc-UC-DiO" firstAttribute="leading" secondItem="rwa-xF-Lwp" secondAttribute="leading" id="GMO-Tg-nrp"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="f7c-Tu-jBf" secondAttribute="bottom" id="Jdn-qT-693"/>
                                         <constraint firstItem="eM5-R5-puc" firstAttribute="top" secondItem="3zc-UC-DiO" secondAttribute="bottom" id="KyC-K1-DSN"/>
                                         <constraint firstItem="frL-r9-F0c" firstAttribute="top" secondItem="qKN-93-EDz" secondAttribute="topMargin" constant="8" id="MXb-er-Kaj"/>
-                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="aSj-W8-GjJ" secondAttribute="bottom" id="Mj6-ep-b0h"/>
-                                        <constraint firstItem="aSj-W8-GjJ" firstAttribute="top" secondItem="eM5-R5-puc" secondAttribute="bottom" constant="8" id="OxL-dF-Vxp"/>
-                                        <constraint firstAttribute="trailing" secondItem="aSj-W8-GjJ" secondAttribute="trailing" id="Rky-Gu-pUw"/>
                                         <constraint firstItem="frL-r9-F0c" firstAttribute="leading" secondItem="rwa-xF-Lwp" secondAttribute="leading" id="Tba-n1-plW"/>
+                                        <constraint firstAttribute="trailing" secondItem="f7c-Tu-jBf" secondAttribute="trailing" id="Vbn-Vx-RvA"/>
                                         <constraint firstItem="3zc-UC-DiO" firstAttribute="top" secondItem="rwa-xF-Lwp" secondAttribute="bottom" constant="8" id="em9-4Q-sLZ"/>
                                         <constraint firstItem="frL-r9-F0c" firstAttribute="leading" secondItem="qKN-93-EDz" secondAttribute="leading" constant="15" id="g3g-rA-YWW"/>
                                         <constraint firstItem="3zc-UC-DiO" firstAttribute="trailing" secondItem="rwa-xF-Lwp" secondAttribute="trailing" id="hp2-qL-2kN"/>
                                         <constraint firstAttribute="trailing" secondItem="frL-r9-F0c" secondAttribute="trailing" constant="15" id="jLO-Ze-bSg"/>
-                                        <constraint firstItem="aSj-W8-GjJ" firstAttribute="leading" secondItem="qKN-93-EDz" secondAttribute="leading" id="mwe-X9-Y2b"/>
                                         <constraint firstItem="frL-r9-F0c" firstAttribute="trailing" secondItem="rwa-xF-Lwp" secondAttribute="trailing" id="pbj-TQ-RMh"/>
                                         <constraint firstItem="eM5-R5-puc" firstAttribute="leading" secondItem="3zc-UC-DiO" secondAttribute="leading" id="pnX-jy-ag6"/>
                                         <constraint firstItem="eM5-R5-puc" firstAttribute="trailing" secondItem="3zc-UC-DiO" secondAttribute="trailing" id="rTg-Rf-y6H"/>
@@ -648,8 +646,8 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="addToCalendarButton" destination="3zc-UC-DiO" id="WeG-yC-g72"/>
+                                    <outlet property="campusMapView" destination="f7c-Tu-jBf" id="h7j-Ze-f8j"/>
                                     <outlet property="locationLabel" destination="rwa-xF-Lwp" id="VY0-Gt-mwK"/>
-                                    <outlet property="mapView" destination="aSj-W8-GjJ" id="tFn-95-7EP"/>
                                     <outlet property="timeLabel" destination="frL-r9-F0c" id="cEF-bd-2kQ"/>
                                 </connections>
                             </tableViewCell>

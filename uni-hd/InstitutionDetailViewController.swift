@@ -132,14 +132,14 @@ public class InstitutionDetailViewController: UITableViewController, MFMailCompo
                 
             case .Events(let events):
                 if let talk = events[indexPath.row] as? UHDTalkItem {
-                    if let detailVC = UIStoryboard(name: "news", bundle: nil).instantiateViewControllerWithIdentifier("talkDetail") as? UHDTalkDetailViewController {
+                    if let detailVC = UIStoryboard(name: "news", bundle: NSBundle(forClass: UHDTalkDetailViewController.self)).instantiateViewControllerWithIdentifier("talkDetail") as? UHDTalkDetailViewController {
                         detailVC.talkItem = talk
                         self.navigationController?.pushViewController(detailVC, animated: true)
                     }
                 }
             
             case .News(let items):
-                if let detailVC = UIStoryboard(name: "news", bundle: nil).instantiateViewControllerWithIdentifier("newsDetail") as? UHDNewsDetailViewController {
+                if let detailVC = UIStoryboard(name: "news", bundle: NSBundle(forClass: UHDNewsDetailViewController.self)).instantiateViewControllerWithIdentifier("newsDetail") as? UHDNewsDetailViewController {
                     detailVC.newsItem = items[indexPath.row]
                     self.navigationController?.pushViewController(detailVC, animated: true)
                 }
@@ -201,11 +201,11 @@ public class InstitutionDetailViewController: UITableViewController, MFMailCompo
             if contactProperties.count > 0 {
                 sections.append(.Contact(contactProperties))
             }
-            let upcomingEvents = institution.upcomingEvents(limit: 5)
+            let upcomingEvents = institution.upcomingEvents(limit: 3)
             if upcomingEvents.count > 0 {
                 sections.append(.Events(upcomingEvents))
             }
-            let latestArticles = institution.latestArticles(limit: 5)
+            let latestArticles = institution.latestArticles(limit: 3)
             if latestArticles.count > 0 {
                 sections.append(.News(latestArticles))
             }
@@ -233,9 +233,9 @@ public class InstitutionDetailViewController: UITableViewController, MFMailCompo
         case .Locations(let locations):
             return locations.count
         case .Events(let events):
-            return min(events.count, 3)
+            return events.count
         case .News(let items):
-            return min(items.count, 3)
+            return items.count
         }
     }
     
