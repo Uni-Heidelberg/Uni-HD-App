@@ -45,7 +45,9 @@
     else {
         self.titleLabel.textColor = [UIColor darkTextColor];
     }
-    
+	
+	// Layout multiline labels for updated content
+    [self layoutIfNeeded];
 }
 
 - (NSLayoutConstraint *)favouriteSymbolHiddenConstraint {
