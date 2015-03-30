@@ -180,17 +180,17 @@
             </objects>
             <point key="canvasLocation" x="1273" y="101"/>
         </scene>
-        <!--UHDMapsSearchTableViewController-->
+        <!--Search-->
         <scene sceneID="P4O-8U-gp8">
             <objects>
-                <tableViewController storyboardIdentifier="searchResults" title="UHDMapsSearchTableViewController" id="ZZj-nU-e7L" customClass="UHDMapsSearchResultsViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="searchResults" title="Search" id="ZZj-nU-e7L" customClass="CampusSearchResultsViewController" customModule="UHDKit" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="80" sectionHeaderHeight="22" sectionFooterHeight="22" id="hEK-gx-KSa">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="buildingCell" id="Fe7-eF-7Mf" customClass="UHDBuildingCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="detailButton" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="institutionCell" id="Fe7-eF-7Mf" customClass="UHDBuildingCell">
                                 <rect key="frame" x="0.0" y="66" width="320" height="70"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Fe7-eF-7Mf" id="DLo-vk-OIq">
@@ -267,19 +267,8 @@
                         <nil key="title"/>
                     </navigationItem>
                     <nil key="simulatedTopBarMetrics"/>
-                    <connections>
-                        <outlet property="searchDisplayController" destination="RXx-IX-5mQ" id="S8h-th-6k2"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2hz-Py-ODY" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <searchDisplayController searchResultsTitle="" id="RXx-IX-5mQ">
-                    <connections>
-                        <outlet property="delegate" destination="ZZj-nU-e7L" id="H3R-NL-Lp3"/>
-                        <outlet property="searchContentsController" destination="ZZj-nU-e7L" id="Rwr-L6-Fkv"/>
-                        <outlet property="searchResultsDataSource" destination="ZZj-nU-e7L" id="q3Z-zk-ZxR"/>
-                        <outlet property="searchResultsDelegate" destination="ZZj-nU-e7L" id="sjh-Iv-waO"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="2101" y="546"/>
         </scene>

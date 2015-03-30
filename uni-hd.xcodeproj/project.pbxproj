@@ -24,6 +24,7 @@
 		87475EC219E32B300028A9BF /* VILogKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87475EBE19E32B240028A9BF /* VILogKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		8748CCF31AC9BAFC006F4F8E /* VILogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A49BA71AC1CF96004FA9A4 /* VILogger.m */; };
 		8748CCF71AC9BBE2006F4F8E /* VILogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 87A49BA61AC1CF96004FA9A4 /* VILogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8748CCFB1AC9C1B9006F4F8E /* CampusSearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8748CCFA1AC9C1B9006F4F8E /* CampusSearchResultsViewController.swift */; };
 		875F43B71A1BD250006C4112 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 875F43B61A1BD250006C4112 /* LaunchScreen.storyboard */; };
 		876C69151AB4C79600EE093B /* UHDKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 876C69141AB4C79600EE093B /* UHDKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		876C691B1AB4C79700EE093B /* UHDKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 876C69101AB4C79600EE093B /* UHDKit.framework */; };
@@ -108,12 +109,10 @@
 		876C69801AB4CB1C00EE093B /* UHDNewsCategory.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B176E791931117700D3C916 /* UHDNewsCategory.m */; };
 		876C69811AB4CB1C00EE093B /* UHDNewsRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8701CE4F190C038600A18F82 /* UHDNewsRemoteDatasourceDelegate.m */; };
 		876C69821AB4CB2300EE093B /* news.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87F826CE190D422F0008144F /* news.xcdatamodeld */; };
-		876C69841AB4CB4800EE093B /* UHDMapsSearchResultsViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B355876199BC434008053EE /* UHDMapsSearchResultsViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		876C69851AB4CB4800EE093B /* UHDConfigureMapViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B48B1CE19C75FF7009C7977 /* UHDConfigureMapViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		876C69861AB4CB4800EE093B /* UHDBuildingCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0B355879199BC923008053EE /* UHDBuildingCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		876C69871AB4CB4800EE093B /* UHDBuildingAnnotationView.h in Headers */ = {isa = PBXBuildFile; fileRef = 877AEE8619BD370300ED270D /* UHDBuildingAnnotationView.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		876C698D1AB4CB4800EE093B /* UHDMapsRemoteDatasourceDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = 0BEC8EAF1993B40A00EAB8F6 /* UHDMapsRemoteDatasourceDelegate.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		876C698F1AB4CB6300EE093B /* UHDMapsSearchResultsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B355877199BC434008053EE /* UHDMapsSearchResultsViewController.m */; };
 		876C69901AB4CB6300EE093B /* UHDConfigureMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0B48B1CF19C75FF7009C7977 /* UHDConfigureMapViewController.m */; };
 		876C69911AB4CB6300EE093B /* InstitutionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87479AA71A3FA4D70084FBDA /* InstitutionDetailViewController.swift */; };
 		876C69921AB4CB6300EE093B /* campus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87E85273195727E4007503B8 /* campus.storyboard */; };
@@ -373,8 +372,6 @@
 		0B176E6D1931114200D3C916 /* UHDNewsSourcesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UHDNewsSourcesViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0B176E781931117700D3C916 /* UHDNewsCategory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsCategory.h; sourceTree = "<group>"; };
 		0B176E791931117700D3C916 /* UHDNewsCategory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsCategory.m; sourceTree = "<group>"; };
-		0B355876199BC434008053EE /* UHDMapsSearchResultsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDMapsSearchResultsViewController.h; sourceTree = "<group>"; };
-		0B355877199BC434008053EE /* UHDMapsSearchResultsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UHDMapsSearchResultsViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0B355879199BC923008053EE /* UHDBuildingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDBuildingCell.h; sourceTree = "<group>"; };
 		0B35587A199BC923008053EE /* UHDBuildingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDBuildingCell.m; sourceTree = "<group>"; };
 		0B48B1CE19C75FF7009C7977 /* UHDConfigureMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDConfigureMapViewController.h; sourceTree = "<group>"; };
@@ -408,6 +405,7 @@
 		87479AA51A3FA4810084FBDA /* InstitutionDetailLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstitutionDetailLocationCell.swift; sourceTree = "<group>"; };
 		87479AA71A3FA4D70084FBDA /* InstitutionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstitutionDetailViewController.swift; sourceTree = "<group>"; };
 		8748CCF61AC9BB71006F4F8E /* uni-hd-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uni-hd-Bridging-Header.h"; sourceTree = "<group>"; };
+		8748CCFA1AC9C1B9006F4F8E /* CampusSearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CampusSearchResultsViewController.swift; path = UHDKit/CampusSearchResultsViewController.swift; sourceTree = SOURCE_ROOT; };
 		875396001932B03C00DFEF19 /* UHDNewsSourceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsSourceCell.h; sourceTree = "<group>"; };
 		875396011932B03C00DFEF19 /* UHDNewsSourceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsSourceCell.m; sourceTree = "<group>"; };
 		8755970D1A3492CB004AF87B /* VIMultilineLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VIMultilineLabel.swift; path = VIOSFramework/Views/VIMultilineLabel/VIMultilineLabel.swift; sourceTree = "<group>"; };
@@ -641,8 +639,7 @@
 		0B355875199BC3D1008053EE /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				0B355876199BC434008053EE /* UHDMapsSearchResultsViewController.h */,
-				0B355877199BC434008053EE /* UHDMapsSearchResultsViewController.m */,
+				8748CCFA1AC9C1B9006F4F8E /* CampusSearchResultsViewController.swift */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -1338,7 +1335,6 @@
 				876C69381AB4CA7700EE093B /* UHDFavouritesStarView.h in Headers */,
 				876C69861AB4CB4800EE093B /* UHDBuildingCell.h in Headers */,
 				876C69591AB4CAFA00EE093B /* UHDNewsDetailViewController.h in Headers */,
-				876C69841AB4CB4800EE093B /* UHDMapsSearchResultsViewController.h in Headers */,
 				876C69341AB4CA7700EE093B /* UHDMensaViewController.h in Headers */,
 				876C695A1AB4CAFA00EE093B /* UHDTalkDetailViewController.h in Headers */,
 				876C695B1AB4CAFA00EE093B /* UHDNewsSourcesViewController.h in Headers */,
@@ -1995,13 +1991,13 @@
 				87A71D891AB4CECD004C0FD3 /* UITableView+ParallaxedHeader.swift in Sources */,
 				876C696D1AB4CB1C00EE093B /* UHDNewsListViewController.m in Sources */,
 				876C69A11AB4CB7B00EE093B /* UIColor+UHDColors.m in Sources */,
-				876C698F1AB4CB6300EE093B /* UHDMapsSearchResultsViewController.m in Sources */,
 				876C69931AB4CB6300EE093B /* UHDBuildingCell.m in Sources */,
 				87D7D4F71AC5E887001083C2 /* Institution.swift in Sources */,
 				876C69971AB4CB6300EE093B /* UHDBuildingAnnotationView.m in Sources */,
 				876C697A1AB4CB1C00EE093B /* UHDTalkDetailSpaceTimeCell.m in Sources */,
 				876C699E1AB4CB6300EE093B /* UHDMapsRemoteDatasourceDelegate.m in Sources */,
 				871A08241AC84AC70026E2BD /* CampusMapView.swift in Sources */,
+				8748CCFB1AC9C1B9006F4F8E /* CampusSearchResultsViewController.swift in Sources */,
 				876C69821AB4CB2300EE093B /* news.xcdatamodeld in Sources */,
 				876C69421AB4CAB800EE093B /* UHDMensaListViewController.m in Sources */,
 				87A49BB41AC1DB44004FA9A4 /* UHDSettingsViewController.swift in Sources */,

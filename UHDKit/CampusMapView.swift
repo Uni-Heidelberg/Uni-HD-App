@@ -159,14 +159,6 @@ extension CampusMapView: MKMapViewDelegate {
         }
     }
     
-    /*- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view
-    {
-    // TODO: Only necessary because selection is strangely cleared right after tap occured
-    if (self.selectedAnnotation && view.annotation == self.selectedAnnotation) {
-    [mapView selectAnnotation:view.annotation animated:NO];
-    }
-    }*/
-    
 }
 
 

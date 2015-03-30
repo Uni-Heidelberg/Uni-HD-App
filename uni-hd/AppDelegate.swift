@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import EventKit // TODO: remove as soon as eventStore property is gone
 import VILogKit
 import UHDPersistenceKit
 import UHDRemoteKit
