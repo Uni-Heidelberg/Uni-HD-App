@@ -7,7 +7,7 @@
 //
 
 #import "UHDRemoteDatasourceManager.h"
-
+#import "VILogger.h"
 
 @interface UHDRemoteDatasourceManager ()
 
@@ -34,9 +34,18 @@
     return [self.remoteDatasources allValues];
 }
 
+- (NSTimeInterval)timeIntervalSinceRefresh {
+    NSDate *lastRefreshDate = [[NSUserDefaults standardUserDefaults] objectForKey:@"UHDUserDefaultsKeyLastRefresh"];
+    if (!lastRefreshDate) {
+        return -1;
+    } else {
+        return -[lastRefreshDate timeIntervalSinceNow];
+    }
+}
+
 - (void)refreshAllWithCompletion:(void (^)(BOOL success, NSError *error))completion
 {
-    
+    [self.logger log:@"Refreshing all datasources..." forLevel:VILogLevelInfo];
     __block int refreshQueue = 0;
     __block BOOL successAll = YES;
     for (UHDRemoteDatasource *remoteDatasource in self.allRemoteDatasources) {
@@ -45,6 +54,8 @@
             refreshQueue--;
             if (!success) successAll = NO;
             if (refreshQueue == 0) {
+                [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"UHDUserDefaultsKeyLastRefresh"];
+                [self.logger log:@"Refreshing all datasources complete." forLevel:VILogLevelInfo];
                 if (completion) completion(successAll, nil);
             }
         }];

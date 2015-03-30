@@ -87,20 +87,17 @@
     
 }
 -(NSIndexPath *)indexPathOfSelectedMensa{
-    [self.logger log:@"Loading selected mensa from user defaults..." forLevel:VILogLevelDebug];
-    
     NSNumber *mensaId = [[NSUserDefaults standardUserDefaults] objectForKey:[UHDConstants userDefaultsKeySelectedMensaId]];
     if (!mensaId) {
+        return nil;
     }
     NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:[Mensa entityName]];
     fetchRequest.predicate = [NSPredicate predicateWithFormat:@"remoteObjectId == %@", mensaId];
     NSArray *result = [self.managedObjectContext executeFetchRequest:fetchRequest error:NULL];
     if (result.count > 0) {
         Mensa *selectedMensa = result.firstObject;
-        [self.logger log:@"Found selected Mensa." object:selectedMensa.title forLevel:VILogLevelDebug];
         return [self indexPathForMensa:selectedMensa];
     } else {
-        [self.logger log:@"Selected invalid mensa." forLevel:VILogLevelError];
         return nil;
     }
 }

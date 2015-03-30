@@ -73,7 +73,6 @@ FOUNDATION_EXPORT const unsigned char UHDKitVersionString[];
 
 // Global
 
-#import <UHDKit/VILogger.h>
 #import <UHDKit/UIColor+UHDColors.h>
 #import <UHDKit/NSManagedObject+VIInsertIntoContextCategory.h>
 #import <UHDKit/VIFetchedResultsControllerDataSource.h>

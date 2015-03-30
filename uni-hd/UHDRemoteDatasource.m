@@ -8,7 +8,7 @@
 
 #import "UHDRemoteDatasource.h"
 #import "UHDPersistentStack.h"
-
+#import "VILogger.h"
 
 @interface UHDRemoteDatasource ()
 
@@ -48,24 +48,24 @@
     NSArray *remoteRefreshPaths = [self.delegate remoteRefreshPathsForRemoteDatasource:self];
     if (!remoteRefreshPaths) {
         // TODO: present NSError
-        //[self.logger log:@"Refresh Failed: remote refresh paths not set" forLevel:VILogLevelError];
+        [self.logger log:@"Refresh Failed: remote refresh paths not set" forLevel:VILogLevelError];
         if (completion) completion(NO, nil);
         return;
     }
     
-    //[self.logger log:@"Refresh started ..." object:remoteRefreshPaths forLevel:VILogLevelInfo];
+    [self.logger log:@"Refresh started ..." object:remoteRefreshPaths forLevel:VILogLevelInfo];
     
     for (NSString *remoteRefreshPath in remoteRefreshPaths) {
         // TODO: implement queue / call completion only once
         [self.objectManager getObjectsAtPath:remoteRefreshPath parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-            //[self.logger log:@"Refresh successful" object:remoteRefreshPath forLevel:VILogLevelInfo];
-            //[self.logger log:@"Mapping result" object:mappingResult forLevel:VILogLevelVerbose];
+            [self.logger log:@"Refresh successful." object:remoteRefreshPath forLevel:VILogLevelInfo];
+            [self.logger log:@"Mapping result" object:mappingResult forLevel:VILogLevelVerbose];
             if ([self.delegate respondsToSelector:@selector(remoteDatasource:didRefreshRemotePath:managedObjectContext:error:)]) {
                 [self.delegate remoteDatasource:self didRefreshRemotePath:remoteRefreshPath managedObjectContext:self.persistentStack.managedObjectContext error:nil];
             }
             if (completion) completion(YES, nil);
         } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-            //[self.logger log:@"Refresh failed" error:error];
+            [self.logger log:@"Refresh failed." error:error];
             if ([self.delegate respondsToSelector:@selector(remoteDatasource:didRefreshRemotePath:managedObjectContext:error:)]) {
                 [self.delegate remoteDatasource:self didRefreshRemotePath:remoteRefreshPath managedObjectContext:self.persistentStack.managedObjectContext error:error];
             }

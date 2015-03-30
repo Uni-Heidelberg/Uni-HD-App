@@ -22,6 +22,8 @@
 		8744482C1AC2FBED00D9CC87 /* UHDSettingsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8744482B1AC2FBED00D9CC87 /* UHDSettingsDetailViewController.swift */; };
 		87475EC119E32B300028A9BF /* VILogKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87475EBE19E32B240028A9BF /* VILogKit.framework */; };
 		87475EC219E32B300028A9BF /* VILogKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87475EBE19E32B240028A9BF /* VILogKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		8748CCF31AC9BAFC006F4F8E /* VILogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A49BA71AC1CF96004FA9A4 /* VILogger.m */; };
+		8748CCF71AC9BBE2006F4F8E /* VILogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 87A49BA61AC1CF96004FA9A4 /* VILogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		875F43B71A1BD250006C4112 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 875F43B61A1BD250006C4112 /* LaunchScreen.storyboard */; };
 		876C69151AB4C79600EE093B /* UHDKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 876C69141AB4C79600EE093B /* UHDKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		876C691B1AB4C79700EE093B /* UHDKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 876C69101AB4C79600EE093B /* UHDKit.framework */; };
@@ -150,8 +152,6 @@
 		879E285E1AC895C7008276DB /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 879E285D1AC895C7008276DB /* Node.swift */; };
 		87A49B9F1AC1BDC1004FA9A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A49B9E1AC1BDC1004FA9A4 /* Constants.swift */; };
 		87A49BA21AC1BE44004FA9A4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A49BA11AC1BE44004FA9A4 /* Constants.swift */; };
-		87A49BAA1AC1CF96004FA9A4 /* VILogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 87A49BA61AC1CF96004FA9A4 /* VILogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		87A49BAE1AC1CF96004FA9A4 /* VILogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 87A49BA71AC1CF96004FA9A4 /* VILogger.m */; };
 		87A49BAF1AC1D353004FA9A4 /* UIViewController+TabSwitching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876B73BE1A5AD21200F69C3F /* UIViewController+TabSwitching.swift */; };
 		87A49BB21AC1D804004FA9A4 /* AppImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87A49BB11AC1D804004FA9A4 /* AppImages.xcassets */; };
 		87A49BB31AC1D9FD004FA9A4 /* TabBarIcons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0ACE17E91A3F220B00732F58 /* TabBarIcons.xcassets */; };
@@ -407,6 +407,7 @@
 		87479AA31A3FA4220084FBDA /* InstitutionDetailPropertyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstitutionDetailPropertyCell.swift; sourceTree = "<group>"; };
 		87479AA51A3FA4810084FBDA /* InstitutionDetailLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstitutionDetailLocationCell.swift; sourceTree = "<group>"; };
 		87479AA71A3FA4D70084FBDA /* InstitutionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstitutionDetailViewController.swift; sourceTree = "<group>"; };
+		8748CCF61AC9BB71006F4F8E /* uni-hd-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uni-hd-Bridging-Header.h"; sourceTree = "<group>"; };
 		875396001932B03C00DFEF19 /* UHDNewsSourceCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsSourceCell.h; sourceTree = "<group>"; };
 		875396011932B03C00DFEF19 /* UHDNewsSourceCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsSourceCell.m; sourceTree = "<group>"; };
 		8755970D1A3492CB004AF87B /* VIMultilineLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VIMultilineLabel.swift; path = VIOSFramework/Views/VIMultilineLabel/VIMultilineLabel.swift; sourceTree = "<group>"; };
@@ -1130,6 +1131,7 @@
 				87CBE0931908810B0029D9AF /* uni-hd-Info.plist */,
 				87CBE0941908810B0029D9AF /* InfoPlist.strings */,
 				87A4763B1AC2EBA100877A50 /* RESTKitImportSupport.pch */,
+				8748CCF61AC9BB71006F4F8E /* uni-hd-Bridging-Header.h */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -1332,7 +1334,6 @@
 				876C69A01AB4CB7700EE093B /* UIColor+UHDColors.h in Headers */,
 				876C695E1AB4CAFA00EE093B /* UHDNewsSourceCell.h in Headers */,
 				876C69571AB4CAFA00EE093B /* UHDNewsViewController.h in Headers */,
-				87A49BAA1AC1CF96004FA9A4 /* VILogger.h in Headers */,
 				876C69611AB4CAFA00EE093B /* UHDTalkItemCell.h in Headers */,
 				876C69381AB4CA7700EE093B /* UHDFavouritesStarView.h in Headers */,
 				876C69861AB4CB4800EE093B /* UHDBuildingCell.h in Headers */,
@@ -1384,6 +1385,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8748CCF71AC9BBE2006F4F8E /* VILogger.h in Headers */,
 				8771EC7C1AB49A1300026207 /* UHDPersistentStack.h in Headers */,
 				8799A5D91AB48B6900117267 /* UHDPersistenceKit.h in Headers */,
 			);
@@ -1958,7 +1960,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87A49BAE1AC1CF96004FA9A4 /* VILogger.m in Sources */,
 				876C694E1AB4CAB800EE093B /* CircularProgressView+ConfigureForMensa.swift in Sources */,
 				8731AB911AC71270008A1844 /* CampusRegion.swift in Sources */,
 				876C697E1AB4CB1C00EE093B /* UHDNewsItem.m in Sources */,
@@ -2065,6 +2066,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8748CCF31AC9BAFC006F4F8E /* VILogger.m in Sources */,
 				8771EC7A1AB49A0400026207 /* UHDPersistentStack.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2652,6 +2654,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "uni-hd/uni-hd-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				WRAPPER_EXTENSION = app;
 			};
@@ -2675,6 +2678,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "uni-hd/uni-hd-Bridging-Header.h";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
