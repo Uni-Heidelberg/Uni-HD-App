@@ -20,4 +20,10 @@ internal class InstitutionCell: UITableViewCell {
         self.institutionImageView.image = institution.image;
     }
 
+    internal func configureForLocation(location: Location) {
+        self.titleLabel.text = location.title
+        self.subtitleLabel.text = location.subtitle
+        self.institutionImageView.image = location.image;
+    }
+
 }
