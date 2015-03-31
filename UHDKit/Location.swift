@@ -24,15 +24,7 @@ public class Location: UHDRemoteManagedObject {
         return "Location"
     }
 
-    @NSManaged private var managedTitle: String? // FIXME: this seems to be a bug in Xcode
-    public var title: String? {
-        get {
-            return self.managedTitle ?? self.campusIdentifier
-        }
-        set {
-            self.managedTitle = newValue
-        }
-    }
+    @NSManaged private var managedTitle: String?
     @NSManaged public var institutions: NSSet
     @NSManaged public var managedCurrentDistance: NSNumber? // TODO: make private when not accessed by objc anymore
     @NSManaged private var imageData: NSData? // TODO: make transient when no sample data need to be provided anymore
@@ -113,9 +105,23 @@ public class Location: UHDRemoteManagedObject {
 
 extension Location: MKAnnotation {
     
-    public var subtitle: String {
-        return ", ".join((self.institutions.allObjects as [Institution]).map({ institution -> String in
+    public var title: String? {
+        get {
+            return self.managedTitle ?? self.campusIdentifier
+        }
+        set {
+            self.managedTitle = newValue
+        }
+    }
+
+    public var subtitle: String? {
+        if self.managedTitle != nil {
+            return self.campusIdentifier
+        } else {
+            return nil
+        }
+        /*return ", ".join((self.institutions.allObjects as [Institution]).map({ institution -> String in
             return institution.title ?? "" // TODO: improve
-        }))
+        }))*/
     }
 }

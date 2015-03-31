@@ -4,6 +4,7 @@
         <attribute name="campusRegionId" optional="YES" transient="YES" attributeType="Integer 16" syncable="YES"/>
         <attribute name="number" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="campusRegion" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CampusRegion" inverseName="buildings" inverseEntity="CampusRegion" syncable="YES"/>
+        <relationship name="rooms" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Room" inverseName="building" inverseEntity="Room" syncable="YES"/>
     </entity>
     <entity name="CampusRegion" representedClassName="UHDKit.CampusRegion" parentEntity="Location" syncable="YES">
         <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
@@ -14,7 +15,6 @@
         <attribute name="email" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="imageData" optional="YES" transient="YES" attributeType="Binary" syncable="YES"/>
         <attribute name="imageURL" optional="YES" attributeType="Transformable" syncable="YES"/>
-        <attribute name="osmId" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="remoteObjectId" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
@@ -39,6 +39,10 @@
         <attribute name="longitude" attributeType="Double" syncable="YES"/>
         <relationship name="locations" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Location" inverseName="nodes" inverseEntity="Location" syncable="YES"/>
     </entity>
+    <entity name="Room" representedClassName="UHDKit.Room" parentEntity="Location" syncable="YES">
+        <attribute name="identifier" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="building" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Building" inverseName="rooms" inverseEntity="Building" syncable="YES"/>
+    </entity>
     <entity name="UHDEventItem" syncable="YES">
         <relationship name="location" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Location" inverseName="events" inverseEntity="Location" syncable="YES"/>
         <userInfo>
@@ -52,12 +56,13 @@
         </userInfo>
     </entity>
     <elements>
-        <element name="Institution" positionX="106" positionY="-85" width="128" height="238"/>
-        <element name="Building" positionX="-128" positionY="116" width="128" height="88"/>
-        <element name="CampusRegion" positionX="-324" positionY="117" width="128" height="73"/>
+        <element name="Building" positionX="-254" positionY="125" width="128" height="103"/>
+        <element name="CampusRegion" positionX="-441" positionY="126" width="128" height="73"/>
+        <element name="Institution" positionX="106" positionY="-85" width="128" height="223"/>
         <element name="Location" positionX="-216" positionY="-81" width="128" height="163"/>
         <element name="Node" positionX="-425" positionY="-81" width="128" height="88"/>
         <element name="UHDEventItem" positionX="313" positionY="185" width="128" height="58"/>
         <element name="UHDNewsSource" positionX="315" positionY="95" width="128" height="58"/>
+        <element name="Room" positionX="-65" positionY="126" width="128" height="73"/>
     </elements>
 </model>

@@ -189,6 +189,7 @@
     
     Building *inf227 = [Building insertNewObjectIntoContext:managedObjectContext];
     inf227.number = @"227";
+    inf227.title = @"Kirchhoff-Institut für Physik";
     inf227.nodes = [[NSOrderedSet alloc] initWithObjects:
                     [Node insertNewObjectWithCoordinate:CLLocationCoordinate2DMake(49.4165764, 8.6716101) intoManagedObjectContext:managedObjectContext],
                     [Node insertNewObjectWithCoordinate:CLLocationCoordinate2DMake(49.4165759, 8.6725096) intoManagedObjectContext:managedObjectContext],
@@ -201,6 +202,11 @@
     inf227.keywords = [NSSet setWithObject:kipKeyword];*/
 
     kip.location = inf227;
+    
+    Room *kipHS1 = [Room insertNewObjectIntoContext:managedObjectContext];
+    kipHS1.title = @"Otto-Haxel-Hörsaal";
+    kipHS1.identifier = @"HS 1";
+    kipHS1.building = inf227;
 
     /*Building *inf226 = [Building insertNewObjectIntoContext:managedObjectContext];
     inf226.title =@"Klaus-Tschira-Gebäude";

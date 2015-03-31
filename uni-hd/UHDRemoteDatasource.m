@@ -55,21 +55,30 @@
     
     [self.logger log:@"Refresh started ..." object:remoteRefreshPaths forLevel:VILogLevelInfo];
     
+    __block int refreshQueue = 0;
+    __block BOOL successAll = YES;
     for (NSString *remoteRefreshPath in remoteRefreshPaths) {
-        // TODO: implement queue / call completion only once
+        refreshQueue++;
         [self.objectManager getObjectsAtPath:remoteRefreshPath parameters:nil success:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-            [self.logger log:@"Refresh successful." object:remoteRefreshPath forLevel:VILogLevelInfo];
+            refreshQueue--;
+            [self.logger log:[NSString stringWithFormat:@"Refresh successful, %i remaining.", refreshQueue] object:remoteRefreshPath forLevel:VILogLevelInfo];
             [self.logger log:@"Mapping result" object:mappingResult forLevel:VILogLevelVerbose];
             if ([self.delegate respondsToSelector:@selector(remoteDatasource:didRefreshRemotePath:managedObjectContext:error:)]) {
                 [self.delegate remoteDatasource:self didRefreshRemotePath:remoteRefreshPath managedObjectContext:self.persistentStack.managedObjectContext error:nil];
             }
-            if (completion) completion(YES, nil);
+            if (refreshQueue==0) {
+                if (completion) completion(successAll, nil);
+            }
         } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-            [self.logger log:@"Refresh failed." error:error];
+            refreshQueue--;
+            successAll = NO;
+            [self.logger log:[NSString stringWithFormat:@"Refresh failed, %i remaining.", refreshQueue] error:error];
             if ([self.delegate respondsToSelector:@selector(remoteDatasource:didRefreshRemotePath:managedObjectContext:error:)]) {
                 [self.delegate remoteDatasource:self didRefreshRemotePath:remoteRefreshPath managedObjectContext:self.persistentStack.managedObjectContext error:error];
             }
-            if (completion) completion(NO, error);
+            if (refreshQueue==0) {
+                if (completion) completion(successAll, nil);
+            }
         }];
     }
     

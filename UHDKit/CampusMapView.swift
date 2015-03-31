@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 public class CampusMapView: UIView {
     
@@ -132,12 +133,15 @@ extension CampusMapView: MKMapViewDelegate {
     }
     
     public func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView? {
-        if let building = annotation as? Building {
-            let buildingAnnotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("buildingAnnotation") as? UHDBuildingAnnotationView ?? UHDBuildingAnnotationView(annotation: building, reuseIdentifier: "buildingAnnotation")
-            buildingAnnotationView?.canShowCallout = true
-            buildingAnnotationView?.annotation = building
-            buildingAnnotationView?.shouldHideImage = true
-            return buildingAnnotationView
+        if let location = annotation as? Location {
+            let locationAnnotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("locationAnnotation") as? LocationAnnotationView ?? LocationAnnotationView(annotation: annotation, reuseIdentifier: "locationAnnotation")! // FIXME: remove forced unwrapping
+            locationAnnotationView.configureForLocation(location)
+            if self.userInteractionEnabled {
+                locationAnnotationView.rightCalloutAccessoryView = UIButton.buttonWithType(.DetailDisclosure) as UIButton
+            } else {
+                locationAnnotationView.rightCalloutAccessoryView = nil
+            }
+            return locationAnnotationView
         }
         return nil
     }

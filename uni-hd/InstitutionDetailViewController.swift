@@ -8,6 +8,7 @@
 
 import UIKit
 import MessageUI
+import MapKit
 
 public class InstitutionDetailViewController: UITableViewController, MFMailComposeViewControllerDelegate {
 

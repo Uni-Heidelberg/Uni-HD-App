@@ -54,12 +54,6 @@ FOUNDATION_EXPORT const unsigned char UHDKitVersionString[];
 #import <UHDKit/UHDTalkItem.h>
 
 
-// Maps
-
-// View
-#import <UHDKit/UHDBuildingAnnotationView.h>
-
-
 // Remote Datasource Delegates
 
 #import <UHDKit/UHDMensaRemoteDatasourceDelegate.h>

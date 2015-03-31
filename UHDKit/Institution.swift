@@ -9,6 +9,7 @@
 import Foundation
 import CoreData
 import UHDRemoteKit
+import MapKit
 
 public class Institution: UHDRemoteManagedObject {
 

@@ -52,6 +52,7 @@
         refreshQueue++;
         [remoteDatasource refreshWithCompletion:^(BOOL success, NSError *error) {
             refreshQueue--;
+            [self.logger log:@"Datasources remaining in refresh queue:" object:@(refreshQueue) forLevel:VILogLevelDebug];
             if (!success) successAll = NO;
             if (refreshQueue == 0) {
                 [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"UHDUserDefaultsKeyLastRefresh"];

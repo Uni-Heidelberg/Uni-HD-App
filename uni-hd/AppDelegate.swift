@@ -109,9 +109,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let managedObjectContext = self.persistentStack.managedObjectContext
         
-        // Retrieve Campus regions
-        let buildingsFetchRequest = NSFetchRequest(entityName: Building.entityName())
-        let buildings = managedObjectContext.executeFetchRequest(buildingsFetchRequest, error: nil)! as [Building]
+        // Retrieve locations
+        let locationsFetchRequest = NSFetchRequest(entityName: Location.entityName())
+        let locations = managedObjectContext.executeFetchRequest(locationsFetchRequest, error: nil)! as [Location]
         // Retrieve institutions
         let institutionsFetchRequest = NSFetchRequest(entityName: Institution.entityName())
         let institutions = managedObjectContext.executeFetchRequest(institutionsFetchRequest, error: nil)! as [Institution]
@@ -160,7 +160,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
                 if let campusIdentifier = associatedBuildingCampusIdentifier {
                     if institution.location == nil {
-                        institution.location = buildings.filter({ $0.campusIdentifier == campusIdentifier }).first
+                        institution.location = locations.filter({ $0.campusIdentifier == campusIdentifier }).first
                     }
                 }
                 if let newsSourceTitle = associatedNewsSourceTitle {
@@ -175,22 +175,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
 
         // Associate locations to events
-        let eventsInKIPFetchRequest = NSFetchRequest(entityName: UHDEventItem.entityName())
-        eventsInKIPFetchRequest.predicate = NSPredicate(format: "buildingString LIKE[cd] %@", "Kirchhoff-Institut für Physik")
-        if let eventsInKIP = managedObjectContext.executeFetchRequest(eventsInKIPFetchRequest, error: nil) as? [UHDEventItem] {
-            for event in eventsInKIP {
+        let eventsFetchRequest = NSFetchRequest(entityName: UHDEventItem.entityName())
+        if let events = managedObjectContext.executeFetchRequest(eventsFetchRequest, error: nil) as? [UHDEventItem] {
+            for event in events {
                 if event.location == nil {
-                    event.location = buildings.filter({ $0.campusIdentifier == "INF 227" }).first
-                }
-                if event.source.institution == nil {
-                    event.source.institution = institutions.filter({ $0.title == "Kirchhoff-Institut für Physik" }).first
+                    let matchingLocations = locations.filter({ location in
+                        switch location {
+                        case let building as Building:
+                            return building.title != nil && building.title == event.buildingString
+                        case let room as Room:
+                            return room.title != nil && room.title == event.roomString
+                        default:
+                            return false
+                        }
+                    })
+                    event.location = matchingLocations.filter({ $0 is Room }).first ?? matchingLocations.first
                 }
             }
         }
         
         // Associate news sources to institutions
-        sources.filter({ $0.title != nil && $0.title == "Kirchhoff Institut für Physik" }).first?.institution = institutions.filter({ $0.title == "Kirchhoff-Institut für Physik" }).first
-        
+        for sourceTitle in [ "Kirchhoff Institut für Physik", "Physikalisches Kolloquium", "Particle Colloquium" ] {
+            sources.filter({ $0.title != nil && $0.title == sourceTitle }).first?.institution = institutions.filter({ $0.title == "Kirchhoff-Institut für Physik" }).first
+        }
+            
         // Distinguish between news and events sources
         
         if let sources = managedObjectContext.executeFetchRequest(sourcesFetchRequest, error: nil) as? [UHDNewsSource] {

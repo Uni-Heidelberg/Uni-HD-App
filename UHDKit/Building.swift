@@ -18,6 +18,7 @@ public class Building: Location {
     @NSManaged public var number: String?
     @NSManaged public var campusRegionId: NSNumber?
     @NSManaged public var campusRegion: CampusRegion?
+    @NSManaged public var rooms: NSSet
 
     override public var campusIdentifier: String? {
         if let campusRegionIdentifier = self.campusRegion?.campusIdentifier {
