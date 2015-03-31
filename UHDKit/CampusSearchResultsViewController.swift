@@ -55,15 +55,27 @@ public class CampusSearchResultsViewController: UITableViewController {
     }
     
     public override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let selectedItem = self.institutionsFetchedResultsControllerDataSource.fetchedResultsController.objectAtIndexPath(indexPath) as Institution
-        self.delegate?.searchResultsViewController(self, didSelectInstitution: selectedItem)
+        let selectedItem = self.fetchedResultsControllerDataSourceForSection(indexPath.section)!.fetchedResultsController.objectAtIndexPath(NSIndexPath(forRow: indexPath.row, inSection: 0)) as NSManagedObject
+        switch selectedItem {
+        case let institution as Institution:
+            self.delegate?.searchResultsViewController(self, didSelectInstitution: institution)
+        case let location as Location:
+            self.delegate?.searchResultsViewController(self, didSelectLocation: location)
+        default:
+            break
+        }
     }
     
     public override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-        let selectedItem = self.institutionsFetchedResultsControllerDataSource.fetchedResultsController.objectAtIndexPath(indexPath) as Institution
-        if let detailVC = self.storyboard?.instantiateViewControllerWithIdentifier("institutionDetail") as? InstitutionDetailViewController {
-            detailVC.institution = selectedItem
-            //((self.parentViewController as? UISearchController)?.delegate as? UIViewController)?.navigationController?.pushViewController(detailVC, animated: true) // TODO: this is super dirty, use segue instead
+        let selectedItem = self.fetchedResultsControllerDataSourceForSection(indexPath.section)!.fetchedResultsController.objectAtIndexPath(NSIndexPath(forRow: indexPath.row, inSection: 0)) as NSManagedObject
+        switch selectedItem {
+        case let institution as Institution:
+            if let detailVC = self.storyboard?.instantiateViewControllerWithIdentifier("institutionDetail") as? InstitutionDetailViewController {
+                detailVC.institution = institution
+                //((self.parentViewController as? UISearchController)?.delegate as? UIViewController)?.navigationController?.pushViewController(detailVC, animated: true) // TODO: this is super dirty, use segue instead
+            }
+        default:
+            break
         }
     }
 }
@@ -147,5 +159,6 @@ extension CampusSearchResultsViewController: UISearchResultsUpdating {
 public protocol CampusSearchResultsViewControllerDelegate {
     
     func searchResultsViewController(viewController: CampusSearchResultsViewController, didSelectInstitution institution: Institution)
+    func searchResultsViewController(viewController: CampusSearchResultsViewController, didSelectLocation location: Location)
     
 }

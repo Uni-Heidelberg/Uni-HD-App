@@ -136,7 +136,11 @@ extension CampusViewController: CampusSearchResultsViewControllerDelegate {
             self.showLocation(location, animated: true)
         }
     }
-    
+
+    public func searchResultsViewController(viewController: CampusSearchResultsViewController, didSelectLocation location: Location) {
+        self.showLocation(location, animated: true)
+    }
+
 }
 
 
