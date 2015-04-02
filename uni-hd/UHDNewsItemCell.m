@@ -24,8 +24,6 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *sourceIconImageView;
 
-@property (weak, nonatomic) IBOutlet UIView *readIndicatorView;
-
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageSpacingLayoutConstraint;
 @property (nonatomic) CGFloat imageSpacingConstraintInitialConstant;
 
@@ -35,9 +33,11 @@
 @implementation UHDNewsItemCell
 
 - (void)awakeFromNib {
+
     [super awakeFromNib];
     self.imageSpacingConstraintInitialConstant = self.imageSpacingLayoutConstraint.constant;
 }
+
 
 - (void)configureForItem:(UHDNewsItem *)item {
     
@@ -51,8 +51,23 @@
     dateFormatter.dateStyle = NSDateFormatterMediumStyle;
     self.dateLabel.text = [dateFormatter stringFromDate:item.date];
     
-    // Configure read indicator
-	self.readIndicatorView.hidden = item.read;
+    // Configure read indication
+	if (item.read) {
+		self.titleLabel.textColor = [UIColor lightGrayColor];
+		self.sourceLabel.textColor = [UIColor lightGrayColor];
+		self.dateLabel.textColor = [UIColor lightGrayColor];
+		self.abstractLabel.textColor = [UIColor lightGrayColor];
+		self.sourceIconImageView.alpha = 0.5;
+		self.newsImageView.alpha = 0.5;
+	}
+	else {
+		self.titleLabel.textColor = [UIColor blackColor];
+		self.sourceLabel.textColor = [UIColor darkGrayColor];
+		self.dateLabel.textColor = [UIColor darkGrayColor];
+		self.abstractLabel.textColor = [UIColor darkGrayColor];
+		self.sourceIconImageView.alpha = 1.0;
+		self.newsImageView.alpha = 1.0;
+	}
     
     // Configure Image
 	self.sourceIconImageView.image = item.source.image;
@@ -62,11 +77,12 @@
 	} else {
 		self.imageSpacingLayoutConstraint.constant = 0;
 	}
-
-    // Layout multiline labels for updated content
-    [self layoutIfNeeded];
+	[self setNeedsUpdateConstraints];
+	[self updateConstraintsIfNeeded];
 	
-	//[self.logger log:[NSString stringWithFormat:@"Height of symbol: %f", self.readIndicatorImageView.bounds.size.height] forLevel:VILogLevelDebug];
+	// layout multiline labels for updated content
+	[self setNeedsLayout];
+	[self layoutIfNeeded];
 }
 
 @end
