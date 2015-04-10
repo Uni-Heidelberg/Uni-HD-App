@@ -20,7 +20,7 @@ public class CampusSearchResultsViewController: UITableViewController {
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         let dataSource = VIFetchedResultsControllerDataSource(fetchedResultsController: fetchedResultsController, tableView: self.tableView, cellIdentifier: "institutionCell", configureCellBlock: { cell, item in
             if let cell = cell as? InstitutionCell {
-                cell.configureForInstitution(item as Institution)
+                cell.configureForInstitution(item as! Institution)
             }
         })
         return dataSource
@@ -43,12 +43,12 @@ public class CampusSearchResultsViewController: UITableViewController {
     }
     
     public override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let selectedItem = self.institutionsFetchedResultsControllerDataSource.fetchedResultsController.objectAtIndexPath(indexPath) as Institution
+        let selectedItem = self.institutionsFetchedResultsControllerDataSource.fetchedResultsController.objectAtIndexPath(indexPath) as! Institution
         self.delegate?.searchResultsViewController(self, didSelectInstitution: selectedItem)
     }
     
     public override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-        let selectedItem = self.institutionsFetchedResultsControllerDataSource.fetchedResultsController.objectAtIndexPath(indexPath) as Institution
+        let selectedItem = self.institutionsFetchedResultsControllerDataSource.fetchedResultsController.objectAtIndexPath(indexPath) as! Institution
         if let detailVC = self.storyboard?.instantiateViewControllerWithIdentifier("institutionDetail") as? InstitutionDetailViewController {
             detailVC.institution = selectedItem
             //((self.parentViewController as? UISearchController)?.delegate as? UIViewController)?.navigationController?.pushViewController(detailVC, animated: true) // TODO: this is super dirty, use segue instead
@@ -63,7 +63,7 @@ extension CampusSearchResultsViewController: UISearchResultsUpdating {
         let searchTerms = searchText.componentsSeparatedByCharactersInSet(NSCharacterSet.whitespaceCharacterSet())
         //NSString *predicateFormat = @"(title CONTAINS[cd] %@) OR (buildingNumber CONTAINS[cd] %@) OR (campusRegion.title CONTAINS[cd] %@) OR (campusRegion.identifier CONTAINS[cd] %@) OR (ANY keywords.content CONTAINS[cd] %@)";
         let predicateFormat = "title CONTAINS[cd] %@"
-        let predicate = NSCompoundPredicate(type: .AndPredicateType, subpredicates: searchTerms.map({ NSPredicate(format: predicateFormat, $0)! }))
+        let predicate = NSCompoundPredicate(type: .AndPredicateType, subpredicates: searchTerms.map({ NSPredicate(format: predicateFormat, $0) }))
         
         self.institutionsFetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = predicate
         self.institutionsFetchedResultsControllerDataSource.fetchedResultsController.performFetch(nil)

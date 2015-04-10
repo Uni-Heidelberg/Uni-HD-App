@@ -116,7 +116,7 @@ public class MensaDayPicker: UIView {
     }
     
     private func adjustItemSize() {
-        (collectionView.collectionViewLayout as UICollectionViewFlowLayout).itemSize = CGSize(width: itemWidth, height: collectionView.bounds.height)
+        (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize = CGSize(width: itemWidth, height: collectionView.bounds.height)
         collectionView.collectionViewLayout.invalidateLayout() // TODO: make sure this works
         collectionView.contentSize = collectionView.collectionViewLayout.collectionViewContentSize() // TODO: check this. contentSize is zeros otherwise and initial scrolling does not work.
     }
@@ -176,7 +176,7 @@ extension MensaDayPicker: UICollectionViewDataSource {
     public func collectionView(collectionView: UICollectionView,
         cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
     {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("mensaDayPickerCell", forIndexPath: indexPath) as MensaDayPickerCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("mensaDayPickerCell", forIndexPath: indexPath) as! MensaDayPickerCell
         let date = dateForIndexPath(indexPath)
         cell.configureForDate(date)
         cell.enabled = delegate?.dayPicker?(self, canSelectDate: date) ?? true
@@ -228,7 +228,7 @@ extension MensaDayPicker: UICollectionViewDelegate {
             return
         }
 
-        let itemWidth = (collectionView.collectionViewLayout as UICollectionViewFlowLayout).itemSize.width
+        let itemWidth = (collectionView.collectionViewLayout as! UICollectionViewFlowLayout).itemSize.width
         let indexOfItemToSnap = Int(round(targetContentOffset.memory.x / itemWidth))
         
         if indexOfItemToSnap + 1 == collectionView.numberOfItemsInSection(0) { // handle last item

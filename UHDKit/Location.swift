@@ -41,7 +41,7 @@ public class Location: UHDRemoteManagedObject {
     
     public var outline: MKPolygon? {
         if nodes.count > 0 {
-            var outlineCoordinates = (nodes.array as [Node]).map { $0.coordinate }
+            var outlineCoordinates = (nodes.array as! [Node]).map { $0.coordinate }
             return MKPolygon(coordinates: &outlineCoordinates, count: outlineCoordinates.count)
         } else {
             return nil
@@ -114,7 +114,7 @@ public class Location: UHDRemoteManagedObject {
 extension Location: MKAnnotation {
     
     public var subtitle: String {
-        return ", ".join((self.institutions.allObjects as [Institution]).map({ institution -> String in
+        return ", ".join((self.institutions.allObjects as! [Institution]).map({ institution -> String in
             return institution.title ?? "" // TODO: improve
         }))
     }

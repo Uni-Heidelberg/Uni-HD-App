@@ -67,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let initialViewController = { (storyboardName: String, storyboardBundle: NSBundle, iconPrefix: String, localizedTitle: String ) -> UIViewController in
             let storyboard = UIStoryboard(name: storyboardName, bundle: storyboardsBundle)
-            let initialVC = storyboard.instantiateInitialViewController() as UIViewController
+            let initialVC = storyboard.instantiateInitialViewController() as! UIViewController
             // TODO: move selectedImage settings to storyboard when issue is resolved: can't find selectedImage in framework bundle
             initialVC.tabBarItem.title = localizedTitle
             initialVC.tabBarItem.image = UIImage(named: iconPrefix + "Icon", inBundle:storyboardBundle, compatibleWithTraitCollection: nil)
@@ -75,20 +75,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return initialVC
         }
         
-        let mensaNavC = initialViewController("mensa", storyboardsBundle, "mensa", NSLocalizedString("Mensa", comment: "tab bar title")) as UINavigationController
-        (mensaNavC.topViewController as UHDMensaViewController).managedObjectContext = managedObjectContext
-        let newsNavC = initialViewController("news", storyboardsBundle, "news", NSLocalizedString("News", comment: "tab bar title")) as UINavigationController
-        let newsVC = newsNavC.topViewController as UHDNewsViewController
+        let mensaNavC = initialViewController("mensa", storyboardsBundle, "mensa", NSLocalizedString("Mensa", comment: "tab bar title")) as! UINavigationController
+        (mensaNavC.topViewController as! UHDMensaViewController).managedObjectContext = managedObjectContext
+        let newsNavC = initialViewController("news", storyboardsBundle, "news", NSLocalizedString("News", comment: "tab bar title")) as! UINavigationController
+        let newsVC = newsNavC.topViewController as! UHDNewsViewController
         newsVC.managedObjectContext = managedObjectContext
         newsVC.displayMode = UHDNewsEventsDisplayModeNews
-        let eventsNavC = initialViewController("news", storyboardsBundle, "events", NSLocalizedString("Veranstaltungen", comment: "tab bar title")) as UINavigationController
-        let eventsVC = eventsNavC.topViewController as UHDNewsViewController
+        let eventsNavC = initialViewController("news", storyboardsBundle, "events", NSLocalizedString("Veranstaltungen", comment: "tab bar title")) as! UINavigationController
+        let eventsVC = eventsNavC.topViewController as! UHDNewsViewController
         eventsVC.managedObjectContext = managedObjectContext
         eventsVC.displayMode = UHDNewsEventsDisplayModeEvents
-        let campusNavC = initialViewController("campus", storyboardsBundle, "maps", NSLocalizedString("Campus", comment: "tab bar title")) as UINavigationController
-        (campusNavC.topViewController as CampusViewController).managedObjectContext = managedObjectContext
-        let settingsNavC = initialViewController("settings", storyboardsBundle, "settings", NSLocalizedString("Konfiguration", comment: "tab bar title")) as UINavigationController
-        (settingsNavC.topViewController as UHDSettingsViewController).managedObjectContext = managedObjectContext
+        let campusNavC = initialViewController("campus", storyboardsBundle, "maps", NSLocalizedString("Campus", comment: "tab bar title")) as! UINavigationController
+        (campusNavC.topViewController as! CampusViewController).managedObjectContext = managedObjectContext
+        let settingsNavC = initialViewController("settings", storyboardsBundle, "settings", NSLocalizedString("Konfiguration", comment: "tab bar title")) as! UINavigationController
+        (settingsNavC.topViewController as! UHDSettingsViewController).managedObjectContext = managedObjectContext
         
         let tabBarController = UITabBarController()
         tabBarController.viewControllers = [ mensaNavC, newsNavC, eventsNavC, campusNavC, settingsNavC ]
@@ -111,13 +111,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Retrieve Campus regions
         let buildingsFetchRequest = NSFetchRequest(entityName: Building.entityName())
-        let buildings = managedObjectContext.executeFetchRequest(buildingsFetchRequest, error: nil)! as [Building]
+        let buildings = managedObjectContext.executeFetchRequest(buildingsFetchRequest, error: nil)! as! [Building]
         // Retrieve institutions
         let institutionsFetchRequest = NSFetchRequest(entityName: Institution.entityName())
-        let institutions = managedObjectContext.executeFetchRequest(institutionsFetchRequest, error: nil)! as [Institution]
+        let institutions = managedObjectContext.executeFetchRequest(institutionsFetchRequest, error: nil)! as! [Institution]
         // Retrieve news sources
         let sourcesFetchRequest = NSFetchRequest(entityName: UHDNewsSource.entityName())
-        let sources = managedObjectContext.executeFetchRequest(sourcesFetchRequest, error: nil)! as [UHDNewsSource]
+        let sources = managedObjectContext.executeFetchRequest(sourcesFetchRequest, error: nil)! as! [UHDNewsSource]
 
         // Retrieve Studentenwerk institution
         let stwFetchRequest = NSFetchRequest(entityName: Institution.entityName())
@@ -247,7 +247,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let campusModel = NSManagedObjectModel(contentsOfURL: modelsBundle.URLForResource("campus", withExtension: "momd")!)!
         let managedObjectModel = self.modelByMergingModels([ mensaModel, newsModel, campusModel ], foreignEntityNameKey: "UHDForeignEntityNameKey")
         
-        let persistentStoreURL = (NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last as NSURL).URLByAppendingPathComponent("uni-hd.sqlite")
+        let persistentStoreURL = (NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).last as! NSURL).URLByAppendingPathComponent("uni-hd.sqlite")
         
         return UHDPersistentStack(managedObjectModel: managedObjectModel, persistentStoreURL: persistentStoreURL)
     }()
@@ -262,31 +262,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         var mergedModelEntities = [NSEntityDescription]()
         var ignoredSubentities = [String : [NSEntityDescription]]()
         for model in models {
-            for entity in model.entities as [NSEntityDescription] {
+            for entity in model.entities as! [NSEntityDescription] {
                 if let foreignEntityName = entity.userInfo?[foreignEntityNameKey] as? String {
                     // Ignore placeholder
                     // TODO: use this key to actually map differently-named entities
                     // remember subentities to re-establish later
                     var subentities = ignoredSubentities[entity.name!] ?? [NSEntityDescription]()
-                    subentities += entity.subentities as [NSEntityDescription]
+                    subentities += entity.subentities as! [NSEntityDescription]
                     ignoredSubentities[entity.name!] = subentities
                 } else {
-                    mergedModelEntities.append(entity.copy() as NSEntityDescription)
+                    mergedModelEntities.append(entity.copy() as! NSEntityDescription)
                 }
             }
         }
         mergedModel.entities = mergedModelEntities
         
         // Merge subentities
-        let entitiesByName = mergedModel.entitiesByName as [String : NSEntityDescription]
-        for entity in mergedModel.entities as [NSEntityDescription] {
+        let entitiesByName = mergedModel.entitiesByName as! [String : NSEntityDescription]
+        for entity in mergedModel.entities as! [NSEntityDescription] {
             var mergedSubentities = [NSEntityDescription]()
             if let ignored = ignoredSubentities[entity.name!] {
                 for ignoredSubentity in ignored {
                     mergedSubentities.append(entitiesByName[ignoredSubentity.name!]!)
                 }
             }
-            for subentity in entity.subentities as [NSEntityDescription] {
+            for subentity in entity.subentities as! [NSEntityDescription] {
                 mergedSubentities.append(entitiesByName[subentity.name!]!)
             }
             entity.subentities = mergedSubentities
