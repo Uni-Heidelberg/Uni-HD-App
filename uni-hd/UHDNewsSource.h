@@ -23,7 +23,6 @@
 @property (nonatomic) BOOL isEventSource;
 
 - (NSMutableSet *)mutableNewsItems;
-- (NSMutableSet *)mutableAssociatedBuildings;
 
 @property (nonatomic, readonly) UIImage *image;
 @property (nonatomic) UHDNewsCategory *category;

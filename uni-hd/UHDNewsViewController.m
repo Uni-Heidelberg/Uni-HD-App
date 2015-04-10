@@ -466,8 +466,8 @@ typedef enum : NSUInteger {
 	}
     UHDNewsListViewController *newsListVC = [self.storyboard instantiateViewControllerWithIdentifier:@"newsList"];
     newsListVC.pageIndex = pageIndex;
-	newsListVC.displayMode = self.displayMode;
 	newsListVC.sources = sources;
+	newsListVC.displayMode = self.displayMode;
 	
 	// cache view controller
 	[self.newsListViewControllerCache replaceObjectAtIndex:pageIndex withObject:newsListVC];

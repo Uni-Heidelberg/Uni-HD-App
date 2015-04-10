@@ -20,7 +20,7 @@ public class CampusSearchResultsViewController: UITableViewController {
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         let dataSource = VIFetchedResultsControllerDataSource(fetchedResultsController: fetchedResultsController, tableView: nil, cellIdentifier: "institutionCell", configureCellBlock: { cell, item in
             if let cell = cell as? InstitutionCell {
-                cell.configureForInstitution(item as Institution)
+                cell.configureForInstitution(item as! Institution)
             }
         })
         return dataSource
@@ -32,7 +32,7 @@ public class CampusSearchResultsViewController: UITableViewController {
         let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.managedObjectContext, sectionNameKeyPath: nil, cacheName: nil)
         let dataSource = VIFetchedResultsControllerDataSource(fetchedResultsController: fetchedResultsController, tableView: nil, cellIdentifier: "institutionCell", configureCellBlock: { cell, item in
             if let cell = cell as? InstitutionCell {
-                cell.configureForLocation(item as Location)
+                cell.configureForLocation(item as! Location)
             }
         })
         return dataSource
@@ -55,7 +55,7 @@ public class CampusSearchResultsViewController: UITableViewController {
     }
     
     public override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let selectedItem = self.fetchedResultsControllerDataSourceForSection(indexPath.section)!.fetchedResultsController.objectAtIndexPath(NSIndexPath(forRow: indexPath.row, inSection: 0)) as NSManagedObject
+        let selectedItem = self.fetchedResultsControllerDataSourceForSection(indexPath.section)!.fetchedResultsController.objectAtIndexPath(NSIndexPath(forRow: indexPath.row, inSection: 0)) as! NSManagedObject
         switch selectedItem {
         case let institution as Institution:
             self.delegate?.searchResultsViewController(self, didSelectInstitution: institution)
@@ -67,7 +67,7 @@ public class CampusSearchResultsViewController: UITableViewController {
     }
     
     public override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-        let selectedItem = self.fetchedResultsControllerDataSourceForSection(indexPath.section)!.fetchedResultsController.objectAtIndexPath(NSIndexPath(forRow: indexPath.row, inSection: 0)) as NSManagedObject
+        let selectedItem = self.fetchedResultsControllerDataSourceForSection(indexPath.section)!.fetchedResultsController.objectAtIndexPath(NSIndexPath(forRow: indexPath.row, inSection: 0)) as! NSManagedObject
         switch selectedItem {
         case let institution as Institution:
             if let detailVC = self.storyboard?.instantiateViewControllerWithIdentifier("institutionDetail") as? InstitutionDetailViewController {
@@ -106,8 +106,8 @@ extension CampusSearchResultsViewController {
     
     public override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let fetchedResultsControllerDataSource = self.fetchedResultsControllerDataSourceForSection(indexPath.section)!
-        let cell = tableView.dequeueReusableCellWithIdentifier(fetchedResultsControllerDataSource.cellIdentifier) as UITableViewCell
-        let item = fetchedResultsControllerDataSource.fetchedResultsController.objectAtIndexPath(NSIndexPath(forRow: indexPath.row, inSection: 0)) as NSManagedObject
+        let cell = tableView.dequeueReusableCellWithIdentifier(fetchedResultsControllerDataSource.cellIdentifier) as! UITableViewCell
+        let item = fetchedResultsControllerDataSource.fetchedResultsController.objectAtIndexPath(NSIndexPath(forRow: indexPath.row, inSection: 0)) as! NSManagedObject
         fetchedResultsControllerDataSource.configureCellBlock(cell, item)
         return cell
     }
@@ -140,10 +140,10 @@ extension CampusSearchResultsViewController: UISearchResultsUpdating {
             //NSString *predicateFormat = @"(title CONTAINS[cd] %@) OR (buildingNumber CONTAINS[cd] %@) OR (campusRegion.title CONTAINS[cd] %@) OR (campusRegion.identifier CONTAINS[cd] %@) OR (ANY keywords.content CONTAINS[cd] %@)";
             
             let institutionsPredicateFormat = "title CONTAINS[cd] %@"
-            let institutionsPredicate = NSCompoundPredicate(type: .AndPredicateType, subpredicates: searchTerms.map({ NSPredicate(format: institutionsPredicateFormat, $0)! }))
+            let institutionsPredicate = NSCompoundPredicate(type: .AndPredicateType, subpredicates: searchTerms.map({ NSPredicate(format: institutionsPredicateFormat, $0) }))
             self.institutionsFetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = institutionsPredicate
             let locationsPredicateFormat = "managedTitle CONTAINS[cd] %@"
-            let locationsPredicate = NSCompoundPredicate(type: .AndPredicateType, subpredicates: searchTerms.map({ NSPredicate(format: locationsPredicateFormat, $0)! }))
+            let locationsPredicate = NSCompoundPredicate(type: .AndPredicateType, subpredicates: searchTerms.map({ NSPredicate(format: locationsPredicateFormat, $0) }))
             self.locationsFetchedResultsControllerDataSource.fetchedResultsController.fetchRequest.predicate = locationsPredicate
         }
         self.institutionsFetchedResultsControllerDataSource.reloadData()

@@ -11,7 +11,6 @@
 @interface UHDMensaSectionHeaderView : UITableViewHeaderFooterView
 
 @property (weak, nonatomic) IBOutlet UILabel *sectionHeaderLabel;
-@property (nonatomic, readonly, retain) IBOutlet UIView *contentView;
 - (IBAction)mensenButtonPressed:(id)sender;
 @property (strong, nonatomic) IBOutlet UIButton *mensenButton;
 

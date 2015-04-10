@@ -33,7 +33,7 @@ public class Location: UHDRemoteManagedObject {
     
     public var outline: MKPolygon? {
         if nodes.count > 0 {
-            var outlineCoordinates = (nodes.array as [Node]).map { $0.coordinate }
+            var outlineCoordinates = (nodes.array as! [Node]).map { $0.coordinate }
             return MKPolygon(coordinates: &outlineCoordinates, count: outlineCoordinates.count)
         } else {
             return nil

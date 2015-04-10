@@ -137,7 +137,7 @@ extension CampusMapView: MKMapViewDelegate {
             let locationAnnotationView = mapView.dequeueReusableAnnotationViewWithIdentifier("locationAnnotation") as? LocationAnnotationView ?? LocationAnnotationView(annotation: annotation, reuseIdentifier: "locationAnnotation")! // FIXME: remove forced unwrapping
             locationAnnotationView.configureForLocation(location)
             if self.userInteractionEnabled {
-                locationAnnotationView.rightCalloutAccessoryView = UIButton.buttonWithType(.DetailDisclosure) as UIButton
+                locationAnnotationView.rightCalloutAccessoryView = UIButton.buttonWithType(.DetailDisclosure) as! UIButton
             } else {
                 locationAnnotationView.rightCalloutAccessoryView = nil
             }

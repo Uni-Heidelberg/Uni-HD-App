@@ -14,7 +14,7 @@ extension UIViewController {
     
     public func showLocation(location: Location, animated: Bool) {
         self.showTabBarItemAtIndex(3, animated: animated) { (tabBarController, previousSelectedIndex) in
-            if let mapsNavC = tabBarController.selectedViewController? as? UINavigationController {
+            if let mapsNavC = tabBarController.selectedViewController as? UINavigationController {
                 if let mapsVC = mapsNavC.viewControllers.first as? CampusViewController {
                     mapsNavC.popToViewController(mapsVC, animated: animated&&tabBarController.selectedIndex==previousSelectedIndex)
                     mapsVC.showLocation(location, animated: animated)
@@ -36,10 +36,10 @@ extension UIViewController {
         if let presentingViewController = self.presentingViewController {
             // dismiss when presented modally
             presentingViewController.dismissViewControllerAnimated(animated, completion: nil)
-            presentingViewController.showTabBarItemAtIndex(index, animated: animated, completion)
+            presentingViewController.showTabBarItemAtIndex(index, animated: animated, completion: completion)
         } else if let tabBarController = self.tabBarController {
             // forward to tab bar controller in hierarchy
-            tabBarController.showTabBarItemAtIndex(index, animated: animated, completion)
+            tabBarController.showTabBarItemAtIndex(index, animated: animated, completion: completion)
         } else if let tabBarController = self as? UITabBarController {
             // arrived at main tab bar controller
             // switch to appropriate tab and configure

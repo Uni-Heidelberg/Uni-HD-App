@@ -197,7 +197,7 @@ public class InstitutionDetailViewController: UITableViewController, MFMailCompo
     
     private var sections: [Section] {
         if let institution = self.institution {
-            var sections: [Section] = [ .Title, .Locations(institution.locations.allObjects as [Location]) ]
+            var sections: [Section] = [ .Title, .Locations(institution.locations.allObjects as! [Location]) ]
             let contactProperties = institution.contactProperties
             if contactProperties.count > 0 {
                 sections.append(.Contact(contactProperties))
@@ -249,7 +249,7 @@ public class InstitutionDetailViewController: UITableViewController, MFMailCompo
         case .Title:
             switch indexPath.row {
             case 1:
-                let cell = tableView.dequeueReusableCellWithIdentifier("mensaInfoCell", forIndexPath: indexPath) as UITableViewCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("mensaInfoCell", forIndexPath: indexPath) as! UITableViewCell
                 if let mensa = institution as? Mensa {
                     if let statusLabel = cell.viewWithTag(1) as? UILabel { // TODO: implement properly
                         statusLabel.attributedText = mensa.attributedStatusDescription
@@ -257,7 +257,7 @@ public class InstitutionDetailViewController: UITableViewController, MFMailCompo
                 }
                 return cell
             default:
-                let cell = tableView.dequeueReusableCellWithIdentifier("titleCell", forIndexPath: indexPath) as InstitutionDetailTitleCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("titleCell", forIndexPath: indexPath) as! InstitutionDetailTitleCell
                 cell.titleLabel.text = institution.title
                 cell.subtitleLabel.text = institution.parent?.affiliationDescription
                 cell.statusLabel.attributedText = institution.attributedStatusDescription
@@ -265,29 +265,29 @@ public class InstitutionDetailViewController: UITableViewController, MFMailCompo
             }
     
         case .Contact(let contactProperties):
-            let cell = tableView.dequeueReusableCellWithIdentifier("propertyCell", forIndexPath: indexPath) as InstitutionDetailPropertyCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("propertyCell", forIndexPath: indexPath) as! InstitutionDetailPropertyCell
             cell.configureForContactProperty(contactProperties[indexPath.row])
             return cell
             
         case .Events(let events):
             let event = events[indexPath.row]
             if let talk = event as? UHDTalkItem {
-                let cell = tableView.dequeueReusableCellWithIdentifier("talkCell", forIndexPath: indexPath) as UHDTalkItemCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("talkCell", forIndexPath: indexPath) as! UHDTalkItemCell
                 cell.configureForTalk(talk)
                 return cell
             } else {
-                let cell = tableView.dequeueReusableCellWithIdentifier("eventCell", forIndexPath: indexPath) as UHDEventItemCell
+                let cell = tableView.dequeueReusableCellWithIdentifier("eventCell", forIndexPath: indexPath) as! UHDEventItemCell
                 cell.configureForEvent(event)
                 return cell
             }
             
         case .News(let items):
-            let cell = tableView.dequeueReusableCellWithIdentifier("newsCell", forIndexPath: indexPath) as UHDNewsItemCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("newsCell", forIndexPath: indexPath) as! UHDNewsItemCell
             cell.configureForItem(items[indexPath.row])
             return cell
             
         case .Locations(let locations):
-            let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as InstitutionDetailLocationCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as! InstitutionDetailLocationCell
             cell.configureForLocation(locations[indexPath.row])
             return cell
         }
