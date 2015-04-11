@@ -52,15 +52,22 @@
     self.dateLabel.text = [dateFormatter stringFromDate:item.date];
     
     // Configure read indication
+	
+	UIColor *middleGrayColor = [UIColor colorWithRed:109./255. green:109./255. blue:109./255. alpha:1];
+	
+	//CGFloat titleFontSize = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline].pointSize;
+	
 	if (item.read) {
-		self.titleLabel.textColor = [UIColor lightGrayColor];
-		self.sourceLabel.textColor = [UIColor lightGrayColor];
-		self.dateLabel.textColor = [UIColor lightGrayColor];
-		self.abstractLabel.textColor = [UIColor lightGrayColor];
+		//self.titleLabel.font = [UIFont systemFontOfSize:titleFontSize];
+		self.titleLabel.textColor = middleGrayColor;
+		self.sourceLabel.textColor = middleGrayColor;
+		self.dateLabel.textColor = middleGrayColor;
+		self.abstractLabel.textColor = middleGrayColor;
 		self.sourceIconImageView.alpha = 0.5;
 		self.newsImageView.alpha = 0.5;
 	}
 	else {
+		//self.titleLabel.font = [UIFont boldSystemFontOfSize:titleFontSize];
 		self.titleLabel.textColor = [UIColor blackColor];
 		self.sourceLabel.textColor = [UIColor darkGrayColor];
 		self.dateLabel.textColor = [UIColor darkGrayColor];
@@ -68,7 +75,7 @@
 		self.sourceIconImageView.alpha = 1.0;
 		self.newsImageView.alpha = 1.0;
 	}
-    
+
     // Configure Image
 	self.sourceIconImageView.image = item.source.image;
     self.newsImageView.image = item.image;
