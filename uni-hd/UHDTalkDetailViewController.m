@@ -24,7 +24,6 @@
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
 
-//@property (weak, nonatomic) IBOutlet UIView *navigationItemTitleView;
 @property (weak, nonatomic) IBOutlet UIView *navigationItemContainerView;
 @property (weak, nonatomic) IBOutlet UIImageView *navigationItemImageView;
 @property (weak, nonatomic) IBOutlet UILabel *navigationItemLabel;
@@ -96,8 +95,8 @@
 		self.tableView.tableHeaderView = self.headerView;
 	}
 	
-	//self.navigationItemTitleView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-	self.navigationItemContainerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+	// configure navigation bar
+	self.navigationItemContainerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 	self.navigationItemLabel.text = self.talkItem.source.title;
 	self.navigationItemImageView.layer.cornerRadius = self.navigationItemImageView.bounds.size.height / 2.;
 	self.navigationItemImageView.layer.masksToBounds = YES;

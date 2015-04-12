@@ -216,9 +216,7 @@ typedef enum : NSUInteger {
 	self.sourceButton.titleLabel.textAlignment = NSTextAlignmentCenter;
 	self.sourceButton.titleLabel.numberOfLines = 2;
 	
-	self.titleView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-	
-	[self.sourceButton sizeToFit];
+	self.titleView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
 }
 
 /*
