@@ -23,6 +23,12 @@
 
 @property (strong, nonatomic) IBOutlet UIView *headerView;
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
+
+//@property (weak, nonatomic) IBOutlet UIView *navigationItemTitleView;
+@property (weak, nonatomic) IBOutlet UIView *navigationItemContainerView;
+@property (weak, nonatomic) IBOutlet UIImageView *navigationItemImageView;
+@property (weak, nonatomic) IBOutlet UILabel *navigationItemLabel;
+
 @property (strong, nonatomic) EKEventStore *eventStore;
 
 @end
@@ -90,7 +96,17 @@
 		self.tableView.tableHeaderView = self.headerView;
 	}
 	
-	self.title = self.talkItem.source.title;
+	//self.navigationItemTitleView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+	self.navigationItemContainerView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+	self.navigationItemLabel.text = self.talkItem.source.title;
+	self.navigationItemImageView.layer.cornerRadius = self.navigationItemImageView.bounds.size.height / 2.;
+	self.navigationItemImageView.layer.masksToBounds = YES;
+	if (self.talkItem.source.image) {
+		self.navigationItemImageView.image = self.talkItem.source.image;
+	}
+	else {
+		self.navigationItemImageView.image = [UIImage imageNamed:@"allTalksIcon"];
+	}
 	
 	[self.tableView reloadData];
 	
