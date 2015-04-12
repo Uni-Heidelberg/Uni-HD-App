@@ -10,10 +10,10 @@
 
 @interface UHDTalkDetailTitleAbstractCell ()
 
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UITextView *titleTextView;
 @property (weak, nonatomic) IBOutlet UIButton *speakerButton;
 @property (weak, nonatomic) IBOutlet UILabel *affiliationLabel;
-@property (weak, nonatomic) IBOutlet UILabel *abstractLabel;
+@property (weak, nonatomic) IBOutlet UITextView *abstractTextView;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *affiliationAbstractSpacingLayoutConstraint;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *speakerAffiliationSpacingLayoutConstraint;
@@ -33,7 +33,8 @@
 
 - (void)configureForItem:(UHDTalkItem *)item {
 
-	self.titleLabel.text = item.title;
+	self.titleTextView.text = item.title;
+	self.titleTextView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	
 	[self.speakerButton setTitle:item.speaker.name forState:UIControlStateNormal];
 	self.affiliationLabel.text = item.speaker.affiliation;
@@ -47,7 +48,8 @@
 		self.speakerAffiliationSpacingLayoutConstraint.constant = self.speakerAffiliationSpacingLayoutConstraintInitialConstant;
 	}
 	
-	self.abstractLabel.text = item.abstract;
+	self.abstractTextView.text = item.abstract;
+	self.abstractTextView.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 	
 	[self setNeedsUpdateConstraints];
 	[self updateConstraints];

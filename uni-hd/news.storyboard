@@ -518,31 +518,20 @@
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="titleAbstract" rowHeight="145" id="dWl-sB-QIx" customClass="UHDTalkDetailTitleAbstractCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="titleAbstract" rowHeight="180" id="dWl-sB-QIx" customClass="UHDTalkDetailTitleAbstractCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dWl-sB-QIx" id="g2o-6D-JUL">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Titel des Vortrags" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndi-kf-Lci" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
-                                            <rect key="frame" x="15" y="10" width="570" height="36"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Affiliation" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y8A-Dx-ouh" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
-                                            <rect key="frame" x="15" y="84" width="570" height="17"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Abstract" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awE-xo-hIz" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
-                                            <rect key="frame" x="15" y="117" width="570" height="17"/>
-                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="249" text="Affiliation" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y8A-Dx-ouh" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
+                                            <rect key="frame" x="15" y="87" width="570" height="29"/>
+                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rMS-QO-5UQ">
-                                            <rect key="frame" x="15" y="54" width="570" height="30"/>
+                                            <rect key="frame" x="15" y="55" width="62" height="32"/>
+                                            <fontDescription key="fontDescription" type="italicSystem" pointSize="16"/>
                                             <state key="normal" title="Referent">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -550,58 +539,80 @@
                                                 <action selector="speakereButtonPressed:" destination="e3t-qO-g8f" eventType="touchUpInside" id="1Ow-fI-BYv"/>
                                             </connections>
                                         </button>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Abstract" translatesAutoresizingMaskIntoConstraints="NO" id="HDx-8w-0yU">
+                                            <rect key="frame" x="15" y="132" width="570" height="37"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="textContainer.lineFragmentPadding">
+                                                    <integer key="value" value="0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="rect" keyPath="textContainerInset">
+                                                    <rect key="value" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </textView>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Titel" translatesAutoresizingMaskIntoConstraints="NO" id="KMj-SX-BTY">
+                                            <rect key="frame" x="15" y="10" width="570" height="37"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="textContainer.lineFragmentPadding">
+                                                    <integer key="value" value="0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="rect" keyPath="textContainerInset">
+                                                    <rect key="value" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </textView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="ndi-kf-Lci" firstAttribute="leading" secondItem="awE-xo-hIz" secondAttribute="leading" id="4KU-oe-sc0"/>
-                                        <constraint firstItem="awE-xo-hIz" firstAttribute="top" secondItem="Y8A-Dx-ouh" secondAttribute="bottom" constant="16" id="5Qj-Jz-6fI"/>
-                                        <constraint firstItem="rMS-QO-5UQ" firstAttribute="top" secondItem="ndi-kf-Lci" secondAttribute="bottom" constant="8" id="7nJ-eP-r9F"/>
+                                        <constraint firstAttribute="bottom" secondItem="HDx-8w-0yU" secondAttribute="bottom" constant="10" id="0j7-fS-pwu"/>
+                                        <constraint firstItem="rMS-QO-5UQ" firstAttribute="top" secondItem="KMj-SX-BTY" secondAttribute="bottom" constant="8" id="5EU-bK-0Gb"/>
+                                        <constraint firstItem="KMj-SX-BTY" firstAttribute="leading" secondItem="rMS-QO-5UQ" secondAttribute="leading" id="Fex-ER-4fG"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="rMS-QO-5UQ" secondAttribute="trailing" constant="15" id="G1b-Ew-241"/>
+                                        <constraint firstAttribute="trailing" secondItem="HDx-8w-0yU" secondAttribute="trailing" constant="15" id="JHG-sG-AaG"/>
                                         <constraint firstItem="Y8A-Dx-ouh" firstAttribute="top" secondItem="rMS-QO-5UQ" secondAttribute="bottom" id="JqM-vY-C8U"/>
-                                        <constraint firstItem="rMS-QO-5UQ" firstAttribute="trailing" secondItem="ndi-kf-Lci" secondAttribute="trailing" id="LYd-yn-ZGI"/>
-                                        <constraint firstItem="awE-xo-hIz" firstAttribute="leading" secondItem="g2o-6D-JUL" secondAttribute="leadingMargin" id="Lqg-3i-jYP"/>
-                                        <constraint firstItem="ndi-kf-Lci" firstAttribute="trailing" secondItem="awE-xo-hIz" secondAttribute="trailing" id="MMj-vC-Gq0"/>
-                                        <constraint firstAttribute="trailing" secondItem="ndi-kf-Lci" secondAttribute="trailing" constant="15" id="Mc6-Xp-3yq"/>
                                         <constraint firstItem="Y8A-Dx-ouh" firstAttribute="leading" secondItem="rMS-QO-5UQ" secondAttribute="leading" id="Trz-iQ-oEd"/>
-                                        <constraint firstAttribute="bottom" secondItem="awE-xo-hIz" secondAttribute="bottom" constant="10" id="Ugy-fB-aY2"/>
-                                        <constraint firstItem="rMS-QO-5UQ" firstAttribute="leading" secondItem="ndi-kf-Lci" secondAttribute="leading" id="d3a-Na-NMl"/>
-                                        <constraint firstItem="ndi-kf-Lci" firstAttribute="leading" secondItem="g2o-6D-JUL" secondAttribute="leading" constant="15" id="dnP-gm-cCw"/>
-                                        <constraint firstItem="ndi-kf-Lci" firstAttribute="top" secondItem="g2o-6D-JUL" secondAttribute="top" constant="10" id="fyg-9O-aT4"/>
-                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Y8A-Dx-ouh" secondAttribute="bottom" id="ivl-hq-YZ3"/>
-                                        <constraint firstItem="Y8A-Dx-ouh" firstAttribute="trailing" secondItem="rMS-QO-5UQ" secondAttribute="trailing" id="joJ-Eo-C6K"/>
+                                        <constraint firstItem="KMj-SX-BTY" firstAttribute="leading" secondItem="HDx-8w-0yU" secondAttribute="leading" id="cjV-LP-IEm"/>
+                                        <constraint firstItem="KMj-SX-BTY" firstAttribute="leading" secondItem="g2o-6D-JUL" secondAttribute="leading" constant="15" id="lQP-fa-tOK"/>
+                                        <constraint firstItem="KMj-SX-BTY" firstAttribute="top" secondItem="g2o-6D-JUL" secondAttribute="top" constant="10" id="rib-6I-Pid"/>
+                                        <constraint firstItem="HDx-8w-0yU" firstAttribute="top" secondItem="Y8A-Dx-ouh" secondAttribute="bottom" constant="16" id="tIb-f2-bmD"/>
+                                        <constraint firstAttribute="trailing" secondItem="KMj-SX-BTY" secondAttribute="trailing" constant="15" id="vTo-1K-MeP"/>
+                                        <constraint firstItem="KMj-SX-BTY" firstAttribute="trailing" secondItem="Y8A-Dx-ouh" secondAttribute="trailing" id="wXj-nL-UGr"/>
                                     </constraints>
-                                    <variation key="default">
-                                        <mask key="constraints">
-                                            <exclude reference="Lqg-3i-jYP"/>
-                                        </mask>
-                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="abstractLabel" destination="awE-xo-hIz" id="iPf-jM-lRs"/>
-                                    <outlet property="affiliationAbstractSpacingLayoutConstraint" destination="5Qj-Jz-6fI" id="5fb-Cj-rJF"/>
+                                    <outlet property="abstractTextView" destination="HDx-8w-0yU" id="vn2-9c-nR8"/>
+                                    <outlet property="affiliationAbstractSpacingLayoutConstraint" destination="tIb-f2-bmD" id="FKw-cx-A4d"/>
                                     <outlet property="affiliationLabel" destination="Y8A-Dx-ouh" id="WEc-8w-boP"/>
                                     <outlet property="speakerAffiliationSpacingLayoutConstraint" destination="JqM-vY-C8U" id="CNY-EQ-T6S"/>
                                     <outlet property="speakerButton" destination="rMS-QO-5UQ" id="sKC-wC-OCz"/>
-                                    <outlet property="titleLabel" destination="ndi-kf-Lci" id="w2W-Hm-sA6"/>
+                                    <outlet property="titleTextView" destination="KMj-SX-BTY" id="Znc-WJ-f2G"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="spaceTime" rowHeight="300" id="f4G-y1-dh3" customClass="UHDTalkDetailSpaceTimeCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="spaceTime" rowHeight="350" id="f4G-y1-dh3" customClass="UHDTalkDetailSpaceTimeCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f4G-y1-dh3" id="qKN-93-EDz">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zeit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frL-r9-F0c">
-                                            <rect key="frame" x="15" y="10" width="570" height="17"/>
-                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                            <rect key="frame" x="15" y="10" width="570" height="20"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ort" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwa-xF-Lwp" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
-                                            <rect key="frame" x="15" y="35" width="570" height="17"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <rect key="frame" x="15" y="38" width="570" height="20"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zc-UC-DiO">
-                                            <rect key="frame" x="15" y="60" width="274" height="30"/>
+                                            <rect key="frame" x="15" y="66" width="290" height="32"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <state key="normal" title="Veranstaltung in den Kalender eintragen">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -610,7 +621,8 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eM5-R5-puc">
-                                            <rect key="frame" x="15" y="90" width="157" height="51"/>
+                                            <rect key="frame" x="15" y="98" width="166" height="43"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <state key="normal" title="Auf der Karte anzeigen">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -619,11 +631,11 @@
                                             </connections>
                                         </button>
                                         <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f7c-Tu-jBf" customClass="CampusMapView" customModule="UHDKit" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="149" width="600" height="150"/>
+                                            <rect key="frame" x="0.0" y="149" width="600" height="200"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" priority="250" constant="150" id="3aN-ay-8pi"/>
-                                                <constraint firstAttribute="height" constant="150" id="Jwq-2t-T95"/>
+                                                <constraint firstAttribute="height" constant="200" id="Jwq-2t-T95"/>
                                             </constraints>
                                             <variation key="default">
                                                 <mask key="constraints">
