@@ -38,6 +38,12 @@
 	if (item.location != nil) {
         [self.campusMapView showLocation:item.location animated:NO];
     }
+	
+	[self setNeedsUpdateConstraints];
+	[self updateConstraints];
+	
+	[self setNeedsLayout];
+	[self layoutIfNeeded];
 
 }
 

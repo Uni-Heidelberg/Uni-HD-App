@@ -75,7 +75,7 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDn-Vl-vbq" userLabel="Title Label" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dDn-Vl-vbq" userLabel="Title Label" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
                                             <rect key="frame" x="15" y="35" width="544" height="20"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -169,13 +169,12 @@
                                             <rect key="frame" x="103" y="88" width="456" height="123"/>
                                             <string key="text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Source" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5rF-tp-crz" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
                                             <rect key="frame" x="40" y="10" width="476" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EventTitle" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hsU-hq-kFx" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
@@ -187,7 +186,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sbg-Gj-5Qm">
                                             <rect key="frame" x="536" y="10" width="31" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="gG2-Ns-N48">
@@ -265,7 +264,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eLt-pe-oE3">
                                             <rect key="frame" x="536" y="10" width="31" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="TalkTitle" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FW5-3i-kR7" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
@@ -301,7 +300,6 @@
                                             <rect key="frame" x="103" y="105" width="456" height="117"/>
                                             <string key="text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="56U-pb-CcK">
@@ -316,7 +314,7 @@
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Source" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="owQ-FL-T2W" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
                                             <rect key="frame" x="40" y="10" width="476" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                            <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
@@ -375,6 +373,7 @@
                                     <outlet property="speakerLabel" destination="oVI-LM-euo" id="w37-vT-Egw"/>
                                     <outlet property="talkImageView" destination="56U-pb-CcK" id="oYT-c0-u6v"/>
                                     <outlet property="titleLabel" destination="FW5-3i-kR7" id="cMl-1B-Ync"/>
+                                    <outlet property="titleSpeakerSpacingLayoutConstraint" destination="uYl-wm-b6s" id="oQJ-zu-oYC"/>
                                     <segue destination="e3t-qO-g8f" kind="show" identifier="showTalkDetail" id="hrv-Gl-dv9"/>
                                 </connections>
                             </tableViewCell>
@@ -524,26 +523,26 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="dWl-sB-QIx" id="g2o-6D-JUL">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Titel des Vortrags" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndi-kf-Lci" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
-                                            <rect key="frame" x="15" y="16" width="570" height="19.5"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="Titel des Vortrags" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ndi-kf-Lci" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
+                                            <rect key="frame" x="15" y="10" width="570" height="36"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Affiliation" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y8A-Dx-ouh" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
-                                            <rect key="frame" x="15" y="73.5" width="570" height="17"/>
+                                            <rect key="frame" x="15" y="84" width="570" height="17"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Abstract" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="awE-xo-hIz" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
-                                            <rect key="frame" x="15" y="106.5" width="570" height="17"/>
+                                            <rect key="frame" x="15" y="117" width="570" height="17"/>
                                             <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rMS-QO-5UQ">
-                                            <rect key="frame" x="15" y="43.5" width="570" height="30"/>
+                                            <rect key="frame" x="15" y="54" width="570" height="30"/>
                                             <state key="normal" title="Referent">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -562,10 +561,10 @@
                                         <constraint firstItem="ndi-kf-Lci" firstAttribute="trailing" secondItem="awE-xo-hIz" secondAttribute="trailing" id="MMj-vC-Gq0"/>
                                         <constraint firstAttribute="trailing" secondItem="ndi-kf-Lci" secondAttribute="trailing" constant="15" id="Mc6-Xp-3yq"/>
                                         <constraint firstItem="Y8A-Dx-ouh" firstAttribute="leading" secondItem="rMS-QO-5UQ" secondAttribute="leading" id="Trz-iQ-oEd"/>
-                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="awE-xo-hIz" secondAttribute="bottom" id="Ugy-fB-aY2"/>
+                                        <constraint firstAttribute="bottom" secondItem="awE-xo-hIz" secondAttribute="bottom" constant="10" id="Ugy-fB-aY2"/>
                                         <constraint firstItem="rMS-QO-5UQ" firstAttribute="leading" secondItem="ndi-kf-Lci" secondAttribute="leading" id="d3a-Na-NMl"/>
                                         <constraint firstItem="ndi-kf-Lci" firstAttribute="leading" secondItem="g2o-6D-JUL" secondAttribute="leading" constant="15" id="dnP-gm-cCw"/>
-                                        <constraint firstItem="ndi-kf-Lci" firstAttribute="top" secondItem="g2o-6D-JUL" secondAttribute="topMargin" constant="8" id="fyg-9O-aT4"/>
+                                        <constraint firstItem="ndi-kf-Lci" firstAttribute="top" secondItem="g2o-6D-JUL" secondAttribute="top" constant="10" id="fyg-9O-aT4"/>
                                         <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="Y8A-Dx-ouh" secondAttribute="bottom" id="ivl-hq-YZ3"/>
                                         <constraint firstItem="Y8A-Dx-ouh" firstAttribute="trailing" secondItem="rMS-QO-5UQ" secondAttribute="trailing" id="joJ-Eo-C6K"/>
                                     </constraints>
@@ -577,30 +576,32 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="abstractLabel" destination="awE-xo-hIz" id="iPf-jM-lRs"/>
+                                    <outlet property="affiliationAbstractSpacingLayoutConstraint" destination="5Qj-Jz-6fI" id="5fb-Cj-rJF"/>
                                     <outlet property="affiliationLabel" destination="Y8A-Dx-ouh" id="WEc-8w-boP"/>
+                                    <outlet property="speakerAffiliationSpacingLayoutConstraint" destination="JqM-vY-C8U" id="CNY-EQ-T6S"/>
                                     <outlet property="speakerButton" destination="rMS-QO-5UQ" id="sKC-wC-OCz"/>
                                     <outlet property="titleLabel" destination="ndi-kf-Lci" id="w2W-Hm-sA6"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="spaceTime" rowHeight="350" id="f4G-y1-dh3" customClass="UHDTalkDetailSpaceTimeCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="spaceTime" rowHeight="300" id="f4G-y1-dh3" customClass="UHDTalkDetailSpaceTimeCell">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="f4G-y1-dh3" id="qKN-93-EDz">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zeit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="frL-r9-F0c">
-                                            <rect key="frame" x="15" y="16" width="570" height="17"/>
+                                            <rect key="frame" x="15" y="10" width="570" height="17"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ort" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwa-xF-Lwp" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
-                                            <rect key="frame" x="15" y="41" width="570" height="17"/>
+                                            <rect key="frame" x="15" y="35" width="570" height="17"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3zc-UC-DiO">
-                                            <rect key="frame" x="15" y="66" width="570" height="30"/>
+                                            <rect key="frame" x="15" y="60" width="274" height="30"/>
                                             <state key="normal" title="Veranstaltung in den Kalender eintragen">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -608,8 +609,8 @@
                                                 <action selector="addToCalendarButtonPressed:" destination="e3t-qO-g8f" eventType="touchUpInside" id="rNt-aR-zLc"/>
                                             </connections>
                                         </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eM5-R5-puc">
-                                            <rect key="frame" x="15" y="96" width="570" height="30"/>
+                                        <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eM5-R5-puc">
+                                            <rect key="frame" x="15" y="90" width="157" height="51"/>
                                             <state key="normal" title="Auf der Karte anzeigen">
                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                             </state>
@@ -618,31 +619,49 @@
                                             </connections>
                                         </button>
                                         <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f7c-Tu-jBf" customClass="CampusMapView" customModule="UHDKit" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="134" width="600" height="150"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <rect key="frame" x="0.0" y="149" width="600" height="150"/>
+                                            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="150" id="3aN-ay-8pi"/>
+                                                <constraint firstAttribute="height" priority="250" constant="150" id="3aN-ay-8pi"/>
+                                                <constraint firstAttribute="height" constant="150" id="Jwq-2t-T95"/>
                                             </constraints>
+                                            <variation key="default">
+                                                <mask key="constraints">
+                                                    <exclude reference="3aN-ay-8pi"/>
+                                                </mask>
+                                            </variation>
                                         </view>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="f7c-Tu-jBf" firstAttribute="top" secondItem="eM5-R5-puc" secondAttribute="bottom" constant="8" symbolic="YES" id="1c0-x7-PW8"/>
-                                        <constraint firstItem="rwa-xF-Lwp" firstAttribute="top" secondItem="frL-r9-F0c" secondAttribute="bottom" constant="8" id="5ck-kO-igr"/>
-                                        <constraint firstItem="f7c-Tu-jBf" firstAttribute="leading" secondItem="qKN-93-EDz" secondAttribute="leading" id="EU3-6c-Leb"/>
-                                        <constraint firstItem="3zc-UC-DiO" firstAttribute="leading" secondItem="rwa-xF-Lwp" secondAttribute="leading" id="GMO-Tg-nrp"/>
-                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="f7c-Tu-jBf" secondAttribute="bottom" id="Jdn-qT-693"/>
-                                        <constraint firstItem="eM5-R5-puc" firstAttribute="top" secondItem="3zc-UC-DiO" secondAttribute="bottom" id="KyC-K1-DSN"/>
-                                        <constraint firstItem="frL-r9-F0c" firstAttribute="top" secondItem="qKN-93-EDz" secondAttribute="topMargin" constant="8" id="MXb-er-Kaj"/>
-                                        <constraint firstItem="frL-r9-F0c" firstAttribute="leading" secondItem="rwa-xF-Lwp" secondAttribute="leading" id="Tba-n1-plW"/>
-                                        <constraint firstAttribute="trailing" secondItem="f7c-Tu-jBf" secondAttribute="trailing" id="Vbn-Vx-RvA"/>
-                                        <constraint firstItem="3zc-UC-DiO" firstAttribute="top" secondItem="rwa-xF-Lwp" secondAttribute="bottom" constant="8" id="em9-4Q-sLZ"/>
-                                        <constraint firstItem="frL-r9-F0c" firstAttribute="leading" secondItem="qKN-93-EDz" secondAttribute="leading" constant="15" id="g3g-rA-YWW"/>
-                                        <constraint firstItem="3zc-UC-DiO" firstAttribute="trailing" secondItem="rwa-xF-Lwp" secondAttribute="trailing" id="hp2-qL-2kN"/>
-                                        <constraint firstAttribute="trailing" secondItem="frL-r9-F0c" secondAttribute="trailing" constant="15" id="jLO-Ze-bSg"/>
-                                        <constraint firstItem="frL-r9-F0c" firstAttribute="trailing" secondItem="rwa-xF-Lwp" secondAttribute="trailing" id="pbj-TQ-RMh"/>
-                                        <constraint firstItem="eM5-R5-puc" firstAttribute="leading" secondItem="3zc-UC-DiO" secondAttribute="leading" id="pnX-jy-ag6"/>
-                                        <constraint firstItem="eM5-R5-puc" firstAttribute="trailing" secondItem="3zc-UC-DiO" secondAttribute="trailing" id="rTg-Rf-y6H"/>
+                                        <constraint firstItem="frL-r9-F0c" firstAttribute="leading" secondItem="rwa-xF-Lwp" secondAttribute="leading" id="4e4-W9-FSL"/>
+                                        <constraint firstAttribute="bottom" secondItem="f7c-Tu-jBf" secondAttribute="bottom" id="5Vd-DE-fbn"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="3zc-UC-DiO" secondAttribute="trailing" constant="15" id="6Qi-6O-qO8"/>
+                                        <constraint firstItem="3zc-UC-DiO" firstAttribute="top" secondItem="rwa-xF-Lwp" secondAttribute="bottom" constant="8" id="93E-pE-rin"/>
+                                        <constraint firstItem="frL-r9-F0c" firstAttribute="trailing" secondItem="3zc-UC-DiO" secondAttribute="trailing" id="Ay0-oN-QSK"/>
+                                        <constraint firstItem="frL-r9-F0c" firstAttribute="top" secondItem="qKN-93-EDz" secondAttribute="top" constant="10" id="Hht-n9-Yo6"/>
+                                        <constraint firstItem="frL-r9-F0c" firstAttribute="leading" secondItem="3zc-UC-DiO" secondAttribute="leading" id="Mi5-2h-paf"/>
+                                        <constraint firstItem="eM5-R5-puc" firstAttribute="trailing" secondItem="3zc-UC-DiO" secondAttribute="trailing" id="NnV-jV-wdE"/>
+                                        <constraint firstItem="frL-r9-F0c" firstAttribute="trailing" secondItem="rwa-xF-Lwp" secondAttribute="trailing" id="S8J-VU-9vf"/>
+                                        <constraint firstItem="frL-r9-F0c" firstAttribute="leading" secondItem="qKN-93-EDz" secondAttribute="leading" constant="15" id="TcH-Je-iPH"/>
+                                        <constraint firstItem="eM5-R5-puc" firstAttribute="leading" secondItem="3zc-UC-DiO" secondAttribute="leading" id="V62-nP-lyQ"/>
+                                        <constraint firstItem="frL-r9-F0c" firstAttribute="leading" secondItem="3zc-UC-DiO" secondAttribute="leading" id="XvW-Ue-PLU"/>
+                                        <constraint firstItem="rwa-xF-Lwp" firstAttribute="top" secondItem="frL-r9-F0c" secondAttribute="bottom" constant="8" id="aNK-WW-EnD"/>
+                                        <constraint firstItem="f7c-Tu-jBf" firstAttribute="top" secondItem="eM5-R5-puc" secondAttribute="bottom" constant="8" id="cLg-yc-bqP"/>
+                                        <constraint firstItem="eM5-R5-puc" firstAttribute="top" secondItem="3zc-UC-DiO" secondAttribute="bottom" id="i2r-wF-UBE"/>
+                                        <constraint firstAttribute="trailing" secondItem="frL-r9-F0c" secondAttribute="trailing" constant="15" id="j7s-xD-zSu"/>
+                                        <constraint firstItem="eM5-R5-puc" firstAttribute="leading" secondItem="3zc-UC-DiO" secondAttribute="leading" id="nf4-kd-MjV"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="eM5-R5-puc" secondAttribute="trailing" constant="15" id="pds-wM-QzQ"/>
+                                        <constraint firstItem="f7c-Tu-jBf" firstAttribute="leading" secondItem="qKN-93-EDz" secondAttribute="leading" id="xPq-Hz-G1a"/>
+                                        <constraint firstAttribute="trailing" secondItem="f7c-Tu-jBf" secondAttribute="trailing" id="zZ0-Qg-bUz"/>
                                     </constraints>
+                                    <variation key="default">
+                                        <mask key="constraints">
+                                            <exclude reference="Ay0-oN-QSK"/>
+                                            <exclude reference="XvW-Ue-PLU"/>
+                                            <exclude reference="NnV-jV-wdE"/>
+                                            <exclude reference="V62-nP-lyQ"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="addToCalendarButton" destination="3zc-UC-DiO" id="WeG-yC-g72"/>

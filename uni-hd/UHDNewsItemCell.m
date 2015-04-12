@@ -63,15 +63,15 @@
 		self.sourceLabel.textColor = middleGrayColor;
 		self.dateLabel.textColor = middleGrayColor;
 		self.abstractLabel.textColor = middleGrayColor;
-		self.sourceIconImageView.alpha = 0.5;
+		self.sourceIconImageView.alpha = 1.0;
 		self.newsImageView.alpha = 0.5;
 	}
 	else {
 		//self.titleLabel.font = [UIFont boldSystemFontOfSize:titleFontSize];
 		self.titleLabel.textColor = [UIColor blackColor];
-		self.sourceLabel.textColor = [UIColor darkGrayColor];
-		self.dateLabel.textColor = [UIColor darkGrayColor];
-		self.abstractLabel.textColor = [UIColor darkGrayColor];
+		self.sourceLabel.textColor = middleGrayColor;
+		self.dateLabel.textColor = middleGrayColor;
+		self.abstractLabel.textColor = [UIColor blackColor];
 		self.sourceIconImageView.alpha = 1.0;
 		self.newsImageView.alpha = 1.0;
 	}

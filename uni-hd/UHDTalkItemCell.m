@@ -24,7 +24,10 @@
 @property (weak, nonatomic) IBOutlet UILabel *shortDateAndTimeLabel;
 
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *imageSpacingLayoutConstraint;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *titleSpeakerSpacingLayoutConstraint;
+
 @property (nonatomic) CGFloat imageSpacingConstraintInitialConstant;
+@property (nonatomic) CGFloat titleSpeakerSpacingConstraintInitialConstant;
 
 @end
 
@@ -34,6 +37,7 @@
 - (void)awakeFromNib {
 	[super awakeFromNib];
 	self.imageSpacingConstraintInitialConstant = self.imageSpacingLayoutConstraint.constant;
+	self.titleSpeakerSpacingConstraintInitialConstant = self.titleSpeakerSpacingLayoutConstraint.constant;
 }
 
 - (void)configureForTalk:(UHDTalkItem *)item
@@ -47,6 +51,13 @@
     // Configure speaker information
     self.speakerLabel.text = item.speaker.name;
     self.affiliationLabel.text = item.speaker.affiliation;
+	
+	if ((self.speakerLabel.text.length == 0) && (self.affiliationLabel.text.length == 0)) {
+		self.titleSpeakerSpacingLayoutConstraint.constant = 0;
+	}
+	else {
+		self.titleSpeakerSpacingLayoutConstraint.constant = self.titleSpeakerSpacingConstraintInitialConstant;
+	}
     
 	// Configure date and time
 	NSCalendar *calendar = [NSCalendar currentCalendar];
