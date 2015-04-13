@@ -14,8 +14,14 @@
 
 #import <UHDKit/UHDKit-Swift.h>
 
+// Table View Cells
 #import "UHDTalkDetailTitleAbstractCell.h"
 #import "UHDTalkDetailSpaceTimeCell.h"
+#import "UHDTalkDetailTitleCell.h"
+#import "UHDTalkDetailSpeakerCell.h"
+#import "UHDTalkDetailAbstractCell.h"
+#import "UHDTalkDetailTimeCell.h"
+#import "UHDTalkDetailLocationCell.h"
 
 #import "UHDNewsSource.h"
 
@@ -120,6 +126,10 @@
 # pragma mark - User interaction
 
 - (IBAction)addToCalendarButtonPressed:(id)sender {
+	[self addToCalendar];
+}
+
+- (void)addToCalendar {
 	
     // TODO: never reach up to the app delegate to get information! pass data down.
     EKEventStore *eventStore = self.eventStore;
@@ -218,6 +228,10 @@
 }
 
 - (IBAction)speakereButtonPressed:(id)sender {
+	[self showSpeakerInformation];
+}
+
+- (void)showSpeakerInformation {
 
 	UIAlertController *alertController = [UIAlertController alertControllerWithTitle:self.talkItem.speaker.name message:nil preferredStyle:UIAlertControllerStyleActionSheet];
 	
@@ -245,11 +259,32 @@
 
 }
 
-- (IBAction)showOnMapButtonPressed:(id)sender
-{
-    if (self.talkItem.location) {
-        [self showLocation:self.talkItem.location animated:YES];
-    }
+- (IBAction)showOnMapButtonPressed:(id)sender {
+	[self showOnMap];
+}
+
+- (void)showOnMap {
+
+	UIAlertController *alertController;
+	
+	if (self.talkItem.location) {
+		alertController = [UIAlertController alertControllerWithTitle:nil message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+		
+		UIAlertAction *action = [UIAlertAction actionWithTitle:NSLocalizedString(@"Ort auf der Campus-Karte anzeigen", nil) style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+				[self showLocation:self.talkItem.location animated:YES];
+			}];
+		[alertController addAction:action];
+		
+		UIAlertAction *abort = [UIAlertAction actionWithTitle:NSLocalizedString(@"Abbrechen", nil) style:UIAlertActionStyleCancel handler:nil];
+		[alertController addAction:abort];
+	}
+	else {
+		alertController = [UIAlertController alertControllerWithTitle:nil message:NSLocalizedString(@"Dieser Veranstaltungsort kann auf der Campus-Karte nicht angezeigt werden.", nil) preferredStyle:UIAlertControllerStyleAlert];
+		UIAlertAction *okAction = [UIAlertAction actionWithTitle:NSLocalizedString(@"OK", nil) style:UIAlertActionStyleCancel handler:nil];
+		[alertController addAction:okAction];
+	}
+	
+	[self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (EKEventStore *)eventStore {
@@ -262,6 +297,7 @@
 
 # pragma mark - Table View Datasource
 
+/*
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
 }
@@ -280,7 +316,6 @@
             return nil;
     }
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -301,9 +336,111 @@
             return nil;
     }
 	
-	//cell.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
+	return cell;
+}
+*/
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+	return 2;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	
+	NSInteger rows = 1;
+	
+	switch (section) {
+		case 0: {
+			if (self.talkItem.speaker.name.length > 0) rows += 1;
+			if (self.talkItem.abstract.length > 0) rows += 1;
+			break;
+		}
+		case 1: {
+			rows = 2;
+			break;
+		}
+		default:
+			rows = 0;
+			break;
+	}
+	
+	return rows;
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+	 switch (section) {
+        case 0:
+            return NSLocalizedString(@"Titel und Inhalt", nil);
+        case 1:
+            return NSLocalizedString(@"Ort und Zeit der Veranstaltung", nil);
+        default:
+            return nil;
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	UITableViewCell *cell;
+	
+	if (indexPath.section == 0) {
+		switch (indexPath.row) {
+			case 0: {
+				cell = [self.tableView dequeueReusableCellWithIdentifier:@"title"];
+				[(UHDTalkDetailTitleCell *)cell configureForItem:self.talkItem];
+				break;
+			}
+			case 1: {
+				if (self.talkItem.speaker.name.length > 0) {
+					cell = [self.tableView dequeueReusableCellWithIdentifier:@"speaker"];
+					[(UHDTalkDetailSpeakerCell *)cell configureForItem:self.talkItem];
+				}
+				else {
+					cell = [self.tableView dequeueReusableCellWithIdentifier:@"abstract"];
+					[(UHDTalkDetailAbstractCell *)cell configureForItem:self.talkItem];
+				}
+				break;
+			}
+			case 2: {
+				cell = [self.tableView dequeueReusableCellWithIdentifier:@"abstract"];
+				[(UHDTalkDetailAbstractCell *)cell configureForItem:self.talkItem];
+				break;
+			}
+			default:
+				return nil;
+		}
+	}
+	else if (indexPath.section == 1) {
+		switch (indexPath.row) {
+			case 0: {
+				cell = [self.tableView dequeueReusableCellWithIdentifier:@"time"];
+				[(UHDTalkDetailTimeCell *)cell configureForItem:self.talkItem];
+				break;
+			}
+			case 1: {
+				cell = [self.tableView dequeueReusableCellWithIdentifier:@"location"];
+				[(UHDTalkDetailLocationCell *)cell configureForItem:self.talkItem];
+				break;
+			}
+			default:
+				return nil;
+		}
+	}
+	else {
+		return nil;
+	}
 	
 	return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	if (indexPath.section == 0 && indexPath.row == 1 && self.talkItem.speaker.name.length > 0) {
+		[self showSpeakerInformation];
+	}
+	else if (indexPath.section == 1) {
+		if (indexPath.row == 0) [self addToCalendar];
+		else if (indexPath.row == 1) [self showOnMap];
+	}
+	[self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 

@@ -634,14 +634,8 @@
                                             <rect key="frame" x="0.0" y="149" width="600" height="200"/>
                                             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" priority="250" constant="150" id="3aN-ay-8pi"/>
                                                 <constraint firstAttribute="height" constant="200" id="Jwq-2t-T95"/>
                                             </constraints>
-                                            <variation key="default">
-                                                <mask key="constraints">
-                                                    <exclude reference="3aN-ay-8pi"/>
-                                                </mask>
-                                            </variation>
                                         </view>
                                     </subviews>
                                     <constraints>
@@ -681,6 +675,164 @@
                                     <outlet property="locationLabel" destination="rwa-xF-Lwp" id="VY0-Gt-mwK"/>
                                     <outlet property="timeLabel" destination="frL-r9-F0c" id="cEF-bd-2kQ"/>
                                 </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="title" rowHeight="100" id="DNz-W4-hIl" customClass="UHDTalkDetailTitleCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="DNz-W4-hIl" id="q7h-Es-MA6">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Titel" translatesAutoresizingMaskIntoConstraints="NO" id="O6c-iI-S7w">
+                                            <rect key="frame" x="15" y="10" width="570" height="79"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="textContainer.lineFragmentPadding">
+                                                    <integer key="value" value="0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="rect" keyPath="textContainerInset">
+                                                    <rect key="value" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </textView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="O6c-iI-S7w" secondAttribute="trailing" constant="15" id="WiL-lu-e2u"/>
+                                        <constraint firstAttribute="bottom" secondItem="O6c-iI-S7w" secondAttribute="bottom" constant="10" id="Ws6-l2-V2e"/>
+                                        <constraint firstItem="O6c-iI-S7w" firstAttribute="top" secondItem="q7h-Es-MA6" secondAttribute="top" constant="10" id="avV-1z-w2B"/>
+                                        <constraint firstItem="O6c-iI-S7w" firstAttribute="leading" secondItem="q7h-Es-MA6" secondAttribute="leading" constant="15" id="pT6-mQ-LKT"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="titleTextView" destination="O6c-iI-S7w" id="BRT-wR-dVf"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="speaker" rowHeight="100" id="XTf-MY-aEN" customClass="UHDTalkDetailSpeakerCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XTf-MY-aEN" id="cq3-QV-4BJ">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Speaker" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFQ-3y-2TF" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
+                                            <rect key="frame" x="15" y="10" width="570" height="51"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Affiliation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zTk-du-s9l" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
+                                            <rect key="frame" x="15" y="69" width="570" height="20"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="xFQ-3y-2TF" secondAttribute="trailing" priority="999" constant="15" id="2pz-Qv-iXi"/>
+                                        <constraint firstItem="xFQ-3y-2TF" firstAttribute="leading" secondItem="cq3-QV-4BJ" secondAttribute="leading" constant="15" id="ChW-BZ-abp"/>
+                                        <constraint firstItem="zTk-du-s9l" firstAttribute="top" secondItem="xFQ-3y-2TF" secondAttribute="bottom" constant="8" id="b3o-59-5eT"/>
+                                        <constraint firstItem="xFQ-3y-2TF" firstAttribute="trailing" secondItem="zTk-du-s9l" secondAttribute="trailing" id="gk9-O7-XGa"/>
+                                        <constraint firstItem="xFQ-3y-2TF" firstAttribute="top" secondItem="cq3-QV-4BJ" secondAttribute="top" constant="10" id="pYT-hD-m7z"/>
+                                        <constraint firstItem="xFQ-3y-2TF" firstAttribute="leading" secondItem="zTk-du-s9l" secondAttribute="leading" id="qq2-ua-VL8"/>
+                                        <constraint firstAttribute="bottom" secondItem="zTk-du-s9l" secondAttribute="bottom" priority="999" constant="10" id="sJC-r7-fDQ"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="affiliationLabel" destination="zTk-du-s9l" id="mbQ-4d-5La"/>
+                                    <outlet property="speakerLabel" destination="xFQ-3y-2TF" id="Iui-tN-7S4"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="abstract" rowHeight="100" id="0tZ-fF-KOw" customClass="UHDTalkDetailAbstractCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0tZ-fF-KOw" id="9g6-nV-Z2Z">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Abstract" translatesAutoresizingMaskIntoConstraints="NO" id="1EV-p8-fKa">
+                                            <rect key="frame" x="15" y="10" width="570" height="79"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="textContainer.lineFragmentPadding">
+                                                    <integer key="value" value="0"/>
+                                                </userDefinedRuntimeAttribute>
+                                                <userDefinedRuntimeAttribute type="rect" keyPath="textContainerInset">
+                                                    <rect key="value" x="0.0" y="0.0" width="0.0" height="0.0"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </textView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="1EV-p8-fKa" firstAttribute="top" secondItem="9g6-nV-Z2Z" secondAttribute="top" constant="10" id="29J-ba-XWa"/>
+                                        <constraint firstAttribute="bottom" secondItem="1EV-p8-fKa" secondAttribute="bottom" constant="10" id="5RV-7T-97I"/>
+                                        <constraint firstItem="1EV-p8-fKa" firstAttribute="leading" secondItem="9g6-nV-Z2Z" secondAttribute="leading" constant="15" id="Utl-tB-kKg"/>
+                                        <constraint firstAttribute="trailing" secondItem="1EV-p8-fKa" secondAttribute="trailing" constant="15" id="sE3-bT-mWa"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="abstractTextView" destination="1EV-p8-fKa" id="tMS-0o-nRu"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="time" rowHeight="100" id="I9g-IF-svS" customClass="UHDTalkDetailTimeCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I9g-IF-svS" id="cqV-2P-gRh">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Zeit" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bng-cD-GUc">
+                                            <rect key="frame" x="15" y="10" width="570" height="79"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="bng-cD-GUc" secondAttribute="trailing" priority="999" constant="15" id="8Yd-uG-kch"/>
+                                        <constraint firstItem="bng-cD-GUc" firstAttribute="leading" secondItem="cqV-2P-gRh" secondAttribute="leading" constant="15" id="PYr-sB-mpZ"/>
+                                        <constraint firstItem="bng-cD-GUc" firstAttribute="top" secondItem="cqV-2P-gRh" secondAttribute="top" constant="10" id="TVF-lj-UjR"/>
+                                        <constraint firstAttribute="bottom" secondItem="bng-cD-GUc" secondAttribute="bottom" constant="10" id="bf6-9A-QPN"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="timeLabel" destination="bng-cD-GUc" id="HHQ-gY-Lh6"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="location" rowHeight="250" id="2Nx-e6-vpI" customClass="UHDTalkDetailLocationCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="2Nx-e6-vpI" id="C2n-SQ-gBI">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ort" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="W9j-x9-Nze" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
+                                            <rect key="frame" x="15" y="10" width="570" height="81"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e18-ta-f8T" customClass="CampusMapView" customModule="UHDKit" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="99" width="600" height="150"/>
+                                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="150" id="xFY-gA-hyS"/>
+                                            </constraints>
+                                        </view>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="W9j-x9-Nze" firstAttribute="top" secondItem="C2n-SQ-gBI" secondAttribute="top" constant="10" id="BuS-aD-IpG"/>
+                                        <constraint firstItem="e18-ta-f8T" firstAttribute="top" secondItem="W9j-x9-Nze" secondAttribute="bottom" constant="8" id="IgL-8P-U8B"/>
+                                        <constraint firstAttribute="trailing" secondItem="W9j-x9-Nze" secondAttribute="trailing" priority="999" constant="15" id="MEH-zF-PwR"/>
+                                        <constraint firstAttribute="trailing" secondItem="e18-ta-f8T" secondAttribute="trailing" priority="999" id="OMW-pj-LE2"/>
+                                        <constraint firstItem="W9j-x9-Nze" firstAttribute="leading" secondItem="C2n-SQ-gBI" secondAttribute="leading" constant="15" id="UsZ-hS-L6b"/>
+                                        <constraint firstItem="e18-ta-f8T" firstAttribute="leading" secondItem="C2n-SQ-gBI" secondAttribute="leading" id="aRW-oQ-C37"/>
+                                        <constraint firstAttribute="bottom" secondItem="e18-ta-f8T" secondAttribute="bottom" priority="999" id="l1F-gy-bpx"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="locationLabel" destination="W9j-x9-Nze" id="2of-LM-B0e"/>
+                                    <outlet property="mapView" destination="e18-ta-f8T" id="zON-R3-2Ak"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="cell" rowHeight="132" id="bUt-WU-VPX" customClass="UHDTalkDetailSpaceTimeCell">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bUt-WU-VPX" id="E0s-Fq-aok">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <sections/>

@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A5EE2801ADC1B07004161B7 /* UHDTalkDetailTitleCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A5EE27E1ADC1B07004161B7 /* UHDTalkDetailTitleCell.h */; };
+		0A5EE2811ADC1B07004161B7 /* UHDTalkDetailTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5EE27F1ADC1B07004161B7 /* UHDTalkDetailTitleCell.m */; };
+		0A5EE2851ADC2352004161B7 /* UHDTalkDetailSpeakerCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A5EE2831ADC2352004161B7 /* UHDTalkDetailSpeakerCell.h */; };
+		0A5EE2861ADC2352004161B7 /* UHDTalkDetailSpeakerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5EE2841ADC2352004161B7 /* UHDTalkDetailSpeakerCell.m */; };
+		0A5EE2891ADC249E004161B7 /* UHDTalkDetailAbstractCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A5EE2871ADC249E004161B7 /* UHDTalkDetailAbstractCell.h */; };
+		0A5EE28A1ADC249E004161B7 /* UHDTalkDetailAbstractCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5EE2881ADC249E004161B7 /* UHDTalkDetailAbstractCell.m */; };
+		0A5EE28D1ADC2C82004161B7 /* UHDTalkDetailTimeCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A5EE28B1ADC2C82004161B7 /* UHDTalkDetailTimeCell.h */; };
+		0A5EE28E1ADC2C82004161B7 /* UHDTalkDetailTimeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5EE28C1ADC2C82004161B7 /* UHDTalkDetailTimeCell.m */; };
+		0A5EE2911ADC2CF9004161B7 /* UHDTalkDetailLocationCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A5EE28F1ADC2CF9004161B7 /* UHDTalkDetailLocationCell.h */; };
+		0A5EE2921ADC2CF9004161B7 /* UHDTalkDetailLocationCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5EE2901ADC2CF9004161B7 /* UHDTalkDetailLocationCell.m */; };
 		0A6028761A3B22220032EDEB /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A6028751A3B22220032EDEB /* MessageUI.framework */; };
 		0A6028821A3B4BF00032EDEB /* EventKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A6028811A3B4BF00032EDEB /* EventKit.framework */; };
 		0AE477BD1A3D09D40071331E /* EventKitUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AE477BC1A3D09D40071331E /* EventKitUI.framework */; };
@@ -339,6 +349,16 @@
 		0A2000511920F18A0014C977 /* UHDNewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsDetailViewController.m; sourceTree = "<group>"; };
 		0A586D8C19646A6600DF86EE /* UHDTalkSpeaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkSpeaker.h; sourceTree = "<group>"; };
 		0A586D8D19646A6600DF86EE /* UHDTalkSpeaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDTalkSpeaker.m; sourceTree = "<group>"; };
+		0A5EE27E1ADC1B07004161B7 /* UHDTalkDetailTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkDetailTitleCell.h; sourceTree = "<group>"; };
+		0A5EE27F1ADC1B07004161B7 /* UHDTalkDetailTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDTalkDetailTitleCell.m; sourceTree = "<group>"; };
+		0A5EE2831ADC2352004161B7 /* UHDTalkDetailSpeakerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkDetailSpeakerCell.h; sourceTree = "<group>"; };
+		0A5EE2841ADC2352004161B7 /* UHDTalkDetailSpeakerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDTalkDetailSpeakerCell.m; sourceTree = "<group>"; };
+		0A5EE2871ADC249E004161B7 /* UHDTalkDetailAbstractCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkDetailAbstractCell.h; sourceTree = "<group>"; };
+		0A5EE2881ADC249E004161B7 /* UHDTalkDetailAbstractCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDTalkDetailAbstractCell.m; sourceTree = "<group>"; };
+		0A5EE28B1ADC2C82004161B7 /* UHDTalkDetailTimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkDetailTimeCell.h; sourceTree = "<group>"; };
+		0A5EE28C1ADC2C82004161B7 /* UHDTalkDetailTimeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDTalkDetailTimeCell.m; sourceTree = "<group>"; };
+		0A5EE28F1ADC2CF9004161B7 /* UHDTalkDetailLocationCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkDetailLocationCell.h; sourceTree = "<group>"; };
+		0A5EE2901ADC2CF9004161B7 /* UHDTalkDetailLocationCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDTalkDetailLocationCell.m; sourceTree = "<group>"; };
 		0A5EFF301A0ECB3700A6C999 /* UHDNewsSourcesNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsSourcesNavigationBar.h; sourceTree = "<group>"; };
 		0A5EFF311A0ECB3700A6C999 /* UHDNewsSourcesNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = UHDNewsSourcesNavigationBar.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		0A6028751A3B22220032EDEB /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
@@ -680,6 +700,16 @@
 				0ABAE5F31A3A6F1500E85E3E /* UHDTalkDetailTitleAbstractCell.m */,
 				0ABAE5F81A3AE65A00E85E3E /* UHDTalkDetailSpaceTimeCell.h */,
 				0ABAE5F91A3AE65A00E85E3E /* UHDTalkDetailSpaceTimeCell.m */,
+				0A5EE27E1ADC1B07004161B7 /* UHDTalkDetailTitleCell.h */,
+				0A5EE27F1ADC1B07004161B7 /* UHDTalkDetailTitleCell.m */,
+				0A5EE2831ADC2352004161B7 /* UHDTalkDetailSpeakerCell.h */,
+				0A5EE2841ADC2352004161B7 /* UHDTalkDetailSpeakerCell.m */,
+				0A5EE28B1ADC2C82004161B7 /* UHDTalkDetailTimeCell.h */,
+				0A5EE28F1ADC2CF9004161B7 /* UHDTalkDetailLocationCell.h */,
+				0A5EE2901ADC2CF9004161B7 /* UHDTalkDetailLocationCell.m */,
+				0A5EE28C1ADC2C82004161B7 /* UHDTalkDetailTimeCell.m */,
+				0A5EE2871ADC249E004161B7 /* UHDTalkDetailAbstractCell.h */,
+				0A5EE2881ADC249E004161B7 /* UHDTalkDetailAbstractCell.m */,
 			);
 			name = "Table View Cells";
 			sourceTree = "<group>";
@@ -1309,18 +1339,22 @@
 				876C698D1AB4CB4800EE093B /* UHDMapsRemoteDatasourceDelegate.h in Headers */,
 				876C69371AB4CA7700EE093B /* UHDFavouriteCell.h in Headers */,
 				876C69631AB4CAFA00EE093B /* UHDTalkDetailTitleAbstractCell.h in Headers */,
+				0A5EE2911ADC2CF9004161B7 /* UHDTalkDetailLocationCell.h in Headers */,
 				876C696A1AB4CAFA00EE093B /* UHDNewsCategory.h in Headers */,
 				876C693A1AB4CA7700EE093B /* UHDMensaCell.h in Headers */,
 				876C69A01AB4CB7700EE093B /* UIColor+UHDColors.h in Headers */,
 				876C695E1AB4CAFA00EE093B /* UHDNewsSourceCell.h in Headers */,
 				876C69571AB4CAFA00EE093B /* UHDNewsViewController.h in Headers */,
+				0A5EE28D1ADC2C82004161B7 /* UHDTalkDetailTimeCell.h in Headers */,
 				876C69611AB4CAFA00EE093B /* UHDTalkItemCell.h in Headers */,
 				876C69381AB4CA7700EE093B /* UHDFavouritesStarView.h in Headers */,
 				876C69591AB4CAFA00EE093B /* UHDNewsDetailViewController.h in Headers */,
 				876C69341AB4CA7700EE093B /* UHDMensaViewController.h in Headers */,
 				876C695A1AB4CAFA00EE093B /* UHDTalkDetailViewController.h in Headers */,
+				0A5EE2801ADC1B07004161B7 /* UHDTalkDetailTitleCell.h in Headers */,
 				876C695B1AB4CAFA00EE093B /* UHDNewsSourcesViewController.h in Headers */,
 				876C69641AB4CAFA00EE093B /* UHDTalkDetailSpaceTimeCell.h in Headers */,
+				0A5EE2891ADC249E004161B7 /* UHDTalkDetailAbstractCell.h in Headers */,
 				876C693E1AB4CA7700EE093B /* UHDDailyMenu.h in Headers */,
 				876C69351AB4CA7700EE093B /* UHDMensaListViewController.h in Headers */,
 				876C69681AB4CAFA00EE093B /* UHDNewsItem.h in Headers */,
@@ -1339,6 +1373,7 @@
 				87A49BB61AC1DBA9004FA9A4 /* NSManagedObject+VIInsertIntoContextCategory.h in Headers */,
 				876C69651AB4CAFA00EE093B /* UHDTalkSpeaker.h in Headers */,
 				876C693F1AB4CA7700EE093B /* UHDMeal.h in Headers */,
+				0A5EE2851ADC2352004161B7 /* UHDTalkDetailSpeakerCell.h in Headers */,
 				876C695D1AB4CAFA00EE093B /* UHDSourceCollectionViewCell.h in Headers */,
 				876C695C1AB4CAFA00EE093B /* UHDNewsSourcesNavigationBar.h in Headers */,
 				87A49BB81AC1DDA7004FA9A4 /* VIFetchedResultsControllerDataSource.h in Headers */,
@@ -1939,12 +1974,14 @@
 				876C694E1AB4CAB800EE093B /* CircularProgressView+ConfigureForMensa.swift in Sources */,
 				8731AB911AC71270008A1844 /* CampusRegion.swift in Sources */,
 				876C697E1AB4CB1C00EE093B /* UHDNewsItem.m in Sources */,
+				0A5EE2861ADC2352004161B7 /* UHDTalkDetailSpeakerCell.m in Sources */,
 				876C69911AB4CB6300EE093B /* InstitutionDetailViewController.swift in Sources */,
 				8731AB931AC71FBC008A1844 /* Mensa.swift in Sources */,
 				876C69791AB4CB1C00EE093B /* UHDTalkDetailTitleAbstractCell.m in Sources */,
 				876C69701AB4CB1C00EE093B /* UHDNewsSourcesViewController.m in Sources */,
 				876C69471AB4CAB800EE093B /* UHDMealCell.m in Sources */,
 				876C69461AB4CAB800EE093B /* UHDFavouritesStarView.m in Sources */,
+				0A5EE28A1ADC249E004161B7 /* UHDTalkDetailAbstractCell.m in Sources */,
 				87A49BA21AC1BE44004FA9A4 /* Constants.swift in Sources */,
 				876C69521AB4CAB800EE093B /* UHDMeal.m in Sources */,
 				876C69771AB4CB1C00EE093B /* UHDTalkItemCell.m in Sources */,
@@ -1965,6 +2002,7 @@
 				876C69941AB4CB6300EE093B /* InstitutionDetailTitleCell.swift in Sources */,
 				8731AB8B1AC70DA2008A1844 /* Location.swift in Sources */,
 				876C696E1AB4CB1C00EE093B /* UHDNewsDetailViewController.m in Sources */,
+				0A5EE2811ADC1B07004161B7 /* UHDTalkDetailTitleCell.m in Sources */,
 				876C69501AB4CAB800EE093B /* UHDMensaSection.m in Sources */,
 				876C694D1AB4CAB800EE093B /* MensaDayPickerCell.swift in Sources */,
 				876C694A1AB4CAB800EE093B /* UHDMensaSectionHeaderView.m in Sources */,
@@ -1998,11 +2036,13 @@
 				876C697C1AB4CB1C00EE093B /* UHDTalkItem.m in Sources */,
 				8705F62D1AC8A3B600980891 /* LocationsOverlay.swift in Sources */,
 				876C69531AB4CAB800EE093B /* Hours.swift in Sources */,
+				0A5EE28E1ADC2C82004161B7 /* UHDTalkDetailTimeCell.m in Sources */,
 				876C69761AB4CB1C00EE093B /* UHDEventItemCell.m in Sources */,
 				87A71D921AB4CF2D004C0FD3 /* VIMultilineLabel.swift in Sources */,
 				876C69451AB4CAB800EE093B /* UHDFavouriteCell.m in Sources */,
 				876C697B1AB4CB1C00EE093B /* UHDTalkSpeaker.m in Sources */,
 				876C696C1AB4CB1C00EE093B /* UHDNewsViewController.m in Sources */,
+				0A5EE2921ADC2CF9004161B7 /* UHDTalkDetailLocationCell.m in Sources */,
 				876C696F1AB4CB1C00EE093B /* UHDTalkDetailViewController.m in Sources */,
 				876C697D1AB4CB1C00EE093B /* UHDEventItem.m in Sources */,
 				8783543D1ACAFDE900CA5032 /* LocationAnnotationView.swift in Sources */,
