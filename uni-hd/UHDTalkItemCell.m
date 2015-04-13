@@ -92,8 +92,12 @@
 		self.imageSpacingLayoutConstraint.constant = 0;
 	}
     
-    // Layout multiline labels for updated content
-    [self layoutIfNeeded];
+    [self setNeedsUpdateConstraints];
+	[self updateConstraintsIfNeeded];
+	
+	// layout multiline labels for updated content
+	[self setNeedsLayout];
+	[self layoutIfNeeded];
 }
 
 

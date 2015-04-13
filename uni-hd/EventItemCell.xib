@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="eventCell" rowHeight="230" id="Iis-xv-VhB" customClass="UHDEventItemCell">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="230"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Iis-xv-VhB" id="PpQ-FD-ZRX">
+                <rect key="frame" x="0.0" y="0.0" width="287" height="203"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vjz-Ec-l80" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
+                        <rect key="frame" x="103" y="88" width="456" height="123"/>
+                        <string key="text">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</string>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Source" lineBreakMode="middleTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qNO-ah-s5Y" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
+                        <rect key="frame" x="40" y="10" width="476" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EventTitle" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mU6-kl-8iQ" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
+                        <rect key="frame" x="15" y="35" width="544" height="20"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Date" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hb6-0n-pu8">
+                        <rect key="frame" x="536" y="10" width="31" height="17"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" red="0.42745098040000001" green="0.42745098040000001" blue="0.42745098040000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="250" placeholderIntrinsicWidth="200" placeholderIntrinsicHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="I0Q-Uy-vkP">
+                        <rect key="frame" x="15" y="88" width="80" height="80"/>
+                        <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="width" priority="500" id="dTG-nl-D9S"/>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="gZ0-Jj-Ug2"/>
+                            <constraint firstAttribute="width" secondItem="I0Q-Uy-vkP" secondAttribute="height" multiplier="1:1" id="hmA-KZ-I2a"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" verticalCompressionResistancePriority="500" text="Location" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xu6-Gn-lzb" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
+                        <rect key="frame" x="15" y="63" width="544" height="17"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="QQO-wb-Dd9">
+                        <rect key="frame" x="15" y="9" width="20" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="nZl-4L-Bda"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                <integer key="value" value="10"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                        </userDefinedRuntimeAttributes>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="mU6-kl-8iQ" firstAttribute="leading" secondItem="PpQ-FD-ZRX" secondAttribute="leading" constant="15" id="20f-jb-1tG"/>
+                    <constraint firstItem="Hb6-0n-pu8" firstAttribute="leading" secondItem="qNO-ah-s5Y" secondAttribute="trailing" constant="20" id="70s-OL-G35"/>
+                    <constraint firstItem="mU6-kl-8iQ" firstAttribute="top" secondItem="qNO-ah-s5Y" secondAttribute="bottom" constant="8" id="7Vh-wf-Kla"/>
+                    <constraint firstItem="I0Q-Uy-vkP" firstAttribute="top" secondItem="vjz-Ec-l80" secondAttribute="top" id="90i-cX-PXt"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Xu6-Gn-lzb" secondAttribute="trailing" id="BQ0-Cp-6wy"/>
+                    <constraint firstItem="vjz-Ec-l80" firstAttribute="leading" secondItem="I0Q-Uy-vkP" secondAttribute="trailing" constant="8" id="Cr4-CX-nax"/>
+                    <constraint firstItem="Hb6-0n-pu8" firstAttribute="top" secondItem="qNO-ah-s5Y" secondAttribute="top" id="CwE-he-Zsf"/>
+                    <constraint firstItem="qNO-ah-s5Y" firstAttribute="top" secondItem="PpQ-FD-ZRX" secondAttribute="top" constant="10" id="Gc9-Lc-nVz"/>
+                    <constraint firstItem="vjz-Ec-l80" firstAttribute="top" secondItem="Xu6-Gn-lzb" secondAttribute="bottom" constant="8" id="JIK-JD-hP8"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="vjz-Ec-l80" secondAttribute="trailing" id="NcI-qK-hEl"/>
+                    <constraint firstItem="QQO-wb-Dd9" firstAttribute="width" secondItem="QQO-wb-Dd9" secondAttribute="height" multiplier="1:1" id="QKx-hU-qNR"/>
+                    <constraint firstItem="qNO-ah-s5Y" firstAttribute="leading" secondItem="QQO-wb-Dd9" secondAttribute="trailing" constant="5" id="VTS-Q6-6Ua"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="vjz-Ec-l80" secondAttribute="bottom" constant="10" id="XAr-Ao-lyO"/>
+                    <constraint firstItem="mU6-kl-8iQ" firstAttribute="leading" secondItem="I0Q-Uy-vkP" secondAttribute="leading" id="XZk-vo-co9"/>
+                    <constraint firstItem="mU6-kl-8iQ" firstAttribute="leading" secondItem="QQO-wb-Dd9" secondAttribute="leading" id="Yop-FS-f1U"/>
+                    <constraint firstItem="mU6-kl-8iQ" firstAttribute="leading" secondItem="Xu6-Gn-lzb" secondAttribute="leading" id="ahz-PD-VCe"/>
+                    <constraint firstItem="Xu6-Gn-lzb" firstAttribute="top" secondItem="mU6-kl-8iQ" secondAttribute="bottom" constant="8" id="b0B-hW-pLj"/>
+                    <constraint firstAttribute="trailing" secondItem="Hb6-0n-pu8" secondAttribute="trailing" id="buj-FN-cKm"/>
+                    <constraint firstItem="qNO-ah-s5Y" firstAttribute="centerY" secondItem="QQO-wb-Dd9" secondAttribute="centerY" id="djx-EA-bC8"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="mU6-kl-8iQ" secondAttribute="trailing" id="pRA-Rt-o6y"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="I0Q-Uy-vkP" secondAttribute="bottom" constant="10" id="rBc-Ya-MyK"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="abstractLabel" destination="vjz-Ec-l80" id="sYf-YM-3Rj"/>
+                <outlet property="eventImageView" destination="I0Q-Uy-vkP" id="PKl-Fg-bz1"/>
+                <outlet property="imageSpacingLayoutConstraint" destination="Cr4-CX-nax" id="KfH-P8-v7k"/>
+                <outlet property="locationLabel" destination="Xu6-Gn-lzb" id="oA3-RK-wGo"/>
+                <outlet property="shortDateAndTimeLabel" destination="Hb6-0n-pu8" id="rXW-Kr-SjB"/>
+                <outlet property="sourceIconImageView" destination="QQO-wb-Dd9" id="zSM-1L-fDl"/>
+                <outlet property="sourceLabel" destination="qNO-ah-s5Y" id="Y16-sq-G0g"/>
+                <outlet property="titleLabel" destination="mU6-kl-8iQ" id="dO4-G7-R2M"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

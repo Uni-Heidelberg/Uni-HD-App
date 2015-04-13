@@ -28,6 +28,11 @@
 
 @implementation UHDNewsSourcesViewController
 
+- (void)awakeFromNib {
+	[super awakeFromNib];
+	[self.tableView registerNib:[UINib nibWithNibName:@"SourceCell" bundle:[NSBundle bundleForClass:[UHDNewsSourceCell class]]] forCellReuseIdentifier:@"sourceCell"];
+}
+
 - (void)setCategory:(UHDNewsCategory *)category
 {
 	_category = category;

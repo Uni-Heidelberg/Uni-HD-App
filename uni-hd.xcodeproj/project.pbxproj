@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A1D95CF1ADC71510047C27E /* NewsItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A1D95CE1ADC71510047C27E /* NewsItemCell.xib */; };
+		0A1D95D11ADC74EA0047C27E /* EventItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A1D95D01ADC74EA0047C27E /* EventItemCell.xib */; };
+		0A1D95D31ADC75270047C27E /* TalkItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A1D95D21ADC75270047C27E /* TalkItemCell.xib */; };
+		0A1D95D51ADC89640047C27E /* SourceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A1D95D41ADC89640047C27E /* SourceCell.xib */; };
 		0A5EE2801ADC1B07004161B7 /* UHDTalkDetailTitleCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A5EE27E1ADC1B07004161B7 /* UHDTalkDetailTitleCell.h */; };
 		0A5EE2811ADC1B07004161B7 /* UHDTalkDetailTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5EE27F1ADC1B07004161B7 /* UHDTalkDetailTitleCell.m */; };
 		0A5EE2851ADC2352004161B7 /* UHDTalkDetailSpeakerCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A5EE2831ADC2352004161B7 /* UHDTalkDetailSpeakerCell.h */; };
@@ -345,6 +349,10 @@
 /* Begin PBXFileReference section */
 		0A0CEC0B19E44F55009C9F5B /* UHDReadIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDReadIndicatorView.h; sourceTree = "<group>"; };
 		0A0CEC0C19E44F55009C9F5B /* UHDReadIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDReadIndicatorView.m; sourceTree = "<group>"; };
+		0A1D95CE1ADC71510047C27E /* NewsItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NewsItemCell.xib; sourceTree = "<group>"; };
+		0A1D95D01ADC74EA0047C27E /* EventItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EventItemCell.xib; sourceTree = "<group>"; };
+		0A1D95D21ADC75270047C27E /* TalkItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TalkItemCell.xib; sourceTree = "<group>"; };
+		0A1D95D41ADC89640047C27E /* SourceCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SourceCell.xib; sourceTree = "<group>"; };
 		0A2000501920F18A0014C977 /* UHDNewsDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDNewsDetailViewController.h; sourceTree = "<group>"; };
 		0A2000511920F18A0014C977 /* UHDNewsDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDNewsDetailViewController.m; sourceTree = "<group>"; };
 		0A586D8C19646A6600DF86EE /* UHDTalkSpeaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkSpeaker.h; sourceTree = "<group>"; };
@@ -622,6 +630,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A1D95CD1ADC709D0047C27E /* Table View Cells - XIB Files */ = {
+			isa = PBXGroup;
+			children = (
+				0A1D95CE1ADC71510047C27E /* NewsItemCell.xib */,
+				0A1D95D01ADC74EA0047C27E /* EventItemCell.xib */,
+				0A1D95D21ADC75270047C27E /* TalkItemCell.xib */,
+				0A1D95D41ADC89640047C27E /* SourceCell.xib */,
+			);
+			name = "Table View Cells - XIB Files";
+			sourceTree = "<group>";
+		};
 		0ABAE5ED1A3A52C200E85E3E /* Talk Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -683,7 +702,7 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		871BE3AA19E4F295005A600A /* Table View Cells */ = {
+		871BE3AA19E4F295005A600A /* Table View Cells - Source Files */ = {
 			isa = PBXGroup;
 			children = (
 				875396001932B03C00DFEF19 /* UHDNewsSourceCell.h */,
@@ -711,7 +730,7 @@
 				0A5EE2871ADC249E004161B7 /* UHDTalkDetailAbstractCell.h */,
 				0A5EE2881ADC249E004161B7 /* UHDTalkDetailAbstractCell.m */,
 			);
-			name = "Table View Cells";
+			name = "Table View Cells - Source Files";
 			sourceTree = "<group>";
 		};
 		872673251A36050500ABC599 /* View Controller */ = {
@@ -829,7 +848,8 @@
 			children = (
 				87DBE7F31919C3F700C16970 /* news.storyboard */,
 				0AF7D4371A0C43D800BD8423 /* Sources Navigation Bar */,
-				871BE3AA19E4F295005A600A /* Table View Cells */,
+				871BE3AA19E4F295005A600A /* Table View Cells - Source Files */,
+				0A1D95CD1ADC709D0047C27E /* Table View Cells - XIB Files */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -1672,12 +1692,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0A1D95D51ADC89640047C27E /* SourceCell.xib in Resources */,
 				876C69561AB4CACD00EE093B /* Images.xcassets in Resources */,
 				87BB56411AC303A300B1B468 /* SampleImages.xcassets in Resources */,
 				876C69921AB4CB6300EE093B /* campus.storyboard in Resources */,
+				0A1D95D11ADC74EA0047C27E /* EventItemCell.xib in Resources */,
 				876C69491AB4CAB800EE093B /* UHDMensaSectionHeaderView.xib in Resources */,
+				0A1D95D31ADC75270047C27E /* TalkItemCell.xib in Resources */,
 				876C69441AB4CAB800EE093B /* mensa.storyboard in Resources */,
 				87A49BB51AC1DB49004FA9A4 /* settings.storyboard in Resources */,
+				0A1D95CF1ADC71510047C27E /* NewsItemCell.xib in Resources */,
 				87A49BB31AC1D9FD004FA9A4 /* TabBarIcons.xcassets in Resources */,
 				876C69711AB4CB1C00EE093B /* news.storyboard in Resources */,
 			);

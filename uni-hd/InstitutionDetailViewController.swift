@@ -35,10 +35,15 @@ public class InstitutionDetailViewController: UITableViewController, MFMailCompo
     override public func awakeFromNib() {
         super.awakeFromNib()
         
-        self.tableView.estimatedRowHeight = 80
+        self.tableView.estimatedRowHeight = 160
         self.tableView.rowHeight = UITableViewAutomaticDimension
+		
+		self.tableView.registerNib(UINib(nibName: "NewsItemCell", bundle: NSBundle(forClass: object_getClass(UHDNewsItemCell))), forCellReuseIdentifier: "newsCell")
+		self.tableView.registerNib(UINib(nibName: "EventItemCell", bundle: NSBundle(forClass: object_getClass(UHDEventItemCell))), forCellReuseIdentifier: "eventCell")
+		self.tableView.registerNib(UINib(nibName: "TalkItemCell", bundle: NSBundle(forClass: object_getClass(UHDTalkItemCell))), forCellReuseIdentifier: "talkCell")
+		self.tableView.registerNib(UINib(nibName: "SourceCell", bundle: NSBundle(forClass: object_getClass(UHDNewsSourceCell))), forCellReuseIdentifier: "sourceCell")
     }
-    
+	
     override public func viewDidLoad() {
         super.viewDidLoad()
         self.configureView()

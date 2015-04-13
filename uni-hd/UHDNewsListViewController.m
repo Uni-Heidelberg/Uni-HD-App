@@ -24,7 +24,6 @@
 #import "UHDTalkSpeaker.h"
 
 
-
 @interface UHDNewsListViewController ()
 
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
@@ -50,7 +49,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-	
+	[self.tableView registerNib:[UINib nibWithNibName:@"NewsItemCell" bundle:[NSBundle bundleForClass:[UHDNewsItemCell class]]] forCellReuseIdentifier:@"newsCell"];
+	[self.tableView registerNib:[UINib nibWithNibName:@"EventItemCell" bundle:[NSBundle bundleForClass:[UHDEventItemCell class]]] forCellReuseIdentifier:@"eventCell"];
+	[self.tableView registerNib:[UINib nibWithNibName:@"TalkItemCell" bundle:[NSBundle bundleForClass:[UHDTalkItemCell class]]] forCellReuseIdentifier:@"talkCell"];
 }
 
 
@@ -175,6 +176,7 @@
 	// TODO: Refreshing throws an exception
 }
 
+/*
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"showNewsDetail"]) {
@@ -204,6 +206,42 @@
         UHDTalkItem *item = self.fetchedResultsControllerDataSource.selectedItem;
         
         talkDetailVC.talkItem = item;
+	}
+}
+*/
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+	
+	UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"news" bundle:[NSBundle bundleForClass:[self class]]];
+	
+	NSManagedObject *item = self.fetchedResultsControllerDataSource.selectedItem;
+	
+	if ([item class] == [UHDNewsItem class]) {
+		UHDNewsItem *newsItem = (UHDNewsItem *)item;
+		
+		// Mark item as read
+		newsItem.read = YES;
+		[newsItem.managedObjectContext saveToPersistentStore:NULL];
+	
+		UHDNewsDetailViewController *newsDetailVC = [storyboard instantiateViewControllerWithIdentifier:@"newsDetail"];
+		
+		newsDetailVC.newsItem = newsItem;
+	
+		[self.navigationController pushViewController:newsDetailVC animated:YES];
+	}
+	else if ([item class] == [UHDEventItem class]) {
+		UHDNewsDetailViewController *newsDetailVC = [storyboard instantiateViewControllerWithIdentifier:@"newsDetail"];
+        
+        newsDetailVC.newsItem = (UHDEventItem *)item;
+		
+		[self.navigationController pushViewController:newsDetailVC animated:YES];
+	}
+	else if ([item class] == [UHDTalkItem class]) {
+		UHDTalkDetailViewController *talkDetailVC = [storyboard instantiateViewControllerWithIdentifier:@"talkDetail"];
+        
+        talkDetailVC.talkItem = (UHDTalkItem *)item;
+		
+		[self.navigationController pushViewController:talkDetailVC animated:YES];
 	}
 }
 
