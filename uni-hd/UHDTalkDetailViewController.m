@@ -22,6 +22,7 @@
 #import "UHDTalkDetailAbstractCell.h"
 #import "UHDTalkDetailTimeCell.h"
 #import "UHDTalkDetailLocationCell.h"
+#import "UHDTalkDetailSourceCell.h"
 
 #import "UHDNewsSource.h"
 
@@ -31,8 +32,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *headerImageView;
 
 @property (weak, nonatomic) IBOutlet UIView *navigationItemContainerView;
-@property (weak, nonatomic) IBOutlet UIImageView *navigationItemImageView;
-@property (weak, nonatomic) IBOutlet UILabel *navigationItemLabel;
+@property (weak, nonatomic) IBOutlet UILabel *navigationItemTitleLabel;
 
 @property (strong, nonatomic) EKEventStore *eventStore;
 
@@ -103,15 +103,8 @@
 	
 	// configure navigation bar
 	self.navigationItemContainerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleBottomMargin;
-	self.navigationItemLabel.text = self.talkItem.source.title;
-	self.navigationItemImageView.layer.cornerRadius = self.navigationItemImageView.bounds.size.height / 2.;
-	self.navigationItemImageView.layer.masksToBounds = YES;
-	if (self.talkItem.source.image) {
-		self.navigationItemImageView.image = self.talkItem.source.image;
-	}
-	else {
-		self.navigationItemImageView.image = [UIImage imageNamed:@"allTalksIcon"];
-	}
+	self.navigationItemTitleLabel.text = self.talkItem.source.title;
+	self.navigationItemTitleLabel.textColor = [UIColor whiteColor];
 	
 	[self.tableView reloadData];
 	
@@ -346,7 +339,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	
-	NSInteger rows = 1;
+	NSInteger rows = 2;
 	
 	switch (section) {
 		case 0: {
@@ -384,11 +377,16 @@
 	if (indexPath.section == 0) {
 		switch (indexPath.row) {
 			case 0: {
+				cell = [self.tableView dequeueReusableCellWithIdentifier:@"source"];
+				[(UHDTalkDetailSourceCell *)cell configureForItem:self.talkItem];
+				break;
+			}
+			case 1: {
 				cell = [self.tableView dequeueReusableCellWithIdentifier:@"title"];
 				[(UHDTalkDetailTitleCell *)cell configureForItem:self.talkItem];
 				break;
 			}
-			case 1: {
+			case 2: {
 				if (self.talkItem.speaker.name.length > 0) {
 					cell = [self.tableView dequeueReusableCellWithIdentifier:@"speaker"];
 					[(UHDTalkDetailSpeakerCell *)cell configureForItem:self.talkItem];
@@ -399,7 +397,7 @@
 				}
 				break;
 			}
-			case 2: {
+			case 3: {
 				cell = [self.tableView dequeueReusableCellWithIdentifier:@"abstract"];
 				[(UHDTalkDetailAbstractCell *)cell configureForItem:self.talkItem];
 				break;
@@ -433,7 +431,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	
-	if (indexPath.section == 0 && indexPath.row == 1 && self.talkItem.speaker.name.length > 0) {
+	if (indexPath.section == 0 && indexPath.row == 2 && self.talkItem.speaker.name.length > 0) {
 		[self showSpeakerInformation];
 	}
 	else if (indexPath.section == 1) {
