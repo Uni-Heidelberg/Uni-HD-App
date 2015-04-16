@@ -14,7 +14,7 @@
 #import "NSManagedObject+VIInsertIntoContextCategory.h"
 
 // View Controllers
-#import "UHDNewsDetailViewController.h"
+#import "UHDNewsDetailWebViewController.h"
 #import "UHDTalkDetailViewController.h"
 
 // Table View Cells
@@ -222,15 +222,25 @@
 		// Mark item as read
 		newsItem.read = YES;
 		[newsItem.managedObjectContext saveToPersistentStore:NULL];
+		
+		// TODO: decide whether to use NewsDetailViewController or NewsDetailWebViewController
 	
-		UHDNewsDetailViewController *newsDetailVC = [storyboard instantiateViewControllerWithIdentifier:@"newsDetail"];
+		//UHDNewsDetailWebViewController *newsDetailVC = [storyboard instantiateViewControllerWithIdentifier:@"newsDetailWeb"];
+		NewsDetailViewController *newsDetailVC = [storyboard instantiateViewControllerWithIdentifier:@"newsDetail"];
+		
+		/*
+		// test layout with image
+		UIImage *image = [UIImage imageNamed:@"kip" inBundle:[NSBundle bundleForClass:[self class]] compatibleWithTraitCollection:nil];
+		NSData *imageData = UIImageJPEGRepresentation(image, 1.0);
+		newsItem.imageData = imageData;
+		*/
 		
 		newsDetailVC.newsItem = newsItem;
 	
 		[self.navigationController pushViewController:newsDetailVC animated:YES];
 	}
 	else if ([item class] == [UHDEventItem class]) {
-		UHDNewsDetailViewController *newsDetailVC = [storyboard instantiateViewControllerWithIdentifier:@"newsDetail"];
+		UHDNewsDetailWebViewController *newsDetailVC = [storyboard instantiateViewControllerWithIdentifier:@"newsDetailWeb"];
         
         newsDetailVC.newsItem = (UHDEventItem *)item;
 		

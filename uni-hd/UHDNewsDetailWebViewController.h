@@ -9,7 +9,7 @@
 @import UIKit;
 #import "UHDNewsItem.h"
 
-@interface UHDNewsDetailViewController : UIViewController
+@interface UHDNewsDetailWebViewController : UIViewController
 
 @property (strong, nonatomic) UHDNewsItem *newsItem;
 
