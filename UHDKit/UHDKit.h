@@ -33,7 +33,7 @@ FOUNDATION_EXPORT const unsigned char UHDKitVersionString[];
 
 // View Controllers
 #import <UHDKit/UHDNewsViewController.h>
-#import <UHDKit/UHDNewsDetailViewController.h>
+#import <UHDKit/UHDNewsDetailWebViewController.h>
 #import <UHDKit/UHDNewsSourcesViewController.h>
 #import <UHDKit/UHDTalkDetailViewController.h>
 #import <UHDKit/UHDNewsListViewController.h>
@@ -52,6 +52,7 @@ FOUNDATION_EXPORT const unsigned char UHDKitVersionString[];
 #import <UHDKit/UHDNewsItem.h>
 #import <UHDKit/UHDEventItem.h>
 #import <UHDKit/UHDTalkItem.h>
+
 
 
 // Remote Datasource Delegates

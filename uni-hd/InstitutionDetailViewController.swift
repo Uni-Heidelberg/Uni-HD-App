@@ -146,7 +146,7 @@ public class InstitutionDetailViewController: UITableViewController, MFMailCompo
                 }
             
             case .News(let items):
-                if let detailVC = UIStoryboard(name: "news", bundle: NSBundle(forClass: UHDNewsDetailViewController.self)).instantiateViewControllerWithIdentifier("newsDetail") as? UHDNewsDetailViewController {
+                if let detailVC = UIStoryboard(name: "news", bundle: NSBundle(forClass: UHDNewsDetailWebViewController.self)).instantiateViewControllerWithIdentifier("newsDetailWeb") as? UHDNewsDetailWebViewController {
                     detailVC.newsItem = items[indexPath.row]
                     self.navigationController?.pushViewController(detailVC, animated: true)
                 }

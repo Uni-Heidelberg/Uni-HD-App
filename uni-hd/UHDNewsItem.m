@@ -33,6 +33,12 @@
 @dynamic primitiveDate, primitiveSectionIdentifier;
 
 
+// TODO: replace me
+- (NSString *)content {
+	return self.abstract;
+}
+
+
 #pragma mark - Convenience accessors
 
 - (UIImage *)image

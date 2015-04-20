@@ -6,11 +6,11 @@
 //  Copyright (c) 2014 Universität Heidelberg. All rights reserved.
 //
 
-#import "UHDNewsDetailViewController.h"
+#import "UHDNewsDetailWebViewController.h"
 #import "UHDNewsItem.h"
 
 
-@interface UHDNewsDetailViewController ()
+@interface UHDNewsDetailWebViewController ()
 
 @property (weak, nonatomic) IBOutlet UIWebView *newsWebView;
 
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation UHDNewsDetailViewController
+@implementation UHDNewsDetailWebViewController
 
 - (void)viewWillAppear:(BOOL)animated
 {
