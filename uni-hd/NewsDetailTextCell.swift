@@ -12,38 +12,26 @@ public class NewsDetailTextCell: UITableViewCell {
 
 	@IBOutlet weak var articleComponentTextView: UITextView!
 	
-    override public func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override public func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
-	
-	public func configure(forNewsItem newsItem: UHDNewsItem!, forArticleComponent articleComponent: NewsDetailViewController.ArticleComponent) {
+	public func configureForArticleComponent(articleComponent: NewsDetailViewController.ArticleComponent) {
 	
 		self.articleComponentTextView.autoresizingMask = UIViewAutoresizing.FlexibleBottomMargin | UIViewAutoresizing.FlexibleHeight | UIViewAutoresizing.FlexibleLeftMargin | UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleTopMargin | UIViewAutoresizing.FlexibleWidth
 		
 		switch articleComponent {
 		
-		case .Title:
-			self.articleComponentTextView.text = newsItem.title
+		case .Title(let title):
+			self.articleComponentTextView.text = title
 			self.articleComponentTextView.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
 			
-		case .Abstract:
+		case .Abstract(let abstract):
 			// TODO: get adequate abstract from server
-			let abstract = newsItem.abstract as NSString
 			let maxAbstractLength = 200
 			
-			if abstract.length > maxAbstractLength {
-				var subString = abstract.substringToIndex(maxAbstractLength)
+			if count(abstract) > maxAbstractLength {
+				var subString = (abstract as NSString).substringToIndex(maxAbstractLength)
 				self.articleComponentTextView.text = (subString as String) + "..."
 			}
 			else {
-				self.articleComponentTextView.text = newsItem.abstract
+				self.articleComponentTextView.text = abstract
 			}
 			
 			let fontDescriptor = UIFontDescriptor.preferredFontDescriptorWithTextStyle(UIFontTextStyleSubheadline)
@@ -51,8 +39,8 @@ public class NewsDetailTextCell: UITableViewCell {
 					self.articleComponentTextView.font = UIFont(descriptor: boldFontDescriptor, size: boldFontDescriptor.pointSize)
 			}
 			
-		case .Content:
-			self.articleComponentTextView.text = newsItem.content
+		case .Content(let content):
+			self.articleComponentTextView.text = content
 			self.articleComponentTextView.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
 		}
 	}

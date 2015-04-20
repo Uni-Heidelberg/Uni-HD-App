@@ -37,13 +37,15 @@ import UIKit
     }
 	
 	func configureView() {
+        if !self.isViewLoaded() {
+            return
+        }
 		
 		// configure table header view
 		if let image = self.newsItem?.image {
 			self.headerImageView?.image = image
 			self.tableView.tableHeaderView = self.headerView
-		}
-		else {
+		} else {
 			self.tableView.tableHeaderView = nil
 		}
 		
@@ -52,8 +54,7 @@ import UIKit
 		if let newsItem = self.newsItem {
 			self.navigationBarTitleLabel.text = newsItem.source.title;
 			self.navigationBarImageView.image = newsItem.source.image;
-		}
-		else {
+		} else {
 			self.navigationBarTitleLabel.text = NSLocalizedString("News", comment: "")
 			if let image = UIImage(named: "allTalksIcon") {
 				self.navigationBarImageView.image = image
@@ -67,11 +68,6 @@ import UIKit
 		
 		self.tableView.reloadData()
 	}
-
-    override public func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
 	
 	
 	// MARK: - Sections and Rows
@@ -79,9 +75,8 @@ import UIKit
 	// TODO: find better way to link to associated institution
 	
 	private enum Section {
-		case News, Institution
+        case News(articleComponents: [ArticleComponent]), Institution(institution: UHDKit.Institution)
 		
-		// read-only computed property
 		var localizedSectionTitle: String? {
 			switch self {
 			case .News:
@@ -94,27 +89,28 @@ import UIKit
 	
 	private var sections: [Section] {
 		if let newsItem = self.newsItem {
-			var sections: [Section] = [Section.News]
+            var sections: [Section] = [ .News(articleComponents: self.newsRows) ]
 			if let institution = newsItem.source.institution {
-				sections.append(Section.Institution)
+                sections.append(.Institution(institution: institution))
 			}
 			return sections
-		}
-		return []
+        } else {
+            return []
+        }
 	}
 	
 	public enum ArticleComponent {
-		case Title, Abstract, Content
+        case Title(title: String), Abstract(abstract: String), Content(content: String)
 	}
 	
 	private var newsRows: [ArticleComponent] {
 		if let newsItem = self.newsItem {
-			var newsRows: [ArticleComponent] = [ArticleComponent.Title]
-			if newsItem.abstract != nil {
-				newsRows.append(ArticleComponent.Abstract)
+            var newsRows: [ArticleComponent] = [ .Title(title: newsItem.title) ]
+			if let abstract = newsItem.abstract {
+                newsRows.append(.Abstract(abstract: abstract))
 			}
-			if newsItem.content != nil {
-				newsRows.append(ArticleComponent.Content)
+			if let content = newsItem.content {
+                newsRows.append(.Content(content: content))
 			}
 			return newsRows
 		}
@@ -130,8 +126,8 @@ import UIKit
 
     override public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		switch self.sections[section] {
-		case .News:
-			return self.newsRows.count
+		case .News(let articleComponents):
+			return articleComponents.count
 		case .Institution:
 			return 1
 		}
@@ -143,21 +139,14 @@ import UIKit
 		
 		switch self.sections[indexPath.section] {
 		
-		case .News:
+		case .News(let articleComponents):
 			let cell = tableView.dequeueReusableCellWithIdentifier("articleComponent") as! NewsDetailTextCell
-			switch self.newsRows[indexPath.row] {
-			case .Title:
-				cell.configure(forNewsItem: newsItem, forArticleComponent: .Title)
-			case .Abstract:
-				cell.configure(forNewsItem: newsItem, forArticleComponent: .Abstract)
-			case .Content:
-				cell.configure(forNewsItem: newsItem, forArticleComponent: .Content)
-			}
+            cell.configureForArticleComponent(articleComponents[indexPath.row])
 			return cell
 			
-		case .Institution:
+		case .Institution(let institution):
 			let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
-			cell.textLabel?.text = newsItem.source.institution.title
+			cell.textLabel?.text = institution.title
 			return cell
 		}
     }
@@ -170,10 +159,10 @@ import UIKit
 	
 		switch self.sections[indexPath.section] {
 		
-		case .Institution:
+		case .Institution(let institution):
 			let storyboard = UIStoryboard(name: "campus", bundle: NSBundle(forClass: InstitutionDetailViewController.self))
 			let institutionDetailVC = storyboard.instantiateViewControllerWithIdentifier("institutionDetail") as! InstitutionDetailViewController
-			institutionDetailVC.institution = self.newsItem?.source.institution
+			institutionDetailVC.institution = institution
 			self.navigationController?.pushViewController(institutionDetailVC, animated: true)
 			
 		default:
@@ -185,7 +174,7 @@ import UIKit
 	// MARK: Scroll View Delegate
     
     override public func scrollViewDidScroll(scrollView: UIScrollView) {
-        if (scrollView==self.tableView) {
+        if scrollView == self.tableView {
             self.tableView.adjustFrameForParallaxedHeaderView(self.headerImageView)
         }
     }
