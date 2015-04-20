@@ -275,56 +275,6 @@
                                     <outlet property="titleLabel" destination="ehU-A6-lCi" id="ul2-l6-pH4"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="locationCell" rowHeight="320" id="QCo-le-ypI" customClass="InstitutionDetailLocationCell" customModule="UHDKit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="246" width="320" height="198"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="QCo-le-ypI" id="R3a-XU-xd7">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="197"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hCW-GD-fys">
-                                            <rect key="frame" x="15" y="158" width="157" height="30"/>
-                                            <state key="normal" title="Auf der Karte anzeigen">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="showOnMapButtonPressed:" destination="gkq-iR-bWQ" eventType="touchUpInside" id="wHW-Np-CtI"/>
-                                            </connections>
-                                        </button>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wXI-99-Ru4">
-                                            <rect key="frame" x="15" y="188" width="91" height="30"/>
-                                            <state key="normal" title="Route hierhin">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="getDirectionsButtonPressed:" destination="gkq-iR-bWQ" eventType="touchUpInside" id="xQi-xF-3qh"/>
-                                            </connections>
-                                        </button>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PbG-pO-46d" customClass="CampusMapView" customModule="UHDKit" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="150" id="G7M-ku-juN"/>
-                                            </constraints>
-                                        </view>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="PbG-pO-46d" secondAttribute="trailing" id="4Ak-k9-rVY"/>
-                                        <constraint firstItem="PbG-pO-46d" firstAttribute="leading" secondItem="R3a-XU-xd7" secondAttribute="leading" id="6d1-e3-def"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="wXI-99-Ru4" secondAttribute="trailing" constant="15" id="BqE-xD-lrd"/>
-                                        <constraint firstItem="PbG-pO-46d" firstAttribute="top" secondItem="R3a-XU-xd7" secondAttribute="top" id="MjP-cu-hFa"/>
-                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="wXI-99-Ru4" secondAttribute="bottom" id="Umh-iT-rHN"/>
-                                        <constraint firstItem="hCW-GD-fys" firstAttribute="leading" secondItem="wXI-99-Ru4" secondAttribute="leading" id="Urw-bg-JDX"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="hCW-GD-fys" secondAttribute="trailing" constant="15" id="VSR-Q3-6eq"/>
-                                        <constraint firstItem="hCW-GD-fys" firstAttribute="top" secondItem="PbG-pO-46d" secondAttribute="bottom" constant="8" symbolic="YES" id="hqN-Dn-Zk7"/>
-                                        <constraint firstItem="wXI-99-Ru4" firstAttribute="top" secondItem="hCW-GD-fys" secondAttribute="bottom" id="iUl-6u-q0L"/>
-                                        <constraint firstItem="hCW-GD-fys" firstAttribute="leading" secondItem="R3a-XU-xd7" secondAttribute="leading" constant="15" id="mcZ-FI-f6G"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="campusMapView" destination="PbG-pO-46d" id="lnn-3i-EIn"/>
-                                </connections>
-                            </tableViewCell>
                         </prototypes>
                         <sections/>
                         <connections>

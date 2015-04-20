@@ -41,7 +41,6 @@
 	UIFontDescriptor *boldDescriptor = [fontDescriptor fontDescriptorWithSymbolicTraits:(fontDescriptor.symbolicTraits | UIFontDescriptorTraitBold)];
 	self.timeLabel.font = [UIFont fontWithDescriptor:boldDescriptor size:boldDescriptor.pointSize];
 	*/
-	self.timeLabel.textColor = [UIColor brandColor];
 	
 	self.addToCalendarLabel.text = nil; //NSLocalizedString(@"Veranstaltung in den Kalender eintragen", nil);
 	self.addToCalendarLabel.textColor = [UIColor brandColor];

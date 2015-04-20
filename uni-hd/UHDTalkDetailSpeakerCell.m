@@ -7,11 +7,10 @@
 //
 
 #import "UHDTalkDetailSpeakerCell.h"
-#import "UIColor+UHDColors.h"
 
 @interface UHDTalkDetailSpeakerCell ()
 
-@property (weak, nonatomic) IBOutlet UILabel *speakerLabel;
+@property (weak, nonatomic) IBOutlet UIButton *speakerLabel;
 @property (weak, nonatomic) IBOutlet UILabel *affiliationLabel;
 
 
@@ -32,13 +31,12 @@
 
 - (void)configureForItem:(UHDTalkItem *)item {
 	
-	self.speakerLabel.text = item.speaker.name;
+    [self.speakerLabel setTitle:item.speaker.name forState:UIControlStateNormal];
 	/*
 	UIFontDescriptor *fontDescriptor = [UIFontDescriptor preferredFontDescriptorWithTextStyle:UIFontTextStyleBody];
 	UIFontDescriptor *boldDescriptor = [fontDescriptor fontDescriptorWithSymbolicTraits:(fontDescriptor.symbolicTraits | UIFontDescriptorTraitBold)];
 	self.speakerLabel.font = [UIFont fontWithDescriptor:boldDescriptor size:boldDescriptor.pointSize];
 	*/
-	self.speakerLabel.textColor = [UIColor brandColor];
 	self.affiliationLabel.text = item.speaker.affiliation;
 	
 	[self setNeedsLayout];

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="locationCell" rowHeight="320" id="Gvg-yQ-ofg" customClass="LocationDetailCell" customModule="UHDKit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="320"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" tableViewCell="Gvg-yQ-ofg" id="2xR-Yu-axY">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="197"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ntx-UH-bXd">
+                        <rect key="frame" x="15" y="158" width="157" height="30"/>
+                        <state key="normal" title="Auf der Karte anzeigen">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PkN-bz-mKS">
+                        <rect key="frame" x="15" y="188" width="91" height="30"/>
+                        <state key="normal" title="Route hierhin">
+                            <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yew-M2-ZOq" customClass="CampusMapView" customModule="UHDKit" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="150"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="150" id="qqj-yh-clT"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="ntx-UH-bXd" firstAttribute="top" secondItem="Yew-M2-ZOq" secondAttribute="bottom" constant="8" symbolic="YES" id="C3m-sI-9Dv"/>
+                    <constraint firstItem="Yew-M2-ZOq" firstAttribute="leading" secondItem="2xR-Yu-axY" secondAttribute="leading" id="IDb-kg-knc"/>
+                    <constraint firstItem="ntx-UH-bXd" firstAttribute="leading" secondItem="PkN-bz-mKS" secondAttribute="leading" id="ctE-Lm-PkR"/>
+                    <constraint firstItem="Yew-M2-ZOq" firstAttribute="top" secondItem="2xR-Yu-axY" secondAttribute="top" id="e4U-lp-mlt"/>
+                    <constraint firstItem="PkN-bz-mKS" firstAttribute="top" secondItem="ntx-UH-bXd" secondAttribute="bottom" id="ehV-cm-BL4"/>
+                    <constraint firstItem="ntx-UH-bXd" firstAttribute="leading" secondItem="2xR-Yu-axY" secondAttribute="leading" constant="15" id="h0X-8Y-8le"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="PkN-bz-mKS" secondAttribute="trailing" constant="15" id="kra-5N-9cm"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ntx-UH-bXd" secondAttribute="trailing" constant="15" id="mrr-GZ-Id7"/>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="PkN-bz-mKS" secondAttribute="bottom" id="pAN-3X-dOm"/>
+                    <constraint firstAttribute="trailing" secondItem="Yew-M2-ZOq" secondAttribute="trailing" id="y8a-j9-Wtl"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="campusMapView" destination="Yew-M2-ZOq" id="Bhe-xv-BGA"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

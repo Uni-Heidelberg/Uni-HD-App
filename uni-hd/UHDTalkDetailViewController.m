@@ -59,6 +59,8 @@
     
     self.tableView.rowHeight = UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight = 200;
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"LocationDetailCell" bundle:[NSBundle bundleForClass:[LocationDetailCell class]]] forCellReuseIdentifier:@"locationCell"];
 }
 
 - (void)viewDidLoad {
@@ -368,8 +370,6 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	 switch (section) {
-        case 0:
-            return NSLocalizedString(@"Titel und Inhalt", nil);
         case 1:
             return NSLocalizedString(@"Ort und Zeit der Veranstaltung", nil);
         default:
@@ -416,8 +416,13 @@
 				break;
 			}
 			case 1: {
-				cell = [self.tableView dequeueReusableCellWithIdentifier:@"location"];
-				[(UHDTalkDetailLocationCell *)cell configureForItem:self.talkItem];
+                if (self.talkItem.location != nil) {
+                    cell = [self.tableView dequeueReusableCellWithIdentifier:@"locationCell"];
+                    [(LocationDetailCell *)cell configureForLocation:self.talkItem.location];
+                } else {
+                    cell = [self.tableView dequeueReusableCellWithIdentifier:@"location"];
+                    [(UHDTalkDetailLocationCell *)cell configureForItem:self.talkItem];
+                }
 				break;
 			}
 			default:

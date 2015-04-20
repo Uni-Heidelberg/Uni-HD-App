@@ -8,11 +8,11 @@
 
 import UIKit
 
-class InstitutionDetailLocationCell: UITableViewCell {
+public class LocationDetailCell: UITableViewCell {
 
     @IBOutlet var campusMapView: CampusMapView!
     
-    func configureForLocation(location: Location) {
+    public func configureForLocation(location: Location) {
 /*        mapView.removeAnnotations(mapView.annotations)
         mapView.addAnnotation(location)
         mapView.showAnnotations([ location ], animated: false)*/

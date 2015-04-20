@@ -129,7 +129,7 @@
 		876C69921AB4CB6300EE093B /* campus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87E85273195727E4007503B8 /* campus.storyboard */; };
 		876C69941AB4CB6300EE093B /* InstitutionDetailTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87479AA01A3FA39D0084FBDA /* InstitutionDetailTitleCell.swift */; };
 		876C69951AB4CB6300EE093B /* InstitutionDetailPropertyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87479AA31A3FA4220084FBDA /* InstitutionDetailPropertyCell.swift */; };
-		876C69961AB4CB6300EE093B /* InstitutionDetailLocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87479AA51A3FA4810084FBDA /* InstitutionDetailLocationCell.swift */; };
+		876C69961AB4CB6300EE093B /* LocationDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87479AA51A3FA4810084FBDA /* LocationDetailCell.swift */; };
 		876C699E1AB4CB6300EE093B /* UHDMapsRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BEC8EB01993B40A00EAB8F6 /* UHDMapsRemoteDatasourceDelegate.m */; };
 		876C699F1AB4CB6900EE093B /* campus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87FCA99119958EB100B3A55F /* campus.xcdatamodeld */; };
 		876C69A01AB4CB7700EE093B /* UIColor+UHDColors.h in Headers */ = {isa = PBXBuildFile; fileRef = 87B276CD192E04110057B505 /* UIColor+UHDColors.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -185,6 +185,7 @@
 		87A71DA41AB4D2C9004C0FD3 /* VILogKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87475EBE19E32B240028A9BF /* VILogKit.framework */; };
 		87B401AA1AC764EA001D55DD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87B401A91AC764EA001D55DD /* AppDelegate.swift */; };
 		87BB56411AC303A300B1B468 /* SampleImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87BB56401AC303A300B1B468 /* SampleImages.xcassets */; };
+		87C131041ADD1CC3007467F1 /* LocationDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87C131031ADD1CC3007467F1 /* LocationDetailCell.xib */; };
 		87CBE08C1908810B0029D9AF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08B1908810B0029D9AF /* Foundation.framework */; };
 		87CBE08E1908810B0029D9AF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08D1908810B0029D9AF /* CoreGraphics.framework */; };
 		87CBE0901908810B0029D9AF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87CBE08F1908810B0029D9AF /* UIKit.framework */; };
@@ -424,7 +425,7 @@
 		87475EB819E32B230028A9BF /* VILogKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VILogKit.xcodeproj; path = VILogKit/VILogKit.xcodeproj; sourceTree = "<group>"; };
 		87479AA01A3FA39D0084FBDA /* InstitutionDetailTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstitutionDetailTitleCell.swift; sourceTree = "<group>"; };
 		87479AA31A3FA4220084FBDA /* InstitutionDetailPropertyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstitutionDetailPropertyCell.swift; sourceTree = "<group>"; };
-		87479AA51A3FA4810084FBDA /* InstitutionDetailLocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstitutionDetailLocationCell.swift; sourceTree = "<group>"; };
+		87479AA51A3FA4810084FBDA /* LocationDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailCell.swift; sourceTree = "<group>"; };
 		87479AA71A3FA4D70084FBDA /* InstitutionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstitutionDetailViewController.swift; sourceTree = "<group>"; };
 		8748CCF61AC9BB71006F4F8E /* uni-hd-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uni-hd-Bridging-Header.h"; sourceTree = "<group>"; };
 		8748CCFA1AC9C1B9006F4F8E /* CampusSearchResultsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CampusSearchResultsViewController.swift; path = UHDKit/CampusSearchResultsViewController.swift; sourceTree = SOURCE_ROOT; };
@@ -482,6 +483,7 @@
 		87B974E6192D5A360080AA40 /* VIManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VIManager.h; path = VIOSFramework/Managers/VIManager.h; sourceTree = "<group>"; };
 		87B974E7192D5A360080AA40 /* VIManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VIManager.m; path = VIOSFramework/Managers/VIManager.m; sourceTree = "<group>"; };
 		87BB56401AC303A300B1B468 /* SampleImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = SampleImages.xcassets; sourceTree = "<group>"; };
+		87C131031ADD1CC3007467F1 /* LocationDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LocationDetailCell.xib; path = UHDKit/LocationDetailCell.xib; sourceTree = SOURCE_ROOT; };
 		87CB17A51A2CC2A200499AED /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		87CB17A61A2CC2A200499AED /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		87CBE0881908810B0029D9AF /* uni-hd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "uni-hd.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -630,17 +632,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0A1D95CD1ADC709D0047C27E /* Table View Cells - XIB Files */ = {
-			isa = PBXGroup;
-			children = (
-				0A1D95CE1ADC71510047C27E /* NewsItemCell.xib */,
-				0A1D95D01ADC74EA0047C27E /* EventItemCell.xib */,
-				0A1D95D21ADC75270047C27E /* TalkItemCell.xib */,
-				0A1D95D41ADC89640047C27E /* SourceCell.xib */,
-			);
-			name = "Table View Cells - XIB Files";
-			sourceTree = "<group>";
-		};
 		0ABAE5ED1A3A52C200E85E3E /* Talk Detail */ = {
 			isa = PBXGroup;
 			children = (
@@ -702,17 +693,21 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		871BE3AA19E4F295005A600A /* Table View Cells - Source Files */ = {
+		871BE3AA19E4F295005A600A /* Table View Cells */ = {
 			isa = PBXGroup;
 			children = (
 				875396001932B03C00DFEF19 /* UHDNewsSourceCell.h */,
 				875396011932B03C00DFEF19 /* UHDNewsSourceCell.m */,
+				0A1D95D41ADC89640047C27E /* SourceCell.xib */,
 				0AD7F3701923F58E00F49551 /* UHDNewsItemCell.h */,
 				0AD7F3711923F58E00F49551 /* UHDNewsItemCell.m */,
+				0A1D95CE1ADC71510047C27E /* NewsItemCell.xib */,
 				0A7FACF8196B13DB00E2CC9D /* UHDEventItemCell.h */,
 				0A7FACF9196B13DB00E2CC9D /* UHDEventItemCell.m */,
+				0A1D95D01ADC74EA0047C27E /* EventItemCell.xib */,
 				0A7FACFE196B17B000E2CC9D /* UHDTalkItemCell.h */,
 				0A7FACFF196B17B000E2CC9D /* UHDTalkItemCell.m */,
+				0A1D95D21ADC75270047C27E /* TalkItemCell.xib */,
 				0A0CEC0B19E44F55009C9F5B /* UHDReadIndicatorView.h */,
 				0A0CEC0C19E44F55009C9F5B /* UHDReadIndicatorView.m */,
 				0ABAE5F21A3A6F1500E85E3E /* UHDTalkDetailTitleAbstractCell.h */,
@@ -724,13 +719,13 @@
 				0A5EE2831ADC2352004161B7 /* UHDTalkDetailSpeakerCell.h */,
 				0A5EE2841ADC2352004161B7 /* UHDTalkDetailSpeakerCell.m */,
 				0A5EE28B1ADC2C82004161B7 /* UHDTalkDetailTimeCell.h */,
+				0A5EE28C1ADC2C82004161B7 /* UHDTalkDetailTimeCell.m */,
 				0A5EE28F1ADC2CF9004161B7 /* UHDTalkDetailLocationCell.h */,
 				0A5EE2901ADC2CF9004161B7 /* UHDTalkDetailLocationCell.m */,
-				0A5EE28C1ADC2C82004161B7 /* UHDTalkDetailTimeCell.m */,
 				0A5EE2871ADC249E004161B7 /* UHDTalkDetailAbstractCell.h */,
 				0A5EE2881ADC249E004161B7 /* UHDTalkDetailAbstractCell.m */,
 			);
-			name = "Table View Cells - Source Files";
+			name = "Table View Cells";
 			sourceTree = "<group>";
 		};
 		872673251A36050500ABC599 /* View Controller */ = {
@@ -848,8 +843,7 @@
 			children = (
 				87DBE7F31919C3F700C16970 /* news.storyboard */,
 				0AF7D4371A0C43D800BD8423 /* Sources Navigation Bar */,
-				871BE3AA19E4F295005A600A /* Table View Cells - Source Files */,
-				0A1D95CD1ADC709D0047C27E /* Table View Cells - XIB Files */,
+				871BE3AA19E4F295005A600A /* Table View Cells */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -870,7 +864,8 @@
 				8726F70F1AC9D05800208D83 /* InstitutionCell.swift */,
 				87479AA01A3FA39D0084FBDA /* InstitutionDetailTitleCell.swift */,
 				87479AA31A3FA4220084FBDA /* InstitutionDetailPropertyCell.swift */,
-				87479AA51A3FA4810084FBDA /* InstitutionDetailLocationCell.swift */,
+				87479AA51A3FA4810084FBDA /* LocationDetailCell.swift */,
+				87C131031ADD1CC3007467F1 /* LocationDetailCell.xib */,
 			);
 			name = "Table View Cells";
 			sourceTree = "<group>";
@@ -1703,6 +1698,7 @@
 				87A49BB51AC1DB49004FA9A4 /* settings.storyboard in Resources */,
 				0A1D95CF1ADC71510047C27E /* NewsItemCell.xib in Resources */,
 				87A49BB31AC1D9FD004FA9A4 /* TabBarIcons.xcassets in Resources */,
+				87C131041ADD1CC3007467F1 /* LocationDetailCell.xib in Resources */,
 				876C69711AB4CB1C00EE093B /* news.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2009,7 +2005,7 @@
 				87A49BA21AC1BE44004FA9A4 /* Constants.swift in Sources */,
 				876C69521AB4CAB800EE093B /* UHDMeal.m in Sources */,
 				876C69771AB4CB1C00EE093B /* UHDTalkItemCell.m in Sources */,
-				876C69961AB4CB6300EE093B /* InstitutionDetailLocationCell.swift in Sources */,
+				876C69961AB4CB6300EE093B /* LocationDetailCell.swift in Sources */,
 				876C69781AB4CB1C00EE093B /* UHDReadIndicatorView.m in Sources */,
 				876C69801AB4CB1C00EE093B /* UHDNewsCategory.m in Sources */,
 				8783543A1ACAF1B500CA5032 /* Room.swift in Sources */,

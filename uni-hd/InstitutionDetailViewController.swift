@@ -38,10 +38,11 @@ public class InstitutionDetailViewController: UITableViewController, MFMailCompo
         self.tableView.estimatedRowHeight = 160
         self.tableView.rowHeight = UITableViewAutomaticDimension
 		
-		self.tableView.registerNib(UINib(nibName: "NewsItemCell", bundle: NSBundle(forClass: object_getClass(UHDNewsItemCell))), forCellReuseIdentifier: "newsCell")
-		self.tableView.registerNib(UINib(nibName: "EventItemCell", bundle: NSBundle(forClass: object_getClass(UHDEventItemCell))), forCellReuseIdentifier: "eventCell")
-		self.tableView.registerNib(UINib(nibName: "TalkItemCell", bundle: NSBundle(forClass: object_getClass(UHDTalkItemCell))), forCellReuseIdentifier: "talkCell")
-		self.tableView.registerNib(UINib(nibName: "SourceCell", bundle: NSBundle(forClass: object_getClass(UHDNewsSourceCell))), forCellReuseIdentifier: "sourceCell")
+		self.tableView.registerNib(UINib(nibName: "NewsItemCell", bundle: NSBundle(forClass: UHDNewsItemCell.self)), forCellReuseIdentifier: "newsCell")
+		self.tableView.registerNib(UINib(nibName: "EventItemCell", bundle: NSBundle(forClass: UHDEventItemCell.self)), forCellReuseIdentifier: "eventCell")
+		self.tableView.registerNib(UINib(nibName: "TalkItemCell", bundle: NSBundle(forClass: UHDTalkItemCell.self)), forCellReuseIdentifier: "talkCell")
+        self.tableView.registerNib(UINib(nibName: "SourceCell", bundle: NSBundle(forClass: UHDNewsSourceCell.self)), forCellReuseIdentifier: "sourceCell")
+        self.tableView.registerNib(UINib(nibName: "LocationDetailCell", bundle: NSBundle(forClass: LocationDetailCell.self)), forCellReuseIdentifier: "locationCell")
     }
 	
     override public func viewDidLoad() {
@@ -292,7 +293,7 @@ public class InstitutionDetailViewController: UITableViewController, MFMailCompo
             return cell
             
         case .Locations(let locations):
-            let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as! InstitutionDetailLocationCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("locationCell", forIndexPath: indexPath) as! LocationDetailCell
             cell.configureForLocation(locations[indexPath.row])
             return cell
         }

@@ -107,8 +107,8 @@
                 <variation key="default">
                     <mask key="constraints">
                         <exclude reference="6iY-pV-cE8"/>
-                        <exclude reference="iKc-bT-P4E"/>
                         <exclude reference="ONn-33-Ewo"/>
+                        <exclude reference="iKc-bT-P4E"/>
                         <exclude reference="wmm-Hb-Kn2"/>
                         <exclude reference="r4x-ay-7Fe"/>
                         <exclude reference="tS7-4n-7S8"/>
