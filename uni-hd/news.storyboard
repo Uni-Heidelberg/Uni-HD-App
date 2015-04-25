@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4EB-dw-R4U">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="4EB-dw-R4U">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -183,46 +183,13 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="O6c-iI-S7w" secondAttribute="trailing" constant="15" id="WiL-lu-e2u"/>
-                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="O6c-iI-S7w" secondAttribute="bottom" constant="8" id="Ws6-l2-V2e"/>
-                                        <constraint firstItem="O6c-iI-S7w" firstAttribute="top" secondItem="q7h-Es-MA6" secondAttribute="top" constant="8" id="avV-1z-w2B"/>
+                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="O6c-iI-S7w" secondAttribute="bottom" id="Ws6-l2-V2e"/>
+                                        <constraint firstItem="O6c-iI-S7w" firstAttribute="top" secondItem="q7h-Es-MA6" secondAttribute="topMargin" id="avV-1z-w2B"/>
                                         <constraint firstItem="O6c-iI-S7w" firstAttribute="leading" secondItem="q7h-Es-MA6" secondAttribute="leading" constant="15" id="pT6-mQ-LKT"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="titleTextView" destination="O6c-iI-S7w" id="BRT-wR-dVf"/>
-                                </connections>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="speaker" rowHeight="100" id="XTf-MY-aEN" customClass="UHDTalkDetailSpeakerCell">
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XTf-MY-aEN" id="cq3-QV-4BJ">
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Affiliation" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zTk-du-s9l" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
-                                            <rect key="frame" x="15" y="46" width="562" height="20"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XQn-Rx-938">
-                                            <rect key="frame" x="15" y="8" width="57" height="30"/>
-                                            <state key="normal" title="Speaker">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                        </button>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="XQn-Rx-938" firstAttribute="top" secondItem="cq3-QV-4BJ" secondAttribute="top" constant="8" id="3lh-1I-hPu"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XQn-Rx-938" secondAttribute="trailing" constant="15" id="42D-TW-LZm"/>
-                                        <constraint firstItem="XQn-Rx-938" firstAttribute="leading" secondItem="cq3-QV-4BJ" secondAttribute="leading" constant="15" id="8Iw-6t-bU0"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="zTk-du-s9l" secondAttribute="trailing" constant="15" id="H5j-9M-yn1"/>
-                                        <constraint firstItem="zTk-du-s9l" firstAttribute="top" secondItem="XQn-Rx-938" secondAttribute="bottom" constant="8" symbolic="YES" id="NOS-ID-Izn"/>
-                                        <constraint firstItem="XQn-Rx-938" firstAttribute="leading" secondItem="zTk-du-s9l" secondAttribute="leading" id="PuP-Y6-AE7"/>
-                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="zTk-du-s9l" secondAttribute="bottom" constant="8" id="sJC-r7-fDQ"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="affiliationLabel" destination="zTk-du-s9l" id="mbQ-4d-5La"/>
-                                    <outlet property="speakerLabel" destination="XQn-Rx-938" id="lHG-I6-AIK"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="abstract" rowHeight="100" id="0tZ-fF-KOw" customClass="UHDTalkDetailAbstractCell">
@@ -246,10 +213,10 @@
                                         </textView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="1EV-p8-fKa" firstAttribute="top" secondItem="9g6-nV-Z2Z" secondAttribute="top" constant="8" id="29J-ba-XWa"/>
-                                        <constraint firstAttribute="bottom" secondItem="1EV-p8-fKa" secondAttribute="bottom" constant="8" id="5RV-7T-97I"/>
-                                        <constraint firstItem="1EV-p8-fKa" firstAttribute="leading" secondItem="9g6-nV-Z2Z" secondAttribute="leading" constant="15" id="Utl-tB-kKg"/>
-                                        <constraint firstAttribute="trailing" secondItem="1EV-p8-fKa" secondAttribute="trailing" constant="15" id="sE3-bT-mWa"/>
+                                        <constraint firstItem="1EV-p8-fKa" firstAttribute="top" secondItem="9g6-nV-Z2Z" secondAttribute="topMargin" priority="999" id="29J-ba-XWa"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="1EV-p8-fKa" secondAttribute="bottom" priority="999" id="5RV-7T-97I"/>
+                                        <constraint firstItem="1EV-p8-fKa" firstAttribute="leading" secondItem="9g6-nV-Z2Z" secondAttribute="leading" priority="999" constant="15" id="Utl-tB-kKg"/>
+                                        <constraint firstAttribute="trailing" secondItem="1EV-p8-fKa" secondAttribute="trailing" priority="999" constant="15" id="sE3-bT-mWa"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -384,7 +351,7 @@
         <scene sceneID="2gq-se-Qva">
             <objects>
                 <tableViewController storyboardIdentifier="newsDetail" id="6bi-Tz-Ez5" customClass="NewsDetailViewController" customModule="UHDKit" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="wLb-IP-5FX">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="none" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="wLb-IP-5FX">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.95686274509803926" alpha="1" colorSpace="calibratedRGB"/>
@@ -398,14 +365,35 @@
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </view>
+                        <view key="tableFooterView" contentMode="scaleToFill" id="kqz-hP-P0W">
+                            <rect key="frame" x="0.0" y="412" width="600" height="58"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FSf-uh-msf">
+                                    <rect key="frame" x="15" y="8" width="168" height="30"/>
+                                    <state key="normal" title="Original-Artikel anzeigen">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="showURLButtonPressed:" destination="6bi-Tz-Ez5" eventType="touchUpInside" id="2im-8H-Lj2"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="FSf-uh-msf" firstAttribute="leading" secondItem="kqz-hP-P0W" secondAttribute="leading" constant="15" id="Ngq-sB-40n"/>
+                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="FSf-uh-msf" secondAttribute="trailing" constant="15" id="RYi-hR-4F2"/>
+                                <constraint firstItem="FSf-uh-msf" firstAttribute="top" secondItem="kqz-hP-P0W" secondAttribute="top" constant="8" id="ZNC-mf-lMJ"/>
+                            </constraints>
+                        </view>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="articleComponent" rowHeight="100" id="J3s-MT-DMm" userLabel="articleComponent" customClass="NewsDetailTextCell" customModule="UHDKit" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="articleComponent" id="J3s-MT-DMm" userLabel="articleComponent" customClass="NewsDetailTextCell" customModule="UHDKit" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="J3s-MT-DMm" id="kEd-LO-grR">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" text="Title / Abstract / Content" translatesAutoresizingMaskIntoConstraints="NO" id="1JR-A2-J9D">
-                                            <rect key="frame" x="15" y="10" width="570" height="79"/>
+                                            <rect key="frame" x="15" y="8" width="570" height="28"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -420,17 +408,17 @@
                                         </textView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="1JR-A2-J9D" firstAttribute="top" secondItem="kEd-LO-grR" secondAttribute="top" constant="10" id="6HZ-PY-BeF"/>
-                                        <constraint firstAttribute="bottom" secondItem="1JR-A2-J9D" secondAttribute="bottom" constant="10" id="URw-XL-m9r"/>
-                                        <constraint firstItem="1JR-A2-J9D" firstAttribute="leading" secondItem="kEd-LO-grR" secondAttribute="leading" constant="15" id="VIx-dO-ScZ"/>
-                                        <constraint firstAttribute="trailing" secondItem="1JR-A2-J9D" secondAttribute="trailing" constant="15" id="xaz-AW-Ovs"/>
+                                        <constraint firstItem="1JR-A2-J9D" firstAttribute="top" secondItem="kEd-LO-grR" secondAttribute="top" priority="999" constant="8" id="6HZ-PY-BeF"/>
+                                        <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="1JR-A2-J9D" secondAttribute="bottom" priority="999" constant="8" id="URw-XL-m9r"/>
+                                        <constraint firstItem="1JR-A2-J9D" firstAttribute="leading" secondItem="kEd-LO-grR" secondAttribute="leading" priority="999" constant="15" id="VIx-dO-ScZ"/>
+                                        <constraint firstAttribute="trailing" secondItem="1JR-A2-J9D" secondAttribute="trailing" priority="999" constant="15" id="xaz-AW-Ovs"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="articleComponentTextView" destination="1JR-A2-J9D" id="TJm-ql-0mn"/>
                                 </connections>
                             </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="cell" textLabel="bzZ-e0-Uia" rowHeight="100" style="IBUITableViewCellStyleDefault" id="ou6-Cb-bUf" userLabel="cell" customClass="NewsDetailTextCell" customModule="UHDKit" customModuleProvider="target">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" textLabel="bzZ-e0-Uia" style="IBUITableViewCellStyleDefault" id="ou6-Cb-bUf" userLabel="cell" customClass="NewsDetailTextCell" customModule="UHDKit" customModuleProvider="target">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ou6-Cb-bUf" id="juc-iV-EDQ">
                                     <autoresizingMask key="autoresizingMask"/>
@@ -510,7 +498,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wgM-SU-Dhm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5020" y="-380"/>
+            <point key="canvasLocation" x="4312" y="308"/>
         </scene>
         <!--News Detail Web-->
         <scene sceneID="7qp-AH-575">
@@ -551,7 +539,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UC2-ih-bD7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4318.125" y="308.45070422535207"/>
+            <point key="canvasLocation" x="4312" y="982"/>
         </scene>
         <!--News & Events-->
         <scene sceneID="PLw-Zn-bh4">

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import VILogKit
 
 public class NewsDetailTextCell: UITableViewCell {
 
@@ -19,8 +20,8 @@ public class NewsDetailTextCell: UITableViewCell {
 		switch articleComponent {
 		
 		case .Title(let title):
-			self.articleComponentTextView.text = title
-			self.articleComponentTextView.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
+			articleComponentTextView.text = title
+			articleComponentTextView.font = UIFont.preferredFontForTextStyle(UIFontTextStyleHeadline)
 			
 		case .Abstract(let abstract):
 			// TODO: get adequate abstract from server
@@ -42,6 +43,13 @@ public class NewsDetailTextCell: UITableViewCell {
 		case .Content(let content):
 			self.articleComponentTextView.text = content
 			self.articleComponentTextView.font = UIFont.preferredFontForTextStyle(UIFontTextStyleBody)
+            
+        case .Date:
+            log("Tried to configure NewsDetailTextCell for Date.", forLevel: .Warning)
+            return
 		}
+        
+        self.layoutIfNeeded()
+        
 	}
 }

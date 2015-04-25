@@ -38,7 +38,8 @@ public class InstitutionDetailViewController: UITableViewController, MFMailCompo
         self.tableView.estimatedRowHeight = 160
         self.tableView.rowHeight = UITableViewAutomaticDimension
 		
-		self.tableView.registerNib(UINib(nibName: "NewsItemCell", bundle: NSBundle(forClass: UHDNewsItemCell.self)), forCellReuseIdentifier: "newsCell")
+        self.tableView.registerNib(UINib(nibName: "DetailPropertyCell", bundle: NSBundle(forClass: DetailPropertyCell.self)), forCellReuseIdentifier: "detailPropertyCell")
+        self.tableView.registerNib(UINib(nibName: "NewsItemCell", bundle: NSBundle(forClass: UHDNewsItemCell.self)), forCellReuseIdentifier: "newsCell")
 		self.tableView.registerNib(UINib(nibName: "EventItemCell", bundle: NSBundle(forClass: UHDEventItemCell.self)), forCellReuseIdentifier: "eventCell")
 		self.tableView.registerNib(UINib(nibName: "TalkItemCell", bundle: NSBundle(forClass: UHDTalkItemCell.self)), forCellReuseIdentifier: "talkCell")
         self.tableView.registerNib(UINib(nibName: "SourceCell", bundle: NSBundle(forClass: UHDNewsSourceCell.self)), forCellReuseIdentifier: "sourceCell")
@@ -271,7 +272,7 @@ public class InstitutionDetailViewController: UITableViewController, MFMailCompo
             }
     
         case .Contact(let contactProperties):
-            let cell = tableView.dequeueReusableCellWithIdentifier("propertyCell", forIndexPath: indexPath) as! InstitutionDetailPropertyCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("detailPropertyCell", forIndexPath: indexPath) as! DetailPropertyCell
             cell.configureForContactProperty(contactProperties[indexPath.row])
             return cell
             

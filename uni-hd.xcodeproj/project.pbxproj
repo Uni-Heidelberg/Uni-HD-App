@@ -14,8 +14,6 @@
 		0A3503091AE019E000A4AF33 /* NewsDetailTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3503081AE019E000A4AF33 /* NewsDetailTextCell.swift */; };
 		0A5EE2801ADC1B07004161B7 /* UHDTalkDetailTitleCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A5EE27E1ADC1B07004161B7 /* UHDTalkDetailTitleCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0A5EE2811ADC1B07004161B7 /* UHDTalkDetailTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5EE27F1ADC1B07004161B7 /* UHDTalkDetailTitleCell.m */; };
-		0A5EE2851ADC2352004161B7 /* UHDTalkDetailSpeakerCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A5EE2831ADC2352004161B7 /* UHDTalkDetailSpeakerCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		0A5EE2861ADC2352004161B7 /* UHDTalkDetailSpeakerCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5EE2841ADC2352004161B7 /* UHDTalkDetailSpeakerCell.m */; };
 		0A5EE2891ADC249E004161B7 /* UHDTalkDetailAbstractCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A5EE2871ADC249E004161B7 /* UHDTalkDetailAbstractCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0A5EE28A1ADC249E004161B7 /* UHDTalkDetailAbstractCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5EE2881ADC249E004161B7 /* UHDTalkDetailAbstractCell.m */; };
 		0A5EE28D1ADC2C82004161B7 /* UHDTalkDetailTimeCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 0A5EE28B1ADC2C82004161B7 /* UHDTalkDetailTimeCell.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -130,7 +128,7 @@
 		876C69911AB4CB6300EE093B /* InstitutionDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87479AA71A3FA4D70084FBDA /* InstitutionDetailViewController.swift */; };
 		876C69921AB4CB6300EE093B /* campus.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 87E85273195727E4007503B8 /* campus.storyboard */; };
 		876C69941AB4CB6300EE093B /* InstitutionDetailTitleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87479AA01A3FA39D0084FBDA /* InstitutionDetailTitleCell.swift */; };
-		876C69951AB4CB6300EE093B /* InstitutionDetailPropertyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87479AA31A3FA4220084FBDA /* InstitutionDetailPropertyCell.swift */; };
+		876C69951AB4CB6300EE093B /* DetailPropertyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87479AA31A3FA4220084FBDA /* DetailPropertyCell.swift */; };
 		876C69961AB4CB6300EE093B /* LocationDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87479AA51A3FA4810084FBDA /* LocationDetailCell.swift */; };
 		876C699E1AB4CB6300EE093B /* UHDMapsRemoteDatasourceDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 0BEC8EB01993B40A00EAB8F6 /* UHDMapsRemoteDatasourceDelegate.m */; };
 		876C699F1AB4CB6900EE093B /* campus.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 87FCA99119958EB100B3A55F /* campus.xcdatamodeld */; };
@@ -147,6 +145,7 @@
 		8771ECA21AB4A1C200026207 /* UHDRemoteDatasourceManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B974E4192D57330080AA40 /* UHDRemoteDatasourceManager.m */; };
 		8771ECA31AB4A1C600026207 /* UHDRemoteDatasource.h in Headers */ = {isa = PBXBuildFile; fileRef = 8701CE4A190C00A600A18F82 /* UHDRemoteDatasource.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8771ECA91AB4A1E500026207 /* UHDRemoteDatasource.m in Sources */ = {isa = PBXBuildFile; fileRef = 8701CE4B190C00A600A18F82 /* UHDRemoteDatasource.m */; };
+		87823DCD1AEBBDA0000B7610 /* DetailPropertyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 87823DCC1AEBBDA0000B7610 /* DetailPropertyCell.xib */; };
 		8783543A1ACAF1B500CA5032 /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878354391ACAF1B500CA5032 /* Room.swift */; };
 		8783543D1ACAFDE900CA5032 /* LocationAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8783543C1ACAFDE900CA5032 /* LocationAnnotationView.swift */; };
 		8798B4781AB4A365001E6C87 /* VIManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 87B974E7192D5A360080AA40 /* VIManager.m */; };
@@ -363,8 +362,6 @@
 		0A586D8D19646A6600DF86EE /* UHDTalkSpeaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDTalkSpeaker.m; sourceTree = "<group>"; };
 		0A5EE27E1ADC1B07004161B7 /* UHDTalkDetailTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkDetailTitleCell.h; sourceTree = "<group>"; };
 		0A5EE27F1ADC1B07004161B7 /* UHDTalkDetailTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDTalkDetailTitleCell.m; sourceTree = "<group>"; };
-		0A5EE2831ADC2352004161B7 /* UHDTalkDetailSpeakerCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkDetailSpeakerCell.h; sourceTree = "<group>"; };
-		0A5EE2841ADC2352004161B7 /* UHDTalkDetailSpeakerCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDTalkDetailSpeakerCell.m; sourceTree = "<group>"; };
 		0A5EE2871ADC249E004161B7 /* UHDTalkDetailAbstractCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkDetailAbstractCell.h; sourceTree = "<group>"; };
 		0A5EE2881ADC249E004161B7 /* UHDTalkDetailAbstractCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UHDTalkDetailAbstractCell.m; sourceTree = "<group>"; };
 		0A5EE28B1ADC2C82004161B7 /* UHDTalkDetailTimeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UHDTalkDetailTimeCell.h; sourceTree = "<group>"; };
@@ -428,7 +425,7 @@
 		8744482B1AC2FBED00D9CC87 /* UHDSettingsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UHDSettingsDetailViewController.swift; sourceTree = "<group>"; };
 		87475EB819E32B230028A9BF /* VILogKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = VILogKit.xcodeproj; path = VILogKit/VILogKit.xcodeproj; sourceTree = "<group>"; };
 		87479AA01A3FA39D0084FBDA /* InstitutionDetailTitleCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstitutionDetailTitleCell.swift; sourceTree = "<group>"; };
-		87479AA31A3FA4220084FBDA /* InstitutionDetailPropertyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstitutionDetailPropertyCell.swift; sourceTree = "<group>"; };
+		87479AA31A3FA4220084FBDA /* DetailPropertyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailPropertyCell.swift; sourceTree = "<group>"; };
 		87479AA51A3FA4810084FBDA /* LocationDetailCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailCell.swift; sourceTree = "<group>"; };
 		87479AA71A3FA4D70084FBDA /* InstitutionDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstitutionDetailViewController.swift; sourceTree = "<group>"; };
 		8748CCF61AC9BB71006F4F8E /* uni-hd-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "uni-hd-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -453,6 +450,7 @@
 		8771EC8C1AB4A08F00026207 /* UHDRemoteKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = UHDRemoteKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8771EC941AB4A08F00026207 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8771EC951AB4A08F00026207 /* UHDRemoteKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UHDRemoteKitTests.swift; sourceTree = "<group>"; };
+		87823DCC1AEBBDA0000B7610 /* DetailPropertyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = DetailPropertyCell.xib; path = UHDKit/DetailPropertyCell.xib; sourceTree = SOURCE_ROOT; };
 		878354391ACAF1B500CA5032 /* Room.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Room.swift; path = UHDKit/Room.swift; sourceTree = SOURCE_ROOT; };
 		8783543C1ACAFDE900CA5032 /* LocationAnnotationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LocationAnnotationView.swift; path = UHDKit/LocationAnnotationView.swift; sourceTree = SOURCE_ROOT; };
 		87839F3819D4D70B00E5E6C8 /* MensaDayPickerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MensaDayPickerCell.swift; sourceTree = "<group>"; };
@@ -720,8 +718,6 @@
 				0ABAE5F91A3AE65A00E85E3E /* UHDTalkDetailSpaceTimeCell.m */,
 				0A5EE27E1ADC1B07004161B7 /* UHDTalkDetailTitleCell.h */,
 				0A5EE27F1ADC1B07004161B7 /* UHDTalkDetailTitleCell.m */,
-				0A5EE2831ADC2352004161B7 /* UHDTalkDetailSpeakerCell.h */,
-				0A5EE2841ADC2352004161B7 /* UHDTalkDetailSpeakerCell.m */,
 				0A5EE28B1ADC2C82004161B7 /* UHDTalkDetailTimeCell.h */,
 				0A5EE28C1ADC2C82004161B7 /* UHDTalkDetailTimeCell.m */,
 				0A5EE28F1ADC2CF9004161B7 /* UHDTalkDetailLocationCell.h */,
@@ -869,7 +865,8 @@
 			children = (
 				8726F70F1AC9D05800208D83 /* InstitutionCell.swift */,
 				87479AA01A3FA39D0084FBDA /* InstitutionDetailTitleCell.swift */,
-				87479AA31A3FA4220084FBDA /* InstitutionDetailPropertyCell.swift */,
+				87479AA31A3FA4220084FBDA /* DetailPropertyCell.swift */,
+				87823DCC1AEBBDA0000B7610 /* DetailPropertyCell.xib */,
 				87479AA51A3FA4810084FBDA /* LocationDetailCell.swift */,
 				87C131031ADD1CC3007467F1 /* LocationDetailCell.xib */,
 			);
@@ -1358,7 +1355,6 @@
 				0A5EE28D1ADC2C82004161B7 /* UHDTalkDetailTimeCell.h in Headers */,
 				0A5EE2801ADC1B07004161B7 /* UHDTalkDetailTitleCell.h in Headers */,
 				0A5EE2891ADC249E004161B7 /* UHDTalkDetailAbstractCell.h in Headers */,
-				0A5EE2851ADC2352004161B7 /* UHDTalkDetailSpeakerCell.h in Headers */,
 				876C693D1AB4CA7700EE093B /* UHDMensaSection.h in Headers */,
 				876C69401AB4CA7700EE093B /* UHDMensaRemoteDatasourceDelegate.h in Headers */,
 				876C69691AB4CAFA00EE093B /* UHDNewsSource.h in Headers */,
@@ -1706,6 +1702,7 @@
 				87A49BB31AC1D9FD004FA9A4 /* TabBarIcons.xcassets in Resources */,
 				87C131041ADD1CC3007467F1 /* LocationDetailCell.xib in Resources */,
 				876C69711AB4CB1C00EE093B /* news.storyboard in Resources */,
+				87823DCD1AEBBDA0000B7610 /* DetailPropertyCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2001,7 +1998,6 @@
 				8731AB911AC71270008A1844 /* CampusRegion.swift in Sources */,
 				0A3503091AE019E000A4AF33 /* NewsDetailTextCell.swift in Sources */,
 				876C697E1AB4CB1C00EE093B /* UHDNewsItem.m in Sources */,
-				0A5EE2861ADC2352004161B7 /* UHDTalkDetailSpeakerCell.m in Sources */,
 				876C69911AB4CB6300EE093B /* InstitutionDetailViewController.swift in Sources */,
 				8731AB931AC71FBC008A1844 /* Mensa.swift in Sources */,
 				876C69791AB4CB1C00EE093B /* UHDTalkDetailTitleAbstractCell.m in Sources */,
@@ -2020,7 +2016,7 @@
 				87A49BBD1AC1DF5D004FA9A4 /* UIImage+ImageEffects.m in Sources */,
 				8744482C1AC2FBED00D9CC87 /* UHDSettingsDetailViewController.swift in Sources */,
 				876C69431AB4CAB800EE093B /* UHDDailyMenuViewController.m in Sources */,
-				876C69951AB4CB6300EE093B /* InstitutionDetailPropertyCell.swift in Sources */,
+				876C69951AB4CB6300EE093B /* DetailPropertyCell.swift in Sources */,
 				879E285E1AC895C7008276DB /* Node.swift in Sources */,
 				87A71D901AB4CF17004C0FD3 /* VIFetchedResultsControllerDataSource.m in Sources */,
 				8726F7101AC9D05800208D83 /* InstitutionCell.swift in Sources */,

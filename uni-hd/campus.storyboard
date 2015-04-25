@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D131" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eca-DM-luB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="eca-DM-luB">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -181,17 +181,17 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q7T-Vx-DLw" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
-                                            <rect key="frame" x="15" y="16" width="600" height="19.5"/>
+                                            <rect key="frame" x="15" y="16" width="600" height="20"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Affiliation" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="let-j4-2Wh" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
-                                            <rect key="frame" x="15" y="43" width="600" height="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Affiliation" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="let-j4-2Wh" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
+                                            <rect key="frame" x="15" y="44" width="600" height="17"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Status" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRA-Fc-gIQ">
-                                            <rect key="frame" x="15" y="68" width="570" height="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vRA-Fc-gIQ">
+                                            <rect key="frame" x="15" y="69" width="570" height="17"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -239,41 +239,6 @@
                                         <constraint firstItem="OV0-pl-bbU" firstAttribute="leading" secondItem="Zds-3R-rPY" secondAttribute="leading" constant="15" id="l4s-r9-ufA"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                            </tableViewCell>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="propertyCell" rowHeight="80" id="ZG8-PG-kfG" customClass="InstitutionDetailPropertyCell" customModule="UHDKit" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="246" width="320" height="198"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZG8-PG-kfG" id="xOy-Fe-6Aw">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="197"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ehU-A6-lCi">
-                                            <rect key="frame" x="15" y="0.0" width="92" height="30"/>
-                                            <state key="normal" title="Property Title">
-                                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                            </state>
-                                        </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Property Content" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ob-Tb-f1v" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
-                                            <rect key="frame" x="15" y="38" width="570" height="19.5"/>
-                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="ehU-A6-lCi" firstAttribute="leading" secondItem="3Ob-Tb-f1v" secondAttribute="leading" id="7sb-8c-bz2"/>
-                                        <constraint firstItem="ehU-A6-lCi" firstAttribute="top" secondItem="xOy-Fe-6Aw" secondAttribute="top" id="Eoo-AS-mei"/>
-                                        <constraint firstItem="ehU-A6-lCi" firstAttribute="leading" secondItem="xOy-Fe-6Aw" secondAttribute="leading" constant="15" id="QDU-ba-llr"/>
-                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ehU-A6-lCi" secondAttribute="trailing" constant="15" id="ROJ-9K-4qD"/>
-                                        <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="3Ob-Tb-f1v" secondAttribute="bottom" constant="8" id="SBV-Vp-9Cp"/>
-                                        <constraint firstItem="3Ob-Tb-f1v" firstAttribute="top" secondItem="ehU-A6-lCi" secondAttribute="bottom" constant="8" symbolic="YES" id="wHe-6P-7nS"/>
-                                        <constraint firstAttribute="trailing" secondItem="3Ob-Tb-f1v" secondAttribute="trailing" constant="15" id="xqh-lc-Qdk"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="contentLabel" destination="3Ob-Tb-f1v" id="itN-fW-YHM"/>
-                                    <outlet property="titleLabel" destination="ehU-A6-lCi" id="ul2-l6-pH4"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <sections/>

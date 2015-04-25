@@ -68,6 +68,15 @@ import UIKit
 		
 		self.tableView.reloadData()
 	}
+    
+    
+    // MARK: - User Interaction
+    
+    @IBAction func showURLButtonPressed(sender: UIButton) {
+        if let url = newsItem?.url {
+            UIApplication.sharedApplication().openURL(url)
+        }
+    }
 	
 	
 	// MARK: - Sections and Rows
@@ -100,17 +109,17 @@ import UIKit
 	}
 	
 	public enum ArticleComponent {
-        case Title(title: String), Abstract(abstract: String), Content(content: String)
+        case Title(String), Date(NSDate), Abstract(String), Content(String)
 	}
 	
 	private var newsRows: [ArticleComponent] {
 		if let newsItem = self.newsItem {
-            var newsRows: [ArticleComponent] = [ .Title(title: newsItem.title) ]
+            var newsRows: [ArticleComponent] = [ .Title(newsItem.title), .Date(newsItem.date) ]
 			if let abstract = newsItem.abstract {
-                newsRows.append(.Abstract(abstract: abstract))
+                newsRows.append(.Abstract(abstract))
 			}
 			if let content = newsItem.content {
-                newsRows.append(.Content(content: content))
+                newsRows.append(.Content(content))
 			}
 			return newsRows
 		}
@@ -140,12 +149,24 @@ import UIKit
 		switch self.sections[indexPath.section] {
 		
 		case .News(let articleComponents):
-			let cell = tableView.dequeueReusableCellWithIdentifier("articleComponent") as! NewsDetailTextCell
-            cell.configureForArticleComponent(articleComponents[indexPath.row])
-			return cell
+            let articleComponent = articleComponents[indexPath.row]
+            switch articleComponent {
+            case .Date(let date):
+                let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
+                cell.accessoryType = .None
+                let formatter = NSDateFormatter()
+                formatter.dateStyle = .FullStyle
+                cell.textLabel?.text = formatter.stringFromDate(date)
+                return cell
+            default:
+                let cell = tableView.dequeueReusableCellWithIdentifier("articleComponent") as! NewsDetailTextCell
+                cell.configureForArticleComponent(articleComponent)
+                return cell
+            }
 			
 		case .Institution(let institution):
 			let cell = tableView.dequeueReusableCellWithIdentifier("cell") as! UITableViewCell
+            cell.accessoryType = .DisclosureIndicator
 			cell.textLabel?.text = institution.title
 			return cell
 		}

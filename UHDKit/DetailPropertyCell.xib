@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="detailPropertyCell" rowHeight="80" id="E0f-Mk-Ipb" customClass="DetailPropertyCell" customModule="UHDKit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="80"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="E0f-Mk-Ipb" id="VZw-rz-6AL">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="197"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Property Content" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ktG-gO-Tos" customClass="VIMultilineLabel" customModule="UHDKit" customModuleProvider="target">
+                        <rect key="frame" x="15" y="33" width="570" height="20"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Property Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XuO-E0-14d">
+                        <rect key="frame" x="15" y="8" width="87" height="17"/>
+                        <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" relation="greaterThanOrEqual" secondItem="ktG-gO-Tos" secondAttribute="bottom" id="8Zx-sX-7iF"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="XuO-E0-14d" secondAttribute="trailing" constant="15" id="ECl-ud-gkT"/>
+                    <constraint firstAttribute="trailing" secondItem="ktG-gO-Tos" secondAttribute="trailing" constant="15" id="Vs8-9g-ngf"/>
+                    <constraint firstItem="ktG-gO-Tos" firstAttribute="leading" secondItem="XuO-E0-14d" secondAttribute="leading" id="Ydd-PM-0f1"/>
+                    <constraint firstItem="XuO-E0-14d" firstAttribute="leading" secondItem="VZw-rz-6AL" secondAttribute="leading" constant="15" id="aL6-uM-u5K"/>
+                    <constraint firstItem="ktG-gO-Tos" firstAttribute="top" secondItem="XuO-E0-14d" secondAttribute="bottom" constant="8" symbolic="YES" id="aPv-kP-rzz"/>
+                    <constraint firstItem="XuO-E0-14d" firstAttribute="top" secondItem="VZw-rz-6AL" secondAttribute="topMargin" id="kc5-jD-FYM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="contentLabel" destination="ktG-gO-Tos" id="0aN-PM-9nO"/>
+                <outlet property="titleLabel" destination="XuO-E0-14d" id="gY2-O0-ArZ"/>
+            </connections>
+        </tableViewCell>
+    </objects>
+</document>

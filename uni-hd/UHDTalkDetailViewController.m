@@ -18,7 +18,6 @@
 #import "UHDTalkDetailTitleAbstractCell.h"
 #import "UHDTalkDetailSpaceTimeCell.h"
 #import "UHDTalkDetailTitleCell.h"
-#import "UHDTalkDetailSpeakerCell.h"
 #import "UHDTalkDetailAbstractCell.h"
 #import "UHDTalkDetailTimeCell.h"
 #import "UHDTalkDetailLocationCell.h"
@@ -61,6 +60,7 @@
     self.tableView.estimatedRowHeight = 200;
     
     [self.tableView registerNib:[UINib nibWithNibName:@"LocationDetailCell" bundle:[NSBundle bundleForClass:[LocationDetailCell class]]] forCellReuseIdentifier:@"locationCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"DetailPropertyCell" bundle:[NSBundle bundleForClass:[LocationDetailCell class]]] forCellReuseIdentifier:@"detailPropertyCell"];
 }
 
 - (void)viewDidLoad {
@@ -390,8 +390,9 @@
 			}
 			case 1: {
 				if (self.talkItem.speaker.name.length > 0) {
-					cell = [self.tableView dequeueReusableCellWithIdentifier:@"speaker"];
-					[(UHDTalkDetailSpeakerCell *)cell configureForItem:self.talkItem];
+					cell = [self.tableView dequeueReusableCellWithIdentifier:@"detailPropertyCell"];
+                    [(DetailPropertyCell *)cell titleLabel].text = self.talkItem.speaker.name;
+                    [(DetailPropertyCell *)cell contentLabel].text = self.talkItem.speaker.affiliation;
 				}
 				else {
 					cell = [self.tableView dequeueReusableCellWithIdentifier:@"abstract"];

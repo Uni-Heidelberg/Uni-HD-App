@@ -1,5 +1,5 @@
 //
-//  UHDBuildingDetailPropertyCell.swift
+//  DetailPropertyCell.swift
 //  uni-hd
 //
 //  Created by Nils Fischer on 16.12.14.
@@ -8,12 +8,16 @@
 
 import UIKit
 
-class InstitutionDetailPropertyCell: UITableViewCell {
+public class DetailPropertyCell: UITableViewCell {
 
-    @IBOutlet var titleLabel: UIButton!
-    @IBOutlet var contentLabel: UILabel!
+    @IBOutlet public var titleLabel: UILabel!
+    @IBOutlet public var contentLabel: UILabel!
     
-    func configureForContactProperty(contactProperty: Institution.ContactProperty) {
+    override public func tintColorDidChange() {
+        titleLabel.textColor = self.tintColor
+    }
+    
+    public func configureForContactProperty(contactProperty: Institution.ContactProperty) {
         switch contactProperty.content {
         case .Email(let email):
             self.contentLabel.text = email
@@ -28,7 +32,9 @@ class InstitutionDetailPropertyCell: UITableViewCell {
         if let description = contactProperty.description {
             title += " | \(description)"
         }
-        self.titleLabel.setTitle(title, forState: .Normal)
+        self.titleLabel.text = title
+        self.setNeedsLayout()
+        self.layoutIfNeeded()
     }
 
 }
